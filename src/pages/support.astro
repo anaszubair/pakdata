@@ -174,10 +174,10 @@ const faqCategories = [
   }
 
   .support-hero-title {
-    font-size: 2.75rem;
-    font-weight: 800;
+    font-size: 2rem;
+    font-weight: 600;
     margin-bottom: 1rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
 
   .support-hero-subtitle {
@@ -190,9 +190,9 @@ const faqCategories = [
 
   /* FAQs columns */
   .faq-section-title {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 2.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
   }
 
   .faq-category-group {
@@ -203,8 +203,8 @@ const faqCategories = [
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    font-size: 1.375rem;
-    font-weight: 800;
+    font-size: 1.125rem;
+    font-weight: 600;
     color: var(--dark);
     margin-bottom: 1.25rem;
     border-bottom: 2px solid var(--border-focus);
@@ -238,15 +238,15 @@ const faqCategories = [
     width: 100%;
     background: none;
     border: none;
-    padding: 1.25rem 1.5rem;
+    padding: 1rem 1.25rem;
     text-align: left;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--dark-soft);
-    font-size: 1rem;
+    font-size: 0.9375rem;
     gap: 1rem;
   }
 
@@ -305,8 +305,8 @@ const faqCategories = [
   }
 
   .form-card-title {
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-size: 1.25rem;
+    font-weight: 600;
     margin-bottom: 0.25rem;
   }
 
@@ -326,8 +326,8 @@ const faqCategories = [
   }
 
   .direct-email-title {
-    font-size: 1.75rem;
-    font-weight: 800;
+    font-size: 1.5rem;
+    font-weight: 600;
     margin-bottom: 1rem;
   }
 
@@ -336,9 +336,22 @@ const faqCategories = [
     margin-bottom: 1.5rem;
   }
 
+  /* On mobile, support ticket form is not sticky */
+  @media (max-width: 767px) {
+    .support-form-column {
+      position: static;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .support-hero-title {
+      font-size: 2.5rem;
+    }
+  }
+
   @media (min-width: 768px) {
     .support-hero-title {
-      font-size: 3.5rem;
+      font-size: 3rem;
     }
   }
 </style>

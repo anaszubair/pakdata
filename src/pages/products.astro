@@ -220,10 +220,10 @@ const products = [
   }
 
   .products-hero-title {
-    font-size: 2.75rem;
-    font-weight: 800;
+    font-size: 2rem;
+    font-weight: 600;
     margin-bottom: 1rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
 
   .products-hero-subtitle {
@@ -276,8 +276,8 @@ const products = [
   }
 
   .support-prompt-title {
-    font-size: 1.75rem;
-    font-weight: 800;
+    font-size: 1.5rem;
+    font-weight: 600;
     margin-bottom: 1rem;
   }
 
@@ -298,9 +298,9 @@ const products = [
 
   .text-white .cta-title {
     color: var(--light);
-    font-size: 2.25rem;
+    font-size: 1.875rem;
     margin-bottom: 1rem;
-    font-weight: 800;
+    font-weight: 600;
   }
 
   .text-white .cta-desc {
@@ -337,9 +337,15 @@ const products = [
     pointer-events: none;
   }
 
+  @media (min-width: 640px) {
+    .products-hero-title {
+      font-size: 2.5rem;
+    }
+  }
+
   @media (min-width: 768px) {
     .products-hero-title {
-      font-size: 3.5rem;
+      font-size: 3rem;
     }
   }
 </style>

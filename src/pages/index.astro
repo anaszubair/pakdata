@@ -353,11 +353,11 @@ const featuredProducts = [
   }
 
   .hero-title {
-    font-size: 2.75rem;
-    font-weight: 800;
-    line-height: 1.15;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.2;
     margin-bottom: 1.5rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
 
   .hero-subtext {
@@ -375,7 +375,7 @@ const featuredProducts = [
 
   /* Hero visual phone mockup */
   .hero-visual {
-    display: flex;
+    display: none; /* Hidden on mobile to save space */
     justify-content: center;
     position: relative;
   }
@@ -597,8 +597,8 @@ const featuredProducts = [
 
   .metric-number {
     display: block;
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-size: 2rem;
+    font-weight: 600;
     color: var(--primary);
     line-height: 1.2;
     margin-bottom: 0.25rem;
@@ -608,7 +608,7 @@ const featuredProducts = [
   .metric-title {
     display: block;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--dark);
     margin-bottom: 0.5rem;
   }
@@ -643,15 +643,15 @@ const featuredProducts = [
   }
 
   .collage-item .num {
-    font-size: 2rem;
-    font-weight: 800;
+    font-size: 1.75rem;
+    font-weight: 600;
     margin-bottom: 0.25rem;
     font-family: var(--font-heading);
   }
 
   .collage-item .lbl {
     font-size: 0.8125rem;
-    font-weight: 600;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -680,9 +680,9 @@ const featuredProducts = [
 
   /* About summary content */
   .about-title {
-    font-size: 2.25rem;
-    font-weight: 800;
-    line-height: 1.2;
+    font-size: 1.875rem;
+    font-weight: 600;
+    line-height: 1.25;
     margin-bottom: 1.25rem;
   }
 
@@ -759,7 +759,7 @@ const featuredProducts = [
 
   .award-name {
     font-size: 1.25rem;
-    font-weight: 800;
+    font-weight: 600;
     margin-bottom: 0.25rem;
   }
 
@@ -830,11 +830,11 @@ const featuredProducts = [
   }
 
   .cta-title {
-    font-size: 2.25rem;
-    font-weight: 800;
+    font-size: 1.875rem;
+    font-weight: 600;
     color: var(--light);
     margin-bottom: 1.25rem;
-    line-height: 1.2;
+    line-height: 1.25;
   }
 
   .cta-desc {
@@ -874,9 +874,20 @@ const featuredProducts = [
   }
 
   /* Responsiveness */
+  @media (min-width: 640px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+  }
+
   @media (min-width: 768px) {
     .hero-title {
-      font-size: 3.5rem;
+      font-size: 3rem;
+    }
+
+    /* Show hero visual on tablet+ */
+    .hero-visual {
+      display: flex;
     }
     
     .metrics-card-grid {
@@ -915,7 +926,7 @@ const featuredProducts = [
 
   @media (min-width: 1024px) {
     .hero-title {
-      font-size: 4rem;
+      font-size: 3.5rem;
     }
 
     .metrics-card-grid {

@@ -201,10 +201,10 @@ const values = [
   }
 
   .about-hero-title {
-    font-size: 2.75rem;
-    font-weight: 800;
+    font-size: 1.875rem;
+    font-weight: 600;
     margin-bottom: 1rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -231,8 +231,8 @@ const values = [
   }
 
   .overview-title {
-    font-size: 2rem;
-    font-weight: 800;
+    font-size: 1.625rem;
+    font-weight: 600;
   }
 
   .overview-p {
@@ -258,8 +258,8 @@ const values = [
 
   .about-stat-card .num {
     display: block;
-    font-size: 2.25rem;
-    font-weight: 800;
+    font-size: 1.875rem;
+    font-weight: 600;
     color: var(--primary);
     margin-bottom: 0.25rem;
     font-family: var(--font-heading);
@@ -267,7 +267,7 @@ const values = [
 
   .about-stat-card .lbl {
     font-size: 0.8125rem;
-    font-weight: 700;
+    font-weight: 500;
     text-transform: uppercase;
     color: var(--secondary-dark);
     letter-spacing: 0.05em;
@@ -343,15 +343,15 @@ const values = [
     background-color: var(--primary-light);
     color: var(--primary);
     font-size: 0.875rem;
-    font-weight: 800;
+    font-weight: 600;
     padding: 0.25rem 0.75rem;
     border-radius: 0.5rem;
     margin-bottom: 0.75rem;
   }
 
   .timeline-title {
-    font-size: 1.25rem;
-    font-weight: 800;
+    font-size: 1.125rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
   }
 
@@ -373,8 +373,8 @@ const values = [
   }
 
   .vm-title {
-    font-size: 1.75rem;
-    font-weight: 800;
+    font-size: 1.5rem;
+    font-weight: 600;
     margin-bottom: 1rem;
   }
 
@@ -398,8 +398,8 @@ const values = [
   }
 
   .value-title {
-    font-size: 1.125rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
     margin-bottom: 0.75rem;
   }
 
@@ -463,9 +463,15 @@ const values = [
     }
   }
 
+  @media (min-width: 640px) {
+    .about-hero-title {
+      font-size: 2.25rem;
+    }
+  }
+
   @media (min-width: 768px) {
     .about-hero-title {
-      font-size: 3.5rem;
+      font-size: 2.75rem;
     }
 
     .partners-grid {

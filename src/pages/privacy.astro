@@ -88,8 +88,8 @@ const description = "Read the privacy policy for Quran Majeed, EasyUrdu, Quran T
   }
 
   .policy-hero-title {
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-size: 1.875rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
   }
 
@@ -108,16 +108,16 @@ const description = "Read the privacy policy for Quran Majeed, EasyUrdu, Quran T
   }
 
   .policy-section-title {
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-size: 1.25rem;
+    font-weight: 600;
     margin: 2rem 0 1rem 0;
     border-bottom: 1px solid var(--border);
     padding-bottom: 0.5rem;
   }
 
   .policy-subsection-title {
-    font-size: 1.125rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 500;
     margin: 1.5rem 0 0.5rem 0;
     color: var(--primary);
   }
@@ -151,6 +151,19 @@ const description = "Read the privacy policy for Quran Majeed, EasyUrdu, Quran T
 
   .policy-contact-box a {
     color: var(--primary);
-    font-weight: 600;
+    font-weight: 500;
+  }
+
+  /* Mobile: reduce card padding */
+  @media (max-width: 767px) {
+    .policy-content {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .policy-hero-title {
+      font-size: 2.5rem;
+    }
   }
 </style>

@@ -168,10 +168,10 @@ const caseStudies = [
   }
 
   .projects-hero-title {
-    font-size: 2.75rem;
-    font-weight: 800;
+    font-size: 2rem;
+    font-weight: 600;
     margin-bottom: 1rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
 
   .projects-hero-subtitle {
@@ -215,8 +215,8 @@ const caseStudies = [
   }
 
   .detail-title {
-    font-size: 1.75rem;
-    font-weight: 800;
+    font-size: 1.5rem;
+    font-weight: 600;
     color: var(--dark);
   }
 
@@ -297,9 +297,9 @@ const caseStudies = [
 
   .text-white .cta-title {
     color: var(--light);
-    font-size: 2.25rem;
+    font-size: 1.875rem;
     margin-bottom: 1rem;
-    font-weight: 800;
+    font-weight: 600;
   }
 
   .text-white .cta-desc {
@@ -318,9 +318,15 @@ const caseStudies = [
     background-color: var(--primary-hover);
   }
 
+  @media (min-width: 640px) {
+    .projects-hero-title {
+      font-size: 2.5rem;
+    }
+  }
+
   @media (min-width: 768px) {
     .projects-hero-title {
-      font-size: 3.5rem;
+      font-size: 3rem;
     }
 
     .detail-grid {
