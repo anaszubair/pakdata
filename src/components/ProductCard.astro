@@ -24,7 +24,8 @@ const {
   platforms = [],
   features = [],
   detailsUrl,
-  downloadUrl = "/contact"
+  downloadUrl = "/contact",
+  imageUrl
 } = Astro.props;
 ---
 
@@ -32,8 +33,15 @@ const {
   <div class="product-card-header">
     <div class="product-info-left">
       {badge && <span class="badge badge-primary product-badge">{badge}</span>}
+      <div style="display: flex; align-items: bottom; gap: 10px;">
+      <div>
+      <img src={imageUrl} alt={name} class="product-image" width="50" height="50" style="border-radius:8px" />
+      </div>
+      <div>
       <h3 class="product-title">{name}</h3>
       <p class="product-tagline">{tagline}</p>
+      </div>
+      </div>
     </div>
     
     <div class="product-rating">
