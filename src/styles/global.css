@@ -8,17 +8,18 @@
   --secondary: #818282;
   --secondary-dark: #5f6062;
   --secondary-light: #f3f4f6;
-  
+
   --dark: #111827;
   --dark-soft: #1f2937;
   --light: #ffffff;
+  --light-yellow-bg: #fffbf4;
   --light-soft: #f9fafb;
-  
+
   --border: #e5e7eb;
   --border-focus: #fbd5c0;
-  
+
   --success: #10b981;
-  
+
   /* Fonts - Swapped to Roboto and set light/clean defaults */
   --font-heading: 'Roboto', sans-serif;
   --font-body: 'Roboto', sans-serif;
@@ -37,7 +38,9 @@
 }
 
 /* Base Styles */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -52,19 +55,26 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--light-soft);
+  /* background-color: var(--light-soft); */
   color: var(--dark-soft);
-  font-weight: 300; /* Decreased default font weight for whole website */
+  font-weight: 300;
+  /* Decreased default font weight for whole website */
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   color: var(--dark);
-  font-weight: 400; /* Decreased default header weight */
+  font-weight: 400;
+  /* Decreased default header weight */
   line-height: 1.25;
 }
 
@@ -84,7 +94,10 @@ img {
   display: block;
 }
 
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
   font-family: inherit;
   font-size: inherit;
   outline: none;
@@ -112,7 +125,7 @@ button, input, textarea, select {
 }
 
 .section-bg {
-  background-color: var(--light);
+  background-color: var(--light-yellow-bg);
 }
 
 .section-title-wrap {
@@ -123,7 +136,8 @@ button, input, textarea, select {
 
 .section-title {
   font-size: 2.25rem;
-  font-weight: 500; /* Decreased from 800 to 500 */
+  font-weight: 500;
+  /* Decreased from 800 to 500 */
   margin-bottom: 1rem;
   position: relative;
   display: inline-block;
@@ -151,7 +165,8 @@ button, input, textarea, select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-weight: 400; /* Decreased from 600 to 400 */
+  font-weight: 400;
+  /* Decreased from 600 to 400 */
   padding: 0.75rem 1.75rem;
   border-radius: 9999px;
   cursor: pointer;
@@ -227,7 +242,8 @@ button, input, textarea, select {
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 500; /* Decreased from 600 to 500 */
+  font-weight: 500;
+  /* Decreased from 600 to 500 */
   text-transform: uppercase;
   letter-spacing: 0.05em;
   background-color: var(--secondary-light);
@@ -266,9 +282,11 @@ button, input, textarea, select {
   .grid-2 {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .grid-3 {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -278,6 +296,7 @@ button, input, textarea, select {
   .grid-3 {
     grid-template-columns: repeat(3, 1fr);
   }
+
   .grid-4 {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -290,7 +309,8 @@ button, input, textarea, select {
 
 .form-label {
   display: block;
-  font-weight: 400; /* Decreased from 600 to 400 */
+  font-weight: 400;
+  /* Decreased from 600 to 400 */
   margin-bottom: 0.5rem;
   color: var(--dark-soft);
   font-size: 0.875rem;
@@ -317,8 +337,15 @@ textarea.form-control {
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {
@@ -343,9 +370,10 @@ textarea.form-control {
   .section {
     padding: 3rem 0;
   }
-  
+
   .card {
-    padding: 1.25rem !important; /* Reduce card padding on mobile to maximize viewport area */
+    padding: 1.25rem !important;
+    /* Reduce card padding on mobile to maximize viewport area */
   }
 
   .section-title {
@@ -357,10 +385,13 @@ textarea.form-control {
     font-size: 0.9375rem;
   }
 
-  p, span, li, a {
+  p,
+  span,
+  li,
+  a {
     font-size: 0.9375rem;
   }
-  
+
   .container {
     padding-left: 1rem;
     padding-right: 1rem;

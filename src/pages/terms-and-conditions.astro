@@ -1,0 +1,156 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "Terms & Conditions | Pakistan Data Management Services";
+const description = "Read the terms of service and software licensing conditions for applications and web portals provided by Pakistan Data Management Services.";
+---
+
+<Layout title={title} description={description}>
+  <section class="terms-hero">
+    <div class="container text-center animate-fade-in">
+      <span class="badge badge-primary">Legal Documentation</span>
+      <h1 class="terms-hero-title">Terms & Conditions</h1>
+      <p class="terms-hero-subtitle">Last Updated: May 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container max-width-800">
+      <div class="terms-content card">
+        <h2 class="terms-section-title">1. Software License</h2>
+        <p>
+          By downloading, installing, or accessing any application (such as Quran Majeed, Quran Pak, Easy Urdu Keyboard, Quran TV) or utilizing websites developed by Pakistan Data Management Services (PDMS), you agree to be bound by these Terms & Conditions.
+        </p>
+        <p>
+          PDMS grants you a personal, non-exclusive, non-transferable, revocable license to use our software on compatible devices solely for personal, non-commercial purposes.
+        </p>
+
+        <h2 class="terms-section-title">2. Prohibited Conduct</h2>
+        <p>
+          You agree that you will not:
+        </p>
+        <ul>
+          <li>Modify, reverse engineer, decompile, or disassemble our application binary files.</li>
+          <li>Scrape or copy the copyrighted text translations, Tafsir data, or audio files compiled inside our databases for distribution.</li>
+          <li>Use our platform services to transmit malicious code, malware, or coordinate distributed denial-of-service (DDoS) attacks.</li>
+        </ul>
+
+        <h2 class="terms-section-title">3. Subscriptions & In-App Upgrades</h2>
+        <p>
+          Some of our products offer Premium subscriptions to unlock features (like removing advertising, downloading HD audio reciters, or accessing multiple Tafsirs).
+        </p>
+        <ul>
+          <li><strong>Store Billing:</strong> Subscriptions purchased through Apple App Store or Google Play Store auto-renew unless cancelled at least 24 hours before the billing cycle.</li>
+          <li><strong>Local Billing:</strong> Subscriptions purchased in Pakistan via EasyPaisa or JazzCash are one-time tokens or recurring billing according to checkout terms.</li>
+          <li><strong>Refunds:</strong> Refund policies are subject to standard App Store or Google Play Store billing terms. Direct purchases can contact support@pakdata.com.</li>
+        </ul>
+
+        <h2 class="terms-section-title">4. Disclaimers</h2>
+        <p>
+          Our applications and services are provided "as is" and "as available". While we source Quran text and prayer calculations from verified astronomical and theological authorities, PDMS makes no warranties of any kind regarding completeness, operational uptime, or 100% notification reliability due to operating system variables.
+        </p>
+
+        <h2 class="terms-section-title">5. Limitation of Liability</h2>
+        <p>
+          In no event shall PDMS, its founders, or employees be liable for any direct, indirect, incidental, or consequential damages arising out of the use or inability to use our applications.
+        </p>
+
+        <h2 class="terms-section-title">6. Governing Law</h2>
+        <p>
+          These Terms & Conditions shall be governed by, interpreted, and enforced in accordance with the laws of the Islamic Republic of Pakistan, subject to the exclusive jurisdiction of the courts located in Karachi, Pakistan.
+        </p>
+
+        <h2 class="terms-section-title">7. Contact Information</h2>
+        <p>
+          For legal inquiries, copyright notices, or licensing permissions, please contact our legal desk:
+        </p>
+        <div class="terms-contact-box">
+          <strong>Email:</strong> <a href="mailto:info@pakdata.com">info@pakdata.com</a><br />
+          <strong>Address:</strong> Pakistan Data Management Services, DHA Phase II Ext, Karachi, Pakistan.
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .terms-hero {
+    text-align: center;
+    background: radial-gradient(at 20% 0%,oklch(97% .04 60) 0%,transparent 50%),radial-gradient(at 80% 20%,oklch(96% .03 220) 0%,transparent 50%),linear-gradient(180deg,oklch(99% .005 80),oklch(100% 0 0));
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .terms-hero-title {
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .terms-hero-subtitle {
+    font-size: 1rem;
+    color: var(--secondary-dark);
+  }
+
+  .max-width-800 {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .terms-content {
+    padding: 3rem;
+  }
+
+  .terms-section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem 0;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+
+  .terms-content p {
+    font-size: 0.9375rem;
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .terms-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary-dark);
+    font-size: 0.9375rem;
+  }
+
+  .terms-content li {
+    margin-bottom: 0.5rem;
+  }
+
+  .terms-contact-box {
+    background-color: var(--light-soft);
+    border: 1px solid var(--border);
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .terms-contact-box a {
+    color: var(--primary);
+    font-weight: 500;
+  }
+
+  /* Mobile: reduce card padding */
+  @media (max-width: 767px) {
+    .terms-content {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .terms-hero-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>
