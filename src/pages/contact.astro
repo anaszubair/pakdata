@@ -1,0 +1,364 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "Contact Us | Pakistan Data Management Services";
+const description = "Contact Pakistan Data Management Services for partnerships, software development consultations, support issues, or job applications.";
+
+const offices = [
+  {
+    city: "Karachi, Pakistan (HQ)",
+    address: "2nd Floor, 18-C, 24th Commercial Street, Phase II Extension, DHA, Karachi, 75500",
+    phone: "+92-21-35882650",
+    fax: "+92-21-35882651",
+    email: "info@pakdata.com"
+  },
+  {
+    city: "California, USA Office",
+    address: "Pakdata Technology Associates, Silicon Valley Region, California, USA",
+    phone: "+1-800-PAKDATA (General)",
+    fax: "N/A",
+    email: "usa@pakdata.com"
+  }
+];
+
+const departments = [
+  {
+    name: "General & Enterprise Sales",
+    email: "info@pakdata.com",
+    desc: "For B2B projects, database design, partnerships, and software licensing integrations."
+  },
+  {
+    name: "App Technical Support",
+    email: "support@pakdata.com",
+    desc: "For user account help, payment issues, adhan timing corrections, and mobile app settings."
+  },
+  {
+    name: "Careers & HR Team",
+    email: "careers@pakdata.com",
+    desc: "For resumes submissions, job openings details, internship requests, and recruitment verification."
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="contact-hero">
+    <div class="container text-center animate-fade-in">
+      <span class="badge badge-primary">Get In Touch</span>
+      <h1 class="contact-hero-title">Contact Our Global Offices</h1>
+      <p class="contact-hero-subtitle">
+        Have questions about our apps, enterprise services, career opportunities, or corporate partnerships? Let's connect.
+      </p>
+    </div>
+  </section>
+
+  <!-- Offices Grid & Contact Form -->
+  <section class="section">
+    <div class="container grid grid-2">
+      <!-- Contact Info Column -->
+      <div class="contact-info-col animate-fade-in">
+        <h2 class="column-title">Our Office Coordinates</h2>
+        <p class="column-subtitle">Feel free to visit our headquarters or reach us via telephone or direct email channels.</p>
+        
+        <div class="offices-list">
+          {offices.map(office => (
+            <div class="office-card card">
+              <h3 class="office-city">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span>{office.city}</span>
+              </h3>
+              <p class="office-address">{office.address}</p>
+              
+              <div class="office-details">
+                <div class="detail-line">
+                  <strong>Phone:</strong> <span>{office.phone}</span>
+                </div>
+                {office.fax !== 'N/A' && (
+                  <div class="detail-line">
+                    <strong>Fax:</strong> <span>{office.fax}</span>
+                  </div>
+                )}
+                <div class="detail-line">
+                  <strong>Email:</strong> <a href={`mailto:${office.email}`}>{office.email}</a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="departments-wrap">
+          <h3 class="dept-title-head">Specialized Departments</h3>
+          <div class="depts-grid">
+            {departments.map(dept => (
+              <div class="dept-info-box">
+                <h4 class="dept-info-name">{dept.name}</h4>
+                <a href={`mailto:${dept.email}`} class="dept-info-email">{dept.email}</a>
+                <p class="dept-info-desc">{dept.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form Column -->
+      <div class="contact-form-col animate-fade-in">
+        <div class="form-container-card card">
+          <h2 class="form-title">Send Us a Message</h2>
+          <p class="form-subtitle">Fill in the fields below, and our respective department will respond to you shortly.</p>
+          
+          <form class="main-contact-form" id="main-contact-form">
+            <div class="form-group">
+              <label class="form-label" for="contact-name">Full Name</label>
+              <input type="text" id="contact-name" required class="form-control" placeholder="Enter your full name" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact-email">Email Address</label>
+              <input type="email" id="contact-email" required class="form-control" placeholder="name@example.com" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact-subject">Topic / Subject</label>
+              <select id="contact-subject" required class="form-control">
+                <option value="general">General Corporate Inquiry</option>
+                <option value="enterprise">B2B Enterprise Software</option>
+                <option value="support">App Support & Help</option>
+                <option value="careers">Job Applications / Careers</option>
+                <option value="partnership">Partnerships & Collaborations</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact-msg">Message Content</label>
+              <textarea id="contact-msg" required class="form-control" placeholder="Type your message here..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" id="submit-contact-btn">Send Message</button>
+          </form>
+        </div>
+
+        <!-- Simulated Map Placeholder -->
+        <div class="map-placeholder card">
+          <div class="map-icon">🗺️</div>
+          <div>
+            <h4 class="map-title">Office Location Map</h4>
+            <p class="map-text">DHA Phase II Extension, Karachi, Pakistan.</p>
+            <a href="https://maps.google.com/?q=Pakistan+Data+Management+Services+Karachi" class="map-link" target="_blank" rel="noopener noreferrer">View on Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-hero {
+    background: radial-gradient(circle at 50% 50%, #fef3ec 0%, #ffffff 100%);
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-hero-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .contact-hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--secondary-dark);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Info column */
+  .column-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .column-subtitle {
+    color: var(--secondary-dark);
+    font-size: 0.9375rem;
+    margin-bottom: 2rem;
+  }
+
+  .offices-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .office-card {
+    padding: 1.75rem;
+  }
+
+  .office-city {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-icon {
+    color: var(--primary);
+  }
+
+  .office-address {
+    font-size: 0.875rem;
+    color: var(--dark-soft);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .office-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.875rem;
+    border-top: 1px dashed var(--border);
+    padding-top: 0.75rem;
+  }
+
+  .detail-line strong {
+    color: var(--dark);
+    margin-right: 0.25rem;
+  }
+
+  .detail-line a {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  .departments-wrap {
+    border-top: 2px solid var(--border-focus);
+    padding-top: 2rem;
+  }
+
+  .dept-title-head {
+    font-size: 1.375rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+
+  .depts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .dept-info-box {
+    background-color: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+  }
+
+  .dept-info-name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.15rem;
+  }
+
+  .dept-info-email {
+    font-size: 0.875rem;
+    color: var(--primary);
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .dept-info-desc {
+    font-size: 0.8125rem;
+    color: var(--secondary-dark);
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  /* Form column styling */
+  .form-container-card {
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 2rem;
+  }
+
+  .form-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+  }
+
+  .form-subtitle {
+    font-size: 0.875rem;
+    color: var(--secondary-dark);
+    margin-bottom: 2rem;
+  }
+
+  .w-100 {
+    width: 100%;
+  }
+
+  /* Map card */
+  .map-placeholder {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    border-color: var(--border-focus);
+    background-color: var(--primary-light);
+  }
+
+  .map-icon {
+    font-size: 2.25rem;
+  }
+
+  .map-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 0.15rem;
+  }
+
+  .map-text {
+    font-size: 0.8125rem;
+    color: var(--secondary-dark);
+    margin-bottom: 0.35rem;
+  }
+
+  .map-link {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: underline;
+  }
+
+  @media (min-width: 768px) {
+    .contact-hero-title {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+
+<!-- Form submission script -->
+<script>
+  const contactForm = document.getElementById('main-contact-form');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const contactName = document.getElementById('contact-name') as HTMLInputElement;
+      const contactSubject = document.getElementById('contact-subject') as HTMLSelectElement;
+      
+      alert(`Thank you, ${contactName?.value || 'User'}! Your inquiry regarding "${contactSubject?.value || 'General'}" has been successfully submitted. Our team will contact you soon.`);
+      contactForm.reset();
+    });
+  }
+</script>

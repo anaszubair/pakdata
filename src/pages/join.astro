@@ -1,0 +1,537 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "Careers | Pakistan Data Management Services";
+const description = "Join a passionate team building technology that makes a global difference. Explore career openings for iOS developers, Android developers, QA engineers, and designers.";
+
+const benefits = [
+  {
+    title: "Global Scale & Impact",
+    desc: "Your code and designs will immediately serve over 100M+ users globally, making a real impact on their spiritual and language communication habits."
+  },
+  {
+    title: "Purpose-Driven Culture",
+    desc: "Work on products that matter, combining technology with classical Islamic scholarship and native multilingual systems."
+  },
+  {
+    title: "Mentorship & Growth",
+    desc: "Learn from pioneers of localized computing in Pakistan, and build expertise in complex layouts, high-traffic APIs, and modern codebases."
+  },
+  {
+    title: "Collaborative Workspace",
+    desc: "A friendly, cross-discipline environment where engineers, scholars, writers, and UX designers sit together to solve problems."
+  }
+];
+
+const jobs = [
+  {
+    id: "ios-dev",
+    dept: "engineering",
+    title: "Senior iOS Developer",
+    type: "Full-Time",
+    location: "Karachi (Hybrid)",
+    desc: "Build high-performance iOS applications (such as Quran Majeed and EasyUrdu) using Swift, UIKit, SwiftUI, and custom text engines. Optimize memory, layout rendering, and local database storage systems."
+  },
+  {
+    id: "android-dev",
+    dept: "engineering",
+    title: "Senior Android Developer",
+    type: "Full-Time",
+    location: "Karachi (Hybrid)",
+    desc: "Develop scalable Android applications utilizing clean architecture, Kotlin, Jetpack Compose, and local notification pipelines. Responsible for maintaining stable widget layouts and audio playback synchronization."
+  },
+  {
+    id: "qa-eng",
+    dept: "engineering",
+    title: "Software Quality Assurance Engineer",
+    type: "Full-Time",
+    location: "Karachi (On-site)",
+    desc: "Ensure product excellence through continuous functional testing, layout checks, automation suites, and verified spelling tests of scripture translations. Maintain detailed bug sheets and validation reports."
+  },
+  {
+    id: "mkt-mgr",
+    dept: "marketing",
+    title: "Digital Marketing Manager",
+    type: "Full-Time",
+    location: "Remote / Hybrid",
+    desc: "Drive global user acquisition, manage advertising budgets across Google/Apple platforms, optimize App Store Listings (ASO), and lead branding campaigns for our Islamic applications catalog."
+  },
+  {
+    id: "support-exec",
+    dept: "support",
+    title: "Support Executive",
+    type: "Shift-based",
+    location: "Karachi (On-site)",
+    desc: "Provide technical assistance to users worldwide regarding app subscription restoration, prayer timings calculation parameters, notifications troubleshooting, and native language typing integrations."
+  },
+  {
+    id: "motion-des",
+    dept: "creative",
+    title: "Motion Graphic Designer",
+    type: "Full-Time",
+    location: "Karachi (On-site)",
+    desc: "Create engaging UI animations, marketing promotional videos, educational tutorials (for 3D Salah Guide), and social assets. Expert in Adobe After Effects, Premiere, and 3D modeling tools."
+  },
+  {
+    id: "content-writer",
+    dept: "creative",
+    title: "Creative Content Writer",
+    type: "Full-Time",
+    location: "Remote / Hybrid",
+    desc: "Craft copy for mobile store pages, onboarding screens, product websites, and marketing newsletters. Help translate complex technical parameters into friendly, helpful explanations."
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="join-hero">
+    <div class="container text-center animate-fade-in">
+      <span class="badge badge-primary">Work With Us</span>
+      <h1 class="join-hero-title">Build Technology That Makes a Meaningful Difference</h1>
+      <p class="join-hero-subtitle">
+        Become part of a passionate team shaping the future of Islamic applications and localized mobile computing.
+      </p>
+      <div class="hero-actions">
+        <a href="#openings" class="btn btn-primary btn-lg" id="view-openings-cta-btn">View Open Positions</a>
+        <a href="#benefits" class="btn btn-secondary btn-lg" id="view-benefits-cta-btn">Why Join Us?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="section section-bg" id="benefits">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge badge-primary">Perks & Growth</span>
+        <h2 class="section-title">What You'll Gain at Pakdata</h2>
+        <p class="section-subtitle">We invest in our people's workspace, professional development, and long-term career growth.</p>
+      </div>
+
+      <div class="grid grid-2">
+        {benefits.map(benefit => (
+          <div class="benefit-card card">
+            <h3 class="benefit-title">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="benefit-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>{benefit.title}</span>
+            </h3>
+            <p class="benefit-desc">{benefit.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Positions Section -->
+  <section class="section" id="openings">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge badge-primary">Careers</span>
+        <h2 class="section-title">Current Opportunities</h2>
+        <p class="section-subtitle">Explore exciting career opportunities and become part of our growing team.</p>
+      </div>
+
+      <!-- Filters -->
+      <div class="filter-wrap">
+        <button class="filter-btn active" data-dept="all" id="filter-all">All Departments</button>
+        <button class="filter-btn" data-dept="engineering" id="filter-eng">Engineering</button>
+        <button class="filter-btn" data-dept="creative" id="filter-creative">Creative & Design</button>
+        <button class="filter-btn" data-dept="marketing" id="filter-marketing">Marketing</button>
+        <button class="filter-btn" data-dept="support" id="filter-support">Customer Support</button>
+      </div>
+
+      <!-- Job Cards Grid -->
+      <div class="jobs-list" id="jobs-catalog-list">
+        {jobs.map(job => (
+          <div class="job-item-container card" data-dept={job.dept}>
+            <div class="job-card-header">
+              <div>
+                <span class="badge badge-primary job-dept-badge">{job.dept}</span>
+                <h3 class="job-title">{job.title}</h3>
+              </div>
+              <div class="job-meta-info text-right">
+                <span class="job-tag job-type">{job.type}</span>
+                <span class="job-tag job-location">{job.location}</span>
+              </div>
+            </div>
+            
+            <p class="job-desc">{job.desc}</p>
+            
+            <div class="job-actions">
+              <button class="btn btn-outline btn-sm apply-now-trigger" data-title={job.title} id={`apply-trigger-${job.id}`}>Apply Now</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Apply Form Modal Container (Simulated/Overlay) -->
+  <div class="apply-modal" id="apply-modal-box">
+    <div class="modal-content card">
+      <button class="close-modal" id="close-modal-btn">&times;</button>
+      <h3 class="modal-title">Apply for Position</h3>
+      <p class="modal-position-name" id="modal-target-position">Senior iOS Developer</p>
+      
+      <form class="apply-form" id="career-apply-form">
+        <div class="form-group">
+          <label class="form-label" for="applicant-name">Full Name</label>
+          <input type="text" id="applicant-name" required class="form-control" placeholder="Enter your full name" />
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="applicant-email">Email Address</label>
+          <input type="email" id="applicant-email" required class="form-control" placeholder="name@example.com" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="applicant-phone">Phone Number</label>
+          <input type="tel" id="applicant-phone" required class="form-control" placeholder="+92 300 1234567" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="applicant-resume">Link to CV / Portfolio</label>
+          <input type="url" id="applicant-resume" required class="form-control" placeholder="https://drive.google.com/your-cv-link" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="applicant-cover">Brief Cover Note</label>
+          <textarea id="applicant-cover" class="form-control" placeholder="Why do you want to join Pakdata?"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" id="submit-career-btn">Submit Application</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- HR Contact Info -->
+  <section class="section section-bg text-center">
+    <div class="container max-width-600">
+      <h2 class="hr-title">Direct Recruitment Inquiries</h2>
+      <p class="hr-desc">
+        Don't see an open role matching your skill set? You can send your resume, cover letter, and portfolio link directly to our human resources team.
+      </p>
+      <a href="mailto:careers@pakdata.com" class="btn btn-outline" id="email-hr-btn">Email: careers@pakdata.com</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .join-hero {
+    background: radial-gradient(circle at 50% 50%, #fef3ec 0%, #ffffff 100%);
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .join-hero-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.15;
+  }
+
+  .join-hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--secondary-dark);
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Benefits card */
+  .benefit-card {
+    padding: 2.25rem;
+    border-left: 4px solid var(--primary);
+  }
+
+  .benefit-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .benefit-icon {
+    color: var(--primary);
+  }
+
+  .benefit-desc {
+    font-size: 0.9375rem;
+    color: var(--secondary-dark);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* Filter */
+  .filter-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .filter-btn {
+    background-color: var(--light);
+    border: 1px solid var(--border);
+    color: var(--secondary-dark);
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+  }
+
+  .filter-btn:hover {
+    color: var(--primary);
+    background-color: var(--primary-light);
+  }
+
+  .filter-btn.active {
+    background-color: var(--primary);
+    color: var(--light);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-primary);
+  }
+
+  /* Jobs List */
+  .jobs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .job-item-container {
+    padding: 2rem;
+    transition: all var(--transition-normal);
+  }
+
+  .job-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .job-dept-badge {
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .job-title {
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: var(--dark);
+  }
+
+  .job-meta-info {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .job-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.375rem;
+    background-color: var(--secondary-light);
+    color: var(--secondary-dark);
+    border: 1px solid var(--border);
+  }
+
+  .job-type {
+    background-color: #ecfdf5;
+    color: #047857;
+    border-color: #a7f3d0;
+  }
+
+  .job-desc {
+    font-size: 0.9375rem;
+    color: var(--secondary-dark);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .job-item-container.hidden {
+    display: none !important;
+  }
+
+  /* Modal Apply styling */
+  .apply-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(17, 24, 39, 0.6);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 150;
+    padding: 1.5rem;
+  }
+
+  .apply-modal.active {
+    display: flex;
+  }
+
+  .modal-content {
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    padding: 2.5rem;
+    animation: modalSlide 0.3s ease forwards;
+  }
+
+  @keyframes modalSlide {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--secondary);
+    transition: color var(--transition-fast);
+  }
+
+  .close-modal:hover {
+    color: var(--primary);
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+  }
+
+  .modal-position-name {
+    font-size: 0.9375rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+
+  .w-100 {
+    width: 100%;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  .max-width-600 {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .hr-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .hr-desc {
+    color: var(--secondary-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .join-hero-title {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+
+<!-- Modal expansion scripts & filtering scripts -->
+<script>
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const jobItems = document.querySelectorAll('.job-item-container');
+  const applyTriggers = document.querySelectorAll('.apply-now-trigger');
+  const applyModal = document.getElementById('apply-modal-box');
+  const closeModalBtn = document.getElementById('close-modal-btn');
+  const modalTargetPos = document.getElementById('modal-target-position');
+  const careerApplyForm = document.getElementById('career-apply-form');
+
+  if (filterButtons.length > 0 && jobItems.length > 0) {
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const dept = btn.getAttribute('data-dept');
+
+        jobItems.forEach(item => {
+          const itemDept = item.getAttribute('data-dept');
+          if (dept === 'all' || itemDept === dept) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+  }
+
+  if (applyTriggers.length > 0 && applyModal && modalTargetPos) {
+    applyTriggers.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const jobTitle = btn.getAttribute('data-title') || "Position";
+        modalTargetPos.textContent = jobTitle;
+        applyModal.classList.add('active');
+        document.body.classList.add('overflow-hidden');
+      });
+    });
+
+    closeModalBtn?.addEventListener('click', () => {
+      applyModal.classList.remove('active');
+      document.body.classList.remove('overflow-hidden');
+    });
+
+    // Close when clicking outside of modal card
+    applyModal.addEventListener('click', (e) => {
+      if (e.target === applyModal) {
+        applyModal.classList.remove('active');
+        document.body.classList.remove('overflow-hidden');
+      }
+    });
+  }
+
+  if (careerApplyForm) {
+    careerApplyForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const applicantName = document.getElementById('applicant-name') as HTMLInputElement;
+      alert(`Thank you, ${applicantName?.value || 'Applicant'}! Your application for the role has been successfully submitted to our HR team.`);
+      applyModal?.classList.remove('active');
+      document.body.classList.remove('overflow-hidden');
+      careerApplyForm.reset();
+    });
+  }
+</script>

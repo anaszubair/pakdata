@@ -1,0 +1,355 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "Our Team | Pakistan Data Management Services";
+const description = "Meet the developers, designers, writers, scholars, and technical pioneers building world-class Islamic mobile applications and localized systems since 1979.";
+
+const leaders = [
+  {
+    name: "Anwar Zubair",
+    role: "Founder & Chairman",
+    bio: "A true pioneer of localized computing in Pakistan. Anwar established PDMS in 1979, guiding the transition from metal typesetting presses to digital Urdu script software and establishing the vision for our Islamic digital ecosystem.",
+    avatar: "AZ"
+  },
+  {
+    name: "Anas Zubair",
+    role: "CEO & Chief Technical Architect",
+    bio: "Anas directs all mobile application development, cloud systems, and product engineering. Under his leadership, Quran Majeed scaled from its initial launch to a global application serving over 50 million active users.",
+    avatar: "ANZ"
+  },
+  {
+    name: "Dr. Mohammad Ibrahim",
+    role: "Chief Islamic Content Officer",
+    bio: "Ensures absolute scriptural accuracy and authentic translation verification. Dr. Ibrahim maintains direct collaborations with the King Fahad Complex (Saudi Arabia) and local Auqaf ministries to certify every line of text.",
+    avatar: "MI"
+  }
+];
+
+const departments = [
+  {
+    name: "Engineering & Cloud",
+    desc: "Building high-performance, low-latency mobile codebases in Swift and Kotlin, paired with resilient database setups that support 100M+ global installations."
+  },
+  {
+    name: "Quality Assurance",
+    desc: "Our QA team verifies all software versions. They conduct letter-by-letter Arabic proofreading and ensure zero-bug performance across various operating systems."
+  },
+  {
+    name: "Creative & UI/UX Design",
+    desc: "Designing clean, modern, and accessible user interfaces. They create intuitive navigation menus, smooth animations, and interactive 3D assets."
+  },
+  {
+    name: "Support & Customer Success",
+    desc: "Working 24/7 to resolve user settings inquiries, guide prayer notification configurations, handle billing inquiries, and troubleshoot devices."
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="team-hero">
+    <div class="container text-center animate-fade-in">
+      <span class="badge badge-primary">People behind PDMS</span>
+      <h1 class="team-hero-title">Meet the Visionaries Behind Pakdata</h1>
+      <p class="team-hero-subtitle">
+        We are a team of software engineers, Arabic language scholars, designers, and customer success specialists dedicated to creating meaningful digital products.
+      </p>
+    </div>
+  </section>
+
+  <!-- Leadership Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge badge-primary">Leadership</span>
+        <h2 class="section-title">Our Technical Leadership</h2>
+        <p class="section-subtitle">Pioneers guiding the strategy, engineering, and authenticity of our technology platforms.</p>
+      </div>
+
+      <div class="leaders-grid grid grid-3">
+        {leaders.map(leader => (
+          <div class="leader-card card">
+            <div class="leader-avatar-wrap">
+              <div class="leader-avatar">{leader.avatar}</div>
+            </div>
+            <h3 class="leader-name">{leader.name}</h3>
+            <span class="leader-role">{leader.role}</span>
+            <p class="leader-bio">{leader.bio}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Departments Section -->
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge badge-primary">Our Departments</span>
+        <h2 class="section-title">How We Organize</h2>
+        <p class="section-subtitle">Different specialties coming together to release premium applications and service platforms.</p>
+      </div>
+
+      <div class="grid grid-2">
+        {departments.map(dept => (
+          <div class="dept-card card">
+            <div class="dept-header">
+              <span class="dept-icon">⚙️</span>
+              <h3 class="dept-name">{dept.name}</h3>
+            </div>
+            <p class="dept-desc">{dept.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Culture Section -->
+  <section class="section team-culture">
+    <div class="container grid grid-2 align-center">
+      <div class="culture-content">
+        <span class="badge badge-primary">Our Culture</span>
+        <h2 class="culture-title">A Purpose-Driven Workplace</h2>
+        <p class="culture-p">
+          At Pakdata, we believe that software can make a meaningful difference. Our team members take pride in knowing that the code they commit helps millions of people connect with scripture, language, and prayer every single day.
+        </p>
+        <p class="culture-p">
+          We encourage continuous growth, professional development, and cross-functional learning. An engineer will collaborate directly with verified calligraphers and translators to build the next-generation Mushaf layout.
+        </p>
+        <div class="culture-points">
+          <div class="c-point">
+            <strong>✓ Global Impact:</strong> Reach international audiences across 150+ countries.
+          </div>
+          <div class="c-point">
+            <strong>✓ Collaborative Environment:</strong> Work with open-minded, creative minds.
+          </div>
+          <div class="c-point">
+            <strong>✓ Professional Growth:</strong> Regular training in modern frameworks and architectures.
+          </div>
+        </div>
+        <a href="/join" class="btn btn-primary" id="view-openings-btn">Explore Open Positions</a>
+      </div>
+      
+      <div class="culture-visual">
+        <div class="culture-quote card">
+          <p class="quote-text">
+            "Developing software at Pakdata combines cutting-edge mobile architecture with a higher purpose. We test code that serves millions of worshipers globally."
+          </p>
+          <div class="quote-author">
+            <strong>Anas Zubair</strong>
+            <span>CEO & Architect</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Careers -->
+  <section class="section section-bg text-center">
+    <div class="container max-width-600">
+      <h2 class="careers-title">Want to Join Our Team?</h2>
+      <p class="careers-desc">
+        We are always on the lookout for passionate iOS/Android developers, QA engineers, graphic animators, and customer support representatives.
+      </p>
+      <a href="/join" class="btn btn-primary btn-lg" id="careers-cta-btn">Join Us Today</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .team-hero {
+    background: radial-gradient(circle at 50% 50%, #fef3ec 0%, #ffffff 100%);
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .team-hero-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .team-hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--secondary-dark);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Leader Cards */
+  .leader-card {
+    text-align: center;
+    padding: 2.5rem 2rem;
+  }
+
+  .leader-avatar-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .leader-avatar {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--border-focus);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .leader-name {
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 0.25rem;
+  }
+
+  .leader-role {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.05em;
+  }
+
+  .leader-bio {
+    font-size: 0.875rem;
+    color: var(--secondary-dark);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* Department Cards */
+  .dept-card {
+    padding: 2rem;
+  }
+
+  .dept-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .dept-icon {
+    font-size: 1.5rem;
+  }
+
+  .dept-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--dark);
+  }
+
+  .dept-desc {
+    font-size: 0.9375rem;
+    color: var(--secondary-dark);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* Culture Section */
+  .align-center {
+    align-items: center;
+  }
+
+  .culture-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .culture-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .culture-p {
+    font-size: 1rem;
+    color: var(--secondary-dark);
+  }
+
+  .culture-points {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+
+  .c-point {
+    font-size: 0.9375rem;
+    color: var(--dark-soft);
+  }
+
+  .culture-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .culture-quote {
+    background-color: var(--light);
+    border-left: 4px solid var(--primary);
+    padding: 2.5rem;
+    max-width: 450px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .quote-text {
+    font-size: 1.125rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .quote-author {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .quote-author strong {
+    font-size: 0.9375rem;
+    color: var(--dark);
+  }
+
+  .quote-author span {
+    font-size: 0.8125rem;
+    color: var(--secondary-dark);
+  }
+
+  /* Careers cta */
+  .max-width-600 {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .careers-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .careers-desc {
+    color: var(--secondary-dark);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .team-hero-title {
+      font-size: 3.5rem;
+    }
+  }
+</style>

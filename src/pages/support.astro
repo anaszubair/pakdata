@@ -1,0 +1,387 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "Help & Support | Pakistan Data Management Services";
+const description = "Find troubleshooting guides, Adhan configuration tips, payment restorations, and contact our technical support team for assistance.";
+
+const faqCategories = [
+  {
+    id: "notifications",
+    title: "Notifications & Adhan Alerts",
+    icon: "🔔",
+    faqs: [
+      {
+        q: "Why am I not receiving Adhan notifications or prayer alerts on my device?",
+        a: "Operating system battery savers frequently block timed notifications. To resolve this: \n1. Go to Settings > Apps > Quran Majeed.\n2. Ensure 'Allow Notifications' is enabled.\n3. Turn off battery optimization or select 'Unrestricted' background usage.\n4. On iOS, verify that Focus modes, Sleep mode, or Do Not Disturb are not active during prayer timings."
+      },
+      {
+        q: "How do I change the Adhan voice or select another prayer calculation method?",
+        a: "You can customize alerts inside the app:\n1. Open Quran Majeed, enter Settings and select 'Prayer Times & Adhan'.\n2. Tap 'Adhan Voice' to choose from reciters (Makkah, Madinah, Al-Aqsa, etc.).\n3. Tap 'Calculation Method' to select regionally approved organizations (e.g., University of Islamic Sciences Karachi, MWL, ISNA, Egypt Survey)."
+      }
+    ]
+  },
+  {
+    id: "payments",
+    title: "Premium & Payments",
+    icon: "💳",
+    faqs: [
+      {
+        q: "How do I restore my premium purchase on a new phone?",
+        a: "Purchases are linked directly to your Google Play Store or Apple ID account. To restore:\n1. Ensure your device is logged into the identical Google or Apple account used to make the purchase.\n2. Open Quran Majeed and head to settings.\n3. Scroll down and tap 'Restore Purchase'. The premium features will instantly unlock."
+      },
+      {
+        q: "What payment options are available for premium features in Pakistan?",
+        a: "Besides credit/debit cards on Google Play and Apple App Store, we have integrated regional checkout options on Android. You can upgrade using mobile wallets including EasyPaisa and JazzCash directly through the in-app purchase gateway."
+      }
+    ]
+  },
+  {
+    id: "technical",
+    title: "App Settings & Content Support",
+    icon: "🛠️",
+    faqs: [
+      {
+        q: "The app is crashing or audio translations fail to download. What should I do?",
+        a: "Try these basic troubleshooting steps:\n1. Verify you have a stable Wi-Fi or cellular connection.\n2. Clear Cache (Android: Settings > Apps > Quran Majeed > Storage > Clear Cache).\n3. Restart your mobile device.\n4. If the error continues, uninstall and reinstall the latest version of the app from the store."
+      },
+      {
+        q: "How do I report a spelling typo in translations or an audio gap in recitation?",
+        a: "Scriptural accuracy is our top priority. If you locate a translation discrepancy:\n1. Take a screenshot showing the specific Surah and Ayah number.\n2. Note the name of the Qari (reciter) or translation author.\n3. Email details to support@pakdata.com. Our scholars and engineers will immediately verify it."
+      }
+    ]
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="support-hero">
+    <div class="container text-center animate-fade-in">
+      <span class="badge badge-primary">Support Center</span>
+      <h1 class="support-hero-title">Help, FAQ & Technical Support</h1>
+      <p class="support-hero-subtitle">
+        Find solutions for prayer notifications, restore premium purchases, or contact our customer support team directly.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Section with Accordions -->
+  <section class="section">
+    <div class="container grid grid-2">
+      <!-- FAQ Accordions Column -->
+      <div class="faqs-column">
+        <h2 class="faq-section-title">Frequently Asked Questions</h2>
+        
+        {faqCategories.map(cat => (
+          <div class="faq-category-group" id={cat.id}>
+            <h3 class="category-header">
+              <span class="cat-icon">{cat.icon}</span>
+              <span>{cat.title}</span>
+            </h3>
+            
+            <div class="accordions-wrap">
+              {cat.faqs.map(faq => (
+                <div class="accordion-item">
+                  <button class="accordion-trigger">
+                    <span class="question-text">{faq.q}</span>
+                    <span class="plus-icon">+</span>
+                  </button>
+                  <div class="accordion-panel">
+                    <div class="panel-content">
+                      {faq.a.split('\n').map(line => (
+                        <p>{line}</p>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Support Form Column -->
+      <div class="support-form-column">
+        <div class="support-ticket-card card">
+          <h3 class="form-card-title">Submit a Support Ticket</h3>
+          <p class="form-card-subtitle">Cannot find a solution in the FAQ? Send details directly to our technical support desk.</p>
+          
+          <form class="ticket-form" id="support-ticket-form">
+            <div class="form-group">
+              <label class="form-label" for="ticket-name">Your Name</label>
+              <input type="text" id="ticket-name" required class="form-control" placeholder="Enter your name" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="ticket-email">Email Address</label>
+              <input type="email" id="ticket-email" required class="form-control" placeholder="name@example.com" />
+            </div>
+
+            <div class="form-group grid grid-2" style="gap: 1rem; margin-bottom: 0;">
+              <div class="form-group">
+                <label class="form-label" for="ticket-app">Select Application</label>
+                <select id="ticket-app" required class="form-control">
+                  <option value="quran-majeed">Quran Majeed</option>
+                  <option value="quran-pak">Quran Pak</option>
+                  <option value="easy-urdu">Easy Urdu Keyboard</option>
+                  <option value="quran-tv">Quran TV</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="ticket-device">Device Platform</label>
+                <select id="ticket-device" required class="form-control">
+                  <option value="ios">Apple iOS (iPhone/iPad)</option>
+                  <option value="android">Google Android</option>
+                  <option value="macos">Apple macOS</option>
+                  <option value="smart-tv">Smart TV / TV box</option>
+                  <option value="web">Web Browser</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="ticket-msg">Describe the Issue</label>
+              <textarea id="ticket-msg" required class="form-control" placeholder="Describe what happens. Mention error codes or settings if applicable."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" id="submit-ticket-btn">Submit Ticket</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support Email Direct -->
+  <section class="section section-bg text-center">
+    <div class="container max-width-600">
+      <h2 class="direct-email-title">Urgent Support Issues</h2>
+      <p class="direct-email-desc">
+        If you are experiencing payment failures or represent an organization seeking support, you can mail our technical lead directly.
+      </p>
+      <a href="mailto:support@pakdata.com" class="btn btn-outline" id="support-email-btn">Email Support: support@pakdata.com</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .support-hero {
+    background: radial-gradient(circle at 50% 50%, #fef3ec 0%, #ffffff 100%);
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .support-hero-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .support-hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--secondary-dark);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* FAQs columns */
+  .faq-section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+  }
+
+  .faq-category-group {
+    margin-bottom: 2.5rem;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid var(--border-focus);
+    padding-bottom: 0.5rem;
+  }
+
+  .cat-icon {
+    font-size: 1.5rem;
+  }
+
+  /* Accordions */
+  .accordions-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .accordion-item {
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background-color: var(--light);
+    overflow: hidden;
+    transition: border-color var(--transition-fast);
+  }
+
+  .accordion-item:hover {
+    border-color: var(--primary-light);
+  }
+
+  .accordion-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--dark-soft);
+    font-size: 1rem;
+    gap: 1rem;
+  }
+
+  .accordion-trigger:hover {
+    color: var(--primary);
+  }
+
+  .plus-icon {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--secondary);
+    transition: transform var(--transition-normal);
+  }
+
+  .accordion-item.active {
+    border-color: var(--primary);
+  }
+
+  .accordion-item.active .plus-icon {
+    transform: rotate(45deg);
+    color: var(--primary);
+  }
+
+  .accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal) ease-out;
+  }
+
+  .panel-content {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    color: var(--secondary-dark);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    border-top: 1px solid var(--light-soft);
+  }
+
+  .panel-content p {
+    margin-bottom: 0.75rem;
+  }
+
+  .panel-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Ticket Form Column */
+  .support-form-column {
+    position: sticky;
+    top: 6rem;
+    align-self: start;
+  }
+
+  .support-ticket-card {
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .form-card-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+  }
+
+  .form-card-subtitle {
+    font-size: 0.875rem;
+    color: var(--secondary-dark);
+    margin-bottom: 2rem;
+  }
+
+  .w-100 {
+    width: 100%;
+  }
+
+  .max-width-600 {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .direct-email-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .direct-email-desc {
+    color: var(--secondary-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .support-hero-title {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+
+<!-- Accordion Toggle JavaScript -->
+<script>
+  const accordions = document.querySelectorAll('.accordion-item');
+  const ticketForm = document.getElementById('support-ticket-form');
+
+  if (accordions.length > 0) {
+    accordions.forEach(item => {
+      const trigger = item.querySelector('.accordion-trigger');
+      const panel = item.querySelector('.accordion-panel') as HTMLDivElement;
+
+      trigger?.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // Close all other accordions in the same category optionally, or just close others
+        accordions.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            const otherPanel = otherItem.querySelector('.accordion-panel') as HTMLDivElement;
+            if (otherPanel) otherPanel.style.maxHeight = '0';
+          }
+        });
+
+        // Toggle current accordion
+        if (isActive) {
+          item.classList.remove('active');
+          panel.style.maxHeight = '0';
+        } else {
+          item.classList.add('active');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+  }
+
+  if (ticketForm) {
+    ticketForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const ticketName = document.getElementById('ticket-name') as HTMLInputElement;
+      alert(`Thank you, ${ticketName?.value || 'User'}! Your support ticket has been sent to our technical desk. We will respond within 24 hours.`);
+      ticketForm.reset();
+    });
+  }
+</script>

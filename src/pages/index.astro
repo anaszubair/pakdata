@@ -1,0 +1,939 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+
+// SEO details
+const title = "Pakdata – Islamic Mobile Apps & Digital Solutions for Muslims Worldwide";
+const description = "Pakistan Data Management Services (PDMS) is a leading Islamic technology company developing Quran apps, prayer tools, Islamic digital platforms, and multilingual mobile solutions trusted by millions worldwide.";
+
+// Featured products data
+const featuredProducts = [
+  {
+    id: "quran-majeed",
+    name: "Quran Majeed",
+    tagline: "Flagship Application",
+    description: "The world's leading Quran application featuring Quran recitations, translations, tafsir, prayer timings, Qibla direction, Islamic content, and advanced learning tools trusted by millions globally.",
+    badge: "Award Winner",
+    rating: "4.8",
+    downloads: "50M+",
+    platforms: ["iOS", "Android", "macOS", "Web", "TV"],
+    features: [
+      "World-renowned Quran reciters",
+      "Interactive translations & Tafsir",
+      "Visual Salah & Prayer alerts",
+      "Advanced Quran memorization aids"
+    ],
+    detailsUrl: "/products#quran-majeed"
+  },
+  {
+    id: "quran-pak",
+    name: "Quran Pak",
+    tagline: "Elegant Quran Reader",
+    description: "A simple and beautifully designed Quran reading experience focused on accessibility, clarity, and authentic Islamic content for users worldwide.",
+    badge: "Most Popular",
+    rating: "4.7",
+    downloads: "10M+",
+    platforms: ["iOS", "Android"],
+    features: [
+      "Clean mushaf-like layout",
+      "High-contrast reading modes",
+      "Offline reading support",
+      "Bookmark and note taking"
+    ],
+    detailsUrl: "/products#quran-pak"
+  },
+  {
+    id: "quran-tv",
+    name: "Quran TV",
+    tagline: "Streaming Platform",
+    description: "An Islamic streaming platform offering Quran recitations, Islamic lectures, spiritual content, and educational videos for Muslims around the world.",
+    badge: "Smart TV App",
+    rating: "4.6",
+    downloads: "5M+",
+    platforms: ["Android", "TV", "Web"],
+    features: [
+      "24/7 Live Islamic broadcast",
+      "High-definition video streaming",
+      "Kids Islamic learning series",
+      "Sermons & Tafsir series"
+    ],
+    detailsUrl: "/products#quran-tv"
+  },
+  {
+    id: "easy-urdu",
+    name: "Easy Urdu Keyboard",
+    tagline: "Utility & Multilingual",
+    description: "An award-winning Urdu keyboard designed to make Urdu typing faster, easier, and more accessible for millions of users globally.",
+    badge: "PASHA Winner",
+    rating: "4.8",
+    downloads: "30M+",
+    platforms: ["iOS", "Android"],
+    features: [
+      "Voice-to-text Urdu typing",
+      "Instant Urdu translation",
+      "Rich Urdu editor & status maker",
+      "Beautiful custom themes"
+    ],
+    detailsUrl: "/products#easy-urdu"
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-container grid grid-2">
+      <div class="hero-content animate-fade-in">
+        <span class="hero-badge">Pioneering Software Since 1979</span>
+        <h1 class="hero-title">Empowering Muslims Worldwide Through <span class="text-gradient">Innovative Technology</span></h1>
+        <p class="hero-subtext">
+          For over 45 years, Pakdata has been building trusted Islamic mobile applications and digital solutions that help millions of Muslims connect with the Quran, prayer, learning, and faith through modern technology.
+        </p>
+        <div class="hero-actions">
+          <a href="/products" class="btn btn-primary btn-lg" id="hero-products-btn">Explore Our Products</a>
+          <a href="/contact" class="btn btn-secondary btn-lg" id="hero-contact-btn">Contact Our Team</a>
+        </div>
+      </div>
+      
+      <!-- Visual Illustration Grid -->
+      <div class="hero-visual animate-fade-in">
+        <div class="visual-card main-visual">
+          <div class="dots-bg"></div>
+          <div class="glow-effect"></div>
+          <div class="phone-mockup">
+            <div class="screen-header">
+              <div class="logo-wrap mini-logo">
+                <img src="/images/logo.png" alt="PDMS Logo" class="logo-img" />
+                <span class="logo-title">Quran Majeed</span>
+              </div>
+              <span class="badge badge-success">4.8 ★</span>
+            </div>
+            <div class="screen-body">
+              <div class="mock-ayah">
+                <p class="arabic-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                <p class="trans-text">In the name of Allah, the Entirely Merciful, the Especially Merciful.</p>
+              </div>
+              <div class="mock-stats">
+                <div class="stat-pill">100M+ Users</div>
+                <div class="stat-pill">50+ Apps</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Micro Cards floating around -->
+          <div class="floating-card pos-1">
+            <span class="icon">🏆</span>
+            <div>
+              <span class="title">PASHA Awards</span>
+              <span class="desc">Best Islamic Apps</span>
+            </div>
+          </div>
+          
+          <div class="floating-card pos-2">
+            <span class="icon">💬</span>
+            <div>
+              <span class="title">EasyUrdu</span>
+              <span class="desc">30M+ Installs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="wave-shape">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,57.05,18.3,87.43,26.24,152.37,43.25,221.71,68.86,321.39,56.44Z" fill="#ffffff"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Trust Metrics Section -->
+  <section class="metrics-section">
+    <div class="container">
+      <div class="metrics-card-grid">
+        <div class="metric-card">
+          <span class="metric-number">100M+</span>
+          <span class="metric-title">App Downloads</span>
+          <span class="metric-desc">Trusted by millions globally across iOS, Android, and Web platforms.</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-number">45+ Yrs</span>
+          <span class="metric-title">Software Leadership</span>
+          <span class="metric-desc">Pioneering technological solutions and Urdu computing since 1979.</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-number">50+</span>
+          <span class="metric-title">Apps Developed</span>
+          <span class="metric-desc">Spanning Islamic education, language keyboards, and government portals.</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-number">45+</span>
+          <span class="metric-title">Enterprise Clients</span>
+          <span class="metric-desc">Successful projects for NADRA, NARA, and international software companies.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section class="section section-bg" id="featured-products">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge badge-primary">Our Portfolio</span>
+        <h2 class="section-title">Our Featured Products</h2>
+        <p class="section-subtitle">Discover our flagship applications making a positive impact on the lives of millions worldwide.</p>
+      </div>
+
+      <div class="grid grid-2">
+        {featuredProducts.map(product => (
+          <ProductCard {...product} />
+        ))}
+      </div>
+      
+      <div class="section-actions">
+        <a href="/products" class="btn btn-outline" id="view-all-products-btn">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Summary -->
+  <section class="section about-summary-section">
+    <div class="container grid grid-2">
+      <div class="about-summary-visual">
+        <div class="grid grid-2 collage-grid">
+          <div class="collage-item box-orange">
+            <span class="num">1979</span>
+            <span class="lbl">Established</span>
+          </div>
+          <div class="collage-item box-gray">
+            <span class="num">PASHA</span>
+            <span class="lbl">Award Winners</span>
+          </div>
+          <div class="collage-item box-light">
+            <span class="num">NADRA</span>
+            <span class="lbl">Partnership</span>
+          </div>
+          <div class="collage-item box-dark">
+            <span class="num">100M+</span>
+            <span class="lbl">Active Users</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="about-summary-content">
+        <span class="badge badge-primary">Who We Are</span>
+        <h2 class="about-title">Pioneering Islamic Digital Innovation Since 1979</h2>
+        <p class="about-p">
+          Pakdata has been at the forefront of Islamic technology for more than four decades, creating impactful digital experiences that empower Muslims around the world.
+        </p>
+        <p class="about-p">
+          From Quran applications and Islamic lifestyle tools to multilingual communication technologies, our products are designed to combine authenticity, innovation, and user experience at a global scale. Our mission is to bridge faith and technology.
+        </p>
+        
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-icon">🛡️</div>
+            <div>
+              <h4 class="why-title">Innovative Islamic Technology</h4>
+              <p class="why-text">We develop modern digital solutions that combine cutting-edge technology with authentic Islamic values.</p>
+            </div>
+          </div>
+          
+          <div class="why-item">
+            <div class="why-icon">🌐</div>
+            <div>
+              <h4 class="why-title">Global User Reach</h4>
+              <p class="why-text">Our applications are trusted and used by millions of Muslims across multiple countries and platforms.</p>
+            </div>
+          </div>
+          
+          <div class="why-item">
+            <div class="why-icon">🚀</div>
+            <div>
+              <h4 class="why-title">User-Centered Design</h4>
+              <p class="why-text">We focus on intuitive, accessible, and meaningful user experiences that serve people of all ages.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="/about" class="btn btn-primary" id="learn-more-about-btn">Learn More About Our Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards & Recognition -->
+  <section class="section section-bg awards-section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge badge-primary">Recognition</span>
+        <h2 class="section-title">Recognized for Excellence & Innovation</h2>
+        <p class="section-subtitle">Our dedication to quality, innovation, and user experience has earned recognition within the technology industry.</p>
+      </div>
+
+      <div class="awards-grid">
+        <div class="award-card">
+          <div class="award-trophy">🏆</div>
+          <h3 class="award-name">PASHA Awards</h3>
+          <p class="award-category">Best Islamic Mobile Applications</p>
+          <span class="award-desc">Recognized for technological innovation and contribution to the Islamic app ecosystem.</span>
+        </div>
+        <div class="award-card">
+          <div class="award-trophy">⭐</div>
+          <h3 class="award-name">Best Apps Awards</h3>
+          <p class="award-category">Easy Urdu Keyboard</p>
+          <span class="award-desc">Awarded for bridging digital divides and enabling native language communication on mobile.</span>
+        </div>
+        <div class="award-card">
+          <div class="award-trophy">📈</div>
+          <h3 class="award-name">Top Developer Award</h3>
+          <p class="award-category">Google & Apple Ecosystems</p>
+          <span class="award-desc">Consistently ranked in Top Charts globally with multi-million ratings averages of 4.8.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnerships / Logos Grid -->
+  <section class="section partner-logos-section">
+    <div class="container">
+      <h3 class="partner-title">Trusted By & Collaborations</h3>
+      <div class="partners-grid">
+        <div class="partner-logo">Google Play</div>
+        <div class="partner-logo">App Store</div>
+        <div class="partner-logo">NADRA</div>
+        <div class="partner-logo">King Fahad Quran Complex</div>
+        <div class="partner-logo">NARA Authority</div>
+        <div class="partner-logo">P@SHA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call To Action -->
+  <section class="cta-section">
+    <div class="container cta-container">
+      <div class="cta-content">
+        <h2 class="cta-title">Let’s Build the Future of Islamic Technology Together</h2>
+        <p class="cta-desc">
+          Whether you are looking for partnerships, collaborations, enterprise solutions, or customer support, our team is ready to help you create meaningful digital experiences.
+        </p>
+        <div class="cta-actions">
+          <a href="/contact" class="btn btn-primary btn-lg btn-white-text" id="cta-contact-btn">Contact Our Team</a>
+          <a href="/products" class="btn btn-secondary btn-lg btn-white-border" id="cta-products-btn">Explore Products</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero section styles */
+  .hero-section {
+    background: radial-gradient(circle at 10% 20%, #fef3ec 0%, #ffffff 90%);
+    padding: 6rem 0 8rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-container {
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    padding: 0.35rem 1rem;
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--border-focus);
+  }
+
+  .hero-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-subtext {
+    font-size: 1.125rem;
+    color: var(--secondary-dark);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Hero visual phone mockup */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .main-visual {
+    background-color: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    width: 320px;
+    height: 480px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .dots-bg {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background-image: radial-gradient(var(--secondary) 1.5px, transparent 1.5px);
+    background-size: 10px 10px;
+    opacity: 0.3;
+    z-index: -1;
+  }
+
+  .glow-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(236, 103, 36, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+    z-index: -1;
+  }
+
+  .phone-mockup {
+    border: 2px solid var(--border);
+    border-radius: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--light-soft);
+  }
+
+  .screen-header {
+    background-color: var(--light);
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mini-logo {
+    gap: 0.35rem;
+  }
+
+  .mini-logo .logo-img {
+    height: 1.25rem;
+  }
+
+  .mini-logo .logo-title {
+    font-size: 0.8125rem;
+  }
+
+  .screen-body {
+    flex-grow: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .mock-ayah {
+    text-align: center;
+    background-color: var(--light);
+    padding: 1.25rem 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    margin-top: 1rem;
+  }
+
+  .arabic-text {
+    font-size: 1.125rem;
+    font-family: Arial, sans-serif;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+
+  .trans-text {
+    font-size: 0.75rem;
+    color: var(--secondary-dark);
+    line-height: 1.4;
+  }
+
+  .mock-stats {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .stat-pill {
+    flex: 1;
+    text-align: center;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-focus);
+  }
+
+  /* Floating micro-cards */
+  .floating-card {
+    position: absolute;
+    background-color: var(--light);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 10;
+  }
+
+  .floating-card .icon {
+    font-size: 1.5rem;
+  }
+
+  .floating-card .title {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    color: var(--dark);
+  }
+
+  .floating-card .desc {
+    display: block;
+    font-size: 0.6875rem;
+    color: var(--secondary-dark);
+  }
+
+  .pos-1 {
+    top: 15%;
+    left: -60px;
+    animation: float1 4s ease-in-out infinite alternate;
+  }
+
+  .pos-2 {
+    bottom: 15%;
+    right: -60px;
+    animation: float2 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes float1 {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+  }
+
+  @keyframes float2 {
+    from { transform: translateY(0); }
+    to { transform: translateY(10px); }
+  }
+
+  .wave-shape {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .wave-shape svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 60px;
+  }
+
+  /* Metrics Section */
+  .metrics-section {
+    padding: 2rem 0;
+    margin-top: -3.5rem;
+    position: relative;
+    z-index: 20;
+  }
+
+  .metrics-card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    background-color: var(--light);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    border-radius: 1.5rem;
+    padding: 2rem;
+  }
+
+  .metric-card {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .metric-card:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .metric-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+    font-family: var(--font-heading);
+  }
+
+  .metric-title {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .metric-desc {
+    font-size: 0.8125rem;
+    color: var(--secondary-dark);
+    line-height: 1.5;
+  }
+
+  .section-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 3.5rem;
+  }
+
+  /* Collage grid for about section */
+  .collage-grid {
+    gap: 1rem;
+    height: 100%;
+  }
+
+  .collage-item {
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .collage-item .num {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+    font-family: var(--font-heading);
+  }
+
+  .collage-item .lbl {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .box-orange {
+    background-color: var(--primary);
+    color: var(--light);
+  }
+
+  .box-gray {
+    background-color: var(--secondary-light);
+    color: var(--dark);
+    border: 1px solid var(--border);
+  }
+
+  .box-light {
+    background-color: var(--light);
+    color: var(--primary);
+    border: 1px solid var(--border-focus);
+  }
+
+  .box-dark {
+    background-color: var(--dark);
+    color: var(--light);
+  }
+
+  /* About summary content */
+  .about-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-p {
+    color: var(--secondary-dark);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .why-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin: 2rem 0;
+  }
+
+  .why-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .why-icon {
+    font-size: 1.5rem;
+    background-color: var(--primary-light);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .why-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--dark);
+  }
+
+  .why-text {
+    font-size: 0.875rem;
+    color: var(--secondary-dark);
+  }
+
+  /* Awards grid */
+  .awards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .award-card {
+    background-color: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+  }
+
+  .award-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-focus);
+  }
+
+  .award-trophy {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .award-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+  }
+
+  .award-category {
+    font-size: 0.875rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .award-desc {
+    font-size: 0.875rem;
+    color: var(--secondary-dark);
+    display: block;
+    line-height: 1.6;
+  }
+
+  /* Partner Logos */
+  .partner-logos-section {
+    padding: 4rem 0;
+  }
+
+  .partner-title {
+    text-align: center;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--secondary);
+    margin-bottom: 2rem;
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .partner-logo {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--secondary-dark);
+    opacity: 0.7;
+    text-align: center;
+    transition: opacity var(--transition-fast);
+  }
+
+  .partner-logo:hover {
+    opacity: 1;
+    color: var(--primary);
+  }
+
+  /* Call To Action banner */
+  .cta-section {
+    padding: 5rem 0;
+    background-color: var(--primary);
+    color: var(--light);
+    text-align: center;
+    position: relative;
+  }
+
+  .cta-container {
+    max-width: 800px;
+  }
+
+  .cta-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--light);
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .cta-desc {
+    font-size: 1.125rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    line-height: 1.7;
+  }
+
+  .cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-white-text {
+    background-color: var(--light);
+    color: var(--primary);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-white-text:hover {
+    background-color: var(--light-soft);
+    box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-white-border {
+    background-color: transparent;
+    color: var(--light);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .btn-white-border:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--light);
+  }
+
+  /* Responsiveness */
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 3.5rem;
+    }
+    
+    .metrics-card-grid {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 3rem;
+    }
+
+    .metric-card:nth-child(1), .metric-card:nth-child(2) {
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .metric-card:nth-child(odd) {
+      border-right: 1px solid var(--border);
+    }
+
+    .metric-card:nth-child(2) {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .metric-card:nth-child(even) {
+      border-bottom: 1px solid var(--border);
+    }
+    .metric-card:nth-child(3), .metric-card:nth-child(4) {
+      border-bottom: none;
+    }
+
+    .partners-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+
+    .awards-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-title {
+      font-size: 4rem;
+    }
+
+    .metrics-card-grid {
+      grid-template-columns: repeat(4, 1fr);
+      padding: 2.5rem;
+    }
+
+    .metric-card:not(:last-child) {
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+    }
+
+    .metric-card:nth-child(even) {
+      border-bottom: none;
+    }
+
+    .partners-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,636 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title = "Pakistan Data Management Services", 
+  description = "Pioneering Islamic digital innovation and software development since 1979. Creators of Quran Majeed, EasyUrdu, and custom enterprise solutions." 
+} = Astro.props;
+
+// Helper to determine active link
+const pathname = new URL(Astro.request.url).pathname;
+const isActive = (path: string) => {
+  if (path === '/' && pathname === '/') return true;
+  if (path !== '/' && pathname.startsWith(path)) return true;
+  return false;
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title} | PDMS</title>
+    <meta name="title" content={`${title} | PDMS`} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={`${title} | PDMS`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/logo.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={`${title} | PDMS`} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="/images/logo.png" />
+  </head>
+  <body>
+    <!-- Top Alert Bar -->
+    <div class="top-bar">
+      <div class="container top-bar-content">
+        <span>Leading in Software Innovation since 1979</span>
+        <span class="divider">|</span>
+        <span>Trusted by 100M+ Users Globally</span>
+      </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="header">
+      <div class="container header-container">
+        <!-- Logo -->
+        <a href="/" class="logo-wrap" id="logo-nav-link">
+          <img src="/images/logo.png" alt="PDMS Logo" class="logo-img" />
+          <div class="logo-text">
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="nav-desktop">
+          <a href="/" class={`nav-link ${isActive('/') ? 'active' : ''}`} id="nav-home">Home</a>
+          <a href="/products" class={`nav-link ${isActive('/products') ? 'active' : ''}`} id="nav-products">Products</a>
+          <a href="/projects" class={`nav-link ${isActive('/projects') ? 'active' : ''}`} id="nav-projects">Projects</a>
+          <a href="/about" class={`nav-link ${isActive('/about') ? 'active' : ''}`} id="nav-about">About Us</a>
+          <a href="/team" class={`nav-link ${isActive('/team') ? 'active' : ''}`} id="nav-team">Our Team</a>
+          <a href="/support" class={`nav-link ${isActive('/support') ? 'active' : ''}`} id="nav-support">Support</a>
+          <a href="/join" class={`nav-link ${isActive('/join') ? 'active' : ''}`} id="nav-join">Join Us</a>
+        </nav>
+
+        <!-- CTA Header Button -->
+        <div class="header-cta-wrap">
+          <a href="/contact" class="btn btn-primary btn-sm header-cta" id="header-contact-btn">Contact Us</a>
+          
+          <!-- Hamburger Button -->
+          <button class="mobile-toggle" aria-label="Toggle Menu" id="menu-toggle-btn">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-menu" id="mobile-menu-drawer">
+      <nav class="mobile-nav-links">
+        <a href="/" class={`mobile-nav-link ${isActive('/') ? 'active' : ''}`} id="mob-nav-home">Home</a>
+        <a href="/products" class={`mobile-nav-link ${isActive('/products') ? 'active' : ''}`} id="mob-nav-products">Products</a>
+        <a href="/projects" class={`mobile-nav-link ${isActive('/projects') ? 'active' : ''}`} id="mob-nav-projects">Projects</a>
+        <a href="/about" class={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`} id="mob-nav-about">About Us</a>
+        <a href="/team" class={`mobile-nav-link ${isActive('/team') ? 'active' : ''}`} id="mob-nav-team">Our Team</a>
+        <a href="/support" class={`mobile-nav-link ${isActive('/support') ? 'active' : ''}`} id="mob-nav-support">Support & FAQ</a>
+        <a href="/join" class={`mobile-nav-link ${isActive('/join') ? 'active' : ''}`} id="mob-nav-join">Join Us</a>
+        <a href="/contact" class="btn btn-primary mobile-menu-cta" id="mob-nav-contact">Contact Us</a>
+      </nav>
+    </div>
+
+    <!-- Main Content Slot -->
+    <main class="main-content">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <!-- Footer Column 1: Company Profile -->
+        <div class="footer-col col-brand">
+          <a href="/" class="logo-wrap footer-logo">
+            <img src="/images/logo.png" alt="PDMS Logo" class="logo-img" />
+          </a>
+          <p class="footer-desc">
+            Pakistan Data Management Services (PDMS) has been pioneering software development and mobile application design since 1979. We combine engineering excellence with authentic content to serve millions of users globally.
+          </p>
+          <div class="social-links">
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/company/pakdata" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+            <!-- Twitter -->
+            <a href="https://twitter.com/pakdata" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+            </a>
+            <!-- Facebook -->
+            <a href="https://facebook.com/pakdata" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Footer Column 2: Quick Links -->
+        <div class="footer-col">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Our Products</a></li>
+            <li><a href="/projects">Case Studies</a></li>
+            <li><a href="/about">About Our Story</a></li>
+            <li><a href="/team">Leadership & Team</a></li>
+            <li><a href="/join">Careers (Join Us)</a></li>
+            <li><a href="/support">Help & Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Footer Column 3: Top Products -->
+        <div class="footer-col">
+          <h3 class="footer-title">Top Products</h3>
+          <ul class="footer-links">
+            <li><a href="/products#quran-majeed">Quran Majeed App</a></li>
+            <li><a href="/products#quran-pak">Quran Pak Reading</a></li>
+            <li><a href="/products#easy-urdu">Easy Urdu Keyboard</a></li>
+            <li><a href="/products#quran-tv">Quran TV Streaming</a></li>
+            <li><a href="/products#3d-salah">3D Salah Guide</a></li>
+            <li><a href="/products#engage-ai">Engage AI Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Footer Column 4: Newsletter & Inquiries -->
+        <div class="footer-col">
+          <h3 class="footer-title">Stay Connected</h3>
+          <p class="footer-text">
+            Subscribe to receive updates about our products, technology innovations, and news.
+          </p>
+          <form class="newsletter-form" id="newsletter-form">
+            <input type="email" placeholder="Your email address" required class="form-control newsletter-input" aria-label="Email address" />
+            <button type="submit" class="btn btn-primary newsletter-btn" aria-label="Subscribe">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+          </form>
+          <div class="business-contact">
+            <span class="contact-label">Business Inquiries:</span>
+            <a href="mailto:info@pakdata.com" class="contact-value">info@pakdata.com</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+          <p>&copy; {new Date().getFullYear()} Pakistan Data Management Services. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="/privacy" id="footer-privacy-link">Privacy Policy</a>
+            <a href="/terms" id="footer-terms-link">Terms & Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Interactive Navigation Scripts -->
+    <script>
+      const menuToggleBtn = document.getElementById('menu-toggle-btn');
+      const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
+      const newsletterForm = document.getElementById('newsletter-form');
+
+      if (menuToggleBtn && mobileMenuDrawer) {
+        menuToggleBtn.addEventListener('click', () => {
+          menuToggleBtn.classList.toggle('active');
+          mobileMenuDrawer.classList.toggle('active');
+          document.body.classList.toggle('overflow-hidden');
+        });
+
+        // Close mobile drawer when link is clicked
+        const mobileLinks = mobileMenuDrawer.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            menuToggleBtn.classList.remove('active');
+            mobileMenuDrawer.classList.remove('active');
+            document.body.classList.remove('overflow-hidden');
+          });
+        });
+      }
+
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const emailInput = newsletterForm.querySelector('input');
+          if (emailInput && emailInput.value) {
+            alert(`Thank you for subscribing with ${emailInput.value}!`);
+            emailInput.value = '';
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  /* Header alert bar */
+  .top-bar {
+    background-color: var(--dark);
+    color: var(--light);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .top-bar-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .top-bar-content .divider {
+    color: var(--secondary);
+    opacity: 0.5;
+  }
+
+  /* Header main styling */
+  .header {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4.5rem;
+  }
+
+  /* Logo wrapper */
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .logo-img {
+    height: auto;
+    width: 10rem;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .logo-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 0.02em;
+  }
+
+  .logo-subtitle {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--secondary-dark);
+  }
+
+  /* Desktop links */
+  .nav-desktop {
+    display: none;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--dark-soft);
+    padding: 0.5rem 0.25rem;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--primary);
+  }
+
+  .nav-link.active {
+    color: var(--primary);
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.25rem;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary);
+    border-radius: 9999px;
+  }
+
+  .header-cta-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .header-cta {
+    display: none;
+  }
+
+  /* Mobile menu button */
+  .mobile-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1.5rem;
+    height: 1.1rem;
+    z-index: 110;
+  }
+
+  .hamburger-bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--dark-soft);
+    border-radius: 9999px;
+    transition: all var(--transition-normal);
+  }
+
+  .mobile-toggle.active .hamburger-bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .mobile-toggle.active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-toggle.active .hamburger-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Mobile navigation drawer */
+  .mobile-menu {
+    position: fixed;
+    top: 6.5rem; /* adjusted for top-bar + header height */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--light);
+    z-index: 99;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform var(--transition-normal);
+    border-top: 1px solid var(--border);
+  }
+
+  .mobile-menu.active {
+    transform: translateX(0);
+  }
+
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--light-soft);
+  }
+
+  .mobile-nav-link.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary-light);
+  }
+
+  .mobile-menu-cta {
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  /* Body settings */
+  .main-content {
+    flex-grow: 1;
+  }
+
+  /* Footer styling */
+  .footer {
+    background-color: #0b0f19;
+    color: #9ca3af;
+    padding: 5rem 0 0 0;
+    border-top: 4px solid var(--primary);
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .col-brand {
+    max-width: 320px;
+  }
+
+  .logo-text .text-light {
+    color: var(--light);
+    font-weight: 750;
+  }
+
+  .logo-text .text-gray {
+    color: #6b7280;
+  }
+
+  .footer-desc {
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background-color: #1f2937;
+    color: var(--light);
+    transition: all var(--transition-normal);
+  }
+
+  .social-link:hover {
+    background-color: var(--primary);
+    color: var(--light);
+    transform: translateY(-2px);
+  }
+
+  .footer-title {
+    color: var(--light);
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-links a {
+    font-size: 0.875rem;
+  }
+
+  .footer-links a:hover {
+    color: var(--primary);
+    padding-left: 4px;
+  }
+
+  .footer-text {
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .newsletter-input {
+    background-color: #1f2937;
+    border-color: #374151;
+    color: var(--light);
+  }
+
+  .newsletter-input::placeholder {
+    color: #6b7280;
+  }
+
+  .newsletter-input:focus {
+    border-color: var(--primary);
+    background-color: #111827;
+  }
+
+  .newsletter-btn {
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    flex-shrink: 0;
+  }
+
+  .business-contact {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .contact-label {
+    color: #6b7280;
+    font-size: 0.75rem;
+  }
+
+  .contact-value {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  /* Footer bottom */
+  .footer-bottom {
+    background-color: #05070c;
+    padding: 1.5rem 0;
+    font-size: 0.8125rem;
+    border-top: 1px solid #111827;
+  }
+
+  .footer-bottom-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .footer-bottom-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-bottom-links a:hover {
+    color: var(--primary);
+  }
+
+  /* Body overflow lock */
+  :global(body.overflow-hidden) {
+    overflow: hidden;
+  }
+
+  /* Media Queries for Navbar & Grid Layout */
+  @media (min-width: 768px) {
+    .nav-desktop {
+      display: flex;
+    }
+    
+    .header-cta {
+      display: inline-flex;
+    }
+
+    .mobile-toggle {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr 2fr;
+    }
+
+    .footer-bottom-content {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+</style>

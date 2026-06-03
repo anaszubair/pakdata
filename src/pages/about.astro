@@ -1,0 +1,474 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "About Us | Pakistan Data Management Services";
+const description = "Pioneering Islamic digital technology, Urdu computing, and mobile application engineering since 1979. Learn about our mission, vision, history, and collaborations.";
+
+const milestones = [
+  {
+    year: "1979",
+    title: "Company Founded",
+    description: "PDMS was established, pioneering Urdu computing and localized software layout engines in Pakistan long before the smartphone era."
+  },
+  {
+    year: "1989",
+    title: "Islamic Digital Publishing",
+    description: "Designed and developed early computer software and custom fonts to publish authenticated Arabic text, cooperating with Islamic institutions."
+  },
+  {
+    year: "1998",
+    title: "Web Platforms & Global Shift",
+    description: "Expanded development into internet web platforms, starting online Quran portals and building custom content engines for international publishers."
+  },
+  {
+    year: "2010",
+    title: "Mobile App Revolution",
+    description: "Released the Quran Majeed application on iOS and Android. It quickly became the world's most trusted digital Islamic app, changing mobile worship."
+  },
+  {
+    year: "2019",
+    title: "Expanding the Ecosystem",
+    description: "Launched Easy Urdu Keyboard and Quran TV, scaling total downloads past 70M+ and receiving local and international tech recognition awards."
+  },
+  {
+    year: "2026",
+    title: "Next Gen AI & 100M+ Users",
+    description: "Reaching a major milestone of 100M+ app downloads globally, continuing to expand Quran Majeed, and launching enterprise solutions like EngageAI."
+  }
+];
+
+const values = [
+  {
+    icon: "🤝",
+    title: "Purpose-Driven Innovation",
+    text: "We don't build software just for utility; we design technology that solves cultural, language, and spiritual accessibility needs."
+  },
+  {
+    icon: "📜",
+    title: "Unyielding Authenticity",
+    text: "For all our Islamic applications, we work directly with certified scholars, institutions, and printing complexes to guarantee correctness."
+  },
+  {
+    icon: "📈",
+    title: "Global Scalability",
+    text: "Engineering software systems designed to run seamlessly for millions of daily active users, maintaining high uptime and low latency."
+  },
+  {
+    icon: "💡",
+    title: "Continuous Modernization",
+    text: "Actively modernizing our user interfaces, adding AI tools (like translation, audio recitations analysis), and expanding platform compatibility."
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <div class="container text-center animate-fade-in">
+      <span class="badge badge-primary">Our Journey</span>
+      <h1 class="about-hero-title">Pioneering Software & Islamic Technology Since 1979</h1>
+      <p class="about-hero-subtitle">
+        For more than four decades, Pakistan Data Management Services has been at the intersection of faith, language, and engineering.
+      </p>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="section section-bg">
+    <div class="container grid grid-2 align-center">
+      <div class="overview-content">
+        <h2 class="overview-title">Connecting Hearts & Minds Through Technology</h2>
+        <p class="overview-p">
+          Pakdata began in 1979 as a pioneer in native language computing, developing specialized word processors and layouts for Urdu publishing. Over the years, our technical focus expanded to meet the spiritual needs of Muslims globally.
+        </p>
+        <p class="overview-p">
+          Today, we maintain the world's most popular Islamic applications, including <strong>Quran Majeed</strong>, <strong>Quran Pak</strong>, and <strong>Quran TV</strong>, alongside regional utilities like the <strong>Easy Urdu Keyboard</strong>. Our products combine state-of-the-art UI/UX, accurate content proofed by scholars, and highly optimized code bases.
+        </p>
+        <p class="overview-p">
+          Beyond consumer apps, we have successfully developed national-scale registry databases for public sector entities like <strong>NADRA</strong> and <strong>NARA</strong>, establishing ourselves as a trusted software vendor for governments and enterprise companies.
+        </p>
+      </div>
+      <div class="overview-stats">
+        <div class="about-stats-grid">
+          <div class="about-stat-card">
+            <span class="num">100M+</span>
+            <span class="lbl">Global Users</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="num">45+</span>
+            <span class="lbl">Years in Tech</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="num">50+</span>
+            <span class="lbl">Applications</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="num">45+</span>
+            <span class="lbl">Enterprise Clients</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="section timeline-section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge badge-primary">Our Timeline</span>
+        <h2 class="section-title">Key Historical Milestones</h2>
+        <p class="section-subtitle">A look back at how we started and how we became a global leader in Islamic digital products.</p>
+      </div>
+
+      <div class="timeline-container">
+        {milestones.map((item, index) => (
+          <div class={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}>
+            <div class="timeline-content card">
+              <span class="timeline-year">{item.year}</span>
+              <h3 class="timeline-title">{item.title}</h3>
+              <p class="timeline-desc">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission Sections -->
+  <section class="section section-bg">
+    <div class="container grid grid-2">
+      <div class="vision-mission-card card">
+        <div class="card-icon">👁️</div>
+        <h2 class="vm-title">Our Vision</h2>
+        <p class="vm-text">
+          To become the world's most trusted partner in Islamic technology and localized computing, bridging cultural and spiritual needs with state-of-the-art software systems that enrich people's lives on a daily basis.
+        </p>
+      </div>
+      <div class="vision-mission-card card">
+        <div class="card-icon">🎯</div>
+        <h2 class="vm-title">Our Mission</h2>
+        <p class="vm-text">
+          We combine strict scriptural authenticity with cutting-edge user experience to build digital products that simplify scripture study, prayer tracking, language input, and enterprise engagement for global audiences.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="section values-section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge badge-primary">Core Values</span>
+        <h2 class="section-title">The Principles We Stand By</h2>
+        <p class="section-subtitle">Our values represent the core commitments that guide our design, development, and customer interactions.</p>
+      </div>
+
+      <div class="grid grid-4">
+        {values.map(val => (
+          <div class="value-card card text-center">
+            <div class="value-icon">{val.icon}</div>
+            <h3 class="value-title">{val.title}</h3>
+            <p class="value-text">{val.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Logos Grid -->
+  <section class="section section-bg partner-logos-section">
+    <div class="container">
+      <h3 class="partner-title">Collaborations & Trust Marks</h3>
+      <div class="partners-grid">
+        <div class="partner-logo">Google</div>
+        <div class="partner-logo">NADRA</div>
+        <div class="partner-logo">King Fahad Complex</div>
+        <div class="partner-logo">QuranExplorer</div>
+        <div class="partner-logo">Apple App Store</div>
+        <div class="partner-logo">P@SHA Association</div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero styles */
+  .about-hero {
+    background: radial-gradient(circle at 50% 50%, #fef3ec 0%, #ffffff 100%);
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-hero-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--secondary-dark);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  /* Alignment helper */
+  .align-center {
+    align-items: center;
+  }
+
+  .overview-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .overview-title {
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  .overview-p {
+    color: var(--secondary-dark);
+    font-size: 1rem;
+  }
+
+  /* Stats grid */
+  .about-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .about-stat-card {
+    background-color: var(--light);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .about-stat-card .num {
+    display: block;
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+    font-family: var(--font-heading);
+  }
+
+  .about-stat-card .lbl {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--secondary-dark);
+    letter-spacing: 0.05em;
+  }
+
+  /* Timeline Styles */
+  .timeline-section {
+    position: relative;
+  }
+
+  .timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    background-color: var(--border);
+  }
+
+  .timeline-item {
+    padding: 1.5rem 0;
+    position: relative;
+    width: 50%;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-color: var(--primary);
+    border: 4px solid var(--light);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .timeline-item.left {
+    left: 0;
+    padding-right: 3rem;
+  }
+
+  .timeline-item.left::before {
+    right: -8px;
+  }
+
+  .timeline-item.right {
+    left: 50%;
+    padding-left: 3rem;
+  }
+
+  .timeline-item.right::before {
+    left: -8px;
+  }
+
+  .timeline-content {
+    background-color: var(--light);
+  }
+
+  .timeline-year {
+    display: inline-block;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    font-size: 0.875rem;
+    font-weight: 800;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.875rem;
+    color: var(--secondary-dark);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* Vision & Mission cards */
+  .vision-mission-card {
+    padding: 3rem 2.5rem;
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .vm-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .vm-text {
+    font-size: 0.9375rem;
+    color: var(--secondary-dark);
+    line-height: 1.7;
+  }
+
+  /* Value cards */
+  .value-card {
+    padding: 2.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .value-icon {
+    font-size: 2.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .value-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .value-text {
+    font-size: 0.875rem;
+    color: var(--secondary-dark);
+    line-height: 1.6;
+  }
+
+  /* Partner Logos styling (from index, shared) */
+  .partner-logos-section {
+    padding: 4.5rem 0;
+  }
+
+  .partner-title {
+    text-align: center;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--secondary);
+    margin-bottom: 2rem;
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .partner-logo {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--secondary-dark);
+    opacity: 0.7;
+    text-align: center;
+    transition: opacity var(--transition-fast);
+  }
+
+  .partner-logo:hover {
+    opacity: 1;
+    color: var(--primary);
+  }
+
+  /* Responsiveness */
+  @media (max-width: 767px) {
+    .timeline-container::before {
+      left: 1.5rem;
+    }
+
+    .timeline-item {
+      width: 100%;
+      padding-left: 3rem !important;
+      padding-right: 0 !important;
+    }
+
+    .timeline-item::before {
+      left: 1rem !important;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .about-hero-title {
+      font-size: 3.5rem;
+    }
+
+    .partners-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+</style>

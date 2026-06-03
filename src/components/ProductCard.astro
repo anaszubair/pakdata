@@ -1,0 +1,273 @@
+---
+interface Props {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  badge?: string;
+  rating?: string;
+  downloads?: string;
+  platforms: string[]; // ['iOS', 'Android', 'macOS', 'Web', 'TV']
+  features: string[];
+  detailsUrl?: string;
+  downloadUrl?: string;
+}
+
+const {
+  id,
+  name,
+  tagline,
+  description,
+  badge,
+  rating = "4.8",
+  downloads,
+  platforms = [],
+  features = [],
+  detailsUrl,
+  downloadUrl = "/contact"
+} = Astro.props;
+---
+
+<div class="product-card" id={id}>
+  <div class="product-card-header">
+    <div class="product-info-left">
+      {badge && <span class="badge badge-primary product-badge">{badge}</span>}
+      <h3 class="product-title">{name}</h3>
+      <p class="product-tagline">{tagline}</p>
+    </div>
+    
+    <div class="product-rating">
+      <span class="rating-star">★</span>
+      <span class="rating-val">{rating}</span>
+    </div>
+  </div>
+
+  <p class="product-desc">{description}</p>
+
+  <div class="product-features-wrap">
+    <h4 class="features-title">Key Features</h4>
+    <ul class="features-list">
+      {features.slice(0, 4).map(feature => (
+        <li class="feature-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>{feature}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="product-meta">
+    {downloads && (
+      <div class="meta-downloads">
+        <span class="meta-label">Downloads:</span>
+        <span class="meta-value">{downloads}</span>
+      </div>
+    )}
+    
+    <div class="meta-platforms">
+      {platforms.map(platform => (
+        <span class={`platform-tag tag-${platform.toLowerCase()}`} title={`Available on ${platform}`}>
+          {platform}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <div class="product-actions">
+    {detailsUrl && (
+      <a href={detailsUrl} class="btn btn-outline btn-sm action-btn">View Details</a>
+    )}
+    <a href={downloadUrl} class="btn btn-primary btn-sm action-btn" target={downloadUrl.startsWith('http') ? '_blank' : '_self'}>Get App</a>
+  </div>
+</div>
+
+<style>
+  .product-card {
+    background-color: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+  }
+
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl), var(--shadow-primary);
+    border-color: var(--primary);
+  }
+
+  .product-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .product-info-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .product-badge {
+    align-self: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+
+  .product-tagline {
+    font-size: 0.875rem;
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background-color: #fef3c7;
+    color: #d97706;
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+  }
+
+  .rating-star {
+    font-size: 1rem;
+  }
+
+  .product-desc {
+    font-size: 0.9375rem;
+    color: var(--secondary-dark);
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+    flex-grow: 1;
+  }
+
+  .product-features-wrap {
+    margin-bottom: 1.75rem;
+    background-color: var(--light-soft);
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px dashed var(--border);
+  }
+
+  .features-title {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--secondary-dark);
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+
+  .features-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--dark-soft);
+  }
+
+  .check-icon {
+    color: var(--success);
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .meta-downloads {
+    font-size: 0.8125rem;
+  }
+
+  .meta-label {
+    color: var(--secondary-dark);
+    margin-right: 0.25rem;
+  }
+
+  .meta-value {
+    font-weight: 700;
+    color: var(--dark);
+  }
+
+  .meta-platforms {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .platform-tag {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.25rem;
+    text-transform: uppercase;
+    background-color: var(--secondary-light);
+    color: var(--secondary-dark);
+    border: 1px solid var(--border);
+  }
+
+  .tag-ios {
+    background-color: #f3f4f6;
+    color: #1f2937;
+  }
+
+  .tag-android {
+    background-color: #ecfdf5;
+    color: #065f46;
+  }
+
+  .tag-macos {
+    background-color: #eff6ff;
+    color: #1e40af;
+  }
+
+  .tag-web {
+    background-color: #f5f3ff;
+    color: #5b21b6;
+  }
+
+  .tag-tv {
+    background-color: #fff1f2;
+    color: #9f1239;
+  }
+
+  .product-actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .action-btn {
+    flex: 1;
+    border-radius: 0.75rem;
+  }
+</style>
