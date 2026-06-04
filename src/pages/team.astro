@@ -43,6 +43,33 @@ const departments = [
     desc: "Working 24/7 to resolve user settings inquiries, guide prayer notification configurations, handle billing inquiries, and troubleshoot devices."
   }
 ];
+
+const team = [
+  {
+    count: "40+",
+    department: "Engineering"
+  },
+  {
+    count: "12+",
+    department: "Design"
+  },
+  {
+    count: "15+",
+    department: "Content & Scholars"
+  },
+  {
+    count: "4+",
+    department: "Marketing"
+  },
+  {
+    count: "1+",
+    department: "Customer Support"
+  },
+    {
+    count: "6+",
+    department: "Operations"
+  }
+];
 ---
 
 <Layout title={title} description={description}>
@@ -140,6 +167,25 @@ const departments = [
             <span>CEO & Architect</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="section section-bg text-center">
+    <div class="container text-center">
+        <div class="section-title-wrap">
+          <span class="badge badge-primary">Our Family</span>
+          <h2 class="section-title">Built by 100+ passionate people</h2>
+          <p class="section-subtitle">Across multiple disciplines, all rowing in the same direction.</p>
+        </div>
+      <div class="grid grid-6">
+      {team.map(tm => (
+        <div class="team-card card">
+            <h3 class="team-count">{tm.count}</h3>
+            <p class="team-department">{tm.department}</p>
+        </div>
+      ))}
       </div>
     </div>
   </section>
@@ -256,6 +302,24 @@ const departments = [
   .dept-desc {
     font-size: 0.9375rem;
     color: var(--secondary-dark);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* team-card */
+  .team-card {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .team-count {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  .team-department {
+    font-size: 0.75rem;
     line-height: 1.6;
     margin-bottom: 0;
   }

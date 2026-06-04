@@ -63,7 +63,7 @@ const isActive = (path: string) => {
           <a href="/products" class={`nav-link ${isActive('/products') ? 'active' : ''}`} id="nav-products">Products</a>
           <a href="/projects" class={`nav-link ${isActive('/projects') ? 'active' : ''}`} id="nav-projects">Projects</a>
           <a href="/about" class={`nav-link ${isActive('/about') ? 'active' : ''}`} id="nav-about">About Us</a>
-          <a href="/team" class={`nav-link ${isActive('/team') ? 'active' : ''}`} id="nav-team">Our Team</a>
+          <a href="/team" class={`nav-link ${isActive('/team') ? 'active' : ''}`} id="nav-team">Team</a>
           <a href="/support" class={`nav-link ${isActive('/support') ? 'active' : ''}`} id="nav-support">Support</a>
           <a href="/join" class={`nav-link ${isActive('/join') ? 'active' : ''}`} id="nav-join">Join Us</a>
         </nav>
@@ -311,7 +311,7 @@ const isActive = (path: string) => {
     font-size: 0.9375rem;
     font-weight: 600;
     color: var(--dark-soft);
-    padding: 0.5rem 0.25rem;
+    padding: 0.5rem 0.5rem;
     position: relative;
   }
 
@@ -321,17 +321,8 @@ const isActive = (path: string) => {
 
   .nav-link.active {
     color: var(--primary);
-  }
-
-  .nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -0.25rem;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--primary);
-    border-radius: 9999px;
+    background-color: var(--primary-light);
+    border-radius: 8px
   }
 
   .header-cta-wrap {
