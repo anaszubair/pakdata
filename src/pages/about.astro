@@ -8,32 +8,102 @@ const milestones = [
   {
     year: "1979",
     title: "Company Founded",
-    description: "PDMS was established, pioneering Urdu computing and localized software layout engines in Pakistan long before the smartphone era."
+    description: "Pakistan Data Management Services (PDMS) was established, becoming one of Pakistan’s earliest software development companies."
+  },
+  {
+    year: "1983",
+    title: "Urdu Software",
+    description: "Developed Urdu software for Commodore 64 systems, contributing to the early evolution of Urdu computing."
   },
   {
     year: "1989",
-    title: "Islamic Digital Publishing",
-    description: "Designed and developed early computer software and custom fonts to publish authenticated Arabic text, cooperating with Islamic institutions."
+    title: "Nastaleeq-e-Nizami",
+    description: "Released “Nastaleeq-e-Nizami,” the first Urdu Nastaleeq publishing software for Apple Macintosh and Laser printers."
+  },
+  {
+    year: "1992",
+    title: "Urdu Computer Nizam",
+    description: "Launched Urdu Computer Nizam, one of the first Urdu database, spreadsheet, and presentation software systems for Apple Macintosh."
+  },
+  {
+    year: "1995",
+    title: "Imagine: Criminal Identification System",
+    description: "Developed Imagine — a Criminal Identification and Sketching System used in Police SSP offices across Pakistan."
+  },
+  {
+    year: "1996",
+    title: "PDMS Goes Online",
+    description: "Launched the official Pakdata website: www.pakdata.com"
   },
   {
     year: "1998",
-    title: "Web Platforms & Global Shift",
-    description: "Expanded development into internet web platforms, starting online Quran portals and building custom content engines for international publishers."
+    title: "Pakistani Databases and CDs",
+    description: "Provided consultancy services for Pakistan Citizens Database initiatives. Launched Quran Majeed CD and English-Urdu Dictionary CD."
+  },
+  {
+    year: "2000",
+    title: "Launched Urduseek.com & CityIslam.com",
+    description: "Launched Urdu portal www.urduseek.com Submitted Urdu Unicode proposal to the Unicode Consortium. Launched Quran portal www.cityislam.com"
+  },
+  {
+    year: "2001",
+    title: "NADRA CNIC Project",
+    description: "Provided software development services to NADRA for Urdu database systems used in the CNIC project."
+  },
+  {
+    year: "2003",
+    title: "Electoral Rolls & Pocket Alim",
+    description: "Developed Electoral Rolls software for the Election Commission of Pakistan. Developed Pocket Alim software for mobile PDAs."
+  },
+  {
+    year: "2005",
+    title: "Mobile Muslim Series & Quran Explorer",
+    description: "Developed Mobile Muslim software series for Windows Mobile devices. Released Quran Majeed for Palm Pilot PDA. Provided development services for QuranExplorer."
+  },
+  {
+    year: "2008",
+    title: "Collaborated with King Fahad Quran Printing Complex",
+    description: "Collaborated with King Fahad Quran Printing Complex (Madinah) on Quran software initiatives. Launched Urdu Mahir and PDMS Jauhar software solutions. Delivered National Aliens Database software to NADRA."
   },
   {
     year: "2010",
-    title: "Mobile App Revolution",
-    description: "Released the Quran Majeed application on iOS and Android. It quickly became the world's most trusted digital Islamic app, changing mobile worship."
+    title: "Quran Majeed for iOS",
+    description: "Released Quran Majeed for Apple iPhone iOS platform."
   },
   {
+    year: "2012",
+    title: "1 Million Downloads",
+    description: "Reached 1 million Quran Majeed app downloads globally."
+  },
+  {
+    year: "2014",
+    title: "Quran Majeed for Android",
+    description: "Launched Quran Majeed for Android devices."
+  },
+  {
+    year: "2015",
+    title: "Easy Urdu Keyboard",
+    description: "Released EasyUrdu Keyboard for Android."
+  },
+  {
+    year: "2016",
+    title: "Regional language keyboard",
+    description: "Launched EasySindhi, EasyPashto, and additional regional language keyboard applications."
+  },
+    {
+    year: "2017",
+    title: "Google AdMob Strategic Partner",
+    description: "Selected by Google as an AdMob Strategic Partner in Pakistan."
+  },
+    {
+    year: "2018",
+    title: "Quran TV and Visual Quran",
+    description: "Launched Quran TV and Visual Quran applications for iOS, Android, and Apple TV."
+  },
+    {
     year: "2019",
-    title: "Expanding the Ecosystem",
-    description: "Launched Easy Urdu Keyboard and Quran TV, scaling total downloads past 70M+ and receiving local and international tech recognition awards."
-  },
-  {
-    year: "2026",
-    title: "Next Gen AI & 100M+ Users",
-    description: "Reaching a major milestone of 100M+ app downloads globally, continuing to expand Quran Majeed, and launching enterprise solutions like EngageAI."
+    title: "5 Millions EasyUrdu App Downloads",
+    description: "Reached 5 million downloads for EasyUrdu Keyboard."
   }
 ];
 
@@ -297,7 +367,7 @@ const values = [
   }
 
   .timeline-item {
-    padding: 1.5rem 0;
+    padding: .5rem 0;
     position: relative;
     width: 50%;
   }
@@ -318,7 +388,7 @@ const values = [
 
   .timeline-item.left {
     left: 0;
-    padding-right: 3rem;
+    padding-right: 2rem;
   }
 
   .timeline-item.left::before {
@@ -327,7 +397,7 @@ const values = [
 
   .timeline-item.right {
     left: 50%;
-    padding-left: 3rem;
+    padding-left: 2rem;
   }
 
   .timeline-item.right::before {
@@ -336,6 +406,7 @@ const values = [
 
   .timeline-content {
     background-color: var(--light);
+    padding: 1rem !important;
   }
 
   .timeline-year {
@@ -460,6 +531,10 @@ const values = [
 
     .timeline-item::before {
       left: 1rem !important;
+    }
+    
+    .timeline-item.right {
+      left: 0% !important;
     }
   }
 
