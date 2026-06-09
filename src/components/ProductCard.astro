@@ -73,11 +73,25 @@ const {
     )}
     
     <div class="meta-platforms">
-      {platforms.map(platform => (
-        <span class={`platform-tag tag-${platform.toLowerCase()}`} title={`Available on ${platform}`}>
-          {platform}
-        </span>
-      ))}
+      {platforms.map(platform => {
+        const platformKey = platform.toLowerCase();
+        const imageMap = {
+          ios: '/images/ios.png',
+          android: '/images/android.png',
+          macos: '/images/appstore.png',
+          tv: '/images/tv.png',
+          web: '/images/web.png',
+        } as const;
+        const imgSrc = imageMap[platformKey];
+        return imgSrc ? (
+          <img
+            src={imgSrc}
+            alt={`Available on ${platform}`}
+            title={`Available on ${platform}`}
+            class="platform-img"
+          />
+        ) : null;
+      })}
     </div>
   </div>
 
@@ -229,44 +243,25 @@ const {
 
   .meta-platforms {
     display: flex;
-    gap: 0.35rem;
+    gap: 0.5rem;
     flex-wrap: wrap;
+    align-items: center;
   }
 
-  .platform-tag {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    padding: 0.15rem 0.5rem;
-    border-radius: 0.25rem;
-    text-transform: uppercase;
-    background-color: var(--secondary-light);
-    color: var(--secondary-dark);
+  .platform-img {
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 0.5rem;
+    object-fit: cover;
     border: 1px solid var(--border);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    flex-shrink: 0;
+    padding: 0.2rem
   }
 
-  .tag-ios {
-    background-color: #f3f4f6;
-    color: #1f2937;
-  }
-
-  .tag-android {
-    background-color: #ecfdf5;
-    color: #065f46;
-  }
-
-  .tag-macos {
-    background-color: #eff6ff;
-    color: #1e40af;
-  }
-
-  .tag-web {
-    background-color: #f5f3ff;
-    color: #5b21b6;
-  }
-
-  .tag-tv {
-    background-color: #fff1f2;
-    color: #9f1239;
+  .platform-img:hover {
+    transform: translateY(-2px) scale(1.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   .product-actions {
