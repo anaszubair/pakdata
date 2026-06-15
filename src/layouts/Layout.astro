@@ -25,6 +25,21 @@ const isActive = (path: string) => {
   if (path !== '/' && cleanPathname.startsWith(path)) return true;
   return false;
 };
+
+const productLinks = [
+  {
+    href: getRelativeLocaleUrl(lang, '/products/quran-majeed'),
+    label: 'Quran Majeed'
+  },
+  {
+    href: getRelativeLocaleUrl(lang, '/products/quran-pak'),
+    label: 'Quran Pak'
+  },
+  {
+    href: getRelativeLocaleUrl(lang, '/products'),
+    label: 'More Products'
+  }
+];
 ---
 
 <!doctype html>
@@ -103,7 +118,26 @@ const isActive = (path: string) => {
         <!-- Desktop Navigation Links -->
         <nav class="nav-desktop">
           <a href={getRelativeLocaleUrl(lang, '/')} class={`nav-link ${isActive('/') ? 'active' : ''}`} id="nav-home">{t('nav.home')}</a>
-          <a href={getRelativeLocaleUrl(lang, '/products')} class={`nav-link ${isActive('/products') ? 'active' : ''}`} id="nav-products">{t('nav.products')}</a>
+          <div class={`nav-dropdown ${isActive('/products') ? 'active' : ''}`} id="nav-products-wrap">
+            <a href={getRelativeLocaleUrl(lang, '/products')} class={`nav-link nav-dropdown-link ${isActive('/products') ? 'active' : ''}`} id="nav-products">{t('nav.products')}</a>
+            <button
+              type="button"
+              class="nav-dropdown-toggle"
+              aria-label={t('nav.products')}
+              aria-expanded="false"
+              aria-controls="products-dropdown-menu"
+              data-products-dropdown-toggle
+            >
+              <svg viewBox="0 0 20 20" aria-hidden="true" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 7l5 5 5-5"></path>
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu" id="products-dropdown-menu" hidden>
+              {productLinks.map((item) => (
+                <a href={item.href} class="nav-dropdown-item">{item.label}</a>
+              ))}
+            </div>
+          </div>
           <a href={getRelativeLocaleUrl(lang, '/projects')} class={`nav-link ${isActive('/projects') ? 'active' : ''}`} id="nav-projects">{t('nav.projects')}</a>
           <a href={getRelativeLocaleUrl(lang, '/about')} class={`nav-link ${isActive('/about') ? 'active' : ''}`} id="nav-about">{t('nav.about')}</a>
           <a href={getRelativeLocaleUrl(lang, '/team')} class={`nav-link ${isActive('/team') ? 'active' : ''}`} id="nav-team">{t('nav.team')}</a>
@@ -136,7 +170,14 @@ const isActive = (path: string) => {
     <div class="mobile-menu" id="mobile-menu-drawer">
       <nav class="mobile-nav-links">
         <a href={getRelativeLocaleUrl(lang, '/')} class={`mobile-nav-link ${isActive('/') ? 'active' : ''}`} id="mob-nav-home">{t('nav.home')}</a>
-        <a href={getRelativeLocaleUrl(lang, '/products')} class={`mobile-nav-link ${isActive('/products') ? 'active' : ''}`} id="mob-nav-products">{t('nav.products')}</a>
+        <details class={`mobile-nav-group ${isActive('/products') ? 'active' : ''}`} open={isActive('/products')} id="mob-nav-products-wrap">
+          <summary class="mobile-nav-link mobile-nav-summary" id="mob-nav-products">{t('nav.products')}</summary>
+          <div class="mobile-nav-submenu">
+            {productLinks.map((item) => (
+              <a href={item.href} class="mobile-nav-sublink">{item.label}</a>
+            ))}
+          </div>
+        </details>
         <a href={getRelativeLocaleUrl(lang, '/projects')} class={`mobile-nav-link ${isActive('/projects') ? 'active' : ''}`} id="mob-nav-projects">{t('nav.projects')}</a>
         <a href={getRelativeLocaleUrl(lang, '/about')} class={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`} id="mob-nav-about">{t('nav.about')}</a>
         <a href={getRelativeLocaleUrl(lang, '/team')} class={`mobile-nav-link ${isActive('/team') ? 'active' : ''}`} id="mob-nav-team">{t('nav.team')}</a>
@@ -241,6 +282,9 @@ const isActive = (path: string) => {
       const menuToggleBtn = document.getElementById('menu-toggle-btn');
       const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
       const newsletterForm = document.getElementById('newsletter-form');
+      const productsDropdownToggle = document.querySelector('[data-products-dropdown-toggle]');
+      const productsDropdownMenu = document.getElementById('products-dropdown-menu');
+      const productsDropdownWrap = document.getElementById('nav-products-wrap');
 
       if (menuToggleBtn && mobileMenuDrawer) {
         menuToggleBtn.addEventListener('click', () => {
@@ -257,6 +301,34 @@ const isActive = (path: string) => {
             mobileMenuDrawer.classList.remove('active');
             document.body.classList.remove('overflow-hidden');
           });
+        });
+      }
+
+      if (productsDropdownToggle && productsDropdownMenu && productsDropdownWrap) {
+        const closeProductsMenu = () => {
+          productsDropdownWrap.classList.remove('open');
+          productsDropdownMenu.hidden = true;
+          productsDropdownToggle.setAttribute('aria-expanded', 'false');
+        };
+
+        const toggleProductsMenu = (event) => {
+          event.preventDefault();
+          const willOpen = productsDropdownMenu.hidden;
+          productsDropdownWrap.classList.toggle('open', willOpen);
+          productsDropdownMenu.hidden = !willOpen;
+          productsDropdownToggle.setAttribute('aria-expanded', String(willOpen));
+        };
+
+        productsDropdownToggle.addEventListener('click', toggleProductsMenu);
+
+        document.addEventListener('click', (event) => {
+          if (!productsDropdownWrap.contains(event.target)) {
+            closeProductsMenu();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeProductsMenu();
         });
       }
 
@@ -355,6 +427,87 @@ const isActive = (path: string) => {
     display: none;
     align-items: center;
     gap: 1.5rem;
+  }
+
+  .nav-dropdown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: .1rem;
+  }
+
+  .nav-dropdown-link {
+    padding-right: 0.25rem;
+  }
+
+  .nav-dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: 1px solid transparent;
+    border-radius: .45rem;
+    background: transparent;
+    color: var(--dark-soft);
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  }
+
+  .nav-dropdown-toggle:hover,
+  .nav-dropdown-toggle:focus-visible,
+  .nav-dropdown.open .nav-dropdown-toggle {
+    background: var(--primary-light);
+    color: var(--primary);
+    border-color: rgba(249, 115, 22, .15);
+  }
+
+  .nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + .65rem);
+    left: 0;
+    min-width: 13rem;
+    padding: .5rem;
+    border: 1px solid var(--border);
+    border-radius: .75rem;
+    background: rgba(255,255,255,.98);
+    box-shadow: 0 20px 40px rgba(15,23,42,.12);
+    z-index: 20;
+  }
+
+  .nav-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -.4rem;
+    left: 1.15rem;
+    width: .7rem;
+    height: .7rem;
+    transform: rotate(45deg);
+    background: inherit;
+    border-left: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+  }
+
+  .nav-dropdown-item {
+    display: block;
+    padding: .7rem .85rem;
+    border-radius: .5rem;
+    font-size: .92rem;
+    font-weight: 600;
+    color: var(--dark);
+    white-space: nowrap;
+  }
+
+  .nav-dropdown-item:hover,
+  .nav-dropdown-item:focus-visible {
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+
+  .nav-dropdown.open .nav-dropdown-menu,
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown:focus-within .nav-dropdown-menu {
+    display: block;
   }
 
   .nav-link {
@@ -470,6 +623,48 @@ const isActive = (path: string) => {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+  }
+
+  .mobile-nav-group {
+    border-bottom: 1px solid var(--light-soft);
+    padding-bottom: 0.75rem;
+  }
+
+  .mobile-nav-summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    border-bottom: none;
+    padding: 0.5rem 0;
+  }
+
+  .mobile-nav-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav-summary::after {
+    content: '▾';
+    font-size: 0.9em;
+    color: var(--secondary-dark);
+  }
+
+  .mobile-nav-group[open] .mobile-nav-summary::after {
+    transform: rotate(180deg);
+  }
+
+  .mobile-nav-submenu {
+    display: grid;
+    gap: .75rem;
+    padding: .4rem 0 0 .75rem;
+  }
+
+  .mobile-nav-sublink {
+    font-size: calc(1rem * var(--text-scale, 1));
+    font-weight: 600;
+    color: var(--secondary-dark);
+    padding: .25rem 0;
   }
 
   .mobile-nav-link {
