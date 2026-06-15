@@ -56,6 +56,29 @@ const productLinks = [
     label: 'More Products'
   }
 ];
+
+const projectLinks = [
+  {
+    href: getRelativeLocaleUrl(lang, '/projects/nadra'),
+    label: 'NADRA'
+  },
+  {
+    href: getRelativeLocaleUrl(lang, '/projects/king-fahad'),
+    label: 'King Fahad'
+  },
+  {
+    href: getRelativeLocaleUrl(lang, '/projects/quran-explorer'),
+    label: 'QuranExplorer'
+  },
+  {
+    href: getRelativeLocaleUrl(lang, '/projects/nara'),
+    label: 'NARA'
+  },
+  {
+    href: getRelativeLocaleUrl(lang, '/projects/imagine'),
+    label: 'Imagine'
+  }
+];
 ---
 
 <!doctype html>
@@ -134,6 +157,14 @@ const productLinks = [
         <!-- Desktop Navigation Links -->
         <nav class="nav-desktop">
           <a href={getRelativeLocaleUrl(lang, '/')} class={`nav-link ${isActive('/') ? 'active' : ''}`} id="nav-home">{t('nav.home')}</a>
+          <div class={`nav-dropdown ${isActive('/projects') ? 'active' : ''}`} id="nav-projects-wrap">
+            <a href={getRelativeLocaleUrl(lang, '/projects')} class={`nav-link nav-dropdown-link ${isActive('/projects') ? 'active' : ''}`} id="nav-projects">{t('nav.projects')}</a>
+            <div class="nav-dropdown-menu" id="projects-dropdown-menu">
+              {projectLinks.map((item) => (
+                <a href={item.href} class="nav-dropdown-item">{item.label}</a>
+              ))}
+            </div>
+          </div>
           <div class={`nav-dropdown ${isActive('/products') ? 'active' : ''}`} id="nav-products-wrap">
             <a href={getRelativeLocaleUrl(lang, '/products')} class={`nav-link nav-dropdown-link ${isActive('/products') ? 'active' : ''}`} id="nav-products">{t('nav.products')}</a>
             <div class="nav-dropdown-menu" id="products-dropdown-menu">
@@ -142,7 +173,6 @@ const productLinks = [
               ))}
             </div>
           </div>
-          <a href={getRelativeLocaleUrl(lang, '/projects')} class={`nav-link ${isActive('/projects') ? 'active' : ''}`} id="nav-projects">{t('nav.projects')}</a>
           <a href={getRelativeLocaleUrl(lang, '/about')} class={`nav-link ${isActive('/about') ? 'active' : ''}`} id="nav-about">{t('nav.about')}</a>
           <a href={getRelativeLocaleUrl(lang, '/team')} class={`nav-link ${isActive('/team') ? 'active' : ''}`} id="nav-team">{t('nav.team')}</a>
           <a href={getRelativeLocaleUrl(lang, '/support')} class={`nav-link ${isActive('/support') ? 'active' : ''}`} id="nav-support">{t('nav.support')}</a>
@@ -174,6 +204,14 @@ const productLinks = [
     <div class="mobile-menu" id="mobile-menu-drawer">
       <nav class="mobile-nav-links">
         <a href={getRelativeLocaleUrl(lang, '/')} class={`mobile-nav-link ${isActive('/') ? 'active' : ''}`} id="mob-nav-home">{t('nav.home')}</a>
+        <details class={`mobile-nav-group ${isActive('/projects') ? 'active' : ''}`} open={isActive('/projects')} id="mob-nav-projects-wrap">
+          <summary class="mobile-nav-link mobile-nav-summary" id="mob-nav-projects">{t('nav.projects')}</summary>
+          <div class="mobile-nav-submenu">
+            {projectLinks.map((item) => (
+              <a href={item.href} class="mobile-nav-sublink">{item.label}</a>
+            ))}
+          </div>
+        </details>
         <details class={`mobile-nav-group ${isActive('/products') ? 'active' : ''}`} open={isActive('/products')} id="mob-nav-products-wrap">
           <summary class="mobile-nav-link mobile-nav-summary" id="mob-nav-products">{t('nav.products')}</summary>
           <div class="mobile-nav-submenu">
@@ -182,7 +220,6 @@ const productLinks = [
             ))}
           </div>
         </details>
-        <a href={getRelativeLocaleUrl(lang, '/projects')} class={`mobile-nav-link ${isActive('/projects') ? 'active' : ''}`} id="mob-nav-projects">{t('nav.projects')}</a>
         <a href={getRelativeLocaleUrl(lang, '/about')} class={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`} id="mob-nav-about">{t('nav.about')}</a>
         <a href={getRelativeLocaleUrl(lang, '/team')} class={`mobile-nav-link ${isActive('/team') ? 'active' : ''}`} id="mob-nav-team">{t('nav.team')}</a>
         <a href={getRelativeLocaleUrl(lang, '/support')} class={`mobile-nav-link ${isActive('/support') ? 'active' : ''}`} id="mob-nav-support">{t('nav.support')}</a>

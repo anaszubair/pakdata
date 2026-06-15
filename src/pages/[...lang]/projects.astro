@@ -29,7 +29,8 @@ const caseStudies = [
     tags: [t('projects.items.nadra.tag1'), t('projects.items.nadra.tag2'), t('projects.items.nadra.tag3')],
     challenge: t('projects.items.nadra.challenge'),
     solution: t('projects.items.nadra.solution'),
-    impact: t('projects.items.nadra.impact')
+    impact: t('projects.items.nadra.impact'),
+    detailsUrl: getRelativeLocaleUrl(lang, '/projects/nadra')
   },
   {
     id: "king-fahad",
@@ -41,7 +42,8 @@ const caseStudies = [
     tags: [t('projects.items.kf.tag1'), t('projects.items.kf.tag2'), t('projects.items.kf.tag3')],
     challenge: t('projects.items.kf.challenge'),
     solution: t('projects.items.kf.solution'),
-    impact: t('projects.items.kf.impact')
+    impact: t('projects.items.kf.impact'),
+    detailsUrl: getRelativeLocaleUrl(lang, '/projects/king-fahad')
   },
   {
     id: "quran-explorer",
@@ -53,7 +55,8 @@ const caseStudies = [
     tags: [t('projects.items.qe.tag1'), t('projects.items.qe.tag2'), t('projects.items.qe.tag3')],
     challenge: t('projects.items.qe.challenge'),
     solution: t('projects.items.qe.solution'),
-    impact: t('projects.items.qe.impact')
+    impact: t('projects.items.qe.impact'),
+    detailsUrl: getRelativeLocaleUrl(lang, '/projects/quran-explorer')
   },
   {
     id: "nara",
@@ -65,7 +68,8 @@ const caseStudies = [
     tags: [t('projects.items.nara.tag1'), t('projects.items.nara.tag2'), t('projects.items.nara.tag3')],
     challenge: t('projects.items.nara.challenge'),
     solution: t('projects.items.nara.solution'),
-    impact: t('projects.items.nara.impact')
+    impact: t('projects.items.nara.impact'),
+    detailsUrl: getRelativeLocaleUrl(lang, '/projects/nara')
   },
   {
     id: "imagine",
@@ -77,7 +81,8 @@ const caseStudies = [
     tags: [t('projects.items.imagine.tag1'), t('projects.items.imagine.tag2'), t('projects.items.imagine.tag3')],
     challenge: t('projects.items.imagine.challenge'),
     solution: t('projects.items.imagine.solution'),
-    impact: t('projects.items.imagine.impact')
+    impact: t('projects.items.imagine.impact'),
+    detailsUrl: getRelativeLocaleUrl(lang, '/projects/imagine')
   }
 ];
 ---
@@ -99,7 +104,7 @@ const caseStudies = [
     <div class="container">
       <div class="grid grid-2 project-cards-grid">
         {caseStudies.map(cs => (
-          <ProjectCard {...cs} detailsUrl={getRelativeLocaleUrl(lang, `/projects#details-${cs.id}`)} />
+          <ProjectCard {...cs} detailsUrl={cs.detailsUrl ?? getRelativeLocaleUrl(lang, `/projects#details-${cs.id}`)} />
         ))}
       </div>
     </div>

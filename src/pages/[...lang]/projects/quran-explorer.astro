@@ -1,0 +1,800 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: {
+    seoTitle: 'QuranExplorer – Online Quran Portal with Audio Recitations & Translations',
+    seoDesc: 'Explore QuranExplorer, a comprehensive online Quran platform featuring Quran recitations, multilingual translations, streaming audio, Tajweed support, and advanced Quran study tools.',
+    heroBadge: 'Global Quran Portal',
+    heroTitle: 'QuranExplorer — Comprehensive Online Quran Portal',
+    heroLead: 'A powerful online Quran platform designed to help Muslims around the world read, listen to, and understand the Holy Quran through multilingual translations, renowned recitations, and advanced Quran study tools.',
+    heroSupport: 'Trusted by millions of users worldwide for Quran recitation, learning, and spiritual connection.',
+    heroStats: [
+      { value: '50M+', label: 'Global visits' },
+      { value: '25+', label: 'Translations supported' },
+      { value: 'World-class', label: 'Recitation experience' }
+    ],
+    overviewTitle: 'Project Overview',
+    overviewBody: 'QuranExplorer was developed as a comprehensive digital Quran platform focused on providing accessible, high-quality Quran recitation and learning experiences for a global audience. The platform combines authentic Quranic text, multilingual translations, renowned recitations, advanced streaming capabilities, and modern study tools within a clean and user-friendly online environment.',
+    reachTitle: 'A Global Quran Platform Used Worldwide',
+    reachBody: 'QuranExplorer became one of the leading online Quran portals, serving millions of users worldwide through accessible Quran learning and recitation experiences.',
+    reachHighlights: [
+      'Millions of global users',
+      'Multi-language Quran support',
+      'Streaming Quran recitations',
+      'International audience reach',
+      'Online Quran accessibility platform'
+    ],
+    featuresTitle: 'Powerful Features for Quran Learning & Recitation',
+    features: [
+      {
+        title: 'Renowned Quran Reciters',
+        body: 'Listen to beautiful Quran recitations from world-famous Qaris with streaming audio support and reciter selection options.'
+      },
+      {
+        title: 'Multi-Language Quran Translations',
+        body: 'Access Quran translations in multiple languages including English, Urdu, Arabic, and other supported languages for deeper understanding.'
+      },
+      {
+        title: 'Advanced Quran Navigation',
+        body: 'Navigate by Surah, Juz, Verse, and Reciter through an organized and intuitive interface.'
+      },
+      {
+        title: 'Streaming Quran Audio',
+        body: 'Experience smooth online Quran streaming with easy playback controls and audio translation support.'
+      },
+      {
+        title: 'Adjustable Reading Experience',
+        body: 'Customize Quran text size and reading settings for a comfortable and accessible reading experience.'
+      },
+      {
+        title: 'Color-Coded Tajweed Rules',
+        body: 'Learn and improve Quran recitation with visually enhanced Tajweed guidance.'
+      },
+      {
+        title: 'Bookmarking & Progress Saving',
+        body: 'Automatically save reading progress and bookmark important verses for future access.'
+      }
+    ],
+    recitersTitle: 'Reciters Showcase',
+    reciters: ['Mishary Alafasy', 'Abdul Basit', 'Sudais', 'Shuraim'],
+    techTitle: 'Technology & Development',
+    techBody: 'QuranExplorer was developed using scalable web technologies and optimized database infrastructure to support large-scale online Quran streaming and user accessibility.',
+    techItems: ['ASP.NET Development', 'Microsoft SQL Server', 'Streaming Audio Infrastructure', 'Online Quran Platform Architecture', 'Multi-Language Content Support'],
+    benefitsTitle: 'Learning Benefits',
+    benefitsBody: 'QuranExplorer was built to provide a smooth, immersive, and spiritually enriching Quran experience for users of all ages and backgrounds.',
+    benefits: [
+      'Quran memorization support',
+      'Tajweed improvement',
+      'Multilingual understanding',
+      'Spiritual engagement',
+      'Flexible recitation study'
+    ],
+    whyTitle: 'Why This Project Matters',
+    whyBody: 'QuranExplorer reflects Pakdata’s long-standing commitment to building impactful Islamic digital solutions that make Quran learning and recitation accessible to Muslims around the world through modern technology.',
+    whyItems: [
+      'Online Quran platforms',
+      'Quran streaming systems',
+      'Multilingual Islamic software',
+      'Scalable digital infrastructure',
+      'Islamic educational technology'
+    ],
+    faqTitle: 'Frequently Asked Questions',
+    faqs: [
+      { q: 'Which languages are supported?', a: 'QuranExplorer supports multiple translations including English, Urdu, Arabic, and additional languages depending on the platform configuration.' },
+      { q: 'Is QuranExplorer free?', a: 'The platform was designed as an accessible Quran study experience and could be used by a broad audience online.' },
+      { q: 'Does it support streaming audio?', a: 'Yes, the experience includes online Quran audio streaming with reciter selection and playback support.' },
+      { q: 'Can users bookmark verses?', a: 'Yes, bookmarking and progress saving were part of the platform’s study workflow.' }
+    ],
+    finalTitle: 'Experience the Quran Through Modern Technology',
+    finalBody: 'Explore QuranExplorer and discover a globally trusted Quran platform designed for reading, listening, learning, and spiritual reflection.',
+    launch: 'Launch QuranExplorer',
+    more: 'Explore More Projects',
+    footerDesc: 'QuranExplorer is a comprehensive online Quran platform offering Quran recitations, multilingual translations, streaming audio, Tajweed support, and advanced Quran learning tools for users worldwide.'
+  },
+  ur: {
+    seoTitle: 'قرآن ایکسپلورر – آڈیو تلاوت اور تراجم کے ساتھ آن لائن قرآن پورٹل',
+    seoDesc: 'قرآن ایکسپلورر کو دریافت کریں، ایک جامع آن لائن قرآن پلیٹ فارم جس میں قرآن تلاوت، کثیر لسانی تراجم، اسٹریمنگ آڈیو، تجوید سپورٹ، اور جدید مطالعہ ٹولز شامل ہیں۔',
+    heroBadge: 'عالمی قرآن پورٹل',
+    heroTitle: 'قرآن ایکسپلورر — جامع آن لائن قرآن پورٹل',
+    heroLead: 'ایک طاقتور آن لائن قرآن پلیٹ فارم، جو دنیا بھر کے مسلمانوں کو کثیر لسانی تراجم، ممتاز قاریوں اور جدید قرآن مطالعہ ٹولز کے ذریعے قرآن پڑھنے، سننے اور سمجھنے میں مدد دیتا ہے۔',
+    heroSupport: 'دنیا بھر کے لاکھوں صارفین قرآن تلاوت، سیکھنے اور روحانی تعلق کے لیے اس پر اعتماد کرتے ہیں۔',
+    heroStats: [
+      { value: '50M+', label: 'عالمی وزٹس' },
+      { value: '25+', label: 'ترجموں کی سپورٹ' },
+      { value: 'اعلیٰ معیار', label: 'تلاوت کا تجربہ' }
+    ],
+    overviewTitle: 'منصوبے کا جائزہ',
+    overviewBody: 'قرآن ایکسپلورر کو ایک جامع ڈیجیٹل قرآن پلیٹ فارم کے طور پر تیار کیا گیا جس کا مقصد عالمی سامعین کے لیے قابلِ رسائی اور اعلیٰ معیار کی قرآن تلاوت اور مطالعہ کا تجربہ فراہم کرنا تھا۔ یہ پلیٹ فارم مستند قرآنی متن، کثیر لسانی تراجم، معروف تلاوتیں، جدید اسٹریمنگ صلاحیتیں، اور جدید مطالعہ ٹولز کو ایک صاف اور صارف دوست آن لائن ماحول میں یکجا کرتا ہے۔',
+    reachTitle: 'دنیا بھر میں استعمال ہونے والا عالمی قرآن پلیٹ فارم',
+    reachBody: 'قرآن ایکسپلورر دنیا کے نمایاں آن لائن قرآن پورٹلز میں سے ایک بنا، جو لاکھوں صارفین کو قابلِ رسائی قرآن مطالعہ اور تلاوت کا تجربہ فراہم کرتا ہے۔',
+    reachHighlights: [
+      'لاکھوں عالمی صارفین',
+      'کثیر لسانی قرآن سپورٹ',
+      'آڈیو تلاوت اسٹریمنگ',
+      'بین الاقوامی رسائی',
+      'آن لائن قرآن رسائی پلیٹ فارم'
+    ],
+    featuresTitle: 'قرآن سیکھنے اور تلاوت کے لیے طاقتور خصوصیات',
+    features: [
+      {
+        title: 'نامور قاری',
+        body: 'دنیا کے معروف قاریوں کی خوبصورت تلاوتیں اسٹریمنگ آڈیو اور قاری منتخب کرنے کے اختیارات کے ساتھ سنیں۔'
+      },
+      {
+        title: 'کثیر لسانی تراجم',
+        body: 'انگریزی، اردو، عربی اور دیگر معاون زبانوں میں تراجم تک رسائی حاصل کریں تاکہ فہم میں اضافہ ہو۔'
+      },
+      {
+        title: 'اعلیٰ درجے کی نیویگیشن',
+        body: 'سورہ، پارہ، آیت اور قاری کے لحاظ سے منظم اور آسان انٹرفیس کے ذریعے براؤز کریں۔'
+      },
+      {
+        title: 'قرآن آڈیو اسٹریمنگ',
+        body: 'آسان پلے بیک کنٹرول اور آڈیو ترجمہ سپورٹ کے ساتھ ہموار آن لائن اسٹریمنگ کا تجربہ کریں۔'
+      },
+      {
+        title: 'قابلِ ترتیب مطالعہ تجربہ',
+        body: 'آرام دہ اور قابلِ رسائی تجربے کے لیے متن کا سائز اور پڑھنے کی ترتیبات اپنی پسند کے مطابق کریں۔'
+      },
+      {
+        title: 'رنگین تجوید قواعد',
+        body: 'بصری تجوید رہنمائی کے ساتھ تلاوت کو بہتر بنائیں۔'
+      },
+      {
+        title: 'بک مارک اور پروگریس سیونگ',
+        body: 'پڑھنے کی پیش رفت محفوظ کریں اور اہم آیات کو بعد کے لیے نشان زد کریں۔'
+      }
+    ],
+    recitersTitle: 'قاریوں کی جھلک',
+    reciters: ['مشاری العفاسی', 'عبدالباسط', 'سودیس', 'شریم'],
+    techTitle: 'ٹیکنالوجی اور ترقی',
+    techBody: 'قرآن ایکسپلورر کو قابلِ توسیع ویب ٹیکنالوجیز اور بہتر ڈیٹا بیس انفراسٹرکچر کے ساتھ تیار کیا گیا تاکہ بڑے پیمانے پر آن لائن قرآن اسٹریمنگ اور صارف رسائی کو سپورٹ کیا جا سکے۔',
+    techItems: ['ASP.NET ڈیولپمنٹ', 'Microsoft SQL Server', 'اسٹریمنگ آڈیو انفراسٹرکچر', 'آن لائن قرآن پلیٹ فارم آرکیٹیکچر', 'کثیر لسانی مواد سپورٹ'],
+    benefitsTitle: 'تعلیمی فوائد',
+    benefitsBody: 'قرآن ایکسپلورر کو ہر عمر اور پس منظر کے صارفین کے لیے ایک ہموار، جاذبِ نظر اور روحانی طور پر بامعنی قرآن تجربہ فراہم کرنے کے لیے بنایا گیا۔',
+    benefits: [
+      'حفظِ قرآن میں معاونت',
+      'تجوید میں بہتری',
+      'کثیر لسانی فہم',
+      'روحانی وابستگی',
+      'لچکدار مطالعہ'
+    ],
+    whyTitle: 'یہ پروجیکٹ کیوں اہم ہے',
+    whyBody: 'قرآن ایکسپلورر پاک ڈیٹا کے اس دیرینہ عزم کی عکاسی کرتا ہے کہ وہ ایسے مؤثر اسلامی ڈیجیٹل حل بنائے جو جدید ٹیکنالوجی کے ذریعے دنیا بھر کے مسلمانوں کے لیے قرآن سیکھنے اور تلاوت کو قابلِ رسائی بنائیں۔',
+    whyItems: [
+      'آن لائن قرآن پلیٹ فارمز',
+      'قرآن اسٹریمنگ سسٹمز',
+      'کثیر لسانی اسلامی سافٹ ویئر',
+      'قابلِ توسیع ڈیجیٹل انفراسٹرکچر',
+      'اسلامی تعلیمی ٹیکنالوجی'
+    ],
+    faqTitle: 'اکثر پوچھے گئے سوالات',
+    faqs: [
+      { q: 'کون سی زبانیں سپورٹ ہوتی ہیں؟', a: 'قرآن ایکسپلورر متعدد تراجم کو سپورٹ کرتا ہے جن میں انگریزی، اردو، عربی اور دیگر زبانیں پلیٹ فارم کی ترتیب کے مطابق شامل ہو سکتی ہیں۔' },
+      { q: 'کیا قرآن ایکسپلورر مفت ہے؟', a: 'یہ پلیٹ فارم ایک قابلِ رسائی قرآن مطالعہ تجربے کے طور پر بنایا گیا تھا اور وسیع صارفین کے لیے آن لائن استعمال کیا جا سکتا تھا۔' },
+      { q: 'کیا اس میں آڈیو اسٹریمنگ موجود ہے؟', a: 'جی ہاں، اس میں قاری منتخب کرنے اور پلے بیک سپورٹ کے ساتھ آن لائن قرآن آڈیو اسٹریمنگ شامل ہے۔' },
+      { q: 'کیا آیات بک مارک کی جا سکتی ہیں؟', a: 'جی ہاں، بک مارک اور پیش رفت محفوظ کرنے کی سہولت مطالعہ کے عمل کا حصہ تھی۔' }
+    ],
+    finalTitle: 'جدید ٹیکنالوجی کے ذریعے قرآن کا تجربہ',
+    finalBody: 'قرآن ایکسپلورر کو دریافت کریں، ایک ایسا عالمی سطح پر قابلِ اعتماد قرآن پلیٹ فارم جو پڑھنے، سننے، سیکھنے اور روحانی غور و فکر کے لیے بنایا گیا ہے۔',
+    launch: 'قرآن ایکسپلورر چلائیں',
+    more: 'مزید پروجیکٹس دیکھیں',
+    footerDesc: 'قرآن ایکسپلورر ایک جامع آن لائن قرآن پلیٹ فارم ہے جو دنیا بھر کے صارفین کے لیے قرآن تلاوت، کثیر لسانی تراجم، اسٹریمنگ آڈیو، تجوید سپورٹ، اور جدید مطالعہ ٹولز فراہم کرتا ہے۔'
+  },
+  ar: {
+    seoTitle: 'QuranExplorer - بوابة القرآن الإلكترونية مع التلاوات الصوتية والترجمات',
+    seoDesc: 'استكشف QuranExplorer، منصة قرآنية متكاملة عبر الإنترنت تضم التلاوات، الترجمات متعددة اللغات، البث الصوتي، دعم التجويد، وأدوات دراسة القرآن المتقدمة.',
+    heroBadge: 'بوابة قرآنية عالمية',
+    heroTitle: 'QuranExplorer — بوابة قرآنية شاملة عبر الإنترنت',
+    heroLead: 'منصة قرآنية قوية عبر الإنترنت تساعد المسلمين حول العالم على قراءة القرآن الكريم والاستماع إليه وفهمه من خلال الترجمات متعددة اللغات والتلاوات المشهورة وأدوات الدراسة المتقدمة.',
+    heroSupport: 'موثوق بها من ملايين المستخدمين حول العالم لتلاوة القرآن والتعلم والتواصل الروحي.',
+    heroStats: [
+      { value: '50M+', label: 'زيارات عالمية' },
+      { value: '25+', label: 'ترجمات مدعومة' },
+      { value: 'عالمية', label: 'تجربة تلاوة' }
+    ],
+    overviewTitle: 'نظرة عامة على المشروع',
+    overviewBody: 'تم تطوير QuranExplorer كمنصة قرآنية رقمية شاملة تركز على توفير تجربة تلاوة ودراسة عالية الجودة وسهلة الوصول للجمهور العالمي. تجمع المنصة بين النص القرآني الموثق والترجمات متعددة اللغات والتلاوات المشهورة وإمكانات البث المتقدمة وأدوات الدراسة الحديثة في بيئة نظيفة وسهلة الاستخدام.',
+    reachTitle: 'منصة قرآنية عالمية مستخدمة حول العالم',
+    reachBody: 'أصبح QuranExplorer أحد أبرز بوابات القرآن عبر الإنترنت، حيث يخدم ملايين المستخدمين حول العالم من خلال تجارب سهلة للوصول إلى القرآن والتعلم والتلاوة.',
+    reachHighlights: [
+      'ملايين المستخدمين حول العالم',
+      'دعم قرآني متعدد اللغات',
+      'بث تلاوات القرآن',
+      'وصول لجمهور دولي',
+      'منصة للوصول إلى القرآن عبر الإنترنت'
+    ],
+    featuresTitle: 'ميزات قوية لتعلم القرآن والتلاوة',
+    features: [
+      {
+        title: 'قراء مشهورون',
+        body: 'استمع إلى تلاوات جميلة من قراء عالميين مع دعم البث الصوتي وخيارات اختيار القارئ.'
+      },
+      {
+        title: 'ترجمات قرآنية متعددة اللغات',
+        body: 'الوصول إلى ترجمات القرآن بعدة لغات بما في ذلك الإنجليزية والأردية والعربية ولغات أخرى مدعومة.'
+      },
+      {
+        title: 'تنقل متقدم في القرآن',
+        body: 'التنقل حسب السورة والجزء والآية والقارئ من خلال واجهة منظمة وبديهية.'
+      },
+      {
+        title: 'بث صوتي للقرآن',
+        body: 'تجربة بث قرآني سلس عبر الإنترنت مع عناصر تحكم سهلة ودعم للترجمة الصوتية.'
+      },
+      {
+        title: 'تجربة قراءة قابلة للتخصيص',
+        body: 'تخصيص حجم النص وإعدادات القراءة لتجربة مريحة وسهلة الوصول.'
+      },
+      {
+        title: 'قواعد التجويد الملوّنة',
+        body: 'تعلم وحسّن التلاوة من خلال إرشادات تجويد مرئية محسّنة.'
+      },
+      {
+        title: 'الحفظ المرجعي والتقدم',
+        body: 'حفظ التقدم في القراءة ووضع علامات على الآيات المهمة للرجوع إليها لاحقًا.'
+      }
+    ],
+    recitersTitle: 'عرض القراء',
+    reciters: ['مشياري العفاسي', 'عبد الباسط', 'السديس', 'الشريم'],
+    techTitle: 'التقنية والتطوير',
+    techBody: 'تم تطوير QuranExplorer باستخدام تقنيات ويب قابلة للتوسع وبنية قاعدة بيانات محسنة لدعم بث القرآن على نطاق واسع والوصول السهل للمستخدمين.',
+    techItems: ['ASP.NET Development', 'Microsoft SQL Server', 'Streaming Audio Infrastructure', 'Online Quran Platform Architecture', 'Multi-Language Content Support'],
+    benefitsTitle: 'فوائد تعليمية',
+    benefitsBody: 'تم بناء QuranExplorer لتقديم تجربة قرآنية سلسة وغامرة وذات أثر روحي للمستخدمين من جميع الأعمار والخلفيات.',
+    benefits: [
+      'دعم حفظ القرآن',
+      'تحسين التجويد',
+      'الفهم متعدد اللغات',
+      'الارتباط الروحي',
+      'دراسة تلاوة مرنة'
+    ],
+    whyTitle: 'لماذا هذا المشروع مهم',
+    whyBody: 'يعكس QuranExplorer التزام باك داتا المستمر ببناء حلول رقمية إسلامية مؤثرة تجعل تعلم القرآن وتلاوته في متناول المسلمين حول العالم عبر التكنولوجيا الحديثة.',
+    whyItems: [
+      'منصات القرآن عبر الإنترنت',
+      'أنظمة بث القرآن',
+      'برمجيات إسلامية متعددة اللغات',
+      'بنية رقمية قابلة للتوسع',
+      'تقنية تعليمية إسلامية'
+    ],
+    faqTitle: 'الأسئلة الشائعة',
+    faqs: [
+      { q: 'ما اللغات المدعومة؟', a: 'يدعم QuranExplorer عدة ترجمات تشمل الإنجليزية والأردية والعربية ولغات أخرى بحسب إعدادات المنصة.' },
+      { q: 'هل QuranExplorer مجاني؟', a: 'تم تصميم المنصة كتجربة دراسة قرآن سهلة الوصول ويمكن استخدامها من قبل جمهور واسع عبر الإنترنت.' },
+      { q: 'هل يدعم البث الصوتي؟', a: 'نعم، يتضمن بثًا صوتيًا للقرآن عبر الإنترنت مع اختيار القارئ ودعم التشغيل.' },
+      { q: 'هل يمكن حفظ الآيات؟', a: 'نعم، كان وضع العلامات وحفظ التقدم جزءًا من سير عمل الدراسة.' }
+    ],
+    finalTitle: 'اختبر القرآن عبر التكنولوجيا الحديثة',
+    finalBody: 'استكشف QuranExplorer واكتشف منصة قرآنية موثوقة عالميًا صُممت للقراءة والاستماع والتعلم والتأمل الروحي.',
+    launch: 'تشغيل QuranExplorer',
+    more: 'استعرض المزيد من المشاريع',
+    footerDesc: 'QuranExplorer هي منصة قرآنية شاملة عبر الإنترنت تقدم التلاوات والترجمات متعددة اللغات والبث الصوتي ودعم التجويد وأدوات دراسة القرآن المتقدمة للمستخدمين حول العالم.'
+  }
+}[lang];
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="portal-hero">
+    <div class="container portal-grid">
+      <div class="portal-copy">
+        <span class="badge badge-primary">{copy.heroBadge}</span>
+        <h1 class="portal-title">{copy.heroTitle}</h1>
+        <p class="portal-lead">{copy.heroLead}</p>
+        <p class="portal-support">{copy.heroSupport}</p>
+        <div class="portal-stats">
+          {copy.heroStats.map((item) => (
+            <div class="portal-stat card">
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
+        <div class="portal-actions">
+          <a href={getRelativeLocaleUrl(lang, '/projects')} class="btn btn-primary btn-lg">{copy.launch}</a>
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-outline btn-lg">{copy.more}</a>
+        </div>
+      </div>
+
+      <div class="portal-visual card">
+        <img src="/images/q_explorer_sc.png" alt="QuranExplorer portal visual" class="portal-image" />
+        <div class="portal-visual-footer">
+          <span>{copy.heroBadge}</span>
+          <span>Streaming Quran, translations, and Tajweed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-layout">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.overviewTitle}</span>
+        <h2 class="section-title">{copy.overviewTitle}</h2>
+        <p class="body-copy">{copy.overviewBody}</p>
+      </div>
+      <div class="info-grid card">
+        <div class="info-row">
+          <span class="info-kicker">Audience</span>
+          <strong>Global Muslim users</strong>
+        </div>
+        <div class="info-row">
+          <span class="info-kicker">Platform</span>
+          <strong>Online Quran portal</strong>
+        </div>
+        <div class="info-row">
+          <span class="info-kicker">Focus</span>
+          <strong>Learning, recitation, and reflection</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container text-band">
+      <span class="badge badge-primary">{copy.reachTitle}</span>
+      <h2 class="section-title">{copy.reachTitle}</h2>
+      <p class="body-copy">{copy.reachBody}</p>
+      <div class="pill-row">
+        {copy.reachHighlights.map((item) => (
+          <span class="chip">{item}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.featuresTitle}</span>
+        <h2 class="section-title">{copy.featuresTitle}</h2>
+      </div>
+      <div class="feature-grid">
+        {copy.features.map((feature) => (
+          <article class="feature-card card">
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-layout reverse">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.recitersTitle}</span>
+        <h2 class="section-title">{copy.recitersTitle}</h2>
+        <p class="body-copy">Featuring select reciters and streamed experiences that made Quran study feel immediate and personal.</p>
+      </div>
+      <div class="reciter-grid">
+        {copy.reciters.map((reciter) => (
+          <div class="reciter-card card">
+            <strong>{reciter}</strong>
+            <span>Featured reciter</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-layout">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.techTitle}</span>
+        <h2 class="section-title">{copy.techTitle}</h2>
+        <p class="body-copy">{copy.techBody}</p>
+      </div>
+      <div class="list-panel card">
+        <h3 class="panel-title">Technology highlights</h3>
+        <ul class="check-list">
+          {copy.techItems.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-layout reverse">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.benefitsTitle}</span>
+        <h2 class="section-title">{copy.benefitsTitle}</h2>
+        <p class="body-copy">{copy.benefitsBody}</p>
+      </div>
+      <div class="benefit-panel card">
+        <ul class="check-list">
+          {copy.benefits.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-layout">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.whyTitle}</span>
+        <h2 class="section-title">{copy.whyTitle}</h2>
+        <p class="body-copy">{copy.whyBody}</p>
+      </div>
+      <div class="list-panel card">
+        <h3 class="panel-title">Why it stood out</h3>
+        <ul class="check-list">
+          {copy.whyItems.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.faqTitle}</span>
+        <h2 class="section-title">{copy.faqTitle}</h2>
+      </div>
+      <div class="faq-grid">
+        {copy.faqs.map((faq) => (
+          <details class="faq-card card">
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section portal-cta">
+    <div class="container text-center text-white">
+      <h2 class="cta-title">{copy.finalTitle}</h2>
+      <p class="cta-desc">{copy.finalBody}</p>
+      <div class="cta-actions">
+        <a href={getRelativeLocaleUrl(lang, '/projects')} class="btn btn-primary btn-lg btn-white-text">{copy.launch}</a>
+        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-outline btn-lg btn-white-text">{copy.more}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .portal-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    border-bottom: 1px solid var(--border);
+    padding: 4.5rem 0 4rem;
+  }
+
+  .portal-grid,
+  .split-layout {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .split-layout.reverse {
+    grid-template-columns: .95fr 1.05fr;
+  }
+
+  .portal-title {
+    font-size: clamp(2.1rem, 3vw, 3rem);
+    line-height: 1.05;
+    font-weight: 700;
+    color: var(--primary);
+    margin: .9rem 0 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .portal-lead,
+  .portal-support,
+  .body-copy {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    font-size: calc(1.02rem * var(--text-scale, 1));
+  }
+
+  .portal-support {
+    margin-top: .9rem;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .portal-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .9rem;
+    margin: 1.3rem 0 1.35rem;
+  }
+
+  .portal-stat {
+    padding: 1rem;
+  }
+
+  .portal-stat strong {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--dark);
+  }
+
+  .portal-stat span {
+    display: block;
+    margin-top: .35rem;
+    color: var(--secondary-dark);
+    line-height: 1.4;
+  }
+
+  .portal-actions,
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .9rem;
+    margin-top: 1.3rem;
+  }
+
+  .portal-visual,
+  .info-grid,
+  .list-panel,
+  .benefit-panel {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1.2rem;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+
+  .portal-visual {
+    padding: .9rem;
+  }
+
+  .portal-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: .9rem;
+  }
+
+  .portal-visual-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .9rem .2rem .1rem;
+    color: var(--secondary-dark);
+    font-size: .92rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.65rem, 2.8vw, 2.65rem);
+    line-height: 1.12;
+    margin: .7rem 0 .9rem;
+    color: var(--dark);
+  }
+
+  .section-copy-block,
+  .text-band {
+    max-width: 42rem;
+  }
+
+  .section-title-wrap.tight {
+    margin-bottom: 1.3rem;
+  }
+
+  .info-grid,
+  .list-panel,
+  .benefit-panel {
+    padding: 1.3rem;
+  }
+
+  .info-row {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .info-kicker {
+    display: block;
+    font-size: .76rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--primary);
+    margin-bottom: .35rem;
+  }
+
+  .info-row strong {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--dark);
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .feature-card {
+    padding: 1.25rem;
+  }
+
+  .feature-card h3,
+  .panel-title {
+    font-size: 1.05rem;
+    line-height: 1.35;
+    color: var(--dark);
+    margin-bottom: .65rem;
+  }
+
+  .feature-card p {
+    color: var(--secondary-dark);
+    line-height: 1.6;
+  }
+
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin-top: 1rem;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.3rem;
+    padding: .45rem .85rem;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--dark);
+    font-weight: 700;
+    font-size: .86rem;
+  }
+
+  .reciter-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .reciter-card {
+    padding: 1.2rem;
+  }
+
+  .reciter-card strong {
+    display: block;
+    color: var(--dark);
+    margin-bottom: .25rem;
+  }
+
+  .reciter-card span {
+    color: var(--secondary-dark);
+    font-size: .92rem;
+  }
+
+  .check-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: .8rem;
+  }
+
+  .check-list li {
+    position: relative;
+    padding-inline-start: 1.35rem;
+    color: var(--secondary-dark);
+    line-height: 1.55;
+  }
+
+  .check-list li::before {
+    content: '•';
+    position: absolute;
+    inset-inline-start: 0;
+    color: var(--primary);
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .faq-card {
+    padding: 1.1rem 1.2rem;
+  }
+
+  .faq-card summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--dark);
+    list-style: none;
+  }
+
+  .faq-card summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-card p {
+    margin-top: .8rem;
+    color: var(--secondary-dark);
+    line-height: 1.65;
+  }
+
+  .portal-cta {
+    background: linear-gradient(135deg, var(--dark) 0%, #1d2433 100%);
+    color: white;
+  }
+
+  .cta-title {
+    font-size: clamp(1.75rem, 3vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: .8rem;
+  }
+
+  .cta-desc {
+    max-width: 44rem;
+    margin: 0 auto;
+    color: rgba(255,255,255,.84);
+    line-height: 1.7;
+  }
+
+  .btn-white-text {
+    color: white;
+  }
+
+  @media (max-width: 1024px) {
+    .portal-grid,
+    .split-layout,
+    .split-layout.reverse {
+      grid-template-columns: 1fr;
+    }
+
+    .portal-stats,
+    .feature-grid,
+    .reciter-grid,
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .portal-hero {
+      padding: 3.5rem 0 3rem;
+    }
+
+    .portal-title {
+      max-width: none;
+    }
+
+    .portal-actions,
+    .cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .portal-visual-footer {
+      flex-direction: column;
+    }
+  }
+</style>
