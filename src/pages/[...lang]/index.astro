@@ -1,81 +1,94 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ProductCard from '../components/ProductCard.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getLangFromUrl, useTranslations, getRelativeLocaleUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 
 // SEO details
-const title = "PDMS – Islamic Mobile Apps & Digital Solutions for Muslims Worldwide";
-const description = "Pakistan Data Management Services (PDMS) is a leading Islamic technology company developing Quran apps, prayer tools, Islamic digital platforms, and multilingual mobile solutions trusted by millions worldwide.";
+const title = t('home.seo.title');
+const description = t('home.seo.desc');
 
 // Featured products data
 const featuredProducts = [
   {
     id: "quran-majeed",
-    name: "Quran Majeed",
-    tagline: "Flagship Application",
-    description: "The world's leading Quran application featuring Quran recitations, translations, tafsir, prayer timings, Qibla direction, Islamic content, and advanced learning tools trusted by millions globally.",
-    badge: "Award Winner",
+    name: t('home.products.qm.name'),
+    tagline: t('home.products.qm.tagline'),
+    description: t('home.products.qm.desc'),
+    badge: t('home.products.qm.badge'),
     rating: "4.8",
-    downloads: "50M+",
+    downloads: t('home.products.qm.downloads'),
     platforms: ["iOS", "Android", "macOS", "Web", "TV"],
     features: [
-      "World-renowned Quran reciters",
-      "Interactive translations & Tafsir",
-      "Visual Salah & Prayer alerts",
-      "Advanced Quran memorization aids"
+      t('home.products.qm.f1'),
+      t('home.products.qm.f2'),
+      t('home.products.qm.f3'),
+      t('home.products.qm.f4')
     ],
-    detailsUrl: "/products#quran-majeed",
+    detailsUrl: getRelativeLocaleUrl(lang, '/products/quran-majeed'),
     imageUrl: "/images/QM.png"
   },
   {
     id: "quran-pak",
-    name: "Quran Pak",
-    tagline: "Elegant Quran Reader",
-    description: "A simple and beautifully designed Quran reading experience focused on accessibility, clarity, and authentic Islamic content for users worldwide.",
-    badge: "Most Popular",
+    name: t('home.products.qp.name'),
+    tagline: t('home.products.qp.tagline'),
+    description: t('home.products.qp.desc'),
+    badge: t('home.products.qp.badge'),
     rating: "4.7",
-    downloads: "10M+",
+    downloads: t('home.products.qp.downloads'),
     platforms: ["iOS", "Android"],
     features: [
-      "Clean mushaf-like layout",
-      "High-contrast reading modes",
-      "Offline reading support",
-      "Bookmark and note taking"
+      t('home.products.qp.f1'),
+      t('home.products.qp.f2'),
+      t('home.products.qp.f3'),
+      t('home.products.qp.f4')
     ],
-    detailsUrl: "/products#quran-pak",
+    detailsUrl: getRelativeLocaleUrl(lang, '/products/quran-pak'),
     imageUrl: "/images/QP.webp"
   },
   {
     id: "quran-tv",
-    name: "Quran TV",
-    tagline: "Streaming Platform",
-    description: "An Islamic streaming platform offering Quran recitations, Islamic lectures, spiritual content, and educational videos for Muslims around the world.",
-    badge: "Smart TV App",
+    name: t('home.products.qt.name'),
+    tagline: t('home.products.qt.tagline'),
+    description: t('home.products.qt.desc'),
+    badge: t('home.products.qt.badge'),
     rating: "4.6",
-    downloads: "5M+",
+    downloads: t('home.products.qt.downloads'),
     platforms: ["Android", "TV", "Web"],
     features: [
-      "24/7 Live Islamic broadcast",
-      "High-definition video streaming",
-      "Kids Islamic learning series",
-      "Sermons & Tafsir series"
+      t('home.products.qt.f1'),
+      t('home.products.qt.f2'),
+      t('home.products.qt.f3'),
+      t('home.products.qt.f4')
     ],
     detailsUrl: "/products#quran-tv",
     imageUrl: "/images/quranTV.webp"
   },
   {
     id: "easy-urdu",
-    name: "Easy Urdu Keyboard",
-    tagline: "Utility & Multilingual",
-    description: "An award-winning Urdu keyboard designed to make Urdu typing faster, easier, and more accessible for millions of users globally.",
-    badge: "PASHA Winner",
+    name: t('home.products.eu.name'),
+    tagline: t('home.products.eu.tagline'),
+    description: t('home.products.eu.desc'),
+    badge: t('home.products.eu.badge'),
     rating: "4.8",
-    downloads: "30M+",
+    downloads: t('home.products.eu.downloads'),
     platforms: ["iOS", "Android"],
     features: [
-      "Voice-to-text Urdu typing",
-      "Instant Urdu translation",
-      "Rich Urdu editor & status maker",
-      "Beautiful custom themes"
+      t('home.products.eu.f1'),
+      t('home.products.eu.f2'),
+      t('home.products.eu.f3'),
+      t('home.products.eu.f4')
     ],
     detailsUrl: "/products#easy-urdu",
     imageUrl: "/images/easyUrdu.webp"
@@ -88,14 +101,14 @@ const featuredProducts = [
   <section class="hero-section">
     <div class="container hero-container grid grid-2">
       <div class="hero-content animate-fade-in">
-        <span class="hero-badge">Pioneering Software Since 1979</span>
-        <h1 class="hero-title">Empowering Muslims Worldwide Through <span class="text-gradient">Innovative Technology</span></h1>
+        <span class="hero-badge">{t('home.hero.badge')}</span>
+        <h1 class="hero-title">{t('home.hero.title')} <span class="text-gradient">{t('home.hero.title.highlight')}</span></h1>
         <p class="hero-subtext">
-          For over 45 years, PDMS has been building trusted Islamic mobile applications and digital solutions that help millions of Muslims connect with the Quran, prayer, learning, and faith through modern technology.
+          {t('home.hero.subtext')}
         </p>
         <div class="hero-actions">
-          <a href="/products" class="btn btn-primary btn-lg" id="hero-products-btn">Explore Our Products</a>
-          <a href="/contact" class="btn btn-secondary btn-lg" id="hero-contact-btn">Contact Our Team</a>
+          <a href={getRelativeLocaleUrl(lang, '/products')} class="btn btn-primary btn-lg" id="hero-products-btn">{t('home.hero.btn.products')}</a>
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-secondary btn-lg" id="hero-contact-btn">{t('home.hero.btn.contact')}</a>
         </div>
       </div>
       
@@ -108,18 +121,18 @@ const featuredProducts = [
             <div class="screen-header">
               <div class="logo-wrap mini-logo">
                 <img src="/images/logo.png" alt="PDMS Logo" class="logo-img" />
-                <span class="logo-title">Quran Majeed</span>
+                <span class="logo-title">{t('home.mock.logo.title')}</span>
               </div>
               <span class="badge badge-success">4.8 ★</span>
             </div>
             <div class="screen-body">
               <div class="mock-ayah">
-                <p class="arabic-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-                <p class="trans-text">In the name of Allah, the Entirely Merciful, the Especially Merciful.</p>
+                <p class="arabic-text">{t('home.mock.ayah.arabic')}</p>
+                <p class="trans-text">{t('home.mock.ayah.trans')}</p>
               </div>
               <div class="mock-stats">
-                <div class="stat-pill">100M+ Users</div>
-                <div class="stat-pill">50+ Apps</div>
+                <div class="stat-pill">{t('home.mock.stats.users')}</div>
+                <div class="stat-pill">{t('home.mock.stats.apps')}</div>
               </div>
             </div>
           </div>
@@ -128,16 +141,16 @@ const featuredProducts = [
           <div class="floating-card pos-1">
             <span class="icon">🏆</span>
             <div>
-              <span class="title">PASHA Awards</span>
-              <span class="desc">Best Islamic Apps</span>
+              <span class="title">{t('home.floating.pasha.title')}</span>
+              <span class="desc">{t('home.floating.pasha.desc')}</span>
             </div>
           </div>
           
           <div class="floating-card pos-2">
             <span class="icon">💬</span>
             <div>
-              <span class="title">EasyUrdu</span>
-              <span class="desc">30M+ Installs</span>
+              <span class="title">{t('home.floating.eu.title')}</span>
+              <span class="desc">{t('home.floating.eu.desc')}</span>
             </div>
           </div>
         </div>
@@ -157,27 +170,27 @@ const featuredProducts = [
     <div class="metrics-card-grid">
 
       <div class="metric-card">
-        <span class="metric-number" data-target="150">0</span><span class="suffix">M+</span>
-        <span class="metric-title">App Downloads</span>
-        <span class="metric-desc">Trusted by millions globally across iOS, Android, and Web platforms.</span>
+        <span class="metric-number" data-target="150">0</span><span class="suffix">{t('home.metrics.downloads.suffix') || 'M+'}</span>
+        <span class="metric-title">{t('home.metrics.downloads.title')}</span>
+        <span class="metric-desc">{t('home.metrics.downloads.desc')}</span>
       </div>
 
       <div class="metric-card">
-        <span class="metric-number" data-target="45">0</span><span class="suffix">+ Yrs</span>
-        <span class="metric-title">Software Leadership</span>
-        <span class="metric-desc">Pioneering technological solutions and Urdu computing since 1979.</span>
+        <span class="metric-number" data-target="45">0</span><span class="suffix">{t('home.metrics.years.suffix') || '+ Yrs'}</span>
+        <span class="metric-title">{t('home.metrics.years.title')}</span>
+        <span class="metric-desc">{t('home.metrics.years.desc')}</span>
       </div>
 
       <div class="metric-card">
-        <span class="metric-number" data-target="50">0</span><span class="suffix">+</span>
-        <span class="metric-title">Apps Developed</span>
-        <span class="metric-desc">Spanning Islamic education, language keyboards, and government portals.</span>
+        <span class="metric-number" data-target="50">0</span><span class="suffix">{t('home.metrics.apps.suffix') || '+'}</span>
+        <span class="metric-title">{t('home.metrics.apps.title')}</span>
+        <span class="metric-desc">{t('home.metrics.apps.desc')}</span>
       </div>
 
       <div class="metric-card">
-        <span class="metric-number" data-target="45">0</span><span class="suffix">+</span>
-        <span class="metric-title">Enterprise Clients</span>
-        <span class="metric-desc">Successful projects for NADRA, NARA, and international software companies.</span>
+        <span class="metric-number" data-target="45">0</span><span class="suffix">{t('home.metrics.clients.suffix') || '+'}</span>
+        <span class="metric-title">{t('home.metrics.clients.title')}</span>
+        <span class="metric-desc">{t('home.metrics.clients.desc')}</span>
       </div>
 
     </div>
@@ -188,9 +201,9 @@ const featuredProducts = [
   <section class="section section-bg" id="featured-products">
     <div class="container">
       <div class="section-title-wrap">
-        <span class="badge badge-primary">Our Portfolio</span>
-        <h2 class="section-title">Our Featured Products</h2>
-        <p class="section-subtitle">Discover our flagship applications making a positive impact on the lives of millions worldwide.</p>
+        <span class="badge badge-primary">{t('home.portfolio.badge')}</span>
+        <h2 class="section-title">{t('home.portfolio.title')}</h2>
+        <p class="section-subtitle">{t('home.portfolio.subtitle')}</p>
       </div>
 
       <div class="grid grid-2">
@@ -200,7 +213,7 @@ const featuredProducts = [
       </div>
       
       <div class="section-actions">
-        <a href="/products" class="btn btn-outline" id="view-all-products-btn">View All Products</a>
+        <a href={getRelativeLocaleUrl(lang, '/products')} class="btn btn-outline" id="view-all-products-btn">{t('home.portfolio.btn')}</a>
       </div>
     </div>
   </section>
@@ -211,61 +224,61 @@ const featuredProducts = [
       <div class="about-summary-visual">
         <div class="grid grid-2 collage-grid">
           <div class="collage-item box-orange">
-            <span class="num">1979</span>
-            <span class="lbl">Established</span>
+            <span class="num">{t('home.about.badge1.num')}</span>
+            <span class="lbl">{t('home.about.badge1.lbl')}</span>
           </div>
           <div class="collage-item box-gray">
-            <span class="num">PASHA</span>
-            <span class="lbl">Award Winners</span>
+            <span class="num">{t('home.about.badge2.num')}</span>
+            <span class="lbl">{t('home.about.badge2.lbl')}</span>
           </div>
           <div class="collage-item box-light">
-            <span class="num">NADRA</span>
-            <span class="lbl">Partnership</span>
+            <span class="num">{t('home.about.badge3.num')}</span>
+            <span class="lbl">{t('home.about.badge3.lbl')}</span>
           </div>
           <div class="collage-item box-dark">
-            <span class="num">100M+</span>
-            <span class="lbl">Active Users</span>
+            <span class="num">{t('home.about.badge4.num')}</span>
+            <span class="lbl">{t('home.about.badge4.lbl')}</span>
           </div>
         </div>
       </div>
       
       <div class="about-summary-content">
-        <span class="badge badge-primary">Who We Are</span>
-        <h2 class="about-title">Pioneering Islamic Digital Innovation Since 1979</h2>
+        <span class="badge badge-primary">{t('home.about.badge')}</span>
+        <h2 class="about-title">{t('home.about.title')}</h2>
         <p class="about-p">
-          PDMS has been at the forefront of Islamic technology for more than four decades, creating impactful digital experiences that empower Muslims around the world.
+          {t('home.about.p1')}
         </p>
         <p class="about-p">
-          From Quran applications and Islamic lifestyle tools to multilingual communication technologies, our products are designed to combine authenticity, innovation, and user experience at a global scale. Our mission is to bridge faith and technology.
+          {t('home.about.p2')}
         </p>
         
         <div class="why-list">
           <div class="why-item">
             <div class="why-icon">🛡️</div>
             <div>
-              <h4 class="why-title">Innovative Islamic Technology</h4>
-              <p class="why-text">We develop modern digital solutions that combine cutting-edge technology with authentic Islamic values.</p>
+              <h4 class="why-title">{t('home.about.why1.title')}</h4>
+              <p class="why-text">{t('home.about.why1.desc')}</p>
             </div>
           </div>
           
           <div class="why-item">
             <div class="why-icon">🌐</div>
             <div>
-              <h4 class="why-title">Global User Reach</h4>
-              <p class="why-text">Our applications are trusted and used by millions of Muslims across multiple countries and platforms.</p>
+              <h4 class="why-title">{t('home.about.why2.title')}</h4>
+              <p class="why-text">{t('home.about.why2.desc')}</p>
             </div>
           </div>
           
           <div class="why-item">
             <div class="why-icon">🚀</div>
             <div>
-              <h4 class="why-title">User-Centered Design</h4>
-              <p class="why-text">We focus on intuitive, accessible, and meaningful user experiences that serve people of all ages.</p>
+              <h4 class="why-title">{t('home.about.why3.title')}</h4>
+              <p class="why-text">{t('home.about.why3.desc')}</p>
             </div>
           </div>
         </div>
 
-        <a href="/about" class="btn btn-primary" id="learn-more-about-btn">Learn More About Our Story</a>
+        <a href={getRelativeLocaleUrl(lang, '/about')} class="btn btn-primary" id="learn-more-about-btn">{t('home.about.btn')}</a>
       </div>
     </div>
   </section>
@@ -274,29 +287,29 @@ const featuredProducts = [
   <section class="section section-bg awards-section">
     <div class="container">
       <div class="section-title-wrap">
-        <span class="badge badge-primary">Recognition</span>
-        <h2 class="section-title">Recognized for Excellence & Innovation</h2>
-        <p class="section-subtitle">Our dedication to quality, innovation, and user experience has earned recognition within the technology industry.</p>
+        <span class="badge badge-primary">{t('home.awards.badge')}</span>
+        <h2 class="section-title">{t('home.awards.title')}</h2>
+        <p class="section-subtitle">{t('home.awards.subtitle')}</p>
       </div>
 
       <div class="awards-grid">
         <div class="award-card">
           <div class="award-trophy">🏆</div>
-          <h3 class="award-name">PASHA Awards</h3>
-          <p class="award-category">Best Islamic Mobile Applications</p>
-          <span class="award-desc">Recognized for technological innovation and contribution to the Islamic app ecosystem.</span>
+          <h3 class="award-name">{t('home.awards.a1.name')}</h3>
+          <p class="award-category">{t('home.awards.a1.category')}</p>
+          <span class="award-desc">{t('home.awards.a1.desc')}</span>
         </div>
         <div class="award-card">
           <div class="award-trophy">⭐</div>
-          <h3 class="award-name">Best Apps Awards</h3>
-          <p class="award-category">Easy Urdu Keyboard</p>
-          <span class="award-desc">Awarded for bridging digital divides and enabling native language communication on mobile.</span>
+          <h3 class="award-name">{t('home.awards.a2.name')}</h3>
+          <p class="award-category">{t('home.awards.a2.category')}</p>
+          <span class="award-desc">{t('home.awards.a2.desc')}</span>
         </div>
         <div class="award-card">
           <div class="award-trophy">📈</div>
-          <h3 class="award-name">Top Developer Award</h3>
-          <p class="award-category">Google & Apple Ecosystems</p>
-          <span class="award-desc">Consistently ranked in Top Charts globally with multi-million ratings averages of 4.8.</span>
+          <h3 class="award-name">{t('home.awards.a3.name')}</h3>
+          <p class="award-category">{t('home.awards.a3.category')}</p>
+          <span class="award-desc">{t('home.awards.a3.desc')}</span>
         </div>
       </div>
     </div>
@@ -305,14 +318,14 @@ const featuredProducts = [
   <!-- Partnerships / Logos Grid -->
   <section class="section partner-logos-section">
     <div class="container">
-      <h3 class="partner-title">Trusted By & Collaborations</h3>
+      <h3 class="partner-title">{t('home.partners.title')}</h3>
       <div class="partners-grid">
-        <div class="partner-logo">Google Play</div>
-        <div class="partner-logo">App Store</div>
-        <div class="partner-logo">NADRA</div>
-        <div class="partner-logo">King Fahad Quran Complex</div>
-        <div class="partner-logo">NARA Authority</div>
-        <div class="partner-logo">P@SHA</div>
+        <div class="partner-logo">{t('home.partners.google')}</div>
+        <div class="partner-logo">{t('home.partners.apple')}</div>
+        <div class="partner-logo">{t('home.partners.nadra')}</div>
+        <div class="partner-logo">{t('home.partners.kfqc')}</div>
+        <div class="partner-logo">{t('home.partners.nara')}</div>
+        <div class="partner-logo">{t('home.partners.pasha')}</div>
       </div>
     </div>
   </section>
@@ -321,13 +334,13 @@ const featuredProducts = [
   <section class="cta-section">
     <div class="container cta-container">
       <div class="cta-content">
-        <h2 class="cta-title">Let’s Build the Future of Islamic Technology Together</h2>
+        <h2 class="cta-title">{t('home.cta.title')}</h2>
         <p class="cta-desc">
-          Whether you are looking for partnerships, collaborations, enterprise solutions, or customer support, our team is ready to help you create meaningful digital experiences.
+          {t('home.cta.desc')}
         </p>
         <div class="cta-actions">
-          <a href="/contact" class="btn btn-primary btn-lg btn-white-text" id="cta-contact-btn">Contact Our Team</a>
-          <a href="/products" class="btn btn-secondary btn-lg btn-white-border" id="cta-products-btn">Explore Products</a>
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-lg btn-white-text" id="cta-contact-btn">{t('home.cta.btn.contact')}</a>
+          <a href={getRelativeLocaleUrl(lang, '/products')} class="btn btn-secondary btn-lg btn-white-border" id="cta-products-btn">{t('home.cta.btn.products')}</a>
         </div>
       </div>
     </div>
@@ -351,7 +364,7 @@ const featuredProducts = [
     display: inline-block;
     background-color: var(--primary-light);
     color: var(--primary);
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem * var(--text-scale, 1));
     font-weight: 700;
     padding: 0.35rem 1rem;
     border-radius: 9999px;
@@ -362,7 +375,7 @@ const featuredProducts = [
   }
 
   .hero-title {
-    font-size: 2rem;
+    font-size: calc(2rem * var(--text-scale, 1));
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: 1.5rem;
@@ -370,7 +383,7 @@ const featuredProducts = [
   }
 
   .hero-subtext {
-    font-size: 1.125rem;
+    font-size: calc(1.125rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     margin-bottom: 2.5rem;
     line-height: 1.7;
@@ -455,7 +468,7 @@ const featuredProducts = [
   }
 
   .mini-logo .logo-title {
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem * var(--text-scale, 1));
   }
 
   .screen-body {
@@ -477,7 +490,7 @@ const featuredProducts = [
   }
 
   .arabic-text {
-    font-size: 1.125rem;
+    font-size: calc(1.125rem * var(--text-scale, 1));
     font-family: Arial, sans-serif;
     color: var(--dark);
     margin-bottom: 0.5rem;
@@ -485,7 +498,7 @@ const featuredProducts = [
   }
 
   .trans-text {
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     line-height: 1.4;
   }
@@ -500,7 +513,7 @@ const featuredProducts = [
     text-align: center;
     background-color: var(--primary-light);
     color: var(--primary);
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * var(--text-scale, 1));
     font-weight: 700;
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -522,19 +535,19 @@ const featuredProducts = [
   }
 
   .floating-card .icon {
-    font-size: 1.5rem;
+    font-size: calc(1.5rem * var(--text-scale, 1));
   }
 
   .floating-card .title {
     display: block;
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem * var(--text-scale, 1));
     font-weight: 800;
     color: var(--dark);
   }
 
   .floating-card .desc {
     display: block;
-    font-size: 0.6875rem;
+    font-size: calc(0.6875rem * var(--text-scale, 1));
     color: var(--secondary-dark);
   }
 
@@ -606,7 +619,7 @@ const featuredProducts = [
 
   .metric-number {
     display: block;
-    font-size: 2rem;
+    font-size: calc(2rem * var(--text-scale, 1));
     font-weight: 600;
     color: var(--primary);
     line-height: 1.2;
@@ -619,7 +632,7 @@ const featuredProducts = [
   }
 
   .suffix {
-    font-size: 2rem;
+    font-size: calc(2rem * var(--text-scale, 1));
     font-weight: 600;
     color: var(--primary);
     margin-left: 2px;
@@ -627,14 +640,14 @@ const featuredProducts = [
 
   .metric-title {
     display: block;
-    font-size: 1rem;
+    font-size: calc(1rem * var(--text-scale, 1));
     font-weight: 500;
     color: var(--dark);
     margin-bottom: 0.5rem;
   }
 
   .metric-desc {
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     line-height: 1.5;
   }
@@ -663,14 +676,14 @@ const featuredProducts = [
   }
 
   .collage-item .num {
-    font-size: 1.75rem;
+    font-size: calc(1.75rem * var(--text-scale, 1));
     font-weight: 600;
     margin-bottom: 0.25rem;
     font-family: var(--font-heading);
   }
 
   .collage-item .lbl {
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem * var(--text-scale, 1));
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -700,7 +713,7 @@ const featuredProducts = [
 
   /* About summary content */
   .about-title {
-    font-size: 1.875rem;
+    font-size: calc(1.875rem * var(--text-scale, 1));
     font-weight: 600;
     line-height: 1.25;
     margin-bottom: 1.25rem;
@@ -708,7 +721,7 @@ const featuredProducts = [
 
   .about-p {
     color: var(--secondary-dark);
-    font-size: 1rem;
+    font-size: calc(1rem * var(--text-scale, 1));
     margin-bottom: 1.5rem;
   }
 
@@ -726,7 +739,7 @@ const featuredProducts = [
   }
 
   .why-icon {
-    font-size: 1.5rem;
+    font-size: calc(1.5rem * var(--text-scale, 1));
     background-color: var(--primary-light);
     width: 3rem;
     height: 3rem;
@@ -738,14 +751,14 @@ const featuredProducts = [
   }
 
   .why-title {
-    font-size: 1rem;
+    font-size: calc(1rem * var(--text-scale, 1));
     font-weight: 700;
     margin-bottom: 0.25rem;
     color: var(--dark);
   }
 
   .why-text {
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     color: var(--secondary-dark);
   }
 
@@ -773,18 +786,18 @@ const featuredProducts = [
   }
 
   .award-trophy {
-    font-size: 2.5rem;
+    font-size: calc(2.5rem * var(--text-scale, 1));
     margin-bottom: 1rem;
   }
 
   .award-name {
-    font-size: 1.25rem;
+    font-size: calc(1.25rem * var(--text-scale, 1));
     font-weight: 600;
     margin-bottom: 0.25rem;
   }
 
   .award-category {
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     color: var(--primary);
     font-weight: 700;
     margin-bottom: 1rem;
@@ -793,7 +806,7 @@ const featuredProducts = [
   }
 
   .award-desc {
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     display: block;
     line-height: 1.6;
@@ -806,7 +819,7 @@ const featuredProducts = [
 
   .partner-title {
     text-align: center;
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--secondary);
@@ -823,7 +836,7 @@ const featuredProducts = [
 
   .partner-logo {
     font-family: var(--font-heading);
-    font-size: 1.125rem;
+    font-size: calc(1.125rem * var(--text-scale, 1));
     font-weight: 700;
     color: var(--secondary-dark);
     opacity: 0.7;
@@ -850,7 +863,7 @@ const featuredProducts = [
   }
 
   .cta-title {
-    font-size: 1.875rem;
+    font-size: calc(1.875rem * var(--text-scale, 1));
     font-weight: 600;
     color: var(--light);
     margin-bottom: 1.25rem;
@@ -858,7 +871,7 @@ const featuredProducts = [
   }
 
   .cta-desc {
-    font-size: 1.125rem;
+    font-size: calc(1.125rem * var(--text-scale, 1));
     margin-bottom: 2.5rem;
     opacity: 0.9;
     line-height: 1.7;
@@ -896,13 +909,13 @@ const featuredProducts = [
   /* Responsiveness */
   @media (min-width: 640px) {
     .hero-title {
-      font-size: 2.5rem;
+      font-size: calc(2.5rem * var(--text-scale, 1));
     }
   }
 
   @media (min-width: 768px) {
     .hero-title {
-      font-size: 3rem;
+      font-size: calc(3rem * var(--text-scale, 1));
     }
 
     /* Show hero visual on tablet+ */
@@ -947,7 +960,7 @@ const featuredProducts = [
 
   @media (min-width: 1024px) {
     .hero-title {
-      font-size: 3.5rem;
+      font-size: calc(3.5rem * var(--text-scale, 1));
     }
 
     .metrics-card-grid {

@@ -1,5 +1,18 @@
 ---
-import Layout from '../layouts/Layout.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 
 const title = "Privacy Policy | Pakistan Data Management Services";
 const description = "Read the privacy policy for Quran Majeed, EasyUrdu, Quran TV, and other application services provided by Pakistan Data Management Services.";
@@ -8,9 +21,9 @@ const description = "Read the privacy policy for Quran Majeed, EasyUrdu, Quran T
 <Layout title={title} description={description}>
   <section class="policy-hero">
     <div class="container text-center animate-fade-in">
-      <span class="badge badge-primary">Legal Documentation</span>
-      <h1 class="policy-hero-title">Privacy Policy</h1>
-      <p class="policy-hero-subtitle">Last Updated: May 2026</p>
+      <span class="badge badge-primary">{t('privacy.hero.badge')}</span>
+      <h1 class="policy-hero-title">{t('privacy.hero.title')}</h1>
+      <p class="policy-hero-subtitle">{t('privacy.hero.subtitle')}</p>
     </div>
   </section>
 
@@ -88,13 +101,13 @@ const description = "Read the privacy policy for Quran Majeed, EasyUrdu, Quran T
   }
 
   .policy-hero-title {
-    font-size: 1.875rem;
+    font-size: calc(1.875rem * var(--text-scale, 1));
     font-weight: 600;
     margin-bottom: 0.5rem;
   }
 
   .policy-hero-subtitle {
-    font-size: 1rem;
+    font-size: calc(1rem * var(--text-scale, 1));
     color: var(--secondary-dark);
   }
 
@@ -108,7 +121,7 @@ const description = "Read the privacy policy for Quran Majeed, EasyUrdu, Quran T
   }
 
   .policy-section-title {
-    font-size: 1.25rem;
+    font-size: calc(1.25rem * var(--text-scale, 1));
     font-weight: 600;
     margin: 2rem 0 1rem 0;
     border-bottom: 1px solid var(--border);
@@ -116,14 +129,14 @@ const description = "Read the privacy policy for Quran Majeed, EasyUrdu, Quran T
   }
 
   .policy-subsection-title {
-    font-size: 1rem;
+    font-size: calc(1rem * var(--text-scale, 1));
     font-weight: 500;
     margin: 1.5rem 0 0.5rem 0;
     color: var(--primary);
   }
 
   .policy-content p {
-    font-size: 0.9375rem;
+    font-size: calc(0.9375rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     line-height: 1.7;
     margin-bottom: 1.25rem;
@@ -133,7 +146,7 @@ const description = "Read the privacy policy for Quran Majeed, EasyUrdu, Quran T
     margin-left: 1.5rem;
     margin-bottom: 1.5rem;
     color: var(--secondary-dark);
-    font-size: 0.9375rem;
+    font-size: calc(0.9375rem * var(--text-scale, 1));
   }
 
   .policy-content li {
@@ -146,7 +159,7 @@ const description = "Read the privacy policy for Quran Majeed, EasyUrdu, Quran T
     padding: 1.25rem;
     border-radius: 0.5rem;
     margin-top: 1rem;
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
   }
 
   .policy-contact-box a {
@@ -163,7 +176,7 @@ const description = "Read the privacy policy for Quran Majeed, EasyUrdu, Quran T
 
   @media (min-width: 768px) {
     .policy-hero-title {
-      font-size: 2.5rem;
+      font-size: calc(2.5rem * var(--text-scale, 1));
     }
   }
 </style>

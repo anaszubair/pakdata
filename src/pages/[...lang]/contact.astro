@@ -1,41 +1,54 @@
 ---
-import Layout from '../layouts/Layout.astro';
 
-const title = "Contact Us | Pakistan Data Management Services";
-const description = "Contact Pakistan Data Management Services for partnerships, software development consultations, support issues, or job applications.";
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+
+const title = t('contact.seo.title');
+const description = t('contact.seo.desc');
 
 const offices = [
   {
-    city: "Karachi, Pakistan (HQ)",
-    address: "2nd Floor, 18-C, 24th Commercial Street, Phase II Extension, DHA, Karachi, 75500",
+    city: t('contact.office.karachi.city'),
+    address: t('contact.office.karachi.address'),
     phone: "+92-21-35882650",
     fax: "+92-21-35882651",
     email: "info@pakdata.com"
   },
   {
-    city: "California, USA Office",
-    address: "PDMS Technology Associates, Silicon Valley Region, California, USA",
-    phone: "+1-800-PAKDATA (General)",
-    fax: "N/A",
+    city: t('contact.office.usa.city'),
+    address: t('contact.office.usa.address'),
+    phone: t('contact.office.usa.phone'),
+    fax: t('contact.office.noFax'),
     email: "usa@pakdata.com"
   }
 ];
 
 const departments = [
   {
-    name: "General & Enterprise Sales",
+    name: t('contact.dept.sales.name'),
     email: "info@pakdata.com",
-    desc: "For B2B projects, database design, partnerships, and software licensing integrations."
+    desc: t('contact.dept.sales.desc')
   },
   {
-    name: "App Technical Support",
+    name: t('contact.dept.support.name'),
     email: "support@pakdata.com",
-    desc: "For user account help, payment issues, adhan timing corrections, and mobile app settings."
+    desc: t('contact.dept.support.desc')
   },
   {
-    name: "Careers & HR Team",
+    name: t('contact.dept.careers.name'),
     email: "careers@pakdata.com",
-    desc: "For resumes submissions, job openings details, internship requests, and recruitment verification."
+    desc: t('contact.dept.careers.desc')
   }
 ];
 ---
@@ -44,10 +57,10 @@ const departments = [
   <!-- Hero Section -->
   <section class="contact-hero">
     <div class="container text-center animate-fade-in">
-      <span class="badge badge-primary">Get In Touch</span>
-      <h1 class="contact-hero-title">Contact Our Global Offices</h1>
+      <span class="badge badge-primary">{t('contact.hero.badge')}</span>
+      <h1 class="contact-hero-title">{t('contact.hero.title')}</h1>
       <p class="contact-hero-subtitle">
-        Have questions about our apps, enterprise services, career opportunities, or corporate partnerships? Let's connect.
+        {t('contact.hero.subtitle')}
       </p>
     </div>
   </section>
@@ -57,8 +70,8 @@ const departments = [
     <div class="container grid grid-2">
       <!-- Contact Info Column -->
       <div class="contact-info-col animate-fade-in">
-        <h2 class="column-title">Our Office Coordinates</h2>
-        <p class="column-subtitle">Feel free to visit our headquarters or reach us via telephone or direct email channels.</p>
+        <h2 class="column-title">{t('contact.column.title')}</h2>
+        <p class="column-subtitle">{t('contact.column.subtitle')}</p>
         
         <div class="offices-list">
           {offices.map(office => (
@@ -71,15 +84,15 @@ const departments = [
               
               <div class="office-details">
                 <div class="detail-line">
-                  <strong>Phone:</strong> <span>{office.phone}</span>
+                  <strong>{t('contact.office.phone')}</strong> <span>{office.phone}</span>
                 </div>
-                {office.fax !== 'N/A' && (
+                {office.fax !== t('contact.office.noFax') && (
                   <div class="detail-line">
-                    <strong>Fax:</strong> <span>{office.fax}</span>
+                    <strong>{t('contact.office.fax')}</strong> <span>{office.fax}</span>
                   </div>
                 )}
                 <div class="detail-line">
-                  <strong>Email:</strong> <a href={`mailto:${office.email}`}>{office.email}</a>
+                  <strong>{t('contact.office.email')}</strong> <a href={`mailto:${office.email}`}>{office.email}</a>
                 </div>
               </div>
             </div>
@@ -87,7 +100,7 @@ const departments = [
         </div>
 
         <div class="departments-wrap">
-          <h3 class="dept-title-head">Specialized Departments</h3>
+          <h3 class="dept-title-head">{t('contact.dept.title')}</h3>
           <div class="depts-grid">
             {departments.map(dept => (
               <div class="dept-info-box">
@@ -103,37 +116,37 @@ const departments = [
       <!-- Contact Form Column -->
       <div class="contact-form-col animate-fade-in">
         <div class="form-container-card card">
-          <h2 class="form-title">Send Us a Message</h2>
-          <p class="form-subtitle">Fill in the fields below, and our respective department will respond to you shortly.</p>
+          <h2 class="form-title">{t('contact.form.title')}</h2>
+          <p class="form-subtitle">{t('contact.form.subtitle')}</p>
           
-          <form class="main-contact-form" id="main-contact-form">
+          <form class="main-contact-form" id="main-contact-form" data-alert-msg={t('contact.form.alert')}>
             <div class="form-group">
-              <label class="form-label" for="contact-name">Full Name</label>
-              <input type="text" id="contact-name" required class="form-control" placeholder="Enter your full name" />
+              <label class="form-label" for="contact-name">{t('contact.form.name.label')}</label>
+              <input type="text" id="contact-name" required class="form-control" placeholder={t('contact.form.name.placeholder')} />
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="contact-email">Email Address</label>
-              <input type="email" id="contact-email" required class="form-control" placeholder="name@example.com" />
+              <label class="form-label" for="contact-email">{t('contact.form.email.label')}</label>
+              <input type="email" id="contact-email" required class="form-control" placeholder={t('contact.form.email.placeholder')} />
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="contact-subject">Topic / Subject</label>
+              <label class="form-label" for="contact-subject">{t('contact.form.subject.label')}</label>
               <select id="contact-subject" required class="form-control">
-                <option value="general">General Corporate Inquiry</option>
-                <option value="enterprise">B2B Enterprise Software</option>
-                <option value="support">App Support & Help</option>
-                <option value="careers">Job Applications / Careers</option>
-                <option value="partnership">Partnerships & Collaborations</option>
+                <option value="general">{t('contact.form.subject.opt1')}</option>
+                <option value="enterprise">{t('contact.form.subject.opt2')}</option>
+                <option value="support">{t('contact.form.subject.opt3')}</option>
+                <option value="careers">{t('contact.form.subject.opt4')}</option>
+                <option value="partnership">{t('contact.form.subject.opt5')}</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="contact-msg">Message Content</label>
-              <textarea id="contact-msg" required class="form-control" placeholder="Type your message here..."></textarea>
+              <label class="form-label" for="contact-msg">{t('contact.form.msg.label')}</label>
+              <textarea id="contact-msg" required class="form-control" placeholder={t('contact.form.msg.placeholder')}></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100" id="submit-contact-btn">Send Message</button>
+            <button type="submit" class="btn btn-primary w-100" id="submit-contact-btn">{t('contact.form.btn')}</button>
           </form>
         </div>
 
@@ -141,9 +154,9 @@ const departments = [
         <div class="map-placeholder card">
           <div class="map-icon">🗺️</div>
           <div>
-            <h4 class="map-title">Office Location Map</h4>
-            <p class="map-text">DHA Phase II Extension, Karachi, Pakistan.</p>
-            <a href="https://maps.google.com/?q=Pakistan+Data+Management+Services+Karachi" class="map-link" target="_blank" rel="noopener noreferrer">View on Google Maps</a>
+            <h4 class="map-title">{t('contact.map.title')}</h4>
+            <p class="map-text">{t('contact.map.text')}</p>
+            <a href="https://maps.google.com/?q=Pakistan+Data+Management+Services+Karachi" class="map-link" target="_blank" rel="noopener noreferrer">{t('contact.map.link')}</a>
           </div>
         </div>
       </div>
@@ -160,14 +173,14 @@ const departments = [
   }
 
   .contact-hero-title {
-    font-size: 2rem;
+    font-size: calc(2rem * var(--text-scale, 1));
     font-weight: 600;
     margin-bottom: 1rem;
     letter-spacing: -0.01em;
   }
 
   .contact-hero-subtitle {
-    font-size: 1.25rem;
+    font-size: calc(1.25rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     max-width: 700px;
     margin: 0 auto;
@@ -176,14 +189,14 @@ const departments = [
 
   /* Info column */
   .column-title {
-    font-size: 1.5rem;
+    font-size: calc(1.5rem * var(--text-scale, 1));
     font-weight: 600;
     margin-bottom: 0.5rem;
   }
 
   .column-subtitle {
     color: var(--secondary-dark);
-    font-size: 0.9375rem;
+    font-size: calc(0.9375rem * var(--text-scale, 1));
     margin-bottom: 2rem;
   }
 
@@ -202,7 +215,7 @@ const departments = [
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.125rem;
+    font-size: calc(1.125rem * var(--text-scale, 1));
     font-weight: 600;
     color: var(--dark);
     margin-bottom: 0.5rem;
@@ -213,7 +226,7 @@ const departments = [
   }
 
   .office-address {
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     color: var(--dark-soft);
     margin-bottom: 1rem;
     line-height: 1.5;
@@ -223,7 +236,7 @@ const departments = [
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     border-top: 1px dashed var(--border);
     padding-top: 0.75rem;
   }
@@ -244,7 +257,7 @@ const departments = [
   }
 
   .dept-title-head {
-    font-size: 1.125rem;
+    font-size: calc(1.125rem * var(--text-scale, 1));
     font-weight: 600;
     margin-bottom: 1.5rem;
   }
@@ -263,14 +276,14 @@ const departments = [
   }
 
   .dept-info-name {
-    font-size: 0.9375rem;
+    font-size: calc(0.9375rem * var(--text-scale, 1));
     font-weight: 700;
     color: var(--dark);
     margin-bottom: 0.15rem;
   }
 
   .dept-info-email {
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     color: var(--primary);
     font-weight: 700;
     display: inline-block;
@@ -278,7 +291,7 @@ const departments = [
   }
 
   .dept-info-desc {
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     line-height: 1.5;
     margin-bottom: 0;
@@ -292,13 +305,13 @@ const departments = [
   }
 
   .form-title {
-    font-size: 1.25rem;
+    font-size: calc(1.25rem * var(--text-scale, 1));
     font-weight: 600;
     margin-bottom: 0.25rem;
   }
 
   .form-subtitle {
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     margin-bottom: 2rem;
   }
@@ -318,24 +331,24 @@ const departments = [
   }
 
   .map-icon {
-    font-size: 2.25rem;
+    font-size: calc(2.25rem * var(--text-scale, 1));
   }
 
   .map-title {
-    font-size: 1rem;
+    font-size: calc(1rem * var(--text-scale, 1));
     font-weight: 800;
     color: var(--dark);
     margin-bottom: 0.15rem;
   }
 
   .map-text {
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     margin-bottom: 0.35rem;
   }
 
   .map-link {
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem * var(--text-scale, 1));
     font-weight: 700;
     color: var(--primary);
     text-decoration: underline;
@@ -343,13 +356,13 @@ const departments = [
 
   @media (min-width: 640px) {
     .contact-hero-title {
-      font-size: 2.5rem;
+      font-size: calc(2.5rem * var(--text-scale, 1));
     }
   }
 
   @media (min-width: 768px) {
     .contact-hero-title {
-      font-size: 3rem;
+      font-size: calc(3rem * var(--text-scale, 1));
     }
   }
 </style>
@@ -361,10 +374,8 @@ const departments = [
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const contactName = document.getElementById('contact-name') as HTMLInputElement;
-      const contactSubject = document.getElementById('contact-subject') as HTMLSelectElement;
-      
-      alert(`Thank you, ${contactName?.value || 'User'}! Your inquiry regarding "${contactSubject?.value || 'General'}" has been successfully submitted. Our team will contact you soon.`);
+      const alertMsg = contactForm.getAttribute('data-alert-msg') || 'Message sent!';
+      alert(alertMsg);
       contactForm.reset();
     });
   }

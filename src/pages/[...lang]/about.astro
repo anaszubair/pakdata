@@ -1,1 +1,566 @@
+---
 
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isRtl = lang !== 'en';
+
+const title = t('about.seo.title');
+const description = t('about.seo.desc');
+
+const milestones = [
+  {
+    year: "1979",
+    title: t('about.milestone.1979.title'),
+    description: t('about.milestone.1979.desc')
+  },
+  {
+    year: "1983",
+    title: t('about.milestone.1983.title'),
+    description: t('about.milestone.1983.desc')
+  },
+  {
+    year: "1989",
+    title: t('about.milestone.1989.title'),
+    description: t('about.milestone.1989.desc')
+  },
+  {
+    year: "1992",
+    title: t('about.milestone.1992.title'),
+    description: t('about.milestone.1992.desc')
+  },
+  {
+    year: "1995",
+    title: t('about.milestone.1995.title'),
+    description: t('about.milestone.1995.desc')
+  },
+  {
+    year: "1996",
+    title: t('about.milestone.1996.title'),
+    description: t('about.milestone.1996.desc')
+  },
+  {
+    year: "1998",
+    title: t('about.milestone.1998.title'),
+    description: t('about.milestone.1998.desc')
+  },
+  {
+    year: "2000",
+    title: t('about.milestone.2000.title'),
+    description: t('about.milestone.2000.desc')
+  },
+  {
+    year: "2001",
+    title: t('about.milestone.2001.title'),
+    description: t('about.milestone.2001.desc')
+  },
+  {
+    year: "2003",
+    title: t('about.milestone.2003.title'),
+    description: t('about.milestone.2003.desc')
+  },
+  {
+    year: "2005",
+    title: t('about.milestone.2005.title'),
+    description: t('about.milestone.2005.desc')
+  },
+  {
+    year: "2008",
+    title: t('about.milestone.2008.title'),
+    description: t('about.milestone.2008.desc')
+  },
+  {
+    year: "2010",
+    title: t('about.milestone.2010.title'),
+    description: t('about.milestone.2010.desc')
+  },
+  {
+    year: "2012",
+    title: t('about.milestone.2012.title'),
+    description: t('about.milestone.2012.desc')
+  },
+  {
+    year: "2014",
+    title: t('about.milestone.2014.title'),
+    description: t('about.milestone.2014.desc')
+  },
+  {
+    year: "2015",
+    title: t('about.milestone.2015.title'),
+    description: t('about.milestone.2015.desc')
+  },
+  {
+    year: "2016",
+    title: t('about.milestone.2016.title'),
+    description: t('about.milestone.2016.desc')
+  },
+    {
+    year: "2017",
+    title: t('about.milestone.2017.title'),
+    description: t('about.milestone.2017.desc')
+  },
+    {
+    year: "2018",
+    title: t('about.milestone.2018.title'),
+    description: t('about.milestone.2018.desc')
+  },
+    {
+    year: "2019",
+    title: t('about.milestone.2019.title'),
+    description: t('about.milestone.2019.desc')
+  }
+];
+
+const values = [
+  {
+    icon: "🤝",
+    title: t('about.value.purpose.title'),
+    text: t('about.value.purpose.text')
+  },
+  {
+    icon: "📜",
+    title: t('about.value.authenticity.title'),
+    text: t('about.value.authenticity.text')
+  },
+  {
+    icon: "📈",
+    title: t('about.value.scale.title'),
+    text: t('about.value.scale.text')
+  },
+  {
+    icon: "💡",
+    title: t('about.value.modern.title'),
+    text: t('about.value.modern.text')
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <div class="container text-center animate-fade-in">
+      <span class="badge badge-primary">{t('about.hero.badge')}</span>
+      <h1 class="about-hero-title">{t('about.hero.title')}</h1>
+      <p class="about-hero-subtitle">
+        {t('about.hero.desc')}
+      </p>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="section">
+    <div class="container grid grid-2 align-center">
+      <div class="overview-content">
+        <h2 class="overview-title">{t('about.overview.title')}</h2>
+        <p class="overview-p" set:html={t('about.overview.p1')}></p>
+        <p class="overview-p" set:html={t('about.overview.p2')}></p>
+        <p class="overview-p" set:html={t('about.overview.p3')}></p>
+      </div>
+      <div class="overview-stats">
+        <div class="about-stats-grid">
+          <div class="about-stat-card">
+            <span class="num">{t('about.stats.1.num')}</span>
+            <span class="lbl">{t('about.stats.1.lbl')}</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="num">{t('about.stats.2.num')}</span>
+            <span class="lbl">{t('about.stats.2.lbl')}</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="num">{t('about.stats.3.num')}</span>
+            <span class="lbl">{t('about.stats.3.lbl')}</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="num">{t('about.stats.4.num')}</span>
+            <span class="lbl">{t('about.stats.4.lbl')}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="section timeline-section section-bg">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge badge-primary">{t('about.timeline.badge')}</span>
+        <h2 class="section-title">{t('about.timeline.title')}</h2>
+        <p class="section-subtitle">{t('about.timeline.subtitle')}</p>
+      </div>
+
+      <div class="timeline-container">
+        {milestones.map((item, index) => (
+          <div class={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}>
+            <div class="timeline-content card" dir={isRtl ? 'rtl' : 'ltr'}>
+              <span class="timeline-year">{item.year}</span>
+              <h3 class="timeline-title">{item.title}</h3>
+              <p class="timeline-desc">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission Sections -->
+  <section class="section section-bg">
+    <div class="container grid grid-2">
+      <div class="vision-mission-card card">
+        <div class="card-icon">👁️</div>
+        <h2 class="vm-title">{t('about.vm.vision.title')}</h2>
+        <p class="vm-text">
+          {t('about.vm.vision.text')}
+        </p>
+      </div>
+      <div class="vision-mission-card card">
+        <div class="card-icon">🎯</div>
+        <h2 class="vm-title">{t('about.vm.mission.title')}</h2>
+        <p class="vm-text">
+          {t('about.vm.mission.text')}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="section values-section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge badge-primary">{t('about.values.badge')}</span>
+        <h2 class="section-title">{t('about.values.title')}</h2>
+        <p class="section-subtitle">{t('about.values.subtitle')}</p>
+      </div>
+
+      <div class="grid grid-4">
+        {values.map(val => (
+          <div class="value-card card text-center">
+            <div class="value-icon">{val.icon}</div>
+            <h3 class="value-title">{val.title}</h3>
+            <p class="value-text">{val.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Logos Grid -->
+  <section class="section section-bg partner-logos-section">
+    <div class="container">
+      <h3 class="partner-title">{t('about.partners.title')}</h3>
+      <div class="partners-grid">
+        <div class="partner-logo">Google</div>
+        <div class="partner-logo">NADRA</div>
+        <div class="partner-logo">King Fahad Complex</div>
+        <div class="partner-logo">QuranExplorer</div>
+        <div class="partner-logo">Apple App Store</div>
+        <div class="partner-logo">P@SHA Association</div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero styles */
+  .about-hero {
+    text-align: center;
+    background: radial-gradient(at 20% 0%,oklch(97% .04 60) 0%,transparent 50%),radial-gradient(at 80% 20%,oklch(96% .03 220) 0%,transparent 50%),linear-gradient(180deg,oklch(99% .005 80),oklch(100% 0 0));
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-hero-title {
+    font-size: calc(1.875rem * var(--text-scale, 1));
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-hero-subtitle {
+    font-size: calc(1.25rem * var(--text-scale, 1));
+    color: var(--secondary-dark);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  /* Alignment helper */
+  .align-center {
+    align-items: center;
+  }
+
+  .overview-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .overview-title {
+    font-size: calc(1.625rem * var(--text-scale, 1));
+    font-weight: 600;
+  }
+
+  .overview-p {
+    color: var(--secondary-dark);
+    font-size: calc(1rem * var(--text-scale, 1));
+  }
+
+  /* Stats grid */
+  .about-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .about-stat-card {
+    background-color: var(--light);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .about-stat-card .num {
+    display: block;
+    font-size: calc(1.875rem * var(--text-scale, 1));
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+    font-family: var(--font-heading);
+  }
+
+  .about-stat-card .lbl {
+    font-size: calc(0.8125rem * var(--text-scale, 1));
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--secondary-dark);
+    letter-spacing: 0.05em;
+  }
+
+  /* Timeline Styles */
+  .timeline-section {
+    position: relative;
+  }
+
+  .timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    background-color: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    width: 100%;
+    display: flex;
+    padding: 0.5rem 0;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-color: var(--primary);
+    border: 4px solid var(--light);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .timeline-item.left {
+    justify-content: flex-start;
+  }
+
+  .timeline-item.left::before {
+    left: calc(50% - 8px);
+  }
+
+  .timeline-item.right {
+    justify-content: flex-end;
+  }
+
+  .timeline-item.right::before {
+    left: calc(50% - 8px);
+  }
+
+  .timeline-content {
+    width: calc(50% - 2rem);
+    background-color: var(--light);
+    padding: 1rem !important;
+  }
+
+  .timeline-content[dir='rtl'] {
+    text-align: right;
+  }
+
+  .timeline-year {
+    display: inline-block;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    font-size: calc(0.875rem * var(--text-scale, 1));
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-title {
+    font-size: calc(1.125rem * var(--text-scale, 1));
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-desc {
+    font-size: calc(0.875rem * var(--text-scale, 1));
+    color: var(--secondary-dark);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* Vision & Mission cards */
+  .vision-mission-card {
+    padding: 3rem 2.5rem;
+  }
+
+  .card-icon {
+    font-size: calc(2.5rem * var(--text-scale, 1));
+    margin-bottom: 1.25rem;
+  }
+
+  .vm-title {
+    font-size: calc(1.5rem * var(--text-scale, 1));
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .vm-text {
+    font-size: calc(0.9375rem * var(--text-scale, 1));
+    color: var(--secondary-dark);
+    line-height: 1.7;
+  }
+
+  /* Value cards */
+  .value-card {
+    padding: 2.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .value-icon {
+    font-size: calc(2.25rem * var(--text-scale, 1));
+    margin-bottom: 1.25rem;
+  }
+
+  .value-title {
+    font-size: calc(1rem * var(--text-scale, 1));
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .value-text {
+    font-size: calc(0.875rem * var(--text-scale, 1));
+    color: var(--secondary-dark);
+    line-height: 1.6;
+  }
+
+  /* Partner Logos styling (from index, shared) */
+  .partner-logos-section {
+    padding: 4.5rem 0;
+  }
+
+  .partner-title {
+    text-align: center;
+    font-size: calc(0.875rem * var(--text-scale, 1));
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--secondary);
+    margin-bottom: 2rem;
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .partner-logo {
+    font-family: var(--font-heading);
+    font-size: calc(1.125rem * var(--text-scale, 1));
+    font-weight: 700;
+    color: var(--secondary-dark);
+    opacity: 0.7;
+    text-align: center;
+    transition: opacity var(--transition-fast);
+  }
+
+  .partner-logo:hover {
+    opacity: 1;
+    color: var(--primary);
+  }
+
+  /* Responsiveness */
+  @media (max-width: 767px) {
+    .timeline-container::before {
+      left: 1.5rem;
+    }
+
+    .timeline-item {
+      justify-content: flex-start;
+      padding-left: 3rem;
+    }
+
+    .timeline-content {
+      width: 100%;
+    }
+
+    .timeline-item::before {
+      left: 1rem !important;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .about-hero-title {
+      font-size: calc(2.25rem * var(--text-scale, 1));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .about-hero-title {
+      font-size: calc(2.75rem * var(--text-scale, 1));
+    }
+
+    .partners-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+</style>

@@ -1,73 +1,86 @@
 ---
-import Layout from '../layouts/Layout.astro';
 
-const title = "Our Team | Pakistan Data Management Services";
-const description = "Meet the developers, designers, writers, scholars, and technical pioneers building world-class Islamic mobile applications and localized systems since 1979.";
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations, getRelativeLocaleUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+
+const title = t('team.seo.title');
+const description = t('team.seo.desc');
 
 const leaders = [
   {
     name: "Arif Hisam",
-    role: "CEO and Founder",
-    bio: "More than twenty four years of experience in developing, maintaining and supporting application software development and localization of packaged software in regional languages. Analyzing key market areas for software product development and successful marketing. Major achievements include the development of Nastaleeq Nizami software for Urdu desktop publishing and winning first prize in ”All Pakistan Software Competition”.",
+    role: t('team.leaders.arif.role'),
+    bio: t('team.leaders.arif.bio'),
     avatar: "ARH"
   },
   {
     name: "Kashif Hisam",
-    role: "Cheif Technical Officer (CTO)",
-    bio: "Kashif Hisam got involved with computers from a very early age and mastered his programming skills by writing personal application software in C and C++. With an extensive knowledge of structured programming languages and the concepts of object oriented programming (OOP). Kashif Hisam has core emphasis on designing & managing core-OS /client-server/ distributed systems, designing of rendering algorithms for complex bi-directional fonts.",
+    role: t('team.leaders.kashif.role'),
+    bio: t('team.leaders.kashif.bio'),
     avatar: "KSH"
   },
   {
     name: "Asif Hisam",
-    role: "Cheif Operating Officer (COO)",
-    bio: "Asif Hisam possesses vast experience in the field of software development, project management and business planning. Having an in-depth knowledge of intricate mobile app development and architecture. Projects include Quran Majeed for Android and Easy Urdu Keyboard app which has more than 20 million downloads.",
+    role: t('team.leaders.asif.role'),
+    bio: t('team.leaders.asif.bio'),
     avatar: "ASH"
   }
 ];
 
 const departments = [
   {
-    name: "Engineering & Cloud",
-    desc: "Building high-performance, low-latency mobile codebases in Swift and Kotlin, paired with resilient database setups that support 100M+ global installations."
+    name: t('team.dept.eng.name'),
+    desc: t('team.dept.eng.desc')
   },
   {
-    name: "Quality Assurance",
-    desc: "Our QA team verifies all software versions. They conduct letter-by-letter Arabic proofreading and ensure zero-bug performance across various operating systems."
+    name: t('team.dept.qa.name'),
+    desc: t('team.dept.qa.desc')
   },
   {
-    name: "Creative & UI/UX Design",
-    desc: "Designing clean, modern, and accessible user interfaces. They create intuitive navigation menus, smooth animations, and interactive 3D assets."
+    name: t('team.dept.design.name'),
+    desc: t('team.dept.design.desc')
   },
   {
-    name: "Support & Customer Success",
-    desc: "Working 24/7 to resolve user settings inquiries, guide prayer notification configurations, handle billing inquiries, and troubleshoot devices."
+    name: t('team.dept.support.name'),
+    desc: t('team.dept.support.desc')
   }
 ];
 
 const team = [
   {
     count: "40+",
-    department: "Engineering"
+    department: t('team.count.engineering')
   },
   {
     count: "12+",
-    department: "Design"
+    department: t('team.count.design')
   },
   {
     count: "15+",
-    department: "Content & Scholars"
+    department: t('team.count.content')
   },
   {
     count: "4+",
-    department: "Marketing"
+    department: t('team.count.marketing')
   },
   {
     count: "1+",
-    department: "Customer Support"
+    department: t('team.count.support')
   },
     {
     count: "6+",
-    department: "Operations"
+    department: t('team.count.operations')
   }
 ];
 ---
@@ -76,10 +89,10 @@ const team = [
   <!-- Hero Section -->
   <section class="team-hero">
     <div class="container text-center animate-fade-in">
-      <span class="badge badge-primary">People behind PDMS</span>
-      <h1 class="team-hero-title">Meet the Visionaries Behind PDMS</h1>
+      <span class="badge badge-primary">{t('team.hero.badge')}</span>
+      <h1 class="team-hero-title">{t('team.hero.title')}</h1>
       <p class="team-hero-subtitle">
-        We are a team of software engineers, Arabic language scholars, designers, and customer success specialists dedicated to creating meaningful digital products.
+        {t('team.hero.subtitle')}
       </p>
     </div>
   </section>
@@ -88,9 +101,9 @@ const team = [
   <section class="section">
     <div class="container">
       <div class="section-title-wrap">
-        <span class="badge badge-primary">Leadership</span>
-        <h2 class="section-title">Our Technical Leadership</h2>
-        <p class="section-subtitle">Pioneers guiding the strategy, engineering, and authenticity of our technology platforms.</p>
+        <span class="badge badge-primary">{t('team.leadership.badge')}</span>
+        <h2 class="section-title">{t('team.leadership.title')}</h2>
+        <p class="section-subtitle">{t('team.leadership.subtitle')}</p>
       </div>
 
       <div class="leaders-grid grid grid-3">
@@ -112,9 +125,9 @@ const team = [
   <section class="section section-bg">
     <div class="container">
       <div class="section-title-wrap">
-        <span class="badge badge-primary">Our Departments</span>
-        <h2 class="section-title">How We Organize</h2>
-        <p class="section-subtitle">Different specialties coming together to release premium applications and service platforms.</p>
+        <span class="badge badge-primary">{t('team.departments.badge')}</span>
+        <h2 class="section-title">{t('team.departments.title')}</h2>
+        <p class="section-subtitle">{t('team.departments.subtitle')}</p>
       </div>
 
       <div class="grid grid-2">
@@ -135,36 +148,36 @@ const team = [
   <section class="section team-culture">
     <div class="container grid grid-2 align-center">
       <div class="culture-content">
-        <span class="badge badge-primary">Our Culture</span>
-        <h2 class="culture-title">A Purpose-Driven Workplace</h2>
+        <span class="badge badge-primary">{t('team.culture.badge')}</span>
+        <h2 class="culture-title">{t('team.culture.title')}</h2>
         <p class="culture-p">
-          At PDMS, we believe that software can make a meaningful difference. Our team members take pride in knowing that the code they commit helps millions of people connect with scripture, language, and prayer every single day.
+          {t('team.culture.p1')}
         </p>
         <p class="culture-p">
-          We encourage continuous growth, professional development, and cross-functional learning. An engineer will collaborate directly with verified calligraphers and translators to build the next-generation Mushaf layout.
+          {t('team.culture.p2')}
         </p>
         <div class="culture-points">
           <div class="c-point">
-            <strong>✓ Global Impact:</strong> Reach international audiences across 150+ countries.
+            <strong>✓ {t('team.culture.point1.label')}</strong> {t('team.culture.point1.text')}
           </div>
           <div class="c-point">
-            <strong>✓ Collaborative Environment:</strong> Work with open-minded, creative minds.
+            <strong>✓ {t('team.culture.point2.label')}</strong> {t('team.culture.point2.text')}
           </div>
           <div class="c-point">
-            <strong>✓ Professional Growth:</strong> Regular training in modern frameworks and architectures.
+            <strong>✓ {t('team.culture.point3.label')}</strong> {t('team.culture.point3.text')}
           </div>
         </div>
-        <a href="/join" class="btn btn-primary" id="view-openings-btn">Explore Open Positions</a>
+        <a href={getRelativeLocaleUrl(lang, '/join')} class="btn btn-primary" id="view-openings-btn">{t('team.culture.btn')}</a>
       </div>
       
       <div class="culture-visual">
         <div class="culture-quote card">
           <p class="quote-text">
-            "Developing software at PDMS combines cutting-edge mobile architecture with a higher purpose. We test code that serves millions of worshipers globally."
+            "{t('team.quote.text')}"
           </p>
           <div class="quote-author">
             <strong>Arif Hisam</strong>
-            <span>CEO & Architect</span>
+            <span>{t('team.quote.authorRole')}</span>
           </div>
         </div>
       </div>
@@ -175,9 +188,9 @@ const team = [
   <section class="section section-bg text-center">
     <div class="container text-center">
         <div class="section-title-wrap">
-          <span class="badge badge-primary">Our Family</span>
-          <h2 class="section-title">Built by 100+ passionate people</h2>
-          <p class="section-subtitle">Across multiple disciplines, all rowing in the same direction.</p>
+          <span class="badge badge-primary">{t('team.family.badge')}</span>
+          <h2 class="section-title">{t('team.family.title')}</h2>
+          <p class="section-subtitle">{t('team.family.subtitle')}</p>
         </div>
       <div class="grid grid-6">
       {team.map(tm => (
@@ -193,11 +206,11 @@ const team = [
   <!-- CTA Careers -->
   <section class="section section-bg text-center">
     <div class="container max-width-600">
-      <h2 class="careers-title">Want to Join Our Team?</h2>
+      <h2 class="careers-title">{t('team.join.title')}</h2>
       <p class="careers-desc">
-        We are always on the lookout for passionate iOS/Android developers, QA engineers, graphic animators, and customer support representatives.
+        {t('team.join.desc')}
       </p>
-      <a href="/join" class="btn btn-primary btn-lg" id="careers-cta-btn">Join Us Today</a>
+      <a href={getRelativeLocaleUrl(lang, '/join')} class="btn btn-primary btn-lg" id="careers-cta-btn">{t('team.join.btn')}</a>
     </div>
   </section>
 </Layout>
@@ -211,14 +224,14 @@ const team = [
   }
 
   .team-hero-title {
-    font-size: 2rem;
+    font-size: calc(2rem * var(--text-scale, 1));
     font-weight: 600;
     margin-bottom: 1rem;
     letter-spacing: -0.01em;
   }
 
   .team-hero-subtitle {
-    font-size: 1.25rem;
+    font-size: calc(1.25rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     max-width: 700px;
     margin: 0 auto;
@@ -245,7 +258,7 @@ const team = [
     color: var(--primary);
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 1.5rem;
+    font-size: calc(1.5rem * var(--text-scale, 1));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -254,7 +267,7 @@ const team = [
   }
 
   .leader-name {
-    font-size: 1.25rem;
+    font-size: calc(1.25rem * var(--text-scale, 1));
     font-weight: 600;
     color: var(--dark);
     margin-bottom: 0.25rem;
@@ -262,7 +275,7 @@ const team = [
 
   .leader-role {
     display: block;
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem * var(--text-scale, 1));
     font-weight: 700;
     text-transform: uppercase;
     color: var(--primary);
@@ -271,7 +284,7 @@ const team = [
   }
 
   .leader-bio {
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     line-height: 1.6;
     margin-bottom: 0;
@@ -290,17 +303,17 @@ const team = [
   }
 
   .dept-icon {
-    font-size: 1.5rem;
+    font-size: calc(1.5rem * var(--text-scale, 1));
   }
 
   .dept-name {
-    font-size: 1.125rem;
+    font-size: calc(1.125rem * var(--text-scale, 1));
     font-weight: 600;
     color: var(--dark);
   }
 
   .dept-desc {
-    font-size: 0.9375rem;
+    font-size: calc(0.9375rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     line-height: 1.6;
     margin-bottom: 0;
@@ -313,13 +326,13 @@ const team = [
   }
 
   .team-count {
-    font-size: 1.5rem;
+    font-size: calc(1.5rem * var(--text-scale, 1));
     font-weight: 600;
     color: var(--primary);
   }
 
   .team-department {
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * var(--text-scale, 1));
     line-height: 1.6;
     margin-bottom: 0;
   }
@@ -336,13 +349,13 @@ const team = [
   }
 
   .culture-title {
-    font-size: 1.875rem;
+    font-size: calc(1.875rem * var(--text-scale, 1));
     font-weight: 600;
     line-height: 1.25;
   }
 
   .culture-p {
-    font-size: 1rem;
+    font-size: calc(1rem * var(--text-scale, 1));
     color: var(--secondary-dark);
   }
 
@@ -354,7 +367,7 @@ const team = [
   }
 
   .c-point {
-    font-size: 0.9375rem;
+    font-size: calc(0.9375rem * var(--text-scale, 1));
     color: var(--dark-soft);
   }
 
@@ -372,7 +385,7 @@ const team = [
   }
 
   .quote-text {
-    font-size: 1.125rem;
+    font-size: calc(1.125rem * var(--text-scale, 1));
     font-style: italic;
     line-height: 1.6;
     color: var(--dark);
@@ -385,12 +398,12 @@ const team = [
   }
 
   .quote-author strong {
-    font-size: 0.9375rem;
+    font-size: calc(0.9375rem * var(--text-scale, 1));
     color: var(--dark);
   }
 
   .quote-author span {
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem * var(--text-scale, 1));
     color: var(--secondary-dark);
   }
 
@@ -401,7 +414,7 @@ const team = [
   }
 
   .careers-title {
-    font-size: 1.75rem;
+    font-size: calc(1.75rem * var(--text-scale, 1));
     font-weight: 600;
     margin-bottom: 1rem;
   }
@@ -409,18 +422,18 @@ const team = [
   .careers-desc {
     color: var(--secondary-dark);
     margin-bottom: 2rem;
-    font-size: 1rem;
+    font-size: calc(1rem * var(--text-scale, 1));
   }
 
   @media (min-width: 640px) {
     .team-hero-title {
-      font-size: 2.5rem;
+      font-size: calc(2.5rem * var(--text-scale, 1));
     }
   }
 
   @media (min-width: 768px) {
     .team-hero-title {
-      font-size: 3rem;
+      font-size: calc(3rem * var(--text-scale, 1));
     }
   }
 </style>

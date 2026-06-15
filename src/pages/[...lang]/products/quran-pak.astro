@@ -1,0 +1,901 @@
+---
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const isRtl = lang !== 'en';
+
+const copy = {
+  en: {
+    seoTitle: 'Quran Pak - Urdu Quran Translation & Tafsir Usmani App',
+    seoDesc: 'Download Quran Pak featuring authentic Urdu translations, Tafsir Usmani, Quran recitations, advanced search, and powerful Quran learning tools for Muslims worldwide.',
+    heroBadge: 'Quran Pak',
+    heroTitle: 'Quran Pak - Urdu Translations & Tafsir Usmani',
+    heroLead: 'Experience the beauty of the Holy Quran with authentic Urdu translations, Tafsir Usmani, renowned reciters, and advanced Quran learning features designed for Muslims around the world.',
+    heroBody: 'Quran Pak combines elegant Quran reading, powerful study tools, and spiritually enriching recitations in one beautifully designed application.',
+    appStore: 'Download on App Store',
+    explore: 'Explore Features',
+    introTitle: 'A Complete Quran Experience for Urdu-Speaking Muslims',
+    introBody1: 'Quran Pak is designed to help users read, understand, and connect deeply with the Holy Quran through authentic Urdu translations, Tafsir Usmani, advanced recitation features, and an intuitive reading experience.',
+    introBody2: 'Built with simplicity and authenticity in mind, Quran Pak offers a spiritually focused environment for daily Quran recitation, learning, and reflection.',
+    highlights: ['Tafsir Usmani', 'Urdu Translations', 'Audio Recitations', 'Quran Search', 'Bookmarks', 'Reading Modes'],
+    statsTitle: 'App Store Ratings & Trust Signals',
+    stats: ['4.9★ User Rating', 'Urdu-first Quran Experience', 'Tafsir Usmani Included', 'Fast Search & Bookmarking'],
+    featuresTitle: 'Powerful Features for Meaningful Quran Learning',
+    features: [
+      {
+        title: 'Renowned Quran Reciters',
+        body: 'Listen to beautiful Quran recitations from world-renowned Qaris including Sheikh Abdul Basit, Mishary Rashid Alafasy, Saad Al Ghamdi, Sheikh Sudais, Sheikh Shuraim, and many more. Enjoy high-quality audio recitations that enhance memorization, understanding, and spiritual connection.'
+      },
+      {
+        title: 'Urdu Translations & Tafsir Usmani',
+        body: 'Access authentic Urdu translations and the widely respected Tafsir Usmani to better understand the meaning and message of the Holy Quran. The app also supports multiple language translations for users around the world.'
+      },
+      {
+        title: 'Advanced Quran Search',
+        body: 'Quickly search Quran verses, words, roots, translations, and tafsir with advanced search capabilities designed to make Quran study easier and more accessible.'
+      },
+      {
+        title: 'Advanced Audio Controls',
+        body: 'Enhance memorization and recitation with customizable playback controls including repeat options, verse intervals, surah repetition, and adjustable recitation speed.'
+      }
+    ],
+    readingTitle: 'Elegant & Comfortable Quran Reading',
+    readingBody: 'Quran Pak provides a clean and distraction-free reading experience with beautifully rendered Arabic text, smooth navigation, and user-friendly controls designed for daily recitation and reflection.',
+    learningTitle: 'Deepen Your Understanding of the Quran',
+    learningBody: 'Whether you are reading for spiritual reflection, studying tafsir, memorizing verses, or listening to recitations, Quran Pak offers the tools needed to support your Quran learning journey every day.',
+    whyTitle: 'Why Users Choose Quran Pak',
+    why: [
+      {
+        title: 'Authentic Urdu Tafsir',
+        body: 'Trusted Urdu translations and Tafsir Usmani for meaningful Quran understanding.'
+      },
+      {
+        title: 'Renowned Quran Recitations',
+        body: 'Listen to beautiful recitations from internationally recognized Qaris.'
+      },
+      {
+        title: 'Powerful Study Features',
+        body: 'Advanced search, bookmarking, and audio controls for enhanced Quran learning.'
+      },
+      {
+        title: 'Clean User Experience',
+        body: 'Simple, elegant, and easy-to-use interface designed for comfortable daily recitation.'
+      }
+    ],
+    testimonialsTitle: 'What Readers Say',
+    testimonials: [
+      { quote: 'One of the best Urdu Quran apps available.', name: 'Amina', meta: 'App Store review' },
+      { quote: 'Tafsir Usmani and search make daily study so much easier.', name: 'Hassan', meta: 'Reader feedback' },
+      { quote: 'Clean layout, strong audio tools, and a very calm reading flow.', name: 'Bilal', meta: 'Community review' }
+    ],
+    faqTitle: 'Frequently Asked Questions',
+    faqs: [
+      { q: 'Does Quran Pak work offline?', a: 'Many reading and study features work offline once content has been loaded or downloaded, making it practical for daily use.' },
+      { q: 'Which reciters are included?', a: 'Quran Pak includes recitations from renowned Qaris such as Sheikh Abdul Basit, Mishary Rashid Alafasy, Saad Al Ghamdi, Sheikh Sudais, and Sheikh Shuraim.' },
+      { q: 'Is Tafsir Usmani included?', a: 'Yes. Tafsir Usmani is a central part of the app experience, alongside Urdu translations and other supporting language options.' },
+      { q: 'Does the app support bookmarks?', a: 'Yes. Quran Pak includes bookmarking and other study tools to help users return to verses and reading positions quickly.' }
+    ],
+    finalBadge: 'Start Today',
+    finalTitle: 'Strengthen Your Connection with the Quran',
+    finalBody1: 'Join thousands of users who trust Quran Pak for authentic Quran recitation, Urdu translations, tafsir, and meaningful Islamic learning.',
+    finalBody2: 'Download Quran Pak today and experience a beautifully designed Quran companion for daily spiritual growth.',
+    finalAppStore: 'Download on App Store',
+    finalLearn: 'Learn More',
+    footerDesc: 'Quran Pak is a feature-rich Quran application offering Urdu translations, Tafsir Usmani, advanced recitations, and powerful Quran study tools for Muslims worldwide.'
+  },
+  ur: {
+    seoTitle: 'قرآن پاک - اردو ترجمہ اور تفسیر عثمانی ایپ',
+    seoDesc: 'قرآن پاک ڈاؤن لوڈ کریں جس میں مستند اردو تراجم، تفسیر عثمانی، قرآنی تلاوت، جدید سرچ، اور طاقتور قرآنی سیکھنے کے ٹولز شامل ہیں۔',
+    heroBadge: 'قرآن پاک',
+    heroTitle: 'قرآن پاک - اردو تراجم اور تفسیر عثمانی',
+    heroLead: 'قرآنِ کریم کی خوبصورتی کو مستند اردو تراجم، تفسیر عثمانی، نامور قراء اور جدید قرآنی خصوصیات کے ساتھ محسوس کریں۔',
+    heroBody: 'قرآن پاک ایک خوبصورت ایپلی کیشن میں قرآنی مطالعہ، طاقتور سٹڈی ٹولز، اور روحانی طور پر بھرپور تلاوت کو یکجا کرتا ہے۔',
+    appStore: 'ایپ اسٹور پر ڈاؤن لوڈ کریں',
+    explore: 'خصوصیات دیکھیں',
+    introTitle: 'اردو بولنے والے مسلمانوں کے لیے مکمل قرآنی تجربہ',
+    introBody1: 'قرآن پاک اس طرح ڈیزائن کیا گیا ہے کہ صارفین مستند اردو تراجم، تفسیر عثمانی، جدید تلاوتی خصوصیات، اور آسان قرآنی مطالعہ کے ذریعے قرآنِ کریم کو بہتر طور پر پڑھ، سمجھ اور محسوس کر سکیں۔',
+    introBody2: 'سادگی اور اصالت کو بنیاد بنا کر تیار کیا گیا یہ ایپ روزانہ کی تلاوت، سیکھنے اور تدبر کے لیے ایک روحانی ماحول فراہم کرتا ہے۔',
+    highlights: ['تفسیر عثمانی', 'اردو تراجم', 'آڈیو تلاوت', 'قرآنی سرچ', 'بک مارکس', 'ریڈنگ موڈز'],
+    statsTitle: 'ایپ اسٹور ریٹنگ اور اعتماد کی علامات',
+    stats: ['4.9★ صارفین کی ریٹنگ', 'اردو فرسٹ قرآنی تجربہ', 'تفسیر عثمانی شامل', 'تیز سرچ اور بک مارکنگ'],
+    featuresTitle: 'بامعنی قرآنی سیکھنے کے لیے طاقتور خصوصیات',
+    features: [
+      {
+        title: 'نامور قراء کی تلاوت',
+        body: 'شیخ عبدالباسط، مشاری راشد العفاسی، سعد الغامدی، شیخ سودیس، شیخ شریم اور دیگر عالمی شہرت یافتہ قراء کی خوبصورت تلاوت سنیں۔'
+      },
+      {
+        title: 'اردو تراجم اور تفسیر عثمانی',
+        body: 'مستند اردو تراجم اور معروف تفسیر عثمانی تک رسائی حاصل کریں تاکہ قرآنِ کریم کے معنی اور پیغام کو بہتر سمجھ سکیں۔'
+      },
+      {
+        title: 'جدید قرآنی سرچ',
+        body: 'قرآنی آیات، الفاظ، جڑیں، تراجم اور تفسیر کو تیزی سے تلاش کریں تاکہ مطالعہ زیادہ آسان اور قابلِ رسائی ہو۔'
+      },
+      {
+        title: 'جدید آڈیو کنٹرول',
+        body: 'ریپیٹ آپشن، آیت وقفہ، سورہ ریپیٹ، اور تلاوت کی رفتار میں تبدیلی جیسے کنٹرولز کے ساتھ یادداشت اور تلاوت کو بہتر بنائیں۔'
+      }
+    ],
+    readingTitle: 'خوبصورت اور آرام دہ قرآنی مطالعہ',
+    readingBody: 'قرآن پاک ایک صاف، پرسکون اور غیر متوجہ کرنے والا مطالعہ تجربہ فراہم کرتا ہے جس میں خوبصورتی سے پیش کیا گیا عربی متن، ہموار نیویگیشن، اور صارف دوست کنٹرولز شامل ہیں۔',
+    learningTitle: 'قرآن فہمی کو مزید گہرا بنائیں',
+    learningBody: 'چاہے آپ روحانی تدبر کے لیے پڑھ رہے ہوں، تفسیر کا مطالعہ کر رہے ہوں، آیات یاد کر رہے ہوں یا تلاوت سن رہے ہوں، قرآن پاک ہر روز آپ کے قرآنی سفر کی حمایت کرتا ہے۔',
+    whyTitle: 'صارفین قرآن پاک کو کیوں پسند کرتے ہیں',
+    why: [
+      {
+        title: 'مستند اردو تفسیر',
+        body: 'معنی خیز قرآنی فہم کے لیے قابلِ اعتماد اردو تراجم اور تفسیر عثمانی۔'
+      },
+      {
+        title: 'نامور قراء کی تلاوت',
+        body: 'بین الاقوامی شہرت یافتہ قراء کی دلکش تلاوت سنیں۔'
+      },
+      {
+        title: 'طاقتور مطالعہ ٹولز',
+        body: 'جدید سرچ، بک مارکنگ اور آڈیو کنٹرولز کے ساتھ بہتر قرآنی سیکھنے کا تجربہ۔'
+      },
+      {
+        title: 'صاف اور سادہ انٹرفیس',
+        body: 'روزانہ کی تلاوت کے لیے آسان، خوبصورت اور سہل استعمال ڈیزائن۔'
+      }
+    ],
+    testimonialsTitle: 'قارئین کی رائے',
+    testimonials: [
+      { quote: 'اردو قرآن ایپس میں سے ایک بہترین ایپ۔', name: 'آمنہ', meta: 'ایپ اسٹور ریویو' },
+      { quote: 'تفسیر عثمانی اور سرچ روزانہ مطالعہ کو بہت آسان بناتے ہیں۔', name: 'حسن', meta: 'قارئین کی رائے' },
+      { quote: 'صاف ڈیزائن، مضبوط آڈیو ٹولز اور بہت پرسکون پڑھنے کا تجربہ۔', name: 'بلال', meta: 'کمیونٹی ریویو' }
+    ],
+    faqTitle: 'اکثر پوچھے گئے سوالات',
+    faqs: [
+      { q: 'کیا قرآن پاک آف لائن چلتی ہے؟', a: 'ہاں، بہت سی ریڈنگ اور سٹڈی خصوصیات مواد لوڈ یا ڈاؤن لوڈ ہونے کے بعد آف لائن استعمال ہو سکتی ہیں۔' },
+      { q: 'کون سے قراء شامل ہیں؟', a: 'قرآن پاک میں شیخ عبدالباسط، مشاری راشد العفاسی، سعد الغامدی، شیخ سودیس اور شیخ شریم جیسے نامور قراء شامل ہیں۔' },
+      { q: 'کیا تفسیر عثمانی شامل ہے؟', a: 'جی ہاں، تفسیر عثمانی ایپ کے تجربے کا مرکزی حصہ ہے، اردو تراجم اور دیگر زبانوں کے ساتھ۔' },
+      { q: 'کیا بک مارک کی سہولت موجود ہے؟', a: 'جی ہاں، قرآن پاک میں بک مارکس اور دیگر سٹڈی ٹولز موجود ہیں تاکہ آپ آیات اور پڑھنے کی جگہ آسانی سے دوبارہ دیکھ سکیں۔' }
+    ],
+    finalBadge: 'آج ہی شروع کریں',
+    finalTitle: 'قرآن سے اپنا تعلق مزید مضبوط بنائیں',
+    finalBody1: 'ہزاروں صارفین میں شامل ہوں جو مستند قرآنی تلاوت، اردو تراجم، تفسیر اور بامعنی اسلامی تعلیم کے لیے قرآن پاک پر اعتماد کرتے ہیں۔',
+    finalBody2: 'آج ہی قرآن پاک ڈاؤن لوڈ کریں اور روزمرہ روحانی ترقی کے لیے ایک خوبصورتی سے تیار کردہ قرآنی ساتھی کا تجربہ کریں۔',
+    finalAppStore: 'ایپ اسٹور پر ڈاؤن لوڈ کریں',
+    finalLearn: 'مزید جانیں',
+    footerDesc: 'قرآن پاک ایک فیچر رچ قرآن ایپ ہے جس میں اردو تراجم، تفسیر عثمانی، جدید تلاوتیں، اور طاقتور قرآنی مطالعہ کے ٹولز موجود ہیں۔'
+  },
+  ar: {
+    seoTitle: 'القرآن باك - تطبيق ترجمة القرآن بالأردية وتفسير عثماني',
+    seoDesc: 'حمّل القرآن باك الذي يضم ترجمات أردية موثوقة، وتفسير عثماني، وتلاوات قرآنية، وبحثًا متقدمًا، وأدوات قوية لتعلّم القرآن للمسلمين حول العالم.',
+    heroBadge: 'القرآن باك',
+    heroTitle: 'القرآن باك - ترجمات أردية وتفسير عثماني',
+    heroLead: 'اختبر جمال القرآن الكريم عبر ترجمات أردية موثوقة، وتفسير عثماني، وقراء مشهورين، وميزات تعليمية متقدمة صُممت للمسلمين حول العالم.',
+    heroBody: 'يجمع القرآن باك بين قراءة أنيقة للقرآن، وأدوات دراسة قوية، وتلاوات روحانية في تطبيق واحد جميل التصميم.',
+    appStore: 'حمّل من App Store',
+    explore: 'استكشف الميزات',
+    introTitle: 'تجربة قرآن كاملة للمسلمين الناطقين بالأردية',
+    introBody1: 'صُمم القرآن باك لمساعدة المستخدمين على قراءة القرآن الكريم وفهمه والتواصل معه بعمق من خلال ترجمات أردية موثوقة، وتفسير عثماني، وميزات تلاوة متقدمة، وتجربة قراءة سهلة.',
+    introBody2: 'بُني التطبيق مع التركيز على البساطة والأصالة، ليقدّم بيئة روحانية مخصصة للتلاوة اليومية والتعلّم والتأمل.',
+    highlights: ['تفسير عثماني', 'ترجمات أردية', 'تلاوات صوتية', 'بحث في القرآن', 'إشارات مرجعية', 'أوضاع قراءة'],
+    statsTitle: 'تقييمات App Store وعلامات الثقة',
+    stats: ['تقييم 4.9★', 'تجربة قرآن موجهة للأردية', 'تفسير عثماني مضمّن', 'بحث سريع وحفظ إشارات'],
+    featuresTitle: 'ميزات قوية لتعلّم قرآني أكثر معنى',
+    features: [
+      {
+        title: 'قراء القرآن المشهورون',
+        body: 'استمع إلى تلاوات جميلة من قراء عالميين مثل الشيخ عبد الباسط، مشاري راشد العفاسي، سعد الغامدي، الشيخ السديس، الشيخ الشريم وغيرهم الكثير.'
+      },
+      {
+        title: 'ترجمات أردية وتفسير عثماني',
+        body: 'اعرض الترجمات الأردية الموثوقة وتفسير عثماني الشهير لفهم معاني ورسالة القرآن الكريم بصورة أفضل.'
+      },
+      {
+        title: 'بحث متقدم في القرآن',
+        body: 'ابحث بسرعة في الآيات والكلمات والجذور والترجمات والتفسير عبر أدوات بحث متقدمة تجعل الدراسة أسهل وأكثر وصولًا.'
+      },
+      {
+        title: 'تحكم صوتي متقدم',
+        body: 'عزّز الحفظ والتلاوة عبر عناصر تحكم قابلة للتخصيص تشمل التكرار، وفواصل الآيات، وتكرار السور، وسرعة القراءة.'
+      }
+    ],
+    readingTitle: 'تجربة قراءة أنيقة ومريحة للقرآن',
+    readingBody: 'يوفّر القرآن باك تجربة قراءة نظيفة وخالية من التشتت مع نص عربي جميل، وتنقل سلس، وعناصر تحكم سهلة الاستخدام صُممت للتلاوة اليومية والتأمل.',
+    learningTitle: 'عمّق فهمك للقرآن',
+    learningBody: 'سواء كنت تقرأ للتأمل الروحي، أو تدرس التفسير، أو تحفظ الآيات، أو تستمع للتلاوات، فإن القرآن باك يوفّر الأدوات التي تدعم رحلتك القرآنية كل يوم.',
+    whyTitle: 'لماذا يختار المستخدمون القرآن باك',
+    why: [
+      {
+        title: 'تفسير أردي موثوق',
+        body: 'ترجمات أردية موثوقة وتفسير عثماني لفهم عميق للقرآن.'
+      },
+      {
+        title: 'تلاوات قرآنية مميزة',
+        body: 'استمع إلى تلاوات رائعة من قراء معترف بهم عالميًا.'
+      },
+      {
+        title: 'أدوات دراسة قوية',
+        body: 'بحث متقدم، وإشارات مرجعية، وتحكم صوتي لدعم التعلّم القرآني.'
+      },
+      {
+        title: 'تجربة استخدام نظيفة',
+        body: 'واجهة بسيطة وأنيقة وسهلة الاستخدام مخصصة للتلاوة اليومية المريحة.'
+      }
+    ],
+    testimonialsTitle: 'ماذا يقول القراء',
+    testimonials: [
+      { quote: 'من أفضل تطبيقات القرآن بالأردية التي رأيتها.', name: 'أمينة', meta: 'تقييم App Store' },
+      { quote: 'التفسير والبحث يجعلان الدراسة اليومية أسهل بكثير.', name: 'حسن', meta: 'آراء القراء' },
+      { quote: 'تصميم نظيف، وأدوات صوت قوية، وتجربة قراءة هادئة جدًا.', name: 'بلال', meta: 'مراجعة المجتمع' }
+    ],
+    faqTitle: 'الأسئلة الشائعة',
+    faqs: [
+      { q: 'هل يعمل القرآن باك دون اتصال؟', a: 'نعم، تعمل العديد من ميزات القراءة والدراسة دون اتصال بعد تحميل المحتوى أو تنزيله، مما يجعله مناسبًا للاستخدام اليومي.' },
+      { q: 'ما القراء المضمنون؟', a: 'يضم القرآن باك قراءات من قراء مشهورين مثل الشيخ عبد الباسط، ومشاري راشد العفاسي، وسعد الغامدي، والشيخ السديس، والشيخ الشريم.' },
+      { q: 'هل يتضمن تفسير عثماني؟', a: 'نعم، تفسير عثماني جزء أساسي من تجربة التطبيق إلى جانب الترجمات الأردية وخيارات لغات أخرى.' },
+      { q: 'هل يدعم التطبيق الإشارات المرجعية؟', a: 'نعم، يضم القرآن باك إشارات مرجعية وأدوات دراسة أخرى لتسهيل العودة إلى الآيات ومواقع القراءة.' }
+    ],
+    finalBadge: 'ابدأ اليوم',
+    finalTitle: 'قوِّ صلتك بالقرآن',
+    finalBody1: 'انضم إلى آلاف المستخدمين الذين يثقون بالقرآن باك للتلاوة القرآنية الأصيلة والترجمات الأردية والتفسير والتعلّم الإسلامي الهادف.',
+    finalBody2: 'حمّل القرآن باك اليوم واستمتع بمرافق قرآني مصمم بشكل جميل للنمو الروحي اليومي.',
+    finalAppStore: 'حمّل من App Store',
+    finalLearn: 'اعرف المزيد',
+    footerDesc: 'القرآن باك تطبيق غني بالميزات يقدم ترجمات أردية، وتفسير عثماني، وتلاوات متقدمة، وأدوات قوية لدراسة القرآن للمسلمين حول العالم.'
+  }
+}[lang];
+
+const heroScreens = [
+  { src: '/images/quranpak/unnamed.webp', alt: 'Quran Pak featured screen' },
+  { src: '/images/quranpak/unnamed (1).webp', alt: 'Quran Pak reading screen' },
+  { src: '/images/quranpak/unnamed (2).webp', alt: 'Quran Pak study screen' },
+  { src: '/images/quranpak/app3-1.webp', alt: 'Quran Pak prayer screen' }
+];
+
+const galleryScreens = [
+  '/images/quranpak/unnamed (3).webp',
+  '/images/quranpak/unnamed (4).webp',
+  '/images/quranpak/unnamed (5).webp',
+  '/images/quranpak/unnamed (6).webp',
+  '/images/quranpak/app3-1.webp'
+];
+
+const storeBadge = '/images/quranmajeed/Appstore.png';
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class={`qp-hero ${isRtl ? 'rtl' : ''}`}>
+    <div class="container qp-hero-grid">
+      <div class="qp-copy">
+        <span class="badge badge-primary qp-badge">{copy.heroBadge}</span>
+        <h1 class="qp-title">{copy.heroTitle}</h1>
+        <p class="qp-lead">{copy.heroLead}</p>
+        <p class="qp-body">{copy.heroBody}</p>
+
+        <div class="qp-cta-row">
+          <a href="https://apps.apple.com/us/search?term=Quran%20Pak" class="store-btn" target="_blank" rel="noopener noreferrer">
+            <img src={storeBadge} alt={copy.appStore} class="store-badge" />
+            <span>{copy.appStore}</span>
+          </a>
+          <a href="#features" class="btn btn-outline qp-explore">{copy.explore}</a>
+        </div>
+
+        <div class="highlight-bar" aria-label="Quran Pak highlights">
+          {copy.highlights.map(item => <span class="highlight-pill">{item}</span>)}
+        </div>
+      </div>
+
+      <aside class="qp-hero-visual card">
+        <div class="hero-visual-top">
+          <img src="/images/QP.webp" alt="Quran Pak logo" class="hero-logo" />
+          <div>
+            <p class="mini-label">{copy.statsTitle}</p>
+            <h2 class="hero-rating">4.9★</h2>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <img src={heroScreens[0].src} alt={heroScreens[0].alt} class="hero-main-shot" />
+          <div class="hero-mini-shot">
+            <img src={heroScreens[1].src} alt={heroScreens[1].alt} />
+            <img src={heroScreens[2].src} alt={heroScreens[2].alt} />
+          </div>
+        </div>
+
+        <div class="hero-proof-grid">
+          <div class="proof-chip">4.9★</div>
+          <div class="proof-chip">Urdu Tafsir</div>
+          <div class="proof-chip">Audio Recitations</div>
+          <div class="proof-chip">Advanced Search</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section qp-section-intro">
+    <div class="container qp-split">
+      <div class="qp-section-copy">
+        <span class="badge badge-primary">Introduction</span>
+        <h2 class="section-title">{copy.introTitle}</h2>
+        <p class="section-body">{copy.introBody1}</p>
+        <p class="section-body">{copy.introBody2}</p>
+      </div>
+      <div class="qp-stat-stack">
+        <div class="section-title-wrap tight">
+          <span class="badge badge-primary">{copy.statsTitle}</span>
+        </div>
+        <div class="stat-grid">
+          {copy.stats.map(stat => (
+            <div class="stat-card card">
+              <span class="stat-dot"></span>
+              <p>{stat}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section qp-section-features" id="features">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Features</span>
+        <h2 class="section-title">{copy.featuresTitle}</h2>
+      </div>
+      <div class="feature-grid">
+        {copy.features.map((feature, idx) => (
+          <article class="feature-card card">
+            <div class="feature-index">0{idx + 1}</div>
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section qp-reading-band">
+    <div class="container qp-media-grid">
+      <div class="qp-media-copy">
+        <span class="badge badge-primary">Reading</span>
+        <h2 class="section-title">{copy.readingTitle}</h2>
+        <p class="section-body">{copy.readingBody}</p>
+        <div class="mini-grid">
+          <div class="mini-card">Authentic Urdu script</div>
+          <div class="mini-card">Smooth navigation</div>
+          <div class="mini-card">Comfortable text layout</div>
+          <div class="mini-card">Daily reflection mode</div>
+        </div>
+      </div>
+      <div class="screenshot-carousel" aria-label="Quran Pak screenshots">
+        <img src={heroScreens[1].src} alt={heroScreens[1].alt} />
+        <img src={heroScreens[2].src} alt={heroScreens[2].alt} />
+        <img src={heroScreens[3].src} alt={heroScreens[3].alt} />
+        {galleryScreens.map((src, idx) => (
+          <img src={src} alt={`Quran Pak screenshot ${idx + 1}`} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section qp-learn-band">
+    <div class="container qp-split reverse">
+      <div class="qp-section-copy">
+        <span class="badge badge-primary">Learning</span>
+        <h2 class="section-title">{copy.learningTitle}</h2>
+        <p class="section-body">{copy.learningBody}</p>
+      </div>
+      <div class="why-grid">
+        {copy.why.map(item => (
+          <article class="why-card card">
+            <div class="why-icon">✦</div>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section qp-testimonials-band">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Testimonials</span>
+        <h2 class="section-title">{copy.testimonialsTitle}</h2>
+      </div>
+      <div class="testimonial-grid">
+        {copy.testimonials.map(testimonial => (
+          <article class="testimonial-card card">
+            <p class="testimonial-quote">“{testimonial.quote}”</p>
+            <div class="testimonial-meta">
+              <strong>{testimonial.name}</strong>
+              <span>{testimonial.meta}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section qp-faq-band">
+    <div class="container qp-faq-wrap">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">FAQ</span>
+        <h2 class="section-title">{copy.faqTitle}</h2>
+      </div>
+      <div class="faq-list">
+        {copy.faqs.map((faq, idx) => (
+          <details class="faq-item card" open={idx === 0}>
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section qp-final-band">
+    <div class="container qp-final-grid">
+      <div class="qp-section-copy">
+        <span class="badge badge-primary">{copy.finalBadge}</span>
+        <h2 class="section-title">{copy.finalTitle}</h2>
+        <p class="section-body">{copy.finalBody1}</p>
+        <p class="section-body">{copy.finalBody2}</p>
+        <div class="qp-cta-row">
+          <a href="https://apps.apple.com/us/search?term=Quran%20Pak" class="store-btn dark" target="_blank" rel="noopener noreferrer">
+            <img src={storeBadge} alt={copy.finalAppStore} class="store-badge" />
+            <span>{copy.finalAppStore}</span>
+          </a>
+          <a href="#features" class="btn btn-secondary">{copy.finalLearn}</a>
+        </div>
+      </div>
+      <aside class="final-panel card">
+        <img src="/images/QP.webp" alt="Quran Pak logo" class="final-logo" />
+        <p>{copy.footerDesc}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section qp-footer-summary">
+    <div class="container">
+      <p>{copy.footerDesc}</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .qp-hero {
+    padding: 4.5rem 0 2.75rem;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,249,240,.95)),
+      url('/images/quranmajeed/bg-18-Copy-Copy.jpg') center/cover no-repeat;
+  }
+
+  .qp-hero-grid,
+  .qp-split,
+  .qp-media-grid,
+  .qp-final-grid {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .qp-hero-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  }
+
+  .qp-copy,
+  .qp-section-copy {
+    max-width: 44rem;
+  }
+
+  .qp-badge,
+  .badge {
+    margin-bottom: 1rem;
+  }
+
+  .qp-title {
+    font-size: clamp(2.2rem, 4vw, 4.1rem);
+    line-height: 1.06;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .qp-lead {
+    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: var(--dark);
+  }
+
+  .qp-body,
+  .section-body,
+  .testimonial-quote,
+  .faq-item p {
+    color: var(--secondary-dark);
+    line-height: 1.75;
+    font-size: 1rem;
+  }
+
+  .qp-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1.5rem;
+  }
+
+  .store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .8rem 1rem;
+    border-radius: .5rem;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.94);
+    color: var(--dark);
+    font-weight: 600;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+
+  .store-btn:hover,
+  .store-btn:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(15,23,42,.08);
+    border-color: rgba(249,115,22,.35);
+  }
+
+  .store-btn.dark {
+    background: rgba(255,255,255,.12);
+    color: #fff;
+    border-color: rgba(255,255,255,.18);
+  }
+
+  .store-badge {
+    width: 1.35rem;
+    height: 1.35rem;
+    object-fit: contain;
+  }
+
+  .qp-explore {
+    align-self: center;
+  }
+
+  .highlight-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin-top: 1.35rem;
+  }
+
+  .highlight-pill,
+  .proof-chip,
+  .mini-card {
+    border-radius: .5rem;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.9);
+    padding: .5rem .75rem;
+    font-size: .92rem;
+    font-weight: 600;
+  }
+
+  .qp-hero-visual {
+    padding: 1.25rem;
+    overflow: hidden;
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 18px 38px rgba(15,23,42,.08);
+  }
+
+  .hero-visual-top {
+    display: flex;
+    gap: .9rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .hero-logo,
+  .final-logo {
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+    border-radius: .5rem;
+  }
+
+  .mini-label {
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--secondary-dark);
+    margin-bottom: .2rem;
+  }
+
+  .hero-rating {
+    font-size: 1.8rem;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .hero-panel {
+    display: grid;
+    gap: .9rem;
+  }
+
+  .hero-main-shot {
+    width: 100%;
+    aspect-ratio: 1.05 / 1;
+    object-fit: cover;
+    border-radius: .5rem;
+    border: 1px solid var(--border);
+  }
+
+  .hero-mini-shot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem;
+  }
+
+  .hero-mini-shot img,
+  .screenshot-carousel img {
+    width: 100%;
+    border-radius: .5rem;
+    border: 1px solid var(--border);
+    object-fit: cover;
+    background: #fff;
+  }
+
+  .hero-mini-shot img {
+    aspect-ratio: 1 / 1.15;
+  }
+
+  .hero-proof-grid {
+    display: flex;
+    gap: .6rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .proof-chip {
+    background: rgba(249,115,22,.08);
+    border-color: rgba(249,115,22,.15);
+  }
+
+  .qp-section-intro,
+  .qp-section-features,
+  .qp-testimonials-band {
+    padding-top: 1.5rem;
+  }
+
+  .qp-split {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 1fr);
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 2.6vw, 3rem);
+    line-height: 1.12;
+    margin-bottom: 1rem;
+  }
+
+  .stat-grid,
+  .feature-grid,
+  .testimonial-grid,
+  .why-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat-card,
+  .feature-card,
+  .testimonial-card,
+  .why-card {
+    padding: 1rem;
+    border-radius: .5rem;
+    background: rgba(255,255,255,.96);
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 24px rgba(15,23,42,.05);
+  }
+
+  .stat-card {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+  }
+
+  .stat-dot {
+    width: .7rem;
+    height: .7rem;
+    border-radius: 999px;
+    background: var(--primary);
+    flex: none;
+  }
+
+  .feature-grid,
+  .testimonial-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feature-card h3,
+  .why-card h3 {
+    margin: .75rem 0 .5rem;
+    font-size: 1.1rem;
+  }
+
+  .feature-index {
+    width: 2rem;
+    height: 2rem;
+    display: inline-grid;
+    place-items: center;
+    border-radius: .5rem;
+    background: rgba(249,115,22,.12);
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  .qp-reading-band,
+  .qp-learn-band,
+  .qp-final-band {
+    background: rgba(255,250,244,.7);
+  }
+
+  .qp-media-grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .screenshot-carousel {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(160px, 1fr);
+    gap: .85rem;
+    overflow-x: auto;
+    padding-bottom: .25rem;
+    scroll-snap-type: x proximity;
+  }
+
+  .screenshot-carousel img {
+    aspect-ratio: 9 / 16;
+    scroll-snap-align: start;
+  }
+
+  .mini-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .75rem;
+    margin-top: 1.2rem;
+  }
+
+  .why-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .why-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: .5rem;
+    display: inline-grid;
+    place-items: center;
+    background: rgba(249,115,22,.1);
+    color: var(--primary);
+    font-size: 1rem;
+    margin-bottom: .6rem;
+  }
+
+  .testimonial-quote {
+    font-size: 1.02rem;
+    margin-bottom: .9rem;
+  }
+
+  .testimonial-meta {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+  }
+
+  .faq-list {
+    display: grid;
+    gap: .8rem;
+  }
+
+  .faq-item {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1rem 1.1rem;
+    font-weight: 700;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item p {
+    padding: 0 1.1rem 1rem;
+    margin: 0;
+  }
+
+  .qp-final-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.75fr);
+  }
+
+  .final-panel {
+    padding: 1.25rem;
+    border-radius: .5rem;
+    background: linear-gradient(180deg, rgba(15,23,42,.95), rgba(30,41,59,.92));
+    color: #fff;
+  }
+
+  .final-panel p {
+    margin-top: .9rem;
+    color: rgba(255,255,255,.9);
+    line-height: 1.75;
+  }
+
+  .qp-footer-summary p {
+    color: var(--secondary-dark);
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .qp-hero-grid,
+    .qp-split,
+    .qp-media-grid,
+    .qp-final-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .qp-hero-visual {
+      order: -1;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .qp-hero {
+      padding-top: 3.2rem;
+    }
+
+    .feature-grid,
+    .testimonial-grid,
+    .why-grid,
+    .stat-grid,
+    .mini-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-mini-shot {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-proof-grid,
+    .highlight-bar,
+    .qp-cta-row {
+      gap: .55rem;
+    }
+  }
+
+  :global(html[dir='rtl']) .qp-hero-grid,
+  :global(html[dir='rtl']) .qp-split,
+  :global(html[dir='rtl']) .qp-media-grid,
+  :global(html[dir='rtl']) .qp-final-grid {
+    direction: rtl;
+  }
+
+  :global(html[dir='rtl']) .qp-copy,
+  :global(html[dir='rtl']) .qp-section-copy,
+  :global(html[dir='rtl']) .section-title-wrap,
+  :global(html[dir='rtl']) .testimonial-meta,
+  :global(html[dir='rtl']) .final-panel {
+    text-align: start;
+  }
+</style>

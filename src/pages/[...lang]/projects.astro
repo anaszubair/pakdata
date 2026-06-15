@@ -1,0 +1,349 @@
+---
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getLangFromUrl, useTranslations, getRelativeLocaleUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+
+const title = t('projects.seo.title');
+const description = t('projects.seo.desc');
+
+const caseStudies = [
+  {
+    id: "nadra",
+    title: t('projects.items.nadra.title'),
+    client: t('projects.items.nadra.client'),
+    description: t('projects.items.nadra.desc'),
+    scale: t('projects.items.nadra.scale'),
+    metrics: [t('projects.items.nadra.metric1'), t('projects.items.nadra.metric2')],
+    tags: [t('projects.items.nadra.tag1'), t('projects.items.nadra.tag2'), t('projects.items.nadra.tag3')],
+    challenge: t('projects.items.nadra.challenge'),
+    solution: t('projects.items.nadra.solution'),
+    impact: t('projects.items.nadra.impact')
+  },
+  {
+    id: "king-fahad",
+    title: t('projects.items.kf.title'),
+    client: t('projects.items.kf.client'),
+    description: t('projects.items.kf.desc'),
+    scale: t('projects.items.kf.scale'),
+    metrics: [t('projects.items.kf.metric1'), t('projects.items.kf.metric2')],
+    tags: [t('projects.items.kf.tag1'), t('projects.items.kf.tag2'), t('projects.items.kf.tag3')],
+    challenge: t('projects.items.kf.challenge'),
+    solution: t('projects.items.kf.solution'),
+    impact: t('projects.items.kf.impact')
+  },
+  {
+    id: "quran-explorer",
+    title: t('projects.items.qe.title'),
+    client: t('projects.items.qe.client'),
+    description: t('projects.items.qe.desc'),
+    scale: t('projects.items.qe.scale'),
+    metrics: [t('projects.items.qe.metric1'), t('projects.items.qe.metric2')],
+    tags: [t('projects.items.qe.tag1'), t('projects.items.qe.tag2'), t('projects.items.qe.tag3')],
+    challenge: t('projects.items.qe.challenge'),
+    solution: t('projects.items.qe.solution'),
+    impact: t('projects.items.qe.impact')
+  },
+  {
+    id: "nara",
+    title: t('projects.items.nara.title'),
+    client: t('projects.items.nara.client'),
+    description: t('projects.items.nara.desc'),
+    scale: t('projects.items.nara.scale'),
+    metrics: [t('projects.items.nara.metric1'), t('projects.items.nara.metric2')],
+    tags: [t('projects.items.nara.tag1'), t('projects.items.nara.tag2'), t('projects.items.nara.tag3')],
+    challenge: t('projects.items.nara.challenge'),
+    solution: t('projects.items.nara.solution'),
+    impact: t('projects.items.nara.impact')
+  },
+  {
+    id: "imagine",
+    title: t('projects.items.imagine.title'),
+    client: t('projects.items.imagine.client'),
+    description: t('projects.items.imagine.desc'),
+    scale: t('projects.items.imagine.scale'),
+    metrics: [t('projects.items.imagine.metric1'), t('projects.items.imagine.metric2')],
+    tags: [t('projects.items.imagine.tag1'), t('projects.items.imagine.tag2'), t('projects.items.imagine.tag3')],
+    challenge: t('projects.items.imagine.challenge'),
+    solution: t('projects.items.imagine.solution'),
+    impact: t('projects.items.imagine.impact')
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="projects-hero">
+    <div class="container text-center animate-fade-in">
+      <span class="badge badge-primary">{t('projects.hero.badge')}</span>
+      <h1 class="projects-hero-title">{t('projects.hero.title')}</h1>
+      <p class="projects-hero-subtitle">
+        {t('projects.hero.subtitle')}
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2 project-cards-grid">
+        {caseStudies.map(cs => (
+          <ProjectCard {...cs} detailsUrl={getRelativeLocaleUrl(lang, `/projects#details-${cs.id}`)} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Deep Dive Case Studies Details -->
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge badge-primary">{t('projects.deepdive.badge')}</span>
+        <h2 class="section-title">{t('projects.deepdive.title')}</h2>
+        <p class="section-subtitle">{t('projects.deepdive.subtitle')}</p>
+      </div>
+
+      <div class="case-details-stack">
+        {caseStudies.map(cs => (
+          <div class="case-detail-block card" id={`details-${cs.id}`}>
+            <div class="case-detail-header">
+              <div>
+                <span class="detail-client">{cs.client}</span>
+                <h3 class="detail-title">{cs.title}</h3>
+              </div>
+              <span class="badge badge-success detail-scale">{cs.scale}</span>
+            </div>
+            
+            <div class="detail-grid">
+              <div class="detail-col">
+                <h4 class="col-heading">{t('projects.deepdive.challenge')}</h4>
+                <p class="col-text">{cs.challenge}</p>
+              </div>
+              
+              <div class="detail-col">
+                <h4 class="col-heading">{t('projects.deepdive.solution')}</h4>
+                <p class="col-text">{cs.solution}</p>
+              </div>
+
+              <div class="detail-col">
+                <h4 class="col-heading">{t('projects.deepdive.impact')}</h4>
+                <p class="col-text">{cs.impact}</p>
+              </div>
+            </div>
+
+            <div class="detail-footer">
+              <div class="detail-tags">
+                {cs.tags.map(tag => (
+                  <span class="tag-badge">{tag}</span>
+                ))}
+              </div>
+              <div class="detail-metrics">
+                {cs.metrics.map(metric => (
+                  <span class="metric-badge">{metric}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section projects-footer-cta">
+    <div class="container text-center text-white">
+      <h2 class="cta-title">{t('projects.cta.title')}</h2>
+      <p class="cta-desc">
+        {t('projects.cta.desc')}
+      </p>
+      <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-lg btn-white-text" id="consultation-btn">{t('projects.cta.btn')}</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .projects-hero {
+    text-align: center;
+    background: radial-gradient(at 20% 0%,oklch(97% .04 60) 0%,transparent 50%),radial-gradient(at 80% 20%,oklch(96% .03 220) 0%,transparent 50%),linear-gradient(180deg,oklch(99% .005 80),oklch(100% 0 0));
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .projects-hero-title {
+    font-size: calc(2rem * var(--text-scale, 1));
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .projects-hero-subtitle {
+    font-size: calc(1.25rem * var(--text-scale, 1));
+    color: var(--secondary-dark);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Deep Dive blocks */
+  .case-details-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .case-detail-block {
+    border-left: 5px solid var(--primary);
+    padding: 3rem;
+  }
+
+  .case-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .detail-client {
+    font-size: calc(0.8125rem * var(--text-scale, 1));
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .detail-title {
+    font-size: calc(1.5rem * var(--text-scale, 1));
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .detail-scale {
+    font-size: calc(0.8125rem * var(--text-scale, 1));
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .col-heading {
+    font-size: calc(1.125rem * var(--text-scale, 1));
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .col-text {
+    font-size: calc(0.9375rem * var(--text-scale, 1));
+    color: var(--secondary-dark);
+    line-height: 1.65;
+  }
+
+  .detail-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .detail-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag-badge {
+    font-size: calc(0.75rem * var(--text-scale, 1));
+    font-weight: 600;
+    padding: 0.25rem 0.625rem;
+    background-color: var(--secondary-light);
+    color: var(--secondary-dark);
+    border-radius: 0.375rem;
+  }
+
+  .detail-metrics {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .metric-badge {
+    font-size: calc(0.75rem * var(--text-scale, 1));
+    font-weight: 700;
+    padding: 0.25rem 0.625rem;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border: 1px solid var(--border-focus);
+    border-radius: 0.375rem;
+  }
+
+  /* Projects CTA footer */
+  .projects-footer-cta {
+    background-color: var(--dark);
+    padding: 5rem 0;
+  }
+
+  .text-white {
+    color: var(--light);
+  }
+
+  .text-white .cta-title {
+    color: var(--light);
+    font-size: calc(1.875rem * var(--text-scale, 1));
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .text-white .cta-desc {
+    color: #9ca3af;
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+    font-size: calc(1.125rem * var(--text-scale, 1));
+  }
+
+  .btn-white-text {
+    background-color: var(--primary);
+    color: var(--light);
+  }
+
+  .btn-white-text:hover {
+    background-color: var(--primary-hover);
+  }
+
+  @media (min-width: 640px) {
+    .projects-hero-title {
+      font-size: calc(2.5rem * var(--text-scale, 1));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .projects-hero-title {
+      font-size: calc(3rem * var(--text-scale, 1));
+    }
+
+    .detail-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

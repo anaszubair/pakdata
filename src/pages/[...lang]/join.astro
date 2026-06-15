@@ -1,25 +1,38 @@
 ---
-import Layout from '../layouts/Layout.astro';
 
-const title = "Careers | Pakistan Data Management Services";
-const description = "Join a passionate team building technology that makes a global difference. Explore career openings for iOS developers, Android developers, QA engineers, and designers.";
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+
+const title = t('join.seo.title');
+const description = t('join.seo.desc');
 
 const benefits = [
   {
-    title: "Global Scale & Impact",
-    desc: "Your code and designs will immediately serve over 100M+ users globally, making a real impact on their spiritual and language communication habits."
+    title: t('join.benefit.scale.title'),
+    desc: t('join.benefit.scale.desc')
   },
   {
-    title: "Purpose-Driven Culture",
-    desc: "Work on products that matter, combining technology with classical Islamic scholarship and native multilingual systems."
+    title: t('join.benefit.purpose.title'),
+    desc: t('join.benefit.purpose.desc')
   },
   {
-    title: "Mentorship & Growth",
-    desc: "Learn from pioneers of localized computing in Pakistan, and build expertise in complex layouts, high-traffic APIs, and modern codebases."
+    title: t('join.benefit.growth.title'),
+    desc: t('join.benefit.growth.desc')
   },
   {
-    title: "Collaborative Workspace",
-    desc: "A friendly, cross-discipline environment where engineers, scholars, writers, and UX designers sit together to solve problems."
+    title: t('join.benefit.workspace.title'),
+    desc: t('join.benefit.workspace.desc')
   }
 ];
 
@@ -27,58 +40,65 @@ const jobs = [
   {
     id: "ios-dev",
     dept: "engineering",
-    title: "Senior iOS Developer",
-    type: "Full-Time",
-    location: "Karachi (Hybrid)",
-    desc: "Build high-performance iOS applications (such as Quran Majeed and EasyUrdu) using Swift, UIKit, SwiftUI, and custom text engines. Optimize memory, layout rendering, and local database storage systems."
+    deptLabel: t('join.dept.engineering'),
+    title: t('join.jobs.ios.title'),
+    type: t('join.job.type.full'),
+    location: t('join.job.location.khi.hybrid'),
+    desc: t('join.jobs.ios.desc')
   },
   {
     id: "android-dev",
     dept: "engineering",
-    title: "Senior Android Developer",
-    type: "Full-Time",
-    location: "Karachi (Hybrid)",
-    desc: "Develop scalable Android applications utilizing clean architecture, Kotlin, Jetpack Compose, and local notification pipelines. Responsible for maintaining stable widget layouts and audio playback synchronization."
+    deptLabel: t('join.dept.engineering'),
+    title: t('join.jobs.android.title'),
+    type: t('join.job.type.full'),
+    location: t('join.job.location.khi.hybrid'),
+    desc: t('join.jobs.android.desc')
   },
   {
     id: "qa-eng",
     dept: "engineering",
-    title: "Software Quality Assurance Engineer",
-    type: "Full-Time",
-    location: "Karachi (On-site)",
-    desc: "Ensure product excellence through continuous functional testing, layout checks, automation suites, and verified spelling tests of scripture translations. Maintain detailed bug sheets and validation reports."
+    deptLabel: t('join.dept.engineering'),
+    title: t('join.jobs.qa.title'),
+    type: t('join.job.type.full'),
+    location: t('join.job.location.khi.onsite'),
+    desc: t('join.jobs.qa.desc')
   },
   {
     id: "mkt-mgr",
     dept: "marketing",
-    title: "Digital Marketing Manager",
-    type: "Full-Time",
-    location: "Remote / Hybrid",
-    desc: "Drive global user acquisition, manage advertising budgets across Google/Apple platforms, optimize App Store Listings (ASO), and lead branding campaigns for our Islamic applications catalog."
+    deptLabel: t('join.dept.marketing'),
+    title: t('join.jobs.marketing.title'),
+    type: t('join.job.type.full'),
+    location: t('join.job.location.remote'),
+    desc: t('join.jobs.marketing.desc')
   },
   {
     id: "support-exec",
     dept: "support",
-    title: "Support Executive",
-    type: "Shift-based",
-    location: "Karachi (On-site)",
-    desc: "Provide technical assistance to users worldwide regarding app subscription restoration, prayer timings calculation parameters, notifications troubleshooting, and native language typing integrations."
+    deptLabel: t('join.dept.support'),
+    title: t('join.jobs.support.title'),
+    type: t('join.job.type.shift'),
+    location: t('join.job.location.khi.onsite'),
+    desc: t('join.jobs.support.desc')
   },
   {
     id: "motion-des",
     dept: "creative",
-    title: "Motion Graphic Designer",
-    type: "Full-Time",
-    location: "Karachi (On-site)",
-    desc: "Create engaging UI animations, marketing promotional videos, educational tutorials (for 3D Salah Guide), and social assets. Expert in Adobe After Effects, Premiere, and 3D modeling tools."
+    deptLabel: t('join.dept.creative'),
+    title: t('join.jobs.motion.title'),
+    type: t('join.job.type.full'),
+    location: t('join.job.location.khi.onsite'),
+    desc: t('join.jobs.motion.desc')
   },
   {
     id: "content-writer",
     dept: "creative",
-    title: "Creative Content Writer",
-    type: "Full-Time",
-    location: "Remote / Hybrid",
-    desc: "Craft copy for mobile store pages, onboarding screens, product websites, and marketing newsletters. Help translate complex technical parameters into friendly, helpful explanations."
+    deptLabel: t('join.dept.creative'),
+    title: t('join.jobs.writer.title'),
+    type: t('join.job.type.full'),
+    location: t('join.job.location.remote'),
+    desc: t('join.jobs.writer.desc')
   }
 ];
 ---
@@ -87,14 +107,14 @@ const jobs = [
   <!-- Hero Section -->
   <section class="join-hero">
     <div class="container text-center animate-fade-in">
-      <span class="badge badge-primary">Work With Us</span>
-      <h1 class="join-hero-title">Build Technology That Makes a Meaningful Difference</h1>
+      <span class="badge badge-primary">{t('join.hero.badge')}</span>
+      <h1 class="join-hero-title">{t('join.hero.title')}</h1>
       <p class="join-hero-subtitle">
-        Become part of a passionate team shaping the future of Islamic applications and localized mobile computing.
+        {t('join.hero.subtitle')}
       </p>
       <div class="hero-actions">
-        <a href="#openings" class="btn btn-primary btn-lg" id="view-openings-cta-btn">View Open Positions</a>
-        <a href="#benefits" class="btn btn-secondary btn-lg" id="view-benefits-cta-btn">Why Join Us?</a>
+        <a href="#openings" class="btn btn-primary btn-lg" id="view-openings-cta-btn">{t('join.hero.btn.openings')}</a>
+        <a href="#benefits" class="btn btn-secondary btn-lg" id="view-benefits-cta-btn">{t('join.hero.btn.benefits')}</a>
       </div>
     </div>
   </section>
@@ -103,9 +123,9 @@ const jobs = [
   <section class="section section-bg" id="benefits">
     <div class="container">
       <div class="section-title-wrap">
-        <span class="badge badge-primary">Perks & Growth</span>
-        <h2 class="section-title">What You'll Gain at PDMS</h2>
-        <p class="section-subtitle">We invest in our people's workspace, professional development, and long-term career growth.</p>
+        <span class="badge badge-primary">{t('join.benefits.badge')}</span>
+        <h2 class="section-title">{t('join.benefits.title')}</h2>
+        <p class="section-subtitle">{t('join.benefits.subtitle')}</p>
       </div>
 
       <div class="grid grid-2">
@@ -126,18 +146,18 @@ const jobs = [
   <section class="section" id="openings">
     <div class="container">
       <div class="section-title-wrap">
-        <span class="badge badge-primary">Careers</span>
-        <h2 class="section-title">Current Opportunities</h2>
-        <p class="section-subtitle">Explore exciting career opportunities and become part of our growing team.</p>
+        <span class="badge badge-primary">{t('join.openings.badge')}</span>
+        <h2 class="section-title">{t('join.openings.title')}</h2>
+        <p class="section-subtitle">{t('join.openings.subtitle')}</p>
       </div>
 
       <!-- Filters -->
       <div class="filter-wrap">
-        <button class="filter-btn active" data-dept="all" id="filter-all">All Departments</button>
-        <button class="filter-btn" data-dept="engineering" id="filter-eng">Engineering</button>
-        <button class="filter-btn" data-dept="creative" id="filter-creative">Creative & Design</button>
-        <button class="filter-btn" data-dept="marketing" id="filter-marketing">Marketing</button>
-        <button class="filter-btn" data-dept="support" id="filter-support">Customer Support</button>
+        <button class="filter-btn active" data-dept="all" id="filter-all">{t('join.filter.all')}</button>
+        <button class="filter-btn" data-dept="engineering" id="filter-eng">{t('join.filter.engineering')}</button>
+        <button class="filter-btn" data-dept="creative" id="filter-creative">{t('join.filter.creative')}</button>
+        <button class="filter-btn" data-dept="marketing" id="filter-marketing">{t('join.filter.marketing')}</button>
+        <button class="filter-btn" data-dept="support" id="filter-support">{t('join.filter.support')}</button>
       </div>
 
       <!-- Job Cards Grid -->
@@ -146,7 +166,7 @@ const jobs = [
           <div class="job-item-container card" data-dept={job.dept}>
             <div class="job-card-header">
               <div>
-                <span class="badge badge-primary job-dept-badge">{job.dept}</span>
+                <span class="badge badge-primary job-dept-badge">{job.deptLabel}</span>
                 <h3 class="job-title">{job.title}</h3>
               </div>
               <div class="job-meta-info text-right">
@@ -158,7 +178,7 @@ const jobs = [
             <p class="job-desc">{job.desc}</p>
             
             <div class="job-actions">
-              <button class="btn btn-outline btn-sm apply-now-trigger" data-title={job.title} id={`apply-trigger-${job.id}`}>Apply Now</button>
+              <button class="btn btn-outline btn-sm apply-now-trigger" data-title={job.title} data-default-title={t('join.modal.defaultPosition')} id={`apply-trigger-${job.id}`}>{t('join.job.apply')}</button>
             </div>
           </div>
         ))}
@@ -170,36 +190,36 @@ const jobs = [
   <div class="apply-modal" id="apply-modal-box">
     <div class="modal-content card">
       <button class="close-modal" id="close-modal-btn">&times;</button>
-      <h3 class="modal-title">Apply for Position</h3>
-      <p class="modal-position-name" id="modal-target-position">Senior iOS Developer</p>
+      <h3 class="modal-title">{t('join.modal.title')}</h3>
+      <p class="modal-position-name" id="modal-target-position">{t('join.jobs.ios.title')}</p>
       
-      <form class="apply-form" id="career-apply-form">
+      <form class="apply-form" id="career-apply-form" data-alert-msg={t('join.modal.alert')} data-default-name={t('join.modal.defaultApplicant')}>
         <div class="form-group">
-          <label class="form-label" for="applicant-name">Full Name</label>
-          <input type="text" id="applicant-name" required class="form-control" placeholder="Enter your full name" />
+          <label class="form-label" for="applicant-name">{t('join.modal.name.label')}</label>
+          <input type="text" id="applicant-name" required class="form-control" placeholder={t('join.modal.name.placeholder')} />
         </div>
         
         <div class="form-group">
-          <label class="form-label" for="applicant-email">Email Address</label>
-          <input type="email" id="applicant-email" required class="form-control" placeholder="name@example.com" />
+          <label class="form-label" for="applicant-email">{t('join.modal.email.label')}</label>
+          <input type="email" id="applicant-email" required class="form-control" placeholder={t('join.modal.email.placeholder')} />
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="applicant-phone">Phone Number</label>
-          <input type="tel" id="applicant-phone" required class="form-control" placeholder="+92 300 1234567" />
+          <label class="form-label" for="applicant-phone">{t('join.modal.phone.label')}</label>
+          <input type="tel" id="applicant-phone" required class="form-control" placeholder={t('join.modal.phone.placeholder')} />
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="applicant-resume">Link to CV / Portfolio</label>
-          <input type="url" id="applicant-resume" required class="form-control" placeholder="https://drive.google.com/your-cv-link" />
+          <label class="form-label" for="applicant-resume">{t('join.modal.resume.label')}</label>
+          <input type="url" id="applicant-resume" required class="form-control" placeholder={t('join.modal.resume.placeholder')} />
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="applicant-cover">Brief Cover Note</label>
-          <textarea id="applicant-cover" class="form-control" placeholder="Why do you want to join PDMS?"></textarea>
+          <label class="form-label" for="applicant-cover">{t('join.modal.cover.label')}</label>
+          <textarea id="applicant-cover" class="form-control" placeholder={t('join.modal.cover.placeholder')}></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary w-100" id="submit-career-btn">Submit Application</button>
+        <button type="submit" class="btn btn-primary w-100" id="submit-career-btn">{t('join.modal.btn')}</button>
       </form>
     </div>
   </div>
@@ -207,11 +227,11 @@ const jobs = [
   <!-- HR Contact Info -->
   <section class="section section-bg text-center">
     <div class="container max-width-600">
-      <h2 class="hr-title">Direct Recruitment Inquiries</h2>
+      <h2 class="hr-title">{t('join.hr.title')}</h2>
       <p class="hr-desc">
-        Don't see an open role matching your skill set? You can send your resume, cover letter, and portfolio link directly to our human resources team.
+        {t('join.hr.desc')}
       </p>
-      <a href="mailto:careers@pakdata.com" class="btn btn-outline" id="email-hr-btn">Email: careers@pakdata.com</a>
+      <a href="mailto:careers@pakdata.com" class="btn btn-outline" id="email-hr-btn">{t('join.hr.btn')}</a>
     </div>
   </section>
 </Layout>
@@ -225,7 +245,7 @@ const jobs = [
   }
 
   .join-hero-title {
-    font-size: 2rem;
+    font-size: calc(2rem * var(--text-scale, 1));
     font-weight: 600;
     margin-bottom: 1.25rem;
     letter-spacing: -0.01em;
@@ -236,7 +256,7 @@ const jobs = [
   }
 
   .join-hero-subtitle {
-    font-size: 1.25rem;
+    font-size: calc(1.25rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     max-width: 700px;
     margin: 0 auto 2.5rem auto;
@@ -260,7 +280,7 @@ const jobs = [
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    font-size: 1.125rem;
+    font-size: calc(1.125rem * var(--text-scale, 1));
     font-weight: 600;
     color: var(--dark);
     margin-bottom: 0.75rem;
@@ -271,7 +291,7 @@ const jobs = [
   }
 
   .benefit-desc {
-    font-size: 0.9375rem;
+    font-size: calc(0.9375rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     line-height: 1.6;
     margin-bottom: 0;
@@ -292,7 +312,7 @@ const jobs = [
     color: var(--secondary-dark);
     padding: 0.5rem 1.25rem;
     border-radius: 9999px;
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     font-weight: 600;
     cursor: pointer;
     transition: all var(--transition-normal);
@@ -335,12 +355,12 @@ const jobs = [
 
   .job-dept-badge {
     text-transform: uppercase;
-    font-size: 0.6875rem;
+    font-size: calc(0.6875rem * var(--text-scale, 1));
     margin-bottom: 0.5rem;
   }
 
   .job-title {
-    font-size: 1.25rem;
+    font-size: calc(1.25rem * var(--text-scale, 1));
     font-weight: 600;
     color: var(--dark);
   }
@@ -352,7 +372,7 @@ const jobs = [
   }
 
   .job-tag {
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * var(--text-scale, 1));
     font-weight: 700;
     padding: 0.25rem 0.625rem;
     border-radius: 0.375rem;
@@ -368,7 +388,7 @@ const jobs = [
   }
 
   .job-desc {
-    font-size: 0.9375rem;
+    font-size: calc(0.9375rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     line-height: 1.6;
     margin-bottom: 1.5rem;
@@ -415,7 +435,7 @@ const jobs = [
     position: absolute;
     top: 1rem;
     right: 1.5rem;
-    font-size: 2rem;
+    font-size: calc(2rem * var(--text-scale, 1));
     background: none;
     border: none;
     cursor: pointer;
@@ -428,13 +448,13 @@ const jobs = [
   }
 
   .modal-title {
-    font-size: 1.375rem;
+    font-size: calc(1.375rem * var(--text-scale, 1));
     font-weight: 600;
     margin-bottom: 0.25rem;
   }
 
   .modal-position-name {
-    font-size: 0.9375rem;
+    font-size: calc(0.9375rem * var(--text-scale, 1));
     color: var(--primary);
     font-weight: 700;
     margin-bottom: 2rem;
@@ -454,7 +474,7 @@ const jobs = [
   }
 
   .hr-title {
-    font-size: 1.5rem;
+    font-size: calc(1.5rem * var(--text-scale, 1));
     font-weight: 600;
     margin-bottom: 1rem;
   }
@@ -466,13 +486,13 @@ const jobs = [
 
   @media (min-width: 640px) {
     .join-hero-title {
-      font-size: 2.5rem;
+      font-size: calc(2.5rem * var(--text-scale, 1));
     }
   }
 
   @media (min-width: 768px) {
     .join-hero-title {
-      font-size: 3rem;
+      font-size: calc(3rem * var(--text-scale, 1));
     }
   }
 </style>
@@ -510,7 +530,7 @@ const jobs = [
   if (applyTriggers.length > 0 && applyModal && modalTargetPos) {
     applyTriggers.forEach(btn => {
       btn.addEventListener('click', () => {
-        const jobTitle = btn.getAttribute('data-title') || "Position";
+        const jobTitle = btn.getAttribute('data-title') || btn.getAttribute('data-default-title') || '';
         modalTargetPos.textContent = jobTitle;
         applyModal.classList.add('active');
         document.body.classList.add('overflow-hidden');
@@ -535,7 +555,9 @@ const jobs = [
     careerApplyForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const applicantName = document.getElementById('applicant-name') as HTMLInputElement;
-      alert(`Thank you, ${applicantName?.value || 'Applicant'}! Your application for the role has been successfully submitted to our HR team.`);
+      const defaultName = careerApplyForm.dataset.defaultName || 'Applicant';
+      const alertMsg = careerApplyForm.dataset.alertMsg || '';
+      alert(`${applicantName?.value || defaultName}: ${alertMsg}`);
       applyModal?.classList.remove('active');
       document.body.classList.remove('overflow-hidden');
       careerApplyForm.reset();

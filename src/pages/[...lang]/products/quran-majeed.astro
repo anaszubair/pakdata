@@ -1,0 +1,973 @@
+---
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: {
+    seoTitle: 'Quran Majeed - Complete Quran App with Prayer Times, Tafsir & Audio Recitations',
+    seoDesc: 'Download Quran Majeed, the trusted Quran app featuring audio recitations, translations, tafsir, prayer timings, Qibla compass, and advanced Islamic tools for Muslims worldwide.',
+    heroBadge: 'Quran Majeed',
+    heroTitle: 'Quran Majeed - The Complete Quran App for Muslims Worldwide',
+    heroLead: 'Experience the Holy Quran through a beautifully designed and feature-rich application trusted by millions of Muslims around the world.',
+    heroBody: 'Read the Quran with authentic Arabic script, translations, tafsir, audio recitations, prayer timings, Qibla direction, Islamic tools, and personalized learning features - all in one powerful platform.',
+    googlePlay: 'Download on Google Play',
+    appStore: 'Download on App Store',
+    explore: 'Explore Features',
+    trustTitle: 'Trusted by Millions Worldwide',
+    trustStats: [
+      'Millions of Downloads Worldwide',
+      'Available on iOS & Android',
+      'Multiple Quran Fonts & Themes',
+      'Advanced Prayer & Quran Features',
+      'Global Muslim Community Trust'
+    ],
+    featuresTitle: 'Powerful Features Designed for Every Muslim',
+    featureCards: [
+      {
+        title: 'Advanced Audio Recitations',
+        body: 'Listen to high-quality Quran recitations from world-renowned Qaris with customizable playback controls, repeat options, and bookmarking features.'
+      },
+      {
+        title: 'Multiple Translations & Tafsir',
+        body: 'Access Quran translations and tafsir in multiple languages to deepen understanding and spiritual reflection.'
+      },
+      {
+        title: 'Prayer Times & Qibla Direction',
+        body: 'Stay connected to your daily prayers with accurate prayer timings, Qibla compass, Azan notifications, and Islamic calendar support.'
+      },
+      {
+        title: 'Personalized Reading Experience',
+        body: 'Customize your Quran reading experience with multiple Arabic fonts, themes, text sizes, night mode, and advanced reading settings.'
+      }
+    ],
+    readingTitle: 'A Beautiful & Personalized Quran Reading Experience',
+    readingBody1: 'Quran Majeed provides a clean, immersive, and distraction-free reading environment designed to help users connect deeply with the Holy Quran.',
+    readingBody2: 'Choose from multiple authentic Quran scripts, customize themes and text settings, and enjoy a smooth reading experience tailored to your preferences.',
+    themesTitle: 'Customize Your Experience',
+    themesBody: 'Personalize your Quran reading journey with elegant themes, multiple display modes, adjustable text settings, and user-friendly accessibility options designed for comfort and convenience.',
+    salientTitle: 'Everything You Need in One Quran App',
+    salientItems: ['Quran Audio Recitations', 'Multiple Quran Fonts', 'Translation & Tafsir', 'Prayer Timings', 'Qibla Compass', 'Bookmarks & Notes', 'Auto Scroll & Reading Modes', 'Night Mode', 'Islamic Calendar', 'Verse Sharing', 'Word-by-Word Learning', 'Advanced Search Features'],
+    dailyTitle: 'Stay Spiritually Connected Every Day',
+    dailyBody: 'Whether you are reading the Quran, listening to recitations, tracking prayer timings, or learning through tafsir and translations, Quran Majeed helps you stay connected with your faith anytime and anywhere.',
+    videoTitle: 'Learn More with Video Guides',
+    videoBody: 'Explore tutorials, feature walkthroughs, and helpful guides to get the most out of your Quran Majeed experience.',
+    reviewsTitle: 'What Users Say',
+    reviews: [
+      { quote: 'One of the best Quran apps I have ever used.', name: 'Ayesha', meta: 'App Store review' },
+      { quote: 'The recitations, translation tools, and prayer timings make it part of my daily routine.', name: 'Bilal', meta: 'Google Play review' },
+      { quote: 'Beautiful fonts and a very calm reading experience.', name: 'Hassan', meta: 'Community feedback' }
+    ],
+    faqTitle: 'Frequently Asked Questions',
+    faqs: [
+      { q: 'Is Quran Majeed free?', a: 'Yes. The app offers free access to core Quran reading, translations, and several essential features, with optional premium capabilities depending on platform and region.' },
+      { q: 'Which languages are supported?', a: 'Quran Majeed supports multiple translations and tafsir languages, designed to help Muslims across the world understand the Quran more deeply.' },
+      { q: 'Does it work offline?', a: 'Yes. Many Quran reading and study features work offline, including reading, bookmarking, and selected downloaded recitations.' },
+      { q: 'Are prayer timings customizable?', a: 'Yes. You can adjust prayer calculations, adhan options, and notification behavior to match your region and preferences.' }
+    ],
+    finalBadge: 'Begin Today',
+    finalTitle: 'Begin Your Quran Journey Today',
+    finalBody1: 'Join millions of Muslims worldwide who trust Quran Majeed for their daily Quran reading, learning, and spiritual connection.',
+    finalBody2: 'Download the app today and experience a complete Islamic digital companion designed for modern Muslims.',
+    finalGoogle: 'Get it on Google Play',
+    finalAppStore: 'Download on App Store',
+    footerDesc: 'Quran Majeed is a trusted Islamic application offering Quran recitations, translations, prayer timings, Qibla direction, tafsir, and advanced Islamic features for Muslims worldwide.'
+  },
+  ur: {
+    seoTitle: 'قرآن مجید - نماز، تفسیر اور آڈیو تلاوت کے ساتھ مکمل قرآن ایپ',
+    seoDesc: 'قرآن مجید ڈاؤن لوڈ کریں، ایک قابل اعتماد قرآن ایپ جس میں آڈیو تلاوت، تراجم، تفسیر، نماز کے اوقات، قبلہ کمپاس اور جدید اسلامی ٹولز شامل ہیں۔',
+    heroBadge: 'قرآن مجید',
+    heroTitle: 'قرآن مجید - دنیا بھر کے مسلمانوں کے لیے مکمل قرآن ایپ',
+    heroLead: 'ایک خوبصورت اور فیچر بھرپور ایپلیکیشن کے ذریعے قرآنِ مجید کا تجربہ کریں جس پر دنیا بھر کے لاکھوں مسلمان اعتماد کرتے ہیں۔',
+    heroBody: 'مستند عربی رسم الخط، تراجم، تفسیر، آڈیو تلاوت، نماز کے اوقات، قبلہ رخ، اسلامی ٹولز اور ذاتی سیکھنے کی خصوصیات کے ساتھ قرآن پڑھیں - سب ایک طاقتور پلیٹ فارم میں۔',
+    googlePlay: 'گوگل پلے پر ڈاؤن لوڈ کریں',
+    appStore: 'ایپ اسٹور پر ڈاؤن لوڈ کریں',
+    explore: 'خصوصیات دیکھیں',
+    trustTitle: 'دنیا بھر کے لاکھوں صارفین کا اعتماد',
+    trustStats: [
+      'دنیا بھر میں لاکھوں ڈاؤن لوڈز',
+      'iOS اور Android پر دستیاب',
+      'متعدد قرآن فونٹس اور تھیمز',
+      'جدید نماز و قرآن خصوصیات',
+      'عالمی مسلم کمیونٹی کا اعتماد'
+    ],
+    featuresTitle: 'ہر مسلمان کے لیے طاقتور خصوصیات',
+    featureCards: [
+      {
+        title: 'جدید آڈیو تلاوت',
+        body: 'دنیا کے نامور قراء کی اعلیٰ معیار تلاوت سنیں، جس میں پلے بیک کنٹرول، ریپیٹ آپشنز اور بُک مارکنگ موجود ہے۔'
+      },
+      {
+        title: 'متعدد تراجم اور تفسیر',
+        body: 'مختلف زبانوں میں تراجم اور تفسیر تک رسائی حاصل کریں تاکہ سمجھ اور روحانی تدبر مزید گہرا ہو۔'
+      },
+      {
+        title: 'نماز کے اوقات اور قبلہ رخ',
+        body: 'درست نماز اوقات، قبلہ کمپاس، اذان نوٹیفیکیشنز اور اسلامی کیلنڈر سپورٹ کے ساتھ اپنی عبادات سے جڑے رہیں۔'
+      },
+      {
+        title: 'ذاتی مطالعہ کا تجربہ',
+        body: 'متعدد عربی فونٹس، تھیمز، ٹیکسٹ سائز، نائٹ موڈ اور جدید ریڈنگ سیٹنگز کے ساتھ اپنی قرآنی تلاوت حسبِ ضرورت بنائیں۔'
+      }
+    ],
+    readingTitle: 'خوبصورت اور ذاتی نوعیت کا قرآنی مطالعہ',
+    readingBody1: 'قرآن مجید ایک صاف، پر سکون اور غیر متوجہ کرنے والا مطالعہ ماحول فراہم کرتا ہے تاکہ صارفین قرآنِ کریم سے گہرا تعلق قائم کر سکیں۔',
+    readingBody2: 'مستند قرآنی رسم الخط منتخب کریں، تھیمز اور ٹیکسٹ سیٹنگز اپنی مرضی کے مطابق کریں، اور اپنے ذوق کے مطابق ہموار مطالعہ کا لطف اٹھائیں۔',
+    themesTitle: 'اپنا تجربہ اپنی مرضی کے مطابق بنائیں',
+    themesBody: 'خوبصورت تھیمز، متعدد ڈسپلے موڈز، قابلِ ایڈجسٹ ٹیکسٹ سیٹنگز اور آسان ایکسیسبلٹی آپشنز کے ساتھ اپنی قرآنی سفر کو ذاتی بنائیں۔',
+    salientTitle: 'ایک ہی قرآن ایپ میں سب کچھ',
+    salientItems: ['قرآن آڈیو تلاوت', 'متعدد قرآن فونٹس', 'ترجمہ اور تفسیر', 'نماز کے اوقات', 'قبلہ کمپاس', 'بک مارکس اور نوٹس', 'آٹو اسکرول اور ریڈنگ موڈز', 'نائٹ موڈ', 'اسلامی کیلنڈر', 'آیت شیئرنگ', 'لفظ بہ لفظ سیکھنا', 'اعلیٰ درجے کی سرچ'],
+    dailyTitle: 'ہر روز روحانی طور پر جڑے رہیں',
+    dailyBody: 'چاہے آپ قرآن پڑھ رہے ہوں، تلاوت سن رہے ہوں، نماز کے اوقات ٹریک کر رہے ہوں، یا تفسیر و تراجم سے سیکھ رہے ہوں، قرآن مجید آپ کو ہر وقت اور ہر جگہ اپنے ایمان سے جوڑے رکھتا ہے۔',
+    videoTitle: 'ویڈیو گائیڈز کے ساتھ مزید جانیں',
+    videoBody: 'ٹیوٹوریلز، فیچر واک تھروز اور مددگار گائیڈز دریافت کریں تاکہ آپ اپنے قرآن مجید تجربے سے زیادہ سے زیادہ فائدہ اٹھا سکیں۔',
+    reviewsTitle: 'صارفین کی رائے',
+    reviews: [
+      { quote: 'میں نے استعمال کی ہوئی بہترین قرآن ایپس میں سے ایک۔', name: 'عائشہ', meta: 'ایپ اسٹور ریویو' },
+      { quote: 'تلاوت، ترجمہ اور نماز کے اوقات اسے میری روزمرہ روٹین کا حصہ بناتے ہیں۔', name: 'بلال', meta: 'گوگل پلے ریویو' },
+      { quote: 'خوبصورت فونٹس اور بہت پر سکون مطالعہ کا تجربہ۔', name: 'حسن', meta: 'کمیونٹی فیڈ بیک' }
+    ],
+    faqTitle: 'اکثر پوچھے گئے سوالات',
+    faqs: [
+      { q: 'کیا قرآن مجید مفت ہے؟', a: 'جی ہاں۔ ایپ بنیادی قرآن مطالعہ، تراجم اور کئی اہم خصوصیات تک مفت رسائی دیتی ہے، جبکہ کچھ اضافی خصوصیات پلیٹ فارم اور علاقے کے مطابق دستیاب ہو سکتی ہیں۔' },
+      { q: 'کن زبانوں کی سپورٹ ہے؟', a: 'قرآن مجید مختلف تراجم اور تفسیر زبانوں کی سپورٹ فراہم کرتا ہے تاکہ دنیا بھر کے مسلمان قرآن کو بہتر طور پر سمجھ سکیں۔' },
+      { q: 'کیا یہ آف لائن چلتی ہے؟', a: 'جی ہاں۔ قرآن پڑھنے، بک مارکنگ اور کچھ منتخب تلاوتیں ڈاؤن لوڈ ہونے کے بعد آف لائن استعمال کی جا سکتی ہیں۔' },
+      { q: 'کیا نماز کے اوقات حسبِ ضرورت بدل سکتے ہیں؟', a: 'جی ہاں۔ آپ اپنی جگہ اور ترجیح کے مطابق نماز کے حسابات، اذان آپشنز اور نوٹیفکیشن سیٹنگز بدل سکتے ہیں۔' }
+    ],
+    finalBadge: 'آج ہی آغاز کریں',
+    finalTitle: 'آج ہی اپنا قرآنی سفر شروع کریں',
+    finalBody1: 'دنیا بھر کے لاکھوں مسلمان اپنی روزمرہ تلاوت، سیکھنے اور روحانی تعلق کے لیے قرآن مجید پر بھروسہ کرتے ہیں۔',
+    finalBody2: 'آج ایپ ڈاؤن لوڈ کریں اور جدید مسلمانوں کے لیے تیار کردہ مکمل اسلامی ڈیجیٹل ساتھی کا تجربہ کریں۔',
+    finalGoogle: 'گوگل پلے سے حاصل کریں',
+    finalAppStore: 'ایپ اسٹور سے ڈاؤن لوڈ کریں',
+    footerDesc: 'قرآن مجید ایک قابل اعتماد اسلامی ایپلیکیشن ہے جس میں قرآن کی تلاوت، تراجم، نماز کے اوقات، قبلہ رخ، تفسیر اور جدید اسلامی خصوصیات موجود ہیں۔'
+  },
+  ar: {
+    seoTitle: 'القرآن المجيد - تطبيق القرآن الكامل مع أوقات الصلاة والتفسير والتلاوات الصوتية',
+    seoDesc: 'حمّل القرآن المجيد، تطبيق القرآن الموثوق الذي يضم التلاوات الصوتية والترجمات والتفسير وأوقات الصلاة وبوصلة القبلة وأدوات إسلامية متقدمة للمسلمين حول العالم.',
+    heroBadge: 'القرآن المجيد',
+    heroTitle: 'القرآن المجيد - تطبيق القرآن الكامل للمسلمين حول العالم',
+    heroLead: 'اختبر القرآن الكريم عبر تطبيق جميل وغني بالميزات يثق به الملايين من المسلمين في أنحاء العالم.',
+    heroBody: 'اقرأ القرآن بخط عربي أصيل، وترجمات، وتفسير، وتلاوات صوتية، وأوقات الصلاة، واتجاه القبلة، وأدوات إسلامية، وميزات تعلم مخصصة - في منصة واحدة قوية.',
+    googlePlay: 'حمّل من Google Play',
+    appStore: 'حمّل من App Store',
+    explore: 'استكشف الميزات',
+    trustTitle: 'موثوق به من قبل الملايين حول العالم',
+    trustStats: [
+      'ملايين التنزيلات عالميًا',
+      'متوفر على iOS وAndroid',
+      'خطوط وسمات متعددة للقرآن',
+      'ميزات متقدمة للصلاة والقرآن',
+      'ثقة المجتمع المسلم العالمي'
+    ],
+    featuresTitle: 'ميزات قوية مصممة لكل مسلم',
+    featureCards: [
+      {
+        title: 'تلاوات صوتية متقدمة',
+        body: 'استمع إلى تلاوات عالية الجودة من أشهر القراء مع تحكم في التشغيل وخيارات التكرار والحفظ.'
+      },
+      {
+        title: 'ترجمات وتفسير متعددة',
+        body: 'اعرض ترجمات وتفاسير القرآن بلغات متعددة لتعميق الفهم والتأمل الروحي.'
+      },
+      {
+        title: 'أوقات الصلاة واتجاه القبلة',
+        body: 'ابقَ متصلًا بصلواتك اليومية عبر أوقات دقيقة، وبوصلة القبلة، وإشعارات الأذان، ودعم التقويم الإسلامي.'
+      },
+      {
+        title: 'تجربة قراءة مخصصة',
+        body: 'خصص تجربة القراءة بخطوط عربية متعددة، وسمات، وأحجام نص، ووضع ليلي، وإعدادات قراءة متقدمة.'
+      }
+    ],
+    readingTitle: 'تجربة قراءة جميلة ومخصصة للقرآن',
+    readingBody1: 'يوفر القرآن المجيد بيئة قراءة نظيفة وغامرة وخالية من المشتتات تساعد المستخدمين على التواصل بعمق مع القرآن الكريم.',
+    readingBody2: 'اختر من بين خطوط قرآنية أصيلة متعددة، وخصص السمات وإعدادات النص، واستمتع بتجربة قراءة سلسة تناسب تفضيلاتك.',
+    themesTitle: 'خصّص تجربتك',
+    themesBody: 'خصّص رحلتك مع القرآن عبر سمات أنيقة، وأنماط عرض متعددة، وإعدادات نص قابلة للتعديل، وخيارات وصول سهلة ومريحة.',
+    salientTitle: 'كل ما تحتاجه في تطبيق قرآن واحد',
+    salientItems: ['تلاوات صوتية للقرآن', 'خطوط متعددة للقرآن', 'الترجمة والتفسير', 'أوقات الصلاة', 'بوصلة القبلة', 'الإشارات والملاحظات', 'التمرير التلقائي وأوضاع القراءة', 'الوضع الليلي', 'التقويم الإسلامي', 'مشاركة الآيات', 'التعلم كلمة بكلمة', 'بحث متقدم'],
+    dailyTitle: 'ابقَ متصلًا روحانيًا كل يوم',
+    dailyBody: 'سواء كنت تقرأ القرآن أو تستمع للتلاوات أو تتابع أوقات الصلاة أو تتعلم من خلال التفسير والترجمات، يساعدك القرآن المجيد على البقاء قريبًا من إيمانك في أي وقت وأي مكان.',
+    videoTitle: 'تعرّف أكثر عبر الأدلة المرئية',
+    videoBody: 'استكشف الشروحات والميزات والإرشادات المفيدة للحصول على أفضل تجربة ممكنة مع القرآن المجيد.',
+    reviewsTitle: 'آراء المستخدمين',
+    reviews: [
+      { quote: 'من أفضل تطبيقات القرآن التي استخدمتها على الإطلاق.', name: 'عائشة', meta: 'تقييم App Store' },
+      { quote: 'التلاوات والترجمة وأوقات الصلاة تجعل التطبيق جزءًا من يومي.', name: 'بلال', meta: 'تقييم Google Play' },
+      { quote: 'خطوط جميلة وتجربة قراءة هادئة جدًا.', name: 'حسن', meta: 'ملاحظات المجتمع' }
+    ],
+    faqTitle: 'الأسئلة الشائعة',
+    faqs: [
+      { q: 'هل القرآن المجيد مجاني؟', a: 'نعم. يمنح التطبيق وصولًا مجانيًا إلى القراءة الأساسية والترجمات والعديد من الميزات المهمة، مع إمكانيات مميزة اختيارية حسب المنصة والمنطقة.' },
+      { q: 'ما اللغات المدعومة؟', a: 'يدعم القرآن المجيد ترجمات وتفاسير بلغات متعددة لمساعدة المسلمين حول العالم على فهم القرآن بعمق أكبر.' },
+      { q: 'هل يعمل دون اتصال؟', a: 'نعم. تعمل العديد من ميزات القراءة والدراسة دون اتصال، بما في ذلك القراءة والإشارات وبعض التلاوات المحمّلة.' },
+      { q: 'هل أوقات الصلاة قابلة للتخصيص؟', a: 'نعم. يمكنك تعديل طرق الحساب وخيارات الأذان وسلوك الإشعارات بما يناسب منطقتك وتفضيلاتك.' }
+    ],
+    finalBadge: 'ابدأ اليوم',
+    finalTitle: 'ابدأ رحلتك مع القرآن اليوم',
+    finalBody1: 'انضم إلى الملايين من المسلمين حول العالم الذين يثقون بالقرآن المجيد للقراءة اليومية والتعلم والتواصل الروحي.',
+    finalBody2: 'حمّل التطبيق اليوم واستمتع بمرافق إسلامي رقمي متكامل صُمم للمسلمين المعاصرين.',
+    finalGoogle: 'احصل عليه من Google Play',
+    finalAppStore: 'حمّل من App Store',
+    footerDesc: 'القرآن المجيد تطبيق إسلامي موثوق يقدم تلاوات القرآن والترجمات وأوقات الصلاة واتجاه القبلة والتفسير وميزات إسلامية متقدمة للمسلمين حول العالم.'
+  }
+}[lang];
+
+const heroMetrics = [
+  copy.trustStats[0],
+  copy.trustStats[1],
+  copy.trustStats[2],
+  copy.trustStats[3]
+];
+
+const featureArt = [
+  { src: '/images/quranmajeed/IMG_0167-768x999.png', alt: 'Quran Majeed reading screen' },
+  { src: '/images/quranmajeed/IMG_0168-768x999.png', alt: 'Quran Majeed reading screen' },
+  { src: '/images/quranmajeed/Quran-Majeed.png', alt: 'Quran Majeed logo' }
+];
+
+const themeImages = [
+  { src: '/images/quranmajeed/Quran-Majeed.png', label: 'Logo' },
+  { src: '/images/quranmajeed/Frame-1-768x218.png', label: 'Line view' },
+  { src: '/images/quranmajeed/abc2-2.png', label: 'Layout' },
+  { src: '/images/quranmajeed/app3-1.png', label: 'Reading mode' },
+  { src: '/images/quranmajeed/slider_2-1.jpg', label: 'Theme sample' },
+  { src: '/images/quranmajeed/unnamed.webp', label: 'Theme sample' }
+];
+
+const storeLinks = [
+  { id: 'google', href: 'https://play.google.com/store/search?q=Quran%20Majeed&c=apps', label: copy.googlePlay, image: '/images/quranmajeed/Playstore.png' },
+  { id: 'apple', href: 'https://apps.apple.com/us/search?term=Quran%20Majeed', label: copy.appStore, image: '/images/quranmajeed/Appstore.png' }
+];
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="qm-hero">
+    <div class="container qm-hero-grid">
+      <div class="qm-hero-copy">
+        <span class="badge badge-primary qm-eyebrow">{copy.heroBadge}</span>
+        <h1 class="qm-title">{copy.heroTitle}</h1>
+        <p class="qm-lead">{copy.heroLead}</p>
+        <p class="qm-body">{copy.heroBody}</p>
+
+        <div class="qm-cta-row">
+          {storeLinks.map(link => (
+            <a href={link.href} class="store-btn" target="_blank" rel="noopener noreferrer">
+              <img src={link.image} alt={link.label} class="store-badge" />
+              <span>{link.label}</span>
+            </a>
+          ))}
+          <a href="#features" class="btn btn-outline qm-explore-btn">{copy.explore}</a>
+        </div>
+
+        <div class="qm-proof-row">
+          <div class="qm-proof-pill">4.8★</div>
+          <div class="qm-proof-pill">50M+</div>
+          <div class="qm-proof-pill">45+ Languages</div>
+          <div class="qm-proof-pill">Offline Reading</div>
+        </div>
+      </div>
+
+      <aside class="qm-download-card card">
+        <div class="download-card-top">
+          <img src="/images/quranmajeed/QM.png" alt="Quran Majeed logo" class="brand-logo" />
+          <div>
+            <p class="download-card-label">{copy.trustTitle}</p>
+            <h2 class="download-card-title">4.8★</h2>
+          </div>
+        </div>
+
+        <div class="download-card-stats">
+          {heroMetrics.map(metric => <div class="download-stat">{metric}</div>)}
+        </div>
+
+        <div class="download-card-gallery">
+          <img src="/images/quranmajeed/Quran-Majeed.png" alt="Quran Majeed logo" />
+          <img src="/images/quranmajeed/IMG_0167-768x999.png" alt="Quran Majeed screenshot" />
+          <img src="/images/quranmajeed/IMG_0168-768x999.png" alt="Quran Majeed screenshot" />
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section qm-trust">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.trustTitle}</span>
+        <h2 class="section-title">{copy.trustTitle}</h2>
+      </div>
+      <div class="trust-grid">
+        {copy.trustStats.map(stat => (
+          <div class="trust-card card">
+            <div class="trust-dot"></div>
+            <p>{stat}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Features</span>
+        <h2 class="section-title">{copy.featuresTitle}</h2>
+      </div>
+      <div class="feature-grid">
+        {copy.featureCards.map((feature, idx) => (
+          <article class="feature-card card">
+            <div class="feature-index">0{idx + 1}</div>
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-grid">
+      <div class="media-stack">
+        <img src={featureArt[0].src} alt={featureArt[0].alt} class="stack-shot large" />
+        <img src={featureArt[1].src} alt={featureArt[1].alt} class="stack-shot small" />
+      </div>
+      <div class="split-copy">
+        <span class="badge badge-primary">Reading</span>
+        <h2 class="section-title">{copy.readingTitle}</h2>
+        <p class="body-copy">{copy.readingBody1}</p>
+        <p class="body-copy">{copy.readingBody2}</p>
+        <div class="feature-mini-list">
+          <div class="mini-item">Authentic script</div>
+          <div class="mini-item">Smooth page flow</div>
+          <div class="mini-item">Quiet reading mode</div>
+          <div class="mini-item">Custom text sizes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-grid reverse">
+      <div class="split-copy">
+        <span class="badge badge-primary">Themes</span>
+        <h2 class="section-title">{copy.themesTitle}</h2>
+        <p class="body-copy">{copy.themesBody}</p>
+        <div class="feature-mini-list">
+          <div class="mini-item">Night mode</div>
+          <div class="mini-item">Classic and modern themes</div>
+          <div class="mini-item">Adjustable spacing</div>
+          <div class="mini-item">Accessibility tools</div>
+        </div>
+      </div>
+      <div class="theme-grid">
+        {themeImages.map(image => (
+          <figure class="theme-card card">
+            <img src={image.src} alt={image.label} />
+            <figcaption>{image.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Salient</span>
+        <h2 class="section-title">{copy.salientTitle}</h2>
+      </div>
+      <div class="salient-grid">
+        {copy.salientItems.map(item => <div class="salient-item">{item}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section productivity-band">
+    <div class="container split-grid">
+      <div class="split-copy">
+        <span class="badge badge-primary">Every Day</span>
+        <h2 class="section-title">{copy.dailyTitle}</h2>
+        <p class="body-copy">{copy.dailyBody}</p>
+      </div>
+      <div class="daily-panel card">
+        <img src="/images/quranmajeed/serveWithUsBanner.89d658ef-1536x582.webp" alt="Quran Majeed banner" />
+        <div class="daily-panel-copy">
+          <p>Prayer timings</p>
+          <p>Qibla direction</p>
+          <p>Tafsir study</p>
+          <p>Audio recitations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-grid reverse">
+      <div class="video-card card">
+        <img src="/images/quranmajeed/Frame-1-768x218.png" alt="Video guide preview" />
+        <div class="play-chip">▶</div>
+      </div>
+      <div class="split-copy">
+        <span class="badge badge-primary">Video</span>
+        <h2 class="section-title">{copy.videoTitle}</h2>
+        <p class="body-copy">{copy.videoBody}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Reviews</span>
+        <h2 class="section-title">{copy.reviewsTitle}</h2>
+      </div>
+      <div class="review-grid">
+        {copy.reviews.map(review => (
+          <article class="review-card card">
+            <p class="review-quote">“{review.quote}”</p>
+            <div class="review-meta">
+              <strong>{review.name}</strong>
+              <span>{review.meta}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container faq-wrap">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">FAQ</span>
+        <h2 class="section-title">{copy.faqTitle}</h2>
+      </div>
+      <div class="faq-list">
+        {copy.faqs.map((faq, idx) => (
+          <details class="faq-item card" open={idx === 0}>
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section final-cta-band">
+    <div class="container final-cta-grid">
+      <div>
+        <span class="badge badge-primary">{copy.finalBadge}</span>
+        <h2 class="section-title">{copy.finalTitle}</h2>
+        <p class="body-copy">{copy.finalBody1}</p>
+        <p class="body-copy">{copy.finalBody2}</p>
+        <div class="qm-cta-row">
+          {storeLinks.map(link => (
+            <a href={link.href} class="store-btn dark" target="_blank" rel="noopener noreferrer">
+              <img src={link.image} alt={link.label} class="store-badge" />
+              <span>{link.id === 'google' ? copy.finalGoogle : copy.finalAppStore}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="final-art card">
+        <img src="/images/quranmajeed/Quran-Majeed.png" alt="Quran Majeed logo" />
+        <p>{copy.footerDesc}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section footer-summary">
+    <div class="container">
+      <p>{copy.footerDesc}</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .qm-hero {
+    padding: 4rem 0 2.5rem;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,248,238,.92)),
+      url('/images/quranmajeed/bg-18-Copy-Copy.jpg') center/cover no-repeat;
+  }
+
+  .qm-hero-grid,
+  .split-grid,
+  .final-cta-grid {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .qm-hero-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  }
+
+  .qm-hero-copy {
+    max-width: 42rem;
+  }
+
+  .qm-eyebrow,
+  .badge {
+    margin-bottom: 1rem;
+  }
+
+  .qm-title {
+    font-size: clamp(2.2rem, 4vw, 4.25rem);
+    line-height: 1.05;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .qm-lead {
+    font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+    color: var(--dark);
+  }
+
+  .qm-body,
+  .body-copy {
+    color: var(--secondary-dark);
+    line-height: 1.75;
+    font-size: 1rem;
+  }
+
+  .qm-cta-row {
+    display: flex;
+    gap: .75rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .8rem 1rem;
+    border-radius: .8rem;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.92);
+    color: var(--dark);
+    font-weight: 600;
+  }
+
+  .store-btn.dark {
+    background: rgba(17,24,39,.08);
+  }
+
+  .store-badge {
+    width: 1.35rem;
+    height: 1.35rem;
+    object-fit: contain;
+  }
+
+  .qm-explore-btn {
+    align-self: center;
+  }
+
+  .qm-proof-row {
+    display: flex;
+    gap: .65rem;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+  }
+
+  .qm-proof-pill {
+    background: rgba(255,255,255,.86);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: .45rem .8rem;
+    font-size: .9rem;
+    font-weight: 600;
+  }
+
+  .qm-download-card {
+    position: sticky;
+    top: 6.5rem;
+    padding: 1.25rem;
+    overflow: hidden;
+  }
+
+  .download-card-top {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .brand-logo {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    object-fit: cover;
+  }
+
+  .download-card-label {
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--secondary-dark);
+    margin-bottom: .25rem;
+  }
+
+  .download-card-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  .download-card-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .65rem;
+    margin-bottom: 1rem;
+  }
+
+  .download-stat {
+    border-radius: .75rem;
+    background: var(--light-soft);
+    border: 1px solid var(--border);
+    padding: .75rem;
+    font-size: .875rem;
+    line-height: 1.4;
+  }
+
+  .download-card-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .65rem;
+  }
+
+  .download-card-gallery img {
+    width: 100%;
+    height: 9rem;
+    object-fit: cover;
+    border-radius: .75rem;
+    border: 1px solid var(--border);
+    background: #fff;
+  }
+
+  .download-card-gallery img:first-child {
+    grid-column: span 2;
+    height: 10rem;
+    object-fit: contain;
+    padding: .5rem;
+  }
+
+  .qm-trust .trust-grid,
+  .feature-grid,
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .trust-card,
+  .feature-card,
+  .review-card,
+  .theme-card,
+  .daily-panel,
+  .video-card,
+  .final-art,
+  .faq-item {
+    border-radius: 1rem;
+    padding: 1.25rem;
+  }
+
+  .trust-card {
+    display: flex;
+    gap: .75rem;
+    align-items: flex-start;
+  }
+
+  .trust-dot {
+    width: .75rem;
+    height: .75rem;
+    border-radius: 50%;
+    background: var(--primary);
+    flex: 0 0 auto;
+    margin-top: .35rem;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feature-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: .65rem;
+  }
+
+  .feature-card p {
+    color: var(--secondary-dark);
+    line-height: 1.65;
+  }
+
+  .feature-index {
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--primary);
+    margin-bottom: .75rem;
+    font-weight: 700;
+  }
+
+  .split-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .split-grid.reverse .media-stack,
+  .split-grid.reverse .theme-grid {
+    order: 2;
+  }
+
+  .media-stack {
+    position: relative;
+    min-height: 42rem;
+  }
+
+  .stack-shot {
+    position: absolute;
+    border-radius: 1.25rem;
+    object-fit: cover;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    background: #fff;
+  }
+
+  .stack-shot.large {
+    width: 72%;
+    left: 0;
+    top: 0;
+  }
+
+  .stack-shot.small {
+    width: 58%;
+    right: 0;
+    bottom: 0;
+  }
+
+  .feature-mini-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem;
+    margin-top: 1.25rem;
+  }
+
+  .mini-item,
+  .salient-item {
+    background: var(--light-soft);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: .6rem .9rem;
+    font-size: .9rem;
+    font-weight: 600;
+  }
+
+  .theme-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .theme-card img,
+  .daily-panel img,
+  .video-card img,
+  .final-art img {
+    width: 100%;
+    display: block;
+    border-radius: .75rem;
+    object-fit: cover;
+  }
+
+  .theme-card img {
+    height: 9.5rem;
+  }
+
+  .theme-card figcaption {
+    margin-top: .75rem;
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--secondary-dark);
+  }
+
+  .salient-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+  }
+
+  .productivity-band,
+  .final-cta-band {
+    background: linear-gradient(180deg, #fff, #fdf8f0);
+  }
+
+  .daily-panel {
+    background: var(--light);
+  }
+
+  .daily-panel-copy {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .75rem;
+    margin-top: 1rem;
+  }
+
+  .daily-panel-copy p {
+    background: var(--light-soft);
+    border: 1px solid var(--border);
+    border-radius: .75rem;
+    padding: .75rem;
+    font-weight: 600;
+  }
+
+  .video-card {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .video-card img {
+    height: 18rem;
+    object-fit: cover;
+  }
+
+  .play-chip {
+    position: absolute;
+    inset: auto auto 1rem 1rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    background: rgba(17,24,39,.88);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+  }
+
+  .review-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .review-quote {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .review-meta {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    color: var(--secondary-dark);
+  }
+
+  .faq-wrap {
+    max-width: 56rem;
+  }
+
+  .faq-list {
+    display: grid;
+    gap: .75rem;
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item p {
+    margin-top: .75rem;
+    color: var(--secondary-dark);
+    line-height: 1.7;
+  }
+
+  .final-cta-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+  }
+
+  .final-art {
+    text-align: center;
+  }
+
+  .final-art img {
+    max-width: 10rem;
+    margin: 0 auto 1rem;
+    object-fit: contain;
+  }
+
+  .footer-summary {
+    padding-top: 0;
+  }
+
+  .footer-summary p {
+    max-width: 60rem;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--secondary-dark);
+    line-height: 1.7;
+  }
+
+  .tight {
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .qm-hero-grid,
+    .split-grid,
+    .final-cta-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .qm-download-card {
+      position: static;
+    }
+
+    .review-grid,
+    .qm-trust .trust-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .feature-grid,
+    .review-grid,
+    .qm-trust .trust-grid,
+    .theme-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .media-stack {
+      min-height: 30rem;
+    }
+
+    .stack-shot.large,
+    .stack-shot.small {
+      width: 100%;
+      position: relative;
+      left: auto;
+      right: auto;
+      top: auto;
+      bottom: auto;
+      margin-bottom: 1rem;
+    }
+
+    .stack-shot.small {
+      margin-bottom: 0;
+    }
+  }
+</style>

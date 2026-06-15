@@ -1,0 +1,453 @@
+---
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getLangFromUrl, useTranslations, getRelativeLocaleUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+
+const title = t('products.seo.title');
+const description = t('products.seo.desc');
+
+// Complete products listing
+const products = [
+  {
+    id: "quran-majeed",
+    category: "islamic",
+    name: t('products.items.qm.name'),
+    tagline: t('products.items.qm.tagline'),
+    description: t('products.items.qm.desc'),
+    badge: t('products.items.qm.badge'),
+    rating: "4.8",
+    downloads: t('products.items.qm.downloads'),
+    platforms: ["iOS", "Android", "macOS", "Web", "TV"],
+    features: [
+      t('products.items.qm.f1'),
+      t('products.items.qm.f2'),
+      t('products.items.qm.f3'),
+      t('products.items.qm.f4')
+    ],
+    detailsUrl: getRelativeLocaleUrl(lang, '/products/quran-majeed'),
+    downloadUrl: "https://pakdata.com/products/quran-majeed",
+    imageUrl: "/images/QM.png"
+  },
+  {
+    id: "quran-pak",
+    category: "islamic",
+    name: t('products.items.qp.name'),
+    tagline: t('products.items.qp.tagline'),
+    description: t('products.items.qp.desc'),
+    badge: t('products.items.qp.badge'),
+    rating: "4.7",
+    downloads: t('products.items.qp.downloads'),
+    platforms: ["iOS", "Android"],
+    features: [
+      t('products.items.qp.f1'),
+      t('products.items.qp.f2'),
+      t('products.items.qp.f3'),
+      t('products.items.qp.f4')
+    ],
+    detailsUrl: getRelativeLocaleUrl(lang, '/products/quran-pak'),
+    downloadUrl: "https://pakdata.com/products/quran-pak",
+    imageUrl: "/images/QP.webp"
+  },
+    {
+    id: "Prayer Time",
+    category: "webtv",
+    name: t('products.items.pt.name'),
+    tagline: t('products.items.pt.tagline'),
+    description: t('products.items.pt.desc'),
+    badge: t('products.items.pt.badge'),
+    rating: "4.9",
+    downloads: t('products.items.pt.downloads'),
+    platforms: ["TV"],
+    features: [
+      t('products.items.pt.f1'),
+      t('products.items.pt.f2'),
+      t('products.items.pt.f3'),
+      t('products.items.pt.f4')
+    ],
+    downloadUrl: getRelativeLocaleUrl(lang, '/contact'),
+    imageUrl: "/images/prayerTime.webp"
+  },
+  {
+    id: "quran-tv",
+    category: "webtv",
+    name: t('products.items.qt.name'),
+    tagline: t('products.items.qt.tagline'),
+    description: t('products.items.qt.desc'),
+    badge: t('products.items.qt.badge'),
+    rating: "4.6",
+    downloads: t('products.items.qt.downloads'),
+    platforms: ["Android", "TV", "Web"],
+    features: [
+      t('products.items.qt.f1'),
+      t('products.items.qt.f2'),
+      t('products.items.qt.f3'),
+      t('products.items.qt.f4')
+    ],
+    downloadUrl: "https://pakdata.com/products/quran-tv",
+    imageUrl: "/images/quranTV.webp"
+  },
+  {
+    id: "easy-urdu",
+    category: "utility",
+    name: t('products.items.eu.name'),
+    tagline: t('products.items.eu.tagline'),
+    description: t('products.items.eu.desc'),
+    badge: t('products.items.eu.badge'),
+    rating: "4.8",
+    downloads: t('products.items.eu.downloads'),
+    platforms: ["iOS", "Android"],
+    features: [
+      t('products.items.eu.f1'),
+      t('products.items.eu.f2'),
+      t('products.items.eu.f3'),
+      t('products.items.eu.f4')
+    ],
+    downloadUrl: "https://pakdata.com/products/easy-urdu",
+    imageUrl: "/images/easyUrdu.webp"
+  },
+  {
+    id: "hadith-app",
+    category: "islamic",
+    name: t('products.items.hc.name'),
+    tagline: t('products.items.hc.tagline'),
+    description: t('products.items.hc.desc'),
+    badge: t('products.items.hc.badge'),
+    rating: "4.7",
+    downloads: t('products.items.hc.downloads'),
+    platforms: ["iOS", "Android"],
+    features: [
+      t('products.items.hc.f1'),
+      t('products.items.hc.f2'),
+      t('products.items.hc.f3'),
+      t('products.items.hc.f4')
+    ],
+    downloadUrl: getRelativeLocaleUrl(lang, '/contact'),
+    imageUrl: "/images/hadith.webp"
+  },
+  {
+    id: "3d-salah",
+    category: "islamic",
+    name: t('products.items.3d.name'),
+    tagline: t('products.items.3d.tagline'),
+    description: t('products.items.3d.desc'),
+    badge: t('products.items.3d.badge'),
+    rating: "4.5",
+    downloads: t('products.items.3d.downloads'),
+    platforms: ["iOS", "Android"],
+    features: [
+      t('products.items.3d.f1'),
+      t('products.items.3d.f2'),
+      t('products.items.3d.f3'),
+      t('products.items.3d.f4')
+    ],
+    downloadUrl: getRelativeLocaleUrl(lang, '/contact'),
+    imageUrl: "/images/3dSalah.webp"
+  },
+  {
+    id: "quran-tafseer",
+    category: "islamic",
+    name: t('products.items.taf.name'),
+    tagline: t('products.items.taf.tagline'),
+    description: t('products.items.taf.desc'),
+    badge: t('products.items.taf.badge'),
+    rating: "4.9",
+    downloads: t('products.items.taf.downloads'),
+    platforms: ["Android", "iOS"],
+    features: [
+      t('products.items.taf.f1'),
+      t('products.items.taf.f2'),
+      t('products.items.taf.f3'),
+      t('products.items.taf.f4')
+    ],
+    downloadUrl: getRelativeLocaleUrl(lang, '/contact'),
+    imageUrl: "/images/tafseer.webp"
+  },
+  {
+    id: "ramadan-times",
+    category: "islamic",
+    name: t('products.items.rt.name'),
+    tagline: t('products.items.rt.tagline'),
+    description: t('products.items.rt.desc'),
+    badge: t('products.items.rt.badge'),
+    rating: "4.9",
+    downloads: t('products.items.rt.downloads'),
+    platforms: ["Android", "iOS"],
+    features: [
+      t('products.items.rt.f1'),
+      t('products.items.rt.f2'),
+      t('products.items.rt.f3'),
+      t('products.items.rt.f4')
+    ],
+    downloadUrl: getRelativeLocaleUrl(lang, '/contact'),
+    imageUrl: "/images/ramadanTimes.webp"
+  },
+  {
+    id: "Kitabi",
+    category: "educational",
+    name: t('products.items.kb.name'),
+    tagline: t('products.items.kb.tagline'),
+    description: t('products.items.kb.desc'),
+    badge: t('products.items.kb.badge'),
+    rating: "4.9",
+    downloads: t('products.items.kb.downloads'),
+    platforms: ["Android", "iOS"],
+    features: [
+      t('products.items.kb.f1'),
+      t('products.items.kb.f2'),
+      t('products.items.kb.f3'),
+      t('products.items.kb.f4')
+    ],
+    downloadUrl: getRelativeLocaleUrl(lang, '/contact'),
+    imageUrl: "/images/kitabi.webp"
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="products-hero">
+    <div class="container text-center animate-fade-in">
+      <span class="badge badge-primary">{t('products.hero.badge')}</span>
+      <h1 class="products-hero-title">{t('products.hero.title')}</h1>
+      <p class="products-hero-subtitle">
+        {t('products.hero.subtitle')}
+      </p>
+      
+      <!-- Interactive Category Tabs -->
+      <div class="tabs-wrap">
+        <button class="tab-btn active" data-category="all" id="tab-all">{t('products.tabs.all')}</button>
+        <button class="tab-btn" data-category="islamic" id="tab-islamic">{t('products.tabs.islamic')}</button>
+        <button class="tab-btn" data-category="webtv" id="tab-webtv">{t('products.tabs.webtv')}</button>
+        <button class="tab-btn" data-category="utility" id="tab-utility">{t('products.tabs.utility')}</button>
+        <button class="tab-btn" data-category="enterprise" id="tab-enterprise">{t('products.tabs.enterprise')}</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Showcase -->
+  <section class="section">
+    <div class="container">
+      <div class="products-grid grid grid-2" id="products-catalog-grid">
+        {products.map(product => (
+          <div class="catalog-item-container" data-category={product.category}>
+            <ProductCard {...product} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Optional FAQ support note -->
+  <section class="section section-bg text-center">
+    <div class="container max-width-600">
+      <h2 class="support-prompt-title">{t('products.support.title')}</h2>
+      <p class="support-prompt-desc">
+        {t('products.support.desc')}
+      </p>
+      <a href={getRelativeLocaleUrl(lang, '/support')} class="btn btn-outline" id="visit-support-btn">{t('products.support.btn')}</a>
+    </div>
+  </section>
+
+  <!-- B2B Call to Action -->
+  <section class="section products-cta">
+    <div class="container text-center text-white">
+      <h2 class="cta-title">{t('products.cta.title')}</h2>
+      <p class="cta-desc">
+        {t('products.cta.desc')}
+      </p>
+      <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-lg btn-white-text" id="consultation-btn">{t('products.cta.btn')}</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .products-hero {
+    text-align: center;
+    background: radial-gradient(at 20% 0%,oklch(97% .04 60) 0%,transparent 50%),radial-gradient(at 80% 20%,oklch(96% .03 220) 0%,transparent 50%),linear-gradient(180deg,oklch(99% .005 80),oklch(100% 0 0));
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .products-hero-title {
+    font-size: calc(2rem * var(--text-scale, 1));
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .products-hero-subtitle {
+    font-size: calc(1.25rem * var(--text-scale, 1));
+    color: var(--secondary-dark);
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    line-height: 1.6;
+  }
+
+  /* Tabs */
+  .tabs-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .tab-btn {
+    background-color: var(--light);
+    border: 1px solid var(--border);
+    color: var(--secondary-dark);
+    padding: 0.625rem 1.25rem;
+    border-radius: 9999px;
+    font-size: calc(0.875rem * var(--text-scale, 1));
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+  }
+
+  .tab-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary-light);
+    background-color: var(--primary-light);
+  }
+
+  .tab-btn.active {
+    background-color: var(--primary);
+    color: var(--light);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-primary);
+  }
+
+  /* Support prompt */
+  .max-width-600 {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .support-prompt-title {
+    font-size: calc(1.5rem * var(--text-scale, 1));
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .support-prompt-desc {
+    color: var(--secondary-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  /* Products CTA styling */
+  .products-cta {
+    background-color: var(--dark);
+    padding: 5rem 0;
+  }
+
+  .text-white {
+    color: var(--light);
+  }
+
+  .text-white .cta-title {
+    color: var(--light);
+    font-size: calc(1.875rem * var(--text-scale, 1));
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .text-white .cta-desc {
+    color: #9ca3af;
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+    font-size: calc(1.125rem * var(--text-scale, 1));
+  }
+
+  .btn-white-text {
+    background-color: var(--primary);
+    color: var(--light);
+  }
+
+  .btn-white-text:hover {
+    background-color: var(--primary-hover);
+  }
+
+  /* Animation toggle on filter */
+  .catalog-item-container {
+    transition: all var(--transition-normal);
+  }
+
+  .catalog-item-container.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  @media (min-width: 640px) {
+    .products-hero-title {
+      font-size: calc(2.5rem * var(--text-scale, 1));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .products-hero-title {
+      font-size: calc(3rem * var(--text-scale, 1));
+    }
+  }
+</style>
+
+<!-- JS Tab Filter Logic -->
+<script>
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const catalogItems = document.querySelectorAll('.catalog-item-container');
+  const catalogGrid = document.getElementById('products-catalog-grid');
+
+  if (tabButtons.length > 0 && catalogItems.length > 0) {
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle active button
+        tabButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const category = btn.getAttribute('data-category');
+
+        // Apply grid display changes
+        catalogItems.forEach(item => {
+          const itemCategory = item.getAttribute('data-category');
+          
+          if (category === 'all' || itemCategory === category) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Check hash parameter to auto-filter on page load
+    const hash = window.location.hash;
+    if (hash) {
+      const targetElement = document.querySelector(hash);
+      if (targetElement) {
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }
+</script>
