@@ -1,0 +1,838 @@
+---
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: {
+    seoTitle: 'Kitabi - Urdu Books & Audiobooks Reading App',
+    seoDesc: 'Download Kitabi to explore thousands of Urdu books and audiobooks with customizable reading features, offline support, and a modern digital reading experience.',
+    heroBadge: 'Kitabi',
+    heroTitle: 'Kitabi - Urdu Books for the Smartphone Generation',
+    heroLead: 'Discover, read, and listen to thousands of Urdu books through a beautifully designed digital reading experience created for modern readers worldwide.',
+    heroBody: 'From novels and poetry to Islamic literature and audiobooks, Kitabi brings the world of Urdu books into the palm of your hand.',
+    appStore: 'Download on App Store',
+    googlePlay: 'Get it on Google Play',
+    explore: 'Explore Features',
+    trustTitle: 'A Modern Home for Urdu Readers',
+    trustStats: ['Thousands of Urdu books', 'Audiobooks and reading mode', 'Offline reading support', 'Custom fonts and themes'],
+    introTitle: 'A Modern Home for Urdu Readers',
+    introBody1: 'Kitabi is a powerful Urdu reading platform designed to make Urdu literature more accessible, engaging, and enjoyable for readers of all ages.',
+    introBody2: 'Explore an extensive collection of Urdu books, audiobooks, and digital reading experiences through a simple and user-friendly mobile application built for today\'s smartphone generation.',
+    libraryTitle: 'Explore a Massive Urdu Library',
+    libraryBody: 'Access a growing collection of Urdu books across fiction, poetry, Islamic literature, history, educational books, and classical Urdu literature.',
+    categories: ['Fiction', 'Poetry', 'Islamic Literature', 'History', 'Educational Books', 'Classical Urdu Literature'],
+    featuresTitle: 'Powerful Features for Urdu Book Lovers',
+    features: [
+      { title: 'Read or Listen', body: 'Enjoy books in both reading and audiobook formats for a flexible and immersive experience.' },
+      { title: 'Personalized Reading Experience', body: 'Customize fonts, themes, text sizes, brightness, and layouts according to your reading comfort.' },
+      { title: 'Bookmark & Continue Anytime', body: 'Save your progress and continue reading exactly where you left off.' },
+      { title: 'Easy Chapter Navigation', body: 'Quickly browse chapters and move through books with smooth navigation controls.' },
+      { title: 'Offline Reading Support', body: 'Download books and enjoy uninterrupted reading without internet access.' },
+      { title: 'Smart Search & Discovery', body: 'Find books, authors, and genres easily through organized browsing and intelligent discovery features.' }
+    ],
+    audiobookTitle: 'Listen to Urdu Audiobooks Anywhere',
+    audiobookBody: 'Enjoy Urdu audiobooks while traveling, relaxing, or multitasking with smooth playback controls and an easy listening experience designed for modern users.',
+    customizeTitle: 'Designed for Comfortable Reading',
+    customizeBody: 'Kitabi offers multiple themes, customizable fonts, reading layouts, and visual settings that create a comfortable and distraction-free reading environment for every user.',
+    whyTitle: 'Why Readers Love Kitabi',
+    whyItems: [
+      { title: 'Massive Urdu Book Collection', body: 'Explore a wide range of Urdu books and audiobooks in one place.' },
+      { title: 'Modern Reading Experience', body: 'Enjoy elegant design, smooth navigation, and customizable reading settings.' },
+      { title: 'Read & Listen Anywhere', body: 'Access books anytime through both text and audio formats.' },
+      { title: 'Built for Urdu Readers Worldwide', body: 'A digital platform designed specifically for the global Urdu-speaking community.' }
+    ],
+    communityTitle: 'Preserving Urdu Literature Through Technology',
+    communityBody: 'Kitabi combines technology and culture to make Urdu literature more accessible for current and future generations through modern digital experiences.',
+    reviewsTitle: 'What Readers Say',
+    reviews: [
+      { quote: 'The best Urdu reading app I have used for books and audiobooks.', name: 'Ayesha', meta: 'Community review' },
+      { quote: 'Beautiful design, smooth reading, and a great Urdu library.', name: 'Bilal', meta: 'App Store review' },
+      { quote: 'A thoughtful app that keeps Urdu literature alive on mobile.', name: 'Hassan', meta: 'Reader feedback' }
+    ],
+    faqTitle: 'Frequently Asked Questions',
+    faqs: [
+      { q: 'Can I read books offline?', a: 'Yes. Kitabi supports offline reading so you can enjoy books without an internet connection after download.' },
+      { q: 'Does Kitabi support audiobooks?', a: 'Yes. Kitabi includes audiobook support with smooth playback controls for easy listening.' },
+      { q: 'Can I customize fonts and themes?', a: 'Yes. You can adjust fonts, text size, brightness, themes, and layout settings for a comfortable reading experience.' },
+      { q: 'Is the app free to use?', a: 'Kitabi is designed to provide a modern Urdu reading experience, with availability and access depending on platform and region.' }
+    ],
+    finalTitle: 'Start Your Urdu Reading Journey Today',
+    finalBody1: 'Download Kitabi and discover a modern world of Urdu books, audiobooks, and immersive digital reading experiences designed for readers everywhere.',
+    finalBody2: 'From fiction and poetry to Islamic literature and educational reading, Kitabi brings Urdu content into a polished mobile experience.',
+    footerDesc: 'Kitabi is a modern Urdu digital reading platform offering books, audiobooks, customizable reading experiences, and a growing library for Urdu readers worldwide.'
+  },
+  ur: {
+    seoTitle: 'کتابی - اردو کتابوں اور آڈیو بکس کی ریڈنگ ایپ',
+    seoDesc: 'کتابی ڈاؤن لوڈ کریں اور ہزاروں اردو کتابوں اور آڈیو بکس کو حسبِ ضرورت ریڈنگ فیچرز، آف لائن سپورٹ اور جدید ڈیجیٹل تجربے کے ساتھ دریافت کریں۔',
+    heroBadge: 'کتابی',
+    heroTitle: 'کتابی - اسمارٹ فون دور کے لیے اردو کتابیں',
+    heroLead: 'دنیا بھر کے جدید قارئین کے لیے تیار کردہ خوبصورت ڈیجیٹل ریڈنگ تجربے کے ذریعے ہزاروں اردو کتابیں دریافت کریں، پڑھیں اور سنیں۔',
+    heroBody: 'ناول، شاعری، اسلامی ادب اور آڈیو بکس سے لے کر، کتابی اردو کتابوں کی دنیا کو آپ کے ہاتھ کی مٹھی میں لے آتی ہے۔',
+    appStore: 'ایپ اسٹور سے ڈاؤن لوڈ کریں',
+    googlePlay: 'گوگل پلے سے حاصل کریں',
+    explore: 'خصوصیات دیکھیں',
+    trustTitle: 'اردو قارئین کے لیے جدید گھر',
+    trustStats: ['ہزاروں اردو کتابیں', 'آڈیو بکس اور ریڈنگ موڈ', 'آف لائن ریڈنگ سپورٹ', 'حسبِ ضرورت فونٹس اور تھیمز'],
+    introTitle: 'اردو قارئین کے لیے جدید گھر',
+    introBody1: 'کتابی ایک طاقتور اردو ریڈنگ پلیٹ فارم ہے جو اردو ادب کو ہر عمر کے قارئین کے لیے زیادہ قابلِ رسائی، دلچسپ اور خوشگوار بنانے کے لیے تیار کیا گیا ہے۔',
+    introBody2: 'ایک سادہ اور صارف دوست موبائل ایپ کے ذریعے اردو کتابوں، آڈیو بکس اور ڈیجیٹل ریڈنگ کے وسیع مجموعے کو دریافت کریں جو آج کے اسمارٹ فون دور کے لیے بنایا گیا ہے۔',
+    libraryTitle: 'وسیع اردو لائبریری دریافت کریں',
+    libraryBody: 'فکشن، شاعری، اسلامی ادب، تاریخ، تعلیمی کتابیں اور کلاسیکی اردو ادب سمیت متعدد زمروں میں بڑھتا ہوا مجموعہ حاصل کریں۔',
+    categories: ['فکشن', 'شاعری', 'اسلامی ادب', 'تاریخ', 'تعلیمی کتابیں', 'کلاسیکی اردو ادب'],
+    featuresTitle: 'اردو کتابوں کے شوقین افراد کے لیے طاقتور خصوصیات',
+    features: [
+      { title: 'پڑھیں یا سنیں', body: 'کتابوں کو ریڈنگ اور آڈیو بک دونوں فارمیٹس میں استعمال کریں۔' },
+      { title: 'ذاتی ریڈنگ تجربہ', body: 'فونٹس، تھیمز، ٹیکسٹ سائز، برائٹنیس اور لے آؤٹ اپنی پسند کے مطابق بنائیں۔' },
+      { title: 'بُک مارک اور جاری رکھیں', body: 'اپنی پیش رفت محفوظ کریں اور جہاں سے چھوڑا تھا وہیں سے دوبارہ پڑھیں۔' },
+      { title: 'آسان چیپٹر نیویگیشن', body: 'ابواب کو تیزی سے دیکھیں اور ہموار نیویگیشن کے ساتھ آگے بڑھیں۔' },
+      { title: 'آف لائن ریڈنگ سپورٹ', body: 'کتابیں ڈاؤن لوڈ کریں اور بغیر انٹرنیٹ کے بھی پڑھیں۔' },
+      { title: 'اسمارٹ سرچ اور ڈسکوری', body: 'منظم براؤزنگ اور ذہین تلاش کے ذریعے کتابیں، مصنفین اور انواع آسانی سے تلاش کریں۔' }
+    ],
+    audiobookTitle: 'اردو آڈیو بکس کہیں بھی سنیں',
+    audiobookBody: 'سفر، آرام یا ایک ساتھ کئی کام کرتے ہوئے آڈیو بکس کا لطف اٹھائیں، ہموار پلے بیک کنٹرولز کے ساتھ۔',
+    customizeTitle: 'آرام دہ مطالعے کے لیے تیار کردہ',
+    customizeBody: 'کتابی مختلف تھیمز، حسبِ ضرورت فونٹس، ریڈنگ لے آؤٹ اور بصری سیٹنگز فراہم کرتی ہے تاکہ ہر صارف کے لیے آرام دہ اور غیر متداخل مطالعہ ماحول بن سکے۔',
+    whyTitle: 'قارئین کتابی کو کیوں پسند کرتے ہیں',
+    whyItems: [
+      { title: 'وسیع اردو کتابی مجموعہ', body: 'اردو کتابوں اور آڈیو بکس کی بڑی دنیا ایک ہی جگہ پر دریافت کریں۔' },
+      { title: 'جدید ریڈنگ تجربہ', body: 'خوبصورت ڈیزائن، ہموار نیویگیشن اور حسبِ ضرورت ریڈنگ سیٹنگز سے لطف اٹھائیں۔' },
+      { title: 'کہیں بھی پڑھیں اور سنیں', body: 'متن اور آڈیو دونوں فارمیٹس میں کسی بھی وقت رسائی حاصل کریں۔' },
+      { title: 'دنیا بھر کے اردو قارئین کے لیے', body: 'اردو بولنے والی عالمی کمیونٹی کے لیے مخصوص ڈیجیٹل پلیٹ فارم۔' }
+    ],
+    communityTitle: 'ٹیکنالوجی کے ذریعے اردو ادب کا تحفظ',
+    communityBody: 'کتابی ٹیکنالوجی اور ثقافت کو یکجا کرتی ہے تاکہ موجودہ اور آنے والی نسلوں کے لیے اردو ادب کو جدید ڈیجیٹل تجربات کے ذریعے زیادہ قابلِ رسائی بنایا جا سکے۔',
+    reviewsTitle: 'قارئین کیا کہتے ہیں',
+    reviews: [
+      { quote: 'کتابوں اور آڈیو بکس کے لیے میں نے جو بہترین اردو ایپ استعمال کی ہے۔', name: 'عائشہ', meta: 'کمیونٹی ریویو' },
+      { quote: 'خوبصورت ڈیزائن، ہموار مطالعہ اور شاندار اردو لائبریری۔', name: 'بلال', meta: 'ایپ اسٹور ریویو' },
+      { quote: 'ایک سوچ سمجھ کر بنائی گئی ایپ جو اردو ادب کو موبائل پر زندہ رکھتی ہے۔', name: 'حسن', meta: 'قارئین کی رائے' }
+    ],
+    faqTitle: 'اکثر پوچھے گئے سوالات',
+    faqs: [
+      { q: 'کیا میں کتابیں آف لائن پڑھ سکتا ہوں؟', a: 'جی ہاں۔ کتابی آف لائن ریڈنگ سپورٹ فراہم کرتی ہے تاکہ ڈاؤن لوڈ کے بعد آپ بغیر انٹرنیٹ کے بھی کتابیں پڑھ سکیں۔' },
+      { q: 'کیا کتابی آڈیو بکس سپورٹ کرتی ہے؟', a: 'جی ہاں۔ کتابی میں آڈیو بک سپورٹ موجود ہے جس میں آسان سننے کے لیے ہموار پلے بیک کنٹرولز شامل ہیں۔' },
+      { q: 'کیا میں فونٹس اور تھیمز تبدیل کر سکتا ہوں؟', a: 'جی ہاں۔ آپ آرام دہ مطالعے کے لیے فونٹس، ٹیکسٹ سائز، برائٹنیس، تھیمز اور لے آؤٹ سیٹنگز تبدیل کر سکتے ہیں۔' },
+      { q: 'کیا ایپ مفت ہے؟', a: 'کتابی جدید اردو ریڈنگ تجربہ فراہم کرنے کے لیے بنائی گئی ہے، جبکہ دستیابی اور رسائی پلیٹ فارم اور علاقے کے مطابق ہو سکتی ہے۔' }
+    ],
+    finalTitle: 'آج ہی اپنا اردو مطالعہ شروع کریں',
+    finalBody1: 'کتابی ڈاؤن لوڈ کریں اور اردو کتابوں، آڈیو بکس اور ایک دلکش ڈیجیٹل ریڈنگ تجربے کی دنیا دریافت کریں۔',
+    finalBody2: 'فکشن، شاعری، اسلامی ادب اور تعلیمی مطالعے سے لے کر، کتابی اردو مواد کو ایک خوبصورت موبائل تجربے میں لاتی ہے۔',
+    footerDesc: 'کتابی ایک جدید اردو ڈیجیٹل ریڈنگ پلیٹ فارم ہے جو کتابیں، آڈیو بکس، حسبِ ضرورت ریڈنگ تجربات اور اردو قارئین کے لیے بڑھتی ہوئی لائبریری پیش کرتا ہے۔'
+  },
+  ar: {
+    seoTitle: 'كتابي - تطبيق قراءة الكتب والكتب الصوتية الأردية',
+    seoDesc: 'حمّل كتبي واستكشف آلاف الكتب والكتب الصوتية الأردية مع ميزات قراءة قابلة للتخصيص ودعم غير متصل وتجربة رقمية حديثة.',
+    heroBadge: 'كتابي',
+    heroTitle: 'كتابي - كتب أردية لجيل الهواتف الذكية',
+    heroLead: 'اكتشف آلاف الكتب الأردية واقرأها واستمع إليها من خلال تجربة قراءة رقمية جميلة صُممت للقراء المعاصرين حول العالم.',
+    heroBody: 'من الروايات والشعر إلى الأدب الإسلامي والكتب الصوتية، يضع كتبي عالم الكتب الأردية بين يديك.',
+    appStore: 'حمّل من App Store',
+    googlePlay: 'احصل عليه من Google Play',
+    explore: 'استكشف الميزات',
+    trustTitle: 'منزل حديث للقراء الأردية',
+    trustStats: ['آلاف الكتب الأردية', 'كتب صوتية ووضع القراءة', 'دعم القراءة دون اتصال', 'خطوط وسمات قابلة للتخصيص'],
+    introTitle: 'منزل حديث للقراء الأردية',
+    introBody1: 'كتابي منصة قراءة أردية قوية صُممت لجعل الأدب الأردي أكثر سهولة وجاذبية ومتعة للقراء من جميع الأعمار.',
+    introBody2: 'استكشف مجموعة واسعة من الكتب الأردية والكتب الصوتية وتجارب القراءة الرقمية عبر تطبيق بسيط وسهل الاستخدام صُمم لجيل الهواتف الذكية.',
+    libraryTitle: 'استكشف مكتبة أردية ضخمة',
+    libraryBody: 'احصل على مجموعة متنامية من الكتب الأردية عبر الخيال والشعر والأدب الإسلامي والتاريخ والكتب التعليمية والأدب الأردي الكلاسيكي.',
+    categories: ['الخيال', 'الشعر', 'الأدب الإسلامي', 'التاريخ', 'الكتب التعليمية', 'الأدب الأردي الكلاسيكي'],
+    featuresTitle: 'ميزات قوية لعشاق الكتب الأردية',
+    features: [
+      { title: 'اقرأ أو استمع', body: 'استمتع بالكتب بصيغة القراءة والكتاب الصوتي لتجربة مرنة وغامرة.' },
+      { title: 'تجربة قراءة مخصصة', body: 'خصّص الخطوط والسمات وأحجام النص والسطوع والتخطيطات حسب راحتك.' },
+      { title: 'إشارة مرجعية ومتابعة لاحقًا', body: 'احفظ تقدمك وواصل القراءة من حيث توقفت.' },
+      { title: 'تنقل سهل بين الفصول', body: 'تصفح الفصول بسرعة وانتقل عبر الكتب بسلاسة.' },
+      { title: 'دعم القراءة دون اتصال', body: 'حمّل الكتب واستمتع بالقراءة دون انقطاع من دون اتصال بالإنترنت.' },
+      { title: 'بحث واكتشاف ذكي', body: 'اعثر على الكتب والمؤلفين والأنواع بسهولة عبر التصفح المنظم والبحث الذكي.' }
+    ],
+    audiobookTitle: 'استمع إلى الكتب الصوتية الأردية أينما كنت',
+    audiobookBody: 'استمتع بالكتب الصوتية أثناء السفر أو الاسترخاء أو تعدد المهام مع عناصر تحكم تشغيل سلسة وتجربة استماع سهلة.',
+    customizeTitle: 'مصمم للقراءة المريحة',
+    customizeBody: 'يوفر كتبي سمات متعددة وخطوطًا قابلة للتخصيص وتخطيطات قراءة وإعدادات مرئية تخلق بيئة قراءة مريحة وخالية من التشتت.',
+    whyTitle: 'لماذا يحب القراء كتبي',
+    whyItems: [
+      { title: 'مجموعة ضخمة من الكتب الأردية', body: 'استكشف مجموعة واسعة من الكتب والكتب الصوتية في مكان واحد.' },
+      { title: 'تجربة قراءة حديثة', body: 'استمتع بتصميم أنيق وتنقل سلس وإعدادات قراءة قابلة للتخصيص.' },
+      { title: 'اقرأ واستمع في أي مكان', body: 'يمكنك الوصول إلى الكتب في أي وقت عبر النص والصوت.' },
+      { title: 'مصمم للقراء الأردية حول العالم', body: 'منصة رقمية مخصصة للمجتمع الأردي العالمي.' }
+    ],
+    communityTitle: 'حفظ الأدب الأردي عبر التكنولوجيا',
+    communityBody: 'يجمع كتبي بين التكنولوجيا والثقافة لجعل الأدب الأردي أكثر سهولة للأجيال الحالية والمستقبلية عبر تجارب رقمية حديثة.',
+    reviewsTitle: 'ماذا يقول القراء',
+    reviews: [
+      { quote: 'أفضل تطبيق قراءة أردي استخدمته للكتب والكتب الصوتية.', name: 'عائشة', meta: 'تقييم المجتمع' },
+      { quote: 'تصميم جميل وقراءة سلسة ومكتبة أردية رائعة.', name: 'بلال', meta: 'تقييم App Store' },
+      { quote: 'تطبيق مدروس يحافظ على الأدب الأردي حيًا على الهاتف.', name: 'حسن', meta: 'ملاحظات القراء' }
+    ],
+    faqTitle: 'الأسئلة الشائعة',
+    faqs: [
+      { q: 'هل يمكنني القراءة دون اتصال؟', a: 'نعم. يدعم كتبي القراءة دون اتصال حتى تستمتع بالكتب بعد التنزيل من دون إنترنت.' },
+      { q: 'هل يدعم كتبي الكتب الصوتية؟', a: 'نعم. يتضمن كتبي دعمًا للكتب الصوتية مع عناصر تحكم سلسة للتشغيل والاستماع بسهولة.' },
+      { q: 'هل يمكنني تخصيص الخطوط والسمات؟', a: 'نعم. يمكنك ضبط الخطوط وحجم النص والسطوع والسمات والتخطيطات لتجربة قراءة مريحة.' },
+      { q: 'هل التطبيق مجاني؟', a: 'صُمم كتبي لتقديم تجربة قراءة أردية حديثة، مع اختلاف التوفر والوصول حسب المنصة والمنطقة.' }
+    ],
+    finalTitle: 'ابدأ رحلتك مع القراءة الأردية اليوم',
+    finalBody1: 'حمّل كتبي واكتشف عالمًا حديثًا من الكتب الأردية والكتب الصوتية وتجارب القراءة الرقمية الغامرة.',
+    finalBody2: 'من الخيال والشعر إلى الأدب الإسلامي والقراءة التعليمية، يضع كتبي المحتوى الأردي داخل تجربة هاتفية أنيقة.',
+    footerDesc: 'كتابي منصة قراءة رقمية أردية حديثة تقدم الكتب والكتب الصوتية وتجارب قراءة قابلة للتخصيص ومكتبة متنامية للقراء حول العالم.'
+  }
+}[lang];
+
+const featureImages = [
+  '/images/kitabi/unnamed.webp',
+  '/images/kitabi/unnamed (1).webp',
+  '/images/kitabi/unnamed (2).webp',
+  '/images/kitabi/unnamed (3).webp'
+];
+
+const storeLinks = [
+  { href: 'https://apps.apple.com/us/search?term=Kitabi', label: copy.appStore },
+  { href: 'https://play.google.com/store/search?q=Kitabi&c=apps', label: copy.googlePlay }
+];
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="kitabi-hero">
+    <div class="container kitabi-grid">
+      <div class="kitabi-copy">
+        <span class="badge badge-primary kitabi-eyebrow">{copy.heroBadge}</span>
+        <h1 class="kitabi-title">{copy.heroTitle}</h1>
+        <p class="kitabi-lead">{copy.heroLead}</p>
+        <p class="kitabi-body">{copy.heroBody}</p>
+
+        <div class="kitabi-trust-strip" aria-label="Kitabi highlights">
+          {copy.trustStats.map(item => <span class="kitabi-trust-item">{item}</span>)}
+        </div>
+
+        <div class="kitabi-cta-row">
+          {storeLinks.map(link => (
+            <a href={link.href} class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">{link.label}</a>
+          ))}
+          <a href="#features" class="btn btn-outline btn-lg kitabi-explore">{copy.explore}</a>
+        </div>
+      </div>
+
+      <aside class="kitabi-showcase">
+        <div class="kitabi-showcase-shell card">
+          <div class="kitabi-showcase-top">
+            <div class="kitabi-brand">
+              <img src="/images/kitabi/kitabi.webp" alt="Kitabi logo" class="kitabi-logo" />
+              <div>
+                <p class="kitabi-caption">{copy.trustTitle}</p>
+                <h2 class="kitabi-rating">4.9★</h2>
+              </div>
+            </div>
+            <div class="kitabi-badge">Urdu books</div>
+          </div>
+
+          <div class="kitabi-showcase-main">
+            <img src={featureImages[3]} alt="Kitabi reading screen" class="kitabi-main-shot" />
+            <div class="kitabi-side-stack">
+              <img src={featureImages[0]} alt="Kitabi library screen" />
+              <img src={featureImages[2]} alt="Kitabi reading screen" />
+            </div>
+          </div>
+
+          <div class="kitabi-stats-grid">
+            <div class="kitabi-stat">Urdu books</div>
+            <div class="kitabi-stat">Audiobooks</div>
+            <div class="kitabi-stat">Offline reading</div>
+            <div class="kitabi-stat">Smart search</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-grid">
+      <div class="split-copy">
+        <span class="badge badge-primary">Introduction</span>
+        <h2 class="section-title">{copy.introTitle}</h2>
+        <p class="body-copy">{copy.introBody1}</p>
+        <p class="body-copy">{copy.introBody2}</p>
+      </div>
+      <div class="info-panel card">
+        <img src="/images/kitabi/kitabi.webp" alt="Kitabi icon" class="info-icon" />
+        <div class="info-list">
+          <div>Urdu novels</div>
+          <div>Poetry collections</div>
+          <div>Islamic literature</div>
+          <div>Digital audiobooks</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Library</span>
+        <h2 class="section-title">{copy.libraryTitle}</h2>
+      </div>
+      <p class="body-copy section-copy">{copy.libraryBody}</p>
+      <div class="chip-grid">
+        {copy.categories.map(category => <div class="chip">{category}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Features</span>
+        <h2 class="section-title">{copy.featuresTitle}</h2>
+      </div>
+      <div class="feature-grid">
+        {copy.features.map((feature, index) => (
+          <article class="feature-card card">
+            <div class="feature-index">0{index + 1}</div>
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-grid reverse">
+      <div class="split-copy">
+        <span class="badge badge-primary">Audiobooks</span>
+        <h2 class="section-title">{copy.audiobookTitle}</h2>
+        <p class="body-copy">{copy.audiobookBody}</p>
+        <div class="mini-grid">
+          <div class="mini-pill">Playback controls</div>
+          <div class="mini-pill">Easy listening</div>
+          <div class="mini-pill">Travel friendly</div>
+          <div class="mini-pill">Background audio</div>
+        </div>
+      </div>
+      <div class="shot-grid">
+        <img src={featureImages[1]} alt="Kitabi audiobook screen" class="shot-card large" />
+        <img src={featureImages[2]} alt="Kitabi reading screen" class="shot-card" />
+        <img src={featureImages[0]} alt="Kitabi book library screen" class="shot-card" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-grid">
+      <div class="split-copy">
+        <span class="badge badge-primary">Customization</span>
+        <h2 class="section-title">{copy.customizeTitle}</h2>
+        <p class="body-copy">{copy.customizeBody}</p>
+      </div>
+      <div class="custom-panel card">
+        <img src={featureImages[3]} alt="Kitabi reading preview" />
+        <div class="custom-bars">
+          <span>Classic theme</span>
+          <span>Serif font</span>
+          <span>Large text</span>
+          <span>Night mode</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Why Kitabi</span>
+        <h2 class="section-title">{copy.whyTitle}</h2>
+      </div>
+      <div class="why-grid">
+        {copy.whyItems.map(item => (
+          <article class="why-card card">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-grid reverse">
+      <div class="shot-grid secondary">
+        <img src={featureImages[0]} alt="Kitabi library" class="shot-card tall" />
+        <img src={featureImages[1]} alt="Kitabi audiobook" class="shot-card" />
+      </div>
+      <div class="split-copy">
+        <span class="badge badge-primary">Community</span>
+        <h2 class="section-title">{copy.communityTitle}</h2>
+        <p class="body-copy">{copy.communityBody}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Reviews</span>
+        <h2 class="section-title">{copy.reviewsTitle}</h2>
+      </div>
+      <div class="review-grid">
+        {copy.reviews.map(review => (
+          <article class="review-card card">
+            <p class="review-quote">“{review.quote}”</p>
+            <div class="review-meta">
+              <strong>{review.name}</strong>
+              <span>{review.meta}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container faq-wrap">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">FAQ</span>
+        <h2 class="section-title">{copy.faqTitle}</h2>
+      </div>
+      <div class="faq-list">
+        {copy.faqs.map((faq, idx) => (
+          <details class="faq-item card" open={idx === 0}>
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section final-cta-band">
+    <div class="container final-cta-grid">
+      <div>
+        <span class="badge badge-primary">Start Now</span>
+        <h2 class="section-title">{copy.finalTitle}</h2>
+        <p class="body-copy">{copy.finalBody1}</p>
+        <p class="body-copy">{copy.finalBody2}</p>
+        <div class="kitabi-cta-row">
+          {storeLinks.map(link => (
+            <a href={link.href} class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">{link.label}</a>
+          ))}
+        </div>
+      </div>
+      <div class="final-art card">
+        <img src="/images/kitabi/kitabi.webp" alt="Kitabi logo" class="final-logo" />
+        <p>{copy.footerDesc}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section footer-summary">
+    <div class="container">
+      <p>{copy.footerDesc}</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .kitabi-hero {
+    min-height: calc(100vh - 4.5rem);
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 0 2rem;
+    overflow: hidden;
+    background:
+      linear-gradient(135deg, rgba(255,252,246,.98), rgba(250,240,223,.94)),
+      url('/images/kitabi/kitabi.webp') center/240px no-repeat;
+  }
+
+  .kitabi-grid,
+  .split-grid,
+  .final-cta-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .kitabi-copy {
+    text-align: start;
+  }
+
+  .kitabi-eyebrow,
+  .section-title-wrap .badge {
+    margin-bottom: 1rem;
+  }
+
+  .kitabi-title {
+    font-size: 3rem;
+    line-height: 1.02;
+    color: var(--primary-dark);
+    max-width: 12ch;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0;
+  }
+
+  .kitabi-lead {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--secondary-dark);
+    max-width: 44rem;
+    margin-bottom: 1rem;
+  }
+
+  .kitabi-body,
+  .body-copy,
+  .section-copy {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  .kitabi-trust-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin: 1.5rem 0 1.75rem;
+  }
+
+  .kitabi-trust-item,
+  .chip,
+  .mini-pill,
+  .kitabi-stat {
+    border: 1px solid rgba(251, 146, 60, .22);
+    background: rgba(255,255,255,.85);
+    color: var(--dark);
+    border-radius: .75rem;
+    padding: .7rem .95rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .kitabi-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .9rem;
+    margin-top: 1rem;
+  }
+
+  .kitabi-explore {
+    background: rgba(255,255,255,.8);
+  }
+
+  .kitabi-showcase-shell,
+  .info-panel,
+  .custom-panel,
+  .final-art {
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    background: rgba(255,255,255,.9);
+    border: 1px solid rgba(251, 146, 60, .14);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .kitabi-showcase-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .kitabi-brand {
+    display: flex;
+    gap: .85rem;
+    align-items: center;
+  }
+
+  .kitabi-logo,
+  .info-icon,
+  .final-logo {
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: .9rem;
+    object-fit: cover;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .kitabi-caption {
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--secondary-dark);
+    margin-bottom: .2rem;
+  }
+
+  .kitabi-rating {
+    font-size: 1.55rem;
+    line-height: 1;
+    color: var(--dark);
+  }
+
+  .kitabi-badge {
+    padding: .8rem 1rem;
+    border-radius: 999px;
+    background: rgba(255, 237, 213, .95);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: .95rem;
+  }
+
+  .kitabi-showcase-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+    gap: .9rem;
+    align-items: stretch;
+  }
+
+  .kitabi-main-shot,
+  .kitabi-side-stack img,
+  .shot-card,
+  .custom-panel img,
+  .info-panel img {
+    width: 100%;
+    display: block;
+    border-radius: 1rem;
+    object-fit: cover;
+    box-shadow: var(--shadow-sm);
+    background: #fff;
+  }
+
+  .kitabi-side-stack {
+    display: grid;
+    gap: .9rem;
+  }
+
+  .kitabi-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: .75rem;
+    margin-top: 1rem;
+  }
+
+  .section {
+    padding: 4.5rem 0;
+  }
+
+  .section-bg {
+    background: linear-gradient(180deg, rgba(255,248,240,.72), rgba(255,255,255,.94));
+  }
+
+  .section-title-wrap.tight {
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: 2.25rem;
+    line-height: 1.12;
+    color: var(--primary-dark);
+    margin-bottom: .75rem;
+  }
+
+  .section-copy {
+    max-width: 60rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .chip-grid,
+  .mini-grid,
+  .why-grid,
+  .review-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .chip-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .feature-grid,
+  .why-grid,
+  .review-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .feature-card,
+  .why-card,
+  .review-card,
+  .faq-item,
+  .info-panel,
+  .custom-panel {
+    background: rgba(255,255,255,.94);
+    border: 1px solid rgba(251, 146, 60, .14);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .feature-index {
+    display: inline-flex;
+    margin-bottom: .9rem;
+    color: var(--primary);
+    font-weight: 800;
+  }
+
+  .feature-card h3,
+  .why-card h3 {
+    font-size: 1.15rem;
+    line-height: 1.3;
+    color: var(--dark);
+    margin-bottom: .6rem;
+  }
+
+  .feature-card p,
+  .why-card p,
+  .review-card p,
+  .faq-item p,
+  .info-list div,
+  .custom-bars span {
+    color: var(--secondary-dark);
+    line-height: 1.65;
+  }
+
+  .split-grid.reverse {
+    direction: ltr;
+  }
+
+  .split-copy {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+
+  .info-panel {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .info-list {
+    display: grid;
+    gap: .75rem;
+    font-weight: 600;
+  }
+
+  .shot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .9rem;
+  }
+
+  .shot-grid.secondary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .shot-card.large,
+  .shot-card.tall {
+    grid-column: 1 / -1;
+  }
+
+  .mini-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 1rem;
+  }
+
+  .custom-panel {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .custom-bars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+  }
+
+  .final-cta-band {
+    background: linear-gradient(135deg, rgba(255,243,232,.98), rgba(255,252,247,.96));
+  }
+
+  .faq-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--dark);
+    list-style: none;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item p {
+    margin-top: .75rem;
+  }
+
+  .footer-summary {
+    padding-top: 0;
+  }
+
+  .footer-summary p {
+    color: var(--secondary-dark);
+    text-align: center;
+    max-width: 65rem;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 1100px) {
+    .kitabi-grid,
+    .split-grid,
+    .final-cta-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .kitabi-title {
+      max-width: 100%;
+    }
+
+    .kitabi-showcase-main {
+      grid-template-columns: 1fr;
+    }
+
+    .kitabi-stats-grid,
+    .chip-grid,
+    .feature-grid,
+    .why-grid,
+    .review-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .kitabi-hero {
+      min-height: auto;
+      padding: 2rem 0 1rem;
+    }
+
+    .kitabi-title {
+      font-size: 2.35rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+    }
+
+    .kitabi-stats-grid,
+    .chip-grid,
+    .feature-grid,
+    .why-grid,
+    .review-grid,
+    .shot-grid,
+    .mini-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

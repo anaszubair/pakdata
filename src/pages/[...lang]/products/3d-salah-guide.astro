@@ -1,0 +1,473 @@
+---
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: {
+    seoTitle: '3D Salah Guide - Interactive Islamic Prayer Learning App',
+    seoDesc: 'Learn how to perform Salah correctly with 3D Salah Guide featuring interactive prayer demonstrations, 360° viewing, and step-by-step Islamic prayer guidance.',
+    heroBadge: '3D Salah Guide',
+    heroTitle: '3D Salah Guide - Learn How to Perform Salah Step by Step',
+    heroLead: 'An interactive 3D Islamic prayer guide designed to help Muslims learn how to perform Salah correctly through immersive visual learning and easy step-by-step guidance.',
+    heroBody: 'Perfect for children, beginners, new Muslims, and anyone seeking a better understanding of Islamic prayer.',
+    appStore: 'Download on App Store',
+    explore: 'Explore Features',
+    featureBar: ['3D Prayer Demonstrations', '360° View', 'Zoom & Detail', 'Beginner Friendly', 'Authentic Guidance'],
+    introTitle: 'Learn Salah Through Interactive 3D Guidance',
+    introBody1: '3D Salah Guide provides a visually engaging and easy-to-follow learning experience that helps users understand the correct method of performing Salah according to authentic Islamic teachings.',
+    introBody2: 'Using interactive 3D animations, users can observe each prayer position clearly and learn Salah in a simple, practical, and meaningful way.',
+    featuresTitle: 'Interactive Features for Effective Learning',
+    features: [
+      { title: '3D Animated Prayer Demonstrations', body: 'Watch step-by-step 3D Salah demonstrations that visually guide users through every prayer movement and position.' },
+      { title: '360° Interactive Viewing', body: 'Rotate the 3D character in all directions for a complete understanding of posture and positioning during Salah.' },
+      { title: 'Zoom & Detailed Viewing', body: 'Use zoom functionality to closely observe movements and improve prayer accuracy and learning.' },
+      { title: 'Beginner-Friendly Experience', body: 'Designed for children, families, students, and new Muslims with a clean and easy-to-use learning interface.' },
+      { title: 'Authentic Prayer Guidance', body: 'Prayer guidance is based on the teachings and methodology of Imam Abu Hanifa, presented in a simple educational format.' }
+    ],
+    howTitle: 'How It Works',
+    steps: ['Select Salah', 'Watch 3D Demonstration', 'Rotate & Zoom', 'Learn Step-by-Step'],
+    eduTitle: 'A Modern Way to Learn Salah',
+    eduBody: '3D Salah Guide combines Islamic education with interactive technology to make learning prayer easier, more engaging, and accessible for all ages. Whether used at home, in schools, or for personal learning, the app helps users build confidence and understanding in performing Salah correctly.',
+    whyTitle: 'Why Users Love 3D Salah Guide',
+    why: [
+      { title: 'Interactive Learning Experience', body: 'Visual 3D guidance makes learning Salah easier than traditional text-only methods.' },
+      { title: 'Family & Child Friendly', body: 'An ideal educational tool for parents, teachers, and children learning prayer.' },
+      { title: 'Clear & Easy Instructions', body: 'Step-by-step guidance designed for practical understanding.' },
+      { title: 'Immersive Technology', body: '360-degree viewing and zoom functionality provide a deeper learning experience.' }
+    ],
+    audienceTitle: 'Designed for Every Muslim Learner',
+    audienceItems: ['Children learning Salah', 'New Muslims', 'Islamic schools & teachers', 'Parents teaching prayer', 'Beginners seeking guidance', 'Daily Salah learning & revision'],
+    reviewsTitle: 'What Families Say',
+    reviews: [
+      { quote: 'A wonderful app for teaching children how to pray.', name: 'Amina', meta: 'Parent review' },
+      { quote: 'The 3D views make the movements very easy to understand.', name: 'Bilal', meta: 'Community feedback' },
+      { quote: 'Simple, clear, and perfect for beginners.', name: 'Hassan', meta: 'App Store review' }
+    ],
+    faqTitle: 'Frequently Asked Questions',
+    faqs: [
+      { q: 'Is the app suitable for children?', a: 'Yes. It is designed to be simple, visual, and beginner-friendly for all ages.' },
+      { q: 'Does the app work offline?', a: 'Many learning screens can be accessed after content is loaded, making it useful for practice and review.' },
+      { q: 'Which prayer method is followed?', a: 'The guidance is based on the teachings and methodology of Imam Abu Hanifa.' },
+      { q: 'Can I rotate the 3D model?', a: 'Yes. The app includes 360° viewing and zoom features for a complete learning experience.' }
+    ],
+    finalBadge: 'Start Today',
+    finalTitle: 'Start Learning Salah with Confidence',
+    finalBody1: 'Download 3D Salah Guide today and experience an interactive and engaging way to learn Islamic prayer through modern 3D technology and authentic guidance.',
+    finalBody2: 'Learn with clarity, confidence, and a hands-on visual approach designed for every Muslim learner.',
+    finalLearn: 'Learn More',
+    footerDesc: '3D Salah Guide is an interactive Islamic prayer learning app featuring step-by-step 3D Salah demonstrations, 360° viewing, and beginner-friendly educational guidance.'
+  },
+  ur: {
+    seoTitle: '3D نماز گائیڈ - انٹرایکٹو اسلامی نماز سیکھنے کی ایپ',
+    seoDesc: '3D Salah Guide کے ساتھ نماز صحیح طریقے سے سیکھیں، جس میں انٹرایکٹو مظاہرے، 360° ویو اور مرحلہ وار رہنمائی شامل ہے۔',
+    heroBadge: '3D صلاح گائیڈ',
+    heroTitle: '3D Salah Guide - قدم بہ قدم نماز سیکھیں',
+    heroLead: 'ایک انٹرایکٹو 3D اسلامی نماز گائیڈ جو مسلمانوں کو خوبصورت بصری سیکھنے اور آسان مرحلہ وار رہنمائی کے ذریعے صحیح طریقے سے نماز سیکھنے میں مدد دیتی ہے۔',
+    heroBody: 'بچوں، ابتدائی سیکھنے والوں، نئے مسلمانوں اور ہر اس شخص کے لیے بہترین جو اسلامی نماز کو بہتر طور پر سمجھنا چاہتا ہو۔',
+    appStore: 'ایپ اسٹور پر ڈاؤن لوڈ کریں',
+    explore: 'خصوصیات دیکھیں',
+    featureBar: ['3D نماز مظاہرے', '360° ویو', 'زوم اور تفصیل', 'ابتدائی افراد کے لیے', 'مستند رہنمائی'],
+    introTitle: 'انٹرایکٹو 3D رہنمائی کے ذریعے نماز سیکھیں',
+    introBody1: '3D Salah Guide ایک دلکش اور آسان سمجھ آنے والا سیکھنے کا تجربہ فراہم کرتا ہے جو صارفین کو مستند اسلامی تعلیمات کے مطابق نماز پڑھنے کا درست طریقہ سمجھنے میں مدد دیتا ہے۔',
+    introBody2: 'انٹرایکٹو 3D اینیمیشنز کے ذریعے ہر نماز کی حالت واضح طور پر دیکھی جا سکتی ہے اور نماز کو آسان، عملی اور بامعنی انداز میں سیکھا جا سکتا ہے۔',
+    featuresTitle: 'موثر سیکھنے کے لیے انٹرایکٹو خصوصیات',
+    features: [
+      { title: '3D متحرک نماز مظاہرے', body: 'مرحلہ وار 3D نماز مظاہرے دیکھیں جو ہر حرکت اور حالت کی واضح رہنمائی کرتے ہیں۔' },
+      { title: '360° انٹرایکٹو ویو', body: '3D کردار کو ہر سمت سے گھما کر نماز کی کیفیت کو بہتر سمجھیں۔' },
+      { title: 'زوم اور تفصیلی مطالعہ', body: 'زوم کے ذریعے حرکات کو قریب سے دیکھیں اور سیکھنے میں بہتری لائیں۔' },
+      { title: 'ابتدائی افراد کے لیے آسان', body: 'بچوں، خاندانوں، طلبہ اور نئے مسلمانوں کے لیے صاف اور آسان انٹرفیس۔' },
+      { title: 'مستند نماز رہنمائی', body: 'امام ابو حنیفہؒ کی تعلیمات کی بنیاد پر سادہ تعلیمی انداز میں رہنمائی۔' }
+    ],
+    howTitle: 'یہ کیسے کام کرتا ہے',
+    steps: ['نماز منتخب کریں', '3D مظاہرہ دیکھیں', 'Rotate اور Zoom کریں', 'مرحلہ وار سیکھیں'],
+    eduTitle: 'نماز سیکھنے کا جدید طریقہ',
+    eduBody: '3D Salah Guide اسلامی تعلیم کو انٹرایکٹو ٹیکنالوجی کے ساتھ جوڑتا ہے تاکہ نماز سیکھنا ہر عمر کے لیے آسان، دلچسپ اور قابلِ رسائی بن جائے۔',
+    whyTitle: 'صارفین 3D Salah Guide کو کیوں پسند کرتے ہیں',
+    why: [
+      { title: 'انٹرایکٹو سیکھنے کا تجربہ', body: 'بصری 3D رہنمائی روایتی متن کے مقابلے میں نماز سیکھنا آسان بناتی ہے۔' },
+      { title: 'خاندان اور بچوں کے لیے موزوں', body: 'والدین، اساتذہ اور بچوں کے لیے بہترین تعلیمی ٹول۔' },
+      { title: 'واضح اور آسان ہدایات', body: 'عملی سمجھ کے لیے مرحلہ وار رہنمائی۔' },
+      { title: 'بصری طور پر جڑی ہوئی ٹیکنالوجی', body: '360° ویو اور زوم سیکھنے کے تجربے کو بہتر بناتے ہیں۔' }
+    ],
+    audienceTitle: 'ہر مسلمان سیکھنے والے کے لیے',
+    audienceItems: ['بچے جو نماز سیکھ رہے ہیں', 'نئے مسلمان', 'اسلامی اسکول اور اساتذہ', 'والدین جو نماز سکھا رہے ہیں', 'ابتدائی سیکھنے والے', 'روزانہ نماز کی مشق'],
+    reviewsTitle: 'صارفین کیا کہتے ہیں',
+    reviews: [
+      { quote: 'بچوں کو نماز سکھانے کے لیے ایک شاندار ایپ۔', name: 'آمنہ', meta: 'والدین کی رائے' },
+      { quote: '3D ویوز حرکات کو بہت آسان بنا دیتے ہیں۔', name: 'بلال', meta: 'کمیونٹی فیڈبیک' },
+      { quote: 'سادہ، واضح، اور ابتدائی افراد کے لیے بہترین۔', name: 'حسن', meta: 'ایپ اسٹور ریویو' }
+    ],
+    faqTitle: 'اکثر پوچھے گئے سوالات',
+    faqs: [
+      { q: 'کیا یہ ایپ بچوں کے لیے مناسب ہے؟', a: 'جی ہاں۔ اسے ہر عمر کے لیے سادہ، بصری اور ابتدائی افراد کے لیے آسان بنایا گیا ہے۔' },
+      { q: 'کیا ایپ آف لائن کام کرتی ہے؟', a: 'بہت سی سیکھنے والی اسکرینیں مواد لوڈ ہونے کے بعد دیکھی جا سکتی ہیں۔' },
+      { q: 'کون سا نماز طریقہ استعمال ہوا ہے؟', a: 'رہنمائی امام ابو حنیفہؒ کی تعلیمات اور طریقہ کار پر مبنی ہے۔' },
+      { q: 'کیا 3D ماڈل گھمایا جا سکتا ہے؟', a: 'جی ہاں، ایپ میں 360° ویو اور زوم کی سہولت موجود ہے۔' }
+    ],
+    finalBadge: 'آج ہی شروع کریں',
+    finalTitle: 'اعتماد کے ساتھ نماز سیکھنا شروع کریں',
+    finalBody1: 'آج ہی 3D Salah Guide ڈاؤن لوڈ کریں اور جدید 3D ٹیکنالوجی اور مستند رہنمائی کے ساتھ اسلامی نماز سیکھنے کا انٹرایکٹو تجربہ کریں۔',
+    finalBody2: 'واضح، پُراعتماد اور بصری انداز میں سیکھیں جو ہر مسلمان سیکھنے والے کے لیے بنایا گیا ہے۔',
+    finalLearn: 'مزید جانیں',
+    footerDesc: '3D Salah Guide ایک انٹرایکٹو اسلامی نماز سیکھنے کی ایپ ہے جس میں مرحلہ وار 3D نماز مظاہرے، 360° ویو اور ابتدائی افراد کے لیے تعلیمی رہنمائی شامل ہے۔'
+  },
+  ar: {
+    seoTitle: 'دليل الصلاة ثلاثي الأبعاد - تطبيق تعلّم الصلاة الإسلامية التفاعلي',
+    seoDesc: 'تعلّم أداء الصلاة بشكل صحيح مع 3D Salah Guide الذي يقدّم عروضًا تفاعلية للصلاة، وعرضًا 360°، وإرشادات خطوة بخطوة.',
+    heroBadge: 'دليل الصلاة 3D',
+    heroTitle: '3D Salah Guide - تعلّم كيفية أداء الصلاة خطوة بخطوة',
+    heroLead: 'دليل صلاة إسلامي تفاعلي ثلاثي الأبعاد صُمم لمساعدة المسلمين على تعلّم أداء الصلاة بشكل صحيح من خلال التعلّم البصري الغامر والإرشاد خطوة بخطوة.',
+    heroBody: 'مثالي للأطفال، والمبتدئين، والمسلمين الجدد، وكل من يبحث عن فهم أفضل للصلاة الإسلامية.',
+    appStore: 'حمّل من App Store',
+    explore: 'استكشف الميزات',
+    featureBar: ['عروض 3D', 'عرض 360°', 'تكبير وتفاصيل', 'ملائم للمبتدئين', 'إرشاد أصيل'],
+    introTitle: 'تعلّم الصلاة عبر إرشاد ثلاثي الأبعاد تفاعلي',
+    introBody1: 'يوفّر 3D Salah Guide تجربة تعلّم مرئية وسهلة المتابعة تساعد المستخدمين على فهم الطريقة الصحيحة لأداء الصلاة وفقًا للتعاليم الإسلامية الأصيلة.',
+    introBody2: 'باستخدام الرسوم المتحركة ثلاثية الأبعاد التفاعلية، يمكن للمستخدمين مشاهدة كل وضعية بوضوح وتعلّم الصلاة بطريقة بسيطة وعملية وهادفة.',
+    featuresTitle: 'ميزات تفاعلية لتعلّم فعّال',
+    features: [
+      { title: 'عروض صلاة متحركة ثلاثية الأبعاد', body: 'شاهد عروضًا خطوة بخطوة ترشدك بصريًا خلال كل حركة ووضعية.' },
+      { title: 'عرض تفاعلي 360°', body: 'دوّر الشخصية ثلاثية الأبعاد في جميع الاتجاهات لفهم الوضعية بدقة.' },
+      { title: 'تكبير وعرض تفصيلي', body: 'استخدم التكبير لملاحظة الحركات عن قرب وتحسين التعلّم.' },
+      { title: 'تجربة مناسبة للمبتدئين', body: 'مصمم للأطفال والعائلات والطلاب والمسلمين الجدد بواجهة سهلة وبسيطة.' },
+      { title: 'إرشاد صلاة أصيل', body: 'الإرشاد مبني على تعاليم ومنهج الإمام أبي حنيفة بطريقة تعليمية مبسطة.' }
+    ],
+    howTitle: 'كيف يعمل',
+    steps: ['اختر الصلاة', 'شاهد العرض ثلاثي الأبعاد', 'دوّر وقرّب', 'تعلّم خطوة بخطوة'],
+    eduTitle: 'طريقة حديثة لتعلّم الصلاة',
+    eduBody: 'يجمع 3D Salah Guide بين التعليم الإسلامي والتكنولوجيا التفاعلية لتسهيل تعلّم الصلاة وجعله أكثر تشويقًا وسهولة لجميع الأعمار.',
+    whyTitle: 'لماذا يحب المستخدمون التطبيق',
+    why: [
+      { title: 'تجربة تعلّم تفاعلية', body: 'الإرشاد البصري ثلاثي الأبعاد أسهل من الطرق النصية التقليدية.' },
+      { title: 'ملائم للعائلة والأطفال', body: 'أداة تعليمية مثالية للآباء والمعلمين والأطفال.' },
+      { title: 'تعليمات واضحة وسهلة', body: 'إرشادات خطوة بخطوة لفهم عملي واضح.' },
+      { title: 'تقنية غامرة', body: 'العرض 360° والتكبير يوفران تجربة تعلّم أعمق.' }
+    ],
+    audienceTitle: 'مصمم لكل متعلّم مسلم',
+    audienceItems: ['الأطفال يتعلّمون الصلاة', 'المسلمون الجدد', 'المدارس الإسلامية والمعلمون', 'الآباء يعلّمون الصلاة', 'المبتدئون', 'مراجعة يومية للصلاة'],
+    reviewsTitle: 'ماذا تقول العائلات',
+    reviews: [
+      { quote: 'تطبيق رائع لتعليم الأطفال الصلاة.', name: 'أمينة', meta: 'تقييم أحد الوالدين' },
+      { quote: 'العروض الثلاثية الأبعاد تجعل الحركات سهلة الفهم.', name: 'بلال', meta: 'ملاحظات المجتمع' },
+      { quote: 'بسيط وواضح ومثالي للمبتدئين.', name: 'حسن', meta: 'تقييم App Store' }
+    ],
+    faqTitle: 'الأسئلة الشائعة',
+    faqs: [
+      { q: 'هل التطبيق مناسب للأطفال؟', a: 'نعم، فهو بسيط ومرئي ومصمم للمبتدئين من جميع الأعمار.' },
+      { q: 'هل يعمل دون اتصال؟', a: 'يمكن الوصول إلى كثير من الشاشات بعد تحميل المحتوى، مما يجعله مفيدًا للمراجعة.' },
+      { q: 'ما منهج الصلاة المتبع؟', a: 'الإرشاد مبني على تعاليم الإمام أبي حنيفة ومنهجه.' },
+      { q: 'هل يمكن تدوير النموذج ثلاثي الأبعاد؟', a: 'نعم، يتضمن التطبيق عرضًا 360° وميزة التكبير.' }
+    ],
+    finalBadge: 'ابدأ اليوم',
+    finalTitle: 'ابدأ تعلّم الصلاة بثقة',
+    finalBody1: 'حمّل 3D Salah Guide اليوم واستمتع بطريقة تفاعلية ومشوقة لتعلّم الصلاة الإسلامية من خلال تقنية ثلاثية الأبعاد حديثة وإرشاد أصيل.',
+    finalBody2: 'تعلّم بوضوح وثقة وأسلوب بصري عملي صُمم لكل متعلّم مسلم.',
+    finalLearn: 'اعرف المزيد',
+    footerDesc: '3D Salah Guide هو تطبيق تفاعلي لتعلّم الصلاة الإسلامية يضم عروضًا ثلاثية الأبعاد خطوة بخطوة، وعرضًا 360°، وإرشادًا تعليميًا مناسبًا للمبتدئين.'
+  }
+}[lang];
+
+const heroScreens = [
+  { src: '/images/3DSalah/3dSalah.webp', alt: '3D Salah Guide logo' },
+  { src: '/images/3DSalah/unnamed.webp', alt: '3D Salah prayer guidance screenshot' },
+  { src: '/images/3DSalah/unnamed (1).webp', alt: '3D Salah step-by-step screenshot' },
+  { src: '/images/3DSalah/unnamed (2).webp', alt: '3D Salah zoom screenshot' },
+  { src: '/images/3DSalah/unnamed (3).webp', alt: '3D Salah 360 screenshot' },
+  { src: '/images/3DSalah/unnamed (4).webp', alt: '3D Salah screenshot' },
+  { src: '/images/3DSalah/unnamed (8).webp', alt: '3D Salah screenshot' }
+];
+
+const storeLink = {
+  href: 'https://apps.apple.com/us/search?term=3D%20Salah%20Guide',
+  image: '/images/appstore.png'
+};
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="salah-hero">
+    <div class="container salah-hero-grid">
+      <div class="salah-copy">
+        <span class="badge badge-primary salah-badge">{copy.heroBadge}</span>
+        <h1 class="salah-title">{copy.heroTitle}</h1>
+        <p class="salah-lead">{copy.heroLead}</p>
+        <p class="salah-body">{copy.heroBody}</p>
+
+        <div class="salah-feature-bar" aria-label="Salah highlights">
+          {copy.featureBar.map(item => <span class="salah-chip">{item}</span>)}
+        </div>
+
+        <div class="salah-cta-row">
+          <a href={storeLink.href} class="store-btn" target="_blank" rel="noopener noreferrer">
+            <img src={storeLink.image} alt={copy.appStore} class="store-badge" />
+            <span>{copy.appStore}</span>
+          </a>
+          <a href="#features" class="btn btn-outline salah-explore">{copy.explore}</a>
+        </div>
+      </div>
+
+      <aside class="salah-showcase">
+        <div class="salah-showcase-shell card">
+          <div class="salah-showcase-top">
+            <div class="salah-brand">
+              <img src={heroScreens[0].src} alt="3D Salah Guide logo" class="salah-brand-logo" />
+              <div>
+                <p class="salah-label">{copy.heroBadge}</p>
+                <h2 class="salah-rating">4.9★</h2>
+              </div>
+            </div>
+            <div class="salah-badge-pill">Interactive learning</div>
+          </div>
+
+          <div class="salah-showcase-hero">
+            <img src={heroScreens[1].src} alt={heroScreens[1].alt} class="salah-main-shot" />
+            <div class="salah-shot-stack">
+              <img src={heroScreens[2].src} alt={heroScreens[2].alt} />
+              <img src={heroScreens[3].src} alt={heroScreens[3].alt} />
+            </div>
+          </div>
+
+          <div class="salah-stat-grid">
+            <div class="salah-stat">3D demonstrations</div>
+            <div class="salah-stat">360° viewing</div>
+            <div class="salah-stat">Zoom controls</div>
+            <div class="salah-stat">Beginner friendly</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section salah-intro">
+    <div class="container salah-split">
+      <div class="salah-section-copy">
+        <span class="badge badge-primary">Introduction</span>
+        <h2 class="section-title">{copy.introTitle}</h2>
+        <p class="section-body">{copy.introBody1}</p>
+        <p class="section-body">{copy.introBody2}</p>
+      </div>
+      <div class="salah-how-card card">
+        <span class="badge badge-primary">{copy.howTitle}</span>
+        <div class="how-steps">
+          {copy.steps.map((step, idx) => (
+            <div class="how-step">
+              <span>{idx + 1}</span>
+              <p>{step}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section salah-features" id="features">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Features</span>
+        <h2 class="section-title">{copy.featuresTitle}</h2>
+      </div>
+      <div class="salah-feature-grid">
+        {copy.features.map((feature, idx) => (
+          <article class="salah-feature-card card">
+            <div class="feature-index">0{idx + 1}</div>
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section salah-edu-band">
+    <div class="container salah-media-grid">
+      <div class="salah-media-copy">
+        <span class="badge badge-primary">Education</span>
+        <h2 class="section-title">{copy.eduTitle}</h2>
+        <p class="section-body">{copy.eduBody}</p>
+        <div class="mini-grid">
+          <div class="mini-card">Practical learning</div>
+          <div class="mini-card">Visual understanding</div>
+          <div class="mini-card">Family-friendly</div>
+          <div class="mini-card">Islamic education</div>
+        </div>
+      </div>
+      <div class="salah-carousel" aria-label="3D Salah screenshots">
+        {heroScreens.slice(4).map((screen, idx) => (
+          <img src={screen.src} alt={screen.alt}  />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section salah-why-band">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Trust</span>
+        <h2 class="section-title">{copy.whyTitle}</h2>
+      </div>
+      <div class="salah-why-grid">
+        {copy.why.map(item => (
+          <article class="salah-why-card card">
+            <div class="why-icon">✦</div>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section salah-audience-band">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Audience</span>
+        <h2 class="section-title">{copy.audienceTitle}</h2>
+      </div>
+      <div class="audience-grid">
+        {copy.audienceItems.map(item => <div class="audience-pill">{item}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section salah-reviews-band">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Reviews</span>
+        <h2 class="section-title">{copy.reviewsTitle}</h2>
+      </div>
+      <div class="salah-review-grid">
+        {copy.reviews.map(review => (
+          <article class="salah-review-card card">
+            <p class="review-quote">“{review.quote}”</p>
+            <div class="review-meta">
+              <strong>{review.name}</strong>
+              <span>{review.meta}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section salah-faq-band">
+    <div class="container salah-faq-wrap">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">FAQ</span>
+        <h2 class="section-title">{copy.faqTitle}</h2>
+      </div>
+      <div class="faq-list">
+        {copy.faqs.map((faq, idx) => (
+          <details class="faq-item card" open={idx === 0}>
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section salah-final-band">
+    <div class="container salah-final-grid">
+      <div class="salah-section-copy">
+        <span class="badge badge-primary">{copy.finalBadge}</span>
+        <h2 class="section-title">{copy.finalTitle}</h2>
+        <p class="section-body">{copy.finalBody1}</p>
+        <p class="section-body">{copy.finalBody2}</p>
+        <div class="salah-cta-row">
+          <a href={storeLink.href} class="store-btn dark" target="_blank" rel="noopener noreferrer">
+            <img src={storeLink.image} alt={copy.appStore} class="store-badge" />
+            <span>{copy.appStore}</span>
+          </a>
+          <a href="#features" class="btn btn-secondary">{copy.finalLearn}</a>
+        </div>
+      </div>
+      <aside class="salah-final-card card">
+        <img src={heroScreens[0].src} alt="3D Salah Guide logo" class="salah-final-logo" />
+        <p>{copy.footerDesc}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section footer-summary">
+    <div class="container">
+      <p>{copy.footerDesc}</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .salah-hero { min-height: calc(100vh - 4.5rem); display:flex; align-items:center; padding:2.5rem 0 2rem; position:relative; overflow:hidden; background: linear-gradient(135deg, rgba(255,252,246,.98), rgba(244,248,255,.94)), url('/images/3DSalah/unnamed (8).webp') center/cover no-repeat; }
+  .salah-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(110deg, rgba(255,255,255,.82), transparent 46%), linear-gradient(0deg, rgba(255,255,255,.14), rgba(255,255,255,.14)); pointer-events:none; }
+  .salah-hero-grid, .salah-split, .salah-media-grid, .salah-final-grid { display:grid; gap:1.5rem; align-items:center; position:relative; z-index:1; }
+  .salah-hero-grid { grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr); }
+  .salah-copy, .salah-section-copy { max-width:44rem; }
+  .salah-badge { margin-bottom:1rem; box-shadow:0 8px 24px rgba(52,105,192,.08); }
+  .salah-title { font-size:clamp(1.8rem,2.5vw,2.95rem); line-height:1.08; max-width:16ch; margin-bottom:1rem; font-weight:800; color:var(--primary); letter-spacing:0; overflow-wrap:anywhere; }
+  .salah-lead { font-size:clamp(.98rem,1.15vw,1.08rem); line-height:1.58; color:var(--dark); max-width:40rem; margin-bottom:.9rem; }
+  .salah-body, .section-body, .review-quote, .faq-item p { font-size:.96rem; line-height:1.58; color:var(--secondary-dark); max-width:40rem; }
+  .salah-feature-bar { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:1rem; }
+  .salah-chip, .audience-pill, .mini-card { border-radius:.5rem; border:1px solid rgba(52,105,192,.12); background:rgba(255,255,255,.94); padding:.5rem .75rem; font-size:.92rem; font-weight:600; box-shadow:0 8px 18px rgba(15,23,42,.05); }
+  .salah-cta-row { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.1rem; }
+  .store-btn { display:inline-flex; align-items:center; gap:.75rem; padding:.8rem 1rem; border-radius:.8rem; border:1px solid var(--border); background:rgba(255,255,255,.95); color:var(--dark); font-weight:600; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+  .store-btn:hover, .store-btn:focus-visible { transform:translateY(-1px); box-shadow:0 10px 24px rgba(15,23,42,.08); border-color:rgba(52,105,192,.28); }
+  .store-btn.dark { background:rgba(255,255,255,.12); color:#fff; border-color:rgba(255,255,255,.18); }
+  .store-badge { width:1.35rem; height:1.35rem; object-fit:contain; }
+  .salah-explore { align-self:center; }
+  .salah-showcase-shell { position:sticky; top:5.6rem; padding:1rem; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.97), rgba(250,252,255,.94)); border:1px solid rgba(52,105,192,.12); box-shadow:0 24px 50px rgba(15,23,42,.1); }
+  .salah-showcase-top { display:flex; justify-content:space-between; gap:.9rem; align-items:center; margin-bottom:.85rem; }
+  .salah-brand { display:flex; align-items:center; gap:.9rem; }
+  .salah-brand-logo { width:3.6rem; height:3.6rem; object-fit:contain; border-radius:1rem; box-shadow:0 12px 28px rgba(15,23,42,.08); }
+  .salah-label { font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; color:var(--secondary-dark); margin-bottom:.2rem; }
+  .salah-rating { font-size:1.5rem; line-height:1; margin:0; font-weight:800; }
+  .salah-badge-pill { align-self:flex-start; padding:.45rem .75rem; border-radius:999px; background:rgba(52,105,192,.11); color:var(--primary); font-size:.82rem; font-weight:700; }
+  .salah-showcase-hero { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(160px,.82fr); gap:.7rem; margin:.85rem 0; }
+  .salah-main-shot, .salah-shot-stack img, .salah-carousel img { width:100%; border-radius:1rem; border:1px solid rgba(52,105,192,.12); box-shadow:0 14px 30px rgba(15,23,42,.08); background:#fff; object-fit:cover; }
+  .salah-main-shot { height:17rem; object-fit:contain; padding:.7rem; background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(245,249,255,.96)); }
+  .salah-shot-stack { display:grid; gap:.65rem; }
+  .salah-shot-stack img { height:8rem; }
+  .salah-stat-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:.65rem; margin-bottom:.75rem; }
+  .salah-stat { border-radius:.75rem; background:rgba(255,255,255,.92); border:1px solid rgba(52,105,192,.12); padding:.85rem; font-size:.875rem; line-height:1.4; }
+  .salah-intro, .salah-features, .salah-reviews-band, .salah-audience-band { padding-top:1.5rem; }
+  .salah-split { grid-template-columns:minmax(0,1fr) minmax(320px,1fr); }
+  .salah-how-card { padding:1.25rem; }
+  .how-steps { display:grid; gap:.8rem; margin-top:1rem; }
+  .how-step { display:flex; gap:.75rem; align-items:flex-start; padding:.8rem .9rem; border-radius:.5rem; border:1px solid rgba(52,105,192,.12); background:rgba(255,255,255,.94); }
+  .how-step span { width:1.9rem; height:1.9rem; border-radius:999px; display:inline-grid; place-items:center; background:rgba(52,105,192,.12); color:var(--primary); font-weight:700; flex:none; }
+  .how-step p { margin:0; font-weight:600; color:var(--dark); }
+  .salah-feature-grid, .salah-why-grid, .salah-review-grid { display:grid; gap:1rem; }
+  .salah-feature-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .salah-feature-card, .salah-why-card, .salah-review-card, .salah-final-card, .faq-item { border-radius:.5rem; padding:1rem; background:rgba(255,255,255,.96); border:1px solid var(--border); box-shadow:0 10px 24px rgba(15,23,42,.05); }
+  .salah-feature-card h3, .salah-why-card h3 { margin:.75rem 0 .5rem; font-size:1.08rem; }
+  .feature-index { width:2rem; height:2rem; display:inline-grid; place-items:center; border-radius:.5rem; background:rgba(52,105,192,.12); color:var(--primary); font-weight:700; }
+  .salah-edu-band, .salah-final-band { background:rgba(252,253,255,.72); }
+  .salah-media-grid { grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr); }
+  .salah-carousel { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(160px, 1fr); gap:.8rem; overflow-x:auto; padding-bottom:.25rem; scroll-snap-type:x proximity; }
+  .salah-carousel-cover { grid-column:span 2; }
+  .salah-why-grid, .salah-review-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .why-icon { width:2.25rem; height:2.25rem; border-radius:.5rem; display:inline-grid; place-items:center; background:rgba(52,105,192,.1); color:var(--primary); font-size:1rem; margin-bottom:.6rem; }
+  .audience-grid { display:flex; flex-wrap:wrap; gap:.75rem; }
+  .review-quote { font-size:1rem; line-height:1.7; margin-bottom:1.1rem; }
+  .review-meta { display:flex; flex-direction:column; gap:.15rem; color:var(--secondary-dark); }
+  .salah-faq-wrap { max-width:56rem; }
+  .faq-list { display:grid; gap:.75rem; }
+  .faq-item summary { cursor:pointer; list-style:none; font-weight:700; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item p { margin-top:.75rem; }
+  .salah-final-grid { grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr); }
+  .salah-final-card { text-align:center; background:linear-gradient(180deg, rgba(15,23,42,.96), rgba(30,41,59,.94)); color:#fff; }
+  .salah-final-card p { margin-top:.9rem; color:rgba(255,255,255,.9); line-height:1.7; }
+  .salah-final-logo { width:10rem; margin:0 auto 1rem; display:block; object-fit:contain; }
+  .footer-summary { padding-top:0; }
+  .footer-summary p { max-width:60rem; margin:0 auto; text-align:center; color:var(--secondary-dark); line-height:1.7; }
+  @media (max-width: 1024px) { .salah-hero-grid, .salah-split, .salah-media-grid, .salah-final-grid { grid-template-columns:1fr; } .salah-showcase-shell { position:static; } .salah-feature-grid, .salah-why-grid, .salah-review-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 720px) { .salah-hero { min-height:auto; padding:2rem 0 1.5rem; } .salah-title, .salah-lead, .salah-body { max-width:none; } .salah-showcase-shell { padding:1rem; } .salah-showcase-top { align-items:flex-start; flex-direction:column; } .salah-showcase-hero { grid-template-columns:1fr; } .salah-main-shot { height:16rem; } .salah-shot-stack { grid-template-columns:1fr 1fr; } .salah-feature-grid, .mini-grid, .salah-why-grid, .salah-review-grid { grid-template-columns:1fr; } }
+</style>

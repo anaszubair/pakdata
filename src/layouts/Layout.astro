@@ -36,6 +36,22 @@ const productLinks = [
     label: 'Quran Pak'
   },
   {
+    href: getRelativeLocaleUrl(lang, '/products/hadith-app'),
+    label: 'Hadith App'
+  },
+  {
+    href: getRelativeLocaleUrl(lang, '/products/3d-salah-guide'),
+    label: '3D Salah Guide'
+  },
+  {
+    href: getRelativeLocaleUrl(lang, '/products/easy-urdu'),
+    label: 'Easy Urdu Keyboard'
+  },
+  {
+    href: getRelativeLocaleUrl(lang, '/products/kitabi'),
+    label: 'Kitabi'
+  },
+  {
     href: getRelativeLocaleUrl(lang, '/products'),
     label: 'More Products'
   }
@@ -120,19 +136,7 @@ const productLinks = [
           <a href={getRelativeLocaleUrl(lang, '/')} class={`nav-link ${isActive('/') ? 'active' : ''}`} id="nav-home">{t('nav.home')}</a>
           <div class={`nav-dropdown ${isActive('/products') ? 'active' : ''}`} id="nav-products-wrap">
             <a href={getRelativeLocaleUrl(lang, '/products')} class={`nav-link nav-dropdown-link ${isActive('/products') ? 'active' : ''}`} id="nav-products">{t('nav.products')}</a>
-            <button
-              type="button"
-              class="nav-dropdown-toggle"
-              aria-label={t('nav.products')}
-              aria-expanded="false"
-              aria-controls="products-dropdown-menu"
-              data-products-dropdown-toggle
-            >
-              <svg viewBox="0 0 20 20" aria-hidden="true" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 7l5 5 5-5"></path>
-              </svg>
-            </button>
-            <div class="nav-dropdown-menu" id="products-dropdown-menu" hidden>
+            <div class="nav-dropdown-menu" id="products-dropdown-menu">
               {productLinks.map((item) => (
                 <a href={item.href} class="nav-dropdown-item">{item.label}</a>
               ))}
@@ -239,9 +243,11 @@ const productLinks = [
           <ul class="footer-links">
             <li><a href={getRelativeLocaleUrl(lang, '/products/quran-majeed')}>Quran Majeed App</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/products/quran-pak')}>Quran Pak Reading</a></li>
-            <li><a href="/products#easy-urdu">Easy Urdu Keyboard</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/hadith-app')}>Hadith App</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/3d-salah-guide')}>3D Salah Guide</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/easy-urdu')}>Easy Urdu Keyboard</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/kitabi')}>Kitabi</a></li>
             <li><a href="/products#quran-tv">Quran TV Streaming</a></li>
-            <li><a href="/products#3d-salah">3D Salah Guide</a></li>
             <li><a href="/products#engage-ai">Engage AI Support</a></li>
           </ul>
         </div>
@@ -282,9 +288,6 @@ const productLinks = [
       const menuToggleBtn = document.getElementById('menu-toggle-btn');
       const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
       const newsletterForm = document.getElementById('newsletter-form');
-      const productsDropdownToggle = document.querySelector('[data-products-dropdown-toggle]');
-      const productsDropdownMenu = document.getElementById('products-dropdown-menu');
-      const productsDropdownWrap = document.getElementById('nav-products-wrap');
 
       if (menuToggleBtn && mobileMenuDrawer) {
         menuToggleBtn.addEventListener('click', () => {
@@ -301,34 +304,6 @@ const productLinks = [
             mobileMenuDrawer.classList.remove('active');
             document.body.classList.remove('overflow-hidden');
           });
-        });
-      }
-
-      if (productsDropdownToggle && productsDropdownMenu && productsDropdownWrap) {
-        const closeProductsMenu = () => {
-          productsDropdownWrap.classList.remove('open');
-          productsDropdownMenu.hidden = true;
-          productsDropdownToggle.setAttribute('aria-expanded', 'false');
-        };
-
-        const toggleProductsMenu = (event) => {
-          event.preventDefault();
-          const willOpen = productsDropdownMenu.hidden;
-          productsDropdownWrap.classList.toggle('open', willOpen);
-          productsDropdownMenu.hidden = !willOpen;
-          productsDropdownToggle.setAttribute('aria-expanded', String(willOpen));
-        };
-
-        productsDropdownToggle.addEventListener('click', toggleProductsMenu);
-
-        document.addEventListener('click', (event) => {
-          if (!productsDropdownWrap.contains(event.target)) {
-            closeProductsMenu();
-          }
-        });
-
-        document.addEventListener('keydown', (event) => {
-          if (event.key === 'Escape') closeProductsMenu();
         });
       }
 
@@ -433,38 +408,18 @@ const productLinks = [
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: .1rem;
+    gap: 0;
+    padding-bottom: .7rem;
+    margin-bottom: -.7rem;
   }
 
   .nav-dropdown-link {
-    padding-right: 0.25rem;
-  }
-
-  .nav-dropdown-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.8rem;
-    height: 1.8rem;
-    border: 1px solid transparent;
-    border-radius: .45rem;
-    background: transparent;
-    color: var(--dark-soft);
-    cursor: pointer;
-    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
-  }
-
-  .nav-dropdown-toggle:hover,
-  .nav-dropdown-toggle:focus-visible,
-  .nav-dropdown.open .nav-dropdown-toggle {
-    background: var(--primary-light);
-    color: var(--primary);
-    border-color: rgba(249, 115, 22, .15);
+    padding-right: 0.15rem;
   }
 
   .nav-dropdown-menu {
     position: absolute;
-    top: calc(100% + .65rem);
+    top: calc(100% + .05rem);
     left: 0;
     min-width: 13rem;
     padding: .5rem;
@@ -473,6 +428,7 @@ const productLinks = [
     background: rgba(255,255,255,.98);
     box-shadow: 0 20px 40px rgba(15,23,42,.12);
     z-index: 20;
+    display: none;
   }
 
   .nav-dropdown-menu::before {
@@ -504,7 +460,6 @@ const productLinks = [
     color: var(--primary);
   }
 
-  .nav-dropdown.open .nav-dropdown-menu,
   .nav-dropdown:hover .nav-dropdown-menu,
   .nav-dropdown:focus-within .nav-dropdown-menu {
     display: block;

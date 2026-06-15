@@ -1,0 +1,513 @@
+---
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const isRtl = lang !== 'en';
+
+const copy = {
+  en: {
+    seoTitle: 'Hadith App - Authentic Islamic Hadith Collections for Muslims',
+    seoDesc: 'Download the Hadith app featuring authentic collections including Sahih Bukhari, Sahih Muslim, Tirmidhi, Abu Dawood, and more for Islamic learning and reflection.',
+    heroBadge: 'Hadith App',
+    heroTitle: 'Hadith - Authentic Collections of the Sayings of Prophet Muhammad (S.A.W)',
+    heroLead: 'Explore authentic Hadith collections through a beautifully designed and easy-to-use application created to help Muslims read, learn, and reflect upon the teachings of Prophet Muhammad (S.A.W).',
+    heroBody: 'Access major Hadith books in Arabic with a clean reading experience designed for meaningful Islamic learning and study.',
+    appStore: 'Download on App Store',
+    explore: 'Explore Features',
+    featureBar: ['Authentic Collections', 'Advanced Search', 'Bookmarking', 'Arabic Text', 'Smooth Navigation'],
+    introTitle: 'A Trusted Companion for Islamic Knowledge',
+    introBody1: 'The Hadith app is designed to provide Muslims with easy access to authentic collections of Hadith in a simple and spiritually focused reading environment.',
+    introBody2: 'Whether you are studying, researching, memorizing, or reading for personal reflection, the app offers an organized and user-friendly experience for exploring the teachings and wisdom of Prophet Muhammad (S.A.W)',
+    collectionsTitle: 'Included Major Hadith Collections',
+    collectionsBody: 'The application includes six major Hadith collections widely recognized in Islamic scholarship and presented in an accessible format to support learning, study, and spiritual reflection.',
+    collections: ['Sahih Bukhari', 'Sahih Muslim', "Jami’ At-Tirmidhi", 'Sunan Abu Dawood', 'Sunan An-Nasa’i', 'Sunan Ibn Majah'],
+    featuresTitle: 'Powerful Features for Islamic Learning',
+    features: [
+      { title: 'Clean & Comfortable Reading Experience', body: 'Enjoy a distraction-free reading interface designed for comfortable daily reading and study.' },
+      { title: 'Organized Hadith Navigation', body: 'Browse Hadith collections with structured categorization and smooth navigation between chapters and narrations.' },
+      { title: 'Advanced Search Functionality', body: 'Quickly search Hadith references, keywords, and topics to make Islamic research and learning easier.' },
+      { title: 'Bookmark & Save', body: 'Save important narrations and continue your reading journey anytime.' },
+      { title: 'Elegant Arabic Text', body: 'Read beautifully rendered Arabic text optimized for clarity and readability.' }
+    ],
+    learningTitle: 'Deepen Your Understanding of Islamic Teachings',
+    learningBody: 'The Hadith app helps users strengthen their connection with Islamic teachings by providing direct access to authentic narrations and timeless wisdom from the life of Prophet Muhammad (S.A.W). Whether you are a student, teacher, researcher, or everyday reader, the app supports meaningful Islamic learning for all levels.',
+    whyTitle: 'Why Users Trust Our Hadith App',
+    why: [
+      { title: 'Authentic Sources', body: 'Access trusted and widely recognized Hadith collections used throughout the Muslim world.' },
+      { title: 'Simple & User-Friendly Design', body: 'Designed for easy reading, navigation, and daily study.' },
+      { title: 'Meaningful Islamic Learning', body: 'Supports reflection, understanding, and personal spiritual growth.' },
+      { title: 'Reliable Digital Experience', body: 'Built with performance, simplicity, and accessibility in mind.' }
+    ],
+    reviewsTitle: 'What Readers Say',
+    reviews: [
+      { quote: 'A beautiful and simple Hadith reading app.', name: 'Ayesha', meta: 'Community review' },
+      { quote: 'The search and bookmarks make study sessions much easier.', name: 'Bilal', meta: 'App Store review' },
+      { quote: 'Clean Arabic text and a calm reading experience.', name: 'Hassan', meta: 'Reader feedback' }
+    ],
+    faqTitle: 'Frequently Asked Questions',
+    faqs: [
+      { q: 'Which Hadith books are included?', a: 'The app includes Sahih Bukhari, Sahih Muslim, Jami’ At-Tirmidhi, Sunan Abu Dawood, Sunan An-Nasa’i, and Sunan Ibn Majah.' },
+      { q: 'Does the app work offline?', a: 'Many reading features can be used after content is loaded, making it useful for study and reflection.' },
+      { q: 'Is Arabic text included?', a: 'Yes. The Hadith app is centered around clean Arabic text for reading and study.' },
+      { q: 'Can I bookmark Hadith?', a: 'Yes. You can save important narrations and return to them later.' }
+    ],
+    finalBadge: 'Begin Today',
+    finalTitle: 'Explore the Teachings of Prophet Muhammad (S.A.W)',
+    finalBody1: 'Discover authentic Hadith collections through a modern and accessible digital experience designed for Muslims worldwide.',
+    finalBody2: 'Download the Hadith app today and continue your journey of Islamic learning and reflection.',
+    finalLearn: 'Learn More',
+    footerDesc: 'The Hadith app provides access to authentic Hadith collections in Arabic with a clean reading experience designed for Islamic learning, study, and reflection.'
+  },
+  ur: {
+    seoTitle: 'حدیث ایپ - مسلمانوں کے لیے مستند اسلامی حدیث مجموعے',
+    seoDesc: 'حدیث ایپ ڈاؤن لوڈ کریں جس میں صحیح بخاری، صحیح مسلم، ترمذی، ابو داؤد، اور مزید مستند مجموعے اسلامی سیکھنے اور تدبر کے لیے شامل ہیں۔',
+    heroBadge: 'حدیث ایپ',
+    heroTitle: 'حدیث - نبی اکرم ﷺ کے ارشادات کے مستند مجموعے',
+    heroLead: 'خوبصورت اور آسان استعمال ایپ کے ذریعے مستند حدیث مجموعوں کو دریافت کریں، جو مسلمانوں کو نبی اکرم ﷺ کی تعلیمات پڑھنے، سیکھنے اور ان پر غور کرنے میں مدد دینے کے لیے بنائی گئی ہے۔',
+    heroBody: 'اہم حدیث کتب تک عربی میں ایک صاف اور خوبصورت مطالعہ تجربہ کے ساتھ رسائی حاصل کریں۔',
+    appStore: 'ایپ اسٹور پر ڈاؤن لوڈ کریں',
+    explore: 'خصوصیات دیکھیں',
+    featureBar: ['مستند مجموعے', 'جدید سرچ', 'بک مارکنگ', 'عربی متن', 'آسان نیویگیشن'],
+    introTitle: 'اسلامی علم کا قابلِ اعتماد ساتھی',
+    introBody1: 'حدیث ایپ مسلمانوں کو مستند حدیث مجموعوں تک آسان رسائی ایک سادہ اور روحانی مطالعہ ماحول میں فراہم کرنے کے لیے بنائی گئی ہے۔',
+    introBody2: 'چاہے آپ مطالعہ کر رہے ہوں، تحقیق، حفظ، یا ذاتی تدبر کے لیے پڑھ رہے ہوں، یہ ایپ نبی اکرم ﷺ کی تعلیمات اور حکمت کو دریافت کرنے کا منظم اور سہل تجربہ دیتی ہے۔',
+    collectionsTitle: 'شامل بڑے حدیث مجموعے',
+    collectionsBody: 'اس ایپ میں اسلامی علوم میں معروف چھ بڑے حدیث مجموعے شامل ہیں اور انہیں سادہ انداز میں پیش کیا گیا ہے تاکہ سیکھنے اور مطالعہ میں آسانی ہو۔',
+    collections: ['صحیح بخاری', 'صحیح مسلم', 'جامع الترمذی', 'سنن ابو داؤد', 'سنن النسائی', 'سنن ابن ماجہ'],
+    featuresTitle: 'اسلامی سیکھنے کے لیے طاقتور خصوصیات',
+    features: [
+      { title: 'صاف اور آرام دہ مطالعہ', body: 'بغیر توجہ بٹائے روزانہ مطالعہ اور سیکھنے کے لیے ڈیزائن کردہ انٹرفیس۔' },
+      { title: 'منظم حدیث نیویگیشن', body: 'ابواب اور روایات کے درمیان آسانی سے نیویگیشن کے ساتھ منظم زمرہ بندی۔' },
+      { title: 'جدید سرچ فنکشن', body: 'حدیث حوالہ جات، الفاظ اور موضوعات کو تیزی سے تلاش کریں۔' },
+      { title: 'بک مارک اور محفوظ کریں', body: 'اہم روایات محفوظ کریں اور بعد میں دوبارہ پڑھیں۔' },
+      { title: 'خوبصورت عربی متن', body: 'صاف اور واضح عربی متن جو مطالعہ کے لیے موزوں ہے۔' }
+    ],
+    learningTitle: 'اسلامی تعلیمات کو گہرائی سے سمجھیں',
+    learningBody: 'حدیث ایپ اسلامی تعلیمات سے تعلق مضبوط کرنے میں مدد دیتی ہے، نبی اکرم ﷺ کی حیاتِ مبارکہ سے مستند روایات اور لازوال حکمت تک براہِ راست رسائی دے کر۔',
+    whyTitle: 'صارفین ہم پر کیوں اعتماد کرتے ہیں',
+    why: [
+      { title: 'مستند ذرائع', body: 'دنیا بھر میں مستند اور معروف حدیث مجموعوں تک رسائی۔' },
+      { title: 'سادہ اور آسان ڈیزائن', body: 'روزمرہ مطالعہ اور نیویگیشن کے لیے سہل استعمال۔' },
+      { title: 'بامعنی اسلامی سیکھ', body: 'غور و فکر، فہم اور روحانی ترقی کی مدد۔' },
+      { title: 'قابلِ اعتماد ڈیجیٹل تجربہ', body: 'کارکردگی، سادگی اور رسائی کو مدنظر رکھ کر بنایا گیا۔' }
+    ],
+    reviewsTitle: 'قارئین کی رائے',
+    reviews: [
+      { quote: 'حدیث پڑھنے کے لیے ایک خوبصورت اور سادہ ایپ۔', name: 'عائشہ', meta: 'کمیونٹی ریویو' },
+      { quote: 'سرچ اور بک مارکس مطالعہ کو بہت آسان بنا دیتے ہیں۔', name: 'بلال', meta: 'ایپ اسٹور ریویو' },
+      { quote: 'صاف عربی متن اور پرسکون مطالعہ کا تجربہ۔', name: 'حسن', meta: 'قارئین کی رائے' }
+    ],
+    faqTitle: 'اکثر پوچھے گئے سوالات',
+    faqs: [
+      { q: 'کون سی حدیث کتب شامل ہیں؟', a: 'ایپ میں صحیح بخاری، صحیح مسلم، جامع الترمذی، سنن ابو داؤد، سنن النسائی، اور سنن ابن ماجہ شامل ہیں۔' },
+      { q: 'کیا ایپ آف لائن چلتی ہے؟', a: 'جی ہاں، بہت سی ریڈنگ خصوصیات مواد لوڈ ہونے کے بعد استعمال کی جا سکتی ہیں۔' },
+      { q: 'کیا عربی متن شامل ہے؟', a: 'جی ہاں، حدیث ایپ کا مرکز صاف عربی متن پر ہے۔' },
+      { q: 'کیا حدیث بک مارک ہو سکتی ہے؟', a: 'جی ہاں، اہم روایات محفوظ کی جا سکتی ہیں۔' }
+    ],
+    finalBadge: 'آج ہی شروع کریں',
+    finalTitle: 'نبی اکرم ﷺ کی تعلیمات دریافت کریں',
+    finalBody1: 'دنیا بھر کے مسلمانوں کے لیے بنائے گئے ایک جدید اور آسان ڈیجیٹل تجربے کے ذریعے مستند حدیث مجموعے دریافت کریں۔',
+    finalBody2: 'آج ہی حدیث ایپ ڈاؤن لوڈ کریں اور اسلامی سیکھنے اور تدبر کا سفر جاری رکھیں۔',
+    finalLearn: 'مزید جانیں',
+    footerDesc: 'حدیث ایپ عربی میں مستند حدیث مجموعوں تک رسائی فراہم کرتی ہے، ایک صاف مطالعہ تجربے کے ساتھ، جو اسلامی سیکھنے، مطالعہ اور تدبر کے لیے بنایا گیا ہے۔'
+  },
+  ar: {
+    seoTitle: 'تطبيق الحديث - مجموعات حديثية إسلامية أصيلة للمسلمين',
+    seoDesc: 'حمّل تطبيق الحديث الذي يضم مجموعات موثوقة مثل صحيح البخاري، صحيح مسلم، الترمذي، أبو داود، وغير ذلك للتعلم والتأمل الإسلامي.',
+    heroBadge: 'تطبيق الحديث',
+    heroTitle: 'الحديث - مجموعات أصيلة من أقوال النبي محمد ﷺ',
+    heroLead: 'استكشف مجموعات الحديث الأصيلة عبر تطبيق جميل وسهل الاستخدام صُمم لمساعدة المسلمين على القراءة والتعلّم والتأمل في تعاليم النبي محمد ﷺ.',
+    heroBody: 'استعرض كتب الحديث الكبرى باللغة العربية مع تجربة قراءة نظيفة ومصممة للتعلم والدراسة الإسلامية الهادفة.',
+    appStore: 'حمّل من App Store',
+    explore: 'استكشف الميزات',
+    featureBar: ['مجموعات أصيلة', 'بحث متقدم', 'إشارات مرجعية', 'نص عربي', 'تنقل سلس'],
+    introTitle: 'رفيق موثوق للمعرفة الإسلامية',
+    introBody1: 'صُمم تطبيق الحديث ليمنح المسلمين وصولًا سهلًا إلى مجموعات الحديث الأصيلة في بيئة قراءة بسيطة وروحانية.',
+    introBody2: 'سواء كنت تدرس أو تبحث أو تحفظ أو تقرأ للتأمل الشخصي، فإن التطبيق يوفر تجربة منظمة وسهلة لاستكشاف تعاليم وحكمة النبي محمد ﷺ.',
+    collectionsTitle: 'أهم مجموعات الحديث المضمنة',
+    collectionsBody: 'يضم التطبيق ست مجموعات حديثية رئيسية معروفة في العلم الإسلامي، وقد تم عرضها بشكل سهل لدعم التعلّم والدراسة والتأمل.',
+    collections: ['صحيح البخاري', 'صحيح مسلم', 'جامع الترمذي', 'سنن أبي داود', 'سنن النسائي', 'سنن ابن ماجه'],
+    featuresTitle: 'ميزات قوية للتعلّم الإسلامي',
+    features: [
+      { title: 'تجربة قراءة نظيفة ومريحة', body: 'واجهة خالية من التشتيت للقراءة اليومية والدراسة المريحة.' },
+      { title: 'تنقل منظم بين الأحاديث', body: 'استعرض المجموعات بتصنيف واضح وتنقل سلس بين الأبواب والروايات.' },
+      { title: 'بحث متقدم', body: 'ابحث بسرعة عن المراجع والكلمات والموضوعات لتسهيل البحث والدراسة.' },
+      { title: 'حفظ وإشارات مرجعية', body: 'احفظ الروايات المهمة وارجع إليها لاحقًا في أي وقت.' },
+      { title: 'نص عربي أنيق', body: 'نص عربي جميل وواضح محسّن للقراءة والوضوح.' }
+    ],
+    learningTitle: 'عمّق فهمك للتعاليم الإسلامية',
+    learningBody: 'يساعد تطبيق الحديث المستخدمين على تقوية صلتهم بالتعاليم الإسلامية من خلال الوصول المباشر إلى الروايات الأصيلة والحكمة الخالدة من حياة النبي محمد ﷺ.',
+    whyTitle: 'لماذا يثق المستخدمون بالتطبيق',
+    why: [
+      { title: 'مصادر أصيلة', body: 'الوصول إلى مجموعات حديثية موثوقة ومعروفة في العالم الإسلامي.' },
+      { title: 'تصميم بسيط وسهل', body: 'مصمم لسهولة القراءة والتنقل والدراسة اليومية.' },
+      { title: 'تعلم إسلامي هادف', body: 'يدعم التأمل والفهم والنمو الروحي.' },
+      { title: 'تجربة رقمية موثوقة', body: 'بني مع مراعاة الأداء والبساطة وسهولة الوصول.' }
+    ],
+    reviewsTitle: 'ماذا يقول القراء',
+    reviews: [
+      { quote: 'تطبيق حديث جميل وبسيط.', name: 'عائشة', meta: 'مراجعة المجتمع' },
+      { quote: 'البحث والإشارات المرجعية يجعلان الدراسة أسهل بكثير.', name: 'بلال', meta: 'تقييم App Store' },
+      { quote: 'نص عربي نظيف وتجربة قراءة هادئة جدًا.', name: 'حسن', meta: 'آراء القراء' }
+    ],
+    faqTitle: 'الأسئلة الشائعة',
+    faqs: [
+      { q: 'ما الكتب الحديثية المضمنة؟', a: 'يضم التطبيق صحيح البخاري، صحيح مسلم، جامع الترمذي، سنن أبي داود، سنن النسائي، وسنن ابن ماجه.' },
+      { q: 'هل يعمل التطبيق دون اتصال؟', a: 'يمكن استخدام العديد من ميزات القراءة بعد تحميل المحتوى، مما يجعله مفيدًا للدراسة والتأمل.' },
+      { q: 'هل النص العربي مضمّن؟', a: 'نعم، يعتمد التطبيق على نص عربي واضح ومريح للقراءة والدراسة.' },
+      { q: 'هل يمكنني حفظ الأحاديث؟', a: 'نعم، يمكنك حفظ الروايات المهمة والعودة إليها لاحقًا.' }
+    ],
+    finalBadge: 'ابدأ اليوم',
+    finalTitle: 'استكشف تعاليم النبي محمد ﷺ',
+    finalBody1: 'اكتشف مجموعات الحديث الأصيلة عبر تجربة رقمية حديثة وميسرة صُممت للمسلمين حول العالم.',
+    finalBody2: 'حمّل تطبيق الحديث اليوم وواصل رحلتك في التعلم والتأمل الإسلامي.',
+    finalLearn: 'اعرف المزيد',
+    footerDesc: 'يوفّر تطبيق الحديث وصولًا إلى مجموعات حديثية أصيلة باللغة العربية مع تجربة قراءة نظيفة صُممت للتعلم والدراسة والتأمل الإسلامي.'
+  }
+}[lang];
+
+const hadithScreens = [
+  { src: '/images/hadith/logo-hadith.webp', alt: 'Hadith app logo and books' },
+  { src: '/images/hadith/unnamed.webp', alt: 'Hadith app reading screen' },
+  { src: '/images/hadith/unnamed (1).webp', alt: 'Hadith app search screen' },
+  { src: '/images/hadith/unnamed (2).webp', alt: 'Hadith app themes screen' },
+  { src: '/images/hadith/unnamed (7).webp', alt: 'Hadith app collections screen' }
+];
+
+const storeLink = {
+  href: 'https://apps.apple.com/us/search?term=Hadith',
+  image: '/images/quranmajeed/Appstore.png'
+};
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="hadith-hero">
+    <div class="container hadith-hero-grid">
+      <div class="hadith-copy">
+        <span class="badge badge-primary hadith-badge">{copy.heroBadge}</span>
+        <h1 class="hadith-title">
+          <span class="hadith-title-text">{copy.heroTitle}</span>
+          <span class="hadith-title-honorific" aria-label="peace be upon him">{copy.heroHonorific}</span>
+        </h1>
+        <p class="hadith-lead">{copy.heroLead}</p>
+        <p class="hadith-body">{copy.heroBody}</p>
+
+        <div class="hadith-feature-bar" aria-label="Hadith highlights">
+          {copy.featureBar.map(item => <span class="hadith-chip">{item}</span>)}
+        </div>
+
+        <div class="hadith-cta-row">
+          <a href={storeLink.href} class="store-btn" target="_blank" rel="noopener noreferrer">
+            <img src={storeLink.image} alt={copy.appStore} class="store-badge" />
+            <span>{copy.appStore}</span>
+          </a>
+          <a href="#features" class="btn btn-outline hadith-explore">{copy.explore}</a>
+        </div>
+      </div>
+
+      <aside class="hadith-showcase">
+        <div class="hadith-showcase-shell card">
+          <div class="hadith-showcase-top">
+            <div class="hadith-brand">
+              <img src="/images/hadith/logo-hadith.webp" alt="Hadith app logo" class="hadith-brand-logo" />
+              <div>
+                <p class="hadith-label">{copy.introTitle}</p>
+                <h2 class="hadith-rating">4.8★</h2>
+              </div>
+            </div>
+            <div class="hadith-badge-pill">Authentic collections</div>
+          </div>
+
+          <div class="hadith-showcase-hero">
+            <img src={hadithScreens[1].src} alt={hadithScreens[1].alt} class="hadith-main-shot" />
+            <div class="hadith-shot-stack">
+              <img src={hadithScreens[2].src} alt={hadithScreens[2].alt} />
+              <img src={hadithScreens[3].src} alt={hadithScreens[3].alt} />
+            </div>
+          </div>
+
+          <div class="hadith-stat-grid">
+            <div class="hadith-stat">Sahih Bukhari</div>
+            <div class="hadith-stat">Arabic text</div>
+            <div class="hadith-stat">Bookmarks</div>
+            <div class="hadith-stat">Advanced search</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section hadith-intro">
+    <div class="container hadith-split">
+      <div class="hadith-section-copy">
+        <span class="badge badge-primary">Introduction</span>
+        <h2 class="section-title">{copy.introTitle}</h2>
+        <p class="section-body">{copy.introBody1}</p>
+        <p class="section-body">{copy.introBody2}</p>
+      </div>
+      <div class="hadith-collections-card card">
+        <span class="badge badge-primary">{copy.collectionsTitle}</span>
+        <p class="section-body">{copy.collectionsBody}</p>
+        <div class="hadith-collections-grid">
+          {copy.collections.map(item => <div class="hadith-collection-pill">{item}</div>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hadith-features" id="features">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Features</span>
+        <h2 class="section-title">{copy.featuresTitle}</h2>
+      </div>
+      <div class="hadith-feature-grid">
+        {copy.features.map((feature, idx) => (
+          <article class="hadith-feature-card card">
+            <div class="feature-index">0{idx + 1}</div>
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section hadith-learning-band">
+    <div class="container hadith-media-grid">
+      <div class="hadith-media-copy">
+        <span class="badge badge-primary">Learning</span>
+        <h2 class="section-title">{copy.learningTitle}</h2>
+        <p class="section-body">{copy.learningBody}</p>
+        <div class="mini-grid">
+          <div class="mini-card">Daily reading</div>
+          <div class="mini-card">Research support</div>
+          <div class="mini-card">Memorization aid</div>
+          <div class="mini-card">Study mode</div>
+        </div>
+      </div>
+      <div class="hadith-carousel" aria-label="Hadith app screenshots">
+        {hadithScreens.map((screen, idx) => (
+          <img src={screen.src} alt={screen.alt} class={idx === 0 ? 'hadith-carousel-cover' : ''} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section hadith-why-band">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Trust</span>
+        <h2 class="section-title">{copy.whyTitle}</h2>
+      </div>
+      <div class="hadith-why-grid">
+        {copy.why.map(item => (
+          <article class="hadith-why-card card">
+            <div class="why-icon">✦</div>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section hadith-reviews-band">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Reviews</span>
+        <h2 class="section-title">{copy.reviewsTitle}</h2>
+      </div>
+      <div class="hadith-review-grid">
+        {copy.reviews.map(review => (
+          <article class="hadith-review-card card">
+            <p class="review-quote">“{review.quote}”</p>
+            <div class="review-meta">
+              <strong>{review.name}</strong>
+              <span>{review.meta}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section hadith-faq-band">
+    <div class="container hadith-faq-wrap">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">FAQ</span>
+        <h2 class="section-title">{copy.faqTitle}</h2>
+      </div>
+      <div class="faq-list">
+        {copy.faqs.map((faq, idx) => (
+          <details class="faq-item card" open={idx === 0}>
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section hadith-final-band">
+    <div class="container hadith-final-grid">
+      <div class="hadith-section-copy">
+        <span class="badge badge-primary">{copy.finalBadge}</span>
+        <h2 class="section-title">{copy.finalTitle}</h2>
+        <p class="section-body">{copy.finalBody1}</p>
+        <p class="section-body">{copy.finalBody2}</p>
+        <div class="hadith-cta-row">
+          <a href={storeLink.href} class="store-btn dark" target="_blank" rel="noopener noreferrer">
+            <img src={storeLink.image} alt={copy.appStore} class="store-badge" />
+            <span>{copy.appStore}</span>
+          </a>
+          <a href="#features" class="btn btn-secondary">{copy.finalLearn}</a>
+        </div>
+      </div>
+      <aside class="hadith-final-card card">
+        <img src="/images/hadith/logo-hadith.webp" alt="Hadith app logo" class="hadith-final-logo" />
+        <p>{copy.footerDesc}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section footer-summary">
+    <div class="container">
+      <p>{copy.footerDesc}</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hadith-hero {
+    min-height: calc(100vh - 4.5rem);
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 0 2rem;
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(135deg, rgba(255,250,239,.98), rgba(255,243,216,.94));
+  }
+  .hadith-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(110deg, rgba(255,255,255,.8), transparent 45%), linear-gradient(0deg, rgba(255,255,255,.14), rgba(255,255,255,.14)); pointer-events:none; }
+  .hadith-hero-grid, .hadith-split, .hadith-media-grid, .hadith-final-grid { display:grid; gap:1.5rem; align-items:center; position:relative; z-index:1; }
+  .hadith-hero-grid { grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr); }
+  .hadith-copy, .hadith-section-copy { max-width:44rem; }
+  .hadith-badge { margin-bottom:1rem; box-shadow:0 8px 24px rgba(180,120,25,.08); }
+  .hadith-title {
+    font-size: clamp(1.8rem, 2.45vw, 2.85rem);
+    line-height: 1.1;
+    max-width: 18ch;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .hadith-title-text {
+    display: block;
+  }
+
+  .hadith-title-honorific {
+    display: inline-block;
+    margin-top: .15rem;
+    font-size: .85em;
+    line-height: 1;
+    vertical-align: top;
+  }
+  .hadith-lead { font-size:clamp(.98rem,1.2vw,1.08rem); line-height:1.6; color:var(--dark); max-width:40rem; margin-bottom:.9rem; }
+  .hadith-body, .section-body, .review-quote, .faq-item p { font-size:.96rem; line-height:1.58; color:var(--secondary-dark); max-width:40rem; }
+  .hadith-feature-bar { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:1rem; }
+  .hadith-chip, .hadith-collection-pill, .mini-card { border-radius:.5rem; border:1px solid rgba(180,120,25,.12); background:rgba(255,255,255,.94); padding:.5rem .75rem; font-size:.92rem; font-weight:600; box-shadow:0 8px 18px rgba(15,23,42,.05); }
+  .hadith-cta-row { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.1rem; }
+  .store-btn { display:inline-flex; align-items:center; gap:.75rem; padding:.8rem 1rem; border-radius:.8rem; border:1px solid var(--border); background:rgba(255,255,255,.95); color:var(--dark); font-weight:600; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+  .store-btn:hover, .store-btn:focus-visible { transform:translateY(-1px); box-shadow:0 10px 24px rgba(15,23,42,.08); border-color:rgba(180,120,25,.28); }
+  .store-btn.dark { background:rgba(255,255,255,.12); color:#fff; border-color:rgba(255,255,255,.18); }
+  .store-badge { width:1.35rem; height:1.35rem; object-fit:contain; }
+  .hadith-explore { align-self:center; }
+  .hadith-showcase-shell { position:sticky; top:5.6rem; padding:1rem; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.97), rgba(255,250,245,.94)); border:1px solid rgba(180,120,25,.12); box-shadow:0 24px 50px rgba(15,23,42,.1); }
+  .hadith-showcase-top { display:flex; justify-content:space-between; gap:.9rem; align-items:center; margin-bottom:.85rem; }
+  .hadith-brand { display:flex; align-items:center; gap:.9rem; }
+  .hadith-brand-logo { width:3.6rem; height:3.6rem; object-fit:contain; border-radius:1rem; box-shadow:0 12px 28px rgba(15,23,42,.08); }
+  .hadith-label { font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; color:var(--secondary-dark); margin-bottom:.2rem; }
+  .hadith-rating { font-size:1.5rem; line-height:1; margin:0; font-weight:800; }
+  .hadith-badge-pill { align-self:flex-start; padding:.45rem .75rem; border-radius:999px; background:rgba(180,120,25,.11); color:var(--primary); font-size:.82rem; font-weight:700; }
+  .hadith-showcase-hero { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(160px,.82fr); gap:.7rem; margin:.85rem 0; }
+  .hadith-main-shot, .hadith-shot-stack img, .hadith-carousel img { width:100%; border-radius:1rem; border:1px solid rgba(180,120,25,.12); box-shadow:0 14px 30px rgba(15,23,42,.08); background:#fff; object-fit:cover; }
+  .hadith-main-shot { height:17rem; object-fit:contain; padding:.7rem; background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,248,236,.96)); }
+  .hadith-shot-stack { display:grid; gap:.65rem; }
+  .hadith-shot-stack img { height:8rem; }
+  .hadith-stat-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:.65rem; margin-bottom:.75rem; }
+  .hadith-stat { border-radius:.75rem; background:rgba(255,255,255,.92); border:1px solid rgba(180,120,25,.12); padding:.85rem; font-size:.875rem; line-height:1.4; }
+  .hadith-intro, .hadith-features, .hadith-reviews-band { padding-top:1.5rem; }
+  .hadith-split { grid-template-columns:minmax(0,1fr) minmax(320px,1fr); }
+  .hadith-collections-card { padding:1.25rem; }
+  .hadith-collections-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:.75rem; margin-top:1rem; }
+  .hadith-feature-grid, .hadith-why-grid, .hadith-review-grid { display:grid; gap:1rem; }
+  .hadith-feature-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .hadith-feature-card, .hadith-why-card, .hadith-review-card, .hadith-final-card, .hadith-collections-card, .faq-item { border-radius:.5rem; padding:1rem; background:rgba(255,255,255,.96); border:1px solid var(--border); box-shadow:0 10px 24px rgba(15,23,42,.05); }
+  .hadith-feature-card h3, .hadith-why-card h3 { margin:.75rem 0 .5rem; font-size:1.08rem; }
+  .feature-index { width:2rem; height:2rem; display:inline-grid; place-items:center; border-radius:.5rem; background:rgba(180,120,25,.12); color:var(--primary); font-weight:700; }
+  .hadith-learning-band, .hadith-final-band { background:rgba(255,251,243,.7); }
+  .hadith-media-grid { grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr); }
+  .hadith-carousel { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(160px, 1fr); gap:.8rem; overflow-x:auto; padding-bottom:.25rem; scroll-snap-type:x proximity; }
+  .hadith-carousel-cover { grid-column:span 2; }
+  .mini-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:.75rem; margin-top:1rem; }
+  .hadith-why-grid, .hadith-review-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .why-icon { width:2.25rem; height:2.25rem; border-radius:.5rem; display:inline-grid; place-items:center; background:rgba(180,120,25,.1); color:var(--primary); font-size:1rem; margin-bottom:.6rem; }
+  .review-quote { font-size:1rem; line-height:1.7; margin-bottom:1.1rem; }
+  .review-meta { display:flex; flex-direction:column; gap:.15rem; color:var(--secondary-dark); }
+  .hadith-faq-wrap { max-width:56rem; }
+  .faq-list { display:grid; gap:.75rem; }
+  .faq-item summary { cursor:pointer; list-style:none; font-weight:700; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item p { margin-top:.75rem; }
+  .hadith-final-grid { grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr); }
+  .hadith-final-card { text-align:center; background:linear-gradient(180deg, rgba(46,32,15,.96), rgba(70,50,22,.94)); color:#fff; }
+  .hadith-final-card p { margin-top:.9rem; color:rgba(255,255,255,.9); line-height:1.7; }
+  .hadith-final-logo { width:10rem; margin:0 auto 1rem; display:block; object-fit:contain; }
+  .footer-summary { padding-top:0; }
+  .footer-summary p { max-width:60rem; margin:0 auto; text-align:center; color:var(--secondary-dark); line-height:1.7; }
+
+  @media (max-width: 1024px) {
+    .hadith-hero-grid, .hadith-split, .hadith-media-grid, .hadith-final-grid { grid-template-columns:1fr; }
+    .hadith-showcase-shell { position:static; }
+    .hadith-feature-grid, .hadith-why-grid, .hadith-review-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 720px) {
+    .hadith-hero { min-height:auto; padding:2rem 0 1.5rem; }
+    .hadith-title, .hadith-lead, .hadith-body { max-width:none; }
+    .hadith-showcase-shell { padding:1rem; }
+    .hadith-showcase-top { align-items:flex-start; flex-direction:column; }
+    .hadith-showcase-hero { grid-template-columns:1fr; }
+    .hadith-main-shot { height:16rem; }
+    .hadith-shot-stack { grid-template-columns:1fr 1fr; }
+    .hadith-feature-grid, .hadith-collections-grid, .hadith-why-grid, .hadith-review-grid, .mini-grid { grid-template-columns:1fr; }
+  }
+
+  :global(html[dir='rtl']) .hadith-hero-grid,
+  :global(html[dir='rtl']) .hadith-split,
+  :global(html[dir='rtl']) .hadith-media-grid,
+  :global(html[dir='rtl']) .hadith-final-grid { direction: rtl; }
+
+  :global(html[dir='rtl']) .hadith-title {
+    direction: rtl;
+    text-align: start;
+    unicode-bidi: plaintext;
+  }
+
+  :global(html[dir='rtl']) .hadith-title-honorific {
+    margin-top: 0;
+  }
+</style>

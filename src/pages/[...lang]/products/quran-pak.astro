@@ -277,6 +277,10 @@ const storeBadge = '/images/quranmajeed/Appstore.png';
         <p class="qp-lead">{copy.heroLead}</p>
         <p class="qp-body">{copy.heroBody}</p>
 
+        <div class="qp-trust-strip" aria-label="Quran Pak highlights">
+          {copy.stats.map((item) => <span class="qp-trust-item">{item}</span>)}
+        </div>
+
         <div class="qp-cta-row">
           <a href="https://apps.apple.com/us/search?term=Quran%20Pak" class="store-btn" target="_blank" rel="noopener noreferrer">
             <img src={storeBadge} alt={copy.appStore} class="store-badge" />
@@ -290,28 +294,33 @@ const storeBadge = '/images/quranmajeed/Appstore.png';
         </div>
       </div>
 
-      <aside class="qp-hero-visual card">
-        <div class="hero-visual-top">
-          <img src="/images/QP.webp" alt="Quran Pak logo" class="hero-logo" />
-          <div>
-            <p class="mini-label">{copy.statsTitle}</p>
-            <h2 class="hero-rating">4.9★</h2>
+      <aside class="qp-showcase">
+        <div class="qp-showcase-shell card">
+          <div class="qp-showcase-top">
+            <div class="qp-showcase-brand">
+              <img src="/images/QP.webp" alt="Quran Pak logo" class="qp-brand-logo" />
+              <div>
+                <p class="qp-download-card-label">{copy.statsTitle}</p>
+                <h2 class="qp-download-card-title">4.9★</h2>
+              </div>
+            </div>
+            <div class="qp-showcase-badge">Urdu-first reading</div>
           </div>
-        </div>
 
-        <div class="hero-panel">
-          <img src={heroScreens[0].src} alt={heroScreens[0].alt} class="hero-main-shot" />
-          <div class="hero-mini-shot">
-            <img src={heroScreens[1].src} alt={heroScreens[1].alt} />
-            <img src={heroScreens[2].src} alt={heroScreens[2].alt} />
+          <div class="qp-showcase-hero">
+            <img src={heroScreens[0].src} alt={heroScreens[0].alt} class="qp-shot-main" />
+            <div class="qp-shot-stack">
+              <img src={heroScreens[1].src} alt={heroScreens[1].alt} />
+              <img src={heroScreens[2].src} alt={heroScreens[2].alt} />
+            </div>
           </div>
-        </div>
 
-        <div class="hero-proof-grid">
-          <div class="proof-chip">4.9★</div>
-          <div class="proof-chip">Urdu Tafsir</div>
-          <div class="proof-chip">Audio Recitations</div>
-          <div class="proof-chip">Advanced Search</div>
+          <div class="qp-download-card-stats">
+            <div class="qp-download-stat">Tafsir Usmani</div>
+            <div class="qp-download-stat">Urdu translations</div>
+            <div class="qp-download-stat">Audio recitations</div>
+            <div class="qp-download-stat">Bookmarks</div>
+          </div>
         </div>
       </aside>
     </div>
@@ -470,10 +479,25 @@ const storeBadge = '/images/quranmajeed/Appstore.png';
 
 <style>
   .qp-hero {
-    padding: 4.5rem 0 2.75rem;
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100vh - 4.5rem);
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 0 2rem;
     background:
-      linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,249,240,.95)),
+      linear-gradient(135deg, rgba(255,251,246,.98), rgba(255,245,235,.94)),
       url('/images/quranmajeed/bg-18-Copy-Copy.jpg') center/cover no-repeat;
+  }
+
+  .qp-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(115deg, rgba(255,255,255,.74), transparent 46%),
+      linear-gradient(0deg, rgba(255,255,255,.12), rgba(255,255,255,.12));
+    pointer-events: none;
   }
 
   .qp-hero-grid,
@@ -486,12 +510,15 @@ const storeBadge = '/images/quranmajeed/Appstore.png';
   }
 
   .qp-hero-grid {
-    grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+    position: relative;
+    z-index: 1;
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+    gap: 1.5rem;
   }
 
   .qp-copy,
   .qp-section-copy {
-    max-width: 44rem;
+    max-width: 46rem;
   }
 
   .qp-badge,
@@ -499,19 +526,26 @@ const storeBadge = '/images/quranmajeed/Appstore.png';
     margin-bottom: 1rem;
   }
 
+  .qp-badge {
+    box-shadow: 0 8px 24px rgba(249,115,22,.08);
+  }
+
   .qp-title {
-    font-size: clamp(2.2rem, 4vw, 4.1rem);
-    line-height: 1.06;
+    font-size: clamp(1.85rem, 2.5vw, 2.95rem);
+    line-height: 1.05;
     margin-bottom: 1rem;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 0;
+    color: var(--primary);
+    max-width: 18ch;
   }
 
   .qp-lead {
-    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
-    line-height: 1.7;
+    font-size: clamp(.98rem, 1.15vw, 1.08rem);
+    line-height: 1.55;
     margin-bottom: 1rem;
     color: var(--dark);
+    max-width: 38rem;
   }
 
   .qp-body,
@@ -519,15 +553,34 @@ const storeBadge = '/images/quranmajeed/Appstore.png';
   .testimonial-quote,
   .faq-item p {
     color: var(--secondary-dark);
-    line-height: 1.75;
-    font-size: 1rem;
+    line-height: 1.55;
+    font-size: .96rem;
+    max-width: 38rem;
+  }
+
+  .qp-trust-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .45rem;
+    margin-top: .95rem;
+  }
+
+  .qp-trust-item {
+    padding: .42rem .72rem;
+    border-radius: 999px;
+    border: 1px solid rgba(249,115,22,.14);
+    background: rgba(255,255,255,.8);
+    color: var(--dark);
+    font-size: .84rem;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(15,23,42,.05);
   }
 
   .qp-cta-row {
     display: flex;
     flex-wrap: wrap;
     gap: .75rem;
-    margin-top: 1.5rem;
+    margin-top: 1.1rem;
   }
 
   .store-btn {
@@ -570,43 +623,59 @@ const storeBadge = '/images/quranmajeed/Appstore.png';
     display: flex;
     flex-wrap: wrap;
     gap: .6rem;
-    margin-top: 1.35rem;
+    margin-top: .9rem;
   }
 
   .highlight-pill,
   .proof-chip,
   .mini-card {
     border-radius: .5rem;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,.9);
+    border: 1px solid rgba(249,115,22,.12);
+    background: rgba(255,255,255,.94);
     padding: .5rem .75rem;
     font-size: .92rem;
     font-weight: 600;
+    box-shadow: 0 8px 18px rgba(15,23,42,.05);
   }
 
-  .qp-hero-visual {
-    padding: 1.25rem;
+  .qp-showcase {
+    position: relative;
+  }
+
+  .qp-showcase-shell {
+    position: sticky;
+    top: 5.6rem;
+    padding: 1rem;
     overflow: hidden;
-    background: rgba(255,255,255,.92);
-    box-shadow: 0 18px 38px rgba(15,23,42,.08);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.97), rgba(255,250,245,.94));
+    border: 1px solid rgba(249,115,22,.12);
+    box-shadow: 0 24px 50px rgba(15,23,42,.1);
   }
 
-  .hero-visual-top {
+  .qp-showcase-top {
     display: flex;
+    justify-content: space-between;
     gap: .9rem;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: .85rem;
   }
 
-  .hero-logo,
-  .final-logo {
-    width: 4rem;
-    height: 4rem;
+  .qp-showcase-brand {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+  }
+
+  .qp-brand-logo {
+    width: 3.6rem;
+    height: 3.6rem;
     object-fit: contain;
-    border-radius: .5rem;
+    border-radius: 1rem;
+    box-shadow: 0 12px 28px rgba(15,23,42,.08);
   }
 
-  .mini-label {
+  .qp-download-card-label {
     font-size: .8rem;
     text-transform: uppercase;
     letter-spacing: .06em;
@@ -614,49 +683,71 @@ const storeBadge = '/images/quranmajeed/Appstore.png';
     margin-bottom: .2rem;
   }
 
-  .hero-rating {
-    font-size: 1.8rem;
+  .qp-download-card-title {
+    font-size: 1.5rem;
     line-height: 1;
     margin: 0;
+    font-weight: 800;
   }
 
-  .hero-panel {
+  .qp-showcase-badge {
+    align-self: flex-start;
+    padding: .45rem .75rem;
+    border-radius: 999px;
+    background: rgba(249,115,22,.11);
+    color: var(--primary);
+    font-size: .82rem;
+    font-weight: 700;
+  }
+
+  .qp-showcase-hero {
     display: grid;
-    gap: .9rem;
+    grid-template-columns: minmax(0, 1.05fr) minmax(160px, .82fr);
+    gap: .7rem;
+    margin: .85rem 0;
   }
 
-  .hero-main-shot {
+  .qp-shot-main,
+  .qp-shot-stack img {
     width: 100%;
-    aspect-ratio: 1.05 / 1;
     object-fit: cover;
-    border-radius: .5rem;
-    border: 1px solid var(--border);
+    border-radius: 1rem;
+    border: 1px solid rgba(249,115,22,.12);
+    background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,247,238,.94));
+    box-shadow: 0 14px 30px rgba(15,23,42,.08);
   }
 
-  .hero-mini-shot {
+  .qp-shot-main {
+    height: 17rem;
+    object-fit: contain;
+    padding: .7rem;
+  }
+
+  .qp-shot-stack {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: .75rem;
+    gap: .65rem;
   }
 
-  .hero-mini-shot img,
-  .screenshot-carousel img {
-    width: 100%;
-    border-radius: .5rem;
-    border: 1px solid var(--border);
+  .qp-shot-stack img {
+    aspect-ratio: 1 / 1.12;
+    height: 8rem;
     object-fit: cover;
-    background: #fff;
   }
 
-  .hero-mini-shot img {
-    aspect-ratio: 1 / 1.15;
+  .qp-download-card-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .65rem;
+    margin-bottom: 1rem;
   }
 
-  .hero-proof-grid {
-    display: flex;
-    gap: .6rem;
-    flex-wrap: wrap;
-    margin-top: 1rem;
+  .qp-download-stat {
+    border-radius: .75rem;
+    background: rgba(255,255,255,.92);
+    border: 1px solid rgba(249,115,22,.12);
+    padding: .85rem;
+    font-size: .875rem;
+    line-height: 1.4;
   }
 
   .proof-chip {
@@ -855,14 +946,16 @@ const storeBadge = '/images/quranmajeed/Appstore.png';
       grid-template-columns: 1fr;
     }
 
-    .qp-hero-visual {
+    .qp-showcase-shell {
       order: -1;
+      position: static;
     }
   }
 
   @media (max-width: 720px) {
     .qp-hero {
-      padding-top: 3.2rem;
+      min-height: auto;
+      padding: 2rem 0 1.5rem;
     }
 
     .feature-grid,
@@ -873,14 +966,30 @@ const storeBadge = '/images/quranmajeed/Appstore.png';
       grid-template-columns: 1fr;
     }
 
-    .hero-mini-shot {
+    .qp-showcase-hero {
       grid-template-columns: 1fr;
     }
 
-    .hero-proof-grid,
     .highlight-bar,
     .qp-cta-row {
       gap: .55rem;
+    }
+
+    .qp-showcase-shell {
+      padding: 1rem;
+    }
+
+    .qp-showcase-top {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .qp-shot-main {
+      height: 16rem;
+    }
+
+    .qp-shot-stack {
+      grid-template-columns: 1fr 1fr;
     }
   }
 
