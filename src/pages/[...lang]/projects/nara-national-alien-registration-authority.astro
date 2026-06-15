@@ -1,0 +1,655 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations, getRelativeLocaleUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const copy = {
+  en: {
+    seoTitle: 'NARA Biometric Registration System | Government Identity Project by Pakdata',
+    seoDesc: 'Explore Pakdata’s biometric identity management and registration system developed for NARA to support secure government registration and verification operations.',
+    heroBadge: 'Government Biometric System',
+    heroTitle: 'NARA - National Alien Registration Authority System',
+    heroLead: 'A large-scale biometric registration and identity management solution developed for the National Alien Registration Authority under the Ministry of Interior, Government of Pakistan.',
+    heroSupport: 'Designed to support secure identity verification, registration management, and biometric processing for nationwide operations.',
+    overviewTitle: 'Project Overview',
+    overviewBody: 'Pakdata developed a comprehensive biometric registration and identity management system for the National Alien Registration Authority (NARA) to support secure registration, verification, and processing operations. The project was designed to handle sensitive identity records through advanced biometric technologies, multilingual data management, and enterprise-grade software architecture.',
+    objectiveTitle: 'Project Objectives',
+    objectiveBody: 'The primary objective was to establish a secure and scalable identity registration platform capable of supporting biometric verification, identity management, and large-scale registration workflows.',
+    objectiveItems: [
+      'Registration accuracy',
+      'Biometric verification',
+      'Operational efficiency',
+      'Data security',
+      'Centralized identity management'
+    ],
+    biometricTitle: 'Advanced Biometric Verification System',
+    biometricBody: 'The platform integrated advanced biometric technologies to strengthen identity verification and improve registration accuracy.',
+    biometricItems: [
+      'Facial Recognition Technology',
+      'Fingerprint Recognition',
+      'Identity Verification Workflows',
+      'Biometric Record Processing',
+      'Secure Registration Management'
+    ],
+    enterpriseTitle: 'Enterprise-Grade System Architecture',
+    enterpriseBody: 'The NARA system was designed using enterprise technologies optimized for security, scalability, and operational reliability across large-scale government deployments.',
+    enterpriseItems: ['Visual Basic', 'Visual C++', 'SOAP Architecture', 'Linux Server Infrastructure', 'MySQL Database Systems'],
+    securityTitle: 'Secure & Scalable Government Infrastructure',
+    securityBody: 'Given the sensitive nature of identity data and biometric records, the platform was engineered with a strong focus on reliability, secure data handling, operational stability, biometric processing accuracy, and scalable infrastructure support.',
+    metricsTitle: 'Project Metrics',
+    metrics: [
+      { value: 'Biometric', label: 'verification workflows' },
+      { value: 'Enterprise', label: 'security architecture' },
+      { value: 'National', label: 'registration support' },
+      { value: 'Government', label: 'identity operations' }
+    ],
+    workflowTitle: 'Biometric Workflow Visuals',
+    workflowSteps: [
+      'Registration',
+      'Fingerprint verification',
+      'Facial recognition',
+      'Identity validation'
+    ],
+    impactTitle: 'Supporting National Registration Operations',
+    impactBody: 'The NARA project demonstrates Pakdata’s expertise in developing large-scale government technology systems involving biometric verification, secure identity management, and enterprise infrastructure deployment. The successful implementation highlights capabilities in biometric software systems, identity verification technologies, enterprise architecture, government software development, secure data management, and national-scale operations.',
+    whyTitle: 'A High-Impact Government Technology Initiative',
+    whyBody: 'This project reflects Pakdata’s ability to design and deliver sophisticated government software systems requiring advanced biometric technologies, operational reliability, and scalable enterprise infrastructure. The successful deployment further reinforces Pakdata’s experience in building secure, mission-critical digital solutions for public sector organizations.',
+    finalTitle: 'Building Secure & Scalable Digital Infrastructure',
+    finalBody: 'Pakdata continues to develop enterprise software solutions, biometric systems, and government technology platforms designed for large-scale operations, security, and digital transformation.',
+    explore: 'Explore Projects',
+    contact: 'Contact Our Team',
+    footerDesc: 'A biometric identity registration and verification system developed for the National Alien Registration Authority to support secure national registration operations and enterprise-scale identity management.'
+  },
+  ur: {
+    seoTitle: 'نارا بائیومیٹرک رجسٹریشن سسٹم | پاک ڈیٹا کا حکومتی شناختی منصوبہ',
+    seoDesc: 'پاک ڈیٹا کے نارا کے لیے تیار کردہ بائیومیٹرک شناختی مینجمنٹ اور رجسٹریشن سسٹم کو دریافت کریں جو محفوظ حکومتی رجسٹریشن اور ویری فکیشن آپریشنز کی معاونت کرتا ہے۔',
+    heroBadge: 'حکومتی بائیومیٹرک سسٹم',
+    heroTitle: 'نارا - نیشنل ایلین رجسٹریشن اتھارٹی سسٹم',
+    heroLead: 'پاکستان کی وزارتِ داخلہ کے تحت نیشنل ایلین رجسٹریشن اتھارٹی کے لیے تیار کردہ ایک بڑے پیمانے کا بائیومیٹرک رجسٹریشن اور شناختی مینجمنٹ حل۔',
+    heroSupport: 'ملکی سطح پر شناخت کی تصدیق، رجسٹریشن مینجمنٹ، اور بائیومیٹرک پراسیسنگ کی معاونت کے لیے ڈیزائن کیا گیا۔',
+    overviewTitle: 'منصوبے کا جائزہ',
+    overviewBody: 'پاک ڈیٹا نے نیشنل ایلین رجسٹریشن اتھارٹی (NARA) کے لیے ایک جامع بائیومیٹرک رجسٹریشن اور شناختی مینجمنٹ سسٹم تیار کیا تاکہ محفوظ رجسٹریشن، ویری فکیشن، اور پراسیسنگ آپریشنز کی معاونت کی جا سکے۔ یہ منصوبہ حساس شناختی ریکارڈز کو جدید بائیومیٹرک ٹیکنالوجیز، کثیر لسانی ڈیٹا مینجمنٹ، اور انٹرپرائز گریڈ سافٹ ویئر آرکیٹیکچر کے ذریعے سنبھالنے کے لیے بنایا گیا تھا۔',
+    objectiveTitle: 'منصوبے کے مقاصد',
+    objectiveBody: 'بنیادی مقصد ایک محفوظ اور قابلِ توسیع شناختی رجسٹریشن پلیٹ فارم قائم کرنا تھا جو بائیومیٹرک تصدیق، شناختی مینجمنٹ، اور بڑے پیمانے کے رجسٹریشن ورک فلو کو سپورٹ کر سکے۔',
+    objectiveItems: [
+      'رجسٹریشن کی درستگی',
+      'بائیومیٹرک توثیق',
+      'آپریشنل افادیت',
+      'ڈیٹا سکیورٹی',
+      'مرکزی شناختی مینجمنٹ'
+    ],
+    biometricTitle: 'جدید بائیومیٹرک ویری فکیشن سسٹم',
+    biometricBody: 'پلیٹ فارم میں جدید بائیومیٹرک ٹیکنالوجی شامل کی گئی تاکہ شناخت کی تصدیق مضبوط ہو اور رجسٹریشن کی درستگی بہتر ہو۔',
+    biometricItems: [
+      'چہرے کی پہچان',
+      'فنگر پرنٹ شناخت',
+      'شناختی توثیق کے ورک فلو',
+      'بائیومیٹرک ریکارڈ پراسیسنگ',
+      'محفوظ رجسٹریشن مینجمنٹ'
+    ],
+    enterpriseTitle: 'انٹرپرائز گریڈ سسٹم آرکیٹیکچر',
+    enterpriseBody: 'نارا سسٹم کو انٹرپرائز ٹیکنالوجیز کے ساتھ تیار کیا گیا جو بڑے حکومتی ڈیپلائمنٹس میں سکیورٹی، اسکیل ایبلٹی، اور آپریشنل اعتماد کے لیے موزوں تھیں۔',
+    enterpriseItems: ['Visual Basic', 'Visual C++', 'SOAP Architecture', 'Linux Server Infrastructure', 'MySQL Database Systems'],
+    securityTitle: 'محفوظ اور قابلِ توسیع حکومتی انفراسٹرکچر',
+    securityBody: 'شناختی ڈیٹا اور بائیومیٹرک ریکارڈز کی حساس نوعیت کے باعث پلیٹ فارم کو قابلِ اعتماد کارکردگی، محفوظ ڈیٹا ہینڈلنگ، آپریشنل استحکام، بائیومیٹرک درستگی، اور قابلِ توسیع انفراسٹرکچر پر فوکس کرتے ہوئے بنایا گیا۔',
+    metricsTitle: 'پروجیکٹ میٹرکس',
+    metrics: [
+      { value: 'بائیومیٹرک', label: 'توثیقی ورک فلو' },
+      { value: 'انٹرپرائز', label: 'سکیورٹی آرکیٹیکچر' },
+      { value: 'قومی', label: 'رجسٹریشن سپورٹ' },
+      { value: 'حکومتی', label: 'شناختی آپریشنز' }
+    ],
+    workflowTitle: 'بائیومیٹرک ورک فلو ویژولز',
+    workflowSteps: [
+      'رجسٹریشن',
+      'فنگر پرنٹ ویری فکیشن',
+      'فیشل ریکگنیشن',
+      'شناختی تصدیق'
+    ],
+    impactTitle: 'قومی رجسٹریشن آپریشنز کی معاونت',
+    impactBody: 'نارا منصوبہ ظاہر کرتا ہے کہ پاک ڈیٹا بائیومیٹرک توثیق، محفوظ شناختی مینجمنٹ، اور انٹرپرائز انفراسٹرکچر ڈیپلائمنٹ پر مبنی بڑے حکومتی سسٹمز تیار کرنے کی مہارت رکھتا ہے۔ اس کامیاب نفاذ نے بائیومیٹرک سافٹ ویئر، شناختی تصدیق، انٹرپرائز آرکیٹیکچر، حکومتی سافٹ ویئر ڈویلپمنٹ، محفوظ ڈیٹا مینجمنٹ، اور قومی پیمانے کی آپریشنز کی صلاحیتوں کو نمایاں کیا۔',
+    whyTitle: 'اعلیٰ اثر والا حکومتی ٹیکنالوجی اقدام',
+    whyBody: 'یہ منصوبہ ظاہر کرتا ہے کہ پاک ڈیٹا جدید بائیومیٹرک ٹیکنالوجیز، آپریشنل اعتماد، اور قابلِ توسیع انٹرپرائز انفراسٹرکچر کی ضرورت رکھنے والے پیچیدہ حکومتی سافٹ ویئر سسٹمز ڈیزائن اور ڈیلیور کرنے کی صلاحیت رکھتا ہے۔',
+    finalTitle: 'محفوظ اور قابلِ توسیع ڈیجیٹل انفراسٹرکچر کی تعمیر',
+    finalBody: 'پاک ڈیٹا انٹرپرائز سافٹ ویئر حل، بائیومیٹرک سسٹمز، اور حکومتی ٹیکنالوجی پلیٹ فارمز تیار کرتا رہتا ہے جو بڑے پیمانے کی آپریشنز، سکیورٹی، اور ڈیجیٹل ٹرانسفارمیشن کے لیے بنائے گئے ہیں۔',
+    explore: 'پروجیکٹس دیکھیں',
+    contact: 'ہماری ٹیم سے رابطہ کریں',
+    footerDesc: 'نیشنل ایلین رجسٹریشن اتھارٹی کے لیے تیار کردہ ایک بائیومیٹرک شناختی رجسٹریشن اور توثیقی سسٹم جو محفوظ قومی رجسٹریشن اور انٹرپرائز سطح کی شناختی مینجمنٹ کی معاونت کرتا ہے۔'
+  },
+  ar: {
+    seoTitle: 'نظام تسجيل NARA البيومتري | مشروع هوية حكومي من باك داتا',
+    seoDesc: 'استكشف نظام إدارة الهوية والتسجيل البيومتري الذي طورته باك داتا لصالح NARA لدعم عمليات التسجيل والتحقق الحكومية الآمنة.',
+    heroBadge: 'نظام حكومي بيومتري',
+    heroTitle: 'NARA - نظام هيئة تسجيل الأجانب الوطنية',
+    heroLead: 'حل واسع النطاق للتسجيل البيومتري وإدارة الهوية طُور لصالح هيئة تسجيل الأجانب الوطنية تحت إشراف وزارة الداخلية في حكومة باكستان.',
+    heroSupport: 'مصمم لدعم التحقق الآمن من الهوية وإدارة التسجيل ومعالجة البيانات البيومترية على مستوى العمليات الوطنية.',
+    overviewTitle: 'نظرة عامة على المشروع',
+    overviewBody: 'طورت باك داتا نظامًا شاملًا للتسجيل البيومتري وإدارة الهوية لصالح هيئة تسجيل الأجانب الوطنية NARA لدعم عمليات التسجيل والتحقق والمعالجة الآمنة. صُمم المشروع للتعامل مع سجلات الهوية الحساسة من خلال تقنيات بيومترية متقدمة وإدارة بيانات متعددة اللغات وبنية برمجية مؤسسية.',
+    objectiveTitle: 'أهداف المشروع',
+    objectiveBody: 'كان الهدف الأساسي هو إنشاء منصة تسجيل هوية آمنة وقابلة للتوسع تدعم التحقق البيومتري وإدارة الهوية وسير عمل التسجيل واسع النطاق.',
+    objectiveItems: [
+      'دقة التسجيل',
+      'التحقق البيومتري',
+      'الكفاءة التشغيلية',
+      'أمن البيانات',
+      'الإدارة المركزية للهوية'
+    ],
+    biometricTitle: 'نظام تحقق بيومتري متقدم',
+    biometricBody: 'تم دمج تقنيات بيومترية متقدمة في المنصة لتعزيز التحقق من الهوية وتحسين دقة التسجيل.',
+    biometricItems: [
+      'تقنية التعرف على الوجه',
+      'التعرف على بصمات الأصابع',
+      'سير عمل التحقق من الهوية',
+      'معالجة السجلات البيومترية',
+      'إدارة تسجيل آمنة'
+    ],
+    enterpriseTitle: 'بنية نظام مؤسسية',
+    enterpriseBody: 'تم تصميم نظام NARA باستخدام تقنيات مؤسسية محسنة للأمان وقابلية التوسع والموثوقية التشغيلية عبر النشر الحكومي واسع النطاق.',
+    enterpriseItems: ['Visual Basic', 'Visual C++', 'SOAP Architecture', 'Linux Server Infrastructure', 'MySQL Database Systems'],
+    securityTitle: 'بنية حكومية آمنة وقابلة للتوسع',
+    securityBody: 'نظرًا لحساسية بيانات الهوية والسجلات البيومترية، تم تصميم المنصة بتركيز قوي على الموثوقية ومعالجة البيانات الآمنة والاستقرار التشغيلي ودقة المعالجة البيومترية ودعم البنية القابلة للتوسع.',
+    metricsTitle: 'مقاييس المشروع',
+    metrics: [
+      { value: 'بيومتري', label: 'سير التحقق' },
+      { value: 'مؤسسي', label: 'بنية الأمان' },
+      { value: 'وطني', label: 'دعم التسجيل' },
+      { value: 'حكومي', label: 'عمليات الهوية' }
+    ],
+    workflowTitle: 'تصورات سير العمل البيومتري',
+    workflowSteps: [
+      'التسجيل',
+      'التحقق من البصمة',
+      'التعرف على الوجه',
+      'تأكيد الهوية'
+    ],
+    impactTitle: 'دعم عمليات التسجيل الوطنية',
+    impactBody: 'يُظهر مشروع NARA خبرة باك داتا في تطوير أنظمة حكومية واسعة النطاق تشمل التحقق البيومتري وإدارة الهوية الآمنة ونشر البنية التحتية المؤسسية. كما يبرز التنفيذ الناجح القدرات في أنظمة البرمجيات البيومترية وتقنيات التحقق من الهوية والبنية المؤسسية وتطوير البرمجيات الحكومية وإدارة البيانات الآمنة والعمليات على المستوى الوطني.',
+    whyTitle: 'مبادرة حكومية عالية الأثر',
+    whyBody: 'يعكس هذا المشروع قدرة باك داتا على تصميم وتسليم أنظمة برمجية حكومية متقدمة تتطلب تقنيات بيومترية متطورة وموثوقية تشغيلية وبنية مؤسسية قابلة للتوسع.',
+    finalTitle: 'بناء بنية رقمية آمنة وقابلة للتوسع',
+    finalBody: 'تواصل باك داتا تطوير حلول البرمجيات المؤسسية والأنظمة البيومترية ومنصات التقنية الحكومية المصممة للعمليات واسعة النطاق والأمن والتحول الرقمي.',
+    explore: 'استعرض المشاريع',
+    contact: 'تواصل مع فريقنا',
+    footerDesc: 'نظام تسجيل وتحقق بيومتري من الهوية طُور لصالح هيئة تسجيل الأجانب الوطنية لدعم عمليات التسجيل الوطنية الآمنة وإدارة الهوية على مستوى المؤسسات.'
+  }
+}[lang];
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="nara-hero">
+    <div class="container nara-grid">
+      <div class="nara-copy">
+        <span class="badge badge-primary">{copy.heroBadge}</span>
+        <h1 class="nara-title">{copy.heroTitle}</h1>
+        <p class="nara-lead">{copy.heroLead}</p>
+        <p class="nara-support">{copy.heroSupport}</p>
+
+        <div class="nara-mini-metrics">
+          {copy.metrics.map((metric) => (
+            <div class="nara-mini-card card">
+              <span class="nara-mini-value">{metric.value}</span>
+              <span class="nara-mini-label">{metric.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <div class="nara-actions">
+          <a href={getRelativeLocaleUrl(lang, '/projects')} class="btn btn-primary btn-lg">{copy.explore}</a>
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-outline btn-lg">{copy.contact}</a>
+        </div>
+      </div>
+
+      <div class="nara-visual card">
+        <img src="/images/nara-screenshot-350x316.jpg" alt="NARA biometric registration visual" class="nara-image" />
+        <div class="nara-visual-footer">
+          <span>{copy.heroBadge}</span>
+          <span>Secure identity verification and registration</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-layout">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.overviewTitle}</span>
+        <h2 class="section-title">{copy.overviewTitle}</h2>
+        <p class="body-copy">{copy.overviewBody}</p>
+      </div>
+      <div class="info-grid card">
+        <div class="info-row">
+          <span class="info-kicker">Client</span>
+          <strong>{t('projects.items.nara.client')}</strong>
+        </div>
+        <div class="info-row">
+          <span class="info-kicker">Scale</span>
+          <strong>{t('projects.items.nara.scale')}</strong>
+        </div>
+        <div class="info-row">
+          <span class="info-kicker">Focus</span>
+          <strong>Biometric identity management</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-layout reverse">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.objectiveTitle}</span>
+        <h2 class="section-title">{copy.objectiveTitle}</h2>
+        <p class="body-copy">{copy.objectiveBody}</p>
+      </div>
+      <div class="list-panel card">
+        <h3 class="panel-title">Objectives</h3>
+        <ul class="check-list">
+          {copy.objectiveItems.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.biometricTitle}</span>
+        <h2 class="section-title">{copy.biometricTitle}</h2>
+      </div>
+      <p class="body-copy section-copy">{copy.biometricBody}</p>
+      <div class="feature-grid">
+        {copy.biometricItems.map((item) => (
+          <article class="feature-card card">
+            <h3>{item}</h3>
+            <p>Enterprise identity processing and secure verification support.</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-layout">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.enterpriseTitle}</span>
+        <h2 class="section-title">{copy.enterpriseTitle}</h2>
+        <p class="body-copy">{copy.enterpriseBody}</p>
+      </div>
+      <div class="list-panel card">
+        <h3 class="panel-title">Technology highlights</h3>
+        <ul class="check-list">
+          {copy.enterpriseItems.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.securityTitle}</span>
+        <h2 class="section-title">{copy.securityTitle}</h2>
+      </div>
+      <p class="body-copy section-copy">{copy.securityBody}</p>
+
+      <div class="workflow-grid">
+        {copy.workflowSteps.map((step, index) => (
+          <div class="workflow-card card">
+            <span class="workflow-index">0{index + 1}</span>
+            <strong>{step}</strong>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.impactTitle}</span>
+        <h2 class="section-title">{copy.impactTitle}</h2>
+      </div>
+      <p class="body-copy section-copy">{copy.impactBody}</p>
+      <div class="impact-grid">
+        {copy.metrics.map((metric) => (
+          <div class="impact-card card">
+            <strong>{metric.value}</strong>
+            <span>{metric.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-layout reverse">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.whyTitle}</span>
+        <h2 class="section-title">{copy.whyTitle}</h2>
+        <p class="body-copy">{copy.whyBody}</p>
+      </div>
+      <div class="list-panel card">
+        <h3 class="panel-title">Why it mattered</h3>
+        <ul class="check-list">
+          <li>Biometric software systems</li>
+          <li>Identity verification technologies</li>
+          <li>Enterprise architecture</li>
+          <li>Government software development</li>
+          <li>Secure data management</li>
+          <li>National-scale operations</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section nara-cta">
+    <div class="container text-center text-white">
+      <h2 class="cta-title">{copy.finalTitle}</h2>
+      <p class="cta-desc">{copy.finalBody}</p>
+      <div class="cta-actions">
+        <a href={getRelativeLocaleUrl(lang, '/projects')} class="btn btn-primary btn-lg btn-white-text">{copy.explore}</a>
+        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-outline btn-lg btn-white-text">{copy.contact}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .nara-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    border-bottom: 1px solid var(--border);
+    padding: 4.5rem 0 4rem;
+  }
+
+  .nara-grid,
+  .split-layout {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .split-layout.reverse {
+    grid-template-columns: .95fr 1.05fr;
+  }
+
+  .nara-title {
+    font-size: clamp(2.1rem, 3vw, 3rem);
+    line-height: 1.05;
+    font-weight: 700;
+    color: var(--primary);
+    margin: .9rem 0 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .nara-lead,
+  .nara-support,
+  .body-copy {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    font-size: calc(1.02rem * var(--text-scale, 1));
+  }
+
+  .nara-support {
+    margin-top: .9rem;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .nara-mini-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .9rem;
+    margin: 1.3rem 0 1.35rem;
+  }
+
+  .nara-mini-card {
+    padding: 1rem;
+  }
+
+  .nara-mini-value {
+    display: block;
+    font-size: 1.05rem;
+    color: var(--dark);
+    font-weight: 700;
+  }
+
+  .nara-mini-label {
+    display: block;
+    margin-top: .35rem;
+    color: var(--secondary-dark);
+    line-height: 1.4;
+  }
+
+  .nara-actions,
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .9rem;
+    margin-top: 1.3rem;
+  }
+
+  .nara-visual,
+  .info-grid,
+  .list-panel {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1.2rem;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+
+  .nara-visual {
+    padding: .9rem;
+  }
+
+  .nara-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: .9rem;
+  }
+
+  .nara-visual-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .9rem .2rem .1rem;
+    color: var(--secondary-dark);
+    font-size: .92rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.65rem, 2.8vw, 2.65rem);
+    line-height: 1.12;
+    margin: .7rem 0 .9rem;
+    color: var(--dark);
+  }
+
+  .section-copy-block {
+    max-width: 42rem;
+  }
+
+  .section-title-wrap.tight {
+    margin-bottom: 1.3rem;
+  }
+
+  .info-grid,
+  .list-panel {
+    padding: 1.3rem;
+  }
+
+  .info-row {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .info-kicker {
+    display: block;
+    font-size: .76rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--primary);
+    margin-bottom: .35rem;
+  }
+
+  .info-row strong {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--dark);
+  }
+
+  .feature-grid,
+  .workflow-grid,
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .feature-card,
+  .workflow-card,
+  .impact-card {
+    padding: 1.2rem;
+  }
+
+  .feature-card h3,
+  .panel-title,
+  .workflow-card strong {
+    font-size: 1.05rem;
+    line-height: 1.35;
+    color: var(--dark);
+    margin-bottom: .65rem;
+  }
+
+  .feature-card p {
+    color: var(--secondary-dark);
+    line-height: 1.6;
+  }
+
+  .check-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: .8rem;
+  }
+
+  .check-list li {
+    position: relative;
+    padding-inline-start: 1.35rem;
+    color: var(--secondary-dark);
+    line-height: 1.55;
+  }
+
+  .check-list li::before {
+    content: '•';
+    position: absolute;
+    inset-inline-start: 0;
+    color: var(--primary);
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .workflow-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: .65rem;
+  }
+
+  .impact-card strong {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--dark);
+    margin-bottom: .35rem;
+  }
+
+  .impact-card span {
+    color: var(--secondary-dark);
+    line-height: 1.5;
+  }
+
+  .nara-cta {
+    background: linear-gradient(135deg, var(--dark) 0%, #1d2433 100%);
+    color: white;
+  }
+
+  .cta-title {
+    font-size: clamp(1.75rem, 3vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: .8rem;
+  }
+
+  .cta-desc {
+    max-width: 44rem;
+    margin: 0 auto;
+    color: rgba(255,255,255,.84);
+    line-height: 1.7;
+  }
+
+  .btn-white-text {
+    color: white;
+  }
+
+  @media (max-width: 1024px) {
+    .nara-grid,
+    .split-layout,
+    .split-layout.reverse {
+      grid-template-columns: 1fr;
+    }
+
+    .nara-mini-metrics,
+    .feature-grid,
+    .workflow-grid,
+    .impact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .nara-hero {
+      padding: 3.5rem 0 3rem;
+    }
+
+    .nara-title {
+      max-width: none;
+    }
+
+    .nara-actions,
+    .cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .nara-visual-footer {
+      flex-direction: column;
+    }
+  }
+</style>

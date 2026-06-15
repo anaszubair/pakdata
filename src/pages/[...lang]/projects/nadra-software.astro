@@ -1,0 +1,579 @@
+---
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations, getRelativeLocaleUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const copy = {
+  en: {
+    seoTitle: 'NADRA National ID Card System | Government Technology Project by Pakdata',
+    seoDesc: 'Explore Pakdata’s enterprise government technology project developed for NADRA to support national identity data processing, digitization, and large-scale database operations.',
+    heroBadge: 'Government Project',
+    heroLead: 'A large-scale government technology solution developed for Pakistan’s National Database and Registration Authority (NADRA) to support the digitization and processing of national identity records across the country.',
+    heroSupport: 'Developed in collaboration with the Ministry of Interior, Government of Pakistan.',
+    overviewTitle: 'Project Overview',
+    overviewBody: 'Pakdata developed a comprehensive data entry and digitization system designed to support NADRA’s national identity registration operations during Pakistan’s census and citizen database digitization initiatives. The solution was engineered to efficiently process millions of National Database Forms (NDFs) while maintaining high standards of speed, accuracy, reliability, and scalability across nationwide operations.',
+    challengeTitle: 'The Challenge',
+    challengeIntro: 'The project required the handling and digitization of an extremely large volume of citizen data collected across Pakistan.',
+    challengeItems: [
+      'Processing millions of records efficiently',
+      'Maintaining data accuracy',
+      'Supporting Urdu and Sindhi language entry',
+      'Operating continuously across nationwide deployment centers',
+      'Ensuring production scalability and quality control'
+    ],
+    solutionTitle: 'Our Solution',
+    solutionBody: 'Pakdata designed and developed a robust data entry platform with intelligent language support, optimized workflows, and advanced quality control mechanisms to streamline national data digitization processes. The platform was developed to support continuous 24/7 operational workflows at national scale.',
+    solutionItems: [
+      'Bilingual Urdu and Sindhi support',
+      'Intelligent typing assistance',
+      'High-volume form processing',
+      'Image enhancement utilities',
+      'Signature and thumb impression handling',
+      'Operator quality tracking'
+    ],
+    techTitle: 'Technology & Infrastructure',
+    techBody: 'The solution was developed using enterprise-grade technologies and optimized for large-scale deployment environments.',
+    techItems: ['Visual Basic', 'C++', 'Microsoft SQL Server', 'Windows-based deployment'],
+    scaleTitle: 'Nationwide Scale & Operational Impact',
+    scaleBody: 'The system successfully supported large-scale national operations involving millions of citizen records and extensive processing infrastructure deployed across Pakistan.',
+    scaleItems: [
+      'Millions of records processed',
+      'Nationwide deployment',
+      '24/7 operational workflows',
+      'Multi-city infrastructure support',
+      'High-volume production handling',
+      'Government-scale digitization'
+    ],
+    qualityTitle: 'Accuracy & Quality Assurance',
+    qualityBody: 'To maintain high standards of data integrity and operational reliability, the system incorporated multiple layers of verification and quality assurance throughout the data entry workflow.',
+    whyTitle: 'A Landmark Government Technology Initiative',
+    whyBody: 'This project demonstrates Pakdata’s ability to design and deploy mission-critical enterprise solutions for large-scale national operations.',
+    whyItems: [
+      'Enterprise software engineering',
+      'Multilingual data systems',
+      'Government technology infrastructure',
+      'Large-scale operational deployment',
+      'Performance optimization',
+      'National-scale data processing'
+    ],
+    finalTitle: 'Building Scalable Digital Solutions for Enterprise & Government',
+    finalBody: 'Pakdata continues to develop innovative technology solutions for enterprise, public sector, and digital transformation initiatives through scalable software engineering and modern system architecture.',
+    contact: 'Contact Our Team',
+    projects: 'Explore Projects',
+    footerDesc: 'A large-scale national data digitization and identity processing system developed for NADRA to support citizen database operations and nationwide record management.'
+  },
+  ur: {
+    seoTitle: 'نادرا نیشنل آئی ڈی کارڈ سسٹم | پاک ڈیٹا کا حکومتی ٹیکنالوجی پروجیکٹ',
+    seoDesc: 'نادرا کے لیے تیار کردہ پاک ڈیٹا کے انٹرپرائز حکومتی ٹیکنالوجی پروجیکٹ کو دریافت کریں جو قومی شناختی ڈیٹا پراسیسنگ، ڈیجیٹائزیشن اور بڑے پیمانے کے ڈیٹا بیس آپریشنز کی معاونت کرتا ہے۔',
+    heroBadge: 'حکومتی منصوبہ',
+    heroLead: 'پاکستان کی نیشنل ڈیٹا بیس اینڈ رجسٹریشن اتھارٹی (نادرا) کے لیے تیار کردہ ایک بڑے پیمانے کا حکومتی ٹیکنالوجی حل، جو ملک بھر میں قومی شناختی ریکارڈز کی ڈیجیٹائزیشن اور پراسیسنگ میں مدد دیتا ہے۔',
+    heroSupport: 'وزارتِ داخلہ، حکومتِ پاکستان کے اشتراک سے تیار کیا گیا۔',
+    overviewTitle: 'منصوبے کا جائزہ',
+    overviewBody: 'پاک ڈیٹا نے ایک جامع ڈیٹا انٹری اور ڈیجیٹائزیشن سسٹم تیار کیا جس کا مقصد پاکستان کی مردم شماری اور شہری ڈیٹا بیس ڈیجیٹائزیشن مہمات کے دوران نادرا کے قومی رجسٹریشن آپریشنز کی معاونت کرنا تھا۔ یہ حل لاکھوں نیشنل ڈیٹا بیس فارمز کو تیزی، درستگی، بھروسے اور توسیع پذیری کے اعلیٰ معیار کے ساتھ پراسیس کرنے کے لیے بنایا گیا۔',
+    challengeTitle: 'چیلنج',
+    challengeIntro: 'اس منصوبے میں پاکستان بھر سے جمع کیے گئے انتہائی بڑے شہری ڈیٹا کو سنبھالنا اور ڈیجیٹائز کرنا تھا۔',
+    challengeItems: [
+      'لاکھوں ریکارڈز کو مؤثر انداز میں پراسیس کرنا',
+      'ڈیٹا کی درستگی برقرار رکھنا',
+      'اردو اور سندھی ان پٹ کی سپورٹ',
+      'ملک گیر سینٹرز میں مسلسل آپریشن',
+      'پروڈکشن اسکیل اور کوالٹی کنٹرول برقرار رکھنا'
+    ],
+    solutionTitle: 'ہمارا حل',
+    solutionBody: 'پاک ڈیٹا نے ایک مضبوط ڈیٹا انٹری پلیٹ فارم ڈیزائن اور تیار کیا جس میں ذہین زبان سپورٹ، بہتر ورک فلو اور جدید کوالٹی کنٹرول میکانزم شامل تھے تاکہ قومی ڈیجیٹائزیشن کے عمل کو ہموار بنایا جا سکے۔ یہ پلیٹ فارم قومی سطح پر 24/7 آپریشنز کے لیے تیار کیا گیا تھا۔',
+    solutionItems: [
+      'دو لسانی اردو اور سندھی سپورٹ',
+      'ذہین ٹائپنگ اسسٹنس',
+      'بہت زیادہ والیوم فارم پراسیسنگ',
+      'امیج بہتر بنانے والے ٹولز',
+      'دستخط اور انگوٹھے کے نشان کی ہینڈلنگ',
+      'آپریٹر کوالٹی ٹریکنگ'
+    ],
+    techTitle: 'ٹیکنالوجی اور انفراسٹرکچر',
+    techBody: 'یہ حل انٹرپرائز گریڈ ٹیکنالوجیز کے ساتھ تیار کیا گیا اور بڑے پیمانے کی ڈیپلائمنٹ کے لیے بہتر بنایا گیا۔',
+    techItems: ['Visual Basic', 'C++', 'Microsoft SQL Server', 'Windows-based deployment'],
+    scaleTitle: 'ملکی پیمانہ اور عملی اثر',
+    scaleBody: 'اس نظام نے لاکھوں شہری ریکارڈز اور پاکستان بھر میں نصب بڑے پروسیسنگ انفراسٹرکچر کے ساتھ قومی آپریشنز کی کامیابی سے معاونت کی۔',
+    scaleItems: [
+      'لاکھوں ریکارڈز پراسیس کیے گئے',
+      'ملک گیر ڈیپلائمنٹ',
+      '24/7 آپریشنز',
+      'کثیر شہروں کی سپورٹ',
+      'اعلیٰ حجم پروڈکشن ہینڈلنگ',
+      'حکومتی سطح کی ڈیجیٹائزیشن'
+    ],
+    qualityTitle: 'درستگی اور کوالٹی اشورنس',
+    qualityBody: 'ڈیٹا کی سالمیت اور آپریشنل اعتماد برقرار رکھنے کے لیے، سسٹم میں ڈیٹا انٹری ورک فلو کے دوران متعدد تصدیقی اور کوالٹی اشورنس پرتیں شامل کی گئیں۔',
+    whyTitle: 'حکومتی ٹیکنالوجی کی ایک اہم مثال',
+    whyBody: 'یہ منصوبہ ظاہر کرتا ہے کہ پاک ڈیٹا بڑے پیمانے کے قومی آپریشنز کے لیے مشن کریٹیکل انٹرپرائز سلوشنز ڈیزائن اور ڈیپلائے کرنے کی صلاحیت رکھتا ہے۔',
+    whyItems: [
+      'انٹرپرائز سافٹ ویئر انجینئرنگ',
+      'کثیر لسانی ڈیٹا سسٹمز',
+      'حکومتی ٹیکنالوجی انفراسٹرکچر',
+      'بڑے پیمانے کی ڈیپلائمنٹ',
+      'پرفارمنس آپٹیمائزیشن',
+      'قومی سطح کی ڈیٹا پراسیسنگ'
+    ],
+    finalTitle: 'انٹرپرائز اور حکومت کے لیے قابلِ توسیع ڈیجیٹل حل',
+    finalBody: 'پاک ڈیٹا قابلِ توسیع سافٹ ویئر انجینئرنگ اور جدید سسٹم آرکیٹیکچر کے ذریعے انٹرپرائز، پبلک سیکٹر اور ڈیجیٹل ٹرانسفارمیشن منصوبوں کے لیے جدید ٹیکنالوجی حل تیار کرتا رہتا ہے۔',
+    contact: 'ہماری ٹیم سے رابطہ کریں',
+    projects: 'پروجیکٹس دیکھیں',
+    footerDesc: 'نادرا کے لیے تیار کردہ ایک بڑے پیمانے کا قومی ڈیٹا ڈیجیٹائزیشن اور شناختی پراسیسنگ نظام، جو شہری ڈیٹا بیس آپریشنز اور ملک گیر ریکارڈ مینجمنٹ کی معاونت کرتا ہے۔'
+  },
+  ar: {
+    seoTitle: 'نظام بطاقة الهوية الوطنية في نادرا | مشروع تقني حكومي من باك داتا',
+    seoDesc: 'استكشف مشروع باك داتا التقني الحكومي المخصص لنادرا لدعم معالجة بيانات الهوية الوطنية وأعمال الرقمنة والعمليات الضخمة لقاعدة البيانات.',
+    heroBadge: 'مشروع حكومي',
+    heroLead: 'حل تقني حكومي واسع النطاق طُوّر لصالح الهيئة الوطنية لقاعدة البيانات والتسجيل (نادرا) لدعم رقمنة ومعالجة سجلات الهوية الوطنية في جميع أنحاء البلاد.',
+    heroSupport: 'تم تطويره بالتعاون مع وزارة الداخلية، حكومة باكستان.',
+    overviewTitle: 'نظرة عامة على المشروع',
+    overviewBody: 'طورت باك داتا نظام إدخال بيانات ورقمنة شامل لدعم عمليات تسجيل الهوية الوطنية لدى نادرا خلال مشاريع التعداد ورقمنة قاعدة بيانات المواطنين. تم تصميم الحل لمعالجة ملايين النماذج الوطنية بكفاءة مع الحفاظ على السرعة والدقة والموثوقية وقابلية التوسع على مستوى البلاد.',
+    challengeTitle: 'التحدي',
+    challengeIntro: 'تطلب المشروع التعامل مع كم هائل جدًا من بيانات المواطنين المجمعة من جميع أنحاء باكستان ورقمنتها.',
+    challengeItems: [
+      'معالجة ملايين السجلات بكفاءة',
+      'الحفاظ على دقة البيانات',
+      'دعم الإدخال باللغة الأردية والسندية',
+      'العمل المستمر عبر مراكز النشر الوطنية',
+      'ضمان قابلية التوسع ومراقبة الجودة'
+    ],
+    solutionTitle: 'حلنا',
+    solutionBody: 'صممت باك داتا وطورت منصة إدخال بيانات قوية مع دعم ذكي للغات وسير عمل محسّن وآليات متقدمة لمراقبة الجودة لتبسيط عمليات الرقمنة الوطنية. صُممت المنصة لدعم العمليات المستمرة على مدار الساعة وعلى نطاق وطني.',
+    solutionItems: [
+      'دعم ثنائي اللغة للأردية والسندية',
+      'مساعدة ذكية في الكتابة',
+      'معالجة عالية الحجم للنماذج',
+      'أدوات تحسين الصور',
+      'التعامل مع التواقيع وبصمات الإبهام',
+      'تتبع جودة المشغلين'
+    ],
+    techTitle: 'التكنولوجيا والبنية التحتية',
+    techBody: 'تم تطوير الحل باستخدام تقنيات مؤسسية ومهيأ لبيئات النشر واسعة النطاق.',
+    techItems: ['Visual Basic', 'C++', 'Microsoft SQL Server', 'نشر قائم على Windows'],
+    scaleTitle: 'النطاق الوطني والأثر التشغيلي',
+    scaleBody: 'دعم النظام بنجاح عمليات وطنية واسعة النطاق شملت ملايين سجلات المواطنين وبنية معالجة كبيرة منتشرة في جميع أنحاء باكستان.',
+    scaleItems: [
+      'معالجة ملايين السجلات',
+      'نشر على مستوى البلاد',
+      'عمليات على مدار 24/7',
+      'دعم بنية متعددة المدن',
+      'معالجة إنتاجية عالية الحجم',
+      'رقمنة على مستوى حكومي'
+    ],
+    qualityTitle: 'الدقة وضمان الجودة',
+    qualityBody: 'للحفاظ على أعلى معايير سلامة البيانات والموثوقية التشغيلية، تضمن النظام عدة طبقات من التحقق وضمان الجودة طوال سير عمل الإدخال.',
+    whyTitle: 'مبادرة حكومية بارزة في التكنولوجيا',
+    whyBody: 'يُظهر هذا المشروع قدرة باك داتا على تصميم ونشر حلول مؤسسية مهمة للعمليات الوطنية واسعة النطاق.',
+    whyItems: [
+      'هندسة برمجيات مؤسسية',
+      'أنظمة بيانات متعددة اللغات',
+      'بنية تقنية حكومية',
+      'نشر واسع النطاق',
+      'تحسين الأداء',
+      'معالجة بيانات على مستوى وطني'
+    ],
+    finalTitle: 'بناء حلول رقمية قابلة للتوسع للمؤسسات والحكومة',
+    finalBody: 'تواصل باك داتا تطوير حلول تقنية مبتكرة للمؤسسات والقطاع العام ومبادرات التحول الرقمي من خلال هندسة برمجية قابلة للتوسع وبنية أنظمة حديثة.',
+    contact: 'تواصل مع فريقنا',
+    projects: 'استعرض المشاريع',
+    footerDesc: 'نظام وطني واسع النطاق لرقمنة البيانات ومعالجة الهوية تم تطويره لصالح نادرا لدعم عمليات قاعدة بيانات المواطنين وإدارة السجلات على مستوى البلاد.'
+  }
+}[lang];
+
+const metrics = [
+  { label: 'Millions of records processed', value: 'Millions' },
+  { label: 'Nationwide deployment', value: 'Pakistan' },
+  { label: '24/7 operations', value: 'Always on' },
+  { label: 'Government infrastructure support', value: 'Enterprise' }
+];
+
+const techStack = ['Visual Basic', 'C++', 'Microsoft SQL Server', 'Windows-based deployment infrastructure'];
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="nadra-hero">
+    <div class="container nadra-grid">
+      <div class="nadra-copy">
+        <span class="badge badge-primary">{copy.heroBadge}</span>
+        <h1 class="nadra-title">{t('projects.items.nadra.title')}</h1>
+        <p class="nadra-lead">{copy.heroLead}</p>
+        <p class="nadra-support">{copy.heroSupport}</p>
+        <div class="nadra-mini-metrics">
+          {metrics.map(metric => (
+            <div class="nadra-mini-card">
+              <span class="nadra-mini-value">{metric.value}</span>
+              <span class="nadra-mini-label">{metric.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="nadra-visual card">
+        <img src="/images/nadra.jpg" alt="NADRA project visual" class="nadra-image" />
+        <div class="nadra-visual-footer">
+          <span>{copy.heroBadge}</span>
+          <span>{t('projects.items.nadra.scale')}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-grid">
+      <div class="split-copy">
+        <span class="badge badge-primary">{copy.overviewTitle}</span>
+        <h2 class="section-title">{copy.overviewTitle}</h2>
+        <p class="body-copy">{copy.overviewBody}</p>
+      </div>
+      <div class="info-panel card">
+        <div class="info-row">
+          <span class="info-kicker">Client</span>
+          <strong>{t('projects.items.nadra.client')}</strong>
+        </div>
+        <div class="info-row">
+          <span class="info-kicker">Scale</span>
+          <strong>{t('projects.items.nadra.scale')}</strong>
+        </div>
+        <div class="info-row">
+          <span class="info-kicker">Impact</span>
+          <strong>{t('projects.items.nadra.metric2')}</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.challengeTitle}</span>
+        <h2 class="section-title">{copy.challengeTitle}</h2>
+      </div>
+      <p class="body-copy section-copy">{copy.challengeIntro}</p>
+      <div class="bullet-grid">
+        {copy.challengeItems.map(item => <div class="bullet-card card">{item}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-grid reverse">
+      <div class="split-copy">
+        <span class="badge badge-primary">{copy.solutionTitle}</span>
+        <h2 class="section-title">{copy.solutionTitle}</h2>
+        <p class="body-copy">{copy.solutionBody}</p>
+      </div>
+      <div class="bullet-grid compact">
+        {copy.solutionItems.map(item => <div class="bullet-card card">{item}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-grid">
+      <div class="split-copy">
+        <span class="badge badge-primary">{copy.techTitle}</span>
+        <h2 class="section-title">{copy.techTitle}</h2>
+        <p class="body-copy">{copy.techBody}</p>
+      </div>
+      <div class="chip-grid">
+        {techStack.map(item => <div class="chip">{item}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.scaleTitle}</span>
+        <h2 class="section-title">{copy.scaleTitle}</h2>
+      </div>
+      <p class="body-copy section-copy">{copy.scaleBody}</p>
+      <div class="metrics-grid">
+        {copy.scaleItems.map(item => <div class="metric-card card">{item}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-grid reverse">
+      <div class="split-copy">
+        <span class="badge badge-primary">{copy.qualityTitle}</span>
+        <h2 class="section-title">{copy.qualityTitle}</h2>
+        <p class="body-copy">{copy.qualityBody}</p>
+      </div>
+      <div class="split-copy">
+        <span class="badge badge-primary">{copy.whyTitle}</span>
+        <h2 class="section-title">{copy.whyTitle}</h2>
+        <p class="body-copy">{copy.whyBody}</p>
+        <div class="chip-grid">
+          {copy.whyItems.map(item => <div class="chip">{item}</div>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section final-cta-band">
+    <div class="container final-cta-grid">
+      <div>
+        <span class="badge badge-primary">{copy.finalTitle}</span>
+        <h2 class="section-title">{copy.finalTitle}</h2>
+        <p class="body-copy">{copy.finalBody}</p>
+        <div class="cta-actions">
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-lg">{copy.contact}</a>
+          <a href={getRelativeLocaleUrl(lang, '/projects')} class="btn btn-outline btn-lg">{copy.projects}</a>
+        </div>
+      </div>
+      <div class="final-art card">
+        <img src="/images/nadra.jpg" alt="NADRA project visual" />
+        <p>{copy.footerDesc}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section footer-summary">
+    <div class="container">
+      <p>{copy.footerDesc}</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .nadra-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    padding: 5.5rem 0 4.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nadra-grid,
+  .split-grid,
+  .final-cta-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nadra-title {
+    font-size: clamp(2.25rem, 3vw, 3rem);
+    line-height: 1.05;
+    color: var(--primary);
+    margin: 1rem 0 1rem;
+    font-weight: 700;
+  }
+
+  .nadra-lead,
+  .nadra-support,
+  .body-copy,
+  .section-copy {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  .nadra-support {
+    margin-top: .75rem;
+    font-weight: 600;
+  }
+
+  .nadra-mini-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .85rem;
+    margin-top: 1.5rem;
+  }
+
+  .nadra-mini-card,
+  .info-panel,
+  .bullet-card,
+  .metric-card,
+  .final-art,
+  .nadra-visual {
+    background: rgba(255,255,255,.94);
+    border: 1px solid rgba(236, 103, 36, .14);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .nadra-mini-card {
+    padding: .95rem 1rem;
+  }
+
+  .nadra-mini-value {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: .15rem;
+  }
+
+  .nadra-mini-label {
+    color: var(--secondary-dark);
+    font-size: .85rem;
+  }
+
+  .nadra-visual {
+    padding: 1rem;
+  }
+
+  .nadra-image {
+    width: 100%;
+    display: block;
+    border-radius: .85rem;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+  }
+
+  .nadra-visual-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: .85rem;
+    font-weight: 700;
+    color: var(--dark);
+    flex-wrap: wrap;
+  }
+
+  .section {
+    padding: 4.5rem 0;
+  }
+
+  .section-bg {
+    background: linear-gradient(180deg, rgba(255,248,240,.75), rgba(255,255,255,.94));
+  }
+
+  .section-title-wrap.tight {
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+    line-height: 1.15;
+    color: var(--primary-dark);
+    margin-bottom: .75rem;
+  }
+
+  .info-panel {
+    padding: 1.25rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: .75rem;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .info-row:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .info-kicker {
+    color: var(--secondary-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: .8rem;
+  }
+
+  .bullet-grid,
+  .metrics-grid,
+  .chip-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .bullet-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bullet-grid.compact {
+    align-self: start;
+  }
+
+  .bullet-card,
+  .metric-card,
+  .chip {
+    padding: 1rem 1.1rem;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .chip-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .final-cta-band {
+    background: linear-gradient(135deg, rgba(255,243,232,.98), rgba(255,252,247,.96));
+  }
+
+  .final-art {
+    padding: 1rem;
+  }
+
+  .final-art img {
+    width: 100%;
+    display: block;
+    border-radius: .85rem;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+    margin-bottom: .85rem;
+  }
+
+  .footer-summary {
+    padding-top: 0;
+  }
+
+  .footer-summary p {
+    text-align: center;
+    color: var(--secondary-dark);
+    line-height: 1.8;
+    max-width: 62rem;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 960px) {
+    .nadra-grid,
+    .split-grid,
+    .final-cta-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .metrics-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .nadra-mini-metrics,
+    .bullet-grid,
+    .metrics-grid,
+    .chip-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
