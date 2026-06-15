@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { getLangFromUrl, useTranslations, getRelativeLocaleUrl } from '../i18n/utils';
+import { languages } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -11,17 +13,22 @@ const {
   description = "Pioneering Islamic digital innovation and software development since 1979. Creators of Quran Majeed, EasyUrdu, and custom enterprise solutions." 
 } = Astro.props;
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const dir = lang === 'en' ? 'ltr' : 'rtl';
+
 // Helper to determine active link
 const pathname = new URL(Astro.request.url).pathname;
+const cleanPathname = pathname.replace(new RegExp(`^/${lang}`), '') || '/';
 const isActive = (path: string) => {
-  if (path === '/' && pathname === '/') return true;
-  if (path !== '/' && pathname.startsWith(path)) return true;
+  if (path === '/' && cleanPathname === '/') return true;
+  if (path !== '/' && cleanPathname.startsWith(path)) return true;
   return false;
 };
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang} dir={dir}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,6 +51,42 @@ const isActive = (path: string) => {
     <meta property="twitter:title" content={`${title} | PDMS`} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content="https://pakdata-pearl.vercel.app/images/logo.png" />
+
+    <!-- Custom Language Fonts -->
+    {lang === 'ur' && <link rel="preload" href="/fonts/ur.ttf" as="font" type="font/ttf" crossorigin />}
+    {lang === 'ar' && <link rel="preload" href="/fonts/ar.ttf" as="font" type="font/ttf" crossorigin />}
+    <style is:global>
+      @font-face {
+        font-family: 'UrduFont';
+        src: url('/fonts/ur.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'ArabicFont';
+        src: url('/fonts/ar.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      :lang(ur), :lang(ur) *, 
+      :lang(ur) h1, :lang(ur) h2, :lang(ur) h3, :lang(ur) h4, :lang(ur) h5, :lang(ur) h6, :lang(ur) p, :lang(ur) a, :lang(ur) span, :lang(ur) div {
+        font-family: 'UrduFont', 'Noto Nastaliq Urdu', Arial, sans-serif !important;
+      }
+      html:lang(ur) {
+        line-height: 2.2;
+        --text-scale: 1.25;
+      }
+      :lang(ar), :lang(ar) *, 
+      :lang(ar) h1, :lang(ar) h2, :lang(ar) h3, :lang(ar) h4, :lang(ar) h5, :lang(ar) h6, :lang(ar) p, :lang(ar) a, :lang(ar) span, :lang(ar) div {
+        font-family: 'ArabicFont', 'Amiri', 'Traditional Arabic', Arial, sans-serif !important;
+      }
+      html:lang(ar) {
+        line-height: 2;
+        --text-scale: 1.25;
+      }
+    </style>
   </head>
   <body>
 
@@ -51,7 +94,7 @@ const isActive = (path: string) => {
     <header class="header">
       <div class="container header-container">
         <!-- Logo -->
-        <a href="/" class="logo-wrap" id="logo-nav-link">
+        <a href={getRelativeLocaleUrl(lang, '/')} class="logo-wrap" id="logo-nav-link">
           <img src="/images/logo.png" alt="PDMS Logo" class="logo-img" />
           <div class="logo-text">
           </div>
@@ -59,18 +102,25 @@ const isActive = (path: string) => {
 
         <!-- Desktop Navigation Links -->
         <nav class="nav-desktop">
-          <a href="/" class={`nav-link ${isActive('/') ? 'active' : ''}`} id="nav-home">Home</a>
-          <a href="/products" class={`nav-link ${isActive('/products') ? 'active' : ''}`} id="nav-products">Products</a>
-          <a href="/projects" class={`nav-link ${isActive('/projects') ? 'active' : ''}`} id="nav-projects">Projects</a>
-          <a href="/about" class={`nav-link ${isActive('/about') ? 'active' : ''}`} id="nav-about">About Us</a>
-          <a href="/team" class={`nav-link ${isActive('/team') ? 'active' : ''}`} id="nav-team">Team</a>
-          <a href="/support" class={`nav-link ${isActive('/support') ? 'active' : ''}`} id="nav-support">Support</a>
-          <a href="/join" class={`nav-link ${isActive('/join') ? 'active' : ''}`} id="nav-join">Join Us</a>
+          <a href={getRelativeLocaleUrl(lang, '/')} class={`nav-link ${isActive('/') ? 'active' : ''}`} id="nav-home">{t('nav.home')}</a>
+          <a href={getRelativeLocaleUrl(lang, '/products')} class={`nav-link ${isActive('/products') ? 'active' : ''}`} id="nav-products">{t('nav.products')}</a>
+          <a href={getRelativeLocaleUrl(lang, '/projects')} class={`nav-link ${isActive('/projects') ? 'active' : ''}`} id="nav-projects">{t('nav.projects')}</a>
+          <a href={getRelativeLocaleUrl(lang, '/about')} class={`nav-link ${isActive('/about') ? 'active' : ''}`} id="nav-about">{t('nav.about')}</a>
+          <a href={getRelativeLocaleUrl(lang, '/team')} class={`nav-link ${isActive('/team') ? 'active' : ''}`} id="nav-team">{t('nav.team')}</a>
+          <a href={getRelativeLocaleUrl(lang, '/support')} class={`nav-link ${isActive('/support') ? 'active' : ''}`} id="nav-support">{t('nav.support')}</a>
+          <a href={getRelativeLocaleUrl(lang, '/join')} class={`nav-link ${isActive('/join') ? 'active' : ''}`} id="nav-join">{t('nav.join')}</a>
         </nav>
 
-        <!-- CTA Header Button -->
+        <!-- CTA Header Button & Language Selector -->
         <div class="header-cta-wrap">
-          <a href="/contact" class="btn btn-primary btn-sm header-cta" id="header-contact-btn">Contact Us</a>
+          <div class="lang-selector-wrap">
+            <select class="lang-selector" onchange="window.location.href=this.value" aria-label="Select Language">
+              {Object.entries(languages).map(([l, name]) => (
+                <option value={getRelativeLocaleUrl(l as any, cleanPathname)} selected={l === lang}>{name}</option>
+              ))}
+            </select>
+          </div>
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-sm header-cta" id="header-contact-btn">{t('nav.contact')}</a>
           
           <!-- Hamburger Button -->
           <button class="mobile-toggle" aria-label="Toggle Menu" id="menu-toggle-btn">
@@ -85,14 +135,14 @@ const isActive = (path: string) => {
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-menu" id="mobile-menu-drawer">
       <nav class="mobile-nav-links">
-        <a href="/" class={`mobile-nav-link ${isActive('/') ? 'active' : ''}`} id="mob-nav-home">Home</a>
-        <a href="/products" class={`mobile-nav-link ${isActive('/products') ? 'active' : ''}`} id="mob-nav-products">Products</a>
-        <a href="/projects" class={`mobile-nav-link ${isActive('/projects') ? 'active' : ''}`} id="mob-nav-projects">Projects</a>
-        <a href="/about" class={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`} id="mob-nav-about">About Us</a>
-        <a href="/team" class={`mobile-nav-link ${isActive('/team') ? 'active' : ''}`} id="mob-nav-team">Our Team</a>
-        <a href="/support" class={`mobile-nav-link ${isActive('/support') ? 'active' : ''}`} id="mob-nav-support">Support & FAQ</a>
-        <a href="/join" class={`mobile-nav-link ${isActive('/join') ? 'active' : ''}`} id="mob-nav-join">Join Us</a>
-        <a href="/contact" class="btn btn-primary mobile-menu-cta" id="mob-nav-contact">Contact Us</a>
+        <a href={getRelativeLocaleUrl(lang, '/')} class={`mobile-nav-link ${isActive('/') ? 'active' : ''}`} id="mob-nav-home">{t('nav.home')}</a>
+        <a href={getRelativeLocaleUrl(lang, '/products')} class={`mobile-nav-link ${isActive('/products') ? 'active' : ''}`} id="mob-nav-products">{t('nav.products')}</a>
+        <a href={getRelativeLocaleUrl(lang, '/projects')} class={`mobile-nav-link ${isActive('/projects') ? 'active' : ''}`} id="mob-nav-projects">{t('nav.projects')}</a>
+        <a href={getRelativeLocaleUrl(lang, '/about')} class={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`} id="mob-nav-about">{t('nav.about')}</a>
+        <a href={getRelativeLocaleUrl(lang, '/team')} class={`mobile-nav-link ${isActive('/team') ? 'active' : ''}`} id="mob-nav-team">{t('nav.team')}</a>
+        <a href={getRelativeLocaleUrl(lang, '/support')} class={`mobile-nav-link ${isActive('/support') ? 'active' : ''}`} id="mob-nav-support">{t('nav.support')}</a>
+        <a href={getRelativeLocaleUrl(lang, '/join')} class={`mobile-nav-link ${isActive('/join') ? 'active' : ''}`} id="mob-nav-join">{t('nav.join')}</a>
+        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary mobile-menu-cta" id="mob-nav-contact">{t('nav.contact')}</a>
       </nav>
     </div>
 
@@ -130,24 +180,24 @@ const isActive = (path: string) => {
 
         <!-- Footer Column 2: Quick Links -->
         <div class="footer-col">
-          <h3 class="footer-title">Navigation</h3>
+          <h3 class="footer-title">{t('footer.nav.title')}</h3>
           <ul class="footer-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/products">Our Products</a></li>
-            <li><a href="/projects">Case Studies</a></li>
-            <li><a href="/about">About Our Story</a></li>
-            <li><a href="/team">Leadership & Team</a></li>
-            <li><a href="/join">Careers (Join Us)</a></li>
-            <li><a href="/support">Help & Support</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/')}>{t('nav.home')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products')}>{t('nav.products')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/projects')}>{t('nav.projects')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/about')}>{t('nav.about')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/team')}>{t('nav.team')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/join')}>{t('nav.join')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/support')}>{t('nav.support')}</a></li>
           </ul>
         </div>
 
         <!-- Footer Column 3: Top Products -->
         <div class="footer-col">
-          <h3 class="footer-title">Top Products</h3>
+          <h3 class="footer-title">{t('footer.products.title')}</h3>
           <ul class="footer-links">
-            <li><a href="/products#quran-majeed">Quran Majeed App</a></li>
-            <li><a href="/products#quran-pak">Quran Pak Reading</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/quran-majeed')}>Quran Majeed App</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/quran-pak')}>Quran Pak Reading</a></li>
             <li><a href="/products#easy-urdu">Easy Urdu Keyboard</a></li>
             <li><a href="/products#quran-tv">Quran TV Streaming</a></li>
             <li><a href="/products#3d-salah">3D Salah Guide</a></li>
@@ -157,18 +207,18 @@ const isActive = (path: string) => {
 
         <!-- Footer Column 4: Newsletter & Inquiries -->
         <div class="footer-col">
-          <h3 class="footer-title">Stay Connected</h3>
+          <h3 class="footer-title">{t('footer.connect.title')}</h3>
           <p class="footer-text">
-            Subscribe to receive updates about our products, technology innovations, and news.
+            {t('footer.connect.desc')}
           </p>
           <form class="newsletter-form" id="newsletter-form">
-            <input type="email" placeholder="Your email address" required class="form-control newsletter-input" aria-label="Email address" />
+            <input type="email" placeholder={t('footer.connect.placeholder')} required class="form-control newsletter-input" aria-label="Email address" />
             <button type="submit" class="btn btn-primary newsletter-btn" aria-label="Subscribe">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
             </button>
           </form>
           <div class="business-contact">
-            <span class="contact-label">Business Inquiries:</span>
+            <span class="contact-label">{t('footer.connect.business')}</span>
             <a href="mailto:info@pakdata.com" class="contact-value">info@pakdata.com</a>
           </div>
         </div>
@@ -177,10 +227,10 @@ const isActive = (path: string) => {
       <!-- Footer Bottom -->
       <div class="footer-bottom">
         <div class="container footer-bottom-content">
-          <p>&copy; {new Date().getFullYear()} Pakistan Data Management Services. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {t('footer.copyright')}</p>
           <div class="footer-bottom-links">
-            <a href="/privacy-policy" id="footer-privacy-link">Privacy Policy</a>
-            <a href="/terms-and-conditions" id="footer-terms-link">Terms & Conditions</a>
+            <a href={getRelativeLocaleUrl(lang, '/privacy-policy')} id="footer-privacy-link">{t('footer.privacy')}</a>
+            <a href={getRelativeLocaleUrl(lang, '/terms-and-conditions')} id="footer-terms-link">{t('footer.terms')}</a>
           </div>
         </div>
       </div>
@@ -229,7 +279,7 @@ const isActive = (path: string) => {
   .top-bar {
     background-color: var(--dark);
     color: var(--light);
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * var(--text-scale, 1));
     font-weight: 500;
     padding: 0.5rem 0;
     text-transform: uppercase;
@@ -288,14 +338,14 @@ const isActive = (path: string) => {
 
   .logo-title {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: calc(1.25rem * var(--text-scale, 1));
     font-weight: 800;
     color: var(--primary);
     letter-spacing: 0.02em;
   }
 
   .logo-subtitle {
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * var(--text-scale, 1));
     font-weight: 500;
     color: var(--secondary-dark);
   }
@@ -308,7 +358,7 @@ const isActive = (path: string) => {
   }
 
   .nav-link {
-    font-size: 0.9375rem;
+    font-size: calc(0.9375rem * var(--text-scale, 1));
     font-weight: 600;
     color: var(--dark-soft);
     padding: 0.5rem 0.5rem;
@@ -329,6 +379,32 @@ const isActive = (path: string) => {
     display: flex;
     align-items: center;
     gap: 1rem;
+  }
+
+  .lang-selector-wrap {
+    margin-right: 0.5rem;
+  }
+  
+  :global([dir="rtl"]) .lang-selector-wrap {
+    margin-right: 0;
+    margin-left: 0.5rem;
+  }
+
+  .lang-selector {
+    padding: 0.4rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background-color: var(--light);
+    color: var(--dark);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .lang-selector:focus {
+    border-color: var(--primary);
   }
 
   .header-cta {
@@ -397,7 +473,7 @@ const isActive = (path: string) => {
   }
 
   .mobile-nav-link {
-    font-size: 1.25rem;
+    font-size: calc(1.25rem * var(--text-scale, 1));
     font-weight: 700;
     color: var(--dark);
     padding: 0.5rem 0;
@@ -453,7 +529,7 @@ const isActive = (path: string) => {
   }
 
   .footer-desc {
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     line-height: 1.7;
   }
 
@@ -482,7 +558,7 @@ const isActive = (path: string) => {
 
   .footer-title {
     color: var(--light);
-    font-size: 1.125rem;
+    font-size: calc(1.125rem * var(--text-scale, 1));
     font-weight: 700;
     margin-bottom: 0.5rem;
     position: relative;
@@ -496,7 +572,7 @@ const isActive = (path: string) => {
   }
 
   .footer-links a {
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
   }
 
   .footer-links a:hover {
@@ -505,7 +581,7 @@ const isActive = (path: string) => {
   }
 
   .footer-text {
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     line-height: 1.6;
   }
 
@@ -539,12 +615,12 @@ const isActive = (path: string) => {
     display: flex;
     flex-direction: column;
     margin-top: 0.5rem;
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
   }
 
   .contact-label {
     color: #6b7280;
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * var(--text-scale, 1));
   }
 
   .contact-value {
@@ -556,7 +632,7 @@ const isActive = (path: string) => {
   .footer-bottom {
     background-color: #05070c;
     padding: 1.5rem 0;
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem * var(--text-scale, 1));
     border-top: 1px solid #111827;
   }
 

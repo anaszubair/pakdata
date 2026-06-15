@@ -1,4 +1,6 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
 interface Props {
   id: string;
   name: string;
@@ -27,6 +29,9 @@ const {
   downloadUrl = "/contact",
   imageUrl
 } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="product-card" id={id}>
@@ -53,7 +58,7 @@ const {
   <p class="product-desc">{description}</p>
 
   <div class="product-features-wrap">
-    <h4 class="features-title">Key Features</h4>
+    <h4 class="features-title">{t('product.features.title')}</h4>
     <ul class="features-list">
       {features.slice(0, 4).map(feature => (
         <li class="feature-item">
@@ -67,7 +72,7 @@ const {
   <div class="product-meta">
     {downloads && (
       <div class="meta-downloads">
-        <span class="meta-label">Downloads:</span>
+        <span class="meta-label">{t('product.downloads.label')}</span>
         <span class="meta-value">{downloads}</span>
       </div>
     )}
@@ -97,9 +102,9 @@ const {
 
   <div class="product-actions">
     {detailsUrl && (
-      <a href={detailsUrl} class="btn btn-outline btn-sm action-btn">View Details</a>
+      <a href={detailsUrl} class="btn btn-outline btn-sm action-btn">{t('product.btn.details')}</a>
     )}
-    <a href={downloadUrl} class="btn btn-primary btn-sm action-btn" target={downloadUrl.startsWith('http') ? '_blank' : '_self'}>Get App</a>
+    <a href={downloadUrl} class="btn btn-primary btn-sm action-btn" target={downloadUrl.startsWith('http') ? '_blank' : '_self'}>{t('product.btn.get')}</a>
   </div>
 </div>
 
@@ -142,14 +147,14 @@ const {
   }
 
   .product-title {
-    font-size: 1.375rem;
+    font-size: calc(1.375rem * var(--text-scale, 1));
     font-weight: 600;
     color: var(--dark);
     line-height: 1.2;
   }
 
   .product-tagline {
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     color: var(--primary);
     font-weight: 400;
   }
@@ -163,15 +168,15 @@ const {
     padding: 0.25rem 0.625rem;
     border-radius: 0.5rem;
     font-weight: 500;
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
   }
 
   .rating-star {
-    font-size: 1rem;
+    font-size: calc(1rem * var(--text-scale, 1));
   }
 
   .product-desc {
-    font-size: 0.9375rem;
+    font-size: calc(0.9375rem * var(--text-scale, 1));
     color: var(--secondary-dark);
     line-height: 1.6;
     margin-bottom: 1.75rem;
@@ -187,7 +192,7 @@ const {
   }
 
   .features-title {
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem * var(--text-scale, 1));
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--secondary-dark);
@@ -206,7 +211,7 @@ const {
     display: flex;
     align-items: flex-start;
     gap: 0.5rem;
-    font-size: 0.875rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
     color: var(--dark-soft);
   }
 
@@ -228,7 +233,7 @@ const {
   }
 
   .meta-downloads {
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem * var(--text-scale, 1));
   }
 
   .meta-label {
