@@ -1,0 +1,178 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const {
+  seoTitle,
+  seoDesc,
+  badge = 'Careers',
+  title,
+  intro,
+  body,
+  sections = [],
+  ctaTitle,
+  ctaBody,
+  subject,
+  backLabel = 'Back',
+  applyLabel = 'Email Jobs'
+} = Astro.props;
+---
+
+<Layout title={seoTitle} description={seoDesc}>
+  <section class="career-hero">
+    <div class="container career-grid">
+      <div class="career-copy">
+        <span class="badge badge-primary">{badge}</span>
+        <h1 class="career-title">{title}</h1>
+        <p class="career-intro">{intro}</p>
+        <p class="career-body">{body}</p>
+        <div class="career-actions">
+          <a href={getRelativeLocaleUrl(lang, '/join')} class="btn btn-outline btn-lg">{backLabel}</a>
+          <a href={`mailto:jobs@pakdata.com?subject=${encodeURIComponent(subject || title)}`} class="btn btn-primary btn-lg">{applyLabel}</a>
+        </div>
+      </div>
+      <div class="career-panel card">
+        <span class="panel-label">Role Overview</span>
+        <div class="panel-stack">
+          {sections.map((section) => (
+            <div class="panel-line">
+              <strong>{section.title}</strong>
+              <span>{section.items?.length ? `${section.items.length} points` : 'Details'}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {sections.map((section) => (
+    <section class={`section ${section.alt ? 'section-bg' : ''}`}>
+      <div class="container section-wrap">
+        <div class="section-title-wrap tight">
+          <span class="badge badge-primary">{badge}</span>
+          <h2 class="section-title">{section.title}</h2>
+        </div>
+        {section.paragraphs && (
+          <div class="career-paragraphs">
+            {section.paragraphs.map((paragraph) => <p class="body-copy">{paragraph}</p>)}
+          </div>
+        )}
+        {section.items && (
+          <ul class="career-list">
+            {section.items.map((item) => <li>{item}</li>)}
+          </ul>
+        )}
+      </div>
+    </section>
+  ))}
+
+  <section class="section section-bg">
+    <div class="container career-cta card">
+      <div>
+        <span class="badge badge-primary">{badge}</span>
+        <h2 class="section-title">{ctaTitle}</h2>
+        <p class="body-copy">{ctaBody}</p>
+      </div>
+      <a href={`mailto:jobs@pakdata.com?subject=${encodeURIComponent(subject || title)}`} class="btn btn-primary btn-lg">jobs@pakdata.com</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .career-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    border-bottom: 1px solid var(--border);
+    padding: 4.5rem 0 3.5rem;
+  }
+
+  .career-grid,
+  .career-cta {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .career-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
+  }
+
+  .career-title {
+    color: var(--primary);
+    font-size: clamp(2.2rem, 3vw, 3rem);
+    line-height: 1.04;
+    margin: .85rem 0 1rem;
+  }
+
+  .career-intro {
+    color: var(--dark);
+    font-weight: 700;
+    line-height: 1.65;
+    margin-bottom: .9rem;
+  }
+
+  .career-body,
+  .body-copy {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+  }
+
+  .career-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1.2rem;
+  }
+
+  .career-panel,
+  .career-cta {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-sm);
+    padding: 1.25rem;
+  }
+
+  .panel-label {
+    display: block;
+    margin-bottom: .9rem;
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+
+  .panel-stack,
+  .career-paragraphs {
+    display: grid;
+    gap: .85rem;
+  }
+
+  .panel-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .85rem 1rem;
+    border-radius: .85rem;
+    background: var(--light-soft);
+    color: var(--dark);
+    font-size: .94rem;
+  }
+
+  .career-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: .8rem;
+    color: var(--secondary-dark);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    .career-grid,
+    .career-cta {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

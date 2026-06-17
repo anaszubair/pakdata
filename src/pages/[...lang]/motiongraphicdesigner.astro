@@ -1,0 +1,201 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: {
+    seoTitle: 'Motion Graphic Designer | PDMS Careers',
+    seoDesc: 'Join PDMS as a Motion Graphic Designer to create motion graphics, animations, tutorials, and social content for global digital products.',
+    badge: 'Careers',
+    title: 'Motion Graphic Designer',
+    intro: 'PDMS has been benefitting the global IT industry with its innovative, ahead of time products, since 1978; be it for Commodore 64 or now the recent mobile devices. Having our grip at Urdu script digitalization to producing mobile applications with over 40 million global downloads.',
+    body: 'To keep our global audience engaged with excellent graphics, we are looking forward to onboard a Motion Graphics designer, having;',
+    sectionTitle: 'Job Details',
+    details: [
+      'A keen eye for design and aesthetics',
+      'Excellent knowledge of animation concepts',
+      'Hands on expertise at Adobe After Effects, 3Ds Max (or Cinema 4D) and Adobe Premiere Pro',
+      'Fair understanding of integrating audio with motion graphics',
+      'Familiarity with Adobe Illustrator and Adobe Photoshop',
+      'Ability to partner with other creative team members and key stakeholders to create content used across a variety of platforms (web, mobile, video, and social)',
+      'Great communication skills, receiving and interpreting feedback, and dedication towards meeting deadlines',
+      'Experience of working with TV channels would be a plus'
+    ],
+    ctaTitle: 'Interested?',
+    ctaBody: 'Interested candidates can share their CV’s at jobs@pakdata.com mentioning “Motion Graphic Designer” in the subject line.',
+    back: 'Back to Join Us',
+    apply: 'Email Jobs'
+  },
+  ur: {
+    seoTitle: 'Motion Graphic Designer | PDMS Careers',
+    seoDesc: 'Join PDMS as a Motion Graphic Designer to create motion graphics, animations, tutorials, and social content for global digital products.',
+    badge: 'Careers',
+    title: 'Motion Graphic Designer',
+    intro: 'PDMS has been benefitting the global IT industry with its innovative, ahead of time products, since 1978; be it for Commodore 64 or now the recent mobile devices. Having our grip at Urdu script digitalization to producing mobile applications with over 40 million global downloads.',
+    body: 'To keep our global audience engaged with excellent graphics, we are looking forward to onboard a Motion Graphics designer, having;',
+    sectionTitle: 'Job Details',
+    details: [
+      'A keen eye for design and aesthetics',
+      'Excellent knowledge of animation concepts',
+      'Hands on expertise at Adobe After Effects, 3Ds Max (or Cinema 4D) and Adobe Premiere Pro',
+      'Fair understanding of integrating audio with motion graphics',
+      'Familiarity with Adobe Illustrator and Adobe Photoshop',
+      'Ability to partner with other creative team members and key stakeholders to create content used across a variety of platforms (web, mobile, video, and social)',
+      'Great communication skills, receiving and interpreting feedback, and dedication towards meeting deadlines',
+      'Experience of working with TV channels would be a plus'
+    ],
+    ctaTitle: 'Interested?',
+    ctaBody: 'Interested candidates can share their CV’s at jobs@pakdata.com mentioning “Motion Graphic Designer” in the subject line.',
+    back: 'Back to Join Us',
+    apply: 'Email Jobs'
+  },
+  ar: {
+    seoTitle: 'Motion Graphic Designer | PDMS Careers',
+    seoDesc: 'Join PDMS as a Motion Graphic Designer to create motion graphics, animations, tutorials, and social content for global digital products.',
+    badge: 'Careers',
+    title: 'Motion Graphic Designer',
+    intro: 'PDMS has been benefitting the global IT industry with its innovative, ahead of time products, since 1978; be it for Commodore 64 or now the recent mobile devices. Having our grip at Urdu script digitalization to producing mobile applications with over 40 million global downloads.',
+    body: 'To keep our global audience engaged with excellent graphics, we are looking forward to onboard a Motion Graphics designer, having;',
+    sectionTitle: 'Job Details',
+    details: [
+      'A keen eye for design and aesthetics',
+      'Excellent knowledge of animation concepts',
+      'Hands on expertise at Adobe After Effects, 3Ds Max (or Cinema 4D) and Adobe Premiere Pro',
+      'Fair understanding of integrating audio with motion graphics',
+      'Familiarity with Adobe Illustrator and Adobe Photoshop',
+      'Ability to partner with other creative team members and key stakeholders to create content used across a variety of platforms (web, mobile, video, and social)',
+      'Great communication skills, receiving and interpreting feedback, and dedication towards meeting deadlines',
+      'Experience of working with TV channels would be a plus'
+    ],
+    ctaTitle: 'Interested?',
+    ctaBody: 'Interested candidates can share their CV’s at jobs@pakdata.com mentioning “Motion Graphic Designer” in the subject line.',
+    back: 'Back to Join Us',
+    apply: 'Email Jobs'
+  }
+}[lang];
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="role-hero">
+    <div class="container role-hero-grid">
+      <div>
+        <span class="badge badge-primary">{copy.badge}</span>
+        <h1 class="role-title">{copy.title}</h1>
+        <p class="role-intro">{copy.intro}</p>
+        <p class="role-body">{copy.body}</p>
+        <div class="role-actions">
+          <a href={getRelativeLocaleUrl(lang, '/join')} class="btn btn-outline btn-lg">{copy.back}</a>
+          <a href="mailto:jobs@pakdata.com?subject=Motion%20Graphic%20Designer" class="btn btn-primary btn-lg">{copy.apply}</a>
+        </div>
+      </div>
+      <div class="role-panel card">
+        <span class="panel-label">{copy.sectionTitle}</span>
+        <ul class="detail-list">
+          {copy.details.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container role-cta card">
+      <div>
+        <span class="badge badge-primary">{copy.badge}</span>
+        <h2 class="section-title">{copy.ctaTitle}</h2>
+        <p class="body-copy">{copy.ctaBody}</p>
+      </div>
+      <a href="mailto:jobs@pakdata.com?subject=Motion%20Graphic%20Designer" class="btn btn-primary btn-lg">jobs@pakdata.com</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .role-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    border-bottom: 1px solid var(--border);
+    padding: 4.5rem 0 3.5rem;
+  }
+
+  .role-hero-grid,
+  .role-cta {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .role-hero-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
+  }
+
+  .role-title {
+    color: var(--primary);
+    font-size: clamp(2.2rem, 3vw, 3rem);
+    line-height: 1.04;
+    margin: .85rem 0 1rem;
+  }
+
+  .role-intro {
+    color: var(--dark);
+    font-weight: 700;
+    line-height: 1.65;
+    margin-bottom: .9rem;
+  }
+
+  .role-body,
+  .body-copy {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+  }
+
+  .role-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1.2rem;
+  }
+
+  .role-panel,
+  .role-cta {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-sm);
+    padding: 1.25rem;
+  }
+
+  .panel-label {
+    display: block;
+    margin-bottom: .9rem;
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+
+  .detail-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: .7rem;
+    color: var(--secondary-dark);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px) {
+    .role-hero-grid,
+    .role-cta {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

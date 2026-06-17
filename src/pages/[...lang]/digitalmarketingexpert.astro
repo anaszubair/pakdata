@@ -1,0 +1,73 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import CareerDetail from '../../components/CareerDetail.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const base = {
+  seoTitle: 'Digital Marketing Expert | PDMS Careers',
+  seoDesc: 'Join PDMS as a Digital Marketing Expert and lead social, community, performance marketing, and business development initiatives.',
+  title: 'Digital Marketing Expert',
+  intro: 'PDMS is looking for a Digital Marketing Expert to join our marketing team. The individual will be responsible for boosting our social, community, business development and performance marketing channels.',
+  body: 'This is a full-time job in a team that takes care of our social, community, and paid platforms along with business development.',
+  sections: [
+    {
+      title: 'Once you are here, you will',
+      items: [
+        'Manage and post on all social channels daily including Facebook, Instagram, Twitter, and LinkedIn',
+        'Run and monitor PPC Campaigns and meet revenue targets',
+        'Create daily interactions in communities and manage the traffic and branding of the product',
+        'Communicate and correspond on emails for influencer marketing, publications, partnerships, guest posts, and others',
+        'Run and manage paid campaigns for Search Engines and Social Media',
+        'Plan, manage and execute paid and organic campaigns',
+        'Write ad copies, email, and PR related content',
+        'Manage the brand’s PR and meet relevant targets',
+        'Optimize conversion rates by increasing the existing conversion rates of our ads, pages, emails, and posts',
+        'Plan, manage and execute paid and organic email campaigns',
+        'Increase brand mentions through different activities',
+        'Business development by promoting PDMS’s B2B offerings'
+      ]
+    },
+    {
+      title: 'What does PDMS offer you?',
+      alt: true,
+      paragraphs: [
+        'PDMS is a new-age technology company that is focused on just one thing: keeping you relevant in the market.',
+        'We work hard. Harder than most other places of work in the same hours. But we also purposefully find ways to allow our teams to enjoy work together.',
+        'As a result, we’re among the best companies to work for in Pakistan with a plethora of benefits and an amazing culture.'
+      ]
+    },
+    {
+      title: 'Relevant Experience',
+      items: [
+        'Experience in working in mobile App space',
+        'Experience in thorough analysis of competitors',
+        'Excellent knowledge of paid marketing channels',
+        'Must be extremely efficient in carrying out tasks without delay',
+        'Experience in auditing the statistics with respect to retention, CTR, and conversion rates',
+        'Experience in Google and search PPC (Search and Display)',
+        'Experience in keyword research',
+        'Experience with Influencer Marketing',
+        'Experience with publications and partnerships',
+        'Expert level experience in social media marketing (organic and paid)',
+        'Proficient with Facebook Business, Ads, and Pixel'
+      ]
+    }
+  ],
+  ctaTitle: 'Interested?',
+  ctaBody: 'Interested candidates can share their CV’s at jobs@pakdata.com mentioning “Digital Marketing Expert” in the subject line.',
+  subject: 'Digital Marketing Expert',
+  backLabel: 'Back to Join Us',
+  applyLabel: 'Email Jobs'
+};
+const copy = { en: base, ur: base, ar: base }[lang] ?? base;
+---
+
+<CareerDetail {...copy} />

@@ -605,5 +605,6 @@
   "about.value.scale.text": "Engineering software systems designed to run seamlessly for millions of daily active users, maintaining high uptime and low latency.",
   "about.value.modern.title": "Continuous Modernization",
   "about.value.modern.text": "Actively modernizing our user interfaces, adding AI tools, and expanding platform compatibility.",
-  "nav.faq": "FAQ"
+  "nav.faq": "FAQ",
+  "join.job.view": "View Job"
 }

@@ -1,0 +1,57 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import CareerDetail from '../../components/CareerDetail.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const base = {
+  seoTitle: 'Senior Android Developer | PDMS Careers',
+  seoDesc: 'Join PDMS as a Senior Android Developer and build high-performance Android apps with strong architecture, APIs, and quality standards.',
+  title: 'Senior Android Developer',
+  intro: 'We are looking for a Senior Android Developer (with minimum 3 years of experience) responsible for the development and maintenance of applications aimed at a vast number of diverse Android devices.',
+  body: 'Your primary focus will be the development of Android applications and their integration with back-end services. You will be working along-side other engineers and developers working on different layers of the infrastructure. Therefore, commitment to collaborative problem solving, sophisticated design, and creating quality products is essential.',
+  sections: [
+    {
+      title: 'Responsibilities',
+      items: [
+        'Translate designs and wireframes into high quality code',
+        'Design, build, and maintain high performance, reusable, and reliable Java code',
+        'Ensure the best possible performance, quality, and responsiveness of the application',
+        'Identify and correct bottlenecks and fix bugs',
+        'Help maintain code quality, organization, and automatization',
+        'Lead team members to accomplish project goals'
+      ]
+    },
+    {
+      title: 'Skills',
+      alt: true,
+      items: [
+        'Strong knowledge of Android SDK, different versions of Android, and how to deal with different screen sizes',
+        'Experience in RESTful APIs to connect Android applications to back-end services',
+        'Strong knowledge of Android UI design principles, patterns, and best practices',
+        'Experience with offline storage, threading, and performance tuning',
+        'Ability to understand business requirements and translate them into technical requirements',
+        'Understanding of Google’s Android design principles and interface guidelines',
+        'Proficient understanding of code versioning tools, such as Git or Subversion',
+        'Bachelor’s Degree in Computer Science or Equivalent',
+        '3+ Years of Professional Android Application Development experience'
+      ]
+    }
+  ],
+  ctaTitle: 'Interested?',
+  ctaBody: 'Interested candidates can share their CV’s at jobs@pakdata.com mentioning “Senior Android Developer” in the subject line.',
+  subject: 'Senior Android Developer',
+  backLabel: 'Back to Join Us',
+  applyLabel: 'Email Jobs'
+};
+const copy = { en: base, ur: base, ar: base }[lang] ?? base;
+---
+
+<CareerDetail {...copy} />

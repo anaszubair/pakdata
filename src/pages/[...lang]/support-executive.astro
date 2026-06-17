@@ -1,0 +1,58 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import CareerDetail from '../../components/CareerDetail.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const base = {
+  seoTitle: 'Support Executive | PDMS Careers',
+  seoDesc: 'Join PDMS as a Support Executive and help customers with questions, issues, orders, billing, and other service queries.',
+  title: 'Support Executive',
+  intro: 'Responsible for acting as a liaison between our customer and the respective team. Provides assistance to the customers with their questions, issues, new orders, billing, and any other query.',
+  body: 'The role requires handling chats, emails, calls, queries, requests, complaint management, and applying process and product knowledge to support customers effectively.',
+  sections: [
+    {
+      title: 'Job Overview',
+      items: [
+        'Handling chats/emails/calls /queries/requests',
+        'Complaint Management & Solving Customer grievances',
+        'Applying process/product knowledge'
+      ]
+    },
+    {
+      title: 'Key Responsibilities',
+      alt: true,
+      items: [
+        'Respond to customers professionally to provide information about products and services, take/cancel orders, or obtain details of complaints.',
+        'Keep records of customer interactions and transactions, recording details of inquiries, complaints, and comments, as well as actions taken. Process orders, forms and applications.',
+        'Follow up to ensure that appropriate actions were taken on customers’ requests.',
+        'Refer unresolved customer grievances or special requests to designated departments for further investigation.'
+      ]
+    },
+    {
+      title: 'Job Specification',
+      items: [
+        'Intermediate or above',
+        'Excellent communication',
+        'Proficiency with MS Office particularly MS Excel',
+        'Customer-centric attitude'
+      ]
+    }
+  ],
+  ctaTitle: 'Interested?',
+  ctaBody: 'Interested candidates can share their CV’s at jobs@pakdata.com mentioning “Support Executive” in the subject line.',
+  subject: 'Support Executive',
+  backLabel: 'Back to Join Us',
+  applyLabel: 'Email Jobs'
+};
+const copy = { en: base, ur: base, ar: base }[lang] ?? base;
+---
+
+<CareerDetail {...copy} />

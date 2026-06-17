@@ -8,7 +8,7 @@ export function getStaticPaths() {
   ];
 }
 import Layout from '../../layouts/Layout.astro';
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { getLangFromUrl, useTranslations, getRelativeLocaleUrl } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -53,7 +53,8 @@ const jobs = [
     title: t('join.jobs.android.title'),
     type: t('join.job.type.full'),
     location: t('join.job.location.khi.hybrid'),
-    desc: t('join.jobs.android.desc')
+    desc: t('join.jobs.android.desc'),
+    detailUrl: getRelativeLocaleUrl(lang, '/seniorandroiddeveloper')
   },
   {
     id: "qa-eng",
@@ -62,7 +63,8 @@ const jobs = [
     title: t('join.jobs.qa.title'),
     type: t('join.job.type.full'),
     location: t('join.job.location.khi.onsite'),
-    desc: t('join.jobs.qa.desc')
+    desc: t('join.jobs.qa.desc'),
+    detailUrl: getRelativeLocaleUrl(lang, '/softwarequalityassurance')
   },
   {
     id: "mkt-mgr",
@@ -71,7 +73,8 @@ const jobs = [
     title: t('join.jobs.marketing.title'),
     type: t('join.job.type.full'),
     location: t('join.job.location.remote'),
-    desc: t('join.jobs.marketing.desc')
+    desc: t('join.jobs.marketing.desc'),
+    detailUrl: getRelativeLocaleUrl(lang, '/digitalmarketingexpert')
   },
   {
     id: "support-exec",
@@ -80,7 +83,8 @@ const jobs = [
     title: t('join.jobs.support.title'),
     type: t('join.job.type.shift'),
     location: t('join.job.location.khi.onsite'),
-    desc: t('join.jobs.support.desc')
+    desc: t('join.jobs.support.desc'),
+    detailUrl: getRelativeLocaleUrl(lang, '/support-executive')
   },
   {
     id: "motion-des",
@@ -89,7 +93,8 @@ const jobs = [
     title: t('join.jobs.motion.title'),
     type: t('join.job.type.full'),
     location: t('join.job.location.khi.onsite'),
-    desc: t('join.jobs.motion.desc')
+    desc: t('join.jobs.motion.desc'),
+    detailUrl: getRelativeLocaleUrl(lang, '/motiongraphicdesigner')
   },
   {
     id: "content-writer",
@@ -98,7 +103,8 @@ const jobs = [
     title: t('join.jobs.writer.title'),
     type: t('join.job.type.full'),
     location: t('join.job.location.remote'),
-    desc: t('join.jobs.writer.desc')
+    desc: t('join.jobs.writer.desc'),
+    detailUrl: getRelativeLocaleUrl(lang, '/creativecontentwriter')
   }
 ];
 ---
@@ -178,6 +184,9 @@ const jobs = [
             <p class="job-desc">{job.desc}</p>
             
             <div class="job-actions">
+              {job.detailUrl && (
+                <a href={job.detailUrl} class="btn btn-outline btn-sm">{t('join.job.view')}</a>
+              )}
               <button class="btn btn-outline btn-sm apply-now-trigger" data-title={job.title} data-default-title={t('join.modal.defaultPosition')} id={`apply-trigger-${job.id}`}>{t('join.job.apply')}</button>
             </div>
           </div>
