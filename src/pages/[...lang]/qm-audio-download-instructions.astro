@@ -1,0 +1,148 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const title = 'Instructions for downloading Quran audio';
+const description = 'Learn how to download and install Quran audio recitations inside the Quran Majeed app on Android phones.';
+
+const steps = [
+  'To get the desired audio app, open the installed Quran Majeed / Quran Tafsir or Quran Pak app v1.5.5 or later. If you do not already have the Quran Majeed app, you can download it from here.',
+  'Open Quran Majeed App and go to audio settings by tapping the audio settings button at the bottom as shown in the image below.',
+  'Once in the audio settings, tap on reciters.',
+  'To download the audio app tap on the download button shown beside the reciter’s name.',
+  'A pop-up message will appear. Click on download as shown in the below image and the audio app will open in Google Play Store.',
+  'Tap on install to download and install the desired audio recitation on to your Quran Majeed app.'
+];
+
+const images = [
+  null,
+  { src: '/images/qm-audio-download2.png', alt: 'Quran audio download step 2' },
+  { src: '/images/qm-audio-download3.png', alt: 'Quran audio download step 3' },
+  { src: '/images/qm-audio-download4.png', alt: 'Quran audio download step 4' },
+  { src: '/images/qm-audio-download5.png', alt: 'Quran audio download step 5' },
+  { src: '/images/qm-audio-download6.png', alt: 'Quran audio download step 6' }
+];
+---
+
+<Layout title={title} description={description}>
+  <section class="audio-hero">
+    <div class="container audio-hero-inner">
+      <span class="badge badge-primary">Android Guide</span>
+      <h1 class="audio-title">{title}</h1>
+      <p class="audio-lead">
+        Please make sure that you are viewing this page in your Android phone and then follow these instructions for downloading/importing audio files in your Quran Majeed app v1.5.5 or later.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="steps-list">
+        {steps.map((step, idx) => (
+          <article class="step-card card">
+            <div class="step-head">
+              <span class="step-number">{idx + 1}</span>
+              <p>{step}</p>
+            </div>
+            {images[idx] && <img src={images[idx].src} alt={images[idx].alt} class="step-image" loading="lazy" />}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .audio-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 0 2.5rem;
+  }
+
+  .audio-hero-inner {
+    max-width: 56rem;
+  }
+
+  .audio-title {
+    color: var(--primary);
+    font-size: clamp(1.9rem, 3.4vw, 3.1rem);
+    line-height: 1.08;
+    margin: .85rem 0 1rem;
+  }
+
+  .audio-lead {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .steps-list {
+    display: grid;
+    gap: .85rem;
+  }
+
+  .step-card {
+    display: grid;
+    gap: .85rem;
+    border: 1px solid var(--border);
+    border-radius: .85rem;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    padding: 1rem;
+  }
+
+  .step-head {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: .8rem;
+    align-items: start;
+  }
+
+  .step-number {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 800;
+  }
+
+  .step-head p {
+    margin: 0;
+    color: var(--dark);
+    line-height: 1.7;
+    font-weight: 600;
+  }
+
+  .step-image {
+    width: 100%;
+    max-width: 22rem;
+    display: block;
+    border-radius: .75rem;
+    object-fit: contain;
+    background: #fff;
+    border: 1px solid var(--border);
+  }
+
+  @media (max-width: 720px) {
+    .step-head {
+      grid-template-columns: 1fr;
+    }
+
+    .step-image {
+      max-width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,224 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const title = 'Instructions for Importing Quran Audio using iTunes File Sharing';
+const description = 'Learn how to import Quran audio files into Quran Majeed, Quran Tafsir, or Quran Pak using iTunes File Sharing.';
+const appStoreLink = 'https://apps.apple.com/us/app/quran-audio-sheikh-sudays-shuraym/id474156566';
+
+const reciters = [
+  'As-Sudais',
+  'Abdul Basit',
+  'Sheikh-Basfar',
+  'Sheikh Al-Huzaifi',
+  'Sheikh Ayoub',
+  'Saad Al Ghamd',
+  'Ahmed Ajmi',
+  'Mahir-al-Muayqali',
+  'Siddiq Minshawi',
+  'Mishari Rashid',
+  'Abu Bakr Shatry',
+  'English Translation Audio',
+  'Urdu Translation Audio'
+];
+
+const steps = [
+  'Download the desired Audio app using iTunes on your desktop computers. Currently audio files of the following reciters are available.',
+  "Click on the 'Apps' section of your Library and search for the just downloaded audio app. You can use the search box on top-right corner by entering 'Quran Audio' there. This will show you all 'Quran Audio' apps that you have downloaded.",
+  "Right-click on the audio app icon and select 'Show in Finder' (or 'Show in Windows Explorer') and remember the location of ipa file.",
+  "Now connect your device and in iTunes window, click on the name of your device under 'Devices' section.",
+  "Then click on the 'Apps' tabs and scroll to the bottom.",
+  "Under Apps list, select 'QuranMajeed' or 'Quran Tafsir' in which you want to import audio files.",
+  "Drag & drop the just download quran audio ipa file (which you found in step 3) to the Documents section adjacent to the Apps list.",
+  "When the copy is complete, exit & relaunch the 'QuranMajeed' or 'Quran Tafisr' app on your device to start the import process."
+];
+---
+
+<Layout title={title} description={description}>
+  <section class="audio-hero">
+    <div class="container audio-hero-inner">
+      <span class="badge badge-primary">Quran Audio</span>
+      <h1 class="audio-title">{title}</h1>
+      <p class="audio-lead">
+        Please make sure that you are viewing this page in your desktop computer and then follow these instructions for importing Audio files in your Quran Majeed / Quran Tafsir or Quran Pak app v1.5.5 or later.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Reciters</span>
+        <h2 class="section-title">Available Audio Apps</h2>
+      </div>
+      <div class="reciter-grid">
+        {reciters.map((reciter) => (
+          <a href={appStoreLink} class="reciter-card card" target="_blank" rel="noopener noreferrer">
+            <img src="/images/quranaudio.webp" alt={reciter} class="reciter-logo" />
+            <span class="reciter-name">{reciter}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Steps</span>
+        <h2 class="section-title">Import Quran Audio using iTunes File Sharing</h2>
+      </div>
+      <div class="steps-list">
+        {steps.map((step, idx) => (
+          <article class="step-card card">
+            <div class="step-head">
+              <span class="step-number">{idx + 1}</span>
+              <p>{step}</p>
+            </div>
+            {idx === 2 && (
+              <img src="/images/quranaudiostep3.jpg" alt="Step 3 for importing Quran Audio" class="step-image" />
+            )}
+            {idx === 6 && (
+              <img src="/images/quranaudiostep7.jpg" alt="Step 7 for importing Quran Audio" class="step-image" />
+            )}
+            {idx === 7 && (
+              <img src="/images/quranaudiostep8.jpg" alt="Step 8 for importing Quran Audio" class="step-image" />
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .audio-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 0 2.5rem;
+  }
+
+  .audio-hero-inner {
+    max-width: 56rem;
+  }
+
+  .audio-title {
+    color: var(--primary);
+    font-size: clamp(1.9rem, 3.4vw, 3.1rem);
+    line-height: 1.08;
+    margin: .85rem 0 1rem;
+  }
+
+  .audio-lead {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .reciter-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .85rem;
+  }
+
+  .reciter-card {
+    display: grid;
+    gap: .6rem;
+    justify-items: center;
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: .85rem;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    color: var(--dark);
+  }
+
+  .reciter-logo {
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+    display: block;
+  }
+
+  .reciter-name {
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .steps-list {
+    display: grid;
+    gap: .85rem;
+  }
+
+  .step-card {
+    display: grid;
+    gap: .85rem;
+    border: 1px solid var(--border);
+    border-radius: .85rem;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    padding: 1rem;
+  }
+
+  .step-head {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: .8rem;
+    align-items: start;
+  }
+
+  .step-number {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 800;
+  }
+
+  .step-head p {
+    margin: 0;
+    color: var(--dark);
+    line-height: 1.7;
+    font-weight: 600;
+  }
+
+  .step-image {
+    width: 100%;
+    max-width: 36rem;
+    display: block;
+    border-radius: .75rem;
+    object-fit: contain;
+    background: #fff;
+    border: 1px solid var(--border);
+  }
+
+  @media (max-width: 960px) {
+    .reciter-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .reciter-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .step-head {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
