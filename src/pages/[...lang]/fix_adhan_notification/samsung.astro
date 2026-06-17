@@ -1,0 +1,45 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import AdhanFixLanding from '../../../components/AdhanFixLanding.astro';
+
+const copy = {
+  seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App - Samsung',
+  seoDesc: 'Turn off Samsung battery optimization settings to receive Quran Majeed adhan notifications properly.',
+  badge: 'Samsung Help',
+  title: 'Fix Adhan Notification Issue In Quran Majeed App',
+  subtitle: 'For Samsung devices',
+  intro: 'Turn off optimization function in Optimize Battery Usage, please refer to the following steps.',
+  whyTitle: 'Why notifications stop',
+  whyBody: 'Samsung devices may aggressively optimize battery usage and prevent Quran Majeed from staying active in the background. Turning off optimization for the app helps adhan notifications come through properly.',
+  stepsTitle: 'Follow These Steps',
+  steps: [
+    'Open the Settings menu on your device and tap Device maintenance.',
+    'Tap Battery at the bottom left.',
+    'Tap Battery Usage.',
+    'Tap the more button on the action bar at the top right, and choose Optimize battery usage.',
+    'On the Optimize Battery Usage screen, switch to the All apps list from the drop-down to see all of the apps on your device. Turn off to exclude Quran Majeed from the Doze feature.'
+  ],
+  ctaBody: {
+    title: 'Need more help?',
+    text: 'Now you will receive adhan notifications properly. If the adhan notifications are still not working, you can ask for help via support@pakdata.com.'
+  },
+  ctaLabel: 'Contact Support',
+  deviceLabel: 'Samsung Guide',
+  images: [
+    { src: '/images/samsung/01.-Settings.png', alt: 'Samsung settings step 1' },
+    { src: '/images/samsung/02.-Device-Maintenance.png', alt: 'Samsung device maintenance step 2' },
+    { src: '/images/samsung/03.-Battery-Usage.png', alt: 'Samsung battery usage step 3' },
+    { src: '/images/samsung/04.-Optimize-battery-usage.png', alt: 'Samsung optimize battery usage step 4' },
+    { src: '/images/samsung/2019-06-24.png', alt: 'Samsung all apps list step 5' }
+  ]
+};
+---
+
+<AdhanFixLanding {...copy} />

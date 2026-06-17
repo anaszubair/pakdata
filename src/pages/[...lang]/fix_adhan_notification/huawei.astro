@@ -1,0 +1,40 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import AdhanFixLanding from '../../../components/AdhanFixLanding.astro';
+
+const copy = {
+  seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App - Huawei',
+  seoDesc: 'Adjust Huawei battery optimization and launch settings to receive Quran Majeed adhan notifications properly.',
+  badge: 'Huawei Help',
+  title: 'Fix Adhan Notification Issue In Quran Majeed App',
+  subtitle: 'For Huawei devices',
+  intro: 'Huawei on many of their devices is using very aggressive battery optimization which is causing Android apps to dozes off shortly after the screen goes off.',
+  steps: [
+    'Open the Settings menu on your device and tap Battery.',
+    'Tap Battery usage under the menu.',
+    'Under the software section, select Quran Majeed App.',
+    'Disable the Power-intensive prompt.',
+    'Also make sure to manually enable Auto-launch, Secondary-launch and Run in background from the Launch menu on the same sreen.'
+  ],
+  ctaBody: {
+    text: 'Now you will receive adhan notifications properly. If the adhan notifications are still not working, you can ask for help via support@pakdata.com.'
+  },
+  ctaLabel: 'Contact Support',
+  images: [
+    { src: '/images/huawei/fixadhanissue1.jpg', alt: 'Huawei battery settings step 1' },
+    { src: '/images/huawei/fixadhanissue2.jpg', alt: 'Huawei battery usage step 2' },
+    { src: '/images/huawei/fixadhanissue3.jpg', alt: 'Huawei app power settings step 3' },
+    { src: '/images/huawei/fixadhanissue4.jpg', alt: 'Huawei launch settings step 4' },
+    { src: '/images/huawei/fixadhanissue5.jpg', alt: 'Huawei auto-launch step 5' }
+  ]
+};
+---
+
+<AdhanFixLanding {...copy} />

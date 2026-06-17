@@ -1,0 +1,434 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: {
+    seoTitle: 'E-Business Solutions | PDMS',
+    seoDesc: 'Start selling online with theme-based e-commerce or build a fully customized e-commerce platform with PDMS.',
+    badge: 'E-Business',
+    heroTitle: 'Launch Your Online Store with PDMS',
+    heroLead: 'A practical e-commerce path for businesses that want to start fast, grow confidently, and scale into a custom digital commerce platform.',
+    heroBody: 'Whether you want a ready-made theme-based store or a fully custom e-commerce build, we help you move from idea to launch with the right mix of design, data-entry, development, and support.',
+    primaryCta: 'Get Started',
+    secondaryCta: 'Contact Us',
+    trustItems: ['Launch in 24 hours', 'Data-entry support', 'Banner design included', 'Scale to custom features'],
+    plansTitle: 'Choose the Right Plan',
+    plans: [
+      {
+        title: 'Theme-Based E-Commerce',
+        badge: 'Fast Start',
+        body: 'Perfect for businesses that are just starting with an e-commerce store. Choose from our ready-made layouts, launch fast, and begin selling online in about one week.',
+        points: [
+          'Three ready-made website layouts to choose from',
+          'Theme-based e-commerce delivered in 24 hours',
+          'We help with data-entry and banner designing',
+          'Ready to start selling online in one week'
+        ]
+      },
+      {
+        title: 'Custom E-Commerce Plan',
+        badge: 'Fully Tailored',
+        body: 'For businesses that need a unique commerce experience. We build around your required features, workflow, and branding to create a solution that fits your growth plans.',
+        points: [
+          'Custom design and feature integration',
+          'Point of sale software',
+          'Multi-vendor B2B functionality',
+          'Unlimited customization',
+          'Advanced report builder',
+          'Push notification software integration'
+        ]
+      }
+    ],
+    processTitle: 'How We Work',
+    process: ['Select a layout', 'Share your content', 'We design and build', 'Launch and grow'],
+    featuresTitle: 'What You Can Expect',
+    features: [
+      'Responsive storefront experience',
+      'Admin-friendly product management',
+      'Sales and order workflows',
+      'Custom checkout journeys',
+      'Scalable store architecture',
+      'Ongoing support options'
+    ],
+    customTitle: 'Custom E-Commerce is Based on Scope',
+    customBody: 'Our custom e-commerce plan is priced and shaped around how much customization the client wants. If you need extra modules, deeper workflows, or advanced integrations, we build around those needs.',
+    ctaTitle: 'Ready to start selling online?',
+    ctaBody: 'Tell us what you want to sell, how you want to operate, and where you want to grow. We’ll help you choose the right path and move quickly.',
+    finalCta: 'Contact Our Team'
+  },
+  ur: {
+    seoTitle: 'ای بزنس حل | PDMS',
+    seoDesc: 'PDMS کے ساتھ theme-based e-commerce یا مکمل custom e-commerce platform کے ذریعے آن لائن فروخت شروع کریں۔',
+    badge: 'ای بزنس',
+    heroTitle: 'اپنا آن لائن اسٹور PDMS کے ساتھ شروع کریں',
+    heroLead: 'ان کاروباروں کے لیے عملی e-commerce راستہ جو تیزی سے آغاز، اعتماد کے ساتھ ترقی اور custom digital commerce platform کی طرف بڑھنا چاہتے ہیں۔',
+    heroBody: 'چاہے آپ ready-made theme-based store چاہتے ہوں یا مکمل custom e-commerce build، ہم آپ کو design، data-entry، development اور support کے بہترین امتزاج کے ساتھ launch تک لے جاتے ہیں۔',
+    primaryCta: 'شروع کریں',
+    secondaryCta: 'رابطہ کریں',
+    trustItems: ['24 گھنٹوں میں launch', 'Data-entry support', 'Banner designing شامل', 'Custom features تک توسیع'],
+    plansTitle: 'صحیح پلان منتخب کریں',
+    plans: [
+      {
+        title: 'Theme-Based E-Commerce',
+        badge: 'Fast Start',
+        body: 'ان کاروباروں کے لیے بہترین جو e-commerce store کے ساتھ ابھی شروعات کر رہے ہیں۔ ہمارے ready-made layouts میں سے منتخب کریں، جلد launch کریں، اور تقریباً ایک ہفتے میں آن لائن فروخت شروع کریں۔',
+        points: [
+          'تین ready-made website layouts میں سے انتخاب',
+          '24 گھنٹوں میں theme-based e-commerce',
+          'Data-entry اور banner designing میں مدد',
+          'ایک ہفتے میں فروخت شروع کرنے کے قابل'
+        ]
+      },
+      {
+        title: 'Custom E-Commerce Plan',
+        badge: 'Fully Tailored',
+        body: 'ان کاروباروں کے لیے جو منفرد commerce experience چاہتے ہیں۔ ہم آپ کی feature requirements، workflow اور branding کے مطابق حل تیار کرتے ہیں۔',
+        points: [
+          'Custom design اور feature integration',
+          'Point of sale software',
+          'Multi-vendor B2B functionality',
+          'Unlimited customization',
+          'Advanced report builder',
+          'Push notification software integration'
+        ]
+      }
+    ],
+    processTitle: 'ہم کیسے کام کرتے ہیں',
+    process: ['Layout منتخب کریں', 'مواد شیئر کریں', 'ہم design اور build کریں', 'Launch کر کے grow کریں'],
+    featuresTitle: 'آپ کیا توقع کر سکتے ہیں',
+    features: [
+      'Responsive storefront experience',
+      'Admin-friendly product management',
+      'Sales اور order workflows',
+      'Custom checkout journeys',
+      'Scalable store architecture',
+      'Ongoing support options'
+    ],
+    customTitle: 'Custom E-Commerce دائرۂ کار کے مطابق ہوتا ہے',
+    customBody: 'Custom e-commerce plan کی قیمت اور شکل اس بات پر منحصر ہوتی ہے کہ client کتنی customization چاہتا ہے۔ جتنے advanced modules اور integrations درکار ہوں، ہم ان کے مطابق build کرتے ہیں۔',
+    ctaTitle: 'آن لائن فروخت شروع کرنے کے لیے تیار ہیں؟',
+    ctaBody: 'ہمیں بتائیں کہ آپ کیا بیچنا چاہتے ہیں، کیسے operate کرنا چاہتے ہیں، اور کہاں grow کرنا چاہتے ہیں۔ ہم صحیح راستہ منتخب کرنے میں مدد کریں گے۔',
+    finalCta: 'ہماری ٹیم سے رابطہ کریں'
+  },
+  ar: {
+    seoTitle: 'حلول التجارة الإلكترونية | PDMS',
+    seoDesc: 'ابدأ البيع عبر الإنترنت بخطة تجارة إلكترونية قائمة على القوالب أو ابنِ منصة مخصصة بالكامل مع PDMS.',
+    badge: 'الأعمال الإلكترونية',
+    heroTitle: 'أطلق متجرك الإلكتروني مع PDMS',
+    heroLead: 'مسار عملي للتجارة الإلكترونية للشركات التي تريد البدء بسرعة والنمو بثقة والتوسع إلى منصة تجارة رقمية مخصصة.',
+    heroBody: 'سواء كنت تريد متجرًا جاهزًا قائمًا على قالب أو بناءً مخصصًا بالكامل، فنحن نساعدك على الانتقال من الفكرة إلى الإطلاق مع التصميم وإدخال البيانات والبناء والدعم.',
+    primaryCta: 'ابدأ الآن',
+    secondaryCta: 'اتصل بنا',
+    trustItems: ['الإطلاق خلال 24 ساعة', 'دعم إدخال البيانات', 'تصميم البانرات', 'التوسع إلى ميزات مخصصة'],
+    plansTitle: 'اختر الخطة المناسبة',
+    plans: [
+      {
+        title: 'تجارة إلكترونية بالقوالب',
+        badge: 'بدء سريع',
+        body: 'مثالية للشركات التي تبدأ للتو بمتجر إلكتروني. اختر من بين ثلاثة تخطيطات جاهزة، وأطلق بسرعة، وابدأ البيع خلال أسبوع تقريبًا.',
+        points: [
+          'ثلاثة تخطيطات جاهزة للاختيار',
+          'تسليم خلال 24 ساعة',
+          'دعم إدخال البيانات وتصميم البانرات',
+          'جاهز للبيع خلال أسبوع'
+        ]
+      },
+      {
+        title: 'خطة تجارة إلكترونية مخصصة',
+        badge: 'مخصصة بالكامل',
+        body: 'للشركات التي تحتاج تجربة تجارة فريدة. نبني الحل وفق الميزات وسير العمل والعلامة التجارية التي تحتاجها.',
+        points: [
+          'تصميم مخصص وتكامل للميزات',
+          'برنامج نقطة البيع',
+          'وظائف B2B متعددة البائعين',
+          'تخصيص غير محدود',
+          'منشئ تقارير متقدم',
+          'تكامل الإشعارات الفورية'
+        ]
+      }
+    ],
+    processTitle: 'كيف نعمل',
+    process: ['اختر التخطيط', 'أرسل المحتوى', 'نصمم ونبني', 'ننطلق وننمو'],
+    featuresTitle: 'ما يمكنك توقعه',
+    features: [
+      'تجربة متجر متجاوبة',
+      'إدارة منتجات سهلة',
+      'سير عمل للمبيعات والطلبات',
+      'مسارات دفع مخصصة',
+      'بنية قابلة للتوسع',
+      'خيارات دعم مستمرة'
+    ],
+    customTitle: 'الخطة المخصصة تعتمد على نطاق العمل',
+    customBody: 'يتم تحديد خطة التجارة الإلكترونية المخصصة وفقًا لحجم التخصيص الذي يريده العميل. إذا كنت تحتاج وحدات إضافية أو تكاملات متقدمة، نبنيها حسب الطلب.',
+    ctaTitle: 'هل أنت جاهز للبيع عبر الإنترنت؟',
+    ctaBody: 'أخبرنا بما تريد بيعه، وكيف تريد العمل، وإلى أين تريد أن تنمو. سنساعدك على اختيار المسار الصحيح بسرعة.',
+    finalCta: 'تواصل مع فريقنا'
+  }
+}[lang];
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="eb-hero">
+    <div class="container eb-hero-grid">
+      <div class="eb-copy">
+        <span class="badge badge-primary">{copy.badge}</span>
+        <h1 class="eb-title">{copy.heroTitle}</h1>
+        <p class="eb-lead">{copy.heroLead}</p>
+        <p class="eb-body">{copy.heroBody}</p>
+        <div class="eb-cta-row">
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-lg">{copy.primaryCta}</a>
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-outline btn-lg">{copy.secondaryCta}</a>
+        </div>
+      </div>
+      <div class="eb-panel card">
+        <div class="eb-trust-row">
+          {copy.trustItems.map((item) => <span class="trust-pill">{item}</span>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.badge}</span>
+        <h2 class="section-title">{copy.plansTitle}</h2>
+      </div>
+      <div class="plan-grid">
+        {copy.plans.map((plan) => (
+          <article class="plan-card card">
+            <span class="plan-badge">{plan.badge}</span>
+            <h3>{plan.title}</h3>
+            <p>{plan.body}</p>
+            <ul>
+              {plan.points.map((point) => <li>{point}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container eb-process">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Process</span>
+        <h2 class="section-title">{copy.processTitle}</h2>
+      </div>
+      <div class="step-row">
+        {copy.process.map((step, idx) => (
+          <div class="step-card card">
+            <span>{String(idx + 1).padStart(2, '0')}</span>
+            <p>{step}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Features</span>
+        <h2 class="section-title">{copy.featuresTitle}</h2>
+      </div>
+      <div class="feature-pill-grid">
+        {copy.features.map((feature) => <span class="feature-pill">{feature}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container eb-custom card">
+      <div>
+        <span class="badge badge-primary">Custom</span>
+        <h2 class="section-title">{copy.customTitle}</h2>
+        <p class="body-copy">{copy.customBody}</p>
+      </div>
+      <div class="eb-note">
+        <strong>Examples</strong>
+        <ul>
+          <li>Point of sale software</li>
+          <li>Multi-vendor B2B functionality</li>
+          <li>Unlimited customization</li>
+          <li>Advanced report builder</li>
+          <li>Push notification integration</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container eb-cta card">
+      <div>
+        <span class="badge badge-primary">{copy.badge}</span>
+        <h2 class="section-title">{copy.ctaTitle}</h2>
+        <p class="body-copy">{copy.ctaBody}</p>
+      </div>
+      <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-lg">{copy.finalCta}</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .eb-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    border-bottom: 1px solid var(--border);
+    padding: 4.5rem 0 3.5rem;
+  }
+
+  .eb-hero-grid,
+  .eb-custom,
+  .eb-cta {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .eb-hero-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+  }
+
+  .eb-title {
+    color: var(--primary);
+    font-size: clamp(2.2rem, 3vw, 3rem);
+    line-height: 1.04;
+    margin: .85rem 0 1rem;
+  }
+
+  .eb-lead {
+    color: var(--dark);
+    font-weight: 700;
+    line-height: 1.65;
+    margin-bottom: .9rem;
+  }
+
+  .eb-body,
+  .body-copy {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+  }
+
+  .eb-cta-row,
+  .eb-trust-row,
+  .feature-pill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+  }
+
+  .eb-panel,
+  .plan-card,
+  .step-card,
+  .eb-custom,
+  .eb-cta {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-sm);
+    padding: 1.25rem;
+  }
+
+  .trust-pill,
+  .plan-badge,
+  .feature-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: .6rem .85rem;
+    border-radius: 999px;
+    background: var(--light-soft);
+    border: 1px solid var(--border);
+    color: var(--dark);
+    font-weight: 600;
+  }
+
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .plan-card h3 {
+    margin: .75rem 0 .5rem;
+    color: var(--dark);
+    font-size: 1.1rem;
+  }
+
+  .plan-card p,
+  .plan-card li {
+    color: var(--secondary-dark);
+    line-height: 1.65;
+  }
+
+  .plan-card ul,
+  .eb-note ul {
+    margin: .85rem 0 0;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: .6rem;
+  }
+
+  .step-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .step-card span {
+    display: inline-block;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: .5rem;
+  }
+
+  .step-card p {
+    color: var(--dark);
+    font-weight: 600;
+  }
+
+  .eb-note {
+    padding: 1rem 1.1rem;
+    border-radius: .9rem;
+    background: var(--light-soft);
+    border: 1px solid var(--border);
+  }
+
+  .eb-note strong {
+    color: var(--dark);
+  }
+
+  .eb-note li {
+    color: var(--secondary-dark);
+    line-height: 1.6;
+  }
+
+  .eb-process {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (max-width: 960px) {
+    .eb-hero-grid,
+    .eb-custom,
+    .eb-cta {
+      grid-template-columns: 1fr;
+    }
+
+    .plan-grid,
+    .step-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

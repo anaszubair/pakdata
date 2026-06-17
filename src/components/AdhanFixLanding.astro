@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const {
+  seoTitle,
+  seoDesc,
+  badge = 'Support',
+  title,
+  subtitle,
+  intro,
+  steps = [],
+  ctaBody,
+  ctaLabel = 'Contact Support',
+  images = []
+} = Astro.props;
+---
+
+<Layout title={seoTitle} description={seoDesc}>
+  <section class="fix-hero">
+    <div class="container fix-hero-inner">
+      <span class="badge badge-primary">{badge}</span>
+      <h1 class="fix-title">{title}</h1>
+      <p class="fix-subtitle">{subtitle}</p>
+      <p class="fix-body">{intro}</p>
+      <div class="fix-actions">
+        <a href={getRelativeLocaleUrl(lang, '/support')} class="btn btn-primary">{ctaLabel}</a>
+        <a href="mailto:support@pakdata.com" class="btn btn-outline">support@pakdata.com</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{badge}</span>
+        <h2 class="section-title">Steps</h2>
+      </div>
+
+      <div class="step-list">
+        {steps.map((step, idx) => (
+          <article class="step-row">
+            <div class="step-number">{idx + 1}</div>
+            <p class="step-text">{step}</p>
+            {images[idx] && (
+              <img src={images[idx].src} alt={images[idx].alt} class="step-image" loading="lazy" />
+            )}
+          </article>
+        ))}
+      </div>
+
+      <div class="support-note">
+        <p>{ctaBody.text || ctaBody}</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .fix-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    border-bottom: 1px solid var(--border);
+    padding: 3.75rem 0 2.25rem;
+  }
+
+  .fix-hero-inner {
+    max-width: 52rem;
+  }
+
+  .fix-title {
+    color: var(--primary);
+    font-size: clamp(1.9rem, 3.2vw, 3rem);
+    line-height: 1.08;
+    margin: .8rem 0 .85rem;
+  }
+
+  .fix-subtitle {
+    color: var(--dark);
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: .75rem;
+  }
+
+  .fix-body {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .fix-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1.2rem;
+  }
+
+  .step-list {
+    display: grid;
+    gap: .85rem;
+  }
+
+  .step-row {
+    display: grid;
+    grid-template-columns: 2.2rem minmax(0, 1fr) 18rem;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: .85rem;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .step-number {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 800;
+    flex: none;
+  }
+
+  .step-text {
+    margin: 0;
+    line-height: 1.65;
+    color: var(--dark);
+    font-weight: 600;
+  }
+
+  .step-image {
+    width: 18rem;
+    max-width: 18rem;
+    
+    object-fit: contain;
+    justify-self: end;
+    border-radius: .65rem;
+    background: #fff;
+  }
+
+  .support-note {
+    margin-top: 1rem;
+    padding: 1rem 1.1rem;
+    border-radius: .85rem;
+    background: var(--light-soft);
+    border: 1px solid var(--border);
+  }
+
+  .support-note p {
+    margin: 0;
+    color: var(--secondary-dark);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 960px) {
+    .step-row {
+      grid-template-columns: 2.2rem minmax(0, 1fr);
+    }
+
+    .step-image {
+      grid-column: 2 / -1;
+      justify-self: start;
+      width: 100%;
+      max-width: 18rem;
+    }
+  }
+</style>

@@ -1,0 +1,166 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: {
+    seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App',
+    seoDesc: 'Find device-specific guides to fix adhan notifications in Quran Majeed on Samsung, Huawei, OnePlus, and generic Android devices.',
+    badge: 'Adhan Help',
+    title: 'Fix Adhan Notification Issue In Quran Majeed App',
+    body1: 'Have you ever experienced a delay in receiving notifications, email messages or slower synchronization? This problem can be caused by the Doze function of different mobile phones which optimizes the battery life of a Smart Phone.',
+    body2: 'As per the general terms, most applications use background services to get new emails, notifications, or updated information. The main function of the Doze feature is to restrict background services on Android 6 and 7 as the phone is on sleep or doze mode.',
+    body3: 'If you want to solve the problem, you must deactivate the battery optimization option for Quran Majeed app. Please, check the following method for each device.',
+    devices: [
+      { name: 'Samsung Galaxy', path: '/fix_adhan_notification/samsung' },
+      { name: 'Google Pixel or Nexus', path: '/fix_adhan_notification/generic' },
+      { name: 'Huawei', path: '/fix_adhan_notification/huawei' },
+      { name: 'OnePlus', path: '/fix_adhan_notification/OnePlus' }
+    ],
+    note: 'If the adhan notifications are still not working, you can ask for help via support@pakdata.com.'
+  },
+  ur: {
+    seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App',
+    seoDesc: 'Quran Majeed میں adhan notifications ٹھیک کرنے کے لیے Samsung, Huawei, OnePlus اور generic Android guides دیکھیں۔',
+    badge: 'Adhan Help',
+    title: 'Fix Adhan Notification Issue In Quran Majeed App',
+    body1: 'کیا آپ نے notifications، email messages یا synchronization میں تاخیر محسوس کی ہے؟ یہ مختلف موبائل فونز کے Doze function کی وجہ سے ہو سکتا ہے جو smartphone battery life optimize کرتا ہے۔',
+    body2: 'عام طور پر ایپس background services استعمال کرتی ہیں تاکہ نئے emails، notifications، یا updated information ملتی رہے۔ Doze feature Android 6 اور 7 میں background services کو محدود کرتا ہے جب فون sleep یا doze mode میں ہو۔',
+    body3: 'مسئلہ حل کرنے کے لیے Quran Majeed app کی battery optimization بند کرنا ضروری ہے۔ براہِ کرم ہر device کے لیے درج ذیل طریقہ دیکھیں۔',
+    devices: [
+      { name: 'Samsung Galaxy', path: '/fix_adhan_notification/samsung' },
+      { name: 'Google Pixel or Nexus', path: '/fix_adhan_notification/generic' },
+      { name: 'Huawei', path: '/fix_adhan_notification/Huawei' },
+      { name: 'OnePlus', path: '/fix_adhan_notification/OnePlus' }
+    ],
+    note: 'اگر adhan notifications اب بھی کام نہیں کر رہے تو support@pakdata.com پر help حاصل کریں۔'
+  },
+  ar: {
+    seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App',
+    seoDesc: 'اعثر على أدلة خاصة بالأجهزة لإصلاح إشعارات الأذان في Quran Majeed على Samsung وHuawei وOnePlus وأجهزة Android العامة.',
+    badge: 'Adhan Help',
+    title: 'Fix Adhan Notification Issue In Quran Majeed App',
+    body1: 'هل لاحظت تأخرًا في استلام الإشعارات أو رسائل البريد أو بطء المزامنة؟ قد يكون السبب هو وظيفة Doze في بعض الهواتف التي تُحسّن عمر البطارية.',
+    body2: 'عادةً تستخدم التطبيقات خدمات الخلفية للحصول على البريد أو الإشعارات أو المعلومات المحدّثة. وظيفة Doze تقيد خدمات الخلفية على Android 6 و7 عندما يكون الهاتف في وضع السكون.',
+    body3: 'لحل المشكلة يجب تعطيل تحسين البطارية لتطبيق Quran Majeed. يرجى مراجعة الطريقة التالية لكل جهاز.',
+    devices: [
+      { name: 'Samsung Galaxy', path: '/fix_adhan_notification/samsung' },
+      { name: 'Google Pixel or Nexus', path: '/fix_adhan_notification/generic' },
+      { name: 'Huawei', path: '/fix_adhan_notification/Huawei' },
+      { name: 'OnePlus', path: '/fix_adhan_notification/OnePlus' }
+    ],
+    note: 'إذا كانت إشعارات الأذان ما تزال لا تعمل، يمكنك طلب المساعدة عبر support@pakdata.com.'
+  }
+}[lang];
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="page-hero">
+    <div class="container hero-inner">
+      <span class="badge badge-primary">{copy.badge}</span>
+      <h1 class="page-title">{copy.title}</h1>
+      <p class="page-body">{copy.body1}</p>
+      <p class="page-body">{copy.body2}</p>
+      <p class="page-body">{copy.body3}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.badge}</span>
+        <h2 class="section-title">Device Guides</h2>
+      </div>
+      <div class="device-grid">
+        {copy.devices.map((device) => (
+          <a href={getRelativeLocaleUrl(lang, device.path)} class="device-card card">
+            <strong>{device.name}</strong>
+            <span>Turn off battery optimization</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container note-card card">
+      <p>{copy.note}</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 0 2.5rem;
+  }
+
+  .hero-inner {
+    max-width: 52rem;
+  }
+
+  .page-title {
+    color: var(--primary);
+    font-size: clamp(1.9rem, 3.2vw, 3rem);
+    line-height: 1.08;
+    margin: .8rem 0 1rem;
+  }
+
+  .page-body {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    margin: 0 0 .75rem;
+  }
+
+  .device-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .85rem;
+  }
+
+  .device-card,
+  .note-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: .85rem;
+    box-shadow: var(--shadow-sm);
+    padding: 1rem;
+  }
+
+  .device-card {
+    display: grid;
+    gap: .25rem;
+    color: var(--dark);
+  }
+
+  .device-card strong {
+    font-size: 1rem;
+  }
+
+  .device-card span {
+    color: var(--secondary-dark);
+  }
+
+  .note-card p {
+    margin: 0;
+    color: var(--secondary-dark);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 720px) {
+    .device-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

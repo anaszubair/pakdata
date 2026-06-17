@@ -1,0 +1,43 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import AdhanFixLanding from '../../../components/AdhanFixLanding.astro';
+
+const copy = {
+  seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App - OnePlus',
+  seoDesc: 'Turn off battery optimization on OnePlus devices to receive Quran Majeed adhan notifications properly.',
+  badge: 'OnePlus Help',
+  title: 'Fix Adhan Notification Issue In Quran Majeed App',
+  subtitle: 'For OnePlus devices',
+  intro: 'Turn off optimization function in Optimize Battery Usage, please refer to the following steps.',
+  whyTitle: 'Why notifications stop',
+  whyBody: 'OnePlus devices may restrict background activity through battery optimization. Turning off optimization for Quran Majeed allows the app to continue receiving adhan alerts properly.',
+  stepsTitle: 'Follow These Steps',
+  steps: [
+    'Open the Settings menu on your device and tap Battery.',
+    'Tap Battery optimization.',
+    'Scroll and select Quran Majeed app.',
+    'On the popup screen, switch to the Don’t optimize to exclude Quran Majeed app from the Doze feature.'
+  ],
+  ctaBody: {
+    title: 'Need more help?',
+    text: 'Now you will receive adhan notifications properly. If the adhan notifications are still not working, you can ask for help via support@pakdata.com.'
+  },
+  ctaLabel: 'Contact Support',
+  deviceLabel: 'OnePlus Guide',
+  images: [
+    { src: '/images/oneplus/fixissue1.png', alt: 'OnePlus battery settings guide step 1' },
+    { src: '/images/oneplus/fixissue2.png', alt: 'OnePlus battery optimization guide step 2' },
+    { src: '/images/oneplus/fixissue3.png', alt: 'OnePlus battery optimization guide step 3' },
+    { src: '/images/oneplus/fixissue4.png', alt: 'OnePlus don’t optimize guide step 4' }
+  ]
+};
+---
+
+<AdhanFixLanding {...copy} />
