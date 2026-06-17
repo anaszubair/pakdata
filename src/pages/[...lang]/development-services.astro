@@ -1,0 +1,391 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: {
+    seoTitle: 'Enterprise Software & AI Development Services | Pakdata',
+    seoDesc: 'Pakdata provides enterprise software development, AI solutions, mobile app development, ERP systems, and digital transformation services for businesses worldwide.',
+    badge: 'Development Services',
+    heroTitle: 'Enterprise Software & AI Solutions by Pakdata',
+    heroLead: 'Building scalable digital platforms, AI-powered solutions, enterprise systems, and mobile applications that help organizations innovate, automate, and grow.',
+    heroBody: 'With decades of software engineering expertise, Pakdata delivers modern technology solutions across mobile applications, enterprise platforms, artificial intelligence, multilingual systems, and digital transformation initiatives.',
+    primaryCta: 'Explore Our Solutions',
+    secondaryCta: 'Schedule a Consultation',
+    metrics: [
+      { title: '40+ Years of Innovation', body: 'Decades of software engineering and digital transformation expertise.' },
+      { title: 'Millions of Global Users', body: 'Applications trusted worldwide across multiple platforms.' },
+      { title: 'Enterprise & Government Projects', body: 'Large-scale systems for enterprise and public sector organizations.' },
+      { title: 'AI & Mobile Specialists', body: 'Focused on scalable modern applications and intelligent digital solutions.' }
+    ],
+    solutionsTitle: 'Enterprise Technology Solutions',
+    solutionsBody: 'We design and develop scalable digital solutions that help businesses modernize operations, automate workflows, and improve customer engagement.',
+    solutions: [
+      { title: 'AI & Intelligent Automation', body: 'Leverage AI-powered systems to automate customer engagement, optimize workflows, and deliver intelligent digital experiences through conversational AI, machine learning, and automation technologies.', features: ['Conversational AI', 'Intelligent Automation', 'Predictive Insights', 'Workflow Optimization', 'AI-Powered Customer Support'] },
+      { title: 'EngageAI Platform', body: 'Enterprise conversational AI platform designed for customer engagement, support automation, lead generation, and intelligent business interactions.', features: ['AI Chat Automation', 'Multilingual Support', '24/7 Customer Assistance', 'CRM Integration', 'Analytics & Insights'] },
+      { title: 'ERP & Business Management Systems', body: 'Custom ERP and enterprise management systems designed to streamline operations, improve visibility, and centralize business workflows.', features: ['Accounting Management', 'Inventory Systems', 'HR & Payroll', 'Reporting Dashboards', 'Workflow Management'] },
+      { title: 'Custom Enterprise Applications', body: 'Tailored software solutions developed specifically for unique business requirements, operational efficiency, and digital transformation goals.', features: ['Enterprise Platforms', 'API Integrations', 'Web Applications', 'Mobile Applications', 'Cloud-Ready Architecture'] }
+    ],
+    servicesTitle: 'End-to-End Development Services',
+    servicesBody: 'From strategy and architecture to deployment and scaling, Pakdata delivers complete digital product development solutions.',
+    serviceBlocks: [
+      { title: 'Mobile App Development', body: 'Develop high-performance mobile applications for iOS and Android with modern architectures, scalable infrastructure, and optimized user experiences.', items: ['Flutter', 'React Native', 'Swift', 'Kotlin'] },
+      { title: 'Web Development', body: 'Build scalable web applications and enterprise portals using modern frontend and backend technologies.', items: ['React', 'Next.js', 'TypeScript', 'Node.js'] },
+      { title: 'Digital Experience Design', body: 'Create intuitive and visually engaging user experiences through modern UI/UX design systems optimized for usability and business growth.', items: ['UI/UX Design', 'Design Systems', 'User Research', 'Prototyping'] },
+      { title: 'API Development', body: 'Develop secure and scalable APIs and backend services to power enterprise platforms and connected systems.', items: ['REST APIs', 'GraphQL', 'Node.js', 'Python'] },
+      { title: 'Security & Testing', body: 'Ensure application reliability, security, and operational stability through comprehensive testing and quality assurance processes.', items: ['Security Audits', 'Performance Testing', 'Automated Testing', 'QA Engineering'] }
+    ],
+    aboutTitle: 'About Pakdata',
+    aboutBody: 'Pakdata is a technology company with decades of experience in software engineering, multilingual computing, enterprise systems, Islamic technology, and digital innovation.',
+    storyBody: 'Founded in Pakistan, Pakdata has evolved from pioneering Urdu computing solutions into a globally recognized software company delivering enterprise platforms, mobile applications, AI-powered systems, and large-scale digital products.',
+    valuesTitle: 'Core Values',
+    values: ['Innovation', 'Excellence', 'Collaboration', 'Global Reach'],
+    contactTitle: 'Let’s Build Something Great Together',
+    contactBody: 'Get in touch to discuss your business goals, enterprise requirements, AI initiatives, or custom software projects.',
+    cta: 'Request a Consultation'
+  },
+  ur: {
+    seoTitle: 'انٹرپرائز سافٹ ویئر اور AI ڈویلپمنٹ سروسز | Pakdata',
+    seoDesc: 'Pakdata انٹرپرائز سافٹ ویئر ڈویلپمنٹ، AI حل، موبائل ایپ ڈویلپمنٹ، ERP سسٹمز اور ڈیجیٹل ٹرانسفارمیشن سروسز فراہم کرتا ہے۔',
+    badge: 'ڈویلپمنٹ سروسز',
+    heroTitle: 'Pakdata کے انٹرپرائز سافٹ ویئر اور AI حل',
+    heroLead: 'اسکالیبل ڈیجیٹل پلیٹ فارمز، AI سے چلنے والے حل، انٹرپرائز سسٹمز اور موبائل ایپلیکیشنز تیار کرنا جو اداروں کو innovate، automate اور grow کرنے میں مدد دیں۔',
+    heroBody: 'دہائیوں کے سافٹ ویئر انجینئرنگ تجربے کے ساتھ، Pakdata موبائل ایپلیکیشنز، انٹرپرائز پلیٹ فارمز، مصنوعی ذہانت، multilingual systems اور digital transformation initiatives میں جدید حل فراہم کرتا ہے۔',
+    primaryCta: 'حل دیکھیں',
+    secondaryCta: 'مشاورت شیڈول کریں',
+    metrics: [
+      { title: '40+ سال کی جدت', body: 'سافٹ ویئر انجینئرنگ اور ڈیجیٹل ٹرانسفارمیشن میں دہائیوں کا تجربہ۔' },
+      { title: 'دنیا بھر میں لاکھوں صارفین', body: 'کئی پلیٹ فارمز پر استعمال ہونے والی ایپلیکیشنز۔' },
+      { title: 'انٹرپرائز اور حکومتی پروجیکٹس', body: 'بڑے پیمانے کے سسٹمز جو اداروں اور سرکاری شعبے کے لیے بنائے گئے۔' },
+      { title: 'AI اور موبائل ماہرین', body: 'اسکالیبل جدید ایپس اور ذہین ڈیجیٹل حل پر توجہ۔' }
+    ],
+    solutionsTitle: 'انٹرپرائز ٹیکنالوجی حل',
+    solutionsBody: 'ہم اسکیل ایبل ڈیجیٹل حل ڈیزائن اور تیار کرتے ہیں جو کاروبار کو بہتر بناتے، ورک فلو خودکار کرتے اور customer engagement بڑھاتے ہیں۔',
+    solutions: [
+      { title: 'AI اور ذہین آٹومیشن', body: 'AI-powered systems کے ذریعے engagement، workflows اور digital experiences کو بہتر بنائیں۔', features: ['Conversational AI', 'Intelligent Automation', 'Predictive Insights', 'Workflow Optimization', 'AI-Powered Customer Support'] },
+      { title: 'EngageAI Platform', body: 'انٹرپرائز conversational AI platform جو customer engagement، support automation اور lead generation کے لیے تیار کیا گیا ہے۔', features: ['AI Chat Automation', 'Multilingual Support', '24/7 Customer Assistance', 'CRM Integration', 'Analytics & Insights'] },
+      { title: 'ERP اور بزنس مینجمنٹ سسٹمز', body: 'کسٹم ERP اور انٹرپرائز مینجمنٹ سسٹمز جو operations اور workflows کو centralized بناتے ہیں۔', features: ['Accounting Management', 'Inventory Systems', 'HR & Payroll', 'Reporting Dashboards', 'Workflow Management'] },
+      { title: 'کسٹم انٹرپرائز ایپلیکیشنز', body: 'مخصوص business requirements، efficiency اور transformation goals کے مطابق tailored software solutions۔', features: ['Enterprise Platforms', 'API Integrations', 'Web Applications', 'Mobile Applications', 'Cloud-Ready Architecture'] }
+    ],
+    servicesTitle: 'اختتام سے اختتام تک ڈویلپمنٹ سروسز',
+    servicesBody: 'Strategy اور architecture سے deployment اور scaling تک، Pakdata مکمل digital product development solutions فراہم کرتا ہے۔',
+    serviceBlocks: [
+      { title: 'موبائل ایپ ڈویلپمنٹ', body: 'iOS اور Android کے لیے high-performance mobile applications تیار کریں۔', items: ['Flutter', 'React Native', 'Swift', 'Kotlin'] },
+      { title: 'ویب ڈویلپمنٹ', body: 'Modern frontend اور backend technologies کے ساتھ scalable web applications اور enterprise portals بنائیں۔', items: ['React', 'Next.js', 'TypeScript', 'Node.js'] },
+      { title: 'ڈیجیٹل ایکسپیرینس ڈیزائن', body: 'بہتر usability اور business growth کے لیے intuitive UI/UX design systems بنائیں۔', items: ['UI/UX Design', 'Design Systems', 'User Research', 'Prototyping'] },
+      { title: 'API ڈویلپمنٹ', body: 'Secure اور scalable APIs اور backend services تیار کریں۔', items: ['REST APIs', 'GraphQL', 'Node.js', 'Python'] },
+      { title: 'سیکیورٹی اور ٹیسٹنگ', body: 'Reliability، security اور operational stability کو comprehensive testing کے ذریعے یقینی بنائیں۔', items: ['Security Audits', 'Performance Testing', 'Automated Testing', 'QA Engineering'] }
+    ],
+    aboutTitle: 'Pakdata کے بارے میں',
+    aboutBody: 'Pakdata ایک ٹیکنالوجی کمپنی ہے جسے software engineering، multilingual computing، enterprise systems، Islamic technology اور digital innovation میں دہائیوں کا تجربہ ہے۔',
+    storyBody: 'پاکستان میں قائم Pakdata نے Urdu computing solutions سے ترقی کرتے ہوئے ایک عالمی سطح کی software company کی شکل اختیار کی جو enterprise platforms، mobile applications اور AI-powered systems فراہم کرتی ہے۔',
+    valuesTitle: 'بنیادی اقدار',
+    values: ['Innovation', 'Excellence', 'Collaboration', 'Global Reach'],
+    contactTitle: 'آئیے مل کر کچھ شاندار بنائیں',
+    contactBody: 'اپنے business goals، enterprise requirements، AI initiatives یا custom software projects پر بات کرنے کے لیے رابطہ کریں۔',
+    cta: 'مشاورت کی درخواست کریں'
+  },
+  ar: {
+    seoTitle: 'خدمات تطوير البرمجيات والذكاء الاصطناعي | Pakdata',
+    seoDesc: 'تقدم Pakdata خدمات تطوير البرمجيات للمؤسسات، وحلول الذكاء الاصطناعي، وتطبيقات الجوال، وأنظمة ERP، والتحول الرقمي.',
+    badge: 'خدمات التطوير',
+    heroTitle: 'حلول البرمجيات للمؤسسات والذكاء الاصطناعي من Pakdata',
+    heroLead: 'نبني منصات رقمية قابلة للتوسع، وحلول ذكاء اصطناعي، وأنظمة مؤسسية، وتطبيقات جوال تساعد المؤسسات على الابتكار والأتمتة والنمو.',
+    heroBody: 'بخبرة تمتد لعقود في هندسة البرمجيات، تقدم Pakdata حلولًا حديثة عبر تطبيقات الجوال والمنصات المؤسسية والذكاء الاصطناعي والأنظمة متعددة اللغات ومبادرات التحول الرقمي.',
+    primaryCta: 'استعرض حلولنا',
+    secondaryCta: 'حدد موعدًا لاستشارة',
+    metrics: [
+      { title: 'أكثر من 40 عامًا من الابتكار', body: 'عقود من الخبرة في هندسة البرمجيات والتحول الرقمي.' },
+      { title: 'ملايين المستخدمين حول العالم', body: 'تطبيقات موثوقة على عدة منصات.' },
+      { title: 'مشاريع مؤسسية وحكومية', body: 'أنظمة واسعة النطاق للمؤسسات والقطاع العام.' },
+      { title: 'متخصصون في الذكاء الاصطناعي والجوال', body: 'حلول حديثة قابلة للتوسع ومبنية بذكاء.' }
+    ],
+    solutionsTitle: 'حلول تقنية للمؤسسات',
+    solutionsBody: 'نصمم ونطور حلولًا رقمية قابلة للتوسع تساعد الشركات على تحديث العمليات وأتمتة سير العمل وتحسين التفاعل مع العملاء.',
+    solutions: [
+      { title: 'الذكاء الاصطناعي والأتمتة الذكية', body: 'استفد من أنظمة مدعومة بالذكاء الاصطناعي لتحسين التفاعل وأتمتة العمليات.', features: ['محادثات ذكية', 'أتمتة ذكية', 'رؤى تنبؤية', 'تحسين سير العمل', 'دعم عملاء مدعوم بالذكاء الاصطناعي'] },
+      { title: 'منصة EngageAI', body: 'منصة ذكاء اصطناعي محادثي للمؤسسات مخصصة لتفاعل العملاء والدعم الآلي وتوليد العملاء المحتملين.', features: ['أتمتة الدردشة', 'دعم متعدد اللغات', 'مساعدة 24/7', 'تكامل CRM', 'تحليلات ورؤى'] },
+      { title: 'أنظمة ERP وإدارة الأعمال', body: 'أنظمة ERP مخصصة للمؤسسات لتبسيط العمليات وتحسين الرؤية وتوحيد سير العمل.', features: ['إدارة الحسابات', 'أنظمة المخزون', 'الموارد البشرية والرواتب', 'لوحات التقارير', 'إدارة سير العمل'] },
+      { title: 'تطبيقات مؤسسية مخصصة', body: 'حلول برمجية مصممة خصيصًا لتلبية متطلبات الأعمال وتحقيق الكفاءة والتحول الرقمي.', features: ['منصات مؤسسية', 'تكامل API', 'تطبيقات ويب', 'تطبيقات جوال', 'بنية جاهزة للسحابة'] }
+    ],
+    servicesTitle: 'خدمات تطوير شاملة',
+    servicesBody: 'من الاستراتيجية والبنية المعمارية إلى النشر والتوسع، تقدم Pakdata حلولًا كاملة لتطوير المنتجات الرقمية.',
+    serviceBlocks: [
+      { title: 'تطوير تطبيقات الجوال', body: 'طوّر تطبيقات iOS وAndroid عالية الأداء ببنى حديثة وبنية تحتية قابلة للتوسع.', items: ['Flutter', 'React Native', 'Swift', 'Kotlin'] },
+      { title: 'تطوير الويب', body: 'ابنِ تطبيقات ويب ومنصات مؤسسية قابلة للتوسع باستخدام تقنيات حديثة.', items: ['React', 'Next.js', 'TypeScript', 'Node.js'] },
+      { title: 'تصميم التجربة الرقمية', body: 'أنشئ تجارب مستخدم بديهية وجذابة من خلال أنظمة تصميم حديثة.', items: ['UI/UX Design', 'Design Systems', 'User Research', 'Prototyping'] },
+      { title: 'تطوير واجهات API', body: 'طوّر واجهات وخدمات خلفية آمنة وقابلة للتوسع.', items: ['REST APIs', 'GraphQL', 'Node.js', 'Python'] },
+      { title: 'الأمان والاختبار', body: 'ضمن موثوقية التطبيقات وأمانها واستقرارها من خلال الاختبار والجودة.', items: ['Security Audits', 'Performance Testing', 'Automated Testing', 'QA Engineering'] }
+    ],
+    aboutTitle: 'حول Pakdata',
+    aboutBody: 'Pakdata شركة تقنية ذات خبرة تمتد لعقود في هندسة البرمجيات والحوسبة متعددة اللغات والأنظمة المؤسسية والتكنولوجيا الإسلامية والابتكار الرقمي.',
+    storyBody: 'تطورت Pakdata من حلول الحوسبة الأردية إلى شركة برمجيات عالمية تقدم منصات مؤسسية وتطبيقات جوال وأنظمة مدعومة بالذكاء الاصطناعي.',
+    valuesTitle: 'القيم الأساسية',
+    values: ['Innovation', 'Excellence', 'Collaboration', 'Global Reach'],
+    contactTitle: 'لنَبْنِ شيئًا رائعًا معًا',
+    contactBody: 'تواصل معنا لمناقشة أهداف أعمالك ومتطلبات المؤسسات ومبادرات الذكاء الاصطناعي أو مشاريع البرمجيات المخصصة.',
+    cta: 'اطلب استشارة'
+  }
+}[lang];
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="ds-hero">
+    <div class="container ds-hero-grid">
+      <div class="ds-copy">
+        <span class="badge badge-primary">{copy.badge}</span>
+        <h1 class="ds-title">{copy.heroTitle}</h1>
+        <p class="ds-lead">{copy.heroLead}</p>
+        <p class="ds-body">{copy.heroBody}</p>
+        <div class="ds-cta-row">
+          <a href={getRelativeLocaleUrl(lang, '/products')} class="btn btn-primary btn-lg">{copy.primaryCta}</a>
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-outline btn-lg">{copy.secondaryCta}</a>
+        </div>
+      </div>
+      <div class="ds-panel card">
+        <div class="ds-panel-head">
+          <span>{copy.badge}</span>
+          <strong>PDMS</strong>
+        </div>
+        <div class="ds-metric-grid">
+          {copy.metrics.map((metric) => (
+            <article class="ds-metric">
+              <h3>{metric.title}</h3>
+              <p>{metric.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.badge}</span>
+        <h2 class="section-title">{copy.solutionsTitle}</h2>
+      </div>
+      <p class="body-copy section-intro">{copy.solutionsBody}</p>
+      <div class="solution-grid">
+        {copy.solutions.map((item) => (
+          <article class="solution-card card">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+            <div class="chip-grid">
+              {item.features.map((feature) => <span class="chip">{feature}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.badge}</span>
+        <h2 class="section-title">{copy.servicesTitle}</h2>
+      </div>
+      <p class="body-copy section-intro">{copy.servicesBody}</p>
+      <div class="service-grid">
+        {copy.serviceBlocks.map((service) => (
+          <article class="service-block card">
+            <h3>{service.title}</h3>
+            <p>{service.body}</p>
+            <div class="chip-grid">
+              {service.items.map((item) => <span class="chip">{item}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-grid">
+      <div class="split-copy">
+        <span class="badge badge-primary">{copy.aboutTitle}</span>
+        <h2 class="section-title">{copy.aboutTitle}</h2>
+        <p class="body-copy">{copy.aboutBody}</p>
+        <p class="body-copy">{copy.storyBody}</p>
+      </div>
+      <div class="values-card card">
+        <h3>{copy.valuesTitle}</h3>
+        <div class="chip-grid">
+          {copy.values.map((value) => <span class="chip">{value}</span>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container cta-band card">
+      <div>
+        <h2 class="section-title">{copy.contactTitle}</h2>
+        <p class="body-copy">{copy.contactBody}</p>
+      </div>
+      <div class="ds-cta-row">
+        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-lg">{copy.cta}</a>
+        <a href={getRelativeLocaleUrl(lang, '/faq')} class="btn btn-outline btn-lg">FAQ</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .ds-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    border-bottom: 1px solid var(--border);
+    padding: 4.5rem 0 3.5rem;
+  }
+
+  .ds-hero-grid,
+  .split-grid {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .ds-hero-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+  }
+
+  .ds-title {
+    color: var(--primary);
+    font-size: clamp(2.1rem, 3vw, 3rem);
+    line-height: 1.04;
+    margin: .85rem 0 .9rem;
+  }
+
+  .ds-lead {
+    color: var(--dark);
+    font-weight: 700;
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    margin-bottom: .9rem;
+  }
+
+  .ds-body,
+  .body-copy,
+  .section-intro {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    max-width: 46rem;
+  }
+
+  .ds-cta-row,
+  .chip-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+  }
+
+  .ds-panel {
+    padding: 1.25rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    border-radius: 1rem;
+  }
+
+  .ds-panel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--dark);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: .8rem;
+    font-weight: 700;
+  }
+
+  .ds-metric-grid,
+  .solution-grid,
+  .service-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .ds-metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ds-metric,
+  .solution-card,
+  .service-block,
+  .values-card,
+  .cta-band {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .ds-metric,
+  .solution-card,
+  .service-block {
+    padding: 1.1rem;
+  }
+
+  .ds-metric h3,
+  .solution-card h3,
+  .service-block h3,
+  .values-card h3 {
+    margin-bottom: .55rem;
+    color: var(--dark);
+    font-size: 1.02rem;
+  }
+
+  .ds-metric p,
+  .solution-card p,
+  .service-block p,
+  .values-card p {
+    color: var(--secondary-dark);
+    line-height: 1.6;
+  }
+
+  .solution-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .values-card,
+  .cta-band {
+    padding: 1.25rem;
+  }
+
+  .values-card {
+    display: grid;
+    gap: .75rem;
+  }
+
+  .cta-band {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  @media (max-width: 960px) {
+    .ds-hero-grid,
+    .split-grid,
+    .solution-grid,
+    .service-grid,
+    .cta-band {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,668 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: {
+    seoTitle: 'EngageAI by Pakdata | Enterprise Conversational AI Platform',
+    seoDesc: 'EngageAI is an enterprise conversational AI platform designed to automate customer engagement, support, lead generation, and business workflows through intelligent AI-powered interactions.',
+    badge: 'Enterprise AI',
+    heroTitle: 'EngageAI by Pakdata',
+    heroLead: 'Enterprise Conversational AI for Modern Businesses',
+    heroBody: 'EngageAI is an enterprise-grade conversational AI platform designed to help organizations automate customer engagement, deliver intelligent support, qualify leads, and improve operational efficiency through AI-powered interactions.',
+    heroBody2: 'Built for scalability, security, and seamless integration, EngageAI enables businesses to provide personalized, always-available experiences across web, mobile, and digital channels.',
+    primaryCta: 'Schedule a Demo',
+    secondaryCta: 'Contact Sales',
+    trustTitle: 'Trusted for Enterprise Innovation Since 1978',
+    trustItems: ['Enterprise Software Expertise', 'Government & Enterprise Projects', 'Millions of Users Worldwide', 'AI-Powered Customer Engagement'],
+    problemTitle: 'Modern Customer Expectations Require Intelligent Automation',
+    problemBody: 'Today’s customers expect instant responses, personalized interactions, 24/7 availability, and seamless digital experiences. Traditional support systems struggle to meet these demands at scale.',
+    problemBody2: 'EngageAI helps businesses automate conversations, streamline customer interactions, and deliver intelligent support experiences powered by advanced conversational AI.',
+    featuresTitle: 'Enterprise-Ready AI Features',
+    features: [
+      { title: 'Intelligent AI Conversations', body: 'Deliver natural, human-like interactions capable of understanding customer intent and providing accurate responses instantly.' },
+      { title: '24/7 Automated Support', body: 'Provide continuous customer assistance without downtime through always-available AI-powered engagement.' },
+      { title: 'Seamless Business Integration', body: 'Integrate effortlessly with websites, CRMs, ERPs, helpdesk systems, and internal business tools.' },
+      { title: 'Lead Generation & Qualification', body: 'Automatically capture, qualify, and route leads to improve sales efficiency and conversion performance.' },
+      { title: 'Multilingual Communication', body: 'Support users across multiple languages to expand accessibility and customer reach.' },
+      { title: 'Analytics & Performance Insights', body: 'Monitor conversations, engagement metrics, customer behavior, and AI performance through advanced analytics.' }
+    ],
+    industriesTitle: 'AI Solutions for Every Industry',
+    industriesBody: 'EngageAI adapts to diverse business environments and customer engagement workflows across multiple industries.',
+    industries: ['Banking & Financial Services', 'Healthcare', 'Education', 'E-Commerce', 'Telecommunications', 'Government', 'Real Estate', 'Hospitality'],
+    benefitsTitle: 'Why Businesses Choose EngageAI',
+    benefits: ['Improve Customer Satisfaction', 'Reduce Operational Costs', 'Increase Conversion Rates', 'Accelerate Response Times', 'Automate Repetitive Tasks', 'Enhance Team Productivity'],
+    useCasesTitle: 'Real-World Business Use Cases',
+    useCases: [
+      { title: 'Customer Support Automation', body: 'Resolve customer inquiries instantly while reducing support workload and response delays.' },
+      { title: 'Sales Assistance', body: 'Guide customers through products, recommendations, and purchasing journeys to improve conversions.' },
+      { title: 'Lead Capture & Qualification', body: 'Identify high-intent prospects and collect valuable customer information automatically.' },
+      { title: 'Internal Helpdesk Automation', body: 'Support internal teams with HR, IT, onboarding, and operational assistance workflows.' }
+    ],
+    securityTitle: 'Enterprise-Grade Security & Reliability',
+    securityBody: 'EngageAI is built with security, scalability, and operational stability at its core. The platform is designed to support enterprise requirements through secure infrastructure, protected customer data, scalable architecture, reliable uptime, and enterprise deployment readiness.',
+    diffTitle: 'What Makes EngageAI Different',
+    diffItems: ['Enterprise-Focused Architecture', 'Custom Integration Capabilities', 'Multilingual AI Support', 'Decades of Software Expertise'],
+    ctaTitle: 'Ready to Transform Customer Engagement?',
+    ctaBody: 'Empower your business with intelligent conversational AI designed to automate support, improve customer experiences, and drive operational growth.',
+    finalContactTitle: 'Get in Touch',
+    finalContactBody: 'Schedule a personalized demo and discover how EngageAI can support your customer engagement, automation, and business growth goals.',
+    finalEmail: 'sales@pakdata.com',
+    finalPhone: '+92 21 111 111 111',
+    finalOffice: 'Karachi, Pakistan',
+    faqTitle: 'Frequently Asked Questions',
+    faqs: [
+      { q: 'How does EngageAI integrate?', a: 'EngageAI is built for flexible business integration, so it can connect with common digital workflows, websites, and internal systems as part of an enterprise deployment.' },
+      { q: 'Does it support multilingual AI?', a: 'Yes. EngageAI is designed for multilingual customer communication so businesses can serve broader audiences with confidence.' },
+      { q: 'Is enterprise deployment available?', a: 'Yes. The platform is positioned for enterprise teams that need scalable, secure, and reliable conversational AI solutions.' },
+      { q: 'Is data secure?', a: 'Security is a core part of the platform design, including protected infrastructure, reliable uptime, and readiness for enterprise governance needs.' }
+    ]
+  },
+  ur: {
+    seoTitle: 'EngageAI by Pakdata | انٹرپرائز کنورسیشنل AI پلیٹ فارم',
+    seoDesc: 'EngageAI ایک انٹرپرائز لیول کنورسیشنل AI پلیٹ فارم ہے جو کسٹمر انگیجمنٹ، سپورٹ، لیڈ جنریشن اور کاروباری ورک فلو کو خودکار بناتا ہے۔',
+    badge: 'انٹرپرائز AI',
+    heroTitle: 'EngageAI by Pakdata',
+    heroLead: 'جدید کاروباروں کے لیے انٹرپرائز کنورسیشنل AI',
+    heroBody: 'EngageAI ایک انٹرپرائز گریڈ کنورسیشنل AI پلیٹ فارم ہے جو اداروں کو کسٹمر انگیجمنٹ خودکار بنانے، ذہین سپورٹ فراہم کرنے، لیڈز کو qualify کرنے اور آپریشنل کارکردگی بہتر کرنے میں مدد دیتا ہے۔',
+    heroBody2: 'اسکالیبلٹی، سیکیورٹی اور آسان انٹیگریشن کے لیے تیار کردہ EngageAI ویب، موبائل اور ڈیجیٹل چینلز پر personalized اور ہر وقت دستیاب تجربات فراہم کرتا ہے۔',
+    primaryCta: 'ڈیمو شیڈول کریں',
+    secondaryCta: 'سیلز سے رابطہ کریں',
+    trustTitle: '1978 سے انٹرپرائز انوویشن پر اعتماد',
+    trustItems: ['انٹرپرائز سافٹ ویئر مہارت', 'سرکاری اور انٹرپرائز پروجیکٹس', 'دنیا بھر میں لاکھوں صارفین', 'AI سے چلنے والی کسٹمر انگیجمنٹ'],
+    problemTitle: 'جدید کسٹمر توقعات ذہین آٹومیشن مانگتی ہیں',
+    problemBody: 'آج کے صارفین فوری جواب، ذاتی نوعیت کی گفتگو، 24/7 دستیابی اور ہموار ڈیجیٹل تجربات چاہتے ہیں۔ روایتی سپورٹ سسٹم اس سطح پر مشکل سے پورا اترتے ہیں۔',
+    problemBody2: 'EngageAI کاروباروں کو گفتگو خودکار بنانے، کسٹمر تعاملات کو ہموار کرنے، اور جدید کنورسیشنل AI سے ذہین سپورٹ فراہم کرنے میں مدد دیتا ہے۔',
+    featuresTitle: 'انٹرپرائز کے لیے تیار AI خصوصیات',
+    features: [
+      { title: 'ذہین AI گفتگو', body: 'فطری اور انسان جیسی گفتگو جو کسٹمر کی نیت کو سمجھے اور فوری درست جواب دے۔' },
+      { title: '24/7 خودکار سپورٹ', body: 'ہمیشہ دستیاب AI سپورٹ کے ذریعے بغیر رکے کسٹمر مدد فراہم کریں۔' },
+      { title: 'بہترین کاروباری انٹیگریشن', body: 'ویب سائٹس، CRM، ERP، helpdesk اور اندرونی کاروباری سسٹمز سے آسانی سے جڑیں۔' },
+      { title: 'لیڈ جنریشن اور کوالیفیکیشن', body: 'لیڈز خودکار طور پر حاصل، جانچ اور مناسب ٹیم تک پہنچائیں۔' },
+      { title: 'کثیر لسانی رابطہ', body: 'متعدد زبانوں میں سپورٹ دے کر رسائی اور گاہکوں کا دائرہ بڑھائیں۔' },
+      { title: 'اینالٹکس اور insights', body: 'گفتگو، engagement metrics اور AI performance کو advanced analytics سے مانیٹر کریں۔' }
+    ],
+    industriesTitle: 'ہر صنعت کے لیے AI حل',
+    industriesBody: 'EngageAI مختلف کاروباری ماحول اور customer workflows کے مطابق ڈھل جاتا ہے۔',
+    industries: ['بینکنگ اور مالیاتی خدمات', 'صحت', 'تعلیم', 'ای کامرس', 'ٹیلی کمیونیکیشن', 'حکومت', 'رئیل اسٹیٹ', 'ہاسپیٹیلٹی'],
+    benefitsTitle: 'کاروبار EngageAI کیوں منتخب کرتے ہیں',
+    benefits: ['بہتر کسٹمر اطمینان', 'کم آپریشنل لاگت', 'زیادہ conversion rates', 'تیز response times', 'بار بار کاموں کی آٹومیشن', 'ٹیم کی productivity میں اضافہ'],
+    useCasesTitle: 'حقیقی کاروباری استعمال',
+    useCases: [
+      { title: 'کسٹمر سپورٹ آٹومیشن', body: 'کسٹمر سوالات فوری حل کریں اور سپورٹ ٹیم کا بوجھ کم کریں۔' },
+      { title: 'سیلز اسسٹنس', body: 'صارفین کو products، recommendations اور purchasing journey میں رہنمائی دیں۔' },
+      { title: 'لیڈ کیپچر اور کوالیفیکیشن', body: 'اہم prospects کی شناخت کریں اور مفید معلومات خودکار طور پر جمع کریں۔' },
+      { title: 'اندرونی helpdesk آٹومیشن', body: 'HR، IT، onboarding اور operational workflows میں ٹیموں کی مدد کریں۔' }
+    ],
+    securityTitle: 'انٹرپرائز سیکیورٹی اور reliability',
+    securityBody: 'EngageAI کو سیکیورٹی، scalability اور operational stability کو بنیاد بنا کر تیار کیا گیا ہے۔ یہ secure infrastructure، customer data protection، scalable architecture، reliable uptime اور enterprise deployment readiness فراہم کرتا ہے۔',
+    diffTitle: 'EngageAI کو مختلف کیا بناتا ہے',
+    diffItems: ['انٹرپرائز فوکسڈ architecture', 'custom integration capabilities', 'کثیر لسانی AI سپورٹ', 'دہائیوں کی software expertise'],
+    ctaTitle: 'کسٹمر انگیجمنٹ بدلنے کے لیے تیار ہیں؟',
+    ctaBody: 'ذہین conversational AI کے ذریعے سپورٹ کو خودکار بنائیں، customer experience بہتر کریں، اور business growth کو تیز کریں۔',
+    finalContactTitle: 'رابطہ کریں',
+    finalContactBody: 'ایک personalized demo شیڈول کریں اور دیکھیں کہ EngageAI آپ کے customer engagement اور business goals کو کیسے سپورٹ کر سکتا ہے۔',
+    finalEmail: 'sales@pakdata.com',
+    finalPhone: '+92 21 111 111 111',
+    finalOffice: 'کراچی، پاکستان',
+    faqTitle: 'اکثر پوچھے گئے سوالات',
+    faqs: [
+      { q: 'EngageAI کیسے integrate ہوتا ہے؟', a: 'EngageAI flexible business integration کے لیے بنایا گیا ہے تاکہ websites اور internal systems کے ساتھ enterprise deployment میں جڑ سکے۔' },
+      { q: 'کیا یہ multilingual AI سپورٹ کرتا ہے؟', a: 'جی ہاں، EngageAI کثیر لسانی customer communication کے لیے تیار کیا گیا ہے۔' },
+      { q: 'کیا enterprise deployment دستیاب ہے؟', a: 'جی ہاں، یہ platform enterprise teams کے لیے تیار ہے جنہیں secure اور scalable conversational AI چاہیے۔' },
+      { q: 'کیا data secure ہے؟', a: 'سیکیورٹی platform design کا بنیادی حصہ ہے، جس میں protected infrastructure اور enterprise readiness شامل ہے۔' }
+    ]
+  },
+  ar: {
+    seoTitle: 'EngageAI by Pakdata | منصة ذكاء اصطناعي محادثي للمؤسسات',
+    seoDesc: 'EngageAI هي منصة ذكاء اصطناعي محادثي للمؤسسات تهدف إلى أتمتة خدمة العملاء والدعم وتوليد العملاء المحتملين وسير العمل التجاري.',
+    badge: 'ذكاء اصطناعي للمؤسسات',
+    heroTitle: 'EngageAI by Pakdata',
+    heroLead: 'ذكاء اصطناعي محادثي للمؤسسات للشركات الحديثة',
+    heroBody: 'EngageAI هي منصة ذكاء اصطناعي محادثي بمستوى مؤسسي تساعد المؤسسات على أتمتة تفاعل العملاء، وتقديم دعم ذكي، وتأهيل العملاء المحتملين، وتحسين الكفاءة التشغيلية.',
+    heroBody2: 'تم بناؤها لتكون قابلة للتوسع وآمنة وسهلة التكامل، وتمكن الشركات من تقديم تجارب مخصصة ومتاحة دائمًا عبر الويب والجوال والقنوات الرقمية.',
+    primaryCta: 'حدد موعدًا لعرض توضيحي',
+    secondaryCta: 'تواصل مع المبيعات',
+    trustTitle: 'موثوق للابتكار المؤسسي منذ 1978',
+    trustItems: ['خبرة في برمجيات المؤسسات', 'مشاريع حكومية ومؤسسية', 'ملايين المستخدمين حول العالم', 'تفاعل عملاء مدعوم بالذكاء الاصطناعي'],
+    problemTitle: 'توقعات العملاء الحديثة تتطلب أتمتة ذكية',
+    problemBody: 'يتوقع العملاء اليوم ردودًا فورية، وتفاعلات مخصصة، وتوفرًا على مدار الساعة، وتجارب رقمية سلسة. وتجد الأنظمة التقليدية صعوبة في مواكبة هذه المتطلبات على نطاق واسع.',
+    problemBody2: 'تساعد EngageAI الشركات على أتمتة المحادثات، وتبسيط التفاعلات، وتقديم دعم ذكي مدعوم بذكاء اصطناعي محادثي متقدم.',
+    featuresTitle: 'ميزات ذكاء اصطناعي جاهزة للمؤسسات',
+    features: [
+      { title: 'محادثات ذكية', body: 'تقديم تفاعلات طبيعية تشبه البشر مع فهم نية العميل والرد الفوري بدقة.' },
+      { title: 'دعم آلي 24/7', body: 'تقديم دعم مستمر للعملاء دون توقف عبر تفاعل دائم مدعوم بالذكاء الاصطناعي.' },
+      { title: 'تكامل سلس مع الأعمال', body: 'التكامل بسهولة مع المواقع وCRMs وERPs وأنظمة الدعم والأدوات الداخلية.' },
+      { title: 'توليد العملاء وتأهيلهم', body: 'جمع العملاء المحتملين وتأهيلهم وتوجيههم تلقائيًا لتحسين المبيعات.' },
+      { title: 'تواصل متعدد اللغات', body: 'دعم المستخدمين بعدة لغات لتوسيع الوصول والتأثير.' },
+      { title: 'تحليلات ومؤشرات أداء', body: 'مراقبة المحادثات ومقاييس التفاعل وسلوك العملاء وأداء الذكاء الاصطناعي عبر تحليلات متقدمة.' }
+    ],
+    industriesTitle: 'حلول ذكاء اصطناعي لكل صناعة',
+    industriesBody: 'تتكيف EngageAI مع بيئات الأعمال المختلفة وسير عمل التفاعل مع العملاء عبر عدة قطاعات.',
+    industries: ['البنوك والخدمات المالية', 'الرعاية الصحية', 'التعليم', 'التجارة الإلكترونية', 'الاتصالات', 'الحكومة', 'العقارات', 'الضيافة'],
+    benefitsTitle: 'لماذا تختار الشركات EngageAI',
+    benefits: ['تحسين رضا العملاء', 'خفض التكاليف التشغيلية', 'زيادة معدلات التحويل', 'تسريع أوقات الاستجابة', 'أتمتة المهام المتكررة', 'رفع إنتاجية الفريق'],
+    useCasesTitle: 'حالات استخدام عملية',
+    useCases: [
+      { title: 'أتمتة دعم العملاء', body: 'حل استفسارات العملاء فورًا مع تقليل عبء الدعم.' },
+      { title: 'مساعدة المبيعات', body: 'توجيه العملاء خلال المنتجات والتوصيات وخطوات الشراء.' },
+      { title: 'التقاط وتأهيل العملاء المحتملين', body: 'التعرف على العملاء ذوي النية العالية وجمع معلومات مفيدة تلقائيًا.' },
+      { title: 'أتمتة الدعم الداخلي', body: 'دعم فرق HR وIT والتأهيل والعمليات.' }
+    ],
+    securityTitle: 'أمان وموثوقية على مستوى المؤسسات',
+    securityBody: 'تم بناء EngageAI مع وضع الأمان وقابلية التوسع والاستقرار التشغيلي في صميمه. وتدعم المنصة البنية التحتية الآمنة، وحماية بيانات العملاء، والهندسة القابلة للتوسع، والموثوقية العالية، وجاهزية النشر المؤسسي.',
+    diffTitle: 'ما الذي يميز EngageAI',
+    diffItems: ['هندسة موجهة للمؤسسات', 'قدرات تكامل مخصصة', 'دعم ذكاء اصطناعي متعدد اللغات', 'عقود من الخبرة البرمجية'],
+    ctaTitle: 'هل أنت مستعد لتحويل تفاعل العملاء؟',
+    ctaBody: 'مكّن أعمالك من خلال ذكاء اصطناعي محادثي ذكي لأتمتة الدعم وتحسين التجربة ودفع النمو التشغيلي.',
+    finalContactTitle: 'تواصل معنا',
+    finalContactBody: 'حدّد موعدًا لعرض توضيحي مخصص واكتشف كيف يمكن لـ EngageAI دعم أهداف التفاعل مع العملاء والنمو.',
+    finalEmail: 'sales@pakdata.com',
+    finalPhone: '+92 21 111 111 111',
+    finalOffice: 'كراتشي، باكستان',
+    faqTitle: 'الأسئلة الشائعة',
+    faqs: [
+      { q: 'كيف تتكامل EngageAI؟', a: 'تم تصميم EngageAI للتكامل المرن مع المواقع والأنظمة الداخلية ضمن بيئات المؤسسات.' },
+      { q: 'هل تدعم اللغات المتعددة؟', a: 'نعم، تم تصميم EngageAI للتواصل متعدد اللغات مع العملاء.' },
+      { q: 'هل يوجد نشر مؤسسي؟', a: 'نعم، المنصة موجهة للفرق المؤسسية التي تحتاج ذكاءً اصطناعيًا محادثيًا آمنًا وقابلًا للتوسع.' },
+      { q: 'هل البيانات آمنة؟', a: 'الأمان جزء أساسي من التصميم، بما في ذلك البنية التحتية المحمية وجاهزية الحوكمة المؤسسية.' }
+    ]
+  }
+}[lang];
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="engage-hero">
+    <div class="container engage-hero-grid">
+      <div class="engage-copy">
+        <span class="badge badge-primary">{copy.badge}</span>
+        <h1 class="engage-title">{copy.heroTitle}</h1>
+        <p class="engage-lead">{copy.heroLead}</p>
+        <p class="engage-body">{copy.heroBody}</p>
+        <p class="engage-body">{copy.heroBody2}</p>
+        <div class="engage-cta-row">
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-lg">{copy.primaryCta}</a>
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-outline btn-lg">{copy.secondaryCta}</a>
+        </div>
+      </div>
+      <div class="engage-shell">
+        <div class="engage-panel card">
+          <div class="engage-panel-head">
+            <span class="panel-pill">{copy.badge}</span>
+            <strong>99.9%</strong>
+          </div>
+          <div class="engage-dashboard">
+            <div class="dash-card">24/7 AI support</div>
+            <div class="dash-card">Lead qualification</div>
+            <div class="dash-card">Multilingual chat</div>
+            <div class="dash-card">Analytics insights</div>
+          </div>
+          <div class="engage-flow">
+            <div class="flow-node">Website</div>
+            <div class="flow-node">EngageAI</div>
+            <div class="flow-node">CRM / Helpdesk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container trust-bar">
+      <span class="trust-label">{copy.trustTitle}</span>
+      <div class="trust-pills">
+        {copy.trustItems.map((item) => <span class="trust-pill">{item}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-grid dark-split">
+      <div class="split-copy">
+        <span class="badge badge-primary">Problem / Solution</span>
+        <h2 class="section-title">{copy.problemTitle}</h2>
+        <p class="body-copy">{copy.problemBody}</p>
+        <p class="body-copy">{copy.problemBody2}</p>
+      </div>
+      <div class="enterprise-card card">
+        <div class="enterprise-grid">
+          <div>Instant responses</div>
+          <div>Personalized interactions</div>
+          <div>24/7 availability</div>
+          <div>Seamless digital journeys</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Features</span>
+        <h2 class="section-title">{copy.featuresTitle}</h2>
+      </div>
+      <div class="feature-grid">
+        {copy.features.map((feature) => (
+          <article class="feature-card card">
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-grid reverse">
+      <div class="split-copy">
+        <span class="badge badge-primary">Industries</span>
+        <h2 class="section-title">{copy.industriesTitle}</h2>
+        <p class="body-copy">{copy.industriesBody}</p>
+        <div class="chip-grid">
+          {copy.industries.map((item) => <span class="chip">{item}</span>)}
+        </div>
+      </div>
+      <div class="benefit-card card">
+        <h3>{copy.benefitsTitle}</h3>
+        <div class="benefit-list">
+          {copy.benefits.map((item) => <div class="benefit-item">{item}</div>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Use Cases</span>
+        <h2 class="section-title">{copy.useCasesTitle}</h2>
+      </div>
+      <div class="usecase-grid">
+        {copy.useCases.map((item) => (
+          <article class="usecase-card card">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-grid">
+      <div class="split-copy">
+        <span class="badge badge-primary">Security</span>
+        <h2 class="section-title">{copy.securityTitle}</h2>
+        <p class="body-copy">{copy.securityBody}</p>
+      </div>
+      <div class="security-stack card">
+        {['Secure infrastructure', 'Protected customer data', 'Scalable architecture', 'Reliable uptime', 'Deployment readiness'].map((item) => <div class="stack-row">{item}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-grid reverse">
+      <div class="split-copy">
+        <span class="badge badge-primary">Differentiation</span>
+        <h2 class="section-title">{copy.diffTitle}</h2>
+        <div class="chip-grid">
+          {copy.diffItems.map((item) => <span class="chip">{item}</span>)}
+        </div>
+      </div>
+      <div class="cta-card card">
+        <span class="badge badge-primary">Enterprise</span>
+        <h3>{copy.ctaTitle}</h3>
+        <p>{copy.ctaBody}</p>
+        <div class="engage-cta-row">
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary">{copy.primaryCta}</a>
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-outline">{copy.secondaryCta}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">FAQ</span>
+        <h2 class="section-title">{copy.faqTitle}</h2>
+      </div>
+      <div class="faq-list">
+        {copy.faqs.map((faq, idx) => (
+          <details class="faq-item card" open={idx === 0}>
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-grid">
+      <div class="split-copy">
+        <span class="badge badge-primary">Contact</span>
+        <h2 class="section-title">{copy.finalContactTitle}</h2>
+        <p class="body-copy">{copy.finalContactBody}</p>
+      </div>
+      <div class="contact-card card">
+        <div><strong>Email</strong><p>{copy.finalEmail}</p></div>
+        <div><strong>Phone</strong><p>{copy.finalPhone}</p></div>
+        <div><strong>Office</strong><p>{copy.finalOffice}</p></div>
+        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary">{lang === 'en' ? 'Request a Demo' : copy.primaryCta}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .engage-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    color: var(--dark);
+    padding: 4.5rem 0 3.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .engage-hero-grid,
+  .split-grid {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .engage-hero-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(290px, .9fr);
+  }
+
+  .engage-copy .badge,
+  .engage-copy .engage-lead,
+  .engage-copy .engage-body,
+  .engage-title,
+  .section-title,
+  .body-copy,
+  .split-copy,
+  .cta-card,
+  .contact-card,
+  .benefit-card,
+  .enterprise-card,
+  .security-stack {
+    letter-spacing: 0;
+  }
+
+  .engage-title {
+    margin: .85rem 0 .85rem;
+    font-size: clamp(2.2rem, 3vw, 3rem);
+    line-height: 1.02;
+    color: var(--primary);
+  }
+
+  .engage-lead {
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: .9rem;
+  }
+
+  .engage-body {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    max-width: 46rem;
+    margin-bottom: .8rem;
+  }
+
+  .engage-cta-row,
+  .trust-pills,
+  .chip-grid,
+  .benefit-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+  }
+
+  .trust-bar {
+    margin-top: 1.75rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .trust-label {
+    text-transform: uppercase;
+    font-size: .78rem;
+    letter-spacing: .08em;
+    color: var(--secondary-dark);
+    font-weight: 700;
+  }
+
+  .trust-pill,
+  .chip,
+  .panel-pill,
+  .dash-card,
+  .flow-node,
+  .stack-row,
+  .benefit-item {
+    border-radius: 999px;
+    padding: .65rem .9rem;
+    background: rgba(255,255,255,.96);
+    border: 1px solid var(--border);
+    color: var(--dark);
+    font-weight: 600;
+  }
+
+  .engage-shell {
+    display: flex;
+    justify-content: center;
+  }
+
+  .engage-panel {
+    width: min(100%, 31rem);
+    padding: 1.25rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .engage-panel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--dark);
+    margin-bottom: 1rem;
+  }
+
+  .panel-pill {
+    background: var(--primary-light);
+    border-color: rgba(249,115,22,.2);
+    color: var(--primary);
+  }
+
+  .engage-dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .75rem;
+    margin-bottom: 1rem;
+  }
+
+  .dash-card {
+    border-radius: 1rem;
+    min-height: 5.2rem;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    background: var(--light-soft);
+  }
+
+  .engage-flow {
+    display: grid;
+    gap: .75rem;
+  }
+
+  .flow-node {
+    border-radius: .9rem;
+    text-align: center;
+  }
+
+  .split-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(260px, .95fr);
+  }
+
+  .dark-split .enterprise-card,
+  .cta-card,
+  .contact-card,
+  .benefit-card,
+  .security-stack {
+    background: #fff;
+    color: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .enterprise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .75rem;
+  }
+
+  .enterprise-grid div {
+    min-height: 5rem;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    border-radius: .9rem;
+    background: linear-gradient(180deg, #fff, #f8fafc);
+    color: var(--dark);
+    font-weight: 600;
+  }
+
+  .feature-grid,
+  .usecase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .feature-card,
+  .usecase-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .feature-card h3,
+  .usecase-card h3,
+  .benefit-card h3,
+  .cta-card h3 {
+    margin-bottom: .55rem;
+    font-size: 1.02rem;
+  }
+
+  .feature-card p,
+  .usecase-card p,
+  .benefit-card p,
+  .cta-card p,
+  .contact-card p,
+  .security-stack,
+  .faq-item p {
+    color: var(--secondary-dark);
+    line-height: 1.6;
+  }
+
+  .benefit-list {
+    display: grid;
+  }
+
+  .benefit-item {
+    background: var(--light-soft);
+    color: var(--dark);
+    border-color: var(--border);
+    border-radius: .8rem;
+  }
+
+  .security-stack {
+    display: grid;
+    gap: .75rem;
+  }
+
+  .stack-row {
+    color: var(--dark);
+    background: var(--light-soft);
+    border-color: var(--border);
+    border-radius: .8rem;
+    text-align: center;
+  }
+
+  .faq-list {
+    display: grid;
+    gap: .85rem;
+  }
+
+  .faq-item {
+    padding: 1rem 1.1rem;
+    border-radius: .9rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    color: var(--dark);
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item p {
+    margin-top: .75rem;
+  }
+
+  .contact-card {
+    display: grid;
+    gap: .75rem;
+  }
+
+  .contact-card strong {
+    display: block;
+    color: var(--dark);
+    margin-bottom: .2rem;
+  }
+
+  .split-copy .section-title,
+  .section-title {
+    color: var(--dark);
+  }
+
+  .section-bg {
+    background: linear-gradient(180deg, #fff, #f8fafc);
+  }
+
+  @media (max-width: 960px) {
+    .engage-hero-grid,
+    .split-grid,
+    .feature-grid,
+    .usecase-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .feature-grid,
+    .usecase-grid {
+      gap: .9rem;
+    }
+  }
+</style>

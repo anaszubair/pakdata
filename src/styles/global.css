@@ -215,7 +215,7 @@ select {
 }
 
 .btn-lg {
-  padding: 1rem 2.25rem;
+  padding: 0.5rem 2rem;
   font-size: calc(1.125rem * var(--text-scale, 1));
 }
 

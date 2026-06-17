@@ -1,0 +1,13 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import FaqLanding from '../../components/FaqLanding.astro';
+---
+
+<FaqLanding />

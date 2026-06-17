@@ -1,0 +1,308 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: {
+    seoTitle: 'FAQ - Frequently Asked Questions',
+    seoDesc: 'Find quick answers about PDMS apps, support, downloads, and product usage.',
+    heroBadge: 'FAQ',
+    heroTitle: 'Frequently Asked Questions',
+    heroBody: 'Quick answers to common questions about our apps, support options, and product experience.',
+    topicsTitle: 'Popular Topics',
+    topics: ['Downloads', 'Offline use', 'Support', 'Purchases', 'Languages', 'Webview'],
+    faqsTitle: 'Common Questions',
+    faqs: [
+      {
+        q: 'How do I contact PDMS support?',
+        a: 'You can reach us through the Support page or email support@pakdata.com for product help, technical questions, and account guidance.'
+      },
+      {
+        q: 'Which apps are available from PDMS?',
+        a: 'Our product family includes Quran Majeed, Quran Pak, Hadith App, 3D Salah Guide, Easy Urdu, Kitabi, QuranExplorer, and more.'
+      },
+      {
+        q: 'Do the apps work offline?',
+        a: 'Many reading and learning features work offline after content has been downloaded. Availability depends on the specific product and asset type.'
+      },
+      {
+        q: 'Are Urdu and Arabic supported?',
+        a: 'Yes. Several PDMS products include Urdu and Arabic interfaces, content, or fonts depending on the app.'
+      }
+    ],
+    ctaTitle: 'Need a more detailed answer?',
+    ctaBody: 'Visit Support for app-specific FAQs, troubleshooting steps, and contact options.',
+    ctaPrimary: 'Go to Support',
+    ctaSecondary: 'Contact Us'
+  },
+  ur: {
+    seoTitle: 'FAQ - اکثر پوچھے جانے والے سوالات',
+    seoDesc: 'PDMS ایپس، سپورٹ، ڈاؤن لوڈز اور پروڈکٹ استعمال کے بارے میں فوری جوابات حاصل کریں۔',
+    heroBadge: 'FAQ',
+    heroTitle: 'اکثر پوچھے جانے والے سوالات',
+    heroBody: 'ہماری ایپس، سپورٹ آپشنز اور پروڈکٹ تجربے کے بارے میں عام سوالات کے فوری جوابات۔',
+    topicsTitle: 'مقبول موضوعات',
+    topics: ['ڈاؤن لوڈز', 'آف لائن استعمال', 'سپورٹ', 'خریداری', 'زبانیں', 'ویب ویو'],
+    faqsTitle: 'عام سوالات',
+    faqs: [
+      {
+        q: 'میں PDMS سپورٹ سے کیسے رابطہ کروں؟',
+        a: 'آپ Support page کے ذریعے یا support@pakdata.com پر ای میل کر کے پروڈکٹ ہیلپ، تکنیکی سوالات اور اکاؤنٹ رہنمائی حاصل کر سکتے ہیں۔'
+      },
+      {
+        q: 'PDMS کی کون سی ایپس دستیاب ہیں؟',
+        a: 'ہماری پروڈکٹ رینج میں Quran Majeed، Quran Pak، Hadith App، 3D Salah Guide، Easy Urdu، Kitabi، QuranExplorer اور مزید شامل ہیں۔'
+      },
+      {
+        q: 'کیا ایپس آف لائن چلتی ہیں؟',
+        a: 'بہت سی ریڈنگ اور لرننگ خصوصیات مواد ڈاؤن لوڈ ہونے کے بعد آف لائن بھی کام کرتی ہیں۔ یہ پروڈکٹ کے لحاظ سے مختلف ہو سکتا ہے۔'
+      },
+      {
+        q: 'کیا اردو اور عربی سپورٹ موجود ہے؟',
+        a: 'جی ہاں۔ کئی PDMS پروڈکٹس میں اردو اور عربی انٹرفیس، مواد یا فونٹس موجود ہیں، ایپ کے مطابق۔'
+      }
+    ],
+    ctaTitle: 'مزید تفصیلی جواب چاہیے؟',
+    ctaBody: 'ایپ مخصوص FAQ، مسئلہ حل کرنے کے مراحل، اور رابطہ آپشنز کے لیے Support دیکھیں۔',
+    ctaPrimary: 'سپورٹ پر جائیں',
+    ctaSecondary: 'ہم سے رابطہ کریں'
+  },
+  ar: {
+    seoTitle: 'FAQ - الأسئلة الشائعة',
+    seoDesc: 'اعثر على إجابات سريعة حول تطبيقات PDMS والدعم والتنزيلات واستخدام المنتجات.',
+    heroBadge: 'FAQ',
+    heroTitle: 'الأسئلة الشائعة',
+    heroBody: 'إجابات سريعة على الأسئلة المتكررة حول تطبيقاتنا وخيارات الدعم وتجربة المنتجات.',
+    topicsTitle: 'مواضيع شائعة',
+    topics: ['التنزيلات', 'الاستخدام دون اتصال', 'الدعم', 'المشتريات', 'اللغات', 'وضع Webview'],
+    faqsTitle: 'أسئلة شائعة',
+    faqs: [
+      {
+        q: 'كيف أتواصل مع دعم PDMS؟',
+        a: 'يمكنك التواصل عبر صفحة Support أو عبر البريد support@pakdata.com للحصول على المساعدة التقنية وإرشاد الحساب.'
+      },
+      {
+        q: 'ما التطبيقات المتوفرة من PDMS؟',
+        a: 'تشمل مجموعة منتجاتنا Quran Majeed وQuran Pak وHadith App و3D Salah Guide وEasy Urdu وKitabi وQuranExplorer وغيرها.'
+      },
+      {
+        q: 'هل تعمل التطبيقات دون اتصال؟',
+        a: 'تعمل العديد من ميزات القراءة والتعلّم دون اتصال بعد تنزيل المحتوى، ويختلف ذلك حسب المنتج ونوع المحتوى.'
+      },
+      {
+        q: 'هل تدعم المنتجات الأردية والعربية؟',
+        a: 'نعم. تتضمن عدة منتجات من PDMS واجهات أو محتوى أو خطوطًا باللغة الأردية والعربية حسب التطبيق.'
+      }
+    ],
+    ctaTitle: 'تحتاج إجابة أكثر تفصيلًا؟',
+    ctaBody: 'زر صفحة Support لأسئلة التطبيق المحددة وخطوات استكشاف الأخطاء وخيارات التواصل.',
+    ctaPrimary: 'اذهب إلى الدعم',
+    ctaSecondary: 'اتصل بنا'
+  }
+}[lang];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: copy.faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.a
+    }
+  }))
+};
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+  <section class="faq-hero section-bg">
+    <div class="container faq-hero-grid">
+      <div class="faq-hero-copy">
+        <span class="badge badge-primary">{copy.heroBadge}</span>
+        <h1 class="faq-title">{copy.heroTitle}</h1>
+        <p class="faq-lead">{copy.heroBody}</p>
+        <div class="faq-topic-row" aria-label={copy.topicsTitle}>
+          {copy.topics.map((topic) => <span class="topic-pill">{topic}</span>)}
+        </div>
+      </div>
+      <div class="faq-hero-panel card">
+        <p class="panel-label">{copy.topicsTitle}</p>
+        <div class="panel-grid">
+          {copy.topics.map((topic) => <div class="panel-chip">{topic}</div>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container faq-wrap">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.heroBadge}</span>
+        <h2 class="section-title">{copy.faqsTitle}</h2>
+      </div>
+      <div class="faq-grid">
+        {copy.faqs.map((faq, idx) => (
+          <details class="faq-card card" open={idx === 0}>
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container faq-cta">
+      <div>
+        <span class="badge badge-primary">Support</span>
+        <h2 class="section-title">{copy.ctaTitle}</h2>
+        <p class="faq-body">{copy.ctaBody}</p>
+      </div>
+      <div class="faq-cta-actions">
+        <a href={getRelativeLocaleUrl(lang, '/support')} class="btn btn-primary">{copy.ctaPrimary}</a>
+        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-outline">{copy.ctaSecondary}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .faq-hero {
+    padding: 4.5rem 0 3rem;
+    background: radial-gradient(at 20% 0%,oklch(97% .04 60) 0%,transparent 50%),radial-gradient(at 80% 20%,oklch(96% .03 220) 0%,transparent 50%),linear-gradient(180deg,#fefbf8,#fff);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .faq-title {
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.05;
+    margin: .85rem 0 1rem;
+    letter-spacing: 0;
+    color: var(--dark);
+  }
+
+  .faq-lead,
+  .faq-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--secondary-dark);
+    max-width: 42rem;
+  }
+
+  .faq-topic-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin-top: 1rem;
+  }
+
+  .topic-pill,
+  .panel-chip {
+    padding: .6rem .85rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,.9);
+    border: 1px solid var(--border);
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .faq-hero-panel {
+    padding: 1.25rem;
+    background: rgba(255,255,255,.92);
+  }
+
+  .panel-label {
+    margin: 0 0 .9rem;
+    font-weight: 700;
+    color: var(--secondary-dark);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: .82rem;
+  }
+
+  .panel-grid,
+  .faq-grid {
+    display: grid;
+    gap: .85rem;
+  }
+
+  .panel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .faq-wrap {
+    max-width: 60rem;
+  }
+
+  .faq-card {
+    border-radius: .75rem;
+    padding: 1rem 1.1rem;
+    background: rgba(255,255,255,.98);
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 28px rgba(15,23,42,.05);
+  }
+
+  .faq-card summary {
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    color: var(--dark);
+  }
+
+  .faq-card summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-card p {
+    margin-top: .85rem;
+    color: var(--secondary-dark);
+    line-height: 1.6;
+  }
+
+  .faq-cta {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) auto;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .faq-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 900px) {
+    .faq-hero-grid,
+    .faq-cta {
+      grid-template-columns: 1fr;
+    }
+
+    .faq-cta-actions {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .panel-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .faq-title {
+      font-size: clamp(1.8rem, 8vw, 2.5rem);
+    }
+  }
+</style>
