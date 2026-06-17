@@ -1,0 +1,551 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: {
+    seoTitle: 'Quran Majeed for Mac - Authentic Quran App for Apple Macintosh',
+    seoDesc: 'Quran Majeed for Mac offers authentic Quran reading with Uthmanic script, complete Surah Al-Baqarah, audio recitations, and translations on Apple Macintosh.',
+    badge: 'Quran Majeed Mac',
+    title: 'Quran Majeed for Mac',
+    lead: 'Quran Majeed is an amazing Quran app that beautifies your life with the blessing of reading and listening to the Quran on your Mac.',
+    body: 'The latest version of the authentic Quran Majeed app for Apple Macintosh offers complete Surah Al-Baqarah in the elegant Uthmanic script proofread by a Muslim scholar, multiple audio recitations, and translations for a graceful desktop Quran experience.',
+    primaryCta: 'Contact Us',
+    secondaryCta: 'Explore Features',
+    trust: ['Apple Macintosh', 'Uthmanic script', 'Audio recitations', 'Translations', 'Scholar proofread'],
+    overviewTitle: 'Authentic Quran Reading on Mac',
+    overviewBody: 'This desktop edition is designed for users who want a calm and refined Quran reading experience on Apple Macintosh. It combines accurate Arabic text rendering with recitations and translation support so the Quran can be read and listened to comfortably on a larger screen.',
+    featuresTitle: 'Features Designed for Mac Users',
+    features: [
+      { title: 'Complete Surah Al-Baqarah', body: 'Read a complete Surah Al-Baqarah presentation in elegant Uthmanic script with careful proofreading.' },
+      { title: 'Multiple Audio Recitations', body: 'Listen to multiple Quran recitations while moving through the text at a comfortable desktop pace.' },
+      { title: 'Translations', body: 'Study the meaning with translation support designed to make reading and reflection easier.' },
+      { title: 'Mac-Friendly Reading', body: 'Enjoy a stable desktop reading layout that feels natural on Apple Macintosh screens.' }
+    ],
+    scriptTitle: 'Uthmanic Script With Careful Review',
+    scriptBody: 'The font and layout are designed to stay close to Quranic tradition while remaining highly legible on modern Mac displays. It is proofread by a Muslim scholar so users can read with confidence and clarity.',
+    visualTitle: 'Desktop App Showcase',
+    visualBody: 'The product presentation highlights the Mac environment and the Quran Majeed reading screen so the app feels native to Apple users.',
+    whyTitle: 'Why This Version Matters',
+    whyBody: 'For users who prefer reading on a desktop, Quran Majeed for Mac brings the same trust, reverence, and clarity of the mobile experience into a larger workstation-friendly format.',
+    whyItems: [
+      'Beautiful Quran display on Mac',
+      'Authentic reading experience',
+      'Audio and translation support',
+      'Ideal for long reading sessions',
+      'Designed for Apple Macintosh users'
+    ],
+    finalTitle: 'Read the Quran Comfortably on Mac',
+    finalBody: 'Experience an authentic and elegant Quran app made for Apple Macintosh with the script, recitations, and translations you need for focused reading.',
+    contact: 'Contact Us',
+    explore: 'Explore Features',
+    footerDesc: 'Quran Majeed for Mac offers authentic Quran reading with Uthmanic script, complete Surah Al-Baqarah, audio recitations, and translations on Apple Macintosh.'
+  },
+  ur: {
+    seoTitle: 'قرآن مجید برائے میک - ایپل میکنٹوش کے لیے مستند قرآن ایپ',
+    seoDesc: 'قرآن مجید برائے میک مستند قرآنی مطالعہ فراہم کرتا ہے جس میں عثمانی رسم الخط، مکمل سورہ البقرہ، آڈیو تلاوتیں اور تراجم شامل ہیں۔',
+    badge: 'قرآن مجید میک',
+    title: 'قرآن مجید برائے میک',
+    lead: 'قرآن مجید ایک خوبصورت قرآن ایپ ہے جو آپ کی زندگی کو اپنے میک پر قرآن پڑھنے اور سننے کی برکت سے مزین کرتی ہے۔',
+    body: 'ایپل میکنٹوش کے لیے قرآن مجید کا جدید ترین ورژن مکمل سورۃ البقرہ کو خوبصورت عثمانی رسم الخط میں پیش کرتا ہے، جس کی پروف ریڈنگ ایک مسلمان عالم نے کی ہے، ساتھ میں متعدد آڈیو تلاوتیں اور تراجم بھی شامل ہیں۔',
+    primaryCta: 'ہم سے رابطہ کریں',
+    secondaryCta: 'خصوصیات دیکھیں',
+    trust: ['Apple Macintosh', 'عثمانی رسم الخط', 'آڈیو تلاوتیں', 'تراجم', 'عالمی پروف ریڈنگ'],
+    overviewTitle: 'میک پر مستند قرآنی مطالعہ',
+    overviewBody: 'یہ ڈیسک ٹاپ ایڈیشن ان صارفین کے لیے بنایا گیا ہے جو ایپل میکنٹوش پر ایک پُرسکون اور خوبصورت قرآنی تجربہ چاہتے ہیں۔ اس میں درست عربی متن، تلاوتیں اور ترجمہ سپورٹ شامل ہے تاکہ بڑی اسکرین پر آرام سے قرآن پڑھا اور سنا جا سکے۔',
+    featuresTitle: 'میک صارفین کے لیے خصوصیات',
+    features: [
+      { title: 'مکمل سورۃ البقرہ', body: 'خوبصورت عثمانی رسم الخط میں مکمل سورۃ البقرہ کا مطالعہ کریں۔' },
+      { title: 'متعدد آڈیو تلاوتیں', body: 'متعدد قراء کی تلاوتیں سنیں اور متن کے ساتھ آرام سے آگے بڑھیں۔' },
+      { title: 'تراجم', body: 'معنی سمجھنے اور تدبر کے لیے ترجمہ سپورٹ حاصل کریں۔' },
+      { title: 'میک فرینڈلی مطالعہ', body: 'ایپل میکنٹوش اسکرین کے لیے موزوں اور پُرسکون ڈیسک ٹاپ لے آؤٹ سے لطف اٹھائیں۔' }
+    ],
+    scriptTitle: 'عثمانی رسم الخط اور محتاط پروف ریڈنگ',
+    scriptBody: 'فونٹ اور لے آؤٹ قرآنی روایت کے قریب رکھے گئے ہیں اور جدید میک ڈسپلے پر بھی صاف اور واضح نظر آتے ہیں۔ اس کی پروف ریڈنگ ایک مسلمان عالم نے کی ہے تاکہ صارفین اعتماد کے ساتھ مطالعہ کر سکیں۔',
+    visualTitle: 'ڈیسک ٹاپ ایپ کا منظر',
+    visualBody: 'پروڈکٹ پریزنٹیشن میک ماحول اور قرآن مجید کے مطالعہ اسکرین کو نمایاں کرتی ہے تاکہ ایپ ایپل صارفین کے لیے فطری محسوس ہو۔',
+    whyTitle: 'یہ ورژن کیوں اہم ہے',
+    whyBody: 'جو صارفین ڈیسک ٹاپ پر قرآن پڑھنا پسند کرتے ہیں، ان کے لیے قرآن مجید برائے میک موبائل تجربے کا وہی اعتماد، احترام اور وضاحت بڑی ورک سٹیشن اسکرین پر لاتا ہے۔',
+    whyItems: [
+      'میک پر خوبصورت قرآن ڈسپلے',
+      'مستند مطالعہ تجربہ',
+      'آڈیو اور ترجمہ سپورٹ',
+      'لمبے مطالعے کے لیے موزوں',
+      'ایپل میکنٹوش صارفین کے لیے تیار'
+    ],
+    finalTitle: 'میک پر قرآنِ مجید آرام سے پڑھیں',
+    finalBody: 'ایپل میکنٹوش کے لیے بنایا گیا ایک مستند اور خوبصورت قرآن ایپ تجربہ حاصل کریں جس میں درست رسم الخط، تلاوتیں اور تراجم شامل ہیں۔',
+    contact: 'ہم سے رابطہ کریں',
+    explore: 'خصوصیات دیکھیں',
+    footerDesc: 'قرآن مجید برائے میک ایپل میکنٹوش پر مستند قرآنی مطالعہ، عثمانی رسم الخط، مکمل سورہ البقرہ، آڈیو تلاوتیں اور تراجم فراہم کرتا ہے۔'
+  },
+  ar: {
+    seoTitle: 'القرآن المجيد للماك - تطبيق قرآن أصيل لأجهزة Apple Macintosh',
+    seoDesc: 'يوفر القرآن المجيد للماك قراءة قرآنية أصيلة بخط عثماني، وسورة البقرة كاملة، وتلاوات صوتية وترجمات على Apple Macintosh.',
+    badge: 'القرآن المجيد للماك',
+    title: 'القرآن المجيد للماك',
+    lead: 'القرآن المجيد هو تطبيق قرآن رائع يجمّل حياتك بنعمة قراءة القرآن والاستماع إليه على جهاز الماك.',
+    body: 'يوفر أحدث إصدار من تطبيق القرآن المجيد الأصيل لأجهزة Apple Macintosh سورة البقرة كاملة بالخط العثماني الأنيق، تمت مراجعته من قبل عالم مسلم، مع تلاوات صوتية متعددة وترجمات لتجربة قرآنية مكتبية راقية.',
+    primaryCta: 'اتصل بنا',
+    secondaryCta: 'استكشف الميزات',
+    trust: ['Apple Macintosh', 'الخط العثماني', 'تلاوات صوتية', 'ترجمات', 'مراجعة عالم'],
+    overviewTitle: 'قراءة قرآنية أصيلة على الماك',
+    overviewBody: 'تم تصميم هذا الإصدار المكتبي للمستخدمين الذين يرغبون في تجربة قراءة قرآنية هادئة وراقية على Apple Macintosh. يجمع بين عرض النص العربي الدقيق ودعم التلاوات والترجمات حتى يمكن قراءة القرآن والاستماع إليه براحة على شاشة كبيرة.',
+    featuresTitle: 'ميزات مصممة لمستخدمي الماك',
+    features: [
+      { title: 'سورة البقرة كاملة', body: 'اقرأ عرضًا كاملًا لسورة البقرة بالخط العثماني الأنيق مع مراجعة دقيقة.' },
+      { title: 'تلاوات صوتية متعددة', body: 'استمع إلى عدة تلاوات للقرآن أثناء التنقل في النص بوتيرة مريحة على سطح المكتب.' },
+      { title: 'ترجمات', body: 'ادرس المعنى عبر دعم الترجمة المصمم لتسهيل القراءة والتأمل.' },
+      { title: 'قراءة مناسبة للماك', body: 'استمتع بتخطيط قراءة مكتبي ثابت وطبيعي على شاشات Apple Macintosh.' }
+    ],
+    scriptTitle: 'خط عثماني مع مراجعة دقيقة',
+    scriptBody: 'تم تصميم الخط والتخطيط ليبقيا قريبين من تقاليد المصحف مع وضوح عالٍ على شاشات الماك الحديثة. وقد تمت مراجعته من قبل عالم مسلم ليقرأ المستخدم بثقة ووضوح.',
+    visualTitle: 'عرض التطبيق المكتبي',
+    visualBody: 'تسلط واجهة العرض الضوء على بيئة الماك وشاشة القراءة في القرآن المجيد ليبدو التطبيق طبيعيًا لمستخدمي Apple.',
+    whyTitle: 'لماذا هذا الإصدار مهم',
+    whyBody: 'للمستخدمين الذين يفضلون القراءة على سطح المكتب، ينقل القرآن المجيد للماك نفس الثقة والوقار والوضوح من تجربة الهاتف إلى تنسيق مناسب للعمل على شاشة أكبر.',
+    whyItems: [
+      'عرض قرآني جميل على الماك',
+      'تجربة قراءة أصيلة',
+      'دعم التلاوة والترجمة',
+      'مناسب لجلسات القراءة الطويلة',
+      'مصمم لمستخدمي Apple Macintosh'
+    ],
+    finalTitle: 'اقرأ القرآن براحة على الماك',
+    finalBody: 'استمتع بتجربة تطبيق قرآن أصيل وأنيق مصمم لـ Apple Macintosh مع الخط والتلاوات والترجمات التي تحتاجها للقراءة المركّزة.',
+    contact: 'اتصل بنا',
+    explore: 'استكشف الميزات',
+    footerDesc: 'يوفر القرآن المجيد للماك قراءة قرآنية أصيلة بخط عثماني، وسورة البقرة كاملة، وتلاوات صوتية وترجمات على Apple Macintosh.'
+  }
+}[lang];
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="mac-hero">
+    <div class="container mac-grid">
+      <div class="mac-copy">
+        <span class="badge badge-primary">{copy.badge}</span>
+        <h1 class="mac-title">{copy.title}</h1>
+        <p class="mac-lead">{copy.lead}</p>
+        <p class="mac-body">{copy.body}</p>
+
+        <div class="mac-trust">
+          {copy.trust.map((item) => (
+            <span class="chip">{item}</span>
+          ))}
+        </div>
+
+        <div class="mac-actions">
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-lg">{copy.primaryCta}</a>
+          <a href="#mac-features" class="btn btn-outline btn-lg">{copy.secondaryCta}</a>
+        </div>
+      </div>
+
+      <div class="mac-visual card">
+        <div class="mac-frame">
+          <img src="/images/qm-mac.png" alt="Apple Macintosh product visual" class="mac-device" />
+          <img src="/images/Mac.png" alt="Quran Majeed Mac app screenshot" class="mac-screen" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-layout">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.overviewTitle}</span>
+        <h2 class="section-title">{copy.overviewTitle}</h2>
+        <p class="body-copy">{copy.overviewBody}</p>
+      </div>
+      <div class="info-grid card">
+        <div class="info-row">
+          <span class="info-kicker">Platform</span>
+          <strong>Apple Macintosh</strong>
+        </div>
+        <div class="info-row">
+          <span class="info-kicker">Script</span>
+          <strong>Uthmanic Arabic</strong>
+        </div>
+        <div class="info-row">
+          <span class="info-kicker">Content</span>
+          <strong>Surah Al-Baqarah, recitations, translations</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg" id="mac-features">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.featuresTitle}</span>
+        <h2 class="section-title">{copy.featuresTitle}</h2>
+      </div>
+
+      <div class="feature-grid">
+        {copy.features.map((feature) => (
+          <article class="feature-card card">
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-layout reverse">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.scriptTitle}</span>
+        <h2 class="section-title">{copy.scriptTitle}</h2>
+        <p class="body-copy">{copy.scriptBody}</p>
+      </div>
+      <div class="visual-stack">
+        <img src="/images/qm-mac.png" alt="Quran Majeed Mac screenshot" class="stack-shot" />
+        <img src="/images/Mac.png" alt="Mac product illustration" class="stack-frame" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-layout">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.whyTitle}</span>
+        <h2 class="section-title">{copy.whyTitle}</h2>
+        <p class="body-copy">{copy.whyBody}</p>
+      </div>
+      <div class="list-panel card">
+        <h3 class="panel-title">Why it stands out</h3>
+        <ul class="check-list">
+          {copy.whyItems.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section mac-cta">
+    <div class="container text-center text-white">
+      <h2 class="cta-title">{copy.finalTitle}</h2>
+      <p class="cta-desc">{copy.finalBody}</p>
+      <div class="cta-actions">
+        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-lg btn-white-text">{copy.primaryCta}</a>
+        <a href="#mac-features" class="btn btn-outline btn-lg btn-white-text">{copy.secondaryCta}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .mac-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    border-bottom: 1px solid var(--border);
+    padding: 4.5rem 0 4rem;
+  }
+
+  .mac-grid,
+  .split-layout {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .split-layout.reverse {
+    grid-template-columns: .95fr 1.05fr;
+  }
+
+  .mac-title {
+    font-size: clamp(2.2rem, 3vw, 3rem);
+    line-height: 1.05;
+    font-weight: 700;
+    color: var(--primary);
+    margin: .9rem 0 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .mac-lead,
+  .mac-body,
+  .body-copy {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    font-size: calc(1.02rem * var(--text-scale, 1));
+  }
+
+  .mac-body {
+    margin-top: .9rem;
+  }
+
+  .mac-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin: 1.3rem 0 1.4rem;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.35rem;
+    padding: .45rem .85rem;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--dark);
+    font-weight: 700;
+    font-size: .86rem;
+  }
+
+  .mac-actions,
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .9rem;
+    margin-top: 1.3rem;
+  }
+
+  .mac-visual,
+  .info-grid,
+  .list-panel {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1.2rem;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+
+  .mac-visual {
+    padding: 1rem;
+  }
+
+  .mac-frame {
+    position: relative;
+    min-height: 28rem;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.96));
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .mac-device {
+    display: block;
+    width: min(100%, 34rem);
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 25px 40px rgba(15,23,42,.12));
+  }
+
+  .mac-screen {
+    position: absolute;
+    width: min(46%, 18rem);
+    height: auto;
+    object-fit: contain;
+    right: 8%;
+    bottom: 8%;
+    border-radius: 1rem;
+    box-shadow: 0 20px 40px rgba(15,23,42,.16);
+    border: 1px solid rgba(15,23,42,.08);
+    background: #fff;
+  }
+
+  .section-title {
+    font-size: clamp(1.65rem, 2.8vw, 2.65rem);
+    line-height: 1.12;
+    margin: .7rem 0 .9rem;
+    color: var(--dark);
+  }
+
+  .section-copy-block {
+    max-width: 42rem;
+  }
+
+  .section-title-wrap.tight {
+    margin-bottom: 1.3rem;
+  }
+
+  .info-grid,
+  .list-panel {
+    padding: 1.3rem;
+  }
+
+  .info-row {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .info-kicker {
+    display: block;
+    font-size: .76rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--primary);
+    margin-bottom: .35rem;
+  }
+
+  .info-row strong {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--dark);
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .feature-card {
+    padding: 1.25rem;
+  }
+
+  .feature-card h3,
+  .panel-title {
+    font-size: 1.05rem;
+    line-height: 1.35;
+    color: var(--dark);
+    margin-bottom: .65rem;
+  }
+
+  .feature-card p {
+    color: var(--secondary-dark);
+    line-height: 1.6;
+  }
+
+  .visual-stack {
+    position: relative;
+    min-height: 28rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1.2rem;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+
+  .stack-shot {
+    position: absolute;
+    width: 68%;
+    left: 8%;
+    top: 10%;
+    border-radius: 1rem;
+    box-shadow: 0 20px 40px rgba(15,23,42,.16);
+    border: 1px solid rgba(15,23,42,.08);
+    background: #fff;
+  }
+
+  .stack-frame {
+    position: absolute;
+    width: 52%;
+    right: 6%;
+    bottom: 8%;
+    border-radius: 1rem;
+    box-shadow: 0 20px 40px rgba(15,23,42,.14);
+    border: 1px solid rgba(15,23,42,.08);
+    background: #fff;
+  }
+
+  .check-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: .8rem;
+  }
+
+  .check-list li {
+    position: relative;
+    padding-inline-start: 1.35rem;
+    color: var(--secondary-dark);
+    line-height: 1.55;
+  }
+
+  .check-list li::before {
+    content: '•';
+    position: absolute;
+    inset-inline-start: 0;
+    color: var(--primary);
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .mac-cta {
+    background: linear-gradient(135deg, var(--dark) 0%, #1d2433 100%);
+    color: white;
+  }
+
+  .cta-title {
+    font-size: clamp(1.75rem, 3vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: .8rem;
+  }
+
+  .cta-desc {
+    max-width: 44rem;
+    margin: 0 auto;
+    color: rgba(255,255,255,.84);
+    line-height: 1.7;
+  }
+
+  .btn-white-text {
+    color: white;
+  }
+
+  @media (max-width: 1024px) {
+    .mac-grid,
+    .split-layout,
+    .split-layout.reverse,
+    .feature-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .mac-frame,
+    .visual-stack {
+      min-height: 22rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .mac-hero {
+      padding: 3.5rem 0 3rem;
+    }
+
+    .mac-title {
+      max-width: none;
+    }
+
+    .mac-actions,
+    .cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .mac-screen {
+      width: 56%;
+    }
+
+    .stack-shot {
+      width: 74%;
+      left: 4%;
+    }
+
+    .stack-frame {
+      width: 58%;
+      right: 4%;
+    }
+  }
+</style>

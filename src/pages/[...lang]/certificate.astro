@@ -1,0 +1,75 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: { title: 'Quran Majeed Certificates' },
+  ur: { title: 'قرآن مجید سرٹیفکیٹس' },
+  ar: { title: 'شهادات القرآن المجيد' }
+}[lang];
+
+const certificates = [
+  { src: '/images/certificates/QuranEngDrMohsinCertificate.gif', alt: 'Quran Majeed certificate for English Dr Mohsin' },
+  { src: '/images/certificates/QuranEngPickthalCertificate.gif', alt: 'Quran Majeed certificate for English Pickthal' },
+  { src: '/images/certificates/QuranEngAbdullahYousufCertificate.gif', alt: 'Quran Majeed certificate for English Abdullah Yousuf' },
+  { src: '/images/certificates/QuranArabicTextCorrectCertificate.gif', alt: 'Quran Majeed Arabic text correctness certificate' }
+];
+---
+
+<Layout title={copy.title} description={copy.title}>
+  <section class="certs-page" aria-label={copy.title}>
+    <div class="container certs-grid">
+      {certificates.map((certificate) => (
+        <figure class="cert-card card">
+          <img src={certificate.src} alt={certificate.alt} class="cert-image" loading="eager" />
+        </figure>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .certs-page {
+    padding: 1.25rem 0 2rem;
+    background: #fff;
+  }
+
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .cert-card {
+    margin: 0;
+    padding: .75rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .cert-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: .6rem;
+    object-fit: contain;
+  }
+
+  @media (max-width: 720px) {
+    .certs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

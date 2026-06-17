@@ -8,7 +8,7 @@ export function getStaticPaths() {
   ];
 }
 import Layout from '../../../layouts/Layout.astro';
-import { getLangFromUrl } from '../../../i18n/utils';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -61,6 +61,9 @@ const copy = {
     dailyBody: 'Whether you are reading the Quran, listening to recitations, tracking prayer timings, or learning through tafsir and translations, Quran Majeed helps you stay connected with your faith anytime and anywhere.',
     videoTitle: 'Learn More with Video Guides',
     videoBody: 'Explore tutorials, feature walkthroughs, and helpful guides to get the most out of your Quran Majeed experience.',
+    certificateTitle: 'Certificates and Script Verification',
+    certificateBody: 'View the certification set for Quran Majeed, including Arabic text correctness and translation proofs, to see the care behind the app’s Quran text presentation.',
+    certificateCta: 'View Certificates',
     reviewsTitle: 'What Users Say',
     reviews: [
       { quote: 'One of the best Quran apps I have ever used.', name: 'Ayesha', meta: 'App Store review' },
@@ -130,6 +133,9 @@ const copy = {
     dailyBody: 'چاہے آپ قرآن پڑھ رہے ہوں، تلاوت سن رہے ہوں، نماز کے اوقات ٹریک کر رہے ہوں، یا تفسیر و تراجم سے سیکھ رہے ہوں، قرآن مجید آپ کو ہر وقت اور ہر جگہ اپنے ایمان سے جوڑے رکھتا ہے۔',
     videoTitle: 'ویڈیو گائیڈز کے ساتھ مزید جانیں',
     videoBody: 'ٹیوٹوریلز، فیچر واک تھروز اور مددگار گائیڈز دریافت کریں تاکہ آپ اپنے قرآن مجید تجربے سے زیادہ سے زیادہ فائدہ اٹھا سکیں۔',
+    certificateTitle: 'سرٹیفکیٹس اور رسم الخط کی توثیق',
+    certificateBody: 'قرآن مجید کے سرٹیفکیٹس دیکھیں، جن میں عربی متن کی درستگی اور ترجمہ پروف شامل ہیں، تاکہ ایپ کے قرآنی متن کی تیاری میں موجود احتیاط کو سمجھا جا سکے۔',
+    certificateCta: 'سرٹیفکیٹس دیکھیں',
     reviewsTitle: 'صارفین کی رائے',
     reviews: [
       { quote: 'میں نے استعمال کی ہوئی بہترین قرآن ایپس میں سے ایک۔', name: 'عائشہ', meta: 'ایپ اسٹور ریویو' },
@@ -199,6 +205,9 @@ const copy = {
     dailyBody: 'سواء كنت تقرأ القرآن أو تستمع للتلاوات أو تتابع أوقات الصلاة أو تتعلم من خلال التفسير والترجمات، يساعدك القرآن المجيد على البقاء قريبًا من إيمانك في أي وقت وأي مكان.',
     videoTitle: 'تعرّف أكثر عبر الأدلة المرئية',
     videoBody: 'استكشف الشروحات والميزات والإرشادات المفيدة للحصول على أفضل تجربة ممكنة مع القرآن المجيد.',
+    certificateTitle: 'الشهادات والتحقق من النص',
+    certificateBody: 'اطّلع على مجموعة شهادات القرآن المجيد، بما في ذلك إثبات صحة النص العربي والترجمات، لتتعرف على مستوى العناية في عرض النص القرآني داخل التطبيق.',
+    certificateCta: 'عرض الشهادات',
     reviewsTitle: 'آراء المستخدمين',
     reviews: [
       { quote: 'من أفضل تطبيقات القرآن التي استخدمتها على الإطلاق.', name: 'عائشة', meta: 'تقييم App Store' },
@@ -389,6 +398,21 @@ const storeLinks = [
             <figcaption>{image.label}</figcaption>
           </figure>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-grid">
+      <div class="split-copy">
+        <span class="badge badge-primary">Certificates</span>
+        <h2 class="section-title">{copy.certificateTitle}</h2>
+        <p class="body-copy">{copy.certificateBody}</p>
+        <a href={getRelativeLocaleUrl(lang, '/certificate')} class="btn btn-primary btn-lg">{copy.certificateCta}</a>
+      </div>
+      <div class="certificate-preview-grid">
+        <img src="/images/certificates/QuranEngDrMohsinCertificate.gif" alt="Quran Majeed certificate preview" class="certificate-preview" />
+        <img src="/images/certificates/QuranArabicTextCorrectCertificate.gif" alt="Quran Majeed Arabic certificate preview" class="certificate-preview" />
       </div>
     </div>
   </section>
@@ -877,6 +901,13 @@ const storeLinks = [
     gap: 1rem;
   }
 
+  .certificate-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: stretch;
+  }
+
   .theme-card img,
   .daily-panel img,
   .video-card img,
@@ -889,6 +920,17 @@ const storeLinks = [
 
   .theme-card img {
     height: 9.5rem;
+  }
+
+  .certificate-preview {
+    width: 100%;
+    display: block;
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    object-fit: contain;
+    padding: .5rem;
   }
 
   .theme-card figcaption {
@@ -1054,7 +1096,8 @@ const storeLinks = [
     .feature-grid,
     .review-grid,
     .qm-trust .trust-grid,
-    .theme-grid {
+    .theme-grid,
+    .certificate-preview-grid {
       grid-template-columns: 1fr;
     }
 

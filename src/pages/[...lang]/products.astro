@@ -41,6 +41,62 @@ const products = [
     imageUrl: "/images/QM.png"
   },
   {
+    id: "quran-majeed-mac",
+    category: "islamic",
+    name: {
+      en: "Quran Majeed for Mac",
+      ur: "قرآن مجید برائے میک",
+      ar: "القرآن المجيد للماك"
+    }[lang],
+    tagline: {
+      en: "Authentic Quran Reading on Apple Macintosh",
+      ur: "ایپل میکنٹوش پر مستند قرآنی مطالعہ",
+      ar: "قراءة قرآنية أصيلة على Apple Macintosh"
+    }[lang],
+    description: {
+      en: "Read and listen to the Quran on Mac with elegant Uthmanic script, complete Surah Al-Baqarah, multiple audio recitations, and translations.",
+      ur: "میک پر قرآن پڑھیں اور سنیں، عثمانی رسم الخط، مکمل سورۃ البقرہ، متعدد آڈیو تلاوتیں اور تراجم کے ساتھ۔",
+      ar: "اقرأ واستمع إلى القرآن على الماك بخط عثماني أنيق، وسورة البقرة كاملة، وتلاوات صوتية متعددة، وترجمات."
+    }[lang],
+    badge: {
+      en: "Mac Edition",
+      ur: "میک ایڈیشن",
+      ar: "نسخة الماك"
+    }[lang],
+    rating: "4.8",
+    downloads: {
+      en: "Desktop Quran app",
+      ur: "ڈیسک ٹاپ قرآن ایپ",
+      ar: "تطبيق قرآن لسطح المكتب"
+    }[lang],
+    platforms: ["macOS"],
+    features: [
+      {
+        en: "Uthmanic Arabic script",
+        ur: "عثمانی عربی رسم الخط",
+        ar: "الخط العربي العثماني"
+      }[lang],
+      {
+        en: "Complete Surah Al-Baqarah",
+        ur: "مکمل سورۃ البقرہ",
+        ar: "سورة البقرة كاملة"
+      }[lang],
+      {
+        en: "Multiple audio recitations",
+        ur: "متعدد آڈیو تلاوتیں",
+        ar: "تلاوات صوتية متعددة"
+      }[lang],
+      {
+        en: "Translations and study tools",
+        ur: "تراجم اور مطالعہ ٹولز",
+        ar: "ترجمات وأدوات دراسة"
+      }[lang]
+    ],
+    detailsUrl: getRelativeLocaleUrl(lang, '/products/quran-majeed-mac'),
+    downloadUrl: getRelativeLocaleUrl(lang, '/contact'),
+    imageUrl: "/images/qm-mac.png"
+  },
+  {
     id: "quran-pak",
     category: "islamic",
     name: t('products.items.qp.name'),
@@ -117,6 +173,62 @@ const products = [
     detailsUrl: getRelativeLocaleUrl(lang, '/products/easyurdu'),
     downloadUrl: "https://pakdata.com/products/easyurdu",
     imageUrl: "/images/easyUrdu.webp"
+  },
+  {
+    id: "arabicfont",
+    category: "typography",
+    name: {
+      en: "PDMS Saleem Quran Font",
+      ur: "PDMS سلیم قرآن فونٹ",
+      ar: "PDMS Saleem Quran Font"
+    }[lang],
+    tagline: {
+      en: "Arabic Font for Holy Quran",
+      ur: "قرآنِ مجید کے لیے عربی فونٹ",
+      ar: "خط عربي للقرآن الكريم"
+    }[lang],
+    description: {
+      en: "A high quality OpenType Arabic font for Holy Quran text based on Unicode, with a calligraphic style, proper aeraab placement, and waqf symbols for modern publishing.",
+      ur: "قرآنِ مجید کے متن کے لیے اعلیٰ معیار کا OpenType عربی فونٹ، Unicode بنیاد، بہتر اعراب سپورٹ اور وقف علامات کے ساتھ۔",
+      ar: "خط OpenType عربي عالي الجودة لنص القرآن الكريم يعتمد على Unicode مع دعم الحركات وعلامات الوقف والأسلوب الخطاطي."
+    }[lang],
+    badge: {
+      en: "Typography",
+      ur: "فونٹ",
+      ar: "الطباعة"
+    }[lang],
+    rating: "5.0",
+    downloads: {
+      en: "Publisher tool",
+      ur: "پبلشر ٹول",
+      ar: "أداة للنشر"
+    }[lang],
+    platforms: ["Web", "Desktop"],
+    features: [
+      {
+        en: "Unicode-based OpenType support",
+        ur: "Unicode پر مبنی OpenType سپورٹ",
+        ar: "دعم OpenType المبني على Unicode"
+      }[lang],
+      {
+        en: "Proper aeraab and waqf placement",
+        ur: "اعراب اور وقف کی درست جگہیں",
+        ar: "مواضع صحيحة للحركات وعلامات الوقف"
+      }[lang],
+      {
+        en: "Quranic calligraphy-inspired style",
+        ur: "قرآنی خطاطی سے متاثرہ اسٹائل",
+        ar: "أسلوب مستوحى من الخط القرآني"
+      }[lang],
+      {
+        en: "Publisher and designer friendly",
+        ur: "پبلشر اور ڈیزائنر کے لیے موزوں",
+        ar: "مناسب للناشرين والمصممين"
+      }[lang]
+    ],
+    detailsUrl: getRelativeLocaleUrl(lang, '/products/arabicfont'),
+    downloadUrl: getRelativeLocaleUrl(lang, '/contact'),
+    imageUrl: "/images/quran-complex-screen1.jpg"
   },
   {
     id: "hadith-app",

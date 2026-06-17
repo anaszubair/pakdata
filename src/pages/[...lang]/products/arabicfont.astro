@@ -1,0 +1,526 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: {
+    seoTitle: 'PDMS Saleem Quran Font | Arabic Font for Holy Quran by Pakdata',
+    seoDesc: 'Discover PDMS Saleem Quran Font, a high quality OpenType Arabic font for the Holy Quran based on Unicode, with advanced aeraab support, waqf symbols, and Quranic calligraphy styling.',
+    heroBadge: 'Arabic Typography',
+    heroTitle: 'Arabic Font for Holy Quran',
+    heroLead: 'A high quality OpenType font for Holy Quran text based on Unicode standard with refined glyphs, proper aeraab placement, and waqf symbols for clear Quranic reading.',
+    heroSupport: 'PDMS Saleem Quran Font blends advanced Arabic typography with the beauty and legibility required for Quran Majeed Arabic text.',
+    overviewTitle: 'Project Overview',
+    overviewBody: 'Pakistan Data Management Services is pleased to announce the release of an OpenType font for writing Holy Quran text based on the Unicode standard. The font features high quality glyphs and support for all aeraabs and mark placements at proper positions. All waqfs used to identify different pauses in reading are also provided. PDMS Saleem Quran Font provides advanced Arabic typography close to calligraphy while retaining the beauty and legibility of Quran Majeed Arabic text.',
+    craftTitle: 'Calligraphy Rooted in Quranic Tradition',
+    craftBody: 'The font is developed according to the rules used in Quranic calligraphy in Pakistan, following the style of Yameen Dehlvi, one of the finest Quran calligraphers in Pakistan. Guidance and calligraphy of basic glyphs for the font have been provided by Mr. Mohammed Saleem, who is inspired by the work of Shafiq-uz-Zaman and frequently consults him for guidance.',
+    featuresTitle: 'Font Features',
+    features: [
+      'Unicode-based OpenType support',
+      'High quality glyph rendering',
+      'Proper aeraab and mark placement',
+      'Waqf symbols for reading pauses',
+      'Quranic calligraphy-inspired style',
+      'Readable yet close to hand-crafted script'
+    ],
+    typographyTitle: 'Advanced Arabic Typography',
+    typographyBody: 'The font is designed to satisfy the needs of Arabic users, designers, and publishers who need Quranic text quality without the technological limitations of older Quran printing methods.',
+    typographyChips: ['Unicode standard', 'OpenType font', 'Quran text', 'Arabic calligraphy', 'Publishing ready'],
+    aboutTitle: 'About PDMS',
+    aboutBody: 'Based in Karachi, Pakistan, PDMS has been developing Urdu software products since 1986. The nationally acclaimed Nastaleeq Nizami Urdu desktop publishing software boosted the use of computers in Pakistan by making them write beautifully in Nastaleeq script. Other products include Urdu Computer Nizam, Ruqqa-UrduEmail, Urdu 98, Urdu Mahir, PDMS Jauhar, and Quran Majeed CD. PDMS has also developed fonts for regional languages like Sindhi and Pushto and designed Urdu portals including UrduSeek.com, UrduNews.net, and CityIslam.com.',
+    impactTitle: 'Why This Font Matters',
+    impactBody: 'This release gives Arabic users a high quality Quran font built for both spiritual reading and modern digital publishing. It reflects PDMS’s long standing expertise in Arabic and Urdu typography and its commitment to technology that respects the sacred text while improving usability for publishers and designers.',
+    impactItems: [
+      'Beautiful Quranic readability',
+      'Strong typographic accuracy',
+      'Publisher and designer friendly',
+      'Modern OpenType workflow',
+      'Traditional calligraphy spirit'
+    ],
+    finalTitle: 'A Font Built for Holy Quran Publishing',
+    finalBody: 'PDMS Saleem Quran Font brings Arabic typography, calligraphic grace, and Unicode-based consistency together for Quran writing and digital publication.',
+    explore: 'Explore Products',
+    contact: 'Contact Our Team',
+    footerDesc: 'PDMS Saleem Quran Font is a high quality Arabic OpenType font for Holy Quran text with advanced aeraab support, waqf symbols, and Quranic calligraphy styling.'
+  },
+  ur: {
+    seoTitle: 'پی ڈی ایم ایس سلیم قرآن فونٹ | پاک ڈیٹا کا عربی قرآن فونٹ',
+    seoDesc: 'PDMS Saleem Quran Font دریافت کریں، ایک اعلیٰ معیار کا OpenType عربی فونٹ جو قرآنِ مجید کے لیے Unicode بنیاد، بہتر اعراب سپورٹ، وقف علامات اور قرآنی خطاطی اسٹائل کے ساتھ تیار کیا گیا ہے۔',
+    heroBadge: 'عربی ٹائپوگرافی',
+    heroTitle: 'قرآنِ مجید کے لیے عربی فونٹ',
+    heroLead: 'قرآنِ مجید کے متن کے لیے اعلیٰ معیار کا OpenType فونٹ، جو Unicode معیار پر مبنی ہے، بہتر glyphs، درست اعراب، اور وقف علامات کے ساتھ واضح قرآنی مطالعے کے لیے بنایا گیا ہے۔',
+    heroSupport: 'PDMS Saleem Quran Font جدید عربی ٹائپوگرافی کو قرآنِ مجید کے متن کی خوبصورتی اور خواندگی کے ساتھ یکجا کرتا ہے۔',
+    overviewTitle: 'منصوبے کا جائزہ',
+    overviewBody: 'پاکستان ڈیٹا مینجمنٹ سروسز Unicode معیار پر مبنی قرآنِ مجید کے متن کے لیے OpenType فونٹ پیش کرنے پر خوش ہے۔ اس فونٹ میں اعلیٰ معیار کے glyphs، تمام اعراب کی درست جگہوں پر سپورٹ، اور قراءت میں وقف کی نشاندہی کے لیے تمام waqf علامات شامل ہیں۔ PDMS Saleem Quran Font خطاطی کے قریب جدید عربی ٹائپوگرافی فراہم کرتا ہے جبکہ قرآنِ مجید کے متن کی خوبصورتی اور خواندگی برقرار رکھتا ہے۔',
+    craftTitle: 'قرآنی خطاطی کی روایت سے جڑا فن',
+    craftBody: 'یہ فونٹ پاکستان میں رائج قرآنی خطاطی کے اصولوں کے مطابق تیار کیا گیا ہے اور یامین دہلوی کے اسلوب کی پیروی کرتا ہے، جو پاکستان کے بہترین قرآن خطاطوں میں شمار ہوتے ہیں۔ فونٹ کے بنیادی glyphs کی رہنمائی اور خطاطی محمد سلیم نے فراہم کی، جو شفیق الزمان کے کام سے متاثر ہیں اور اکثر ان سے رہنمائی لیتے ہیں۔',
+    featuresTitle: 'فونٹ کی خصوصیات',
+    features: [
+      'Unicode پر مبنی OpenType سپورٹ',
+      'اعلیٰ معیار کی glyph rendering',
+      'اعراب اور علامات کی درست جگہیں',
+      'قرأت کے وقف کے لیے waqf symbols',
+      'قرآنی خطاطی سے متاثرہ اسٹائل',
+      'خوبصورت اور واضح مطالعہ'
+    ],
+    typographyTitle: 'جدید عربی ٹائپوگرافی',
+    typographyBody: 'یہ فونٹ عربی صارفین، ڈیزائنرز، اور پبلشرز کے لیے تیار کیا گیا ہے تاکہ وہ پرانے قرآن پرنٹنگ طریقوں کی تکنیکی پابندیوں کے بغیر اعلیٰ معیار کا قرآنی متن استعمال کر سکیں۔',
+    typographyChips: ['Unicode standard', 'OpenType font', 'Quran text', 'Arabic calligraphy', 'Publishing ready'],
+    aboutTitle: 'PDMS کے بارے میں',
+    aboutBody: 'کراچی، پاکستان میں قائم PDMS 1986 سے اردو سافٹ ویئر مصنوعات تیار کر رہا ہے۔ قومی سطح پر معروف Nastaleeq Nizami اردو ڈیسک ٹاپ پبلشنگ سافٹ ویئر نے پاکستان میں کمپیوٹر کے استعمال کو خوبصورت نستعلیق لکھائی کے ذریعے بہت بڑھایا۔ دیگر مصنوعات میں Urdu Computer Nizam، Ruqqa-UrduEmail، Urdu 98، Urdu Mahir، PDMS Jauhar، اور Quran Majeed CD شامل ہیں۔ PDMS نے سندھی اور پشتو جیسے علاقائی زبانوں کے فونٹس بھی تیار کیے اور UrduSeek.com، UrduNews.net، CityIslam.com جیسے اردو پورٹلز بھی ڈیزائن کیے۔',
+    impactTitle: 'یہ فونٹ کیوں اہم ہے',
+    impactBody: 'یہ ریلیز عربی صارفین کو ایک اعلیٰ معیار کا قرآن فونٹ فراہم کرتی ہے جو روحانی مطالعہ اور جدید ڈیجیٹل پبلشنگ دونوں کے لیے موزوں ہے۔ یہ عربی اور اردو ٹائپوگرافی میں PDMS کی طویل مہارت اور مقدس متن کے احترام کے ساتھ استعمال میں آسانی پیدا کرنے کے عزم کی نمائندگی کرتا ہے۔',
+    impactItems: [
+      'خوبصورت قرآنی خواندگی',
+      'اعلیٰ ٹائپوگرافی درستگی',
+      'پبلشر اور ڈیزائنر کے لیے موزوں',
+      'جدید OpenType ورک فلو',
+      'روایتی خطاطی کی روح'
+    ],
+    finalTitle: 'قرآنِ مجید کی اشاعت کے لیے بنا ہوا فونٹ',
+    finalBody: 'PDMS Saleem Quran Font عربی ٹائپوگرافی، خطاطی کی خوبصورتی، اور Unicode بنیاد کو قرآن کی تحریر اور ڈیجیٹل اشاعت کے لیے یکجا کرتا ہے۔',
+    explore: 'پروڈکٹس دیکھیں',
+    contact: 'ہماری ٹیم سے رابطہ کریں',
+    footerDesc: 'PDMS Saleem Quran Font ایک اعلیٰ معیار کا عربی OpenType فونٹ ہے جو قرآنِ مجید کے متن کے لیے اعراب، waqf علامات، اور قرآنی خطاطی اسٹائل فراہم کرتا ہے۔'
+  },
+  ar: {
+    seoTitle: 'خط PDMS Saleem Quran Font | خط عربي للقرآن الكريم من باك داتا',
+    seoDesc: 'اكتشف PDMS Saleem Quran Font، خط OpenType عربي عالي الجودة للقرآن الكريم يعتمد على Unicode مع دعم متقدم للحركات وعلامات الوقف وأسلوب الخط القرآني.',
+    heroBadge: 'الطباعة العربية',
+    heroTitle: 'خط عربي للقرآن الكريم',
+    heroLead: 'خط OpenType عالي الجودة للنص القرآني مبني على معيار Unicode مع رموز دقيقة، ومواضع صحيحة للحركات، وعلامات الوقف لقراءة قرآنية واضحة.',
+    heroSupport: 'يجمع PDMS Saleem Quran Font بين الطباعة العربية المتقدمة والجمال والوضوح المطلوبين لنص القرآن الكريم.',
+    overviewTitle: 'نظرة عامة على المشروع',
+    overviewBody: 'يسر شركة باكستان داتا مانجمنت سيرفيسز أن تعلن عن إصدار خط OpenType لكتابة نص القرآن الكريم مبني على معيار Unicode. يتميز الخط بوجود رموز عالية الجودة ودعم لجميع الحركات/العلامات في مواضعها الصحيحة. كما يوفر جميع علامات الوقف المستخدمة لتحديد التوقفات المختلفة أثناء القراءة. يقدم PDMS Saleem Quran Font طباعة عربية متقدمة قريبة من الخط اليدوي مع الحفاظ على جمال وسهولة قراءة نص القرآن الكريم.',
+    craftTitle: 'خط متجذر في تقاليد الخط القرآني',
+    craftBody: 'تم تطوير الخط وفق القواعد المستخدمة في الخط القرآني في باكستان، على أسلوب يامين دهلوي، أحد أفضل خطاطي القرآن في باكستان. وقد قُدمت الإرشادات والخط اليدوي للرموز الأساسية للخط من قبل السيد محمد سليم، وهو من طلاب محمد إقبال سعيد ويامين دهلوي وشفيق الزمان. كما يستلهم محمد سليم من أعمال شفيق الزمان ويستشيره كثيرًا.',
+    featuresTitle: 'مميزات الخط',
+    features: [
+      'دعم OpenType مبني على Unicode',
+      'عرض عالي الجودة للرموز',
+      'مواضع صحيحة للحركات والعلامات',
+      'علامات وقف لفواصل القراءة',
+      'أسلوب مستوحى من الخط القرآني',
+      'وضوح جميل وقابلية قراءة ممتازة'
+    ],
+    typographyTitle: 'طباعة عربية متقدمة',
+    typographyBody: 'صُمم الخط ليلبي احتياجات المستخدمين العرب والمصممين والناشرين الذين يحتاجون إلى جودة نص قرآني عالية دون القيود التقنية لطرق طباعة المصحف القديمة.',
+    typographyChips: ['Unicode standard', 'OpenType font', 'Quran text', 'Arabic calligraphy', 'Publishing ready'],
+    aboutTitle: 'حول PDMS',
+    aboutBody: 'تتخذ PDMS من كراتشي، باكستان مقرًا لها، وهي تطور منتجات برمجيات الأوردو منذ عام 1986. وقد ساعد برنامج Nastaleeq Nizami الحائز على شهرة وطنية في زيادة استخدام الحاسوب في باكستان من خلال تمكين الكتابة الجميلة بخط النستعليق. ومن بين المنتجات الأخرى Urdu Computer Nizam وRuqqa-UrduEmail وUrdu 98 وUrdu Mahir وPDMS Jauhar وQuran Majeed CD. كما طورت PDMS خطوطًا للغات الإقليمية مثل السندية والبشتو، وصممت عددًا من بوابات الأوردو مثل UrduSeek.com وUrduNews.net وCityIslam.com.',
+    impactTitle: 'لماذا هذا الخط مهم',
+    impactBody: 'هذا الإصدار يمنح المستخدمين العرب خط قرآن عالي الجودة مصممًا للقراءة الروحية والنشر الرقمي الحديث. وهو يعكس خبرة PDMS الطويلة في الطباعة العربية والأوردية والتزامها بالتقنية التي تحترم النص المقدس وتزيد من سهولة الاستخدام للناشرين والمصممين.',
+    impactItems: [
+      'وضوح قرآني جميل',
+      'دقة طباعية عالية',
+      'مناسب للناشرين والمصممين',
+      'سير عمل OpenType حديث',
+      'روح الخط التقليدي'
+    ],
+    finalTitle: 'خط مخصص لطباعة القرآن الكريم',
+    finalBody: 'يجمع PDMS Saleem Quran Font بين الطباعة العربية وأناقة الخط وروح Unicode من أجل كتابة القرآن والنشر الرقمي.',
+    explore: 'استعرض المنتجات',
+    contact: 'تواصل مع فريقنا',
+    footerDesc: 'PDMS Saleem Quran Font هو خط عربي OpenType عالي الجودة لنص القرآن الكريم مع دعم متقدم للحركات وعلامات الوقف وأسلوب الخط القرآني.'
+  }
+}[lang];
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="font-hero">
+    <div class="container font-grid">
+      <div class="font-copy">
+        <span class="badge badge-primary">{copy.heroBadge}</span>
+        <h1 class="font-title">{copy.heroTitle}</h1>
+        <p class="font-lead">{copy.heroLead}</p>
+        <p class="font-support">{copy.heroSupport}</p>
+
+        <div class="font-actions">
+          <a href={getRelativeLocaleUrl(lang, '/products')} class="btn btn-primary btn-lg">{copy.explore}</a>
+          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-outline btn-lg">{copy.contact}</a>
+        </div>
+      </div>
+
+      <div class="font-preview card">
+        <div class="specimen-head">
+          <span>PDMS Saleem Quran Font</span>
+          <strong>OpenType / Unicode</strong>
+        </div>
+        <div class="specimen-box">
+          <div class="specimen-main">ٱلْقُرْآنُ</div>
+          <div class="specimen-sub">Arabic font crafted for Quran text</div>
+        </div>
+        <div class="specimen-footer">
+          <span>Waqf symbols</span>
+          <span>Aeraab support</span>
+          <span>Calligraphic quality</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-layout">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.overviewTitle}</span>
+        <h2 class="section-title">{copy.overviewTitle}</h2>
+        <p class="body-copy">{copy.overviewBody}</p>
+      </div>
+      <div class="info-grid card">
+        <div class="info-row">
+          <span class="info-kicker">Format</span>
+          <strong>OpenType / Unicode</strong>
+        </div>
+        <div class="info-row">
+          <span class="info-kicker">Focus</span>
+          <strong>Holy Quran text</strong>
+        </div>
+        <div class="info-row">
+          <span class="info-kicker">Style</span>
+          <strong>Quranic calligraphy inspired</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-layout reverse">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.craftTitle}</span>
+        <h2 class="section-title">{copy.craftTitle}</h2>
+        <p class="body-copy">{copy.craftBody}</p>
+      </div>
+      <div class="list-panel card">
+        <h3 class="panel-title">Font features</h3>
+        <ul class="check-list">
+          {copy.features.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.typographyTitle}</span>
+        <h2 class="section-title">{copy.typographyTitle}</h2>
+      </div>
+      <p class="body-copy section-copy">{copy.typographyBody}</p>
+      <div class="chip-row">
+        {copy.typographyChips.map((item) => (
+          <span class="chip">{item}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container split-layout">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.aboutTitle}</span>
+        <h2 class="section-title">{copy.aboutTitle}</h2>
+        <p class="body-copy">{copy.aboutBody}</p>
+      </div>
+      <div class="list-panel card">
+        <h3 class="panel-title">PDMS product legacy</h3>
+        <ul class="check-list">
+          <li>Nastaleeq Nizami</li>
+          <li>Urdu Computer Nizam</li>
+          <li>Ruqqa-UrduEmail</li>
+          <li>Urdu 98 and Urdu Mahir</li>
+          <li>PDMS Jauhar and Quran Majeed CD</li>
+          <li>Regional fonts and Urdu portals</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-layout reverse">
+      <div class="section-copy-block">
+        <span class="badge badge-primary">{copy.impactTitle}</span>
+        <h2 class="section-title">{copy.impactTitle}</h2>
+        <p class="body-copy">{copy.impactBody}</p>
+      </div>
+      <div class="list-panel card">
+        <h3 class="panel-title">Why it matters</h3>
+        <ul class="check-list">
+          {copy.impactItems.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section font-cta">
+    <div class="container text-center text-white">
+      <h2 class="cta-title">{copy.finalTitle}</h2>
+      <p class="cta-desc">{copy.finalBody}</p>
+      <div class="cta-actions">
+        <a href={getRelativeLocaleUrl(lang, '/products')} class="btn btn-primary btn-lg btn-white-text">{copy.explore}</a>
+        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-outline btn-lg btn-white-text">{copy.contact}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .font-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    border-bottom: 1px solid var(--border);
+    padding: 4.5rem 0 4rem;
+  }
+
+  .font-grid,
+  .split-layout {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .split-layout.reverse {
+    grid-template-columns: .95fr 1.05fr;
+  }
+
+  .font-title {
+    font-size: clamp(2.1rem, 4vw, 4rem);
+    line-height: 1.05;
+    font-weight: 700;
+    color: var(--primary);
+    margin: .9rem 0 1rem;
+    letter-spacing: -0.01em;
+    max-width: 12ch;
+  }
+
+  .font-lead,
+  .font-support,
+  .body-copy {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    font-size: calc(1.02rem * var(--text-scale, 1));
+  }
+
+  .font-support {
+    margin-top: .9rem;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .font-actions,
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .9rem;
+    margin-top: 1.3rem;
+  }
+
+  .font-preview,
+  .info-grid,
+  .list-panel {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1.2rem;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+
+  .font-preview {
+    padding: 1.2rem;
+  }
+
+  .specimen-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: baseline;
+    color: var(--secondary-dark);
+    font-size: .92rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .specimen-box {
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: linear-gradient(180deg, #fff, var(--primary-light));
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .specimen-main {
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    line-height: 1.2;
+    color: var(--dark);
+    font-family: 'ArabicFont', 'Amiri', 'Traditional Arabic', serif;
+    margin-bottom: .5rem;
+  }
+
+  .specimen-sub {
+    color: var(--secondary-dark);
+    line-height: 1.5;
+  }
+
+  .specimen-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin-top: 1rem;
+  }
+
+  .specimen-footer span {
+    padding: .45rem .75rem;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--dark);
+    font-size: .85rem;
+    font-weight: 700;
+  }
+
+  .section-title {
+    font-size: clamp(1.65rem, 2.8vw, 2.65rem);
+    line-height: 1.12;
+    margin: .7rem 0 .9rem;
+    color: var(--dark);
+  }
+
+  .section-copy-block {
+    max-width: 42rem;
+  }
+
+  .section-title-wrap.tight {
+    margin-bottom: 1.3rem;
+  }
+
+  .info-grid,
+  .list-panel {
+    padding: 1.3rem;
+  }
+
+  .info-row {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .info-kicker {
+    display: block;
+    font-size: .76rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--primary);
+    margin-bottom: .35rem;
+  }
+
+  .info-row strong {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--dark);
+  }
+
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin-top: 1rem;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.3rem;
+    padding: .45rem .85rem;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--dark);
+    font-weight: 700;
+    font-size: .86rem;
+  }
+
+  .check-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: .8rem;
+  }
+
+  .check-list li {
+    position: relative;
+    padding-inline-start: 1.35rem;
+    color: var(--secondary-dark);
+    line-height: 1.55;
+  }
+
+  .check-list li::before {
+    content: '•';
+    position: absolute;
+    inset-inline-start: 0;
+    color: var(--primary);
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .font-cta {
+    background: linear-gradient(135deg, var(--dark) 0%, #1d2433 100%);
+    color: white;
+  }
+
+  .cta-title {
+    font-size: clamp(1.75rem, 3vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: .8rem;
+  }
+
+  .cta-desc {
+    max-width: 44rem;
+    margin: 0 auto;
+    color: rgba(255,255,255,.84);
+    line-height: 1.7;
+  }
+
+  .btn-white-text {
+    color: white;
+  }
+
+  @media (max-width: 1024px) {
+    .font-grid,
+    .split-layout,
+    .split-layout.reverse {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .font-hero {
+      padding: 3.5rem 0 3rem;
+    }
+
+    .font-title {
+      max-width: none;
+    }
+
+    .font-actions,
+    .cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+</style>

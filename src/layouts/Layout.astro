@@ -16,6 +16,8 @@ const {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const dir = lang === 'en' ? 'ltr' : 'rtl';
+const searchParams = Astro.url.searchParams;
+const hideChrome = searchParams.get('webview') === '1' || searchParams.get('view') === 'app';
 
 // Helper to determine active link
 const pathname = new URL(Astro.request.url).pathname;
@@ -32,6 +34,10 @@ const productLinks = [
     label: 'Quran Majeed'
   },
   {
+    href: getRelativeLocaleUrl(lang, '/products/quran-majeed-mac'),
+    label: 'Quran Majeed Mac'
+  },
+  {
     href: getRelativeLocaleUrl(lang, '/products/quran-pak'),
     label: 'Quran Pak'
   },
@@ -46,6 +52,10 @@ const productLinks = [
   {
     href: getRelativeLocaleUrl(lang, '/products/easyurdu'),
     label: 'Easy Urdu Keyboard'
+  },
+  {
+    href: getRelativeLocaleUrl(lang, '/products/arabicfont'),
+    label: 'PDMS Saleem Quran Font'
   },
   {
     href: getRelativeLocaleUrl(lang, '/products/kitabi'),
@@ -142,9 +152,10 @@ const projectLinks = [
       }
     </style>
   </head>
-  <body>
+  <body class:list={[hideChrome && 'webview-shell']}>
 
     <!-- Navigation Header -->
+    {!hideChrome && (
     <header class="header">
       <div class="container header-container">
         <!-- Logo -->
@@ -174,6 +185,7 @@ const projectLinks = [
             </div>
           </div>
           <a href={getRelativeLocaleUrl(lang, '/about')} class={`nav-link ${isActive('/about') ? 'active' : ''}`} id="nav-about">{t('nav.about')}</a>
+          <a href={getRelativeLocaleUrl(lang, '/services')} class={`nav-link ${isActive('/services') ? 'active' : ''}`} id="nav-services">{t('nav.services')}</a>
           <a href={getRelativeLocaleUrl(lang, '/team')} class={`nav-link ${isActive('/team') ? 'active' : ''}`} id="nav-team">{t('nav.team')}</a>
           <a href={getRelativeLocaleUrl(lang, '/support')} class={`nav-link ${isActive('/support') ? 'active' : ''}`} id="nav-support">{t('nav.support')}</a>
           <a href={getRelativeLocaleUrl(lang, '/join')} class={`nav-link ${isActive('/join') ? 'active' : ''}`} id="nav-join">{t('nav.join')}</a>
@@ -199,6 +211,7 @@ const projectLinks = [
         </div>
       </div>
     </header>
+    )}
 
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-menu" id="mobile-menu-drawer">
@@ -221,6 +234,7 @@ const projectLinks = [
           </div>
         </details>
         <a href={getRelativeLocaleUrl(lang, '/about')} class={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`} id="mob-nav-about">{t('nav.about')}</a>
+        <a href={getRelativeLocaleUrl(lang, '/services')} class={`mobile-nav-link ${isActive('/services') ? 'active' : ''}`} id="mob-nav-services">{t('nav.services')}</a>
         <a href={getRelativeLocaleUrl(lang, '/team')} class={`mobile-nav-link ${isActive('/team') ? 'active' : ''}`} id="mob-nav-team">{t('nav.team')}</a>
         <a href={getRelativeLocaleUrl(lang, '/support')} class={`mobile-nav-link ${isActive('/support') ? 'active' : ''}`} id="mob-nav-support">{t('nav.support')}</a>
         <a href={getRelativeLocaleUrl(lang, '/join')} class={`mobile-nav-link ${isActive('/join') ? 'active' : ''}`} id="mob-nav-join">{t('nav.join')}</a>
@@ -234,6 +248,7 @@ const projectLinks = [
     </main>
 
     <!-- Footer -->
+    {!hideChrome && (
     <footer class="footer">
       <div class="container footer-grid">
         <!-- Footer Column 1: Company Profile -->
@@ -268,6 +283,7 @@ const projectLinks = [
             <li><a href={getRelativeLocaleUrl(lang, '/products')}>{t('nav.products')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/projects')}>{t('nav.projects')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/about')}>{t('nav.about')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/services')}>{t('nav.services')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/team')}>{t('nav.team')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/join')}>{t('nav.join')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/support')}>{t('nav.support')}</a></li>
@@ -279,10 +295,12 @@ const projectLinks = [
           <h3 class="footer-title">{t('footer.products.title')}</h3>
           <ul class="footer-links">
             <li><a href={getRelativeLocaleUrl(lang, '/products/quran-majeed')}>Quran Majeed App</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/quran-majeed-mac')}>Quran Majeed Mac</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/products/quran-pak')}>Quran Pak Reading</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/products/hadith-app')}>Hadith App</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/products/3d-salah-guide')}>3D Salah Guide</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/products/easyurdu')}>Easy Urdu Keyboard</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/arabicfont')}>PDMS Saleem Quran Font</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/products/kitabi')}>Kitabi</a></li>
             <li><a href="/products#quran-tv">Quran TV Streaming</a></li>
             <li><a href="/products#engage-ai">Engage AI Support</a></li>
@@ -319,6 +337,7 @@ const projectLinks = [
         </div>
       </div>
     </footer>
+    )}
 
     <!-- Interactive Navigation Scripts -->
     <script>
@@ -680,6 +699,10 @@ const projectLinks = [
   /* Body settings */
   .main-content {
     flex-grow: 1;
+  }
+
+  body.webview-shell .main-content {
+    padding-top: 0;
   }
 
   /* Footer styling */

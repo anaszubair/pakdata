@@ -1,0 +1,334 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const copy = {
+  en: {
+    seoTitle: 'Our Services | PDMS Software Development',
+    seoDesc: 'Explore PDMS software services for Objective-C, Android, PHP/MySQL, and .NET development across native apps, websites, CMS solutions, and web applications.',
+    badge: 'Our Services',
+    title: 'Our Services',
+    subtitle: 'We build native apps, web platforms, and enterprise software with teams that understand product quality, performance, and long-term maintenance.',
+    contactTitle: 'Contact Us',
+    contactBody: 'If you have a detailed requirements or just an idea of your future application or software - please contact us for a quote.',
+    cta: 'Contact Us',
+    services: [
+      {
+        key: 'objective-c',
+        title: 'Objective C',
+        desc: 'When it comes to developing native iPhone/iPad and Mac applications, we’ve got you covered.'
+      },
+      {
+        key: 'android',
+        title: 'Android',
+        desc: 'With a team of expert Android developers, we develop state-of-the-art native Android apps.'
+      },
+      {
+        key: 'php-mysql',
+        title: 'PHP / MySQL',
+        desc: 'Responsive website development, CMS development and customization, and web apps development.'
+      },
+      {
+        key: 'dot-net',
+        title: 'Dot Net',
+        desc: 'A team of expert application development for Windows platform and web apps.'
+      }
+    ]
+  },
+  ur: {
+    seoTitle: 'ہماری سروسز | PDMS سافٹ ویئر ڈویلپمنٹ',
+    seoDesc: 'Objective-C، Android، PHP/MySQL اور .NET ڈویلپمنٹ کے لیے PDMS کی سروسز دریافت کریں، جن میں نیشٹیو ایپس، ویب پلیٹ فارمز، CMS اور ویب ایپلیکیشنز شامل ہیں۔',
+    badge: 'ہماری سروسز',
+    title: 'ہماری سروسز',
+    subtitle: 'ہم نیشٹیو ایپس، ویب پلیٹ فارمز اور انٹرپرائز سافٹ ویئر بناتے ہیں، ایسی ٹیموں کے ساتھ جو پروڈکٹ کوالٹی، پرفارمنس اور طویل مدتی مینٹیننس کو سمجھتی ہیں۔',
+    contactTitle: 'ہم سے رابطہ کریں',
+    contactBody: 'اگر آپ کے پاس تفصیلی ضروریات ہیں یا صرف اپنے مستقبل کے ایپلیکیشن یا سافٹ ویئر کا خیال ہے، تو براہِ کرم کوٹیشن کے لیے ہم سے رابطہ کریں۔',
+    cta: 'ہم سے رابطہ کریں',
+    services: [
+      {
+        key: 'objective-c',
+        title: 'Objective C',
+        desc: 'نیشٹیو iPhone/iPad اور Mac ایپلیکیشنز کی تیاری میں ہم آپ کے ساتھ ہیں۔'
+      },
+      {
+        key: 'android',
+        title: 'Android',
+        desc: 'ماہر Android ڈویلپرز کی ٹیم کے ساتھ ہم جدید ترین نیشٹیو Android ایپس تیار کرتے ہیں۔'
+      },
+      {
+        key: 'php-mysql',
+        title: 'PHP / MySQL',
+        desc: 'ریسپانسیو ویب سائٹ ڈویلپمنٹ، CMS ڈویلپمنٹ اور کسٹمائزیشن، اور ویب ایپس ڈویلپمنٹ۔'
+      },
+      {
+        key: 'dot-net',
+        title: 'Dot Net',
+        desc: 'Windows پلیٹ فارم اور ویب ایپس کے لیے ماہر ایپلیکیشن ڈویلپمنٹ ٹیم۔'
+      }
+    ]
+  },
+  ar: {
+    seoTitle: 'خدماتنا | تطوير البرمجيات من PDMS',
+    seoDesc: 'استكشف خدمات PDMS لتطوير Objective-C وAndroid وPHP/MySQL و.NET عبر التطبيقات الأصلية والمواقع وحلول CMS وتطبيقات الويب.',
+    badge: 'خدماتنا',
+    title: 'خدماتنا',
+    subtitle: 'نبني تطبيقات أصلية ومنصات ويب وبرامج مؤسسية مع فرق تفهم جودة المنتج والأداء والصيانة طويلة الأمد.',
+    contactTitle: 'اتصل بنا',
+    contactBody: 'إذا كانت لديك متطلبات تفصيلية أو مجرد فكرة لتطبيقك أو برنامجك المستقبلي، فيرجى الاتصال بنا للحصول على عرض سعر.',
+    cta: 'اتصل بنا',
+    services: [
+      {
+        key: 'objective-c',
+        title: 'Objective C',
+        desc: 'عندما يتعلق الأمر بتطوير تطبيقات iPhone/iPad وMac الأصلية، فنحن هنا لخدمتك.'
+      },
+      {
+        key: 'android',
+        title: 'Android',
+        desc: 'بفضل فريق من مطوري Android الخبراء، نقوم ببناء تطبيقات Android أصلية متطورة.'
+      },
+      {
+        key: 'php-mysql',
+        title: 'PHP / MySQL',
+        desc: 'تطوير مواقع ويب متجاوبة، وتطوير وتخصيص أنظمة CMS، وتطبيقات الويب.'
+      },
+      {
+        key: 'dot-net',
+        title: 'Dot Net',
+        desc: 'فريق تطوير تطبيقات خبير لمنصة Windows وتطبيقات الويب.'
+      }
+    ]
+  }
+}[lang];
+
+const serviceIcons = {
+  'objective-c': 'apple',
+  android: 'android',
+  'php-mysql': 'flash',
+  'dot-net': 'windows'
+};
+
+function iconSvg(type: string) {
+  const base = 'service-icon';
+  if (type === 'apple') {
+    return `<svg viewBox="0 0 24 24" class="${base}" aria-hidden="true"><path d="M16.2 2.8c-.8.1-1.8.6-2.4 1.3-.5.6-1 1.6-.8 2.5.9.1 1.8-.5 2.4-1.2.6-.7 1.1-1.7.8-2.6zM19.1 17c-.6 1.4-1.8 3.2-3.6 3.2-1.1 0-1.5-.6-2.7-.6-1.2 0-1.7.6-2.8.6-1.5 0-2.7-1.5-3.5-2.8C5.1 15.1 4.6 11 6.8 8.7c1-1 2.3-1.6 3.6-1.6 1 .1 1.9.7 2.6.7.7 0 1.8-.9 3-.8.4 0 1.7.2 2.6 1.4-.1.1-1.6.9-1.5 2.7.1 2.1 1.9 2.8 1.9 4.6 0 .4-.1.8-.3 1.3z"/></svg>`;
+  }
+  if (type === 'android') {
+    return `<svg viewBox="0 0 24 24" class="${base}" aria-hidden="true"><path d="M7.1 7.2h9.8c1.2 0 2.2 1 2.2 2.2v6.6c0 1.2-1 2.2-2.2 2.2h-.5v2c0 .5-.4.8-.8.8s-.8-.4-.8-.8v-2H9.4v2c0 .5-.4.8-.8.8s-.8-.4-.8-.8v-2h-.7c-1.2 0-2.2-1-2.2-2.2V9.4c0-1.2 1-2.2 2.2-2.2zm2.3-2.1 1.3 1.8m6.2-1.8-1.3 1.8M9.3 9.1h5.4M8.2 12h.1m7.4 0h.1"/></svg>`;
+  }
+  if (type === 'flash') {
+    return `<svg viewBox="0 0 24 24" class="${base}" aria-hidden="true"><path d="M13.1 2 5.5 13h5.1L9.9 22l8.6-11h-5.2L13.1 2z"/></svg>`;
+  }
+  return `<svg viewBox="0 0 24 24" class="${base}" aria-hidden="true"><path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/></svg>`;
+}
+---
+
+<Layout title={copy.seoTitle} description={copy.seoDesc}>
+  <section class="services-hero">
+    <div class="container services-hero-grid">
+      <div class="services-copy">
+        <span class="badge badge-primary">{copy.badge}</span>
+        <h1 class="services-title">{copy.title}</h1>
+        <p class="services-subtitle">{copy.subtitle}</p>
+      </div>
+      <div class="services-panel card">
+        <div class="services-panel-head">
+          <span>{copy.contactTitle}</span>
+          <strong>PDMS</strong>
+        </div>
+        <p>{copy.contactBody}</p>
+        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-lg services-cta">{copy.cta}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">{copy.badge}</span>
+        <h2 class="section-title">{copy.title}</h2>
+      </div>
+
+      <div class="services-grid">
+        {copy.services.map((service) => (
+          <article class="service-card card">
+            <div class="service-icon-wrap" set:html={iconSvg(serviceIcons[service.key])}></div>
+            <h3>{service.title}</h3>
+            <p>{service.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container contact-band card">
+      <div>
+        <h2 class="contact-band-title">{copy.contactTitle}</h2>
+        <p class="contact-band-text">{copy.contactBody}</p>
+      </div>
+      <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-lg">{copy.cta}</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .services-hero {
+    background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
+    border-bottom: 1px solid var(--border);
+    padding: 4.5rem 0 4rem;
+  }
+
+  .services-hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .services-title {
+    font-size: clamp(2.2rem, 3vw, 3rem);
+    line-height: 1.05;
+    font-weight: 700;
+    color: var(--primary);
+    margin: .9rem 0 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .services-subtitle,
+  .services-panel p,
+  .contact-band-text {
+    color: var(--secondary-dark);
+    line-height: 1.7;
+    font-size: calc(1.02rem * var(--text-scale, 1));
+  }
+
+  .services-panel {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 1.2rem;
+    box-shadow: var(--shadow-md);
+    padding: 1.4rem;
+  }
+
+  .services-panel-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--dark);
+  }
+
+  .services-panel-head span {
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: .8rem;
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  .services-panel-head strong {
+    font-size: 1.1rem;
+  }
+
+  .services-cta {
+    margin-top: 1rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .service-card {
+    padding: 1.3rem;
+    border: 1px solid var(--border);
+    border-radius: 1.2rem;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .service-card h3 {
+    font-size: 1.1rem;
+    line-height: 1.35;
+    color: var(--dark);
+    margin: .9rem 0 .55rem;
+  }
+
+  .service-card p {
+    color: var(--secondary-dark);
+    line-height: 1.6;
+  }
+
+  .service-icon-wrap {
+    width: 3rem;
+    height: 3rem;
+    border-radius: .9rem;
+    background: var(--primary-light);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+  }
+
+  .service-icon {
+    width: 1.55rem;
+    height: 1.55rem;
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .contact-band {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.4rem;
+  }
+
+  .contact-band-title {
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: .5rem;
+  }
+
+  @media (max-width: 900px) {
+    .services-hero-grid,
+    .services-grid,
+    .contact-band {
+      grid-template-columns: 1fr;
+      display: grid;
+    }
+
+    .contact-band {
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .services-hero {
+      padding: 3.5rem 0 3rem;
+    }
+
+    .services-title {
+      font-size: 2.1rem;
+    }
+  }
+</style>
