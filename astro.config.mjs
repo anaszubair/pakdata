@@ -15,6 +15,13 @@ export default defineConfig({
         '/ur/قرآن-پرنٹنگ-کامپلیکس-پروجیکٹ/': '/ur/projects/quran-printing-complex-project',
         '/ur/قرآن-پاک/': '/ur/products/quran-pak',
         '/ur/قرآن-آڈیو/': '/ur/quran-audio',
-        '/ur/قرآن-مجید/': '/ur/products/quran-majeed'
+        '/ur/قرآن-مجید/': '/ur/products/quran-majeed',
+        '/ufaqs/': '/faq',
+        '/ufaqs/how-can-i-change-adhan-alarm-notification/': '/faq',
+        '/ufaqs/i-dont-have-credit-card-or-unable-to-own-credit-card-can-i-send-payment-to-your-bank-account-or-any-other-means-for-purchasing-the-full-version/': '/faq',
+        '/ufaqs/i-purchased-full-version-on-my-iphone-but-now-it-is-showing-free-version-only-how-to-fix-this/': '/faq',
+        '/ufaqs/how-to-pay-using-easy-paisa/': '/faq',
+        '/ufaqs/how-to-add-a-bookmark/': '/faq',
+        '/ufaqs/adhan-notifications-are-not-in-time-in-my-device/': '/faq',
     },
 });
