@@ -5,113 +5,220 @@ import { getLangFromUrl, getRelativeLocaleUrl } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 
 const copy = {
-  en: {
-    seoTitle: 'FAQ - Frequently Asked Questions',
-    seoDesc: 'Find quick answers about PDMS apps, support, downloads, and product usage.',
-    heroBadge: 'FAQ',
-    heroTitle: 'Frequently Asked Questions',
-    heroBody: 'Quick answers to common questions about our apps, support options, and product experience.',
-    topicsTitle: 'Popular Topics',
-    topics: ['Downloads', 'Offline use', 'Support', 'Purchases', 'Languages', 'Webview'],
-    faqsTitle: 'Common Questions',
+  seoTitle: 'Pakdata Help Center | FAQ & Support for Quran Majeed Apps',
+  seoDesc: 'Find answers to common questions about Quran Majeed, Adhan notifications, premium subscriptions, prayer timings, payments, troubleshooting, and app support.',
+  heroBadge: 'Help Center',
+  heroTitle: 'Help Center & Frequently Asked Questions',
+  heroBody: 'Find quick answers, troubleshooting guides, payment support, and helpful resources for Pakdata applications including Quran Majeed and other digital products.',
+  searchPlaceholder: 'Search for help articles, notifications, subscriptions, prayer timings, payments...',
+  quickTitle: 'Quick Help',
+  quickHelp: [
+    { title: 'Fix Notifications', body: 'Device setup steps for delayed or missing Adhan alerts.', href: '#notifications' },
+    { title: 'Restore Premium', body: 'Recover purchases with your Apple ID or Google account.', href: '#premium-payments' },
+    { title: 'Prayer Times', body: 'View, customize, and manage prayer timing settings.', href: '#prayer-times' },
+    { title: 'Payment Help', body: 'EasyPaisa, app store payments, and local payment options.', href: '#premium-payments' }
+  ],
+  categoriesTitle: 'Browse by Category',
+  videoTitle: 'Video Tutorials',
+  videoBody: 'Step-by-step visual guides help users fix notification, premium, and prayer timing issues faster.',
+  videos: ['Fix Adhan Notifications', 'Restore Premium Purchase', 'Customize Prayer Times'],
+  deviceTitle: 'Device-Specific Guides',
+  deviceBody: 'Notification settings differ by device. Use these guides to allow Quran Majeed to run reliably in the background.',
+  devices: [
+    { name: 'Samsung Galaxy', note: 'Disable battery optimization', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/samsung') },
+    { name: 'Google Pixel / Nexus', note: 'Disable adaptive battery', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/generic') },
+    { name: 'Huawei', note: 'Disable power optimization', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/huawei') },
+    { name: 'OnePlus', note: 'Disable battery restrictions', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/OnePlus') },
+    { name: 'iPhone / iPad', note: 'Check notifications and Focus modes', href: '#iphone-ipad-support' }
+  ],
+  supportTitle: 'Still Need Help?',
+  supportBody: 'Our support team is here to help you with technical issues, subscriptions, notifications, and app-related questions.',
+  contactSupport: 'Contact Support',
+  submitRequest: 'Submit a Request',
+  footerDesc: 'Find answers, troubleshooting guides, and support resources for Quran Majeed and other Pakdata applications.'
+};
+
+const faqCategories = [
+  {
+    id: 'notifications',
+    title: 'Notifications & Adhan',
     faqs: [
       {
-        q: 'How do I contact PDMS support?',
-        a: 'You can reach us through the Support page or email support@pakdata.com for product help, technical questions, and account guidance.'
+        q: 'Adhan notifications are delayed or not working on my device. How can I fix this?',
+        a: [
+          'Some Android devices automatically restrict background activity to save battery life. This can prevent Quran Majeed from delivering Adhan notifications on time.',
+          'To resolve this issue:',
+          'Disable battery optimization for Quran Majeed',
+          'Allow background activity',
+          'Enable auto-start permissions if available',
+          'Make sure notifications are enabled in device settings'
+        ],
+        links: [
+          { label: 'Samsung Galaxy - Disable Battery Optimization', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/samsung') },
+          { label: 'Google Pixel / Nexus - Disable Adaptive Battery', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/generic') },
+          { label: 'Huawei - Disable Power Optimization', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/huawei') },
+          { label: 'OnePlus - Disable Battery Restrictions', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/OnePlus') }
+        ],
+        cta: { label: 'View Device Setup Guide', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification') }
       },
       {
-        q: 'Which apps are available from PDMS?',
-        a: 'Our product family includes Quran Majeed, Quran Pak, Hadith App, 3D Salah Guide, Easy Urdu, Kitabi, QuranExplorer, and more.'
-      },
-      {
-        q: 'Do the apps work offline?',
-        a: 'Many reading and learning features work offline after content has been downloaded. Availability depends on the specific product and asset type.'
-      },
-      {
-        q: 'Are Urdu and Arabic supported?',
-        a: 'Yes. Several PDMS products include Urdu and Arabic interfaces, content, or fonts depending on the app.'
+        q: 'How can I change Adhan alarms or prayer notifications?',
+        a: [
+          'Open the prayer timings screen by tapping the prayer time bar on the homepage. From there, select any prayer to customize:',
+          'Adhan sound',
+          'Notification settings',
+          'Alarm preferences',
+          'Reminder options'
+        ]
       }
-    ],
-    ctaTitle: 'Need a more detailed answer?',
-    ctaBody: 'Visit Support for app-specific FAQs, troubleshooting steps, and contact options.',
-    ctaPrimary: 'Go to Support',
-    ctaSecondary: 'Contact Us'
+    ]
   },
-  ur: {
-    seoTitle: 'FAQ - اکثر پوچھے جانے والے سوالات',
-    seoDesc: 'PDMS ایپس، سپورٹ، ڈاؤن لوڈز اور پروڈکٹ استعمال کے بارے میں فوری جوابات حاصل کریں۔',
-    heroBadge: 'FAQ',
-    heroTitle: 'اکثر پوچھے جانے والے سوالات',
-    heroBody: 'ہماری ایپس، سپورٹ آپشنز اور پروڈکٹ تجربے کے بارے میں عام سوالات کے فوری جوابات۔',
-    topicsTitle: 'مقبول موضوعات',
-    topics: ['ڈاؤن لوڈز', 'آف لائن استعمال', 'سپورٹ', 'خریداری', 'زبانیں', 'ویب ویو'],
-    faqsTitle: 'عام سوالات',
+  {
+    id: 'premium-payments',
+    title: 'Premium & Payments',
     faqs: [
       {
-        q: 'میں PDMS سپورٹ سے کیسے رابطہ کروں؟',
-        a: 'آپ Support page کے ذریعے یا support@pakdata.com پر ای میل کر کے پروڈکٹ ہیلپ، تکنیکی سوالات اور اکاؤنٹ رہنمائی حاصل کر سکتے ہیں۔'
+        q: 'How can I purchase the premium version using EasyPaisa?',
+        a: [
+          'You can purchase Quran Majeed premium using EasyPaisa in a few simple steps:',
+          'Open the Premium section inside the app',
+          'Select your preferred package',
+          'Choose EasyPaisa as the payment method',
+          'Complete payment using the provided consumer number',
+          'If assistance is required, our support team will be happy to help.'
+        ]
       },
       {
-        q: 'PDMS کی کون سی ایپس دستیاب ہیں؟',
-        a: 'ہماری پروڈکٹ رینج میں Quran Majeed، Quran Pak، Hadith App، 3D Salah Guide، Easy Urdu، Kitabi، QuranExplorer اور مزید شامل ہیں۔'
+        q: 'I purchased the premium version on iPhone, but it now shows the free version. How can I restore my purchase?',
+        a: [
+          'You can restore your premium purchase using the same Apple ID originally used for the subscription or purchase.',
+          'To restore:',
+          'Open the app',
+          'Go to Premium or Settings',
+          'Tap "Restore Purchase"',
+          'You will not be charged again.'
+        ]
       },
       {
-        q: 'کیا ایپس آف لائن چلتی ہیں؟',
-        a: 'بہت سی ریڈنگ اور لرننگ خصوصیات مواد ڈاؤن لوڈ ہونے کے بعد آف لائن بھی کام کرتی ہیں۔ یہ پروڈکٹ کے لحاظ سے مختلف ہو سکتا ہے۔'
-      },
-      {
-        q: 'کیا اردو اور عربی سپورٹ موجود ہے؟',
-        a: 'جی ہاں۔ کئی PDMS پروڈکٹس میں اردو اور عربی انٹرفیس، مواد یا فونٹس موجود ہیں، ایپ کے مطابق۔'
+        q: 'I do not have a credit card. Can I pay through a bank account or another payment method?',
+        a: [
+          'Available payment methods depend on the Apple App Store or Google Play Store policies for your region.',
+          'You may also:',
+          'Use EasyPaisa where available',
+          'Use supported local payment methods',
+          'Purchase through family or shared payment methods connected to your store account'
+        ]
       }
-    ],
-    ctaTitle: 'مزید تفصیلی جواب چاہیے؟',
-    ctaBody: 'ایپ مخصوص FAQ، مسئلہ حل کرنے کے مراحل، اور رابطہ آپشنز کے لیے Support دیکھیں۔',
-    ctaPrimary: 'سپورٹ پر جائیں',
-    ctaSecondary: 'ہم سے رابطہ کریں'
+    ]
   },
-  ar: {
-    seoTitle: 'FAQ - الأسئلة الشائعة',
-    seoDesc: 'اعثر على إجابات سريعة حول تطبيقات PDMS والدعم والتنزيلات واستخدام المنتجات.',
-    heroBadge: 'FAQ',
-    heroTitle: 'الأسئلة الشائعة',
-    heroBody: 'إجابات سريعة على الأسئلة المتكررة حول تطبيقاتنا وخيارات الدعم وتجربة المنتجات.',
-    topicsTitle: 'مواضيع شائعة',
-    topics: ['التنزيلات', 'الاستخدام دون اتصال', 'الدعم', 'المشتريات', 'اللغات', 'وضع Webview'],
-    faqsTitle: 'أسئلة شائعة',
+  {
+    id: 'prayer-times',
+    title: 'Prayer Times',
     faqs: [
       {
-        q: 'كيف أتواصل مع دعم PDMS؟',
-        a: 'يمكنك التواصل عبر صفحة Support أو عبر البريد support@pakdata.com للحصول على المساعدة التقنية وإرشاد الحساب.'
-      },
-      {
-        q: 'ما التطبيقات المتوفرة من PDMS؟',
-        a: 'تشمل مجموعة منتجاتنا Quran Majeed وQuran Pak وHadith App و3D Salah Guide وEasy Urdu وKitabi وQuranExplorer وغيرها.'
-      },
-      {
-        q: 'هل تعمل التطبيقات دون اتصال؟',
-        a: 'تعمل العديد من ميزات القراءة والتعلّم دون اتصال بعد تنزيل المحتوى، ويختلف ذلك حسب المنتج ونوع المحتوى.'
-      },
-      {
-        q: 'هل تدعم المنتجات الأردية والعربية؟',
-        a: 'نعم. تتضمن عدة منتجات من PDMS واجهات أو محتوى أو خطوطًا باللغة الأردية والعربية حسب التطبيق.'
+        q: 'How can I view all prayer times for today?',
+        a: [
+          'Tap the prayer timings bar on the app homepage to open the complete prayer schedule for the day.',
+          'You can also:',
+          'View upcoming prayers',
+          'Customize calculation methods',
+          'Enable notifications',
+          'Access Qibla direction settings'
+        ]
       }
-    ],
-    ctaTitle: 'تحتاج إجابة أكثر تفصيلًا؟',
-    ctaBody: 'زر صفحة Support لأسئلة التطبيق المحددة وخطوات استكشاف الأخطاء وخيارات التواصل.',
-    ctaPrimary: 'اذهب إلى الدعم',
-    ctaSecondary: 'اتصل بنا'
+    ]
+  },
+  {
+    id: 'app-settings',
+    title: 'App Settings',
+    faqs: [
+      {
+        q: 'Where can I manage Quran Majeed app settings?',
+        a: [
+          'Open Quran Majeed and go to Settings to manage reading preferences, notifications, audio downloads, themes, language options, and prayer timing behavior.',
+          'If a setting is not visible, update the app to the latest version from the App Store or Google Play Store.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'account-restore-purchases',
+    title: 'Account & Restore Purchases',
+    faqs: [
+      {
+        q: 'What account should I use to restore premium access?',
+        a: [
+          'Use the same Apple ID or Google account that was originally used for the purchase.',
+          'Purchases are managed by Apple App Store or Google Play Store, so premium access can only be restored through the original store account.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'troubleshooting',
+    title: 'Troubleshooting',
+    faqs: [
+      {
+        q: 'The app is not working properly or crashes frequently. What should I do?',
+        a: [
+          'Please try the following troubleshooting steps:',
+          'Update the app to the latest version',
+          'Restart your device',
+          'Clear app cache on Android',
+          'Ensure enough device storage is available',
+          'Reinstall the app if necessary',
+          'If the issue continues, please contact our support team with your device model, app version, and a screen recording if possible.'
+        ]
+      },
+      {
+        q: 'How can I contact support?',
+        a: [
+          'You can contact our support team directly through:',
+          'The Contact Us section in the app',
+          'Our website support form',
+          'Email support',
+          'Please include screenshots or screen recordings when reporting technical issues.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'android-support',
+    title: 'Android Support',
+    faqs: [
+      {
+        q: 'Why do Android phones need extra notification setup?',
+        a: [
+          'Many Android manufacturers add battery-saving rules that can stop scheduled notifications in the background.',
+          'For reliable Adhan alerts, allow notifications, background activity, and auto-start permissions where available.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'iphone-ipad-support',
+    title: 'iPhone/iPad Support',
+    faqs: [
+      {
+        q: 'What should I check for notifications on iPhone or iPad?',
+        a: [
+          'Open iOS Settings and confirm that notifications are allowed for Quran Majeed.',
+          'Also check Focus, Sleep, and Do Not Disturb modes because they can silence prayer notifications.'
+        ]
+      }
+    ]
   }
-}[lang];
+];
 
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: copy.faqs.map((faq) => ({
+  mainEntity: faqCategories.flatMap((category) => category.faqs).map((faq) => ({
     '@type': 'Question',
     name: faq.q,
     acceptedAnswer: {
       '@type': 'Answer',
-      text: faq.a
+      text: faq.a.join(' ')
     }
   }))
 };
@@ -126,31 +233,109 @@ const faqJsonLd = {
         <span class="badge badge-primary">{copy.heroBadge}</span>
         <h1 class="faq-title">{copy.heroTitle}</h1>
         <p class="faq-lead">{copy.heroBody}</p>
-        <div class="faq-topic-row" aria-label={copy.topicsTitle}>
-          {copy.topics.map((topic) => <span class="topic-pill">{topic}</span>)}
-        </div>
+        <form class="faq-search" role="search">
+          <input id="faq-search-input" type="search" placeholder={copy.searchPlaceholder} aria-label="Search help articles" />
+        </form>
       </div>
       <div class="faq-hero-panel card">
-        <p class="panel-label">{copy.topicsTitle}</p>
-        <div class="panel-grid">
-          {copy.topics.map((topic) => <div class="panel-chip">{topic}</div>)}
+        <p class="panel-label">{copy.quickTitle}</p>
+        <div class="quick-panel-list">
+          {copy.quickHelp.map((item) => (
+            <a href={item.href} class="quick-panel-link">
+              <strong>{item.title}</strong>
+              <span>{item.body}</span>
+            </a>
+          ))}
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container faq-wrap">
-      <div class="section-title-wrap tight">
-        <span class="badge badge-primary">{copy.heroBadge}</span>
-        <h2 class="section-title">{copy.faqsTitle}</h2>
+  <section class="section faq-main-section">
+    <div class="container faq-layout">
+      <aside class="faq-sidebar" aria-label={copy.categoriesTitle}>
+        <p class="panel-label">{copy.categoriesTitle}</p>
+        <nav class="category-nav">
+          {faqCategories.map((category) => <a href={`#${category.id}`}>{category.title}</a>)}
+        </nav>
+        <div class="sidebar-support">
+          <strong>{copy.supportTitle}</strong>
+          <a href={getRelativeLocaleUrl(lang, '/contact')}>{copy.contactSupport}</a>
+        </div>
+      </aside>
+
+      <div class="faq-content">
+        <div class="quick-help-grid">
+          {copy.quickHelp.map((item) => (
+            <a href={item.href} class="quick-help-card card">
+              <span>{item.title}</span>
+              <p>{item.body}</p>
+            </a>
+          ))}
+        </div>
+
+        {faqCategories.map((category, categoryIndex) => (
+          <section class="faq-category" id={category.id} data-faq-category>
+            <div class="section-title-wrap tight">
+              <span class="badge badge-primary">FAQ</span>
+              <h2 class="section-title">{category.title}</h2>
+            </div>
+
+            <div class="faq-list">
+              {category.faqs.map((faq, idx) => (
+                <details class="faq-card card" open={categoryIndex === 0 && idx === 0} data-faq-card>
+                  <summary>{faq.q}</summary>
+                  <div class="faq-answer">
+                    {faq.a.map((line, lineIndex) => (
+                      lineIndex > 1 ? <p class="answer-step">{line}</p> : <p>{line}</p>
+                    ))}
+                    {faq.links && (
+                      <div class="device-link-list">
+                        {faq.links.map((link) => <a href={link.href}>{link.label}</a>)}
+                      </div>
+                    )}
+                    {faq.cta && <a href={faq.cta.href} class="btn btn-outline faq-card-cta">{faq.cta.label}</a>}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        ))}
       </div>
-      <div class="faq-grid">
-        {copy.faqs.map((faq, idx) => (
-          <details class="faq-card card" open={idx === 0}>
-            <summary>{faq.q}</summary>
-            <p>{faq.a}</p>
-          </details>
+    </div>
+  </section>
+
+  <section class="section section-bg">
+    <div class="container support-grid">
+      <div class="support-info">
+        <span class="badge badge-primary">Guides</span>
+        <h2 class="section-title">{copy.deviceTitle}</h2>
+        <p class="faq-body">{copy.deviceBody}</p>
+      </div>
+      <div class="device-grid">
+        {copy.devices.map((device) => (
+          <a href={device.href} class="device-card card">
+            <strong>{device.name}</strong>
+            <span>{device.note}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container video-section">
+      <div class="section-title-wrap tight">
+        <span class="badge badge-primary">Tutorials</span>
+        <h2 class="section-title">{copy.videoTitle}</h2>
+        <p class="faq-body">{copy.videoBody}</p>
+      </div>
+      <div class="video-grid">
+        {copy.videos.map((video) => (
+          <div class="video-card card">
+            <div class="video-thumb">▶</div>
+            <h3>{video}</h3>
+          </div>
         ))}
       </div>
     </div>
@@ -160,115 +345,318 @@ const faqJsonLd = {
     <div class="container faq-cta">
       <div>
         <span class="badge badge-primary">Support</span>
-        <h2 class="section-title">{copy.ctaTitle}</h2>
-        <p class="faq-body">{copy.ctaBody}</p>
+        <h2 class="section-title">{copy.supportTitle}</h2>
+        <p class="faq-body">{copy.supportBody}</p>
       </div>
       <div class="faq-cta-actions">
-        <a href={getRelativeLocaleUrl(lang, '/support')} class="btn btn-primary">{copy.ctaPrimary}</a>
-        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-outline">{copy.ctaSecondary}</a>
+        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary">{copy.contactSupport}</a>
+        <a href={getRelativeLocaleUrl(lang, '/support')} class="btn btn-outline">{copy.submitRequest}</a>
       </div>
+    </div>
+  </section>
+
+  <section class="footer-summary">
+    <div class="container">
+      <p>{copy.footerDesc}</p>
     </div>
   </section>
 </Layout>
 
+<script>
+  const searchInput = document.querySelector('#faq-search-input');
+  const faqCards = Array.from(document.querySelectorAll('[data-faq-card]'));
+  const faqCategories = Array.from(document.querySelectorAll('[data-faq-category]'));
+
+  searchInput?.addEventListener('input', (event) => {
+    const query = event.currentTarget.value.toLowerCase().trim();
+
+    faqCards.forEach((card) => {
+      const matches = card.textContent.toLowerCase().includes(query);
+      card.hidden = query.length > 0 && !matches;
+      if (query.length > 0 && matches) card.open = true;
+    });
+
+    faqCategories.forEach((category) => {
+      const visibleCards = category.querySelectorAll('[data-faq-card]:not([hidden])');
+      category.hidden = query.length > 0 && visibleCards.length === 0;
+    });
+  });
+</script>
+
 <style>
   .faq-hero {
-    padding: 4.5rem 0 3rem;
+    padding: 5rem 0 3.5rem;
     background: radial-gradient(at 20% 0%,oklch(97% .04 60) 0%,transparent 50%),radial-gradient(at 80% 20%,oklch(96% .03 220) 0%,transparent 50%),linear-gradient(180deg,#fefbf8,#fff);
     border-bottom: 1px solid var(--border);
   }
 
   .faq-hero-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
     gap: 1.5rem;
     align-items: center;
   }
 
   .faq-title {
-    font-size: clamp(2rem, 3vw, 3rem);
-    line-height: 1.05;
+    font-size: clamp(2.3rem, 4vw, 4rem);
+    line-height: 1.02;
     margin: .85rem 0 1rem;
     letter-spacing: 0;
     color: var(--dark);
+    max-width: 13ch;
   }
 
   .faq-lead,
   .faq-body {
     font-size: 1rem;
-    line-height: 1.65;
+    line-height: 1.7;
     color: var(--secondary-dark);
-    max-width: 42rem;
+    max-width: 46rem;
   }
 
-  .faq-topic-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .6rem;
-    margin-top: 1rem;
+  .faq-search {
+    margin-top: 1.5rem;
+    max-width: 46rem;
   }
 
-  .topic-pill,
-  .panel-chip {
-    padding: .6rem .85rem;
-    border-radius: 999px;
-    background: rgba(255,255,255,.9);
-    border: 1px solid var(--border);
-    font-weight: 600;
+  .faq-search input {
+    width: 100%;
+    min-height: 3.35rem;
+    border-radius: .85rem;
+    border: 1px solid rgba(249,115,22,.2);
+    background: rgba(255,255,255,.96);
+    padding: 0 1rem;
+    font: inherit;
     color: var(--dark);
+    box-shadow: 0 14px 30px rgba(15,23,42,.06);
+  }
+
+  .faq-hero-panel,
+  .faq-sidebar,
+  .quick-help-card,
+  .faq-card,
+  .device-card,
+  .video-card {
+    border-radius: .75rem;
+    border: 1px solid rgba(249,115,22,.13);
+    background: rgba(255,255,255,.96);
+    box-shadow: 0 12px 28px rgba(15,23,42,.05);
   }
 
   .faq-hero-panel {
     padding: 1.25rem;
-    background: rgba(255,255,255,.92);
   }
 
   .panel-label {
     margin: 0 0 .9rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--secondary-dark);
     text-transform: uppercase;
     letter-spacing: .08em;
-    font-size: .82rem;
+    font-size: .78rem;
   }
 
-  .panel-grid,
-  .faq-grid {
+  .quick-panel-list,
+  .category-nav,
+  .faq-list,
+  .device-link-list {
     display: grid;
-    gap: .85rem;
+    gap: .75rem;
   }
 
-  .panel-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .quick-panel-link,
+  .category-nav a,
+  .device-link-list a {
+    color: var(--dark);
+    text-decoration: none;
   }
 
-  .faq-wrap {
-    max-width: 60rem;
+  .quick-panel-link {
+    display: grid;
+    gap: .25rem;
+    padding: .85rem;
+    border-radius: .65rem;
+    background: rgba(255,247,238,.72);
+    border: 1px solid rgba(249,115,22,.12);
+  }
+
+  .quick-panel-link span,
+  .quick-help-card p,
+  .device-card span {
+    color: var(--secondary-dark);
+    line-height: 1.55;
+    font-size: .92rem;
+  }
+
+  .faq-main-section {
+    padding-top: 3rem;
+  }
+
+  .faq-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, .32fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .faq-sidebar {
+    position: sticky;
+    top: 5.5rem;
+    padding: 1rem;
+  }
+
+  .category-nav a {
+    padding: .7rem .8rem;
+    border-radius: .6rem;
+    font-weight: 700;
+    background: rgba(255,255,255,.7);
+    border: 1px solid var(--border);
+  }
+
+  .sidebar-support {
+    display: grid;
+    gap: .5rem;
+    margin-top: 1rem;
+    padding: .9rem;
+    border-radius: .65rem;
+    background: rgba(255,247,238,.8);
+  }
+
+  .sidebar-support a {
+    color: var(--primary);
+    font-weight: 800;
+  }
+
+  .quick-help-grid,
+  .device-grid,
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: .9rem;
+  }
+
+  .quick-help-card {
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--dark);
+  }
+
+  .quick-help-card span {
+    font-weight: 800;
+  }
+
+  .faq-category {
+    scroll-margin-top: 6rem;
+    margin-top: 2.5rem;
   }
 
   .faq-card {
-    border-radius: .75rem;
-    padding: 1rem 1.1rem;
-    background: rgba(255,255,255,.98);
-    border: 1px solid var(--border);
-    box-shadow: 0 12px 28px rgba(15,23,42,.05);
+    padding: 0;
+    overflow: hidden;
   }
 
   .faq-card summary {
     cursor: pointer;
     list-style: none;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--dark);
+    padding: 1rem 1.15rem;
   }
 
   .faq-card summary::-webkit-details-marker {
     display: none;
   }
 
-  .faq-card p {
-    margin-top: .85rem;
+  .faq-answer {
+    padding: 0 1.15rem 1.15rem;
     color: var(--secondary-dark);
-    line-height: 1.6;
+    line-height: 1.65;
+    border-top: 1px solid rgba(15,23,42,.06);
+  }
+
+  .faq-answer p {
+    margin: .85rem 0 0;
+  }
+
+  .answer-step {
+    position: relative;
+    padding-left: 1.2rem;
+  }
+
+  .answer-step::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: .72rem;
+    width: .38rem;
+    height: .38rem;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+
+  .device-link-list {
+    margin-top: 1rem;
+  }
+
+  .device-link-list a {
+    padding: .65rem .75rem;
+    border-radius: .55rem;
+    background: rgba(255,247,238,.8);
+    border: 1px solid rgba(249,115,22,.12);
+    font-weight: 700;
+  }
+
+  .faq-card-cta {
+    margin-top: 1rem;
+  }
+
+  .support-grid {
+    display: grid;
+    grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .device-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .device-card {
+    display: grid;
+    gap: .35rem;
+    padding: 1rem;
+    color: var(--dark);
+    text-decoration: none;
+  }
+
+  .video-section {
+    max-width: 70rem;
+  }
+
+  .video-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .video-card {
+    padding: 1rem;
+  }
+
+  .video-thumb {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    border-radius: .65rem;
+    background: linear-gradient(135deg, rgba(255,247,238,.96), rgba(255,255,255,.96));
+    border: 1px solid rgba(249,115,22,.14);
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: .85rem;
+  }
+
+  .video-card h3 {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.35;
   }
 
   .faq-cta {
@@ -285,10 +673,37 @@ const faqJsonLd = {
     justify-content: flex-end;
   }
 
-  @media (max-width: 900px) {
+  .footer-summary {
+    padding: 1.5rem 0 3rem;
+  }
+
+  .footer-summary p {
+    max-width: 60rem;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--secondary-dark);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 1040px) {
     .faq-hero-grid,
+    .faq-layout,
+    .support-grid,
     .faq-cta {
       grid-template-columns: 1fr;
+    }
+
+    .faq-sidebar {
+      position: relative;
+      top: auto;
+    }
+
+    .category-nav {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .quick-help-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .faq-cta-actions {
@@ -297,12 +712,27 @@ const faqJsonLd = {
   }
 
   @media (max-width: 720px) {
-    .panel-grid {
-      grid-template-columns: 1fr;
+    .faq-hero {
+      padding: 3rem 0 2rem;
     }
 
     .faq-title {
-      font-size: clamp(1.8rem, 8vw, 2.5rem);
+      font-size: clamp(2rem, 10vw, 2.8rem);
+    }
+
+    .category-nav,
+    .quick-help-grid,
+    .device-grid,
+    .video-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .faq-card summary {
+      padding: .95rem;
+    }
+
+    .faq-answer {
+      padding: 0 .95rem .95rem;
     }
   }
 </style>
