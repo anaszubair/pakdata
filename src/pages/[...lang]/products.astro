@@ -41,62 +41,6 @@ const products = [
     imageUrl: "/images/QM.png"
   },
   {
-    id: "quran-majeed-mac",
-    category: "islamic",
-    name: {
-      en: "Quran Majeed for Mac",
-      ur: "قرآن مجید برائے میک",
-      ar: "القرآن المجيد للماك"
-    }[lang],
-    tagline: {
-      en: "Authentic Quran Reading on Apple Macintosh",
-      ur: "ایپل میکنٹوش پر مستند قرآنی مطالعہ",
-      ar: "قراءة قرآنية أصيلة على Apple Macintosh"
-    }[lang],
-    description: {
-      en: "Read and listen to the Quran on Mac with elegant Uthmanic script, complete Surah Al-Baqarah, multiple audio recitations, and translations.",
-      ur: "میک پر قرآن پڑھیں اور سنیں، عثمانی رسم الخط، مکمل سورۃ البقرہ، متعدد آڈیو تلاوتیں اور تراجم کے ساتھ۔",
-      ar: "اقرأ واستمع إلى القرآن على الماك بخط عثماني أنيق، وسورة البقرة كاملة، وتلاوات صوتية متعددة، وترجمات."
-    }[lang],
-    badge: {
-      en: "Mac Edition",
-      ur: "میک ایڈیشن",
-      ar: "نسخة الماك"
-    }[lang],
-    rating: "4.8",
-    downloads: {
-      en: "Desktop Quran app",
-      ur: "ڈیسک ٹاپ قرآن ایپ",
-      ar: "تطبيق قرآن لسطح المكتب"
-    }[lang],
-    platforms: ["macOS"],
-    features: [
-      {
-        en: "Uthmanic Arabic script",
-        ur: "عثمانی عربی رسم الخط",
-        ar: "الخط العربي العثماني"
-      }[lang],
-      {
-        en: "Complete Surah Al-Baqarah",
-        ur: "مکمل سورۃ البقرہ",
-        ar: "سورة البقرة كاملة"
-      }[lang],
-      {
-        en: "Multiple audio recitations",
-        ur: "متعدد آڈیو تلاوتیں",
-        ar: "تلاوات صوتية متعددة"
-      }[lang],
-      {
-        en: "Translations and study tools",
-        ur: "تراجم اور مطالعہ ٹولز",
-        ar: "ترجمات وأدوات دراسة"
-      }[lang]
-    ],
-    detailsUrl: getRelativeLocaleUrl(lang, '/products/quran-majeed-mac'),
-    downloadUrl: getRelativeLocaleUrl(lang, '/contact'),
-    imageUrl: "/images/qm-mac.png"
-  },
-  {
     id: "quran-pak",
     category: "islamic",
     name: t('products.items.qp.name'),
@@ -115,25 +59,6 @@ const products = [
     detailsUrl: getRelativeLocaleUrl(lang, '/products/quran-pak'),
     downloadUrl: "https://pakdata.com/products/quran-pak",
     imageUrl: "/images/QP.webp"
-  },
-    {
-    id: "Prayer Time",
-    category: "webtv",
-    name: t('products.items.pt.name'),
-    tagline: t('products.items.pt.tagline'),
-    description: t('products.items.pt.desc'),
-    badge: t('products.items.pt.badge'),
-    rating: "4.9",
-    downloads: t('products.items.pt.downloads'),
-    platforms: ["TV"],
-    features: [
-      t('products.items.pt.f1'),
-      t('products.items.pt.f2'),
-      t('products.items.pt.f3'),
-      t('products.items.pt.f4')
-    ],
-    downloadUrl: getRelativeLocaleUrl(lang, '/contact'),
-    imageUrl: "/images/prayerTime.webp"
   },
   {
     id: "quran-tv",
@@ -173,62 +98,6 @@ const products = [
     detailsUrl: getRelativeLocaleUrl(lang, '/products/easyurdu'),
     downloadUrl: "https://pakdata.com/products/easyurdu",
     imageUrl: "/images/easyUrdu.webp"
-  },
-  {
-    id: "arabicfont",
-    category: "typography",
-    name: {
-      en: "PDMS Saleem Quran Font",
-      ur: "PDMS سلیم قرآن فونٹ",
-      ar: "PDMS Saleem Quran Font"
-    }[lang],
-    tagline: {
-      en: "Arabic Font for Holy Quran",
-      ur: "قرآنِ مجید کے لیے عربی فونٹ",
-      ar: "خط عربي للقرآن الكريم"
-    }[lang],
-    description: {
-      en: "A high quality OpenType Arabic font for Holy Quran text based on Unicode, with a calligraphic style, proper aeraab placement, and waqf symbols for modern publishing.",
-      ur: "قرآنِ مجید کے متن کے لیے اعلیٰ معیار کا OpenType عربی فونٹ، Unicode بنیاد، بہتر اعراب سپورٹ اور وقف علامات کے ساتھ۔",
-      ar: "خط OpenType عربي عالي الجودة لنص القرآن الكريم يعتمد على Unicode مع دعم الحركات وعلامات الوقف والأسلوب الخطاطي."
-    }[lang],
-    badge: {
-      en: "Typography",
-      ur: "فونٹ",
-      ar: "الطباعة"
-    }[lang],
-    rating: "5.0",
-    downloads: {
-      en: "Publisher tool",
-      ur: "پبلشر ٹول",
-      ar: "أداة للنشر"
-    }[lang],
-    platforms: ["Web", "Desktop"],
-    features: [
-      {
-        en: "Unicode-based OpenType support",
-        ur: "Unicode پر مبنی OpenType سپورٹ",
-        ar: "دعم OpenType المبني على Unicode"
-      }[lang],
-      {
-        en: "Proper aeraab and waqf placement",
-        ur: "اعراب اور وقف کی درست جگہیں",
-        ar: "مواضع صحيحة للحركات وعلامات الوقف"
-      }[lang],
-      {
-        en: "Quranic calligraphy-inspired style",
-        ur: "قرآنی خطاطی سے متاثرہ اسٹائل",
-        ar: "أسلوب مستوحى من الخط القرآني"
-      }[lang],
-      {
-        en: "Publisher and designer friendly",
-        ur: "پبلشر اور ڈیزائنر کے لیے موزوں",
-        ar: "مناسب للناشرين والمصممين"
-      }[lang]
-    ],
-    detailsUrl: getRelativeLocaleUrl(lang, '/products/arabicfont'),
-    downloadUrl: getRelativeLocaleUrl(lang, '/contact'),
-    imageUrl: "/images/quran-complex-screen1.jpg"
   },
   {
     id: "hadith-app",
@@ -378,7 +247,7 @@ const products = [
 
   <!-- B2B Call to Action -->
   <section class="section products-cta">
-    <div class="container text-center text-white">
+    <div class="container max-width-600 text-center text-white">
       <h2 class="cta-title">{t('products.cta.title')}</h2>
       <p class="cta-desc">
         {t('products.cta.desc')}
@@ -483,7 +352,6 @@ const products = [
   .text-white .cta-desc {
     color: #9ca3af;
     max-width: 700px;
-    margin: 0 auto 2.5rem auto;
     font-size: calc(1.125rem * var(--text-scale, 1));
   }
 

@@ -167,7 +167,7 @@ const caseStudies = [
 
   <!-- CTA Section -->
   <section class="section projects-footer-cta">
-    <div class="container text-center text-white">
+    <div class="container max-width-600 text-center text-white">
       <h2 class="cta-title">{t('projects.cta.title')}</h2>
       <p class="cta-desc">
         {t('projects.cta.desc')}
@@ -323,7 +323,6 @@ const caseStudies = [
   .text-white .cta-desc {
     color: #9ca3af;
     max-width: 700px;
-    margin: 0 auto 2.5rem auto;
     font-size: calc(1.125rem * var(--text-scale, 1));
   }
 
@@ -350,5 +349,10 @@ const caseStudies = [
     .detail-grid {
       grid-template-columns: repeat(3, 1fr);
     }
+  }
+    /* Support prompt */
+  .max-width-600 {
+    max-width: 600px;
+    margin: 0 auto;
   }
 </style>
