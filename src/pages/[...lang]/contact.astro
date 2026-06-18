@@ -372,11 +372,37 @@ const departments = [
   const contactForm = document.getElementById('main-contact-form');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const alertMsg = contactForm.getAttribute('data-alert-msg') || 'Message sent!';
-      alert(alertMsg);
-      contactForm.reset();
+      const submitButton = document.getElementById('submit-contact-btn') as HTMLButtonElement;
+
+      submitButton.disabled = true;
+
+      try {
+        const response = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            formType: 'contact',
+            fields: {
+              name: (document.getElementById('contact-name') as HTMLInputElement)?.value,
+              email: (document.getElementById('contact-email') as HTMLInputElement)?.value,
+              subject: (document.getElementById('contact-subject') as HTMLSelectElement)?.value,
+              message: (document.getElementById('contact-msg') as HTMLTextAreaElement)?.value
+            }
+          })
+        });
+
+        if (!response.ok) throw new Error('Email request failed');
+
+        alert(alertMsg);
+        contactForm.reset();
+      } catch {
+        alert('Sorry, your message could not be sent right now. Please try again or email us directly.');
+      } finally {
+        submitButton.disabled = false;
+      }
     });
   }
 </script>

@@ -1,7 +1,11 @@
 // astro.config.mjs
 import { defineConfig } from 'astro/config';
+import node from '@astrojs/node';
 
 export default defineConfig({
+    adapter: node({
+        mode: 'standalone'
+    }),
     redirects: {
         '/ur/قرآن-مجید-کے-لیے-عربی-فونٹ/': '/ur/products/arabicfont',
         '/ur/قرآن-ایکسپلورر/': '/ur/projects/quranexplorer',

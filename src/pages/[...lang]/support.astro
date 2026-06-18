@@ -403,13 +403,40 @@ const faqCategories = [
   }
 
   if (ticketForm) {
-    ticketForm.addEventListener('submit', (e) => {
+    ticketForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const ticketName = document.getElementById('ticket-name') as HTMLInputElement;
       const defaultName = ticketForm.dataset.defaultName || 'User';
       const alertMsg = ticketForm.dataset.alertMsg || '';
-      alert(`${ticketName?.value || defaultName}: ${alertMsg}`);
-      ticketForm.reset();
+      const submitButton = document.getElementById('submit-ticket-btn') as HTMLButtonElement;
+
+      submitButton.disabled = true;
+
+      try {
+        const response = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            formType: 'support',
+            fields: {
+              name: ticketName?.value || defaultName,
+              email: (document.getElementById('ticket-email') as HTMLInputElement)?.value,
+              app: (document.getElementById('ticket-app') as HTMLSelectElement)?.value,
+              device: (document.getElementById('ticket-device') as HTMLSelectElement)?.value,
+              message: (document.getElementById('ticket-msg') as HTMLTextAreaElement)?.value
+            }
+          })
+        });
+
+        if (!response.ok) throw new Error('Email request failed');
+
+        alert(`${ticketName?.value || defaultName}: ${alertMsg}`);
+        ticketForm.reset();
+      } catch {
+        alert('Sorry, your support request could not be sent right now. Please try again or email support directly.');
+      } finally {
+        submitButton.disabled = false;
+      }
     });
   }
 </script>

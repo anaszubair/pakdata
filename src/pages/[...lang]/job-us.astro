@@ -561,15 +561,43 @@ const jobs = [
   }
 
   if (careerApplyForm) {
-    careerApplyForm.addEventListener('submit', (e) => {
+    careerApplyForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const applicantName = document.getElementById('applicant-name') as HTMLInputElement;
       const defaultName = careerApplyForm.dataset.defaultName || 'Applicant';
       const alertMsg = careerApplyForm.dataset.alertMsg || '';
-      alert(`${applicantName?.value || defaultName}: ${alertMsg}`);
-      applyModal?.classList.remove('active');
-      document.body.classList.remove('overflow-hidden');
-      careerApplyForm.reset();
+      const submitButton = document.getElementById('submit-career-btn') as HTMLButtonElement;
+
+      submitButton.disabled = true;
+
+      try {
+        const response = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            formType: 'career',
+            fields: {
+              position: modalTargetPos?.textContent || '',
+              name: applicantName?.value || defaultName,
+              email: (document.getElementById('applicant-email') as HTMLInputElement)?.value,
+              phone: (document.getElementById('applicant-phone') as HTMLInputElement)?.value,
+              resume: (document.getElementById('applicant-resume') as HTMLInputElement)?.value,
+              coverLetter: (document.getElementById('applicant-cover') as HTMLTextAreaElement)?.value
+            }
+          })
+        });
+
+        if (!response.ok) throw new Error('Email request failed');
+
+        alert(`${applicantName?.value || defaultName}: ${alertMsg}`);
+        applyModal?.classList.remove('active');
+        document.body.classList.remove('overflow-hidden');
+        careerApplyForm.reset();
+      } catch {
+        alert('Sorry, your application could not be sent right now. Please try again or email HR directly.');
+      } finally {
+        submitButton.disabled = false;
+      }
     });
   }
 </script>
