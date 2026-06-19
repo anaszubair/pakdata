@@ -1,9 +1,16 @@
 // astro.config.mjs
 import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
+    site: 'https://pakdata-pearl.vercel.app',
     adapter: vercel(),
+    integrations: [
+        sitemap({
+            filter: (page) => !page.includes('/api/') && !page.includes('/faq-page/'),
+        }),
+    ],
     redirects: {
         '/ur/قرآن-مجید-کے-لیے-عربی-فونٹ/': '/ur/products/arabicfont',
         '/ur/قرآن-ایکسپلورر/': '/ur/projects/quranexplorer',

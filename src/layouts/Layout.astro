@@ -6,11 +6,17 @@ import { languages } from '../i18n/ui';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  noindex?: boolean;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const { 
   title = "Pakistan Data Management Services", 
-  description = "Pioneering Islamic digital innovation and software development since 1979. Creators of Quran Majeed, EasyUrdu, and custom enterprise solutions." 
+  description = "Pioneering Islamic digital innovation and software development since 1979. Creators of Quran Majeed, EasyUrdu, and custom enterprise solutions.",
+  image = "/images/logo.png",
+  noindex = false,
+  schema = []
 } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
@@ -18,10 +24,207 @@ const t = useTranslations(lang);
 const dir = lang === 'en' ? 'ltr' : 'rtl';
 const searchParams = Astro.url.searchParams;
 const hideChrome = searchParams.get('webview') === '1' || searchParams.get('view') === 'app';
+const siteOrigin = 'https://pakdata-pearl.vercel.app';
+
+const normalizePath = (path: string) => {
+  const clean = path || '/';
+  if (clean === '/') return clean;
+  return clean.endsWith('/') ? clean : `${clean}/`;
+};
+
+const stripTrailingSlash = (path: string) => {
+  if (path === '/') return path;
+  return path.endsWith('/') ? path.slice(0, -1) : path;
+};
+
+const toAbsoluteUrl = (pathOrUrl: string) => {
+  try {
+    return new URL(pathOrUrl).toString();
+  } catch {
+    return new URL(pathOrUrl, siteOrigin).toString();
+  }
+};
 
 // Helper to determine active link
 const pathname = new URL(Astro.request.url).pathname;
 const cleanPathname = pathname.replace(new RegExp(`^/${lang}`), '') || '/';
+const normalizedCleanPathname = normalizePath(cleanPathname);
+const productPathKey = stripTrailingSlash(normalizedCleanPathname);
+const canonicalPath = normalizePath(getRelativeLocaleUrl(lang, normalizedCleanPathname));
+const canonicalUrl = toAbsoluteUrl(canonicalPath);
+const socialImage = toAbsoluteUrl(image);
+const robotsContent = noindex || hideChrome
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+const alternateLocales = Object.keys(languages).map((locale) => ({
+  lang: locale,
+  href: toAbsoluteUrl(normalizePath(getRelativeLocaleUrl(locale as keyof typeof languages, normalizedCleanPathname)))
+}));
+const defaultLocaleUrl = toAbsoluteUrl(normalizePath(getRelativeLocaleUrl('en', normalizedCleanPathname)));
+
+const humanizeSegment = (segment: string) => decodeURIComponent(segment)
+  .replace(/-/g, ' ')
+  .replace(/\b\w/g, char => char.toUpperCase());
+
+const breadcrumbSegments = normalizedCleanPathname.split('/').filter(Boolean);
+const breadcrumbItems = [
+  {
+    '@type': 'ListItem',
+    position: 1,
+    name: 'Home',
+    item: toAbsoluteUrl(getRelativeLocaleUrl(lang, '/'))
+  },
+  ...breadcrumbSegments.map((segment, index) => {
+    const itemPath = `/${breadcrumbSegments.slice(0, index + 1).join('/')}`;
+    return {
+      '@type': 'ListItem',
+      position: index + 2,
+      name: humanizeSegment(segment),
+      item: toAbsoluteUrl(normalizePath(getRelativeLocaleUrl(lang, itemPath)))
+    };
+  })
+];
+
+const productSchemas: Record<string, Record<string, unknown>> = {
+  '/products/quran-majeed': {
+    name: 'Quran Majeed',
+    applicationCategory: 'ReferenceApplication',
+    operatingSystem: 'Android, iOS, macOS',
+    image: toAbsoluteUrl('/images/quranmajeed/Quran-Majeed.png'),
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      bestRating: '5'
+    },
+    additionalProperty: [
+      {
+        '@type': 'PropertyValue',
+        name: 'Downloads',
+        value: '50M+'
+      }
+    ]
+  },
+  '/products/quran-pak': {
+    name: 'Quran Pak',
+    applicationCategory: 'ReferenceApplication',
+    operatingSystem: 'iOS',
+    image: toAbsoluteUrl('/images/QP.webp'),
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      bestRating: '5'
+    }
+  },
+  '/products/easyurdu': {
+    name: 'Easy Urdu Keyboard',
+    applicationCategory: 'UtilitiesApplication',
+    operatingSystem: 'Android',
+    image: toAbsoluteUrl('/images/easyurdu/easyUrdu.webp')
+  },
+  '/products/easysindhi': {
+    name: 'Easy Sindhi Keyboard',
+    applicationCategory: 'UtilitiesApplication',
+    operatingSystem: 'Android',
+    image: toAbsoluteUrl('/images/easysindhi/easysindhi.png')
+  },
+  '/products/hadith-app': {
+    name: 'Hadith App',
+    applicationCategory: 'ReferenceApplication',
+    operatingSystem: 'iOS',
+    image: toAbsoluteUrl('/images/hadith/logo-hadith.webp')
+  },
+  '/products/3d-salah-guide': {
+    name: '3D Salah Guide',
+    applicationCategory: 'EducationApplication',
+    operatingSystem: 'iOS',
+    image: toAbsoluteUrl('/images/3DSalah/3dSalah.webp')
+  },
+  '/products/kitabi': {
+    name: 'Kitabi',
+    applicationCategory: 'BooksApplication',
+    operatingSystem: 'Android, iOS',
+    image: toAbsoluteUrl('/images/kitabi/kitabi.webp')
+  },
+  '/products/quran-majeed-mac': {
+    name: 'Quran Majeed Mac',
+    applicationCategory: 'ReferenceApplication',
+    operatingSystem: 'macOS',
+    image: toAbsoluteUrl('/images/qm-mac.png')
+  }
+};
+
+const productSchema = productSchemas[productPathKey]
+  ? {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    ...productSchemas[productPathKey],
+    url: canonicalUrl,
+    description,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Pakistan Data Management Services',
+      url: siteOrigin
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD'
+    }
+  }
+  : null;
+
+const pageSchemaType = normalizedCleanPathname === '/about-us' ? 'AboutPage' : 'WebPage';
+const baseSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${siteOrigin}/#organization`,
+    name: 'Pakistan Data Management Services',
+    alternateName: 'PDMS',
+    url: siteOrigin,
+    logo: toAbsoluteUrl('/images/logo.png'),
+    foundingDate: '1978',
+    email: 'info@pakdata.com',
+    sameAs: [
+      'https://linkedin.com/company/pakdata',
+      'https://twitter.com/pakdata',
+      'https://facebook.com/pakdata'
+    ]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${siteOrigin}/#website`,
+    url: siteOrigin,
+    name: 'Pakistan Data Management Services',
+    publisher: {
+      '@id': `${siteOrigin}/#organization`
+    },
+    inLanguage: lang
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': pageSchemaType,
+    '@id': `${canonicalUrl}#webpage`,
+    url: canonicalUrl,
+    name: `${title} | PDMS`,
+    description,
+    isPartOf: {
+      '@id': `${siteOrigin}/#website`
+    },
+    about: {
+      '@id': `${siteOrigin}/#organization`
+    },
+    inLanguage: lang
+  },
+  ...(breadcrumbSegments.length > 0 ? [{
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbItems
+  }] : []),
+  ...(productSchema ? [productSchema] : [])
+];
+const allSchemas = [...baseSchemas, ...(Array.isArray(schema) ? schema : [schema])];
 const isActive = (path: string) => {
   if (path === '/' && cleanPathname === '/') return true;
   if (path !== '/' && cleanPathname.startsWith(path)) return true;
@@ -102,6 +305,12 @@ const projectLinks = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content={robotsContent} />
+    {alternateLocales.map((alternate) => (
+      <link rel="alternate" hreflang={alternate.lang} href={alternate.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={defaultLocaleUrl} />
     
     <!-- Primary Meta Tags -->
     <title>{title} | PDMS</title>
@@ -110,15 +319,22 @@ const projectLinks = [
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={`${title} | PDMS`} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://pakdata-pearl.vercel.app/images/logo.png" />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:locale" content={lang} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
     <meta property="twitter:title" content={`${title} | PDMS`} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="https://pakdata-pearl.vercel.app/images/logo.png" />
+    <meta property="twitter:image" content={socialImage} />
+
+    {allSchemas.map((schemaItem) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schemaItem)} />
+    ))}
 
     <!-- Custom Language Fonts -->
     {lang === 'ur' && <link rel="preload" href="/fonts/ur.ttf" as="font" type="font/ttf" crossorigin />}

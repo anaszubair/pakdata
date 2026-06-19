@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { getLangFromUrl, getRelativeLocaleUrl } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
+const { noindex = false } = Astro.props;
 
 const copy = {
   seoTitle: 'Pakdata Help Center | FAQ & Support for Quran Majeed Apps',
@@ -224,7 +225,7 @@ const faqJsonLd = {
 };
 ---
 
-<Layout title={copy.seoTitle} description={copy.seoDesc}>
+<Layout title={copy.seoTitle} description={copy.seoDesc} noindex={noindex}>
   <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
 
   <section class="faq-hero section-bg">
