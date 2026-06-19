@@ -14,7 +14,7 @@ interface Props {
 const { 
   title = "Pakistan Data Management Services", 
   description = "Pioneering Islamic digital innovation and software development since 1979. Creators of Quran Majeed, EasyUrdu, and custom enterprise solutions.",
-  image = "/images/logo.png",
+  image,
   noindex = false,
   schema = []
 } = Astro.props;
@@ -52,7 +52,6 @@ const normalizedCleanPathname = normalizePath(cleanPathname);
 const productPathKey = stripTrailingSlash(normalizedCleanPathname);
 const canonicalPath = normalizePath(getRelativeLocaleUrl(lang, normalizedCleanPathname));
 const canonicalUrl = toAbsoluteUrl(canonicalPath);
-const socialImage = toAbsoluteUrl(image);
 const robotsContent = noindex || hideChrome
   ? 'noindex, nofollow'
   : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
@@ -85,12 +84,41 @@ const breadcrumbItems = [
   })
 ];
 
+const routeSocialImages: Record<string, string> = {
+  '/': '/images/quranscreen.webp',
+  '/products': '/images/quranscreen.webp',
+  '/products/quran-majeed': '/images/quranmajeed/IMG_0167-768x999.png',
+  '/products/quran-majeed-mac': '/images/Mac.png',
+  '/products/quran-pak': '/images/quranpak/unnamed.webp',
+  '/products/easyurdu': '/images/easyurdu/unnamed.webp',
+  '/products/easysindhi': '/images/easysindhi/1.jpeg',
+  '/products/hadith-app': '/images/hadith/unnamed.webp',
+  '/products/3d-salah-guide': '/images/3DSalah/unnamed.webp',
+  '/products/kitabi': '/images/kitabi/unnamed (3).webp',
+  '/products/arabicfont': '/images/quranmajeed/Quran-Majeed.png',
+  '/projects': '/images/nadra.jpg',
+  '/projects/nadra-software': '/images/nadra.jpg',
+  '/projects/nara-national-alien-registration-authority': '/images/nara-screenshot-350x316.jpg',
+  '/projects/quran-printing-complex-project': '/images/quran-complex-screen1.jpg',
+  '/projects/quranexplorer': '/images/q_explorer_sc.png',
+  '/projects/imagine': '/images/imagine.jpg',
+  '/quran-audio': '/images/quranaudio.webp',
+  '/qm-audio-download-instructions': '/images/qm-audio-download2.png',
+  '/certificate': '/images/certificates/QuranArabicTextCorrectCertificate.gif',
+  '/fix_adhan_notification': '/images/generic/1-1-480x853.png',
+  '/fix_adhan_notification/generic': '/images/generic/1-1-480x853.png',
+  '/fix_adhan_notification/huawei': '/images/huawei/fixadhanissue1.jpg',
+  '/fix_adhan_notification/samsung': '/images/samsung/01.-Settings.png',
+  '/fix_adhan_notification/OnePlus': '/images/oneplus/fixissue1.png'
+};
+const socialImage = toAbsoluteUrl(image ?? routeSocialImages[productPathKey] ?? '/images/logo.png');
+
 const productSchemas: Record<string, Record<string, unknown>> = {
   '/products/quran-majeed': {
     name: 'Quran Majeed',
     applicationCategory: 'ReferenceApplication',
     operatingSystem: 'Android, iOS, macOS',
-    image: toAbsoluteUrl('/images/quranmajeed/Quran-Majeed.png'),
+    image: toAbsoluteUrl(routeSocialImages['/products/quran-majeed']),
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
@@ -108,7 +136,7 @@ const productSchemas: Record<string, Record<string, unknown>> = {
     name: 'Quran Pak',
     applicationCategory: 'ReferenceApplication',
     operatingSystem: 'iOS',
-    image: toAbsoluteUrl('/images/QP.webp'),
+    image: toAbsoluteUrl(routeSocialImages['/products/quran-pak']),
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.9',
@@ -119,37 +147,37 @@ const productSchemas: Record<string, Record<string, unknown>> = {
     name: 'Easy Urdu Keyboard',
     applicationCategory: 'UtilitiesApplication',
     operatingSystem: 'Android',
-    image: toAbsoluteUrl('/images/easyurdu/easyUrdu.webp')
+    image: toAbsoluteUrl(routeSocialImages['/products/easyurdu'])
   },
   '/products/easysindhi': {
     name: 'Easy Sindhi Keyboard',
     applicationCategory: 'UtilitiesApplication',
     operatingSystem: 'Android',
-    image: toAbsoluteUrl('/images/easysindhi/easysindhi.png')
+    image: toAbsoluteUrl(routeSocialImages['/products/easysindhi'])
   },
   '/products/hadith-app': {
     name: 'Hadith App',
     applicationCategory: 'ReferenceApplication',
     operatingSystem: 'iOS',
-    image: toAbsoluteUrl('/images/hadith/logo-hadith.webp')
+    image: toAbsoluteUrl(routeSocialImages['/products/hadith-app'])
   },
   '/products/3d-salah-guide': {
     name: '3D Salah Guide',
     applicationCategory: 'EducationApplication',
     operatingSystem: 'iOS',
-    image: toAbsoluteUrl('/images/3DSalah/3dSalah.webp')
+    image: toAbsoluteUrl(routeSocialImages['/products/3d-salah-guide'])
   },
   '/products/kitabi': {
     name: 'Kitabi',
     applicationCategory: 'BooksApplication',
     operatingSystem: 'Android, iOS',
-    image: toAbsoluteUrl('/images/kitabi/kitabi.webp')
+    image: toAbsoluteUrl(routeSocialImages['/products/kitabi'])
   },
   '/products/quran-majeed-mac': {
     name: 'Quran Majeed Mac',
     applicationCategory: 'ReferenceApplication',
     operatingSystem: 'macOS',
-    image: toAbsoluteUrl('/images/qm-mac.png')
+    image: toAbsoluteUrl(routeSocialImages['/products/quran-majeed-mac'])
   }
 };
 
@@ -323,6 +351,7 @@ const projectLinks = [
     <meta property="og:title" content={`${title} | PDMS`} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={`${title} preview image`} />
     <meta property="og:locale" content={lang} />
 
     <!-- Twitter -->
@@ -331,6 +360,7 @@ const projectLinks = [
     <meta property="twitter:title" content={`${title} | PDMS`} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImage} />
+    <meta property="twitter:image:alt" content={`${title} preview image`} />
 
     {allSchemas.map((schemaItem) => (
       <script type="application/ld+json" set:html={JSON.stringify(schemaItem)} />
