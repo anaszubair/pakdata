@@ -1,0 +1,59 @@
+{
+  "redirects": [
+    {
+      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d9%85%d8%ac%db%8c%d8%af/",
+      "destination": "/ur/products/quran-majeed",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d8%a2%da%88%db%8c%d9%88/",
+      "destination": "/ur/quran-audio",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d9%be%d8%a7%da%a9/",
+      "destination": "/ur/products/quran-pak",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d9%be%d8%b1%d9%86%d9%b9%d9%86%da%af-%da%a9%d8%a7%d9%85%d9%be%d9%84%db%8c%da%a9%d8%b3-%d9%be%d8%b1%d9%88%d8%ac%db%8c%da%a9%d9%b9/",
+      "destination": "/ur/projects/quran-printing-complex-project",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d8%aa%d8%b9%d8%a7%d8%b1%d9%81/",
+      "destination": "/ur/about-us",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d9%86%db%8c%d8%b4%d9%86%d9%84-%d8%a7%db%8c%d9%84%db%8c%d8%a6%d9%86-%d8%b1%db%8c%d8%ac%d8%b3%d9%b9%d8%b1%db%8c%d8%b4%d9%86-%d8%a7%db%8c%d8%aa%da%be%d8%a7%d8%b1%db%8c%d9%b9%db%8c-nara/",
+      "destination": "/ur/projects/nara-national-alien-registration-authority",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%da%a9%d8%aa%d8%a7%d8%a8%db%8c/",
+      "destination": "/ur/products/kitabi",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d8%a7%d9%85%db%8c%d8%ac%d9%86/",
+      "destination": "/ur/projects/imagine",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d8%a7%d9%8a%d8%b2%d9%89-%d8%a7%d8%b1%d8%af%d9%88-%da%a9%db%8c-%d8%a8%d9%88%d8%b1%da%88/",
+      "destination": "/ur/products/easyurdu",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d8%a7%db%8c%da%a9%d8%b3%d9%be%d9%84%d9%88%d8%b1%d8%b1/",
+      "destination": "/ur/projects/quranexplorer",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d9%85%d8%ac%db%8c%d8%af-%da%a9%db%92-%d9%84%db%8c%db%92-%d8%b9%d8%b1%d8%a8%db%8c-%d9%81%d9%88%d9%86%d9%b9/",
+      "destination": "/ur/products/arabicfont",
+      "permanent": true
+    }
+  ]
+}

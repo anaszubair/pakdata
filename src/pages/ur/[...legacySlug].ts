@@ -15,7 +15,7 @@ const legacyUrduRoutes: Record<string, string> = {
   'ایزی-سندھی-کی-بورڈ': '/ur/products/easysindhi',
 };
 
-function decodePathSegment(value: string) {
+function decodePath(value: string) {
   try {
     return decodeURIComponent(value);
   } catch {
@@ -24,7 +24,7 @@ function decodePathSegment(value: string) {
 }
 
 export function GET({ params }: { params: { legacySlug?: string } }) {
-  const slug = decodePathSegment(params.legacySlug ?? '');
+  const slug = decodePath(params.legacySlug ?? '').replace(/\/$/, '');
   const destination = legacyUrduRoutes[slug];
 
   if (destination) {
