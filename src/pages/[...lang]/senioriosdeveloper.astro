@@ -1,0 +1,54 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import CareerDetail from '../../components/CareerDetail.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const base = {
+  seoTitle: 'Senior iOS Developer | PDMS Careers',
+  seoDesc: 'Join PDMS as a Senior iOS Developer and build high-quality iPhone and iPad applications with Swift, Objective-C, clean code, and strong delivery practices.',
+  title: 'Senior iOS Developer',
+  intro: 'We are looking for a Senior iOS Developer (with minimum 3 years of experience) responsible for the development and maintenance of applications aimed at iOS devices.',
+  body: 'Your primary focus will be the development of iOS applications and their integration with back-end services. You will be working along-side other engineers and developers working on different layers of the infrastructure. Therefore, commitment to collaborative problem solving, sophisticated design, and creating quality products is essential.',
+  sections: [
+    {
+      title: 'Required Skill Set',
+      items: [
+        'Minimum 3+ years of relevant experience',
+        'Develop new features and maintain existing components in mobile products based on specifications provided by the product',
+        'Collaborate with cross-functional teams to define, design and ship new features',
+        'Operate effectively in a fast paced, deadline driven, collaborative and iterative programming environment'
+      ]
+    },
+    {
+      title: 'Technical Skills',
+      alt: true,
+      items: [
+        'Experience building complex applications for the iPhone or iPad using Swift and/or Objective-C',
+        'Knowledge of iOS SDK performance tools and optimization techniques',
+        'Strong problem-solving skills',
+        'Strong in object-oriented programming design and skills',
+        'A proactive programming style that anticipates and resolves project roadblocks',
+        'Knowledge of best practices, clean code, Test Driven Development, Continuous Integration and Continuous Delivery',
+        'Experience in working with Agile methodology',
+        'Excellent problem solving, critical thinking and communication skills'
+      ]
+    }
+  ],
+  ctaTitle: 'Interested?',
+  ctaBody: 'Interested candidates can share their CV’s at jobs@pakdata.com mentioning “Senior iOS Developer” in the subject line.',
+  subject: 'Senior iOS Developer',
+  backLabel: 'Back to Join Us',
+  applyLabel: 'Email Jobs'
+};
+const copy = { en: base, ur: base, ar: base }[lang] ?? base;
+---
+
+<CareerDetail {...copy} />
