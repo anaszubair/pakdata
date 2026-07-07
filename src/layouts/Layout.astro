@@ -97,7 +97,7 @@ const routeSocialImages: Record<string, string> = {
   '/products/kitabi': '/images/kitabi/unnamed (3).webp',
   '/products/arabicfont': '/images/quranmajeed/Quran-Majeed.png',
   '/projects': '/images/nadra.jpg',
-  '/projects/nadra-software': '/images/nadra.jpg',
+  '/nadra-citizens-database': '/images/nadra.jpg',
   '/projects/nara-national-alien-registration-authority': '/images/nara-screenshot-350x316.jpg',
   '/projects/quran-printing-complex-project': '/images/quran-complex-screen1.jpg',
   '/projects/quranexplorer': '/images/q_explorer_sc.png',
@@ -304,7 +304,7 @@ const productLinks = [
 
 const projectLinks = [
   {
-    href: getRelativeLocaleUrl(lang, '/projects/nadra-software'),
+    href: getRelativeLocaleUrl(lang, '/nadra-citizens-database'),
     label: 'NADRA'
   },
   {
@@ -449,7 +449,7 @@ const projectLinks = [
               ))}
             </select>
           </div>
-          <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary btn-sm header-cta" id="header-contact-btn">{t('nav.contact')}</a>
+          <a href={getRelativeLocaleUrl(lang, '/contact-us')} class="btn btn-primary btn-sm header-cta" id="header-contact-btn">{t('nav.contact')}</a>
           
           <!-- Hamburger Button -->
           <button class="mobile-toggle" aria-label="Toggle Menu" id="menu-toggle-btn">
@@ -487,7 +487,7 @@ const projectLinks = [
         <a href={getRelativeLocaleUrl(lang, '/our-team')} class={`mobile-nav-link ${isActive('/our-team') ? 'active' : ''}`} id="mob-nav-team">{t('nav.team')}</a>
         <a href={getRelativeLocaleUrl(lang, '/support')} class={`mobile-nav-link ${isActive('/support') ? 'active' : ''}`} id="mob-nav-support">{t('nav.support')}</a>
         <a href={getRelativeLocaleUrl(lang, '/job-us')} class={`mobile-nav-link ${isActive('/job-us') ? 'active' : ''}`} id="mob-nav-join">{t('nav.join')}</a>
-        <a href={getRelativeLocaleUrl(lang, '/contact')} class="btn btn-primary mobile-menu-cta" id="mob-nav-contact">{t('nav.contact')}</a>
+        <a href={getRelativeLocaleUrl(lang, '/contact-us')} class="btn btn-primary mobile-menu-cta" id="mob-nav-contact">{t('nav.contact')}</a>
       </nav>
     </div>
 

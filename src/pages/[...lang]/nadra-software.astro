@@ -1,0 +1,13 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import NadraSoftwarePage from './projects/nadra-software.astro';
+---
+
+<NadraSoftwarePage />

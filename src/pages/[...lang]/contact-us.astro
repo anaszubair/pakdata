@@ -1,0 +1,13 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'ur' } },
+    { params: { lang: 'ar' } }
+  ];
+}
+
+import ContactPage from '../../components/ContactPage.astro';
+---
+
+<ContactPage />
