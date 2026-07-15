@@ -64,6 +64,7 @@ const faqCategories = [
       },
       {
         q: 'How can I change Adhan alarms or prayer notifications?',
+        bulletStart: 1,
         a: [
           'Open the prayer timings screen by tapping the prayer time bar on the homepage. From there, select any prayer to customize:',
           'Adhan sound',
@@ -80,6 +81,8 @@ const faqCategories = [
     faqs: [
       {
         q: 'How can I purchase the premium version using EasyPaisa?',
+        bulletStart: 1,
+        bulletEnd: 4,
         a: [
           'You can purchase Quran Majeed premium using EasyPaisa in a few simple steps:',
           'Open the Premium section inside the app',
@@ -91,6 +94,7 @@ const faqCategories = [
       },
       {
         q: 'I purchased the premium version on iPhone, but it now shows the free version. How can I restore my purchase?',
+        bulletEnd: 4,
         a: [
           'You can restore your premium purchase using the same Apple ID originally used for the subscription or purchase.',
           'To restore:',
@@ -161,6 +165,8 @@ const faqCategories = [
     faqs: [
       {
         q: 'The app is not working properly or crashes frequently. What should I do?',
+        bulletStart: 1,
+        bulletEnd: 5,
         a: [
           'Please try the following troubleshooting steps:',
           'Update the app to the latest version',
@@ -173,11 +179,13 @@ const faqCategories = [
       },
       {
         q: 'How can I contact support?',
+        bulletStart: 1,
+        bulletEnd: 3,
         a: [
           'You can contact our support team directly through:',
-          'The Contact Us section in the app',
-          'Our website support form',
-          'Email support',
+          'the Contact Us section in the app',
+          'our website support form',
+          'email support',
           'Please include screenshots or screen recordings when reporting technical issues.'
         ]
       }
@@ -288,7 +296,7 @@ const faqJsonLd = {
                   <summary>{faq.q}</summary>
                   <div class="faq-answer">
                     {faq.a.map((line, lineIndex) => (
-                      lineIndex > 1 ? <p class="answer-step">{line}</p> : <p>{line}</p>
+                      lineIndex >= (faq.bulletStart ?? 2) && lineIndex <= (faq.bulletEnd ?? Infinity) ? <p class="answer-step">{line}</p> : <p>{line}</p>
                     ))}
                     {faq.links && (
                       <div class="device-link-list">

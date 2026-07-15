@@ -254,8 +254,8 @@ const themeImages = [
 ];
 
 const storeLinks = [
-  { id: 'google', href: 'https://play.google.com/store/search?q=Quran%20Majeed&c=apps', label: copy.googlePlay, image: '/images/quranmajeed/Playstore.png' },
-  { id: 'apple', href: 'https://apps.apple.com/us/search?term=Quran%20Majeed', label: copy.appStore, image: '/images/quranmajeed/Appstore.png' }
+  { id: 'google', href: 'https://play.google.com/store/search?q=Quran%20Majeed&c=apps', label: copy.googlePlay, image: '/images/android.png' },
+  { id: 'apple', href: 'https://apps.apple.com/us/search?term=Quran%20Majeed', label: copy.appStore, image: '/images/appstore.png' }
 ];
 ---
 
@@ -268,28 +268,14 @@ const storeLinks = [
         <p class="qm-lead">{copy.heroLead}</p>
         <p class="qm-body">{copy.heroBody}</p>
 
-        <div class="qm-trust-strip" aria-label="Quran Majeed highlights">
-          <span class="qm-trust-item">4.8★</span>
-          <span class="qm-trust-item">50M+ downloads</span>
-          <span class="qm-trust-item">Prayer times</span>
-          <span class="qm-trust-item">Audio recitations</span>
-        </div>
-
         <div class="qm-cta-row">
           {storeLinks.map(link => (
             <a href={link.href} class="store-btn" target="_blank" rel="noopener noreferrer">
-              <img src={link.image} alt={link.label} class="store-badge" />
+              <img src={link.image} alt={link.label} class={`store-badge store-badge-${link.id}`} />
               <span>{link.label}</span>
             </a>
           ))}
           <a href="#features" class="btn btn-outline qm-explore-btn">{copy.explore}</a>
-        </div>
-
-        <div class="qm-proof-row">
-          <div class="qm-proof-pill">4.8★</div>
-          <div class="qm-proof-pill">50M+</div>
-          <div class="qm-proof-pill">45+ Languages</div>
-          <div class="qm-proof-pill">Offline Reading</div>
         </div>
       </div>
 
@@ -307,10 +293,10 @@ const storeLinks = [
           </div>
 
           <div class="qm-showcase-hero">
-            <img src="/images/quranmajeed/IMG_0167-768x999.png" alt="Quran Majeed screenshot" class="qm-shot-main" />
+            <img src="/images/quranmajeed/Quran-Majeed.png" alt="Quran Majeed screenshot" class="qm-shot-main" />
             <div class="qm-shot-stack">
               <img src="/images/quranmajeed/IMG_0168-768x999.png" alt="Quran Majeed screenshot" />
-              <img src="/images/quranmajeed/Quran-Majeed.png" alt="Quran Majeed logo artwork" />
+              <img src="/images/quranmajeed/IMG_0167-768x999.png" alt="Quran Majeed logo artwork" />
             </div>
           </div>
 
@@ -451,33 +437,17 @@ const storeLinks = [
   <section class="section">
     <div class="container split-grid reverse">
       <div class="video-card card">
-        <img src="/images/quranmajeed/Frame-1-768x218.png" alt="Video guide preview" />
-        <div class="play-chip">▶</div>
+        <iframe
+          src="https://www.youtube.com/embed/j8LIVVjyqAE"
+          title="Quran Majeed video guide"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
       </div>
       <div class="split-copy">
         <span class="badge badge-primary">Video</span>
         <h2 class="section-title">{copy.videoTitle}</h2>
         <p class="body-copy">{copy.videoBody}</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-bg">
-    <div class="container">
-      <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Reviews</span>
-        <h2 class="section-title">{copy.reviewsTitle}</h2>
-      </div>
-      <div class="review-grid">
-        {copy.reviews.map(review => (
-          <article class="review-card card">
-            <p class="review-quote">“{review.quote}”</p>
-            <div class="review-meta">
-              <strong>{review.name}</strong>
-              <span>{review.meta}</span>
-            </div>
-          </article>
-        ))}
       </div>
     </div>
   </section>
@@ -509,7 +479,7 @@ const storeLinks = [
         <div class="qm-cta-row">
           {storeLinks.map(link => (
             <a href={link.href} class="store-btn dark" target="_blank" rel="noopener noreferrer">
-              <img src={link.image} alt={link.label} class="store-badge" />
+              <img src={link.image} alt={link.label} class={`store-badge store-badge-${link.id}`} />
               <span>{link.id === 'google' ? copy.finalGoogle : copy.finalAppStore}</span>
             </a>
           ))}
@@ -517,14 +487,7 @@ const storeLinks = [
       </div>
       <div class="final-art card">
         <img src="/images/quranmajeed/Quran-Majeed.png" alt="Quran Majeed logo" />
-        <p>{copy.footerDesc}</p>
       </div>
-    </div>
-  </section>
-
-  <section class="section footer-summary">
-    <div class="container">
-      <p>{copy.footerDesc}</p>
     </div>
   </section>
 </Layout>
@@ -605,24 +568,6 @@ const storeLinks = [
     max-width: 38rem;
   }
 
-  .qm-trust-strip {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .45rem;
-    margin-top: .95rem;
-  }
-
-  .qm-trust-item {
-    padding: .42rem .72rem;
-    border-radius: 999px;
-    border: 1px solid rgba(249,115,22,.16);
-    background: rgba(255,255,255,.78);
-    color: var(--dark);
-    font-size: .84rem;
-    font-weight: 700;
-    box-shadow: 0 8px 20px rgba(15,23,42,.05);
-  }
-
   .qm-cta-row {
     display: flex;
     gap: .75rem;
@@ -652,25 +597,13 @@ const storeLinks = [
     object-fit: contain;
   }
 
+  .store-badge-apple {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
   .qm-explore-btn {
     align-self: center;
-  }
-
-  .qm-proof-row {
-    display: flex;
-    gap: .65rem;
-    flex-wrap: wrap;
-    margin-top: .9rem;
-  }
-
-  .qm-proof-pill {
-    background: rgba(255,255,255,.94);
-    border: 1px solid rgba(249,115,22,.12);
-    border-radius: 999px;
-    padding: .55rem .9rem;
-    font-size: .9rem;
-    font-weight: 600;
-    box-shadow: 0 8px 18px rgba(15,23,42,.05);
   }
 
   .qm-showcase {
@@ -786,8 +719,7 @@ const storeLinks = [
   }
 
   .qm-trust .trust-grid,
-  .feature-grid,
-  .review-grid {
+  .feature-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
@@ -795,7 +727,6 @@ const storeLinks = [
 
   .trust-card,
   .feature-card,
-  .review-card,
   .theme-card,
   .daily-panel,
   .video-card,
@@ -910,7 +841,6 @@ const storeLinks = [
 
   .theme-card img,
   .daily-panel img,
-  .video-card img,
   .final-art img {
     width: 100%;
     display: block;
@@ -974,41 +904,15 @@ const storeLinks = [
     position: relative;
     overflow: hidden;
     padding: 0;
+    aspect-ratio: 16 / 9;
+    background: #111827;
   }
 
-  .video-card img {
-    height: 18rem;
-    object-fit: cover;
-  }
-
-  .play-chip {
-    position: absolute;
-    inset: auto auto 1rem 1rem;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 999px;
-    background: rgba(17,24,39,.88);
-    color: #fff;
-    display: grid;
-    place-items: center;
-    font-weight: 700;
-  }
-
-  .review-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .review-quote {
-    font-size: 1rem;
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
-  }
-
-  .review-meta {
-    display: flex;
-    flex-direction: column;
-    gap: .15rem;
-    color: var(--secondary-dark);
+  .video-card iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
   }
 
   .faq-wrap {
@@ -1050,18 +954,6 @@ const storeLinks = [
     object-fit: contain;
   }
 
-  .footer-summary {
-    padding-top: 0;
-  }
-
-  .footer-summary p {
-    max-width: 60rem;
-    margin: 0 auto;
-    text-align: center;
-    color: var(--secondary-dark);
-    line-height: 1.7;
-  }
-
   .tight {
     margin-bottom: 1.5rem;
   }
@@ -1077,7 +969,6 @@ const storeLinks = [
       position: static;
     }
 
-    .review-grid,
     .qm-trust .trust-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1094,7 +985,6 @@ const storeLinks = [
     }
 
     .feature-grid,
-    .review-grid,
     .qm-trust .trust-grid,
     .theme-grid,
     .certificate-preview-grid {

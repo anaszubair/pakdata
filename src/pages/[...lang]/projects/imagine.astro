@@ -8,10 +8,9 @@ export function getStaticPaths() {
 }
 
 import Layout from '../../../layouts/Layout.astro';
-import { getLangFromUrl, useTranslations, getRelativeLocaleUrl } from '../../../i18n/utils';
+import { getLangFromUrl, getRelativeLocaleUrl } from '../../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
 const copy = {
   en: {
@@ -26,12 +25,31 @@ const copy = {
     challengeTitle: 'The Challenge',
     challengeBody: 'Traditional suspect sketch creation often requires highly skilled artists and lengthy manual processes, which can delay investigations and reduce operational efficiency. Law enforcement agencies needed a faster, scalable, and more accurate system capable of generating suspect sketches efficiently, supporting witness-based identification, managing criminal records, improving investigative workflows, and standardizing forensic sketch generation.',
     solutionTitle: 'Our Solution',
-    solutionBody: 'Pakdata developed Imagine as a digital forensic sketching platform that allows officers and investigators to generate detailed suspect illustrations through intelligent facial feature selection and sketch composition tools. The system enables users to create suspect sketches from witness descriptions, customize facial features dynamically, maintain criminal databases, generate identification bulletins, and compare multiple suspect variations.',
+    solutionBody: 'Pakdata developed Imagine as a digital forensic sketching platform that allows officers and investigators to generate detailed suspect illustrations through intelligent facial feature selection and sketch composition tools.',
+    solutionIntro: 'The system enables users to:',
+    solutionItems: [
+      'create suspect sketches from witness descriptions',
+      'customize facial features dynamically',
+      'maintain criminal databases',
+      'generate identification bulletins',
+      'compare multiple suspect variations'
+    ],
+    solutionFooter: 'The platform significantly reduces manual effort while improving operational speed and investigative support.',
     featureTitle: 'Key Features',
     features: [
       {
         title: 'Intelligent Facial Feature Library',
-        body: 'Access a large database of facial components including hairstyles, eyes, noses, ears, facial hair, jaw structures, and accessories.'
+        body: 'Access a large database of facial components including:',
+        items: [
+          'hairstyles',
+          'eyes',
+          'noses',
+          'ears',
+          'facial hair',
+          'jaw structures',
+          'accessories'
+        ],
+        footer: 'This allows investigators to build highly customized suspect sketches.'
       },
       {
         title: 'Witness-Based Sketch Creation',
@@ -54,13 +72,6 @@ const copy = {
         body: 'Generate printable suspect bulletins and export visual records for operational use.'
       }
     ],
-    workflowTitle: 'Investigation Workflow',
-    workflowSteps: [
-      'Witness description',
-      'Facial feature selection',
-      'Sketch generation',
-      'Comparison and export'
-    ],
     techTitle: 'Enterprise Investigation Technology',
     techBody: 'Imagine was developed as a scalable investigative support platform optimized for operational efficiency and forensic identification workflows. The system was designed to support high-volume sketch generation, secure criminal data management, rapid suspect visualization, and law enforcement operational environments.',
     capabilitiesTitle: 'Technology Capabilities',
@@ -81,8 +92,9 @@ const copy = {
     securityBody: 'Because the platform handled sensitive investigative records, it was positioned as a secure, controlled, and operationally reliable system for public sector teams.',
     impactTitle: 'Supporting Modern Law Enforcement Operations',
     impactBody: 'Imagine demonstrates Pakdata’s ability to develop advanced public safety and forensic technology solutions for investigative and law enforcement environments. The project highlights expertise in forensic software systems, criminal identification technology, visual data systems, investigative workflow solutions, and enterprise law enforcement applications.',
-    whyTitle: 'Why This Project Matters',
-    whyBody: 'Imagine was developed to help modernize criminal identification workflows and support law enforcement agencies through technology-driven investigation tools. The platform combines visual intelligence, operational efficiency, and scalable digital infrastructure to assist investigative teams in real-world identification scenarios.',
+    whyTitle: 'A Powerful Public Safety Technology Solution',
+    whyBody: 'Imagine was developed to help modernize criminal identification workflows and support law enforcement agencies through technology-driven investigation tools.',
+    whySupport: 'The platform combines visual intelligence, operational efficiency, and scalable digital infrastructure to assist investigative teams in real-world identification scenarios.',
     finalTitle: 'Building Technology for Critical Operations',
     finalBody: 'Pakdata develops advanced enterprise and public sector technology solutions designed for operational efficiency, security, and large-scale digital transformation.',
     explore: 'Explore Projects',
@@ -101,22 +113,37 @@ const copy = {
     challengeTitle: 'چیلنج',
     challengeBody: 'روایتی مشتبہ اسکیچ بنانا اکثر ماہر فنکاروں اور طویل دستی عمل کا تقاضا کرتا ہے، جس سے تحقیقات میں تاخیر اور کارکردگی میں کمی آتی ہے۔ اداروں کو ایک ایسا تیز، قابلِ توسیع، اور زیادہ درست نظام درکار تھا جو مؤثر اسکیچ جنریشن، گواہی پر مبنی شناخت، کرمنل ریکارڈ مینجمنٹ، تحقیقاتی ورک فلو، اور معیاری فارنزک اسکیچنگ فراہم کر سکے۔',
     solutionTitle: 'ہمارا حل',
-    solutionBody: 'پاک ڈیٹا نے امیجن کو ایک ڈیجیٹل فارنزک اسکیچنگ پلیٹ فارم کے طور پر تیار کیا جو افسران اور تفتیش کاروں کو ذہین چہرہ انتخاب اور اسکیچ کمپوزیشن ٹولز کے ذریعے تفصیلی مشتبہ خاکے بنانے دیتا ہے۔ اس سسٹم کے ذریعے گواہی کی بنیاد پر خاکہ، چہرے کی خصوصیات کی ڈائنامک تخصیص، کرمنل ڈیٹا بیس مینجمنٹ، شناختی بلیٹن، اور مختلف ورژنز کا موازنہ ممکن ہوا۔',
+    solutionBody: 'پاک ڈیٹا نے امیجن کو ایک ڈیجیٹل فارنزک اسکیچنگ پلیٹ فارم کے طور پر تیار کیا جو افسران اور تفتیش کاروں کو ذہین چہرہ انتخاب اور اسکیچ کمپوزیشن ٹولز کے ذریعے تفصیلی مشتبہ خاکے بنانے دیتا ہے۔',
+    solutionIntro: 'یہ سسٹم صارفین کو یہ سہولت دیتا ہے:',
+    solutionItems: [
+      'گواہوں کی تفصیلات سے مشتبہ خاکے بنانا',
+      'چہرے کی خصوصیات کو ڈائنامک طور پر حسب ضرورت بنانا',
+      'کرمنل ڈیٹا بیس برقرار رکھنا',
+      'شناختی بلیٹن تیار کرنا',
+      'مشتبہ افراد کی متعدد شکلوں کا موازنہ کرنا'
+    ],
+    solutionFooter: 'یہ پلیٹ فارم دستی محنت کو نمایاں طور پر کم کرتا ہے جبکہ آپریشنل رفتار اور تحقیقاتی معاونت کو بہتر بناتا ہے۔',
     featureTitle: 'اہم خصوصیات',
     features: [
-      { title: 'ذہین چہرہ لائبریری', body: 'بالوں، آنکھوں، ناک، کان، داڑھی، جبڑے اور ایکسیسریز سمیت چہرے کے اجزاء کی بڑی لائبریری تک رسائی۔' },
+      {
+        title: 'ذہین چہرہ لائبریری',
+        body: 'چہرے کے اجزاء کی بڑی لائبریری تک رسائی، جس میں شامل ہیں:',
+        items: [
+          'بالوں کے انداز',
+          'آنکھیں',
+          'ناک',
+          'کان',
+          'چہرے کے بال',
+          'جبڑے کی ساخت',
+          'ایکسیسریز'
+        ],
+        footer: 'اس سے تفتیش کار انتہائی حسب ضرورت مشتبہ خاکے بنا سکتے ہیں۔'
+      },
       { title: 'گواہی پر مبنی اسکیچ', body: 'گواہوں کی فراہم کردہ تفصیل کی بنیاد پر آسان بصری ورک فلو کے ذریعے اسکیچ بنائیں۔' },
       { title: 'کرمنل ڈیٹا بیس مینجمنٹ', body: 'مربوط ڈیٹا بیس سپورٹ کے ذریعے مشتبہ ریکارڈز اور شناختی معلومات منظم رکھیں۔' },
       { title: 'متعدد ورژنز', body: 'شناخت کی درستگی بہتر بنانے کے لیے متعدد اسکیچ ورژنز کا موازنہ کریں۔' },
       { title: 'امیج ایnhancement', body: 'اسکین شدہ تصاویر درآمد کریں اور بصری تفصیل بہتر بنائیں۔' },
       { title: 'ایکسپورٹ اور رپورٹنگ', body: 'پرنٹ ایبل بلیٹن اور بصری ریکارڈز تیار کریں۔' }
-    ],
-    workflowTitle: 'تحقیقی ورک فلو',
-    workflowSteps: [
-      'گواہی کی تفصیل',
-      'چہرہ خصوصیات کا انتخاب',
-      'اسکیچ جنریشن',
-      'موازنہ اور ایکسپورٹ'
     ],
     techTitle: 'انٹرپرائز تحقیقاتی ٹیکنالوجی',
     techBody: 'امیجن کو ایک قابلِ توسیع تحقیقاتی سپورٹ پلیٹ فارم کے طور پر تیار کیا گیا جو آپریشنل کارکردگی اور فارنزک شناختی ورک فلو کے لیے بہتر بنایا گیا تھا۔',
@@ -138,8 +165,9 @@ const copy = {
     securityBody: 'چونکہ پلیٹ فارم حساس تحقیقاتی ریکارڈز کو سنبھالتا تھا، اس لیے اسے محفوظ، کنٹرولڈ، اور آپریشنل طور پر قابلِ اعتماد نظام کے طور پر پیش کیا گیا۔',
     impactTitle: 'جدید قانون نافذ کرنے والے آپریشنز کی معاونت',
     impactBody: 'امیجن ظاہر کرتا ہے کہ پاک ڈیٹا عوامی تحفظ اور فارنزک ٹیکنالوجی کے ایسے جدید حل تیار کرنے کی صلاحیت رکھتا ہے جو تحقیقاتی اور قانون نافذ کرنے والے ماحول میں استعمال ہو سکیں۔',
-    whyTitle: 'یہ منصوبہ کیوں اہم ہے',
+    whyTitle: 'عوامی تحفظ کے لیے ایک طاقتور ٹیکنالوجی حل',
     whyBody: 'امیجن کو کرمنل شناختی ورک فلو جدید بنانے اور ٹیکنالوجی پر مبنی تحقیقاتی ٹولز کے ذریعے قانون نافذ کرنے والے اداروں کی معاونت کے لیے تیار کیا گیا۔',
+    whySupport: 'یہ پلیٹ فارم بصری ذہانت، آپریشنل افادیت، اور قابلِ توسیع ڈیجیٹل انفراسٹرکچر کو یکجا کرتا ہے تاکہ حقیقی شناختی صورتحال میں تحقیقاتی ٹیموں کی مدد کی جا سکے۔',
     finalTitle: 'اہم آپریشنز کے لیے ٹیکنالوجی بنانا',
     finalBody: 'پاک ڈیٹا ایسے انٹرپرائز اور پبلک سیکٹر ٹیکنالوجی حل تیار کرتا ہے جو آپریشنل افادیت، سکیورٹی، اور بڑے پیمانے کی ڈیجیٹل تبدیلی کے لیے بنائے گئے ہوں۔',
     explore: 'پروجیکٹس دیکھیں',
@@ -158,22 +186,37 @@ const copy = {
     challengeTitle: 'التحدي',
     challengeBody: 'إنشاء رسومات المشتبهين يدويًا يتطلب غالبًا فنانين متخصصين وعمليات طويلة، ما يؤدي إلى تأخير التحقيقات وتقليل الكفاءة. احتاجت الجهات الأمنية إلى نظام أسرع وأكثر قابلية للتوسع وأكثر دقة يتيح إنشاء الرسومات بكفاءة، ودعم التعرف القائم على الشهود، وإدارة السجلات الجنائية، وتوحيد سير العمل الجنائي.',
     solutionTitle: 'حلنا',
-    solutionBody: 'طورت باك داتا Imagine كمنصة رقمية للرسم الجنائي تتيح للضباط والمحققين إنشاء رسومات تفصيلية للمشتبهين عبر اختيار ذكي لملامح الوجه وأدوات تركيب الرسوم. يمكّن النظام من إنشاء الرسوم من وصف الشهود، وتخصيص الملامح ديناميكيًا، وإدارة قواعد البيانات الجنائية، وإصدار نشرات التعريف، ومقارنة نسخ متعددة.',
+    solutionBody: 'طورت باك داتا Imagine كمنصة رقمية للرسم الجنائي تتيح للضباط والمحققين إنشاء رسومات تفصيلية للمشتبهين عبر اختيار ذكي لملامح الوجه وأدوات تركيب الرسوم.',
+    solutionIntro: 'يمكّن النظام المستخدمين من:',
+    solutionItems: [
+      'إنشاء رسومات مشتبهين من أوصاف الشهود',
+      'تخصيص ملامح الوجه ديناميكيًا',
+      'الحفاظ على قواعد البيانات الجنائية',
+      'إصدار نشرات التعريف',
+      'مقارنة عدة نسخ للمشتبهين'
+    ],
+    solutionFooter: 'تقلل المنصة الجهد اليدوي بشكل كبير مع تحسين سرعة العمليات والدعم التحقيقي.',
     featureTitle: 'الميزات الرئيسية',
     features: [
-      { title: 'مكتبة ملامح وجه ذكية', body: 'الوصول إلى قاعدة كبيرة من مكونات الوجه بما في ذلك تسريحات الشعر، العيون، الأنوف، الأذنين، اللحية، شكل الفك، والإكسسوارات.' },
+      {
+        title: 'مكتبة ملامح وجه ذكية',
+        body: 'الوصول إلى قاعدة كبيرة من مكونات الوجه تشمل:',
+        items: [
+          'تسريحات الشعر',
+          'العيون',
+          'الأنوف',
+          'الأذنين',
+          'شعر الوجه',
+          'تراكيب الفك',
+          'الإكسسوارات'
+        ],
+        footer: 'يتيح ذلك للمحققين بناء رسومات مخصصة للغاية للمشتبهين.'
+      },
       { title: 'إنشاء الرسوم اعتمادًا على الشهود', body: 'إنشاء صور المشتبهين باستخدام الأوصاف المقدمة من الشهود عبر سير عمل بصري سهل الاستخدام.' },
       { title: 'إدارة قواعد البيانات الجنائية', body: 'الحفاظ على سجلات المشتبهين والبيانات التعريفية عبر دعم قاعدة بيانات متكاملة.' },
       { title: 'نسخ متعددة للمشتبهين', body: 'مقارنة عدة نسخ من الرسم في الوقت نفسه لتحسين دقة التعرف.' },
       { title: 'دعم تحسين الصور', body: 'استيراد الصور الممسوحة ضوئيًا وتحسين التفاصيل البصرية للمساعدة في التحقيقات.' },
       { title: 'التصدير والتقارير', body: 'إنتاج نشرات تعريف قابلة للطباعة وتصدير السجلات البصرية للاستخدام التشغيلي.' }
-    ],
-    workflowTitle: 'سير التحقيق',
-    workflowSteps: [
-      'وصف الشاهد',
-      'اختيار ملامح الوجه',
-      'توليد الرسم',
-      'المقارنة والتصدير'
     ],
     techTitle: 'تقنية تحقيق مؤسسية',
     techBody: 'تم تطوير Imagine كمنصة دعم تحقيقي قابلة للتوسع ومحسنة للكفاءة التشغيلية وسير عمل التعرف الجنائي.',
@@ -195,8 +238,9 @@ const copy = {
     securityBody: 'نظرًا لأن المنصة تتعامل مع سجلات تحقيقية حساسة، فقد تم تقديمها كنظام آمن ومتحكم به وموثوق تشغيليًا لفرق القطاع العام.',
     impactTitle: 'دعم عمليات إنفاذ القانون الحديثة',
     impactBody: 'يُظهر Imagine قدرة باك داتا على تطوير حلول تقنية متقدمة للسلامة العامة والتقنيات الجنائية لبيئات التحقيق وإنفاذ القانون.',
-    whyTitle: 'لماذا هذا المشروع مهم',
-    whyBody: 'تم تطوير Imagine لتحديث سير عمل التعرف الجنائي ودعم جهات إنفاذ القانون عبر أدوات تحقيق تعتمد على التكنولوجيا. تجمع المنصة بين الذكاء البصري والكفاءة التشغيلية والبنية الرقمية القابلة للتوسع لمساعدة الفرق التحقيقية في سيناريوهات التعرف الواقعية.',
+    whyTitle: 'حل تقني قوي للسلامة العامة',
+    whyBody: 'تم تطوير Imagine لتحديث سير عمل التعرف الجنائي ودعم جهات إنفاذ القانون عبر أدوات تحقيق تعتمد على التكنولوجيا.',
+    whySupport: 'تجمع المنصة بين الذكاء البصري والكفاءة التشغيلية والبنية الرقمية القابلة للتوسع لمساعدة الفرق التحقيقية في سيناريوهات التعرف الواقعية.',
     finalTitle: 'بناء تقنية للعمليات الحرجة',
     finalBody: 'تطور باك داتا حلولًا تقنية مؤسسية وحكومية متقدمة مصممة للكفاءة التشغيلية والأمان والتحول الرقمي واسع النطاق.',
     explore: 'استعرض المشاريع',
@@ -214,10 +258,6 @@ const copy = {
         <h1 class="imagine-title">{copy.heroTitle}</h1>
         <p class="imagine-lead">{copy.heroLead}</p>
         <p class="imagine-support">{copy.heroSupport}</p>
-        <div class="imagine-actions">
-          <a href={getRelativeLocaleUrl(lang, '/projects')} class="btn btn-primary btn-lg">{copy.explore}</a>
-          <a href={getRelativeLocaleUrl(lang, '/contact-us')} class="btn btn-outline btn-lg">{copy.contact}</a>
-        </div>
       </div>
       <div class="imagine-visual card">
         <img src="/images/imagine.jpg" alt="Imagine forensic sketching visual" class="imagine-image" />
@@ -230,26 +270,12 @@ const copy = {
   </section>
 
   <section class="section">
-    <div class="container split-layout">
-      <div class="section-copy-block">
+    <div class="container text-band">
+      <div class="section-title-wrap tight">
         <span class="badge badge-primary">{copy.overviewTitle}</span>
         <h2 class="section-title">{copy.overviewTitle}</h2>
-        <p class="body-copy">{copy.overviewBody}</p>
       </div>
-      <div class="info-grid card">
-        <div class="info-row">
-          <span class="info-kicker">Client</span>
-          <strong>{t('projects.items.imagine.client')}</strong>
-        </div>
-        <div class="info-row">
-          <span class="info-kicker">Scale</span>
-          <strong>{t('projects.items.imagine.scale')}</strong>
-        </div>
-        <div class="info-row">
-          <span class="info-kicker">Focus</span>
-          <strong>Digital forensic sketching</strong>
-        </div>
-      </div>
+      <p class="body-copy">{copy.overviewBody}</p>
     </div>
   </section>
 
@@ -280,29 +306,38 @@ const copy = {
         <h2 class="section-title">{copy.solutionTitle}</h2>
       </div>
       <p class="body-copy section-copy">{copy.solutionBody}</p>
-      <div class="feature-grid">
-        {copy.features.map((feature) => (
-          <article class="feature-card card">
-            <h3>{feature.title}</h3>
-            <p>{feature.body}</p>
-          </article>
-        ))}
+      <p class="body-copy section-copy">{copy.solutionIntro}</p>
+      <div class="list-panel card section-list">
+        <ul class="check-list">
+          {copy.solutionItems.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
       </div>
+      <p class="body-copy section-copy section-footer">{copy.solutionFooter}</p>
     </div>
   </section>
 
   <section class="section section-bg">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">{copy.workflowTitle}</span>
-        <h2 class="section-title">{copy.workflowTitle}</h2>
+        <span class="badge badge-primary">{copy.featureTitle}</span>
+        <h2 class="section-title">{copy.featureTitle}</h2>
       </div>
-      <div class="workflow-grid">
-        {copy.workflowSteps.map((step, index) => (
-          <div class="workflow-card card">
-            <span class="workflow-index">0{index + 1}</span>
-            <strong>{step}</strong>
-          </div>
+      <div class="feature-grid">
+        {copy.features.map((feature) => (
+          <article class="feature-card card">
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+            {feature.items && (
+              <ul class="check-list feature-list">
+                {feature.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+            {feature.footer && <p class="feature-footer">{feature.footer}</p>}
+          </article>
         ))}
       </div>
     </div>
@@ -370,33 +405,25 @@ const copy = {
   </section>
 
   <section class="section">
-    <div class="container split-layout reverse">
-      <div class="section-copy-block">
+    <div class="container text-band">
+      <div class="section-title-wrap tight">
         <span class="badge badge-primary">{copy.whyTitle}</span>
         <h2 class="section-title">{copy.whyTitle}</h2>
-        <p class="body-copy">{copy.whyBody}</p>
       </div>
-      <div class="list-panel card">
-        <h3 class="panel-title">Why it mattered</h3>
-        <ul class="check-list">
-          <li>Forensic software systems</li>
-          <li>Criminal identification technology</li>
-          <li>Visual data systems</li>
-          <li>Investigative workflow solutions</li>
-          <li>Enterprise law enforcement applications</li>
-        </ul>
-      </div>
+      <p class="body-copy">{copy.whyBody}</p>
+      <p class="body-copy section-copy section-footer">{copy.whySupport}</p>
     </div>
   </section>
 
   <section class="section imagine-cta">
-    <div class="container text-center text-white">
+    <div class="container imagine-cta-content text-center text-white">
       <h2 class="cta-title">{copy.finalTitle}</h2>
       <p class="cta-desc">{copy.finalBody}</p>
       <div class="cta-actions">
         <a href={getRelativeLocaleUrl(lang, '/projects')} class="btn btn-primary btn-lg btn-white-text">{copy.explore}</a>
         <a href={getRelativeLocaleUrl(lang, '/contact-us')} class="btn btn-outline btn-lg btn-white-text">{copy.contact}</a>
       </div>
+      <p class="cta-footer-desc">{copy.footerDesc}</p>
     </div>
   </section>
 </Layout>
@@ -493,6 +520,11 @@ const copy = {
     max-width: 42rem;
   }
 
+  .text-band {
+    max-width: 58rem;
+    text-align: center;
+  }
+
   .section-title-wrap.tight {
     margin-bottom: 1.3rem;
   }
@@ -500,6 +532,15 @@ const copy = {
   .info-grid,
   .list-panel {
     padding: 1.3rem;
+  }
+
+  .section-list {
+    max-width: 58rem;
+    margin-top: 1.5rem;
+  }
+
+  .section-footer {
+    margin-top: 1.25rem;
   }
 
   .info-row {
@@ -528,7 +569,6 @@ const copy = {
   }
 
   .feature-grid,
-  .workflow-grid,
   .impact-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -537,14 +577,12 @@ const copy = {
   }
 
   .feature-card,
-  .workflow-card,
   .impact-card {
     padding: 1.2rem;
   }
 
   .feature-card h3,
-  .panel-title,
-  .workflow-card strong {
+  .panel-title {
     font-size: 1.05rem;
     line-height: 1.35;
     color: var(--dark);
@@ -552,6 +590,17 @@ const copy = {
   }
 
   .feature-card p {
+    color: var(--secondary-dark);
+    line-height: 1.6;
+  }
+
+  .feature-list {
+    margin-top: .85rem;
+    gap: .45rem;
+  }
+
+  .feature-footer {
+    margin-top: .9rem;
     color: var(--secondary-dark);
     line-height: 1.6;
   }
@@ -580,19 +629,6 @@ const copy = {
     line-height: 1;
   }
 
-  .workflow-index {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 999px;
-    background: var(--primary-light);
-    color: var(--primary);
-    font-weight: 700;
-    margin-bottom: .65rem;
-  }
-
   .impact-card strong {
     display: block;
     font-size: 1.1rem;
@@ -608,19 +644,48 @@ const copy = {
   .imagine-cta {
     background: linear-gradient(135deg, var(--dark) 0%, #1d2433 100%);
     color: white;
+    text-align: center;
   }
 
-  .cta-title {
+  .imagine-cta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .imagine-cta .cta-title {
     font-size: clamp(1.75rem, 3vw, 3rem);
     line-height: 1.15;
     margin-bottom: .8rem;
+    color: #fff !important;
+    text-align: center;
+    width: 100%;
   }
 
-  .cta-desc {
+  .imagine-cta .cta-desc {
     max-width: 44rem;
     margin: 0 auto;
-    color: rgba(255,255,255,.84);
+    color: rgba(255,255,255,.84) !important;
     line-height: 1.7;
+    text-align: center;
+  }
+
+  .imagine-cta .cta-actions {
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  .imagine-cta .cta-footer-desc {
+    max-width: 48rem;
+    margin: 1.35rem auto 0;
+    color: rgba(255,255,255,.84) !important;
+    line-height: 1.7;
+    text-align: center;
   }
 
   .btn-white-text {
@@ -635,7 +700,6 @@ const copy = {
     }
 
     .feature-grid,
-    .workflow-grid,
     .impact-grid {
       grid-template-columns: 1fr;
     }

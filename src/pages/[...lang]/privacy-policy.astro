@@ -1,5 +1,4 @@
 ---
-
 export function getStaticPaths() {
   return [
     { params: { lang: undefined } },
@@ -7,176 +6,129 @@ export function getStaticPaths() {
     { params: { lang: 'ar' } }
   ];
 }
+
 import Layout from '../../layouts/Layout.astro';
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-
-
-const title = "Privacy Policy | Pakistan Data Management Services";
-const description = "Read the privacy policy for Quran Majeed, EasyUrdu, Quran TV, and other application services provided by Pakistan Data Management Services.";
+const title = 'Privacy Policy | Pakistan Data Management Services';
+const description = 'Privacy Policy for Quran Majeed, Pakdata applications, websites, and related services.';
 ---
 
 <Layout title={title} description={description}>
-  <section class="policy-hero">
-    <div class="container text-center animate-fade-in">
-      <span class="badge badge-primary">{t('privacy.hero.badge')}</span>
-      <h1 class="policy-hero-title">{t('privacy.hero.title')}</h1>
-      <p class="policy-hero-subtitle">{t('privacy.hero.subtitle')}</p>
+  <section class='policy-hero'>
+    <div class='container text-center'>
+      <h1 class='policy-hero-title'>Privacy Policy</h1>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container max-width-800">
-      <div class="policy-content card">
-        <h2 class="policy-section-title">1. Introduction</h2>
-        <p>
-          Pakistan Data Management Services (PDMS, also referred to as "PDMS", "we", "us", or "our") respect your privacy and are committed to protecting the personal data of users who download our mobile applications (including <strong>Quran Majeed</strong>, <strong>Quran Pak</strong>, <strong>Quran TV</strong>, <strong>Easy Urdu Keyboard</strong>, and others) and visit our corporate website.
-        </p>
-        <p>
-          This privacy policy explains how we collect, handle, use, and secure your information.
-        </p>
-
-        <h2 class="policy-section-title">2. Information Collection & Usage</h2>
-        <h3 class="policy-subsection-title">A. Location Services (Quran Majeed & Quran Pak)</h3>
-        <p>
-          Our Islamic applications request access to your device's geographical location coordinates (GPS/Network). This permission is strictly used to compute accurate daily prayer timings and identify the correct Qibla direction relative to your location. 
-        </p>
-        <p>
-          <strong>Note:</strong> Location data is processed locally on your device. We do not store or transmit your location coordinates to our servers.
-        </p>
-
-        <h3 class="policy-subsection-title">B. Microphone & Audio Access (Easy Urdu Keyboard & Quran Majeed)</h3>
-        <p>
-          Easy Urdu Keyboard requests microphone permission to perform voice-to-text Urdu typing transcription. Quran Majeed requests microphone permission to analyze recitation pronunciations in our learning modules.
-        </p>
-        <p>
-          <strong>Note:</strong> Audio recordings are processed in real time and are not recorded or saved on our servers.
-        </p>
-
-        <h3 class="policy-subsection-title">C. Payments & Billing Information</h3>
-        <p>
-          When you buy our Premium upgrades, payment transactions are processed securely through third-party billing services (Apple App Store, Google Play, EasyPaisa, or JazzCash). We do not collect or store credit card details or wallet PINs on our servers.
-        </p>
-
-        <h2 class="policy-section-title">3. Data Security & Storage</h2>
-        <p>
-          Since our applications operate primarily offline and process user data locally, we maintain a highly secure environment. Any data synchronized optionally (e.g., custom bookmarks sync via email sign-in) is encrypted in transit using SSL protocol and stored securely on cloud database systems.
-        </p>
-
-        <h2 class="policy-section-title">4. Third-Party Services</h2>
-        <p>
-          We may integrate trusted third-party SDKs to analyze app stability and metrics:
-        </p>
-        <ul>
-          <li><strong>Google Firebase Analytics / Crashlytics:</strong> Used to monitor application performance and diagnose crashes.</li>
-          <li><strong>Google AdMob:</strong> Serves non-intrusive advertisements in free app versions (users can remove advertisements via premium upgrade).</li>
-        </ul>
-
-        <h2 class="policy-section-title">5. Compliance & Children's Privacy</h2>
-        <p>
-          Our services do not collect personal data from anyone under the age of 13. We comply with global privacy rules including the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).
-        </p>
-
-        <h2 class="policy-section-title">6. Contact Information</h2>
-        <p>
-          If you have questions regarding this Privacy Policy or data deletion requests, please contact our legal representative:
-        </p>
-        <div class="policy-contact-box">
-          <strong>Email:</strong> <a href="mailto:privacy@pakdata.com">privacy@pakdata.com</a><br />
-          <strong>Address:</strong> Pakistan Data Management Services, DHA Phase II Ext, Karachi, Pakistan.
-        </div>
-      </div>
+  <section class='section'>
+    <div class='container policy-wrap'>
+      <article class='policy-content card'>
+        <h2>Summary</h2>
+        <p>We, the developers of Quran Majeed at Pakdata (Pakistan Data Management Services), believe you should always know what data we collect from you and how we use it, and that you should have meaningful control over both. We want to empower you to make the best decisions about the information that you share with us.</p>
+        <p>We do not indulge in any manner whatsoever of selling any user data to any party and pride ourselves on trying to maintain high ethical standards in today’s online world.</p>
+        <p>For any questions, please email us at support@pakdata.com</p>
+        <h2>Who we are</h2>
+        <p>Pakistan Data Management Services (“us”, “we”, or “our”) operates the Quran Majeed mobile application, Easy Urdu Keyboard, Pakdata.com, Quranmajeed.com (the “Service”) and other related websites &amp; apps.</p>
+        <p>This privacy policy informs you of our policies regarding the collection, use, and disclosure of personal data when you use our service and the choices you have associated with that data.</p>
+        <p>We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms and Conditions. Pakistan Data Management Services respects its users’ privacy and is committed to protecting the privacy of the users of the Quran Majeed mobile application in accordance with the applicable data protection rules and highest moral ethics.</p>
+        <p>By using the App, you are accepting and consenting to the practices described in this Policy.</p>
+        <p>You are informed that Pakistan Data Management Services is based in Karachi, Pakistan and all the development and support is provided from our office located in karachi.</p>
+        <p>Pakistan Data Management Services is the data controller of your Personal Information. You can withdraw your acceptance and consent at any time by emailing at support@pakdata.com. However, please take note that if you decide to do so, you may no longer be able to use the Services.</p>
+        <p>Please read this Privacy Policy, Our Cookies Policy, Our Disclaimers and Our Terms of Use carefully.</p>
+        <p>In addition, like most other e-commerce Web sites, our site uses “cookies” — small files placed temporarily in your Internet browser — to keep track of your stay at our Web site. The text in a cookie, by itself, only tells us that you have visited our site before. When you place an order, request a catalog, or participate in a promotion or contest, we ask you to provide information including your name, postal address, e-mail address and, in the case of product orders, credit card number. Except to verify credit card information to complete your order, we do not use or release any credit card, financial information or personal information for any purpose.</p>
+        <p>If you provide us with your postal address, e-mail address or telephone number, you may receive our catalog or other promotional mailings, e-mails or telephone calls. If you receive an e-mail from us that you would rather not receive, simply follow the unsubscribe instructions set forth at the bottom of each e-mail. If you do not wish to receive our catalog, or other promotional, please write to us at the address set forth below or e-mail us at http://pakdata.com/contact-us. We will be happy to respect your request not to participate in our direct marketing programs.</p>
+        <h2>Information Collection And Use</h2>
+        <p>We collect several different types of information for various purposes to provide and improve our Service to you. Please note that the information is not shared / sold to any party for any purpose whatsoever. The information is only processed to provide you the services that we offer.</p>
+        <h2>Types of Data Collected</h2>
+        <p>While using our Quran Majeed app, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you (“Personal Data”).</p>
+        <p>We collect the following data when users OPT for Bookmarks sync or Quran Engagement Time feature on Android:</p>
+        <p>Email address</p>
+        <p>First name and last name</p>
+        <p>Following information will be collected along with the above mentioned details if the user purchases a gift pool of Quran Majeed app copies from our website (www.quranmajeed.com &amp; gateway.pakdata.com).</p>
+        <p>Phone number</p>
+        <p>Address</p>
+        <p>When you access the Service by or through a mobile device, we may collect certain information automatically, including, but not limited to, the type of mobile device you use, your mobile device unique ID, the IP address of your mobile device, your mobile operating system, the type of mobile Internet browser you use, unique device identifiers and other diagnostic data (“Usage Data”).</p>
+        <h2>Information relating to your device and the App settings</h2>
+        <p>We also receive, store and process information, including personal data, when you access or use the App, including but not limited to:</p>
+        <p>Device-specific information relating to your device for example your device brand and model, operating system version, device language, unique device identifiers (such as IDFA), and mobile network information (such as your mobile carrier);</p>
+        <p>Your geolocation information, including but not limited to IP addresses used to connect your device to the internet, GPS data and network services data; and</p>
+        <p>Application specific information relating to the App for example the application version number, activity on the App, the date you installed the App onto your device and the date you last used the App.</p>
+        <p>Note: Location data is only processed to show you accurate prayer times and is not shared with or sold to any third party. It is also not stored in any of our systems.</p>
+        <p>Additionally, the App makes use of third party libraries, SDKs, APIs and software (as set out in the Acknowledgement pages from time to time) which may also collect additional information.</p>
+        <p>We use the following technologies / SDKs:</p>
+        <p>Google Firebase SDK</p>
+        <p>Google Admob SDK</p>
+        <p>Google Analytics</p>
+        <h2>Purposes for which Pakistan Data Management Services collects, uses the information</h2>
+        <p>Pakistan Data Management Services may use the collected personal data for the following purposes:</p>
+        <p>To execute the contractual relationship with the user and in order to provide services to the user, in particular:</p>
+        <p>Enabling the access of the user to the app, administering the app and services related to it.</p>
+        <p>To manage your relationship with Pakistan Data Management Services  including informing or updating you about changes to the App and/or Services and dealing with or responding to any enquiries given by (or purported to be given by) you or on your behalf;</p>
+        <p>To enable carrier billing or billing via Apple App Store or Google Play Store;</p>
+        <p>In order to pursue our legitimate interests consisting in improving our App by doing researches and analysis, in the personalization of the App and the advertising displayed on the App, and in sending our customer base with news and updates to inform them on our activities, which are:</p>
+        <p>To maintain and administer any software updates and/or other updates and support that may be required from time to time to ensure the smooth running of the App and Services;</p>
+        <p>To tailor your experience through the Services by displaying content according to your interests and preferences;</p>
+        <p>To provide targeted marketing and advertisements via the App;</p>
+        <p>To conduct research, analysis and development activities (including, but not limited to, data analytics, surveys, product and service development and/or profiling), to monitor and analyse how you use the App and Services, to improve the App and Services and/or to enhance your user experience.</p>
+        <h2>Processors of the data</h2>
+        <p>Your personal data may be transmitted to the following recipients: service providers acting on behalf of Pakistan Data Management Services , such as hosting service providers (Google), advertising providers, our external counsels and advisors, and as required by law, judicial or administrative decisions, to competent authorities.</p>
+        <h2>Tracking &amp; Cookies Data</h2>
+        <p>We use cookies and similar tracking technologies to track the activity on our Service and hold certain information.</p>
+        <p>Cookies are files with a small amount of data which may include an anonymous unique identifier. Cookies are sent to your browser from a website and stored on your device. Tracking technologies also used are beacons, tags, and scripts to collect and track information and to improve and analyze our Service.</p>
+        <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.</p>
+        <p>Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer.</p>
+        <p>Pakistan Data Management Services will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of your data and other personal information.</p>
+        <h2>Disclosure Of Data</h2>
+        <p>Pakistan Data Management Services may disclose your Personal Data in the good faith belief that such action is necessary to:</p>
+        <p>To comply with a legal obligation</p>
+        <p>To protect and defend the rights or property of Pakistan Data Management Services</p>
+        <p>To prevent or investigate possible wrongdoing in connection with the Service</p>
+        <p>To protect the personal safety of users of the Service or the public</p>
+        <p>To protect against legal liability</p>
+        <p>This is to reiterate that we do not indulge in selling or sharing any kind of user information.</p>
+        <h2>Security Of Data</h2>
+        <p>The security of your data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.</p>
+        <h2>Service Providers</h2>
+        <p>We may employ third party companies and individuals to facilitate our Service (“Service Providers”), to provide the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used.</p>
+        <h2>Analytics</h2>
+        <p>We may use third-party Service Providers to monitor and analyze the use of our Service.</p>
+        <h2>Google Analytics</h2>
+        <p>Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualize and personalize the ads of its own advertising network.</p>
+        <p>You may opt-out of certain Google Analytics features through your mobile device settings, such as your device advertising settings or by following the instructions provided by Google in their Privacy Policy: https://policies.google.com/privacy?hl=en</p>
+        <p>For more information on the privacy practices of Google, please visit the Google Privacy &amp; Terms web page: https://policies.google.com/privacy?hl=en</p>
+        <h2>Firebase</h2>
+        <p>Firebase is analytics service provided by Google Inc.</p>
+        <p>You may opt-out of certain Firebase features through your mobile device settings, such as your device advertising settings or by following the instructions provided by Google in their Privacy Policy: https://policies.google.com/privacy?hl=en</p>
+        <p>We also encourage you to review Google’s policy for safeguarding your data: Google Analytics. For more information on what type of information Firebase collects, please visit please visit the Google Privacy &amp; Terms web page: https://policies.google.com/privacy?hl=en</p>
+        <h2>Children's Privacy</h2>
+        <p>We do not knowingly collect personally identifiable information from anyone under the age of 18. If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us. If we become aware that we have collected Personal Data from children without verification of parental consent, we take steps to remove that information from our servers.</p>
+        <h2>How to delete your data / Request account deletion</h2>
+        <p>Users can delete their account and data from within Quran Majeed app. Dashboard -&gt; Settings -&gt; User Data Policy -&gt; Delete Account. Please note that data deletion is permanent and cannot be reversed.</p>
+        <p>OR</p>
+        <p>Users can remove their data along with email address either by contacting our DPO (Data Protection Officer) on support@pakdata.com</p>
+        <h2>Changes To This Privacy Policy</h2>
+        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+        <p>The most current version will govern Our use of your Personal Information and will always be available on this page, and older versions are available upon request. We will notify you if We make changes that We think will have a substantial impact on your rights. Otherwise, you agree to accept any changes or updates to this Privacy Policy by continuing to use Our Services.</p>
+        <h2>Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy, please contact us:</p>
+        <p>By emailing to our DPO: support@pakdata.com</p>
+        <p>By visiting this page on our website: www.pakdata.com</p>
+        <p>By phone number: +92-(21) 3455-9003</p>
+        <p>By post: 207 Fortune Center 45-A, Block-6, PECHS Shahrah-e-Faisal, Karachi-75400, Pakistan</p>
+      </article>
     </div>
   </section>
 </Layout>
 
 <style>
-  .policy-hero {
-    text-align: center;
-    background: radial-gradient(at 20% 0%,oklch(97% .04 60) 0%,transparent 50%),radial-gradient(at 80% 20%,oklch(96% .03 220) 0%,transparent 50%),linear-gradient(180deg,oklch(99% .005 80),oklch(100% 0 0));
-    padding: 4rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .policy-hero-title {
-    font-size: calc(1.875rem * var(--text-scale, 1));
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  .policy-hero-subtitle {
-    font-size: calc(1rem * var(--text-scale, 1));
-    color: var(--secondary-dark);
-  }
-
-  .max-width-800 {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .policy-content {
-    padding: 3rem;
-  }
-
-  .policy-section-title {
-    font-size: calc(1.25rem * var(--text-scale, 1));
-    font-weight: 600;
-    margin: 2rem 0 1rem 0;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.5rem;
-  }
-
-  .policy-subsection-title {
-    font-size: calc(1rem * var(--text-scale, 1));
-    font-weight: 500;
-    margin: 1.5rem 0 0.5rem 0;
-    color: var(--primary);
-  }
-
-  .policy-content p {
-    font-size: calc(0.9375rem * var(--text-scale, 1));
-    color: var(--secondary-dark);
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
-  }
-
-  .policy-content ul {
-    margin-left: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--secondary-dark);
-    font-size: calc(0.9375rem * var(--text-scale, 1));
-  }
-
-  .policy-content li {
-    margin-bottom: 0.5rem;
-  }
-
-  .policy-contact-box {
-    background-color: var(--light-soft);
-    border: 1px solid var(--border);
-    padding: 1.25rem;
-    border-radius: 0.5rem;
-    margin-top: 1rem;
-    font-size: calc(0.875rem * var(--text-scale, 1));
-  }
-
-  .policy-contact-box a {
-    color: var(--primary);
-    font-weight: 500;
-  }
-
-  /* Mobile: reduce card padding */
-  @media (max-width: 767px) {
-    .policy-content {
-      padding: 1.5rem;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .policy-hero-title {
-      font-size: calc(2.5rem * var(--text-scale, 1));
-    }
-  }
+  .policy-hero { text-align: center; background: radial-gradient(at 20% 0%,oklch(97% .04 60) 0%,transparent 50%),radial-gradient(at 80% 20%,oklch(96% .03 220) 0%,transparent 50%),linear-gradient(180deg,oklch(99% .005 80),oklch(100% 0 0)); padding: 4rem 0; border-bottom: 1px solid var(--border); }
+  .policy-hero-title { font-size: calc(1.875rem * var(--text-scale, 1)); font-weight: 700; margin: 0; color: var(--dark); }
+  .policy-wrap { max-width: 900px; margin: 0 auto; }
+  .policy-content { padding: 3rem; }
+  .policy-content h2 { font-size: calc(1.25rem * var(--text-scale, 1)); font-weight: 700; color: var(--dark); margin: 2rem 0 1rem; padding-bottom: .55rem; border-bottom: 1px solid var(--border); }
+  .policy-content h2:first-child { margin-top: 0; }
+  .policy-content p { font-size: calc(.9375rem * var(--text-scale, 1)); color: var(--secondary-dark); line-height: 1.75; margin-bottom: 1rem; }
+  .policy-content a { color: var(--primary); font-weight: 600; }
+  @media (max-width: 767px) { .policy-content { padding: 1.4rem; } }
+  @media (min-width: 768px) { .policy-hero-title { font-size: calc(2.5rem * var(--text-scale, 1)); } }
 </style>

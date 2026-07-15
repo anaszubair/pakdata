@@ -1,5 +1,4 @@
 ---
-
 export function getStaticPaths() {
   return [
     { params: { lang: undefined } },
@@ -7,81 +6,189 @@ export function getStaticPaths() {
     { params: { lang: 'ar' } }
   ];
 }
+
 import Layout from '../../layouts/Layout.astro';
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const title = 'Terms and Conditions | Pakistan Data Management Services';
+const description = 'Read the Terms and Conditions for Quran Majeed and related services provided by Pakistan Data Management Services.';
 
+const intro = [
+  'These Terms & Conditions are current as of 22 June 2020.',
+  'The App (defined below), developed and published by PakData ("PakData"), is provided to you under the following terms and conditions of use ("Terms & Conditions"). By using the App, you are indicating your agreement to be bound by these Terms & Conditions. If you do not accept any part of these Terms & Conditions, you must immediately cease all use of the App.',
+  'The App is a utility and an Islamic application related to Quran. Quran Majeed and PakData are not affiliated with and do not support any particular political organisation, sect, ideology or denomination.'
+];
 
-const title = "Terms & Conditions | Pakistan Data Management Services";
-const description = "Read the terms of service and software licensing conditions for applications and web portals provided by Pakistan Data Management Services.";
+const sections = [
+  {
+    title: '1. DEFINITIONS',
+    lead: 'In these Terms & Conditions, unless the context otherwise requires, the following expressions shall have the following meanings:',
+    items: [
+      '1.1 "App" means the mobile application, Quran Majeed;',
+      '1.2 "Device" means the mobile device on which you are running the App;',
+      '1.3 "Service" means the services, information, functions and features made available to you through the App;',
+      '1.4 "Password" refers to the valid password that you use in conjunction with the Username to access and use certain password-protected or secure parts of the App and/or Service;',
+      '1.5 "User Materials" means any information, text, and/or other materials submitted by you for inclusion and/or posting through the App and/or Service;',
+      '1.6 "Username" refers to the unique login identification name or code which identifies you.'
+    ]
+  },
+  {
+    title: '2. LICENCE TO USE APP',
+    items: [
+      '2.1 The App is proprietary to PakData and must not be used other than strictly in accordance with the terms set out herein. If you agree to these Terms & Conditions by clicking the "I ACCEPT" button, Quran Majeed grants to you a personal, limited, non-exclusive, non-transferable, non-sublicensable right to use the App on a single personal Device, strictly for private and non-commercial use only and subject always to these Terms & Conditions, for the purpose of accessing and using the Service.',
+      '2.2 PakData reserves all rights not granted hereunder.',
+      '2.3 You may not under any circumstances: (i) copy, sell, distribute, transmit, publicly display, rent, lease, export, publish or otherwise reproduce the App or any part thereof in any form by any means; and/or (ii) adapt, modify, decompile, disassemble and/or reverse engineer the App or any part thereof.',
+      '2.4 Any breach of the requirements or restrictions in these Terms & Conditions shall result in immediate and automatic termination of all rights and licence granted hereunder.'
+    ]
+  },
+  {
+    title: '3. USE OF SERVICE',
+    items: [
+      '3.1 You must (i) abide by all applicable laws and regulations in your use of the App and the Service; (ii) not impersonate any person or entity or to falsely state or otherwise misrepresent your affiliation with any person or entity; (iii) not send, distribute or upload, in any way, data or materials that contain viruses, malicious code or harmful components that may impair or damage the operation of another\'s computer or device; and (iv) not post, promote or transmit through the App and/or the Service any unlawful, harassing, libellous, harmful, vulgar, obscene or otherwise objectionable material of any kind or nature.'
+    ]
+  },
+  {
+    title: '4. RESERVATION OF RIGHT',
+    items: [
+      '4.1 PakData may from time to time without giving any reason or prior notice, upgrade, modify, alter, suspend, discontinue the provision of or remove, whether in whole or in part, the App and/or the Service and shall not be liable if any such upgrade, modification, suspension or alteration prevents you from accessing the App and/or the Service or any part thereof. The information and/or any other material provided through the App or Service may be modified, deleted or replaced from time to time and at any time in the absolute discretion of PakData.',
+      '4.2 PakData reserves the right, but shall not be obliged to: (i) monitor, screen or otherwise control any activity, content or material provided through the App or Service. PakData may investigate any violation of these Terms & Conditions and may take any action it deems appropriate; (ii) remove, block, reject or relocate any User Material made available through the App or Service; (iii) prevent or restrict access of any user to the App or Service; and/or (iv) report any activity it suspects to be in violation of any applicable law, statute or regulation to the appropriate authorities and to co-operate with such authorities.'
+    ]
+  },
+  {
+    title: '5. OTHER APPLICABLE TERMS/NEW SERVICES',
+    items: [
+      '5.1 In addition to these Terms & Conditions, the use of specific aspects of the App or Service and/or more comprehensive or updated versions of the App or Service may be subject to additional terms and conditions ("Additional Terms"), which will apply in full force and effect. By agreeing to these Terms & Conditions, you also agree to such Additional Terms.',
+      '5.2 PakData reserves the right (but shall not be obliged) to introduce new products, applications, programmes, services, functions and/or features (collectively, "New Services") to the App and/or Service. The term "Service" shall include New Services which are provided at no charge or fee unless otherwise indicated.',
+      '5.3 All New Services shall be governed by these Terms & Conditions and may be subject to Additional Terms which you shall be required to agree to before access to and use of such New Services are provided. In the event of any inconsistency between these Terms & Conditions and the Additional Terms, the Additional Terms shall prevail in so far as the inconsistency relates to the service, product and/or programme in question unless otherwise provided.',
+      '5.4 You may be required to make additional payment to use or access New Services.'
+    ]
+  },
+  {
+    title: '6. DISCLAIMERS',
+    items: [
+      '6.1 Data and information provided through the App and/or Service may be from various sources, including third party content providers. Such data and/or information are provided for informational purposes only and are not intended to replace any official information provided by your local mosque or any other religious authority. Whilst every effort is taken to ensure high standards and quality for the data and information provided through the App and/or Service, PakData and Quran Majeed make no representations as to the accuracy, timeliness, adequacy or commercial value of all such data and/or information. Quran Majeed, PakData and any of their content providers shall not be liable for any inaccuracies, errors or delays in the data and information furnished through the App and/or Service, or for any actions taken in reliance thereon. You should not act on such data or information without first independently verifying its contents.',
+      '6.2 Quran Majeed and PakData are under no obligation to monitor or review messages, postings, transmissions, and the like on or accessible through the App and/or Service, and assumes no responsibility or liability arising from the content on or accessible through the App and/or Service nor for any error, defamation, libel, slander, omission, falsehood, obscenity, pornography, profanity, inaccuracy or any other objectionable material or content on or accessible through the App and/or Service.',
+      '6.3 Any hyperlink to any other website or webpage is not an endorsement or verification of such website or webpage and should only be accessed at your own risk.'
+    ]
+  },
+  {
+    title: '7. NO WARRANTY',
+    items: [
+      '7.1 The App and Service and all information, materials, services and functions contained therein including software, programs, data, databases, text, graphics, photographs, animations, audio, music, video, links or other materials, are provided "as is" and "as available". No warranty of any kind, implied, express or statutory, including but not limited to any warranties of title, non-infringement of third party rights, merchantability, satisfactory quality, fitness for a particular purpose and freedom from computer virus or other malicious, destructive or corrupting code, agent, program or macros, is given in conjunction with the App or Service, or any information and materials provided through the App or Service. Without prejudice to the generality of the foregoing, PakData does not warrant: (i) the accuracy, timeliness, adequacy or completeness of the information, materials, services and/or functions provided through the App and/or Service; (ii) that your use of and/or access to the App, Service or any information or any materials provided through the App or the Service, or the operation of the App, will be uninterrupted, secure or free from errors or omissions or that any identified defect will be corrected; (iii) that the App, Service or any information or materials provided through the App or Service will meet your requirements or are free from any virus or other malicious, destructive or corrupting code, agent, program or macros; and (iv) that use of the App and/or the materials displayed on the App and/or the Service by you will not infringe the rights of third parties.',
+      '7.2 In addition, PakData makes no warranty regarding any applications, products or services that may be or which are purchased or obtained, or any transactions entered into, through the App or Service.',
+      '7.3 You acknowledge and agree that PakData does not warrant the security of any information transmitted by or to you using the App or Service and you hereby accept the risk that any information transmitted or received using the App or Service may be accessed by unauthorised third parties and/or disclosed by PakData and by its officers, employees or agents to third parties purporting to be you or purporting to act under your authority.',
+      '7.4 You will not hold PakData or any of its officers, employees or agents responsible or liable, in contract, tort (including negligence or breach of statutory duty), equity or otherwise, for any such access or disclosure or for any damages, losses, expenses or costs (whether direct or indirect, or whether foreseeable or not) suffered or incurred by you as a result of any such access or disclosure.'
+    ]
+  },
+  {
+    title: '8. USER MATERIALS',
+    items: [
+      '8.1 You will not disclose your contact details to other Users through the App and/or Service and will adhere to any instructions or guidelines which PakData may publish or make available from time to time.',
+      '8.2 Neither PakData nor Quran Majeed endorses nor assumes any responsibility for the contents of your transmissions or communications through the App and/or Service and you are solely responsible therefore. You warrant and represent that you have the right and authority to submit your User Materials and that your User Materials do not infringe the intellectual property rights or any other rights of any third party. You hereby grant to PakData and Quran Majeed a non-exclusive, world-wide royalty-free, irrevocable licence and right to host, transmit, distribute or use (which will include without limitation, the right to copy, reproduce and/or publish) the User Materials in connection with the provision of the Service to you and for the purposes you have instructed or requested.'
+    ]
+  },
+  {
+    title: '9. DATA PRIVACY AND CONFIDENTIALITY',
+    items: [
+      '9.1 You agree that all information and/or particulars sent or submitted by you through the App or Service are non-confidential and non-proprietary unless otherwise expressly indicated by you and may be collected, used and disclosed by PakData in accordance with the app\'s Privacy Policy, as may be updated and/or amended by PakData from time to time.'
+    ]
+  },
+  {
+    title: '10. LIMITATION OF LIABILITY',
+    items: [
+      '10.1 PakData and Quran Majeed shall in no event nor for any reason whatsoever be liable, even if PakData and/or Quran Majeed has been advised of the possibility of such damages, losses or expenses, for any damages, loss or expense, including direct, indirect, special, or consequential damage, or economic loss, arising from or in connection with (i) any access, use or the inability to access or use the App or Service; (ii) any system, server or connection failure, error, omission, interruption, delay in transmission, computer virus or other malicious, destructive or corrupting code, agent program or macros; (iii) any use of or access to any other website or webpage provided through the App or Service; (iv) any services, products, information, data, software or other material obtained or downloaded from the App or Service or from any other website or webpage provided through the App or Service or from any other party referred by or through the use of the App or Service; or (v) your use or misuse of the App or Service. In no event shall PakData or Quran Majeed be liable to you, or any other party for: (a) amounts due from other users of the App or Service in connection with the purchase of any products/services; (b) damages arising in connection with the downloading or installation of, or the inability to download or install the App, by you or other third party; and/or (c) sales, customs and/or import or export taxes.'
+    ]
+  },
+  {
+    title: '11. INDEMNITY',
+    items: [
+      '11.1 You will indemnify and hold harmless PakData and Quran Majeed from and against any and all claims, actions, proceedings, suits, liabilities, losses, damages, settlements, penalties, fines, costs or expenses (including solicitor and client costs and expenses (legal or otherwise)), which PakData or Quran Majeed may sustain or incur, directly or indirectly, by reason of PakData having made available the App and/or Service to you or having entered into these Terms & Conditions with you or enforcement of PakData\'s and/or Quran Majeed\'s rights under these Terms & Conditions or in acting upon any instructions which you may give in relation to the App or Service or any negligence, fraud and/or misconduct on your part or your breach of these Terms & Conditions.',
+      '11.2 You will cooperate fully in the defence of any allegation or third-party legal proceeding. PakData reserves the right to assume the exclusive control and defence of any indemnified matter under this Clause 12.'
+    ]
+  },
+  {
+    title: '12. INTELLECTUAL PROPERTY',
+    items: [
+      '12.1 All copyright and other intellectual property and proprietary rights in the content, including but not limited to text, software, code, scripts, webpages, music, sound, photographs, video, graphics, graphical user interface, forms, diagrams or other material contained in the App or Service ("Content") belong to Quran Majeed or its licensors unless otherwise indicated.',
+      '12.2 You may access material displayed on the App or through the Service for your non-commercial use only provided that you also retain all copyright and other proprietary notices contained on the materials. You may not, however, copy, reproduce, distribute, modify, transmit, reuse, re-post, or use the Content for public or commercial purposes without PakData\'s prior written permission. The trademarks, logos, and service marks (collectively the "Trademarks") displayed on the App are registered and unregistered Trademarks of PakData or Quran Majeed or where applicable, other third party proprietors. No right or licence is given to any party accessing the App or Service to download, reproduce or use any such Trademarks.',
+      '12.3 Please refer to PakData\'s Notice and Take Down Policy below for details on how PakData treats notifications of potential breaches copyright or other intellectual property rights.'
+    ]
+  },
+  {
+    title: '13. THIRD PARTY SYSTEMS',
+    items: [
+      '13.1 Parts of the Service can only be accessed and/or used upon signing in to third party systems such as Facebook or Google. Any use of or access to such parts of the Service and any information, data, instructions or communications ("Communications") referable to your account with such third party systems (whether such access, use or Communication is authorised by you or not) shall be deemed to be (a) use or access of the Service by you and/or (b) Communications transmitted and validly issued by you. You shall be bound by any access, use, and/or Communications referable to your account with such third party systems, and you agree that PakData shall be entitled (but not obliged) to act upon, rely on and/or hold you solely responsible and liable in respect thereof as if the same were carried out or transmitted by you.',
+      '13.2 Under no circumstances shall it be construed that, in the case of your access to and use of systems (including messaging systems), applications, services, content, materials, products or programmes of any third party, PakData or Quran Majeed is a party to any transaction, if any, between you and such third party or that PakData or Quran Majeed endorses, sponsors, certifies, or is involved in the provision of such services, products, applications or programmes accessible through the App or Service. PakData and/or Quran Majeed shall not be liable in any way for your access to and use of the third party systems (including messaging systems) or for any products obtained and/or purchased from or services rendered by any such third party which shall be your responsibility or that of the relevant third party.',
+      '13.3 You acknowledge and agree that you will be solely responsible for any access or use of third party systems (including any third party messaging systems), applications, services, content, materials, products or programmes through the App or Service. If you access or use any third party systems (including any third party messaging systems) or the applications, services, content, materials, products or programmes of any third party, through the App or Service, you must comply with the relevant terms and conditions for the access or the use of such third party systems, applications, services, content, materials, products or programmes and be responsible for the registration and use of any user names or passwords required to connect thereto. In particular, should access to and use of third party systems (including any third party messaging systems), applications, services, content, materials, products or programmes through the App or Service be prohibited (whether in full or in part) by such third party terms and conditions, please discontinue any such access and use as soon as possible upon becoming aware of or receiving notice of such prohibition from the relevant third party. PakData cannot and does not know nor does it warrant that your use of the App or Service to access or use third party systems (including third party messaging systems) or the applications, services, content, materials, products or programmes of any third party is permitted or in compliance, fully or otherwise, with applicable third party terms and conditions. Accordingly, you shall not have any right or claim, and hereby waive any rights you may have (if any), against PakData in respect of any breach or failure to comply with the terms and conditions of the relevant third party in respect of your access to and/or use of such third party systems (including any third party messaging systems), applications, services, content, materials, products or programmes through the App or Service. You authorise PakData and its agents to access third party systems (including any third party messaging systems), applications, services, content, materials, products or programmes which you have designated, to retrieve content or information requested by you or to process or access functionalities at your request. You hereby appoint PakData and its agents as your agent for the aforementioned purpose. In addition, each time you submit your user name or password to access or use your designated third party systems, applications, services, content, materials, products or programmes, you shall be deemed to have authorised PakData and its agents to process your request and use information submitted by you.'
+    ]
+  },
+  {
+    title: '14. TERMINATION',
+    items: [
+      '14.1 PakData, in its sole discretion, may with immediate effect upon giving you notice in any of the manners prescribed in Clause 17 below, terminate your right to access and use the App and/or the Service and/or invalidate your Username and Password and may bar access to the App (or any part thereof) and/or the Service (or any part thereof) for any reason whatsoever, including without limitation, any breach of these Terms & Conditions.',
+      '14.2 Upon termination of these Terms & Conditions for any reason whatsoever, all rights and/or licences granted to you under these Terms & Conditions shall immediately cease and terminate and you shall forthwith cease the access and use of the App and the Service in any way whatsoever.',
+      '14.3 Termination of these Terms & Conditions for any reason shall not affect your obligation to make full payment of any fees payable if such fee has not already been paid.'
+    ]
+  },
+  {
+    title: '15. AMENDMENTS TO TERMS OF USE',
+    items: [
+      '15.1 PakData may impose such further terms and conditions and make such amendments to these Terms & Conditions as PakData may in its discretion deem fit from time to time (including terms or amendments allowing PakData to charge or revise fees for the use of the App and/or Service). PakData will notify you of such amendments by posting the amendments on the App or such other method of notification as may be designated by PakData (such as via email or other forms of electronic communications), which you agree shall be sufficient notice for the purpose of this clause. If you do not agree to be bound by the amendments, you shall immediately cease all access and/or use of the App and Service. You further agree that if you continue to use and/or access the App and/or Service after being notified of such amendments to these Terms & Conditions, such use and/or access shall constitute an affirmative: (i) acknowledgement by you of these Terms & Conditions and its amendments; and (ii) agreement by you to abide and be bound by these Terms & Conditions and its amendments.'
+    ]
+  },
+  {
+    title: '16. NOTICES',
+    items: [
+      '16.1 Any notice or other communication in connection with these Terms & Conditions may be given electronically if sent to the address then most recently notified by the recipient to the sender. Where the notice or communication is given by PakData to you electronically, it will be deemed to have been received upon delivery (and a delivery report received by PakData will be conclusive evidence of delivery even if the communication is not opened by you) and where given to PakData electronically, it will be deemed to have been received upon being opened by PakData.'
+    ]
+  },
+  {
+    title: '17. FORCE MAJEURE',
+    items: [
+      '17.1 PakData and Quran Majeed shall not be liable for any non-performance, error, interruption or delay in the performance of its obligations or in the App\'s or the Service\'s operation, or for any inaccuracy, unreliability or unsuitability of the contents made available through the App or Service if due, in whole or in part, directly or indirectly to an event or failure which is beyond the reasonable control of PakData and/or Quran Majeed (including acts of God, natural disasters, epidemics, acts of war or terrorism, acts of any government or authority, power failures, acts or defaults of any telecommunications network operator or carriers or the acts of a party for whom PakData and/or Quran Majeed is not responsible for).'
+    ]
+  },
+  {
+    title: '18. GENERAL',
+    items: [
+      '18.1 You may not assign your rights under these Terms & Conditions without PakData\'s prior written consent. PakData may assign its rights under these Terms & Conditions to any third party.',
+      '18.2 These Terms & Conditions will bind you and PakData and PakData\'s respective successors in title and assigns and will continue to bind you notwithstanding any change in PakData\'s name or constitution or PakData\'s merger, consolidation or amalgamation with or into any other entity (in which case these Terms & Conditions will bind you to PakData\'s successor entity).',
+      '18.3 If any provision of these Terms & Conditions is held to be invalid, illegal or unenforceable (whether in whole or in part), such provision shall be struck and severed from these Terms & Conditions and the remaining provisions of these Terms & Conditions shall not be affected thereby.',
+      '18.4 No failure or delay to exercise PakData and/or Quran Majeed\'s rights under these Terms & Conditions shall operate as a waiver thereof nor shall such failure or delay affect the right to enforce PakData and/or Quran Majeed\'s rights under these Terms & Conditions.',
+      '18.5 If these Terms & Conditions are translated into a language other than English, the English text shall prevail.',
+      '18.6 These Terms & Conditions and our relationship is governed by and construed in accordance with Pakistan\'s law. You submit to the non-exclusive jurisdiction of the courts of Pakistan.',
+      '18.7 You acknowledge and agree that PakData\'s records and any records of the communications, transactions, instructions or operations made or performed, processed or effected through the App and/or Service by you or any person purporting to be the you, acting on your behalf or purportedly acting on your behalf, with or without your consent, or any record of communications, transactions, instructions or operations relating to the operation of the App and/or Service and any record of any communications, transactions, instructions or operations maintained by PakData or by any relevant person authorised by PakData relating to or connected with the App and/or Service shall be binding on you for all purposes whatsoever and shall be conclusive evidence of such communications, transactions, instructions or operations.',
+      '18.8 Apart from Quran Majeed, no person or entity who is not a party to these Terms & Conditions shall have any right under Pakistan law, or other similar laws to enforce any term of these Terms & Conditions, regardless of whether such person or entity has been identified by name, as a member of a class or as answering a particular description. For the avoidance of doubt, this shall not affect the rights of any permitted assignee or transferee of these Terms & Conditions.',
+      '18.9 Without prejudice to the generality of Clause 19.8 above, PakData\'s right to vary, amend or rescind these Terms & Conditions in accordance with these Terms & Conditions may be exercised without the consent of any person or entity who is not a party to these Terms & Conditions.',
+      '18.10 You agree and acknowledge that these Terms & Conditions and the Service do not include the provision of Internet access or other telecommunication services by PakData or Quran Majeed. Any Internet access or telecommunications services (such as mobile data connectivity) required by you to access and use the Service shall be your sole responsibility and shall be separately obtained by you, at your own cost, from the appropriate telecommunications or internet access service provider.'
+    ]
+  }
+];
 ---
 
 <Layout title={title} description={description}>
   <section class="terms-hero">
-    <div class="container text-center animate-fade-in">
-      <span class="badge badge-primary">{t('terms.hero.badge')}</span>
-      <h1 class="terms-hero-title">{t('terms.hero.title')}</h1>
-      <p class="terms-hero-subtitle">{t('terms.hero.subtitle')}</p>
+    <div class="container text-center">
+      <span class="badge badge-primary">Legal</span>
+      <h1 class="terms-hero-title">Terms and Conditions</h1>
+      <p class="terms-hero-subtitle">These Terms & Conditions are current as of 22 June 2020.</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="container max-width-800">
-      <div class="terms-content card">
-        <h2 class="terms-section-title">1. Software License</h2>
-        <p>
-          By downloading, installing, or accessing any application (such as Quran Majeed, Quran Pak, Easy Urdu Keyboard, Quran TV) or utilizing websites developed by Pakistan Data Management Services (PDMS), you agree to be bound by these Terms & Conditions.
-        </p>
-        <p>
-          PDMS grants you a personal, non-exclusive, non-transferable, revocable license to use our software on compatible devices solely for personal, non-commercial purposes.
-        </p>
-
-        <h2 class="terms-section-title">2. Prohibited Conduct</h2>
-        <p>
-          You agree that you will not:
-        </p>
-        <ul>
-          <li>Modify, reverse engineer, decompile, or disassemble our application binary files.</li>
-          <li>Scrape or copy the copyrighted text translations, Tafsir data, or audio files compiled inside our databases for distribution.</li>
-          <li>Use our platform services to transmit malicious code, malware, or coordinate distributed denial-of-service (DDoS) attacks.</li>
-        </ul>
-
-        <h2 class="terms-section-title">3. Subscriptions & In-App Upgrades</h2>
-        <p>
-          Some of our products offer Premium subscriptions to unlock features (like removing advertising, downloading HD audio reciters, or accessing multiple Tafsirs).
-        </p>
-        <ul>
-          <li><strong>Store Billing:</strong> Subscriptions purchased through Apple App Store or Google Play Store auto-renew unless cancelled at least 24 hours before the billing cycle.</li>
-          <li><strong>Local Billing:</strong> Subscriptions purchased in Pakistan via EasyPaisa or JazzCash are one-time tokens or recurring billing according to checkout terms.</li>
-          <li><strong>Refunds:</strong> Refund policies are subject to standard App Store or Google Play Store billing terms. Direct purchases can contact support@pakdata.com.</li>
-        </ul>
-
-        <h2 class="terms-section-title">4. Disclaimers</h2>
-        <p>
-          Our applications and services are provided "as is" and "as available". While we source Quran text and prayer calculations from verified astronomical and theological authorities, PDMS makes no warranties of any kind regarding completeness, operational uptime, or 100% notification reliability due to operating system variables.
-        </p>
-
-        <h2 class="terms-section-title">5. Limitation of Liability</h2>
-        <p>
-          In no event shall PDMS, its founders, or employees be liable for any direct, indirect, incidental, or consequential damages arising out of the use or inability to use our applications.
-        </p>
-
-        <h2 class="terms-section-title">6. Governing Law</h2>
-        <p>
-          These Terms & Conditions shall be governed by, interpreted, and enforced in accordance with the laws of the Islamic Republic of Pakistan, subject to the exclusive jurisdiction of the courts located in Karachi, Pakistan.
-        </p>
-
-        <h2 class="terms-section-title">7. Contact Information</h2>
-        <p>
-          For legal inquiries, copyright notices, or licensing permissions, please contact our legal desk:
-        </p>
-        <div class="terms-contact-box">
-          <strong>Email:</strong> <a href="mailto:info@pakdata.com">info@pakdata.com</a><br />
-          <strong>Address:</strong> Pakistan Data Management Services, DHA Phase II Ext, Karachi, Pakistan.
+    <div class="container max-width-900">
+      <article class="terms-content card">
+        <div class="terms-intro">
+          {intro.map((paragraph) => <p>{paragraph}</p>)}
         </div>
-      </div>
+
+        {sections.map((section) => (
+          <section class="terms-block">
+            <h2 class="terms-section-title">{section.title}</h2>
+            {section.lead && <p>{section.lead}</p>}
+            {section.items.map((item) => <p>{item}</p>)}
+          </section>
+        ))}
+      </article>
     </div>
   </section>
 </Layout>
@@ -96,17 +203,22 @@ const description = "Read the terms of service and software licensing conditions
 
   .terms-hero-title {
     font-size: calc(1.875rem * var(--text-scale, 1));
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+    font-weight: 700;
+    margin: .75rem 0 .5rem;
+    color: var(--dark);
+    letter-spacing: 0;
   }
 
   .terms-hero-subtitle {
+    max-width: 44rem;
+    margin: 0 auto;
     font-size: calc(1rem * var(--text-scale, 1));
     color: var(--secondary-dark);
+    line-height: 1.7;
   }
 
-  .max-width-800 {
-    max-width: 800px;
+  .max-width-900 {
+    max-width: 900px;
     margin: 0 auto;
   }
 
@@ -114,50 +226,41 @@ const description = "Read the terms of service and software licensing conditions
     padding: 3rem;
   }
 
-  .terms-section-title {
-    font-size: calc(1.25rem * var(--text-scale, 1));
-    font-weight: 600;
-    margin: 2rem 0 1rem 0;
+  .terms-intro {
+    padding-bottom: 1.25rem;
     border-bottom: 1px solid var(--border);
-    padding-bottom: 0.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .terms-block + .terms-block {
+    margin-top: 2rem;
+  }
+
+  .terms-section-title {
+    font-size: calc(1.2rem * var(--text-scale, 1));
+    font-weight: 700;
+    margin: 0 0 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .65rem;
+    color: var(--dark);
+    letter-spacing: 0;
   }
 
   .terms-content p {
-    font-size: calc(0.9375rem * var(--text-scale, 1));
+    font-size: calc(.9375rem * var(--text-scale, 1));
     color: var(--secondary-dark);
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
   }
 
-  .terms-content ul {
-    margin-left: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--secondary-dark);
-    font-size: calc(0.9375rem * var(--text-scale, 1));
-  }
-
-  .terms-content li {
-    margin-bottom: 0.5rem;
-  }
-
-  .terms-contact-box {
-    background-color: var(--light-soft);
-    border: 1px solid var(--border);
-    padding: 1.25rem;
-    border-radius: 0.5rem;
-    margin-top: 1rem;
-    font-size: calc(0.875rem * var(--text-scale, 1));
-  }
-
-  .terms-contact-box a {
+  .terms-content a {
     color: var(--primary);
-    font-weight: 500;
+    font-weight: 600;
   }
 
-  /* Mobile: reduce card padding */
   @media (max-width: 767px) {
     .terms-content {
-      padding: 1.5rem;
+      padding: 1.4rem;
     }
   }
 
