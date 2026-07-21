@@ -16,31 +16,6 @@ const offices = [
     phone: "+92-21-35882650",
     fax: "+92-21-35882651",
     email: "info@pakdata.com"
-  },
-  {
-    city: t('contact.office.usa.city'),
-    address: t('contact.office.usa.address'),
-    phone: t('contact.office.usa.phone'),
-    fax: t('contact.office.noFax'),
-    email: "usa@pakdata.com"
-  }
-];
-
-const departments = [
-  {
-    name: t('contact.dept.sales.name'),
-    email: "info@pakdata.com",
-    desc: t('contact.dept.sales.desc')
-  },
-  {
-    name: t('contact.dept.support.name'),
-    email: "support@pakdata.com",
-    desc: t('contact.dept.support.desc')
-  },
-  {
-    name: t('contact.dept.careers.name'),
-    email: "careers@pakdata.com",
-    desc: t('contact.dept.careers.desc')
   }
 ];
 ---
@@ -91,18 +66,16 @@ const departments = [
           ))}
         </div>
 
-        <div class="departments-wrap">
-          <h3 class="dept-title-head">{t('contact.dept.title')}</h3>
-          <div class="depts-grid">
-            {departments.map(dept => (
-              <div class="dept-info-box">
-                <h4 class="dept-info-name">{dept.name}</h4>
-                <a href={`mailto:${dept.email}`} class="dept-info-email">{dept.email}</a>
-                <p class="dept-info-desc">{dept.desc}</p>
-              </div>
-            ))}
+        <!-- Simulated Map Placeholder -->
+        <div class="map-placeholder card">
+          <div class="map-icon">🗺️</div>
+          <div>
+            <h4 class="map-title">{t('contact.map.title')}</h4>
+            <p class="map-text">{t('contact.map.text')}</p>
+            <a href="https://maps.google.com/?q=Pakistan+Data+Management+Services+NASTP-2+Silicon+Valley-2+Building+S2+1st+Floor+Office+No.15+Main+Shahrah-e-Faisal+Karachi+Pakistan" class="map-link" target="_blank" rel="noopener noreferrer">{t('contact.map.link')}</a>
           </div>
         </div>
+
       </div>
 
       <!-- Contact Form Column -->
@@ -142,15 +115,6 @@ const departments = [
           </form>
         </div>
 
-        <!-- Simulated Map Placeholder -->
-        <div class="map-placeholder card">
-          <div class="map-icon">🗺️</div>
-          <div>
-            <h4 class="map-title">{t('contact.map.title')}</h4>
-            <p class="map-text">{t('contact.map.text')}</p>
-            <a href="https://maps.google.com/?q=Pakistan+Data+Management+Services+Karachi" class="map-link" target="_blank" rel="noopener noreferrer">{t('contact.map.link')}</a>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -241,52 +205,6 @@ const departments = [
   .detail-line a {
     color: var(--primary);
     font-weight: 600;
-  }
-
-  .departments-wrap {
-    border-top: 2px solid var(--border-focus);
-    padding-top: 2rem;
-  }
-
-  .dept-title-head {
-    font-size: calc(1.125rem * var(--text-scale, 1));
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-  }
-
-  .depts-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .dept-info-box {
-    background-color: var(--light);
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    padding: 1.25rem;
-  }
-
-  .dept-info-name {
-    font-size: calc(0.9375rem * var(--text-scale, 1));
-    font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 0.15rem;
-  }
-
-  .dept-info-email {
-    font-size: calc(0.875rem * var(--text-scale, 1));
-    color: var(--primary);
-    font-weight: 700;
-    display: inline-block;
-    margin-bottom: 0.5rem;
-  }
-
-  .dept-info-desc {
-    font-size: calc(0.8125rem * var(--text-scale, 1));
-    color: var(--secondary-dark);
-    line-height: 1.5;
-    margin-bottom: 0;
   }
 
   /* Form column styling */
