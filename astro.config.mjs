@@ -22,6 +22,9 @@ const legacyRedirectPairs = [
     ['/ufaqs/how-to-pay-using-easy-paisa/', '/faqs'],
     ['/ufaqs/how-to-add-a-bookmark/', '/faqs'],
     ['/ufaqs/adhan-notifications-are-not-in-time-in-my-device/', '/faqs'],
+    ['/faq/', '/faqs'],
+    ['/certificate/', '/certificates'],
+    ['/products/quran-tv/', '/products#quran-tv'],
 ];
 
 const legacyRedirects = Object.fromEntries(legacyRedirectPairs);

@@ -15,7 +15,7 @@ export function useTranslations(lang: keyof typeof ui) {
 export function getRelativeLocaleUrl(lang: keyof typeof ui, path: string) {
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
   if (lang === defaultLang) {
-    return `/${cleanPath}`;
+    return cleanPath ? `/${cleanPath}` : '/';
   }
-  return `/${lang}/${cleanPath}`;
+  return cleanPath ? `/${lang}/${cleanPath}` : `/${lang}`;
 }

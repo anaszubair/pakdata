@@ -38,9 +38,9 @@ const t = useTranslations(lang);
   <div class="product-card-header">
     <div class="product-info-left">
       {badge && <span class="badge badge-primary product-badge">{badge}</span>}
-      <div style="display: flex; align-items: bottom; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
       <div>
-      <img src={imageUrl} alt={name} class="product-image" width="50" height="50" style="border-radius:8px" />
+      <img src={imageUrl} alt={name} class="product-image" width="96" height="96" loading="lazy" decoding="async" style="border-radius:8px" />
       </div>
       <div>
       <h3 class="product-title">{name}</h3>
@@ -81,11 +81,11 @@ const t = useTranslations(lang);
       {platforms.map(platform => {
         const platformKey = platform.toLowerCase();
         const imageMap = {
-          ios: '/images/ios.png',
-          android: '/images/android.png',
-          macos: '/images/appstore.png',
-          tv: '/images/tv.png',
-          web: '/images/web.png',
+          ios: '/images/ios-icon.webp',
+          android: '/images/android-icon.webp',
+          macos: '/images/appstore-icon.webp',
+          tv: '/images/tv-icon.webp',
+          web: '/images/web-icon.webp',
         } as const;
         const imgSrc = imageMap[platformKey];
         return imgSrc ? (
@@ -94,6 +94,10 @@ const t = useTranslations(lang);
             alt={`Available on ${platform}`}
             title={`Available on ${platform}`}
             class="platform-img"
+            width="72"
+            height="72"
+            loading="lazy"
+            decoding="async"
           />
         ) : null;
       })}
@@ -144,6 +148,13 @@ const t = useTranslations(lang);
   .product-badge {
     align-self: flex-start;
     margin-bottom: 0.5rem;
+  }
+
+  .product-image {
+    width: 3.125rem;
+    height: 3.125rem;
+    object-fit: cover;
+    flex-shrink: 0;
   }
 
   .product-title {
