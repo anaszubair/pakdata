@@ -347,7 +347,7 @@ const heroCarouselSlides = [
           <div class="why-item">
             <div class="why-icon" set:html={iconSvg('shield')}></div>
             <div>
-              <h4 class="why-title">{t('home.about.why1.title')}</h4>
+              <h3 class="why-title">{t('home.about.why1.title')}</h3>
               <p class="why-text">{t('home.about.why1.desc')}</p>
             </div>
           </div>
@@ -355,7 +355,7 @@ const heroCarouselSlides = [
           <div class="why-item">
             <div class="why-icon" set:html={iconSvg('globe')}></div>
             <div>
-              <h4 class="why-title">{t('home.about.why2.title')}</h4>
+              <h3 class="why-title">{t('home.about.why2.title')}</h3>
               <p class="why-text">{t('home.about.why2.desc')}</p>
             </div>
           </div>
@@ -363,7 +363,7 @@ const heroCarouselSlides = [
           <div class="why-item">
             <div class="why-icon" set:html={iconSvg('rocket')}></div>
             <div>
-              <h4 class="why-title">{t('home.about.why3.title')}</h4>
+              <h3 class="why-title">{t('home.about.why3.title')}</h3>
               <p class="why-text">{t('home.about.why3.desc')}</p>
             </div>
           </div>
@@ -459,7 +459,7 @@ const heroCarouselSlides = [
   .hero-badge {
     display: inline-block;
     background-color: rgba(255, 255, 255, 0.92);
-    color: var(--primary);
+    color: var(--primary-dark);
     font-size: calc(0.8125rem * var(--text-scale, 1));
     font-weight: 700;
     padding: 0.35rem 1rem;
@@ -621,22 +621,36 @@ const heroCarouselSlides = [
   .hero-carousel-dots {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.25rem;
     pointer-events: auto;
   }
 
   .hero-carousel-dot {
-    width: 0.7rem;
-    height: 0.7rem;
+    width: 2.75rem;
+    height: 2.75rem;
     border-radius: 999px;
     border: none;
-    background: #ffffff;
+    background: transparent;
     cursor: pointer;
+    position: relative;
+    transition: all var(--transition-fast);
+  }
+
+  .hero-carousel-dot::before {
+    content: "";
+    position: absolute;
+    inset: 1rem;
+    border-radius: 999px;
+    background: #ffffff;
     transition: all var(--transition-fast);
   }
 
   .hero-carousel-dot.is-active {
-    width: 2rem;
+    width: 3rem;
+  }
+
+  .hero-carousel-dot.is-active::before {
+    inset-inline: 0.6rem;
     background: var(--primary);
   }
 
@@ -701,7 +715,7 @@ const heroCarouselSlides = [
     flex: 1;
     text-align: center;
     background-color: var(--primary-light);
-    color: var(--primary);
+    color: var(--primary-dark);
     font-size: calc(0.75rem * var(--text-scale, 1));
     font-weight: 700;
     padding: 0.5rem;
@@ -838,7 +852,7 @@ const heroCarouselSlides = [
 
   .box-light {
     background-color: var(--light);
-    color: var(--primary);
+    color: var(--primary-dark);
     border: 1px solid var(--border-focus);
   }
 
@@ -1040,7 +1054,7 @@ const heroCarouselSlides = [
   .cta-desc {
     font-size: calc(1.125rem * var(--text-scale, 1));
     margin-bottom: 2.5rem;
-    opacity: 0.9;
+    color: var(--light);
     line-height: 1.7;
   }
 
@@ -1053,7 +1067,7 @@ const heroCarouselSlides = [
 
   .btn-white-text {
     background-color: var(--light);
-    color: var(--primary);
+    color: var(--primary-dark);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
   }
 

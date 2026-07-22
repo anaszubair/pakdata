@@ -1,7 +1,8 @@
 :root {
   /* Color Palette */
-  --primary: #ec6724;
-  --primary-hover: #d35312;
+  --primary: #b8440e;
+  --primary-hover: #8f3308;
+  --primary-dark: #762a05;
   --primary-light: #fef0e6;
   --secondary: #818282;
   --secondary-dark: #5f6062;
@@ -71,7 +72,7 @@ h5,
 h6 {
   font-family: var(--font-heading);
   color: var(--dark);
-  font-weight: 400;
+  font-weight: 600;
   /* Decreased default header weight */
   line-height: 1.25;
 }
@@ -250,7 +251,7 @@ select {
 
 .badge-primary {
   background-color: var(--primary-light);
-  color: var(--primary);
+  color: var(--primary-dark);
 }
 
 .badge-success {
