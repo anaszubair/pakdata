@@ -252,41 +252,38 @@ const heroCarouselSlides = [
         </div>
       </div>
     </div>
-    
-  </section>
 
-  <!-- Trust Metrics Section -->
-  <section class="metrics-section">
-  <div class="container">
-    <div class="metrics-card-grid">
+    <!-- Trust Metrics Section -->
+    <div class="container metrics-section">
+      <div class="metrics-card-grid">
 
-      <div class="metric-card">
-        <span class="metric-number" data-target="150">0</span><span class="suffix">{t('home.metrics.downloads.suffix') || 'M+'}</span>
-        <span class="metric-title">{t('home.metrics.downloads.title')}</span>
-        <span class="metric-desc">{t('home.metrics.downloads.desc')}</span>
+        <div class="metric-card">
+          <span class="metric-number" data-target="150">0</span><span class="suffix">{t('home.metrics.downloads.suffix') || 'M+'}</span>
+          <span class="metric-title">{t('home.metrics.downloads.title')}</span>
+          <span class="metric-desc">{t('home.metrics.downloads.desc')}</span>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-number" data-target="45">0</span><span class="suffix">{t('home.metrics.years.suffix') || '+ Yrs'}</span>
+          <span class="metric-title">{t('home.metrics.years.title')}</span>
+          <span class="metric-desc">{t('home.metrics.years.desc')}</span>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-number" data-target="50">0</span><span class="suffix">{t('home.metrics.apps.suffix') || '+'}</span>
+          <span class="metric-title">{t('home.metrics.apps.title')}</span>
+          <span class="metric-desc">{t('home.metrics.apps.desc')}</span>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-number" data-target="45">0</span><span class="suffix">{t('home.metrics.clients.suffix') || '+'}</span>
+          <span class="metric-title">{t('home.metrics.clients.title')}</span>
+          <span class="metric-desc">{t('home.metrics.clients.desc')}</span>
+        </div>
+
       </div>
-
-      <div class="metric-card">
-        <span class="metric-number" data-target="45">0</span><span class="suffix">{t('home.metrics.years.suffix') || '+ Yrs'}</span>
-        <span class="metric-title">{t('home.metrics.years.title')}</span>
-        <span class="metric-desc">{t('home.metrics.years.desc')}</span>
-      </div>
-
-      <div class="metric-card">
-        <span class="metric-number" data-target="50">0</span><span class="suffix">{t('home.metrics.apps.suffix') || '+'}</span>
-        <span class="metric-title">{t('home.metrics.apps.title')}</span>
-        <span class="metric-desc">{t('home.metrics.apps.desc')}</span>
-      </div>
-
-      <div class="metric-card">
-        <span class="metric-number" data-target="45">0</span><span class="suffix">{t('home.metrics.clients.suffix') || '+'}</span>
-        <span class="metric-title">{t('home.metrics.clients.title')}</span>
-        <span class="metric-desc">{t('home.metrics.clients.desc')}</span>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Featured Products Section -->
   <section class="section section-bg" id="featured-products">
@@ -442,7 +439,7 @@ const heroCarouselSlides = [
       radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%),
       radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%),
       linear-gradient(180deg, #fefbf8, #fff);
-    padding: 6rem 0 8rem 0;
+    padding: clamp(2rem, 5vh, 3.5rem) 0 clamp(1.5rem, 4vh, 2.5rem);
     position: relative;
     overflow: hidden;
   }
@@ -464,7 +461,7 @@ const heroCarouselSlides = [
     font-weight: 700;
     padding: 0.35rem 1rem;
     border-radius: 9999px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.15rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     border: 1px solid var(--border-focus);
@@ -474,7 +471,7 @@ const heroCarouselSlides = [
     font-size: calc(2rem * var(--text-scale, 1));
     font-weight: 600;
     line-height: 1.2;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.15rem;
     letter-spacing: -0.01em;
     color: var(--primary-dark);
     text-shadow: none;
@@ -483,7 +480,7 @@ const heroCarouselSlides = [
   .hero-subtext {
     font-size: calc(1.125rem * var(--text-scale, 1));
     color: var(--secondary-dark);
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.75rem;
     line-height: 1.7;
     max-width: 40rem;
   }
@@ -507,7 +504,7 @@ const heroCarouselSlides = [
       linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,248,240,0.86));
     border: 1px solid rgba(236, 103, 36, 0.14);
     border-radius: 2rem;
-    width: min(320px, 100%);
+    width: min(280px, 100%);
     aspect-ratio: 9 / 16;
     height: auto;
     padding: 0;
@@ -607,27 +604,30 @@ const heroCarouselSlides = [
   .hero-carousel-footer {
     display: flex;
     justify-content: space-between;
-    gap: 0.85rem;
+    gap: 0.5rem;
     align-items: center;
     position: absolute;
-    bottom: 0.85rem;
+    bottom: 0.75rem;
     z-index: 4;
     pointer-events: none;
     background: #000000a6;
-    padding: 0.2rem 1rem;
+    padding: 0.35rem 0.65rem;
     width: 100%;
   }
 
   .hero-carousel-dots {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+    align-items: center;
+    min-width: 0;
     pointer-events: auto;
   }
 
   .hero-carousel-dot {
-    width: 0.7rem;
-    height: 0.7rem;
+    width: 0.55rem;
+    height: 0.55rem;
+    flex: 0 0 auto;
     border-radius: 999px;
     border: none;
     background: #ffffff;
@@ -636,24 +636,26 @@ const heroCarouselSlides = [
   }
 
   .hero-carousel-dot.is-active {
-    width: 2rem;
+    width: 1.4rem;
     background: var(--primary);
   }
 
   .hero-carousel-controls {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.35rem;
+    flex: 0 0 auto;
     pointer-events: auto;
   }
 
   .hero-carousel-btn {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: 999px;
     border: 1px solid var(--border);
     background: var(--light);
     color: var(--dark);
-    font-size: 1.3rem;
+    font-size: 2.1rem;
+    line-height: 0.5;
     cursor: pointer;
     box-shadow: var(--shadow-sm);
   }
@@ -727,8 +729,7 @@ const heroCarouselSlides = [
 
   /* Metrics Section */
   .metrics-section {
-    padding: 2rem 0;
-    margin-top: -3.5rem;
+    margin-top: clamp(1.25rem, 3vh, 2rem);
     position: relative;
     z-index: 20;
   }
@@ -736,30 +737,45 @@ const heroCarouselSlides = [
   .metrics-card-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    background-color: var(--light);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-lg);
-    border-radius: 1.5rem;
-    padding: 2rem;
+    gap: 0.65rem;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.94), rgba(255,248,240,0.86)),
+      linear-gradient(135deg, rgba(236,103,36,0.16), rgba(37,99,235,0.1));
+    border: 1px solid rgba(236, 103, 36, 0.16);
+    box-shadow: 0 18px 45px rgba(17, 24, 39, 0.08);
+    border-radius: 1.25rem;
+    padding: 0.65rem;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 
   .metric-card {
-    text-align: center;
-    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(236, 103, 36, 0.1);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 10px 25px rgba(17, 24, 39, 0.05);
   }
 
-  .metric-card:not(:last-child) {
-    border-bottom: 1px solid var(--border);
+  .metric-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0.25rem;
+    background: linear-gradient(180deg, var(--primary), #2563eb);
+    opacity: 0.9;
   }
 
   .metric-number {
     display: block;
-    font-size: calc(2rem * var(--text-scale, 1));
+    font-size: calc(1.75rem * var(--text-scale, 1));
     font-weight: 600;
     color: var(--primary);
-    line-height: 1.2;
-    margin-bottom: 0.25rem;
+    line-height: 1;
+    margin-bottom: 0.35rem;
     font-family: var(--font-heading);
   }
 
@@ -768,7 +784,7 @@ const heroCarouselSlides = [
   }
 
   .suffix {
-    font-size: calc(2rem * var(--text-scale, 1));
+    font-size: calc(1.75rem * var(--text-scale, 1));
     font-weight: 600;
     color: var(--primary);
     margin-left: 2px;
@@ -776,16 +792,17 @@ const heroCarouselSlides = [
 
   .metric-title {
     display: block;
-    font-size: calc(1rem * var(--text-scale, 1));
-    font-weight: 500;
+    font-size: calc(0.9rem * var(--text-scale, 1));
+    font-weight: 700;
     color: var(--dark);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .metric-desc {
-    font-size: calc(0.8125rem * var(--text-scale, 1));
+    display: none;
+    font-size: calc(0.75rem * var(--text-scale, 1));
     color: var(--secondary-dark);
-    line-height: 1.5;
+    line-height: 1.35;
   }
 
   .section-actions {
@@ -1075,13 +1092,41 @@ const heroCarouselSlides = [
 
   /* Responsiveness */
   @media (max-width: 767px) {
-    .hero-visual {
-      margin-top: 1.5rem;
+    .hero-section {
+      padding: 2rem 0 1.5rem;
     }
 
-    .main-visual {
-      width: min(320px, 100%);
-      aspect-ratio: 9 / 16;
+    .hero-visual {
+      display: none;
+    }
+
+    .hero-subtext {
+      margin-bottom: 1.75rem;
+    }
+
+    .metrics-section {
+      margin-top: 1rem;
+    }
+
+    .metrics-card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem;
+      border-radius: 1rem;
+      padding: 0.65rem;
+    }
+
+    .metric-card {
+      padding: 0.75rem 0.75rem;
+    }
+
+    .metric-number,
+    .suffix {
+      font-size: calc(1.35rem * var(--text-scale, 1));
+    }
+
+    .metric-title {
+      font-size: calc(0.78rem * var(--text-scale, 1));
+      line-height: 1.25;
     }
 
     .floating-card {
@@ -1128,26 +1173,7 @@ const heroCarouselSlides = [
     
     .metrics-card-grid {
       grid-template-columns: repeat(2, 1fr);
-      padding: 3rem;
-    }
-
-    .metric-card:nth-child(1), .metric-card:nth-child(2) {
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .metric-card:nth-child(odd) {
-      border-right: 1px solid var(--border);
-    }
-
-    .metric-card:nth-child(2) {
-      border-bottom: 1px solid var(--border);
-    }
-
-    .metric-card:nth-child(even) {
-      border-bottom: 1px solid var(--border);
-    }
-    .metric-card:nth-child(3), .metric-card:nth-child(4) {
-      border-bottom: none;
+      padding: 0.85rem;
     }
 
     .awards-grid {
@@ -1161,21 +1187,16 @@ const heroCarouselSlides = [
 
   @media (min-width: 1024px) {
     .hero-title {
-      font-size: calc(3.5rem * var(--text-scale, 1));
+      font-size: calc(3.25rem * var(--text-scale, 1));
+    }
+
+    .main-visual {
+      width: clamp(250px, 22vw, 280px);
     }
 
     .metrics-card-grid {
       grid-template-columns: repeat(4, 1fr);
-      padding: 2.5rem;
-    }
-
-    .metric-card:not(:last-child) {
-      border-bottom: none;
-      border-right: 1px solid var(--border);
-    }
-
-    .metric-card:nth-child(even) {
-      border-bottom: none;
+      padding: 0.85rem;
     }
 
     .awards-grid {
