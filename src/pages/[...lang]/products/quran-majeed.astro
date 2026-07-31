@@ -255,8 +255,8 @@ const themeImages = [
 ];
 
 const storeLinks = [
-  { id: 'google', href: 'https://play.google.com/store/search?q=Quran%20Majeed&c=apps', label: copy.googlePlay, image: '/images/android.png' },
-  { id: 'apple', href: 'https://apps.apple.com/us/search?term=Quran%20Majeed', label: copy.appStore, image: '/images/appstore.png' }
+  { id: 'google', href: 'https://play.google.com/store/apps/details?id=com.pakdata.QuranMajeed&hl=en', label: copy.googlePlay, image: '/images/quranmajeed/Playstore.png' },
+  { id: 'apple', href: 'https://apps.apple.com/us/app/quran-majeed-%D8%A7%D9%84%D9%82%D8%B1%D8%A7%D9%86-%D8%A7%D9%84%D9%83%D8%B1%D9%8A%D9%85/id365557665', label: copy.appStore, image: '/images/quranmajeed/Appstore.png' }
 ];
 ---
 
@@ -271,9 +271,8 @@ const storeLinks = [
 
         <div class="qm-cta-row">
           {storeLinks.map(link => (
-            <a href={link.href} class="store-btn" target="_blank" rel="noopener noreferrer">
-              <img src={link.image} alt={link.label} class={`store-badge store-badge-${link.id}`} />
-              <span>{link.label}</span>
+            <a href={link.href} class="store-btn store-badge-link" aria-label={link.label} target="_blank" rel="noopener noreferrer">
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
             </a>
           ))}
           <a href="#features" class="btn btn-outline qm-explore-btn">{copy.explore}</a>
@@ -479,9 +478,8 @@ const storeLinks = [
         <p class="body-copy">{copy.finalBody2}</p>
         <div class="qm-cta-row">
           {storeLinks.map(link => (
-            <a href={link.href} class="store-btn dark" target="_blank" rel="noopener noreferrer">
-              <img src={link.image} alt={link.label} class={`store-badge store-badge-${link.id}`} />
-              <span>{link.id === 'google' ? copy.finalGoogle : copy.finalAppStore}</span>
+            <a href={link.href} class="store-btn store-badge-link dark" aria-label={link.id === 'google' ? copy.finalGoogle : copy.finalAppStore} target="_blank" rel="noopener noreferrer">
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
             </a>
           ))}
         </div>
@@ -588,19 +586,30 @@ const storeLinks = [
     font-weight: 600;
   }
 
+  .store-badge-link {
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
   .store-btn.dark {
     background: rgba(17,24,39,.08);
   }
 
+  .store-badge-link.dark {
+    background: transparent;
+  }
+
   .store-badge {
-    width: 1.35rem;
-    height: 1.35rem;
+    width: 11.75rem;
+    height: auto;
     object-fit: contain;
+    display: block;
   }
 
   .store-badge-apple {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 11.75rem;
+    height: auto;
   }
 
   .qm-explore-btn {

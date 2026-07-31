@@ -23,6 +23,7 @@ const copy = {
     heroBody: 'Perfect for chatting, social media, notes, and creative Urdu writing with clean controls and an intuitive layout.',
     explore: 'Explore Features',
     download: 'Download on Google Play',
+    appStore: 'Download on App Store',
     featureBar: ['Roman Urdu to Nastaleeq', 'Urdu Editor', 'Keyboard Layouts', 'Predictive Typing', 'Easy Sharing'],
     introTitle: 'A Complete Urdu Typing Experience',
     introBody1: 'Easy Urdu Keyboard is built to make Urdu typing easier, faster, and more enjoyable for everyday users.',
@@ -75,6 +76,7 @@ const copy = {
     heroBody: 'چیٹنگ، سوشل میڈیا، نوٹس اور تخلیقی اردو تحریر کے لیے بہترین، صاف کنٹرولز اور آسان لے آؤٹ کے ساتھ۔',
     explore: 'خصوصیات دیکھیں',
     download: 'گوگل پلے سے ڈاؤن لوڈ کریں',
+    appStore: 'ایپ اسٹور سے ڈاؤن لوڈ کریں',
     featureBar: ['رومن اردو سے نستعلیق', 'اردو ایڈیٹر', 'کی بورڈ لے آؤٹس', 'پریڈکٹیو ٹائپنگ', 'آسان شیئرنگ'],
     introTitle: 'مکمل اردو ٹائپنگ تجربہ',
     introBody1: 'ایزی اردو کی بورڈ روزمرہ صارفین کے لیے اردو ٹائپنگ کو آسان، تیز اور خوشگوار بنانے کے لیے بنایا گیا ہے۔',
@@ -127,6 +129,7 @@ const copy = {
     heroBody: 'مثالي للدردشة، ووسائل التواصل الاجتماعي، والملاحظات، والكتابة الأردية الإبداعية مع عناصر تحكم نظيفة وتخطيط بديهي.',
     explore: 'استكشف الميزات',
     download: 'حمّل من Google Play',
+    appStore: 'حمّل من App Store',
     featureBar: ['من الروماني إلى نستعليق', 'محرر أردي', 'تخطيطات متعددة', 'اقتراحات ذكية', 'مشاركة سهلة'],
     introTitle: 'تجربة كتابة أردية متكاملة',
     introBody1: 'صُممت Easy Urdu Keyboard لجعل الكتابة بالأردية أسهل وأسرع وأكثر متعة للاستخدام اليومي.',
@@ -184,10 +187,10 @@ const screenshots = [
   { src: '/images/easyurdu/unnamed (7).webp', alt: 'Easy Urdu screenshot' }
 ];
 
-const storeLink = {
-  href: 'https://play.google.com/store/search?q=Easy%20Urdu%20Keyboard&c=apps',
-  image: '/images/android.png'
-};
+const storeLinks = [
+  { id: 'google', href: 'https://play.google.com/store/apps/details?id=com.pakdata.easyurdu&hl=en', label: copy.download, image: '/images/quranmajeed/Playstore.png' },
+  { id: 'apple', href: 'https://apps.apple.com/us/app/easy-urdu-keyboard-editor/id866001472', label: copy.appStore, image: '/images/quranmajeed/Appstore.png' }
+];
 ---
 
 <Layout title={copy.seoTitle} description={copy.seoDesc}>
@@ -204,10 +207,11 @@ const storeLink = {
         </div>
 
         <div class="easy-cta-row">
-          <a href={storeLink.href} class="store-btn" target="_blank" rel="noopener noreferrer">
-            <img src={storeLink.image} alt={copy.download} class="store-badge" />
-            <span>{copy.download}</span>
-          </a>
+          {storeLinks.map(link => (
+            <a href={link.href} class="store-btn store-badge-link" aria-label={link.label} target="_blank" rel="noopener noreferrer">
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+            </a>
+          ))}
           <a href="#features" class="btn btn-outline easy-explore">{copy.explore}</a>
         </div>
       </div>
@@ -370,10 +374,11 @@ const storeLink = {
         <p class="section-body">{copy.finalBody1}</p>
         <p class="section-body">{copy.finalBody2}</p>
         <div class="easy-cta-row">
-          <a href={storeLink.href} class="store-btn" target="_blank" rel="noopener noreferrer">
-            <img src={storeLink.image} alt={copy.download} class="store-badge" />
-            <span>{copy.download}</span>
-          </a>
+          {storeLinks.map(link => (
+            <a href={link.href} class="store-btn store-badge-link" aria-label={link.label} target="_blank" rel="noopener noreferrer">
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+            </a>
+          ))}
           <a href="#features" class="btn btn-secondary">{copy.finalLearn}</a>
         </div>
       </div>
@@ -407,7 +412,8 @@ const storeLink = {
   .store-btn { display:inline-flex; align-items:center; gap:.75rem; padding:.8rem 1rem; border-radius:.8rem; border:1px solid var(--border); background:rgba(255,255,255,.95); color:var(--dark); font-weight:600; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
   .store-btn:hover, .store-btn:focus-visible { transform:translateY(-1px); box-shadow:0 10px 24px rgba(15,23,42,.08); border-color:rgba(64,134,57,.28); }
   .store-btn.dark { background:rgba(255,255,255,.12); color:#fff; border-color:rgba(255,255,255,.18); }
-  .store-badge { width:1.35rem; height:1.35rem; object-fit:contain; }
+  .store-badge-link { padding:0; border:0; background:transparent; }
+  .store-badge { width:11.75rem; height:auto; object-fit:contain; display:block; }
   .easy-explore { align-self:center; }
   .easy-showcase-shell { position:sticky; top:5.6rem; padding:1rem; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.97), rgba(249,252,247,.94)); border:1px solid rgba(64,134,57,.12); box-shadow:0 24px 50px rgba(15,23,42,.1); }
   .easy-showcase-top { display:flex; justify-content:space-between; gap:.9rem; align-items:center; margin-bottom:.85rem; }

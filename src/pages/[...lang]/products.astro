@@ -17,6 +17,66 @@ const t = useTranslations(lang);
 
 const title = t('products.seo.title');
 const description = t('products.seo.desc');
+const quranMajeedStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.QuranMajeed&hl=en',
+  'app store': 'https://apps.apple.com/us/app/quran-majeed-%D8%A7%D9%84%D9%82%D8%B1%D8%A7%D9%86-%D8%A7%D9%84%D9%83%D8%B1%D9%8A%D9%85/id365557665'
+};
+const easyUrduStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.easyurdu&hl=en',
+  'app store': 'https://apps.apple.com/us/app/easy-urdu-keyboard-editor/id866001472'
+};
+const quranPakStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.quranpak&hl=en',
+  'app store': 'https://apps.apple.com/us/app/quran-pak-%D9%82%D8%B1%D8%A2%D9%86-%D9%BE%D8%A7%DA%A9-%D8%A7%D8%B1%D8%AF%D9%88-%D8%AA%D8%B1%D8%AC%D9%85%DB%81/id456551501'
+};
+const quranTvStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.qurantv&hl=en',
+  'app store': 'https://apps.apple.com/us/app/quran-tv-muslims-islam/id1044236957',
+  tv: 'https://play.google.com/store/apps/details?id=com.pakdata.qurantv&hl=en'
+};
+const easySindhiStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.easysindhi&hl=en'
+};
+const easyPashtoStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.easypashto&hl=en',
+  'app store': 'https://apps.apple.com/ml/app/easy-pashto-keyboard-%D9%BE%DA%9A%D8%AA%D9%88/id6608968300'
+};
+const easyBanglaStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.mylanguageapps.easybangla&hl=en'
+};
+const easyHindiStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.mylanguageapps.easyhindi&hl=en_IN'
+};
+const easyFontStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.mylanguageapps.fontkeyboard&hl=en_IN'
+};
+const urduNewsStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.urdunewsplus&hl=ur',
+  'app store': 'https://apps.apple.com/us/app/urdu-news/id437849326'
+};
+const urduDictionaryStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.FallonsDictionary&hl=en'
+};
+const hadithStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.hadith&hl=en',
+  'app store': 'https://apps.apple.com/us/app/hadith-%D8%AD%D8%AF%D9%8A%D8%AB-sahih-bukhari/id578547597'
+};
+const salahGuideStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.SalahGuide2&hl=en',
+  'app store': 'https://apps.apple.com/us/app/3d-salah-guide-easy-salah/id469512378'
+};
+const quranTafseerStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.tafseerkatheer&hl=en',
+  'app store': 'https://apps.apple.com/us/app/quran-tafsir-%D8%AA%D9%81%D8%B3%D9%8A%D8%B1-%D8%A7%D9%84%D9%82%D8%B1%D8%A2%D9%86/id442158525'
+};
+const ramadanTimesStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.RamadanTimes',
+  'app store': 'https://apps.apple.com/us/app/ramadan-times/id449424892'
+};
+const kitabiStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.kitabi',
+  'app store': 'https://apps.apple.com/us/app/kitabi-urdu-books/id1395103049'
+};
 
 // Complete products listing
 const products = [
@@ -29,7 +89,8 @@ const products = [
     badge: t('products.items.qm.badge'),
     rating: "4.8",
     downloads: t('products.items.qm.downloads'),
-    platforms: ["iOS", "Android", "macOS", "Web", "TV"],
+    platforms: ["Google Play", "App Store"],
+    platformLinks: quranMajeedStoreLinks,
     features: [
       t('products.items.qm.f1'),
       t('products.items.qm.f2'),
@@ -37,7 +98,7 @@ const products = [
       t('products.items.qm.f4')
     ],
     detailsUrl: getRelativeLocaleUrl(lang, '/products/quran-majeed'),
-    downloadUrl: "https://pakdata.com/products/quran-majeed",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.QuranMajeed&hl=en",
     imageUrl: "/images/QM.png"
   },
   {
@@ -49,7 +110,8 @@ const products = [
     badge: t('products.items.qp.badge'),
     rating: "4.7",
     downloads: t('products.items.qp.downloads'),
-    platforms: ["iOS", "Android"],
+    platforms: ["Google Play", "App Store"],
+    platformLinks: quranPakStoreLinks,
     features: [
       t('products.items.qp.f1'),
       t('products.items.qp.f2'),
@@ -57,7 +119,7 @@ const products = [
       t('products.items.qp.f4')
     ],
     detailsUrl: getRelativeLocaleUrl(lang, '/products/quran-pak'),
-    downloadUrl: "https://pakdata.com/products/quran-pak",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.quranpak&hl=en",
     imageUrl: "/images/QP.webp"
   },
   {
@@ -69,14 +131,15 @@ const products = [
     badge: t('products.items.qt.badge'),
     rating: "4.6",
     downloads: t('products.items.qt.downloads'),
-    platforms: ["Android", "TV", "Web"],
+    platforms: ["Google Play", "App Store", "TV"],
+    platformLinks: quranTvStoreLinks,
     features: [
       t('products.items.qt.f1'),
       t('products.items.qt.f2'),
       t('products.items.qt.f3'),
       t('products.items.qt.f4')
     ],
-    downloadUrl: getRelativeLocaleUrl(lang, '/products') + '#quran-tv',
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.qurantv&hl=en",
     imageUrl: "/images/quranTV.webp"
   },
   {
@@ -88,7 +151,8 @@ const products = [
     badge: t('products.items.eu.badge'),
     rating: "4.8",
     downloads: t('products.items.eu.downloads'),
-    platforms: ["iOS", "Android"],
+    platforms: ["Google Play", "App Store"],
+    platformLinks: easyUrduStoreLinks,
     features: [
       t('products.items.eu.f1'),
       t('products.items.eu.f2'),
@@ -96,7 +160,7 @@ const products = [
       t('products.items.eu.f4')
     ],
     detailsUrl: getRelativeLocaleUrl(lang, '/products/easyurdu'),
-    downloadUrl: "https://pakdata.com/products/easyurdu",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.easyurdu&hl=en",
     imageUrl: "/images/easyUrdu.webp"
   },
   {
@@ -108,7 +172,8 @@ const products = [
     badge: t('products.items.es.badge'),
     rating: "4.8",
     downloads: t('products.items.es.downloads'),
-    platforms: ["Android"],
+    platforms: ["Google Play"],
+    platformLinks: easySindhiStoreLinks,
     features: [
       t('products.items.es.f1'),
       t('products.items.es.f2'),
@@ -116,7 +181,7 @@ const products = [
       t('products.items.es.f4')
     ],
     detailsUrl: getRelativeLocaleUrl(lang, '/products/easysindhi'),
-    downloadUrl: "https://pakdata.com/products/easysindhi",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.easysindhi&hl=en",
     imageUrl: "/images/easysindhi/easysindhi.png"
   },
   {
@@ -128,14 +193,15 @@ const products = [
     badge: t('products.items.ep.badge'),
     rating: "4.8",
     downloads: t('products.items.ep.downloads'),
-    platforms: ["Android"],
+    platforms: ["Google Play", "App Store"],
+    platformLinks: easyPashtoStoreLinks,
     features: [
       t('products.items.ep.f1'),
       t('products.items.ep.f2'),
       t('products.items.ep.f3'),
       t('products.items.ep.f4')
     ],
-    downloadUrl: "https://play.google.com/store/search?q=Easy%20Pashto%20Keyboard&c=apps",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.easypashto&hl=en",
     imageUrl: "/images/easypashto.webp"
   },
   {
@@ -147,14 +213,15 @@ const products = [
     badge: t('products.items.eh.badge'),
     rating: "4.8",
     downloads: t('products.items.eh.downloads'),
-    platforms: ["Android"],
+    platforms: ["Google Play"],
+    platformLinks: easyHindiStoreLinks,
     features: [
       t('products.items.eh.f1'),
       t('products.items.eh.f2'),
       t('products.items.eh.f3'),
       t('products.items.eh.f4')
     ],
-    downloadUrl: "https://play.google.com/store/search?q=Easy%20Hindi%20Keyboard&c=apps",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.mylanguageapps.easyhindi&hl=en_IN",
     imageUrl: "/images/easyhindi.webp"
   },
   {
@@ -166,14 +233,15 @@ const products = [
     badge: t('products.items.eb.badge'),
     rating: "4.8",
     downloads: t('products.items.eb.downloads'),
-    platforms: ["Android"],
+    platforms: ["Google Play"],
+    platformLinks: easyBanglaStoreLinks,
     features: [
       t('products.items.eb.f1'),
       t('products.items.eb.f2'),
       t('products.items.eb.f3'),
       t('products.items.eb.f4')
     ],
-    downloadUrl: "https://play.google.com/store/search?q=Easy%20Bangla%20Keyboard&c=apps",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.mylanguageapps.easybangla&hl=en",
     imageUrl: "/images/easybangla.webp"
   },
   {
@@ -185,14 +253,15 @@ const products = [
     badge: t('products.items.ef.badge'),
     rating: "4.8",
     downloads: t('products.items.ef.downloads'),
-    platforms: ["Android"],
+    platforms: ["Google Play"],
+    platformLinks: easyFontStoreLinks,
     features: [
       t('products.items.ef.f1'),
       t('products.items.ef.f2'),
       t('products.items.ef.f3'),
       t('products.items.ef.f4')
     ],
-    downloadUrl: "https://play.google.com/store/search?q=Easy%20Font%20Keyboard&c=apps",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.mylanguageapps.fontkeyboard&hl=en_IN",
     imageUrl: "/images/easyfont.webp"
   },
   {
@@ -204,14 +273,15 @@ const products = [
     badge: t('products.items.un.badge'),
     rating: "4.8",
     downloads: t('products.items.un.downloads'),
-    platforms: ["iOS", "Android"],
+    platforms: ["Google Play", "App Store"],
+    platformLinks: urduNewsStoreLinks,
     features: [
       t('products.items.un.f1'),
       t('products.items.un.f2'),
       t('products.items.un.f3'),
       t('products.items.un.f4')
     ],
-    downloadUrl: "https://play.google.com/store/search?q=Urdu%20News%20UrduNews.net&c=apps",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.urdunewsplus&hl=ur",
     imageUrl: "/images/urdunews.webp"
   },
   {
@@ -223,14 +293,15 @@ const products = [
     badge: t('products.items.ud.badge'),
     rating: "4.8",
     downloads: t('products.items.ud.downloads'),
-    platforms: ["Android"],
+    platforms: ["Google Play"],
+    platformLinks: urduDictionaryStoreLinks,
     features: [
       t('products.items.ud.f1'),
       t('products.items.ud.f2'),
       t('products.items.ud.f3'),
       t('products.items.ud.f4')
     ],
-    downloadUrl: "https://play.google.com/store/search?q=Urdu%20Dictionary%20English%20Urdu&c=apps",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.FallonsDictionary&hl=en",
     imageUrl: "/images/dictionary.webp"
   },
   {
@@ -242,7 +313,8 @@ const products = [
     badge: t('products.items.hc.badge'),
     rating: "4.7",
     downloads: t('products.items.hc.downloads'),
-    platforms: ["iOS", "Android"],
+    platforms: ["Google Play", "App Store"],
+    platformLinks: hadithStoreLinks,
     features: [
       t('products.items.hc.f1'),
       t('products.items.hc.f2'),
@@ -250,7 +322,7 @@ const products = [
       t('products.items.hc.f4')
     ],
     detailsUrl: getRelativeLocaleUrl(lang, '/products/hadith-app'),
-    downloadUrl: getRelativeLocaleUrl(lang, '/contact-us'),
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.hadith&hl=en",
     imageUrl: "/images/hadith.webp"
   },
   {
@@ -262,7 +334,8 @@ const products = [
     badge: t('products.items.3d.badge'),
     rating: "4.5",
     downloads: t('products.items.3d.downloads'),
-    platforms: ["iOS", "Android"],
+    platforms: ["Google Play", "App Store"],
+    platformLinks: salahGuideStoreLinks,
     features: [
       t('products.items.3d.f1'),
       t('products.items.3d.f2'),
@@ -270,7 +343,7 @@ const products = [
       t('products.items.3d.f4')
     ],
     detailsUrl: getRelativeLocaleUrl(lang, '/products/3d-salah-guide'),
-    downloadUrl: getRelativeLocaleUrl(lang, '/contact-us'),
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.SalahGuide2&hl=en",
     imageUrl: "/images/3dSalah.webp"
   },
   {
@@ -282,14 +355,15 @@ const products = [
     badge: t('products.items.taf.badge'),
     rating: "4.9",
     downloads: t('products.items.taf.downloads'),
-    platforms: ["Android", "iOS"],
+    platforms: ["Google Play", "App Store"],
+    platformLinks: quranTafseerStoreLinks,
     features: [
       t('products.items.taf.f1'),
       t('products.items.taf.f2'),
       t('products.items.taf.f3'),
       t('products.items.taf.f4')
     ],
-    downloadUrl: getRelativeLocaleUrl(lang, '/contact-us'),
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.tafseerkatheer&hl=en",
     imageUrl: "/images/tafseer.webp"
   },
   {
@@ -301,14 +375,15 @@ const products = [
     badge: t('products.items.rt.badge'),
     rating: "4.9",
     downloads: t('products.items.rt.downloads'),
-    platforms: ["Android", "iOS"],
+    platforms: ["Google Play", "App Store"],
+    platformLinks: ramadanTimesStoreLinks,
     features: [
       t('products.items.rt.f1'),
       t('products.items.rt.f2'),
       t('products.items.rt.f3'),
       t('products.items.rt.f4')
     ],
-    downloadUrl: getRelativeLocaleUrl(lang, '/contact-us'),
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.RamadanTimes",
     imageUrl: "/images/ramadanTimes.webp"
   },
   {
@@ -320,7 +395,8 @@ const products = [
     badge: t('products.items.kb.badge'),
     rating: "4.9",
     downloads: t('products.items.kb.downloads'),
-    platforms: ["Android", "iOS"],
+    platforms: ["Google Play", "App Store"],
+    platformLinks: kitabiStoreLinks,
     features: [
       t('products.items.kb.f1'),
       t('products.items.kb.f2'),
@@ -328,7 +404,7 @@ const products = [
       t('products.items.kb.f4')
     ],
     detailsUrl: getRelativeLocaleUrl(lang, '/products/kitabi'),
-    downloadUrl: getRelativeLocaleUrl(lang, '/contact-us'),
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.kitabi",
     imageUrl: "/images/kitabi.webp"
   }
 ];

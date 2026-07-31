@@ -17,6 +17,23 @@ const t = useTranslations(lang);
 // SEO details
 const title = t('home.seo.title');
 const description = t('home.seo.desc');
+const quranMajeedStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.QuranMajeed&hl=en',
+  'app store': 'https://apps.apple.com/us/app/quran-majeed-%D8%A7%D9%84%D9%82%D8%B1%D8%A7%D9%86-%D8%A7%D9%84%D9%83%D8%B1%D9%8A%D9%85/id365557665'
+};
+const easyUrduStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.easyurdu&hl=en',
+  'app store': 'https://apps.apple.com/us/app/easy-urdu-keyboard-editor/id866001472'
+};
+const quranPakStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.quranpak&hl=en',
+  'app store': 'https://apps.apple.com/us/app/quran-pak-%D9%82%D8%B1%D8%A2%D9%86-%D9%BE%D8%A7%DA%A9-%D8%A7%D8%B1%D8%AF%D9%88-%D8%AA%D8%B1%D8%AC%D9%85%DB%81/id456551501'
+};
+const quranTvStoreLinks = {
+  'google play': 'https://play.google.com/store/apps/details?id=com.pakdata.qurantv&hl=en',
+  'app store': 'https://apps.apple.com/us/app/quran-tv-muslims-islam/id1044236957',
+  tv: 'https://play.google.com/store/apps/details?id=com.pakdata.qurantv&hl=en'
+};
 
 // Featured products data
 const featuredProducts = [
@@ -28,7 +45,8 @@ const featuredProducts = [
     badge: t('home.products.qm.badge'),
     rating: "4.8",
     downloads: t('home.products.qm.downloads'),
-    platforms: ["iOS", "Android", "macOS", "Web", "TV"],
+    platforms: ["Google Play", "App Store"],
+    platformLinks: quranMajeedStoreLinks,
     features: [
       t('home.products.qm.f1'),
       t('home.products.qm.f2'),
@@ -36,6 +54,7 @@ const featuredProducts = [
       t('home.products.qm.f4')
     ],
     detailsUrl: getRelativeLocaleUrl(lang, '/products/quran-majeed'),
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.QuranMajeed&hl=en",
     imageUrl: "/images/QM-card.webp"
   },
     {
@@ -46,7 +65,8 @@ const featuredProducts = [
     badge: t('home.products.eu.badge'),
     rating: "4.8",
     downloads: t('home.products.eu.downloads'),
-    platforms: ["iOS", "Android"],
+    platforms: ["Google Play", "App Store"],
+    platformLinks: easyUrduStoreLinks,
     features: [
       t('home.products.eu.f1'),
       t('home.products.eu.f2'),
@@ -54,6 +74,7 @@ const featuredProducts = [
       t('home.products.eu.f4')
     ],
     detailsUrl: getRelativeLocaleUrl(lang, '/products/easyurdu'),
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.easyurdu&hl=en",
     imageUrl: "/images/easyUrdu-card.webp"
   },
   {
@@ -64,7 +85,8 @@ const featuredProducts = [
     badge: t('home.products.qp.badge'),
     rating: "4.7",
     downloads: t('home.products.qp.downloads'),
-    platforms: ["iOS", "Android"],
+    platforms: ["Google Play", "App Store"],
+    platformLinks: quranPakStoreLinks,
     features: [
       t('home.products.qp.f1'),
       t('home.products.qp.f2'),
@@ -72,6 +94,7 @@ const featuredProducts = [
       t('home.products.qp.f4')
     ],
     detailsUrl: getRelativeLocaleUrl(lang, '/products/quran-pak'),
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.quranpak&hl=en",
     imageUrl: "/images/QP-card.webp"
   },
   {
@@ -82,7 +105,8 @@ const featuredProducts = [
     badge: t('home.products.qt.badge'),
     rating: "4.6",
     downloads: t('home.products.qt.downloads'),
-    platforms: ["Android", "TV", "Web"],
+    platforms: ["Google Play", "App Store", "TV"],
+    platformLinks: quranTvStoreLinks,
     features: [
       t('home.products.qt.f1'),
       t('home.products.qt.f2'),
@@ -90,6 +114,7 @@ const featuredProducts = [
       t('home.products.qt.f4')
     ],
     detailsUrl: "/products#quran-tv",
+    downloadUrl: "https://play.google.com/store/apps/details?id=com.pakdata.qurantv&hl=en",
     imageUrl: "/images/quranTV-card.webp"
   }
 ];

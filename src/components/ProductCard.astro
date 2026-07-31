@@ -10,7 +10,8 @@ interface Props {
   badge?: string;
   rating?: string;
   downloads?: string;
-  platforms: string[]; // ['iOS', 'Android', 'macOS', 'Web', 'TV']
+  platforms: string[];
+  platformLinks?: Record<string, string>;
   features: string[];
   detailsUrl?: string;
   downloadUrl?: string;
@@ -25,6 +26,7 @@ const {
   rating = "4.8",
   downloads,
   platforms = [],
+  platformLinks = {},
   features = [],
   detailsUrl,
   downloadUrl = "/contact-us",
@@ -84,22 +86,40 @@ const t = useTranslations(lang);
         const imageMap = {
           ios: '/images/ios-icon.webp',
           android: '/images/android-icon.webp',
+          'google play': '/images/android-icon.webp',
+          'app store': '/images/appstore-icon.webp',
           macos: '/images/appstore-icon.webp',
           tv: '/images/tv-icon.webp',
           web: '/images/web-icon.webp',
         } as const;
         const imgSrc = imageMap[platformKey];
+        const platformHref = platformLinks[platformKey];
         return imgSrc ? (
-          <img
-            src={imgSrc}
-            alt={`Available on ${platform}`}
-            title={`Available on ${platform}`}
-            class="platform-img"
-            width="72"
-            height="72"
-            loading="lazy"
-            decoding="async"
-          />
+          platformHref ? (
+            <a href={platformHref} class="platform-link" target="_blank" rel="noopener noreferrer" aria-label={`Download ${name} on ${platform}`}>
+              <img
+                src={imgSrc}
+                alt={`Available on ${platform}`}
+                title={`Available on ${platform}`}
+                class="platform-img"
+                width="72"
+                height="72"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          ) : (
+            <img
+              src={imgSrc}
+              alt={`Available on ${platform}`}
+              title={`Available on ${platform}`}
+              class="platform-img"
+              width="72"
+              height="72"
+              loading="lazy"
+              decoding="async"
+            />
+          )
         ) : null;
       })}
     </div>
@@ -285,6 +305,11 @@ const t = useTranslations(lang);
   .platform-img:hover {
     transform: translateY(-2px) scale(1.08);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .platform-link {
+    display: inline-flex;
+    line-height: 0;
   }
 
   .product-actions {

@@ -179,8 +179,8 @@ const screenshots = [
 ];
 
 const storeLink = {
-  href: 'https://play.google.com/store/search?q=Easy%20Sindhi%20Keyboard&c=apps',
-  image: '/images/android.png'
+  href: 'https://play.google.com/store/apps/details?id=com.pakdata.easysindhi&hl=en',
+  image: '/images/quranmajeed/Playstore.png'
 };
 ---
 
@@ -198,9 +198,8 @@ const storeLink = {
         </div>
 
         <div class="easy-cta-row">
-          <a href={storeLink.href} class="store-btn" target="_blank" rel="noopener noreferrer">
-            <img src={storeLink.image} alt={copy.download} class="store-badge" />
-            <span>{copy.download}</span>
+          <a href={storeLink.href} class="store-btn store-badge-link" aria-label={copy.download} target="_blank" rel="noopener noreferrer">
+            <img src={storeLink.image} alt="" class="store-badge" />
           </a>
         </div>
       </div>
@@ -356,9 +355,8 @@ const storeLink = {
         <h2 class="section-title">{copy.finalTitle}</h2>
         <p class="section-body">{copy.finalBody1}</p>
         <div class="easy-cta-row">
-          <a href={storeLink.href} class="store-btn cta-download" target="_blank" rel="noopener noreferrer">
-            <img src={storeLink.image} alt={copy.download} class="store-badge" />
-            <span class="store-label">{copy.download}</span>
+          <a href={storeLink.href} class="store-btn store-badge-link cta-download" aria-label={copy.download} target="_blank" rel="noopener noreferrer">
+            <img src={storeLink.image} alt="" class="store-badge" />
           </a>
         </div>
         <p class="section-body final-learn-copy">
@@ -395,8 +393,9 @@ const storeLink = {
   .store-btn.dark { background:var(--primary); color:#fff; border-color:var(--primary); }
   .store-btn.dark span { color:#fff !important; }
   .store-btn.cta-download { background:#fff; color:var(--dark); border:1px solid rgba(64,134,57,.22); box-shadow:0 12px 28px rgba(15,23,42,.1); }
+  .store-btn.store-badge-link { padding:0; border:0; background:transparent; box-shadow:none; }
   .store-btn.cta-download .store-label { color:var(--dark) !important; }
-  .store-badge { width:1.35rem; height:1.35rem; object-fit:contain; }
+  .store-badge { width:11.75rem; height:auto; object-fit:contain; display:block; }
   .easy-explore { align-self:center; }
   .easy-showcase-shell { position:sticky; top:5.6rem; padding:1rem; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.97), rgba(249,252,247,.94)); border:1px solid rgba(64,134,57,.12); box-shadow:0 24px 50px rgba(15,23,42,.1); }
   .easy-showcase-top { display:flex; justify-content:space-between; gap:.9rem; align-items:center; margin-bottom:.85rem; }

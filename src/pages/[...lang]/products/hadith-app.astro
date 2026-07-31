@@ -22,6 +22,7 @@ const copy = {
     heroTitle: 'Hadith - Authentic Collections of the Sayings of Prophet Muhammad (S.A.W)',
     heroLead: 'Explore authentic Hadith collections through a beautifully designed and easy-to-use application created to help Muslims read, learn, and reflect upon the teachings of Prophet Muhammad (S.A.W).',
     heroBody: 'Access major Hadith books in Arabic with a clean reading experience designed for meaningful Islamic learning and study.',
+    googlePlay: 'Download on Google Play',
     appStore: 'Download on App Store',
     explore: 'Explore Features',
     featureBar: ['Authentic Collections', 'Advanced Search', 'Bookmarking', 'Arabic Text', 'Smooth Navigation'],
@@ -65,6 +66,8 @@ const copy = {
     finalTitle: 'Explore the Teachings of Prophet Muhammad (S.A.W)',
     finalBody1: 'Discover authentic Hadith collections through a modern and accessible digital experience designed for Muslims worldwide.',
     finalBody2: 'Download the Hadith app today and continue your journey of Islamic learning and reflection.',
+    finalGoogle: 'Get it on Google Play',
+    finalAppStore: 'Download on App Store',
     finalLearn: 'Learn More',
     footerDesc: 'The Hadith app provides access to authentic Hadith collections in Arabic with a clean reading experience designed for Islamic learning, study, and reflection.'
   },
@@ -75,6 +78,7 @@ const copy = {
     heroTitle: 'حدیث - نبی اکرم ﷺ کے ارشادات کے مستند مجموعے',
     heroLead: 'خوبصورت اور آسان استعمال ایپ کے ذریعے مستند حدیث مجموعوں کو دریافت کریں، جو مسلمانوں کو نبی اکرم ﷺ کی تعلیمات پڑھنے، سیکھنے اور ان پر غور کرنے میں مدد دینے کے لیے بنائی گئی ہے۔',
     heroBody: 'اہم حدیث کتب تک عربی میں ایک صاف اور خوبصورت مطالعہ تجربہ کے ساتھ رسائی حاصل کریں۔',
+    googlePlay: 'گوگل پلے سے ڈاؤن لوڈ کریں',
     appStore: 'ایپ اسٹور پر ڈاؤن لوڈ کریں',
     explore: 'خصوصیات دیکھیں',
     featureBar: ['مستند مجموعے', 'جدید سرچ', 'بک مارکنگ', 'عربی متن', 'آسان نیویگیشن'],
@@ -118,6 +122,8 @@ const copy = {
     finalTitle: 'نبی اکرم ﷺ کی تعلیمات دریافت کریں',
     finalBody1: 'دنیا بھر کے مسلمانوں کے لیے بنائے گئے ایک جدید اور آسان ڈیجیٹل تجربے کے ذریعے مستند حدیث مجموعے دریافت کریں۔',
     finalBody2: 'آج ہی حدیث ایپ ڈاؤن لوڈ کریں اور اسلامی سیکھنے اور تدبر کا سفر جاری رکھیں۔',
+    finalGoogle: 'گوگل پلے سے حاصل کریں',
+    finalAppStore: 'ایپ اسٹور سے ڈاؤن لوڈ کریں',
     finalLearn: 'مزید جانیں',
     footerDesc: 'حدیث ایپ عربی میں مستند حدیث مجموعوں تک رسائی فراہم کرتی ہے، ایک صاف مطالعہ تجربے کے ساتھ، جو اسلامی سیکھنے، مطالعہ اور تدبر کے لیے بنایا گیا ہے۔'
   },
@@ -128,6 +134,7 @@ const copy = {
     heroTitle: 'الحديث - مجموعات أصيلة من أقوال النبي محمد ﷺ',
     heroLead: 'استكشف مجموعات الحديث الأصيلة عبر تطبيق جميل وسهل الاستخدام صُمم لمساعدة المسلمين على القراءة والتعلّم والتأمل في تعاليم النبي محمد ﷺ.',
     heroBody: 'استعرض كتب الحديث الكبرى باللغة العربية مع تجربة قراءة نظيفة ومصممة للتعلم والدراسة الإسلامية الهادفة.',
+    googlePlay: 'حمّل من Google Play',
     appStore: 'حمّل من App Store',
     explore: 'استكشف الميزات',
     featureBar: ['مجموعات أصيلة', 'بحث متقدم', 'إشارات مرجعية', 'نص عربي', 'تنقل سلس'],
@@ -171,6 +178,8 @@ const copy = {
     finalTitle: 'استكشف تعاليم النبي محمد ﷺ',
     finalBody1: 'اكتشف مجموعات الحديث الأصيلة عبر تجربة رقمية حديثة وميسرة صُممت للمسلمين حول العالم.',
     finalBody2: 'حمّل تطبيق الحديث اليوم وواصل رحلتك في التعلم والتأمل الإسلامي.',
+    finalGoogle: 'احصل عليه من Google Play',
+    finalAppStore: 'حمّل من App Store',
     finalLearn: 'اعرف المزيد',
     footerDesc: 'يوفّر تطبيق الحديث وصولًا إلى مجموعات حديثية أصيلة باللغة العربية مع تجربة قراءة نظيفة صُممت للتعلم والدراسة والتأمل الإسلامي.'
   }
@@ -184,10 +193,10 @@ const hadithScreens = [
   { src: '/images/hadith/unnamed (7).webp', alt: 'Hadith app collections screen' }
 ];
 
-const storeLink = {
-  href: 'https://apps.apple.com/us/search?term=Hadith',
-  image: '/images/appstore.png'
-};
+const storeLinks = [
+  { id: 'google', href: 'https://play.google.com/store/apps/details?id=com.pakdata.hadith&hl=en', label: copy.googlePlay, image: '/images/quranmajeed/Playstore.png' },
+  { id: 'apple', href: 'https://apps.apple.com/us/app/hadith-%D8%AD%D8%AF%D9%8A%D8%AB-sahih-bukhari/id578547597', label: copy.appStore, image: '/images/quranmajeed/Appstore.png' }
+];
 ---
 
 <Layout title={copy.seoTitle} description={copy.seoDesc}>
@@ -207,10 +216,11 @@ const storeLink = {
         </div>
 
         <div class="hadith-cta-row">
-          <a href={storeLink.href} class="store-btn" target="_blank" rel="noopener noreferrer">
-            <img src={storeLink.image} alt={copy.appStore} class="store-badge" />
-            <span>{copy.appStore}</span>
-          </a>
+          {storeLinks.map(link => (
+            <a href={link.href} class="store-btn store-badge-link" aria-label={link.label} target="_blank" rel="noopener noreferrer">
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+            </a>
+          ))}
           <a href="#features" class="btn btn-outline hadith-explore">{copy.explore}</a>
         </div>
       </div>
@@ -369,10 +379,11 @@ const storeLink = {
         <p class="section-body">{copy.finalBody1}</p>
         <p class="section-body">{copy.finalBody2}</p>
         <div class="hadith-cta-row">
-          <a href={storeLink.href} class="store-btn" target="_blank" rel="noopener noreferrer">
-            <img src={storeLink.image} alt={copy.appStore} class="store-badge" />
-            <span>{copy.appStore}</span>
-          </a>
+          {storeLinks.map(link => (
+            <a href={link.href} class="store-btn store-badge-link" aria-label={link.id === 'google' ? copy.finalGoogle : copy.finalAppStore} target="_blank" rel="noopener noreferrer">
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+            </a>
+          ))}
           <a href="#features" class="btn btn-secondary">{copy.finalLearn}</a>
         </div>
       </div>
@@ -434,7 +445,8 @@ const storeLink = {
   .hadith-cta-row { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.1rem; }
   .store-btn { display:inline-flex; align-items:center; gap:.75rem; padding:.8rem 1rem; border-radius:.5rem; border:1px solid var(--border); background:rgba(255,255,255,.94); color:var(--dark); font-weight:600; line-height:1; white-space:nowrap; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
   .store-btn:hover, .store-btn:focus-visible { transform:translateY(-1px); box-shadow:0 10px 24px rgba(15,23,42,.08); border-color:rgba(249,115,22,.35); }
-  .store-badge { width:1.35rem; height:1.35rem; object-fit:contain; }
+  .store-badge-link { padding:0; border:0; background:transparent; }
+  .store-badge { width:11.75rem; height:auto; object-fit:contain; display:block; }
   .hadith-explore { align-self:center; }
   .hadith-showcase-shell { position:sticky; top:5.6rem; padding:1rem; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.97), rgba(255,250,245,.94)); border:1px solid rgba(180,120,25,.12); box-shadow:0 24px 50px rgba(15,23,42,.1); }
   .hadith-showcase-top { display:flex; justify-content:space-between; gap:.9rem; align-items:center; margin-bottom:.85rem; }

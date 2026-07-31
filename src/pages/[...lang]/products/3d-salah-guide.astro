@@ -21,7 +21,8 @@ const copy = {
     heroTitle: '3D Salah Guide - Learn How to Perform Salah Step by Step',
     heroLead: 'An interactive 3D Islamic prayer guide designed to help Muslims learn how to perform Salah correctly through immersive visual learning and easy step-by-step guidance.',
     heroBody: 'Perfect for children, beginners, new Muslims, and anyone seeking a better understanding of Islamic prayer.',
-    appStore: 'Download on App Store',
+    googlePlay: 'Get it on Google Play',
+    appStore: 'Download on the App Store',
     explore: 'Explore Features',
     featureBar: ['3D Prayer Demonstrations', '360° View', 'Zoom & Detail', 'Beginner Friendly', 'Authentic Guidance'],
     introTitle: 'Learn Salah Through Interactive 3D Guidance',
@@ -75,7 +76,8 @@ const copy = {
     heroTitle: '3D Salah Guide - قدم بہ قدم نماز سیکھیں',
     heroLead: 'ایک انٹرایکٹو 3D اسلامی نماز گائیڈ جو مسلمانوں کو خوبصورت بصری سیکھنے اور آسان مرحلہ وار رہنمائی کے ذریعے صحیح طریقے سے نماز سیکھنے میں مدد دیتی ہے۔',
     heroBody: 'بچوں، ابتدائی سیکھنے والوں، نئے مسلمانوں اور ہر اس شخص کے لیے بہترین جو اسلامی نماز کو بہتر طور پر سمجھنا چاہتا ہو۔',
-    appStore: 'ایپ اسٹور پر ڈاؤن لوڈ کریں',
+    googlePlay: 'Google Play سے حاصل کریں',
+    appStore: 'App Store سے ڈاؤن لوڈ کریں',
     explore: 'خصوصیات دیکھیں',
     featureBar: ['3D نماز مظاہرے', '360° ویو', 'زوم اور تفصیل', 'ابتدائی افراد کے لیے', 'مستند رہنمائی'],
     introTitle: 'انٹرایکٹو 3D رہنمائی کے ذریعے نماز سیکھیں',
@@ -129,7 +131,8 @@ const copy = {
     heroTitle: '3D Salah Guide - تعلّم كيفية أداء الصلاة خطوة بخطوة',
     heroLead: 'دليل صلاة إسلامي تفاعلي ثلاثي الأبعاد صُمم لمساعدة المسلمين على تعلّم أداء الصلاة بشكل صحيح من خلال التعلّم البصري الغامر والإرشاد خطوة بخطوة.',
     heroBody: 'مثالي للأطفال، والمبتدئين، والمسلمين الجدد، وكل من يبحث عن فهم أفضل للصلاة الإسلامية.',
-    appStore: 'حمّل من App Store',
+    googlePlay: 'احصل عليه من Google Play',
+    appStore: 'حمّله من App Store',
     explore: 'استكشف الميزات',
     featureBar: ['عروض 3D', 'عرض 360°', 'تكبير وتفاصيل', 'ملائم للمبتدئين', 'إرشاد أصيل'],
     introTitle: 'تعلّم الصلاة عبر إرشاد ثلاثي الأبعاد تفاعلي',
@@ -188,10 +191,10 @@ const heroScreens = [
   { src: '/images/3DSalah/unnamed (8).webp', alt: '3D Salah screenshot' }
 ];
 
-const storeLink = {
-  href: 'https://apps.apple.com/us/search?term=3D%20Salah%20Guide',
-  image: '/images/appstore.png'
-};
+const storeLinks = [
+  { id: 'google', href: 'https://play.google.com/store/apps/details?id=com.pakdata.SalahGuide2&hl=en', label: copy.googlePlay, image: '/images/quranmajeed/Playstore.png' },
+  { id: 'apple', href: 'https://apps.apple.com/us/app/3d-salah-guide-easy-salah/id469512378', label: copy.appStore, image: '/images/quranmajeed/Appstore.png' }
+];
 ---
 
 <Layout title={copy.seoTitle} description={copy.seoDesc}>
@@ -208,10 +211,11 @@ const storeLink = {
         </div>
 
         <div class="salah-cta-row">
-          <a href={storeLink.href} class="store-btn" target="_blank" rel="noopener noreferrer">
-            <img src={storeLink.image} alt={copy.appStore} class="store-badge" />
-            <span>{copy.appStore}</span>
-          </a>
+          {storeLinks.map(link => (
+            <a href={link.href} class="store-badge-link" target="_blank" rel="noopener noreferrer" aria-label={link.label}>
+              <img src={link.image} alt={link.label} class="store-badge" />
+            </a>
+          ))}
           <a href="#features" class="btn btn-outline salah-explore">{copy.explore}</a>
         </div>
       </div>
@@ -386,10 +390,11 @@ const storeLink = {
         <p class="section-body">{copy.finalBody1}</p>
         <p class="section-body">{copy.finalBody2}</p>
         <div class="salah-cta-row">
-          <a href={storeLink.href} class="store-btn dark" target="_blank" rel="noopener noreferrer">
-            <img src={storeLink.image} alt={copy.appStore} class="store-badge" />
-            <span>{copy.appStore}</span>
-          </a>
+          {storeLinks.map(link => (
+            <a href={link.href} class="store-badge-link" target="_blank" rel="noopener noreferrer" aria-label={link.label}>
+              <img src={link.image} alt={link.label} class="store-badge" />
+            </a>
+          ))}
           <a href="#features" class="btn btn-secondary">{copy.finalLearn}</a>
         </div>
       </div>
@@ -420,10 +425,9 @@ const storeLink = {
   .salah-feature-bar { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:1rem; }
   .salah-chip, .audience-pill, .mini-card { border-radius:.5rem; border:1px solid rgba(52,105,192,.12); background:rgba(255,255,255,.94); padding:.5rem .75rem; font-size:.92rem; font-weight:600; box-shadow:0 8px 18px rgba(15,23,42,.05); }
   .salah-cta-row { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.1rem; }
-  .store-btn { display:inline-flex; align-items:center; gap:.75rem; padding:.8rem 1rem; border-radius:.8rem; border:1px solid var(--border); background:rgba(255,255,255,.95); color:var(--dark); font-weight:600; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
-  .store-btn:hover, .store-btn:focus-visible { transform:translateY(-1px); box-shadow:0 10px 24px rgba(15,23,42,.08); border-color:rgba(52,105,192,.28); }
-  .store-btn.dark { background:rgba(255,255,255,.12); color:#fff; border-color:rgba(255,255,255,.18); }
-  .store-badge { width:1.35rem; height:1.35rem; object-fit:contain; }
+  .store-badge-link { display:inline-flex; padding:0; border:0; background:transparent; line-height:0; transition:transform .2s ease, filter .2s ease; }
+  .store-badge-link:hover, .store-badge-link:focus-visible { transform:translateY(-1px); filter:drop-shadow(0 10px 16px rgba(15,23,42,.12)); }
+  .store-badge { width:11.75rem; height:auto; object-fit:contain; display:block; }
   .salah-explore { align-self:center; }
   .salah-showcase-shell { position:sticky; top:5.6rem; padding:1rem; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.97), rgba(250,252,255,.94)); border:1px solid rgba(52,105,192,.12); box-shadow:0 24px 50px rgba(15,23,42,.1); }
   .salah-showcase-top { display:flex; justify-content:space-between; gap:.9rem; align-items:center; margin-bottom:.85rem; }

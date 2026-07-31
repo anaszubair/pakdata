@@ -22,6 +22,7 @@ const copy = {
     heroTitle: 'Quran Pak - Urdu Translations & Tafsir Usmani',
     heroLead: 'Experience the beauty of the Holy Quran with authentic Urdu translations, Tafsir Usmani, renowned reciters, and advanced Quran learning features designed for Muslims around the world.',
     heroBody: 'Quran Pak combines elegant Quran reading, powerful study tools, and spiritually enriching recitations in one beautifully designed application.',
+    googlePlay: 'Download on Google Play',
     appStore: 'Download on App Store',
     explore: 'Explore Features',
     introTitle: 'A Complete Quran Experience for Urdu-Speaking Muslims',
@@ -76,6 +77,7 @@ const copy = {
     finalTitle: 'Strengthen Your Connection with the Quran',
     finalBody1: 'Join thousands of users who trust Quran Pak for authentic Quran recitation, Urdu translations, tafsir, and meaningful Islamic learning.',
     finalBody2: 'Download Quran Pak today and experience a beautifully designed Quran companion for daily spiritual growth.',
+    finalGoogle: 'Get it on Google Play',
     finalAppStore: 'Download on App Store',
     finalLearn: 'Learn More'
   },
@@ -86,6 +88,7 @@ const copy = {
     heroTitle: 'قرآن پاک - اردو تراجم اور تفسیر عثمانی',
     heroLead: 'قرآنِ کریم کی خوبصورتی کو مستند اردو تراجم، تفسیر عثمانی، نامور قراء اور جدید قرآنی خصوصیات کے ساتھ محسوس کریں۔',
     heroBody: 'قرآن پاک ایک خوبصورت ایپلی کیشن میں قرآنی مطالعہ، طاقتور سٹڈی ٹولز، اور روحانی طور پر بھرپور تلاوت کو یکجا کرتا ہے۔',
+    googlePlay: 'گوگل پلے سے ڈاؤن لوڈ کریں',
     appStore: 'ایپ اسٹور پر ڈاؤن لوڈ کریں',
     explore: 'خصوصیات دیکھیں',
     introTitle: 'اردو بولنے والے مسلمانوں کے لیے مکمل قرآنی تجربہ',
@@ -140,6 +143,7 @@ const copy = {
     finalTitle: 'قرآن سے اپنا تعلق مزید مضبوط بنائیں',
     finalBody1: 'ہزاروں صارفین میں شامل ہوں جو مستند قرآنی تلاوت، اردو تراجم، تفسیر اور بامعنی اسلامی تعلیم کے لیے قرآن پاک پر اعتماد کرتے ہیں۔',
     finalBody2: 'آج ہی قرآن پاک ڈاؤن لوڈ کریں اور روزمرہ روحانی ترقی کے لیے ایک خوبصورتی سے تیار کردہ قرآنی ساتھی کا تجربہ کریں۔',
+    finalGoogle: 'گوگل پلے سے حاصل کریں',
     finalAppStore: 'ایپ اسٹور پر ڈاؤن لوڈ کریں',
     finalLearn: 'مزید جانیں'
   },
@@ -150,6 +154,7 @@ const copy = {
     heroTitle: 'القرآن باك - ترجمات أردية وتفسير عثماني',
     heroLead: 'اختبر جمال القرآن الكريم عبر ترجمات أردية موثوقة، وتفسير عثماني، وقراء مشهورين، وميزات تعليمية متقدمة صُممت للمسلمين حول العالم.',
     heroBody: 'يجمع القرآن باك بين قراءة أنيقة للقرآن، وأدوات دراسة قوية، وتلاوات روحانية في تطبيق واحد جميل التصميم.',
+    googlePlay: 'حمّل من Google Play',
     appStore: 'حمّل من App Store',
     explore: 'استكشف الميزات',
     introTitle: 'تجربة قرآن كاملة للمسلمين الناطقين بالأردية',
@@ -204,6 +209,7 @@ const copy = {
     finalTitle: 'قوِّ صلتك بالقرآن',
     finalBody1: 'انضم إلى آلاف المستخدمين الذين يثقون بالقرآن باك للتلاوة القرآنية الأصيلة والترجمات الأردية والتفسير والتعلّم الإسلامي الهادف.',
     finalBody2: 'حمّل القرآن باك اليوم واستمتع بمرافق قرآني مصمم بشكل جميل للنمو الروحي اليومي.',
+    finalGoogle: 'احصل عليه من Google Play',
     finalAppStore: 'حمّل من App Store',
     finalLearn: 'اعرف المزيد'
   }
@@ -224,7 +230,10 @@ const galleryScreens = [
   '/images/quranpak/app3-1.webp'
 ];
 
-const storeBadge = '/images/appstore.png';
+const storeLinks = [
+  { id: 'google', href: 'https://play.google.com/store/apps/details?id=com.pakdata.quranpak&hl=en', label: copy.googlePlay, image: '/images/quranmajeed/Playstore.png' },
+  { id: 'apple', href: 'https://apps.apple.com/us/app/quran-pak-%D9%82%D8%B1%D8%A2%D9%86-%D9%BE%D8%A7%DA%A9-%D8%A7%D8%B1%D8%AF%D9%88-%D8%AA%D8%B1%D8%AC%D9%85%DB%81/id456551501', label: copy.appStore, image: '/images/quranmajeed/Appstore.png' }
+];
 ---
 
 <Layout title={copy.seoTitle} description={copy.seoDesc}>
@@ -237,10 +246,11 @@ const storeBadge = '/images/appstore.png';
         <p class="qp-body">{copy.heroBody}</p>
 
         <div class="qp-cta-row">
-          <a href="https://apps.apple.com/us/search?term=Quran%20Pak" class="store-btn" target="_blank" rel="noopener noreferrer">
-            <img src={storeBadge} alt={copy.appStore} class="store-badge" />
-            <span>{copy.appStore}</span>
-          </a>
+          {storeLinks.map(link => (
+            <a href={link.href} class="store-btn store-badge-link" aria-label={link.label} target="_blank" rel="noopener noreferrer">
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+            </a>
+          ))}
           <a href="#features" class="btn btn-outline qp-explore">{copy.explore}</a>
         </div>
       </div>
@@ -376,10 +386,11 @@ const storeBadge = '/images/appstore.png';
         <p class="section-body">{copy.finalBody1}</p>
         <p class="section-body">{copy.finalBody2}</p>
         <div class="qp-cta-row">
-          <a href="https://apps.apple.com/us/search?term=Quran%20Pak" class="store-btn" target="_blank" rel="noopener noreferrer">
-            <img src={storeBadge} alt={copy.finalAppStore} class="store-badge" />
-            <span>{copy.finalAppStore}</span>
-          </a>
+          {storeLinks.map(link => (
+            <a href={link.href} class="store-btn store-badge-link" aria-label={link.id === 'google' ? copy.finalGoogle : copy.finalAppStore} target="_blank" rel="noopener noreferrer">
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+            </a>
+          ))}
           <a href="#features" class="btn btn-secondary">{copy.finalLearn}</a>
         </div>
       </div>
@@ -495,10 +506,17 @@ const storeBadge = '/images/appstore.png';
     border-color: rgba(249,115,22,.35);
   }
 
+  .store-badge-link {
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
   .store-badge {
-    width: 1.35rem;
-    height: 1.35rem;
+    width: 11.75rem;
+    height: auto;
     object-fit: contain;
+    display: block;
   }
 
   .qp-explore {
