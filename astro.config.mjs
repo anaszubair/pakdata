@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
+import icon from 'astro-icon';
 
 const legacyRedirectPairs = [
     ['/ur/قرآن-مجید-کے-لیے-عربی-فونٹ/', '/ur/products/arabicfont'],
@@ -34,6 +35,11 @@ export default defineConfig({
     trailingSlash: 'never',
     adapter: vercel(),
     integrations: [
+        icon({
+            include: {
+                'material-symbols': ['add', 'arrow-forward', 'auto-awesome', 'bug-report', 'build', 'check', 'check-circle', 'chevron-left', 'chevron-right', 'code', 'credit-card', 'design-services', 'handshake', 'history-edu', 'lightbulb', 'notifications', 'public', 'rocket-launch', 'schedule', 'shield', 'star', 'support-agent', 'target', 'trending-up', 'trophy', 'visibility'],
+            },
+        }),
         sitemap({
             filter: (page) => !page.includes('/api/') && !page.includes('/faq-page/'),
         }),

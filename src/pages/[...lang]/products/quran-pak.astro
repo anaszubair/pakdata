@@ -8,6 +8,7 @@ export function getStaticPaths() {
   ];
 }
 import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
 import { getLangFromUrl } from '../../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -28,7 +29,7 @@ const copy = {
     introBody2: 'Built with simplicity and authenticity in mind, Quran Pak offers a spiritually focused environment for daily Quran recitation, learning, and reflection.',
     highlights: ['Tafsir Usmani', 'Urdu Translations', 'Audio Recitations', 'Quran Search', 'Bookmarks', 'Reading Modes'],
     statsTitle: 'App Store Ratings & Trust Signals',
-    stats: ['4.9★ User Rating', 'Urdu-first Quran Experience', 'Tafsir Usmani Included', 'Fast Search & Bookmarking'],
+    stats: ['4.9 User Rating', 'Urdu-first Quran Experience', 'Tafsir Usmani Included', 'Fast Search & Bookmarking'],
     featuresTitle: 'Powerful Features for Meaningful Quran Learning',
     features: [
       {
@@ -92,7 +93,7 @@ const copy = {
     introBody2: 'سادگی اور اصالت کو بنیاد بنا کر تیار کیا گیا یہ ایپ روزانہ کی تلاوت، سیکھنے اور تدبر کے لیے ایک روحانی ماحول فراہم کرتا ہے۔',
     highlights: ['تفسیر عثمانی', 'اردو تراجم', 'آڈیو تلاوت', 'قرآنی سرچ', 'بک مارکس', 'ریڈنگ موڈز'],
     statsTitle: 'ایپ اسٹور ریٹنگ اور اعتماد کی علامات',
-    stats: ['4.9★ صارفین کی ریٹنگ', 'اردو فرسٹ قرآنی تجربہ', 'تفسیر عثمانی شامل', 'تیز سرچ اور بک مارکنگ'],
+    stats: ['4.9 صارفین کی ریٹنگ', 'اردو فرسٹ قرآنی تجربہ', 'تفسیر عثمانی شامل', 'تیز سرچ اور بک مارکنگ'],
     featuresTitle: 'بامعنی قرآنی سیکھنے کے لیے طاقتور خصوصیات',
     features: [
       {
@@ -156,7 +157,7 @@ const copy = {
     introBody2: 'بُني التطبيق مع التركيز على البساطة والأصالة، ليقدّم بيئة روحانية مخصصة للتلاوة اليومية والتعلّم والتأمل.',
     highlights: ['تفسير عثماني', 'ترجمات أردية', 'تلاوات صوتية', 'بحث في القرآن', 'إشارات مرجعية', 'أوضاع قراءة'],
     statsTitle: 'تقييمات App Store وعلامات الثقة',
-    stats: ['تقييم 4.9★', 'تجربة قرآن موجهة للأردية', 'تفسير عثماني مضمّن', 'بحث سريع وحفظ إشارات'],
+    stats: ['تقييم 4.9', 'تجربة قرآن موجهة للأردية', 'تفسير عثماني مضمّن', 'بحث سريع وحفظ إشارات'],
     featuresTitle: 'ميزات قوية لتعلّم قرآني أكثر معنى',
     features: [
       {
@@ -251,7 +252,7 @@ const storeBadge = '/images/appstore.png';
               <img src="/images/QP.webp" alt="Quran Pak logo" class="qp-brand-logo" />
               <div>
                 <p class="qp-download-card-label">{copy.statsTitle}</p>
-                <h2 class="qp-download-card-title">4.9★</h2>
+                <h2 class="qp-download-card-title">4.9 <Icon name="material-symbols:star" class="rating-icon" aria-hidden="true" /></h2>
               </div>
             </div>
             <div class="qp-showcase-badge">Urdu-first reading</div>
@@ -289,9 +290,13 @@ const storeBadge = '/images/appstore.png';
           <span class="badge badge-primary">{copy.statsTitle}</span>
         </div>
         <div class="stat-grid">
-          {copy.stats.map(stat => (
+          {copy.stats.map((stat, idx) => (
             <div class="stat-card card">
-              <span class="stat-dot"></span>
+              {idx === 0 ? (
+                <Icon name="material-symbols:star" class="stat-icon" aria-hidden="true" />
+              ) : (
+                <span class="stat-dot"></span>
+              )}
               <p>{stat}</p>
             </div>
           ))}
@@ -352,7 +357,9 @@ const storeBadge = '/images/appstore.png';
       <div class="why-grid">
         {copy.why.map(item => (
           <article class="why-card card">
-            <div class="why-icon">✦</div>
+            <div class="why-icon" aria-hidden="true">
+              <Icon name="material-symbols:auto-awesome" class="why-icon-svg" />
+            </div>
             <h3>{item.title}</h3>
             <p>{item.body}</p>
           </article>
@@ -561,6 +568,13 @@ const storeBadge = '/images/appstore.png';
     font-weight: 800;
   }
 
+  .rating-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    display: inline-block;
+    vertical-align: -.12em;
+  }
+
   .qp-showcase-badge {
     align-self: flex-start;
     padding: .45rem .75rem;
@@ -676,6 +690,13 @@ const storeBadge = '/images/appstore.png';
     flex: none;
   }
 
+  .stat-icon {
+    width: 1rem;
+    height: 1rem;
+    color: var(--primary);
+    flex: none;
+  }
+
   .feature-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -743,6 +764,12 @@ const storeBadge = '/images/appstore.png';
     color: var(--primary);
     font-size: 1rem;
     margin-bottom: .6rem;
+  }
+
+  .why-icon-svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    display: block;
   }
 
   .qp-final-grid {

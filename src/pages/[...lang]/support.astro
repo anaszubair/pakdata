@@ -8,6 +8,7 @@ export function getStaticPaths() {
   ];
 }
 import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -21,7 +22,7 @@ const faqCategories = [
   {
     id: "notifications",
     title: t('support.faq.notifications.title'),
-    icon: "🔔",
+    icon: "material-symbols:notifications",
     faqs: [
       {
         q: t('support.faq.notifications.q1'),
@@ -36,7 +37,7 @@ const faqCategories = [
   {
     id: "payments",
     title: t('support.faq.payments.title'),
-    icon: "💳",
+    icon: "material-symbols:credit-card",
     faqs: [
       {
         q: t('support.faq.payments.q1'),
@@ -51,7 +52,7 @@ const faqCategories = [
   {
     id: "technical",
     title: t('support.faq.technical.title'),
-    icon: "🛠️",
+    icon: "material-symbols:build",
     faqs: [
       {
         q: t('support.faq.technical.q1'),
@@ -88,7 +89,9 @@ const faqCategories = [
         {faqCategories.map(cat => (
           <div class="faq-category-group" id={cat.id}>
             <h3 class="category-header">
-              <span class="cat-icon">{cat.icon}</span>
+              <span class="cat-icon" aria-hidden="true">
+                <Icon name={cat.icon} class="cat-icon-svg" />
+              </span>
               <span>{cat.title}</span>
             </h3>
             
@@ -97,7 +100,7 @@ const faqCategories = [
                 <div class="accordion-item">
                   <button class="accordion-trigger">
                     <span class="question-text">{faq.q}</span>
-                    <span class="plus-icon">+</span>
+                    <Icon name="material-symbols:add" class="plus-icon" aria-hidden="true" />
                   </button>
                   <div class="accordion-panel">
                     <div class="panel-content">
@@ -224,7 +227,21 @@ const faqCategories = [
   }
 
   .cat-icon {
-    font-size: calc(1.5rem * var(--text-scale, 1));
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.7rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    background-color: var(--primary-light);
+    color: var(--primary);
+  }
+
+  .cat-icon-svg {
+    width: 1.35rem;
+    height: 1.35rem;
+    display: block;
   }
 
   /* Accordions */
@@ -267,8 +284,10 @@ const faqCategories = [
   }
 
   .plus-icon {
-    font-size: calc(1.5rem * var(--text-scale, 1));
-    font-weight: 400;
+    width: 1.35rem;
+    height: 1.35rem;
+    display: block;
+    flex: 0 0 auto;
     color: var(--secondary);
     transition: transform var(--transition-normal);
   }

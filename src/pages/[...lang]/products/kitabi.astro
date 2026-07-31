@@ -8,6 +8,7 @@ export function getStaticPaths() {
   ];
 }
 import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
 import { getLangFromUrl } from '../../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -178,7 +179,7 @@ const storeLinks = [
               <img src="/images/kitabi/kitabi.webp" alt="Kitabi logo" class="kitabi-logo" />
               <div>
                 <p class="kitabi-caption">{copy.trustTitle}</p>
-                <h2 class="kitabi-rating">4.9★</h2>
+                <h2 class="kitabi-rating">4.9 <Icon name="material-symbols:star" class="rating-icon" aria-hidden="true" /></h2>
               </div>
             </div>
             <div class="kitabi-badge">Urdu books</div>
@@ -483,6 +484,13 @@ const storeLinks = [
     font-size: 1.55rem;
     line-height: 1;
     color: var(--dark);
+  }
+
+  .rating-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    display: inline-block;
+    vertical-align: -.12em;
   }
 
   .kitabi-badge {

@@ -8,6 +8,7 @@ export function getStaticPaths() {
   ];
 }
 import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
 import { getLangFromUrl } from '../../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -218,7 +219,7 @@ const storeLink = {
               <img src="/images/easyurdu/easyUrdu.webp" alt="Easy Urdu Keyboard logo" class="easy-brand-logo" />
               <div>
                 <p class="easy-label">{copy.heroBadge}</p>
-                <h2 class="easy-rating">4.8★</h2>
+                <h2 class="easy-rating">4.8 <Icon name="material-symbols:star" class="rating-icon" aria-hidden="true" /></h2>
               </div>
             </div>
             <div class="easy-badge-pill">Urdu typing made easy</div>
@@ -313,7 +314,9 @@ const storeLink = {
       <div class="easy-benefit-grid">
         {copy.benefits.map(item => (
           <article class="easy-benefit-card card">
-            <div class="why-icon">✦</div>
+            <div class="why-icon" aria-hidden="true">
+              <Icon name="material-symbols:auto-awesome" class="why-icon-svg" />
+            </div>
             <h3>{item.title}</h3>
             <p>{item.body}</p>
           </article>
@@ -367,7 +370,7 @@ const storeLink = {
         <p class="section-body">{copy.finalBody1}</p>
         <p class="section-body">{copy.finalBody2}</p>
         <div class="easy-cta-row">
-          <a href={storeLink.href} class="store-btn dark" target="_blank" rel="noopener noreferrer">
+          <a href={storeLink.href} class="store-btn" target="_blank" rel="noopener noreferrer">
             <img src={storeLink.image} alt={copy.download} class="store-badge" />
             <span>{copy.download}</span>
           </a>
@@ -412,6 +415,7 @@ const storeLink = {
   .easy-brand-logo { width:3.6rem; height:3.6rem; object-fit:contain; border-radius:1rem; box-shadow:0 12px 28px rgba(15,23,42,.08); }
   .easy-label { font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; color:var(--secondary-dark); margin-bottom:.2rem; }
   .easy-rating { font-size:1.5rem; line-height:1; margin:0; font-weight:800; }
+  .rating-icon { width:1.2rem; height:1.2rem; display:inline-block; vertical-align:-.12em; }
   .easy-badge-pill { align-self:flex-start; padding:.45rem .75rem; border-radius:999px; background:rgba(64,134,57,.11); color:var(--primary); font-size:.82rem; font-weight:700; }
   .easy-showcase-hero { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(160px,.82fr); gap:.7rem; margin:.85rem 0; }
   .easy-main-shot, .easy-shot-stack img, .easy-carousel img { width:100%; border-radius:1rem; border:1px solid rgba(64,134,57,.12); box-shadow:0 14px 30px rgba(15,23,42,.08); background:#fff; object-fit:cover; }
@@ -438,6 +442,7 @@ const storeLink = {
   .easy-carousel-cover { grid-column:span 2; }
   .easy-benefit-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
   .why-icon { width:2.25rem; height:2.25rem; border-radius:.5rem; display:inline-grid; place-items:center; background:rgba(64,134,57,.1); color:var(--primary); font-size:1rem; margin-bottom:.6rem; }
+  .why-icon-svg { width:1.2rem; height:1.2rem; display:block; }
   .easy-review-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
   .review-quote { font-size:1rem; line-height:1.7; margin-bottom:1.1rem; }
   .review-meta { display:flex; flex-direction:column; gap:.15rem; color:var(--secondary-dark); }

@@ -8,6 +8,7 @@ export function getStaticPaths() {
   ];
 }
 import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
 import { getLangFromUrl } from '../../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -185,7 +186,7 @@ const hadithScreens = [
 
 const storeLink = {
   href: 'https://apps.apple.com/us/search?term=Hadith',
-  image: '/images/quranmajeed/Appstore.png'
+  image: '/images/appstore.png'
 };
 ---
 
@@ -221,7 +222,7 @@ const storeLink = {
               <img src="/images/hadith/logo-hadith.webp" alt="Hadith app logo" class="hadith-brand-logo" />
               <div>
                 <p class="hadith-label">{copy.introTitle}</p>
-                <h2 class="hadith-rating">4.8★</h2>
+                <h2 class="hadith-rating">4.8 <Icon name="material-symbols:star" class="rating-icon" aria-hidden="true" /></h2>
               </div>
             </div>
             <div class="hadith-badge-pill">Authentic collections</div>
@@ -312,7 +313,9 @@ const storeLink = {
       <div class="hadith-why-grid">
         {copy.why.map(item => (
           <article class="hadith-why-card card">
-            <div class="why-icon">✦</div>
+            <div class="why-icon" aria-hidden="true">
+              <Icon name="material-symbols:auto-awesome" class="why-icon-svg" />
+            </div>
             <h3>{item.title}</h3>
             <p>{item.body}</p>
           </article>
@@ -366,7 +369,7 @@ const storeLink = {
         <p class="section-body">{copy.finalBody1}</p>
         <p class="section-body">{copy.finalBody2}</p>
         <div class="hadith-cta-row">
-          <a href={storeLink.href} class="store-btn dark" target="_blank" rel="noopener noreferrer">
+          <a href={storeLink.href} class="store-btn" target="_blank" rel="noopener noreferrer">
             <img src={storeLink.image} alt={copy.appStore} class="store-badge" />
             <span>{copy.appStore}</span>
           </a>
@@ -429,9 +432,8 @@ const storeLink = {
   .hadith-feature-bar { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:1rem; }
   .hadith-chip, .hadith-collection-pill, .mini-card { border-radius:.5rem; border:1px solid rgba(180,120,25,.12); background:rgba(255,255,255,.94); padding:.5rem .75rem; font-size:.92rem; font-weight:600; box-shadow:0 8px 18px rgba(15,23,42,.05); }
   .hadith-cta-row { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.1rem; }
-  .store-btn { display:inline-flex; align-items:center; gap:.75rem; padding:.8rem 1rem; border-radius:.8rem; border:1px solid var(--border); background:rgba(255,255,255,.95); color:var(--dark); font-weight:600; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
-  .store-btn:hover, .store-btn:focus-visible { transform:translateY(-1px); box-shadow:0 10px 24px rgba(15,23,42,.08); border-color:rgba(180,120,25,.28); }
-  .store-btn.dark { background:rgba(255,255,255,.12); color:#fff; border-color:rgba(255,255,255,.18); }
+  .store-btn { display:inline-flex; align-items:center; gap:.75rem; padding:.8rem 1rem; border-radius:.5rem; border:1px solid var(--border); background:rgba(255,255,255,.94); color:var(--dark); font-weight:600; line-height:1; white-space:nowrap; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+  .store-btn:hover, .store-btn:focus-visible { transform:translateY(-1px); box-shadow:0 10px 24px rgba(15,23,42,.08); border-color:rgba(249,115,22,.35); }
   .store-badge { width:1.35rem; height:1.35rem; object-fit:contain; }
   .hadith-explore { align-self:center; }
   .hadith-showcase-shell { position:sticky; top:5.6rem; padding:1rem; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.97), rgba(255,250,245,.94)); border:1px solid rgba(180,120,25,.12); box-shadow:0 24px 50px rgba(15,23,42,.1); }
@@ -440,6 +442,7 @@ const storeLink = {
   .hadith-brand-logo { width:3.6rem; height:3.6rem; object-fit:contain; border-radius:1rem; box-shadow:0 12px 28px rgba(15,23,42,.08); }
   .hadith-label { font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; color:var(--secondary-dark); margin-bottom:.2rem; }
   .hadith-rating { font-size:1.5rem; line-height:1; margin:0; font-weight:800; }
+  .rating-icon { width:1.2rem; height:1.2rem; display:inline-block; vertical-align:-.12em; }
   .hadith-badge-pill { align-self:flex-start; padding:.45rem .75rem; border-radius:999px; background:rgba(180,120,25,.11); color:var(--primary); font-size:.82rem; font-weight:700; }
   .hadith-showcase-hero { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(160px,.82fr); gap:.7rem; margin:.85rem 0; }
   .hadith-main-shot, .hadith-shot-stack img, .hadith-carousel img { width:100%; border-radius:1rem; border:1px solid rgba(180,120,25,.12); box-shadow:0 14px 30px rgba(15,23,42,.08); background:#fff; object-fit:cover; }
@@ -464,6 +467,7 @@ const storeLink = {
   .mini-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:.75rem; margin-top:1rem; }
   .hadith-why-grid, .hadith-review-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
   .why-icon { width:2.25rem; height:2.25rem; border-radius:.5rem; display:inline-grid; place-items:center; background:rgba(180,120,25,.1); color:var(--primary); font-size:1rem; margin-bottom:.6rem; }
+  .why-icon-svg { width:1.2rem; height:1.2rem; display:block; }
   .review-quote { font-size:1rem; line-height:1.7; margin-bottom:1.1rem; }
   .review-meta { display:flex; flex-direction:column; gap:.15rem; color:var(--secondary-dark); }
   .hadith-faq-wrap { max-width:56rem; }

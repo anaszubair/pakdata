@@ -8,6 +8,7 @@ export function getStaticPaths() {
   ];
 }
 import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -137,22 +138,22 @@ const milestones = [
 
 const values = [
   {
-    icon: "🤝",
+    icon: "material-symbols:handshake",
     title: t('about.value.purpose.title'),
     text: t('about.value.purpose.text')
   },
   {
-    icon: "📜",
+    icon: "material-symbols:history-edu",
     title: t('about.value.authenticity.title'),
     text: t('about.value.authenticity.text')
   },
   {
-    icon: "📈",
+    icon: "material-symbols:trending-up",
     title: t('about.value.scale.title'),
     text: t('about.value.scale.text')
   },
   {
-    icon: "💡",
+    icon: "material-symbols:lightbulb",
     title: t('about.value.modern.title'),
     text: t('about.value.modern.text')
   }
@@ -230,14 +231,18 @@ const values = [
   <section class="section section-bg">
     <div class="container grid grid-2">
       <div class="vision-mission-card card">
-        <div class="card-icon">👁️</div>
+        <div class="card-icon" aria-hidden="true">
+          <Icon name="material-symbols:visibility" class="card-icon-svg" />
+        </div>
         <h2 class="vm-title">{t('about.vm.vision.title')}</h2>
         <p class="vm-text">
           {t('about.vm.vision.text')}
         </p>
       </div>
       <div class="vision-mission-card card">
-        <div class="card-icon">🎯</div>
+        <div class="card-icon" aria-hidden="true">
+          <Icon name="material-symbols:target" class="card-icon-svg" />
+        </div>
         <h2 class="vm-title">{t('about.vm.mission.title')}</h2>
         <p class="vm-text">
           {t('about.vm.mission.text')}
@@ -258,7 +263,9 @@ const values = [
       <div class="grid grid-4">
         {values.map(val => (
           <div class="value-card card text-center">
-            <div class="value-icon">{val.icon}</div>
+            <div class="value-icon" aria-hidden="true">
+              <Icon name={val.icon} class="value-icon-svg" />
+            </div>
             <h3 class="value-title">{val.title}</h3>
             <p class="value-text">{val.text}</p>
           </div>
@@ -465,8 +472,21 @@ const values = [
   }
 
   .card-icon {
-    font-size: calc(2.5rem * var(--text-scale, 1));
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-light);
+    color: var(--primary);
     margin-bottom: 1.25rem;
+  }
+
+  .card-icon-svg {
+    width: 1.9rem;
+    height: 1.9rem;
+    display: block;
   }
 
   .vm-title {
@@ -490,8 +510,21 @@ const values = [
   }
 
   .value-icon {
-    font-size: calc(2.25rem * var(--text-scale, 1));
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-light);
+    color: var(--primary);
     margin-bottom: 1.25rem;
+  }
+
+  .value-icon-svg {
+    width: 1.75rem;
+    height: 1.75rem;
+    display: block;
   }
 
   .value-title {

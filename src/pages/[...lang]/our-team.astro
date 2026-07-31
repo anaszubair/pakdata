@@ -8,6 +8,7 @@ export function getStaticPaths() {
   ];
 }
 import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
 import { getLangFromUrl, useTranslations, getRelativeLocaleUrl } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -41,19 +42,23 @@ const leaders = [
 const departments = [
   {
     name: t('team.dept.eng.name'),
-    desc: t('team.dept.eng.desc')
+    desc: t('team.dept.eng.desc'),
+    icon: 'material-symbols:code'
   },
   {
     name: t('team.dept.qa.name'),
-    desc: t('team.dept.qa.desc')
+    desc: t('team.dept.qa.desc'),
+    icon: 'material-symbols:bug-report'
   },
   {
     name: t('team.dept.design.name'),
-    desc: t('team.dept.design.desc')
+    desc: t('team.dept.design.desc'),
+    icon: 'material-symbols:design-services'
   },
   {
     name: t('team.dept.support.name'),
-    desc: t('team.dept.support.desc')
+    desc: t('team.dept.support.desc'),
+    icon: 'material-symbols:support-agent'
   }
 ];
 
@@ -134,7 +139,9 @@ const team = [
         {departments.map(dept => (
           <div class="dept-card card">
             <div class="dept-header">
-              <span class="dept-icon">⚙️</span>
+              <span class="dept-icon" aria-hidden="true">
+                <Icon name={dept.icon} class="dept-icon-svg" />
+              </span>
               <h3 class="dept-name">{dept.name}</h3>
             </div>
             <p class="dept-desc">{dept.desc}</p>
@@ -158,13 +165,16 @@ const team = [
         </p>
         <div class="culture-points">
           <div class="c-point">
-            <strong>✓ {t('team.culture.point1.label')}</strong> {t('team.culture.point1.text')}
+            <Icon name="material-symbols:check-circle" class="culture-check-icon" aria-hidden="true" />
+            <span><strong>{t('team.culture.point1.label')}</strong> {t('team.culture.point1.text')}</span>
           </div>
           <div class="c-point">
-            <strong>✓ {t('team.culture.point2.label')}</strong> {t('team.culture.point2.text')}
+            <Icon name="material-symbols:check-circle" class="culture-check-icon" aria-hidden="true" />
+            <span><strong>{t('team.culture.point2.label')}</strong> {t('team.culture.point2.text')}</span>
           </div>
           <div class="c-point">
-            <strong>✓ {t('team.culture.point3.label')}</strong> {t('team.culture.point3.text')}
+            <Icon name="material-symbols:check-circle" class="culture-check-icon" aria-hidden="true" />
+            <span><strong>{t('team.culture.point3.label')}</strong> {t('team.culture.point3.text')}</span>
           </div>
         </div>
         <a href={getRelativeLocaleUrl(lang, '/job-us')} class="btn btn-primary" id="view-openings-btn">{t('team.culture.btn')}</a>
@@ -303,7 +313,21 @@ const team = [
   }
 
   .dept-icon {
-    font-size: calc(1.5rem * var(--text-scale, 1));
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    background-color: var(--primary-light);
+    color: var(--primary);
+  }
+
+  .dept-icon-svg {
+    width: 1.45rem;
+    height: 1.45rem;
+    display: block;
   }
 
   .dept-name {
@@ -367,8 +391,19 @@ const team = [
   }
 
   .c-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
     font-size: calc(0.9375rem * var(--text-scale, 1));
     color: var(--dark-soft);
+  }
+
+  .culture-check-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    color: var(--primary);
+    flex: 0 0 auto;
+    margin-top: 0.15rem;
   }
 
   .culture-visual {

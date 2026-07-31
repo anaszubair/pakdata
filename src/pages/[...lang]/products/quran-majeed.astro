@@ -8,6 +8,7 @@ export function getStaticPaths() {
   ];
 }
 import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
 import { getLangFromUrl, getRelativeLocaleUrl } from '../../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -286,7 +287,7 @@ const storeLinks = [
               <img src="/images/quranmajeed/QM.png" alt="Quran Majeed logo" class="brand-logo" />
               <div>
                 <p class="download-card-label">{copy.trustTitle}</p>
-                <h2 class="download-card-title">4.8★</h2>
+                <h2 class="download-card-title">4.8 <Icon name="material-symbols:star" class="rating-icon" aria-hidden="true" /></h2>
               </div>
             </div>
             <div class="qm-showcase-badge">Trusted & modern</div>
@@ -656,6 +657,13 @@ const storeLinks = [
     font-weight: 800;
     line-height: 1;
     margin: 0;
+  }
+
+  .rating-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    display: inline-block;
+    vertical-align: -.12em;
   }
 
   .qm-showcase-badge {
