@@ -7,7 +7,7 @@ import { languages } from '../i18n/ui';
 interface Props {
   title: string;
   description?: string;
-  image?: string;
+  imageAlt?: string;
   noindex?: boolean;
   schema?: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -15,7 +15,7 @@ interface Props {
 const { 
   title = "Pakistan Data Management Services", 
   description = "Pioneering Islamic digital innovation and software development since 1979. Creators of Quran Majeed, EasyUrdu, and custom enterprise solutions.",
-  image,
+  imageAlt,
   noindex = false,
   schema = []
 } = Astro.props;
@@ -25,7 +25,22 @@ const t = useTranslations(lang);
 const dir = lang === 'en' ? 'ltr' : 'rtl';
 const searchParams = Astro.url.searchParams;
 const hideChrome = searchParams.get('webview') === '1' || searchParams.get('view') === 'app';
-const siteOrigin = 'https://pakdata.com';
+const siteOrigin = 'https://pakdata-pearl.vercel.app';
+const siteHost = new URL(siteOrigin).hostname;
+const defaultDescription = 'Pioneering Islamic digital innovation and software development since 1979. Creators of Quran Majeed, EasyUrdu, Quran Pak, and enterprise technology platforms.';
+const fallbackSocialImage = '/images/social-preview.png';
+const socialImageWidth = 1200;
+const socialImageHeight = 630;
+
+const buildPageTitle = (pageTitle: string) => {
+  const trimmedTitle = pageTitle?.trim() || 'Pakistan Data Management Services';
+  return /\b(PDMS|Pakdata|Pakistan Data Management Services)\b/i.test(trimmedTitle)
+    ? trimmedTitle
+    : `${trimmedTitle} | PDMS`;
+};
+
+const fullTitle = buildPageTitle(title);
+const pageDescription = description?.trim() || defaultDescription;
 
 const normalizePath = (path: string) => {
   const clean = path || '/';
@@ -61,6 +76,12 @@ const alternateLocales = Object.keys(languages).map((locale) => ({
   href: toAbsoluteUrl(normalizePath(getRelativeLocaleUrl(locale as keyof typeof languages, normalizedCleanPathname)))
 }));
 const defaultLocaleUrl = toAbsoluteUrl(normalizePath(getRelativeLocaleUrl('en', normalizedCleanPathname)));
+const ogLocaleMap: Record<string, string> = {
+  en: 'en_US',
+  ur: 'ur_PK',
+  ar: 'ar_AR'
+};
+const ogLocale = ogLocaleMap[lang] ?? 'en_US';
 
 const humanizeSegment = (segment: string) => decodeURIComponent(segment)
   .replace(/-/g, ' ')
@@ -112,7 +133,9 @@ const routeSocialImages: Record<string, string> = {
   '/fix_adhan_notification/samsung': '/images/samsung/01.-Settings.png',
   '/fix_adhan_notification/OnePlus': '/images/oneplus/fixissue1.png'
 };
-const socialImage = toAbsoluteUrl(image ?? routeSocialImages[productPathKey] ?? '/images/logo.png');
+const socialImage = toAbsoluteUrl(fallbackSocialImage);
+const socialImageAlt = imageAlt?.trim() || `${fullTitle} preview image`;
+const socialImageType = 'image/png';
 
 const productSchemas: Record<string, Record<string, unknown>> = {
   '/products/quran-majeed': {
@@ -188,7 +211,7 @@ const productSchema = productSchemas[productPathKey]
     '@type': 'SoftwareApplication',
     ...productSchemas[productPathKey],
     url: canonicalUrl,
-    description,
+    description: pageDescription,
     publisher: {
       '@type': 'Organization',
       name: 'Pakistan Data Management Services',
@@ -236,8 +259,9 @@ const baseSchemas = [
     '@type': pageSchemaType,
     '@id': `${canonicalUrl}#webpage`,
     url: canonicalUrl,
-    name: `${title} | PDMS`,
-    description,
+    name: fullTitle,
+    description: pageDescription,
+    image: socialImage,
     isPartOf: {
       '@id': `${siteOrigin}/#website`
     },
@@ -342,26 +366,39 @@ const projectLinks = [
     <link rel="alternate" hreflang="x-default" href={defaultLocaleUrl} />
     
     <!-- Primary Meta Tags -->
-    <title>{title} | PDMS</title>
-    <meta name="title" content={`${title} | PDMS`} />
-    <meta name="description" content={description} />
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
+    <meta name="description" content={pageDescription} />
+    <meta name="theme-color" content="#0f7a55" />
+    <meta itemprop="name" content={fullTitle} />
+    <meta itemprop="description" content={pageDescription} />
+    <meta itemprop="image" content={socialImage} />
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn / Google Chat -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pakistan Data Management Services" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:title" content={`${title} | PDMS`} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:image" content={socialImage} />
-    <meta property="og:image:alt" content={`${title} preview image`} />
-    <meta property="og:locale" content={lang} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:type" content={socialImageType} />
+    <meta property="og:image:width" content={socialImageWidth.toString()} />
+    <meta property="og:image:height" content={socialImageHeight.toString()} />
+    <meta property="og:image:alt" content={socialImageAlt} />
+    <meta property="og:locale" content={ogLocale} />
+    {alternateLocales.filter((alternate) => alternate.lang !== lang).map((alternate) => (
+      <meta property="og:locale:alternate" content={ogLocaleMap[alternate.lang] ?? alternate.lang} />
+    ))}
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalUrl} />
-    <meta property="twitter:title" content={`${title} | PDMS`} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={socialImage} />
-    <meta property="twitter:image:alt" content={`${title} preview image`} />
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content={siteHost} />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
 
     {allSchemas.map((schemaItem) => (
       <script type="application/ld+json" set:html={JSON.stringify(schemaItem)} />

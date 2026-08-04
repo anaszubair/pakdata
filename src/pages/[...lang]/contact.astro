@@ -8,8 +8,16 @@ export function getStaticPaths() {
 }
 
 import { getLangFromUrl, getRelativeLocaleUrl } from '../../i18n/utils';
+import ContactPage from '../../components/ContactPage.astro';
 
 const lang = getLangFromUrl(Astro.url);
-
-return Astro.redirect(getRelativeLocaleUrl(lang, '/contact-us'), 301);
+const canonicalContactUrl = getRelativeLocaleUrl(lang, '/contact-us');
 ---
+
+<ContactPage />
+
+<script is:inline define:vars={{ canonicalContactUrl }}>
+  if (window.location.pathname !== canonicalContactUrl) {
+    window.history.replaceState(null, '', canonicalContactUrl + window.location.search + window.location.hash);
+  }
+</script>

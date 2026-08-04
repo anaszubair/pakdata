@@ -31,7 +31,7 @@ const legacyRedirectPairs = [
 const legacyRedirects = Object.fromEntries(legacyRedirectPairs);
 
 export default defineConfig({
-    site: 'https://pakdata.com',
+    site: 'https://pakdata-pearl.vercel.app',
     trailingSlash: 'never',
     adapter: vercel(),
     integrations: [
