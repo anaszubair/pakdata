@@ -552,96 +552,97 @@ const jobs = [
 
 <!-- Modal expansion scripts & filtering scripts -->
 <script>
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const jobItems = document.querySelectorAll('.job-item-container');
-  const applyTriggers = document.querySelectorAll('.apply-now-trigger');
-  const applyModal = document.getElementById('apply-modal-box');
-  const closeModalBtn = document.getElementById('close-modal-btn');
-  const modalTargetPos = document.getElementById('modal-target-position');
-  const careerApplyForm = document.getElementById('career-apply-form');
+  document.addEventListener('astro:page-load', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const jobItems = document.querySelectorAll('.job-item-container');
+    const applyTriggers = document.querySelectorAll('.apply-now-trigger');
+    const applyModal = document.getElementById('apply-modal-box');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const modalTargetPos = document.getElementById('modal-target-position');
+    const careerApplyForm = document.getElementById('career-apply-form');
 
-  if (filterButtons.length > 0 && jobItems.length > 0) {
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    if (filterButtons.length > 0 && jobItems.length > 0) {
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
 
-        const dept = btn.getAttribute('data-dept');
+          const dept = btn.getAttribute('data-dept');
 
-        jobItems.forEach(item => {
-          const itemDept = item.getAttribute('data-dept');
-          if (dept === 'all' || itemDept === dept) {
-            item.classList.remove('hidden');
-          } else {
-            item.classList.add('hidden');
-          }
+          jobItems.forEach(item => {
+            const itemDept = item.getAttribute('data-dept');
+            if (dept === 'all' || itemDept === dept) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
         });
       });
-    });
-  }
+    }
 
-  if (applyTriggers.length > 0 && applyModal && modalTargetPos) {
-    applyTriggers.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const jobTitle = btn.getAttribute('data-title') || btn.getAttribute('data-default-title') || '';
-        modalTargetPos.textContent = jobTitle;
-        applyModal.classList.add('active');
-        document.body.classList.add('overflow-hidden');
+    if (applyTriggers.length > 0 && applyModal && modalTargetPos) {
+      applyTriggers.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const jobTitle = btn.getAttribute('data-title') || btn.getAttribute('data-default-title') || '';
+          modalTargetPos.textContent = jobTitle;
+          applyModal.classList.add('active');
+          document.body.classList.add('overflow-hidden');
+        });
       });
-    });
 
-    closeModalBtn?.addEventListener('click', () => {
-      applyModal.classList.remove('active');
-      document.body.classList.remove('overflow-hidden');
-    });
-
-    // Close when clicking outside of modal card
-    applyModal.addEventListener('click', (e) => {
-      if (e.target === applyModal) {
+      closeModalBtn?.addEventListener('click', () => {
         applyModal.classList.remove('active');
         document.body.classList.remove('overflow-hidden');
-      }
-    });
-  }
+      });
 
-  if (careerApplyForm) {
-    careerApplyForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const applicantName = document.getElementById('applicant-name') as HTMLInputElement;
-      const defaultName = careerApplyForm.dataset.defaultName || 'Applicant';
-      const alertMsg = careerApplyForm.dataset.alertMsg || '';
-      const submitButton = document.getElementById('submit-career-btn') as HTMLButtonElement;
+      applyModal.addEventListener('click', (e) => {
+        if (e.target === applyModal) {
+          applyModal.classList.remove('active');
+          document.body.classList.remove('overflow-hidden');
+        }
+      });
+    }
 
-      submitButton.disabled = true;
+    if (careerApplyForm) {
+      careerApplyForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const applicantName = document.getElementById('applicant-name') as HTMLInputElement;
+        const defaultName = careerApplyForm.dataset.defaultName || 'Applicant';
+        const alertMsg = careerApplyForm.dataset.alertMsg || '';
+        const submitButton = document.getElementById('submit-career-btn') as HTMLButtonElement;
 
-      try {
-        const response = await fetch('/api/send-email', {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({
-            formType: 'career',
-            fields: {
-              position: modalTargetPos?.textContent || '',
-              name: applicantName?.value || defaultName,
-              email: (document.getElementById('applicant-email') as HTMLInputElement)?.value,
-              phone: (document.getElementById('applicant-phone') as HTMLInputElement)?.value,
-              resume: (document.getElementById('applicant-resume') as HTMLInputElement)?.value,
-              coverLetter: (document.getElementById('applicant-cover') as HTMLTextAreaElement)?.value
-            }
-          })
-        });
+        submitButton.disabled = true;
 
-        if (!response.ok) throw new Error('Email request failed');
+        try {
+          const response = await fetch('/api/send-email', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+              formType: 'career',
+              fields: {
+                position: modalTargetPos?.textContent || '',
+                name: applicantName?.value || defaultName,
+                email: (document.getElementById('applicant-email') as HTMLInputElement)?.value,
+                phone: (document.getElementById('applicant-phone') as HTMLInputElement)?.value,
+                resume: (document.getElementById('applicant-resume') as HTMLInputElement)?.value,
+                coverLetter: (document.getElementById('applicant-cover') as HTMLTextAreaElement)?.value
+              }
+            })
+          });
 
-        alert(`${applicantName?.value || defaultName}: ${alertMsg}`);
-        applyModal?.classList.remove('active');
-        document.body.classList.remove('overflow-hidden');
-        careerApplyForm.reset();
-      } catch {
-        alert('Sorry, your application could not be sent right now. Please try again or email HR directly.');
-      } finally {
-        submitButton.disabled = false;
-      }
-    });
-  }
+          if (!response.ok) throw new Error('Email request failed');
+
+          alert(`${applicantName?.value || defaultName}: ${alertMsg}`);
+          applyModal?.classList.remove('active');
+          document.body.classList.remove('overflow-hidden');
+          careerApplyForm.reset();
+        } catch {
+          alert('Sorry, your application could not be sent right now. Please try again or email HR directly.');
+        } finally {
+          submitButton.disabled = false;
+        }
+      });
+    }
+  });
 </script>

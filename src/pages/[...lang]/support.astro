@@ -389,73 +389,73 @@ const faqCategories = [
 
 <!-- Accordion Toggle JavaScript -->
 <script>
-  const accordions = document.querySelectorAll('.accordion-item');
-  const ticketForm = document.getElementById('support-ticket-form');
+  document.addEventListener('astro:page-load', () => {
+    const accordions = document.querySelectorAll('.accordion-item');
+    const ticketForm = document.getElementById('support-ticket-form');
 
-  if (accordions.length > 0) {
-    accordions.forEach(item => {
-      const trigger = item.querySelector('.accordion-trigger');
-      const panel = item.querySelector('.accordion-panel') as HTMLDivElement;
+    if (accordions.length > 0) {
+      accordions.forEach(item => {
+        const trigger = item.querySelector('.accordion-trigger');
+        const panel = item.querySelector('.accordion-panel') as HTMLDivElement;
 
-      trigger?.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
+        trigger?.addEventListener('click', () => {
+          const isActive = item.classList.contains('active');
 
-        // Close all other accordions in the same category optionally, or just close others
-        accordions.forEach(otherItem => {
-          if (otherItem !== item) {
-            otherItem.classList.remove('active');
-            const otherPanel = otherItem.querySelector('.accordion-panel') as HTMLDivElement;
-            if (otherPanel) otherPanel.style.maxHeight = '0';
+          accordions.forEach(otherItem => {
+            if (otherItem !== item) {
+              otherItem.classList.remove('active');
+              const otherPanel = otherItem.querySelector('.accordion-panel') as HTMLDivElement;
+              if (otherPanel) otherPanel.style.maxHeight = '0';
+            }
+          });
+
+          if (isActive) {
+            item.classList.remove('active');
+            panel.style.maxHeight = '0';
+          } else {
+            item.classList.add('active');
+            panel.style.maxHeight = panel.scrollHeight + 'px';
           }
         });
+      });
+    }
 
-        // Toggle current accordion
-        if (isActive) {
-          item.classList.remove('active');
-          panel.style.maxHeight = '0';
-        } else {
-          item.classList.add('active');
-          panel.style.maxHeight = panel.scrollHeight + 'px';
+    if (ticketForm) {
+      ticketForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const ticketName = document.getElementById('ticket-name') as HTMLInputElement;
+        const defaultName = ticketForm.dataset.defaultName || 'User';
+        const alertMsg = ticketForm.dataset.alertMsg || '';
+        const submitButton = document.getElementById('submit-ticket-btn') as HTMLButtonElement;
+
+        submitButton.disabled = true;
+
+        try {
+          const response = await fetch('/api/send-email', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+              formType: 'support',
+              fields: {
+                name: ticketName?.value || defaultName,
+                email: (document.getElementById('ticket-email') as HTMLInputElement)?.value,
+                app: (document.getElementById('ticket-app') as HTMLSelectElement)?.value,
+                device: (document.getElementById('ticket-device') as HTMLSelectElement)?.value,
+                message: (document.getElementById('ticket-msg') as HTMLTextAreaElement)?.value
+              }
+            })
+          });
+
+          if (!response.ok) throw new Error('Email request failed');
+
+          alert(`${ticketName?.value || defaultName}: ${alertMsg}`);
+          ticketForm.reset();
+        } catch {
+          alert('Sorry, your support request could not be sent right now. Please try again or email support directly.');
+        } finally {
+          submitButton.disabled = false;
         }
       });
-    });
-  }
-
-  if (ticketForm) {
-    ticketForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const ticketName = document.getElementById('ticket-name') as HTMLInputElement;
-      const defaultName = ticketForm.dataset.defaultName || 'User';
-      const alertMsg = ticketForm.dataset.alertMsg || '';
-      const submitButton = document.getElementById('submit-ticket-btn') as HTMLButtonElement;
-
-      submitButton.disabled = true;
-
-      try {
-        const response = await fetch('/api/send-email', {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({
-            formType: 'support',
-            fields: {
-              name: ticketName?.value || defaultName,
-              email: (document.getElementById('ticket-email') as HTMLInputElement)?.value,
-              app: (document.getElementById('ticket-app') as HTMLSelectElement)?.value,
-              device: (document.getElementById('ticket-device') as HTMLSelectElement)?.value,
-              message: (document.getElementById('ticket-msg') as HTMLTextAreaElement)?.value
-            }
-          })
-        });
-
-        if (!response.ok) throw new Error('Email request failed');
-
-        alert(`${ticketName?.value || defaultName}: ${alertMsg}`);
-        ticketForm.reset();
-      } catch {
-        alert('Sorry, your support request could not be sent right now. Please try again or email support directly.');
-      } finally {
-        submitButton.disabled = false;
-      }
-    });
-  }
+    }
+  });
 </script>

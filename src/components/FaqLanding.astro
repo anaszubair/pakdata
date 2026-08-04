@@ -372,22 +372,24 @@ const faqJsonLd = {
 </Layout>
 
 <script>
-  const searchInput = document.querySelector('#faq-search-input');
-  const faqCards = Array.from(document.querySelectorAll('[data-faq-card]'));
-  const faqCategories = Array.from(document.querySelectorAll('[data-faq-category]'));
+  document.addEventListener('astro:page-load', () => {
+    const searchInput = document.querySelector('#faq-search-input');
+    const faqCards = Array.from(document.querySelectorAll('[data-faq-card]'));
+    const faqCategories = Array.from(document.querySelectorAll('[data-faq-category]'));
 
-  searchInput?.addEventListener('input', (event) => {
-    const query = event.currentTarget.value.toLowerCase().trim();
+    searchInput?.addEventListener('input', (event) => {
+      const query = (event.currentTarget as HTMLInputElement).value.toLowerCase().trim();
 
-    faqCards.forEach((card) => {
-      const matches = card.textContent.toLowerCase().includes(query);
-      card.hidden = query.length > 0 && !matches;
-      if (query.length > 0 && matches) card.open = true;
-    });
+      faqCards.forEach((card) => {
+        const matches = card.textContent?.toLowerCase().includes(query);
+        (card as HTMLElement).hidden = query.length > 0 && !matches;
+        if (query.length > 0 && matches) (card as HTMLDetailsElement).open = true;
+      });
 
-    faqCategories.forEach((category) => {
-      const visibleCards = category.querySelectorAll('[data-faq-card]:not([hidden])');
-      category.hidden = query.length > 0 && visibleCards.length === 0;
+      faqCategories.forEach((category) => {
+        const visibleCards = category.querySelectorAll('[data-faq-card]:not([hidden])');
+        (category as HTMLElement).hidden = query.length > 0 && visibleCards.length === 0;
+      });
     });
   });
 </script>

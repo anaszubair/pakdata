@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import { getLangFromUrl, useTranslations, getRelativeLocaleUrl } from '../i18n/utils';
 import { languages } from '../i18n/ui';
 
@@ -365,6 +366,7 @@ const projectLinks = [
     {allSchemas.map((schemaItem) => (
       <script type="application/ld+json" set:html={JSON.stringify(schemaItem)} />
     ))}
+    <ClientRouter fallback="swap" />
 
     <style is:global>
       @font-face {
@@ -511,7 +513,7 @@ const projectLinks = [
         <!-- CTA Header Button & Language Selector -->
         <div class="header-cta-wrap">
           <div class="lang-selector-wrap">
-            <select class="lang-selector" onchange="window.location.href=this.value" aria-label="Select Language">
+            <select class="lang-selector" data-lang-selector aria-label="Select Language">
               {Object.entries(languages).map(([l, name]) => (
                 <option value={getRelativeLocaleUrl(l as any, cleanPathname)} selected={l === lang}>{name}</option>
               ))}
@@ -661,30 +663,41 @@ const projectLinks = [
 
     <!-- Interactive Navigation Scripts -->
     <script>
-      const menuToggleBtn = document.getElementById('menu-toggle-btn');
-      const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
-      const newsletterForm = document.getElementById('newsletter-form');
+      import { navigate } from 'astro:transitions/client';
 
-      if (menuToggleBtn && mobileMenuDrawer) {
-        menuToggleBtn.addEventListener('click', () => {
-          menuToggleBtn.classList.toggle('active');
-          mobileMenuDrawer.classList.toggle('active');
-          document.body.classList.toggle('overflow-hidden');
-        });
+      document.addEventListener('astro:before-preparation', () => {
+        document.body.classList.remove('overflow-hidden');
+      });
 
-        // Close mobile drawer when link is clicked
-        const mobileLinks = mobileMenuDrawer.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-          link.addEventListener('click', () => {
-            menuToggleBtn.classList.remove('active');
-            mobileMenuDrawer.classList.remove('active');
-            document.body.classList.remove('overflow-hidden');
+      document.addEventListener('astro:page-load', () => {
+        const menuToggleBtn = document.getElementById('menu-toggle-btn');
+        const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
+        const newsletterForm = document.getElementById('newsletter-form');
+        const langSelector = document.querySelector('[data-lang-selector]');
+
+        if (menuToggleBtn && mobileMenuDrawer) {
+          menuToggleBtn.addEventListener('click', () => {
+            menuToggleBtn.classList.toggle('active');
+            mobileMenuDrawer.classList.toggle('active');
+            document.body.classList.toggle('overflow-hidden');
           });
-        });
-      }
 
-      if (newsletterForm) {
-        newsletterForm.addEventListener('submit', (e) => {
+          const mobileLinks = mobileMenuDrawer.querySelectorAll('a');
+          mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+              menuToggleBtn.classList.remove('active');
+              mobileMenuDrawer.classList.remove('active');
+              document.body.classList.remove('overflow-hidden');
+            });
+          });
+        }
+
+        langSelector?.addEventListener('change', (event) => {
+          const target = event.currentTarget as HTMLSelectElement;
+          navigate(target.value);
+        });
+
+        newsletterForm?.addEventListener('submit', (e) => {
           e.preventDefault();
           const emailInput = newsletterForm.querySelector('input');
           if (emailInput && emailInput.value) {
@@ -692,7 +705,7 @@ const projectLinks = [
             emailInput.value = '';
           }
         });
-      }
+      });
     </script>
   </body>
 </html>

@@ -607,41 +607,39 @@ const products = [
 
 <!-- JS Tab Filter Logic -->
 <script>
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const catalogItems = document.querySelectorAll('.catalog-item-container');
-  const catalogGrid = document.getElementById('products-catalog-grid');
+  document.addEventListener('astro:page-load', () => {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const catalogItems = document.querySelectorAll('.catalog-item-container');
 
-  if (tabButtons.length > 0 && catalogItems.length > 0) {
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Toggle active button
-        tabButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    if (tabButtons.length > 0 && catalogItems.length > 0) {
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
 
-        const category = btn.getAttribute('data-category');
+          const category = btn.getAttribute('data-category');
 
-        // Apply grid display changes
-        catalogItems.forEach(item => {
-          const itemCategory = item.getAttribute('data-category');
-          
-          if (category === 'all' || itemCategory === category) {
-            item.classList.remove('hidden');
-          } else {
-            item.classList.add('hidden');
-          }
+          catalogItems.forEach(item => {
+            const itemCategory = item.getAttribute('data-category');
+            
+            if (category === 'all' || itemCategory === category) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
         });
       });
-    });
 
-    // Check hash parameter to auto-filter on page load
-    const hash = window.location.hash;
-    if (hash) {
-      const targetElement = document.querySelector(hash);
-      if (targetElement) {
-        setTimeout(() => {
-          targetElement.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+      const hash = window.location.hash;
+      if (hash) {
+        const targetElement = document.querySelector(hash);
+        if (targetElement) {
+          setTimeout(() => {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        }
       }
     }
-  }
+  });
 </script>
