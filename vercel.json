@@ -1,59 +1,305 @@
 {
   "redirects": [
     {
-      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d9%85%d8%ac%db%8c%d8%af/",
-      "destination": "/ur/products/quran-majeed",
+      "source": "/ur/%D9%82%D8%B1%D8%A2%D9%86-%D9%85%D8%AC%DB%8C%D8%AF-%DA%A9%DB%92-%D9%84%DB%8C%DB%92-%D8%B9%D8%B1%D8%A8%DB%8C-%D9%81%D9%88%D9%86%D9%B9",
+      "destination": "/ur/products/arabicfont",
       "permanent": true
     },
     {
-      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d8%a2%da%88%db%8c%d9%88/",
-      "destination": "/ur/quran-audio",
+      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d9%85%d8%ac%db%8c%d8%af-%da%a9%db%92-%d9%84%db%8c%db%92-%d8%b9%d8%b1%d8%a8%db%8c-%d9%81%d9%88%d9%86%d9%b9",
+      "destination": "/ur/products/arabicfont",
       "permanent": true
     },
     {
-      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d9%be%d8%a7%da%a9/",
-      "destination": "/ur/products/quran-pak",
-      "permanent": true
-    },
-    {
-      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d9%be%d8%b1%d9%86%d9%b9%d9%86%da%af-%da%a9%d8%a7%d9%85%d9%be%d9%84%db%8c%da%a9%d8%b3-%d9%be%d8%b1%d9%88%d8%ac%db%8c%da%a9%d9%b9/",
-      "destination": "/ur/projects/quran-printing-complex-project",
-      "permanent": true
-    },
-    {
-      "source": "/ur/%d8%aa%d8%b9%d8%a7%d8%b1%d9%81/",
-      "destination": "/ur/about-us",
-      "permanent": true
-    },
-    {
-      "source": "/ur/%d9%86%db%8c%d8%b4%d9%86%d9%84-%d8%a7%db%8c%d9%84%db%8c%d8%a6%d9%86-%d8%b1%db%8c%d8%ac%d8%b3%d9%b9%d8%b1%db%8c%d8%b4%d9%86-%d8%a7%db%8c%d8%aa%da%be%d8%a7%d8%b1%db%8c%d9%b9%db%8c-nara/",
-      "destination": "/ur/projects/nara-national-alien-registration-authority",
-      "permanent": true
-    },
-    {
-      "source": "/ur/%da%a9%d8%aa%d8%a7%d8%a8%db%8c/",
-      "destination": "/ur/products/kitabi",
-      "permanent": true
-    },
-    {
-      "source": "/ur/%d8%a7%d9%85%db%8c%d8%ac%d9%86/",
-      "destination": "/ur/projects/imagine",
-      "permanent": true
-    },
-    {
-      "source": "/ur/%d8%a7%d9%8a%d8%b2%d9%89-%d8%a7%d8%b1%d8%af%d9%88-%da%a9%db%8c-%d8%a8%d9%88%d8%b1%da%88/",
-      "destination": "/ur/products/easyurdu",
-      "permanent": true
-    },
-    {
-      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d8%a7%db%8c%da%a9%d8%b3%d9%be%d9%84%d9%88%d8%b1%d8%b1/",
+      "source": "/ur/%D9%82%D8%B1%D8%A2%D9%86-%D8%A7%DB%8C%DA%A9%D8%B3%D9%BE%D9%84%D9%88%D8%B1%D8%B1",
       "destination": "/ur/projects/quranexplorer",
       "permanent": true
     },
     {
-      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d9%85%d8%ac%db%8c%d8%af-%da%a9%db%92-%d9%84%db%8c%db%92-%d8%b9%d8%b1%d8%a8%db%8c-%d9%81%d9%88%d9%86%d9%b9/",
-      "destination": "/ur/products/arabicfont",
+      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d8%a7%db%8c%da%a9%d8%b3%d9%be%d9%84%d9%88%d8%b1%d8%b1",
+      "destination": "/ur/projects/quranexplorer",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%D8%A7%D9%8A%D8%B2%D9%89-%D8%A7%D8%B1%D8%AF%D9%88-%DA%A9%DB%8C-%D8%A8%D9%88%D8%B1%DA%88",
+      "destination": "/ur/products/easyurdu",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d8%a7%d9%8a%d8%b2%d9%89-%d8%a7%d8%b1%d8%af%d9%88-%da%a9%db%8c-%d8%a8%d9%88%d8%b1%da%88",
+      "destination": "/ur/products/easyurdu",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%D8%A7%D9%85%DB%8C%D8%AC%D9%86",
+      "destination": "/ur/projects/imagine",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d8%a7%d9%85%db%8c%d8%ac%d9%86",
+      "destination": "/ur/projects/imagine",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%DA%A9%D8%AA%D8%A7%D8%A8%DB%8C",
+      "destination": "/ur/products/kitabi",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%da%a9%d8%aa%d8%a7%d8%a8%db%8c",
+      "destination": "/ur/products/kitabi",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%D9%86%DB%8C%D8%B4%D9%86%D9%84-%D8%A7%DB%8C%D9%84%DB%8C%D8%A6%D9%86-%D8%B1%DB%8C%D8%AC%D8%B3%D9%B9%D8%B1%DB%8C%D8%B4%D9%86-%D8%A7%DB%8C%D8%AA%DA%BE%D8%A7%D8%B1%DB%8C%D9%B9%DB%8C-nara",
+      "destination": "/ur/projects/nara-national-alien-registration-authority",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d9%86%db%8c%d8%b4%d9%86%d9%84-%d8%a7%db%8c%d9%84%db%8c%d8%a6%d9%86-%d8%b1%db%8c%d8%ac%d8%b3%d9%b9%d8%b1%db%8c%d8%b4%d9%86-%d8%a7%db%8c%d8%aa%da%be%d8%a7%d8%b1%db%8c%d9%b9%db%8c-nara",
+      "destination": "/ur/projects/nara-national-alien-registration-authority",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%D8%AA%D8%B9%D8%A7%D8%B1%D9%81",
+      "destination": "/ur/about-us",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d8%aa%d8%b9%d8%a7%d8%b1%d9%81",
+      "destination": "/ur/about-us",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%D9%82%D8%B1%D8%A2%D9%86-%D9%BE%D8%B1%D9%86%D9%B9%D9%86%DA%AF-%DA%A9%D8%A7%D9%85%D9%BE%D9%84%DB%8C%DA%A9%D8%B3-%D9%BE%D8%B1%D9%88%D8%AC%DB%8C%DA%A9%D9%B9",
+      "destination": "/ur/projects/quran-printing-complex-project",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d9%be%d8%b1%d9%86%d9%b9%d9%86%da%af-%da%a9%d8%a7%d9%85%d9%be%d9%84%db%8c%da%a9%d8%b3-%d9%be%d8%b1%d9%88%d8%ac%db%8c%da%a9%d9%b9",
+      "destination": "/ur/projects/quran-printing-complex-project",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%D9%82%D8%B1%D8%A2%D9%86-%D9%BE%D8%A7%DA%A9",
+      "destination": "/ur/products/quran-pak",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d9%be%d8%a7%da%a9",
+      "destination": "/ur/products/quran-pak",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%D9%82%D8%B1%D8%A2%D9%86-%D8%A2%DA%88%DB%8C%D9%88",
+      "destination": "/ur/quran-audio",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d8%a2%da%88%db%8c%d9%88",
+      "destination": "/ur/quran-audio",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%D9%82%D8%B1%D8%A2%D9%86-%D9%85%D8%AC%DB%8C%D8%AF",
+      "destination": "/ur/products/quran-majeed",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d9%82%d8%b1%d8%a2%d9%86-%d9%85%d8%ac%db%8c%d8%af",
+      "destination": "/ur/products/quran-majeed",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%D8%A7%DB%8C%D8%B2%DB%8C-%D8%B3%D9%86%D8%AF%DA%BE%DB%8C-%DA%A9%DB%8C-%D8%A8%D9%88%D8%B1%DA%88",
+      "destination": "/ur/products/easysindhi",
+      "permanent": true
+    },
+    {
+      "source": "/ur/%d8%a7%db%8c%d8%b2%db%8c-%d8%b3%d9%86%d8%af%da%be%db%8c-%da%a9%db%8c-%d8%a8%d9%88%d8%b1%da%88",
+      "destination": "/ur/products/easysindhi",
+      "permanent": true
+    },
+    {
+      "source": "/ufaqs",
+      "destination": "/faqs",
+      "permanent": true
+    },
+    {
+      "source": "/ufaqs/how-can-i-change-adhan-alarm-notification",
+      "destination": "/faqs",
+      "permanent": true
+    },
+    {
+      "source": "/ufaqs/i-dont-have-credit-card-or-unable-to-own-credit-card-can-i-send-payment-to-your-bank-account-or-any-other-means-for-purchasing-the-full-version",
+      "destination": "/faqs",
+      "permanent": true
+    },
+    {
+      "source": "/ufaqs/i-purchased-full-version-on-my-iphone-but-now-it-is-showing-free-version-only-how-to-fix-this",
+      "destination": "/faqs",
+      "permanent": true
+    },
+    {
+      "source": "/ufaqs/how-to-pay-using-easy-paisa",
+      "destination": "/faqs",
+      "permanent": true
+    },
+    {
+      "source": "/ufaqs/how-to-add-a-bookmark",
+      "destination": "/faqs",
+      "permanent": true
+    },
+    {
+      "source": "/ufaqs/adhan-notifications-are-not-in-time-in-my-device",
+      "destination": "/faqs",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/faqs",
+      "permanent": true
+    },
+    {
+      "source": "/certificate",
+      "destination": "/certificates",
+      "permanent": true
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy-policy",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms-and-conditions",
+      "permanent": true
+    },
+    {
+      "source": "/quran-majeed",
+      "destination": "/products/quran-majeed",
+      "permanent": true
+    },
+    {
+      "source": "/easyurdu",
+      "destination": "/products/easyurdu",
+      "permanent": true
+    },
+    {
+      "source": "/kitabi",
+      "destination": "/products/kitabi",
+      "permanent": true
+    },
+    {
+      "source": "/engage-ai-pdms",
+      "destination": "/engage-ai",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact-us",
+      "permanent": true
+    },
+    {
+      "source": "/ur/contact",
+      "destination": "/ur/contact-us",
+      "permanent": true
+    },
+    {
+      "source": "/ar/contact",
+      "destination": "/ar/contact-us",
+      "permanent": true
+    },
+    {
+      "source": "/nadra-software",
+      "destination": "/projects/nadra-software",
+      "permanent": true
+    },
+    {
+      "source": "/ur/nadra-software",
+      "destination": "/ur/projects/nadra-software",
+      "permanent": true
+    },
+    {
+      "source": "/ar/nadra-software",
+      "destination": "/ar/projects/nadra-software",
+      "permanent": true
+    },
+    {
+      "source": "/nadra-citizens-database",
+      "destination": "/projects/nadra-software",
+      "permanent": true
+    },
+    {
+      "source": "/ur/nadra-citizens-database",
+      "destination": "/ur/projects/nadra-software",
+      "permanent": true
+    },
+    {
+      "source": "/ar/nadra-citizens-database",
+      "destination": "/ar/projects/nadra-software",
+      "permanent": true
+    },
+    {
+      "source": "/projects/nadra-citizens-database",
+      "destination": "/projects/nadra-software",
+      "permanent": true
+    },
+    {
+      "source": "/ur/projects/nadra-citizens-database",
+      "destination": "/ur/projects/nadra-software",
+      "permanent": true
+    },
+    {
+      "source": "/ar/projects/nadra-citizens-database",
+      "destination": "/ar/projects/nadra-software",
+      "permanent": true
+    },
+    {
+      "source": "/products/quran-tv",
+      "destination": "/products#quran-tv",
+      "permanent": true
+    },
+    {
+      "source": "/qm",
+      "destination": "/wp-content/uploads/qm.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap_index.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/page-sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/ufaq-sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
+      "source": "/feed",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ur/feed",
+      "destination": "/ur",
+      "permanent": true
+    },
+    {
+      "source": "/ar/feed",
+      "destination": "/ar",
+      "permanent": true
+    },
+    {
+      "source": "/ufaqs/feed",
+      "destination": "/faqs",
       "permanent": true
     }
-  ]
+  ],
+  "trailingSlash": false
 }

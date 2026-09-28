@@ -11,44 +11,119 @@ import CareerDetail from '../../components/CareerDetail.astro';
 import { getLangFromUrl } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
-const base = {
-  seoTitle: 'Software Quality Assurance | PDMS Careers',
-  seoDesc: 'Join PDMS as a Software Quality Assurance professional to test mobile applications, review test cases, capture issues, and support product quality.',
-  title: 'Software Quality Assurance',
-  intro: 'PDMS is searching for a Mobile Application Software QA Tester to test mobile applications running on iOS & Android devices.',
-  body: 'The Software QA Tester (SQA) role is to read, review, run test cases and capture screenshots of successful or unsuccessful test activity in our applications. This individual will inform the relevant person associated with the project of the issues / bugs found, re-test the functionality once the issues / bugs have been addressed and also inform the relevant person of any updates to the test steps, as required.',
-  sections: [
-    {
-      title: 'Job Details',
-      items: [
-        'Test mobile applications across phones and tablets',
-        'Review scenarios and products content to understand test requirements.',
-        'Run identified test cases for identified functionality',
-        'Identify and document issues / bugs in user experience, usability, process flows, identified functionalities and communicate them to the team.',
-        'Assist in the preparation of test result walkthroughs / presentations to the project team and business representatives.',
-        'Under supervision the QA Tester will participate in data requests, report generation, defect reviews and specified project status meetings.'
-      ]
-    },
-    {
-      title: 'Qualifications',
-      alt: true,
-      items: [
-        'Very familiar with smartphones and tablets: at least 1 year mobile application test experience on iOS, or Android devices',
-        'Previous engagement on projects using Rapid Application Development process – Agile / Scrum',
-        'Solid understanding of QA methodology and practices',
-        'Intrigued by technology and new applications',
-        'Effective communicator',
-        'Team player'
-      ]
-    }
-  ],
-  ctaTitle: 'Interested?',
-  ctaBody: 'Interested candidates can share their CV’s at jobs@pakdata.com mentioning “Software Quality Assurance” in the subject line.',
-  subject: 'Software Quality Assurance',
-  backLabel: 'Back to Join Us',
-  applyLabel: 'Email Jobs'
-};
-const copy = { en: base, ur: base, ar: base }[lang] ?? base;
+const copy = {
+  en: {
+    seoTitle: 'Software Quality Assurance | PDMS Careers',
+    seoDesc: 'Join PDMS as a Software Quality Assurance professional to test mobile applications, review test cases, capture issues, and support product quality.',
+    title: 'Software Quality Assurance',
+    intro: 'PDMS is searching for a Mobile Application Software QA Tester to test mobile applications running on iOS & Android devices.',
+    body: 'The Software QA Tester (SQA) role is to read, review, run test cases and capture screenshots of successful or unsuccessful test activity in our applications. This individual will inform the relevant person associated with the project of the issues / bugs found, re-test the functionality once the issues / bugs have been addressed and also inform the relevant person of any updates to the test steps, as required.',
+    sections: [
+      {
+        title: 'Job Details',
+        items: [
+          'Test mobile applications across phones and tablets',
+          'Review scenarios and products content to understand test requirements.',
+          'Run identified test cases for identified functionality',
+          'Identify and document issues / bugs in user experience, usability, process flows, identified functionalities and communicate them to the team.',
+          'Assist in the preparation of test result walkthroughs / presentations to the project team and business representatives.',
+          'Under supervision the QA Tester will participate in data requests, report generation, defect reviews and specified project status meetings.'
+        ]
+      },
+      {
+        title: 'Qualifications',
+        alt: true,
+        items: [
+          'Very familiar with smartphones and tablets: at least 1 year mobile application test experience on iOS, or Android devices',
+          'Previous engagement on projects using Rapid Application Development process – Agile / Scrum',
+          'Solid understanding of QA methodology and practices',
+          'Intrigued by technology and new applications',
+          'Effective communicator',
+          'Team player'
+        ]
+      }
+    ],
+    ctaTitle: 'Interested?',
+    ctaBody: 'Interested candidates can share their CV’s at careers@pakdata.com mentioning “Software Quality Assurance” in the subject line.',
+    subject: 'Software Quality Assurance',
+    backLabel: 'Back to Join Us',
+    applyLabel: 'Email Jobs'
+  },
+  ur: {
+    seoTitle: 'سافٹ ویئر کوالٹی ایشورنس | PDMS ملازمتیں',
+    seoDesc: 'PDMS میں بطور سافٹ ویئر کوالٹی ایشورنس ماہر شامل ہوں، موبائل ایپلیکیشنز کی ٹیسٹنگ کریں، ٹیسٹ کیسز کا جائزہ لیں، مسائل ریکارڈ کریں اور پروڈکٹ کے معیار میں مدد کریں۔',
+    title: 'سافٹ ویئر کوالٹی ایشورنس',
+    intro: 'PDMS کو ایک موبائل ایپلیکیشن سافٹ ویئر QA ٹیسٹر کی تلاش ہے جو iOS اور Android آلات پر چلنے والی موبائل ایپلیکیشنز کی ٹیسٹنگ کرے۔',
+    body: 'سافٹ ویئر QA ٹیسٹر (SQA) کا کام ٹیسٹ کیسز کو پڑھنا، ان کا جائزہ لینا، انہیں چلانا اور ہماری ایپلیکیشنز میں کامیاب یا ناکام ٹیسٹ سرگرمی کے اسکرین شاٹس محفوظ کرنا ہے۔ یہ فرد پروجیکٹ سے وابستہ متعلقہ شخص کو پائے جانے والے مسائل / بگز سے آگاہ کرے گا، مسائل / بگز دور ہونے کے بعد فنکشنیلٹی کی دوبارہ ٹیسٹنگ کرے گا اور ضرورت کے مطابق ٹیسٹ کے مراحل میں کسی بھی تبدیلی سے متعلقہ شخص کو مطلع کرے گا۔',
+    sections: [
+      {
+        title: 'ملازمت کی تفصیلات',
+        items: [
+          'فونز اور ٹیبلیٹس پر موبائل ایپلیکیشنز کی ٹیسٹنگ کرنا',
+          'ٹیسٹ کی ضروریات سمجھنے کے لیے منظرناموں اور پروڈکٹس کے مواد کا جائزہ لینا۔',
+          'متعین فنکشنیلٹی کے لیے طے شدہ ٹیسٹ کیسز چلانا',
+          'صارف کے تجربے، استعمال میں آسانی، پراسیس فلو اور متعین فنکشنیلٹیز میں مسائل / بگز کی نشاندہی اور دستاویز بندی کرنا اور ٹیم کو ان سے آگاہ کرنا۔',
+          'پروجیکٹ ٹیم اور کاروباری نمائندوں کے لیے ٹیسٹ نتائج کی وضاحت / پریزنٹیشنز کی تیاری میں مدد کرنا۔',
+          'نگرانی میں QA ٹیسٹر ڈیٹا کی درخواستوں، رپورٹ کی تیاری، نقائص کے جائزوں اور مخصوص پروجیکٹ اسٹیٹس میٹنگز میں حصہ لے گا۔'
+        ]
+      },
+      {
+        title: 'اہلیت',
+        alt: true,
+        items: [
+          'اسمارٹ فونز اور ٹیبلیٹس سے بخوبی واقفیت: iOS یا Android آلات پر موبائل ایپلیکیشن ٹیسٹنگ کا کم از کم 1 سال کا تجربہ',
+          'Rapid Application Development پراسیس – Agile / Scrum استعمال کرنے والے پروجیکٹس پر کام کا سابقہ تجربہ',
+          'QA طریقۂ کار اور طریقوں کی ٹھوس سمجھ',
+          'ٹیکنالوجی اور نئی ایپلیکیشنز میں گہری دلچسپی',
+          'مؤثر ابلاغ کی صلاحیت',
+          'ٹیم کے ساتھ مل کر کام کرنے والا'
+        ]
+      }
+    ],
+    ctaTitle: 'دلچسپی رکھتے ہیں؟',
+    ctaBody: 'دلچسپی رکھنے والے امیدوار اپنی سی وی careers@pakdata.com پر بھیجیں اور سبجیکٹ لائن میں “Software Quality Assurance” لکھیں۔',
+    subject: 'Software Quality Assurance',
+    backLabel: 'آسامیوں پر واپس جائیں',
+    applyLabel: 'ای میل کریں'
+  },
+  ar: {
+    seoTitle: 'ضمان جودة البرمجيات | وظائف PDMS',
+    seoDesc: 'انضم إلى PDMS كأخصائي ضمان جودة البرمجيات لاختبار تطبيقات الهاتف المحمول ومراجعة حالات الاختبار وتسجيل المشكلات ودعم جودة المنتجات.',
+    title: 'ضمان جودة البرمجيات',
+    intro: 'تبحث PDMS عن مختبِر جودة برمجيات لتطبيقات الهاتف المحمول لاختبار التطبيقات التي تعمل على أجهزة iOS وAndroid.',
+    body: 'يتمثل دور مختبِر جودة البرمجيات (SQA) في قراءة حالات الاختبار ومراجعتها وتنفيذها والتقاط لقطات شاشة لنتائج الاختبار الناجحة أو غير الناجحة في تطبيقاتنا. وسيقوم بإبلاغ الشخص المعني بالمشروع بالمشكلات / الأخطاء المكتشفة، وإعادة اختبار الوظائف بعد معالجتها، وإبلاغ الشخص المعني بأي تحديثات على خطوات الاختبار عند الحاجة.',
+    sections: [
+      {
+        title: 'تفاصيل الوظيفة',
+        items: [
+          'اختبار تطبيقات الهاتف المحمول على الهواتف والأجهزة اللوحية',
+          'مراجعة السيناريوهات ومحتوى المنتجات لفهم متطلبات الاختبار.',
+          'تنفيذ حالات الاختبار المحددة للوظائف المحددة',
+          'تحديد المشكلات / الأخطاء وتوثيقها في تجربة المستخدم وسهولة الاستخدام وتدفقات العمليات والوظائف المحددة، وإبلاغ الفريق بها.',
+          'المساعدة في إعداد عروض ومراجعات نتائج الاختبار لفريق المشروع وممثلي الأعمال.',
+          'تحت الإشراف، سيشارك مختبِر الجودة في طلبات البيانات وإعداد التقارير ومراجعات العيوب واجتماعات متابعة حالة المشروع المحددة.'
+        ]
+      },
+      {
+        title: 'المؤهلات',
+        alt: true,
+        items: [
+          'إلمام كبير بالهواتف الذكية والأجهزة اللوحية: خبرة لا تقل عن سنة واحدة في اختبار تطبيقات الهاتف المحمول على أجهزة iOS أو Android',
+          'مشاركة سابقة في مشاريع تعتمد منهجية التطوير السريع للتطبيقات – Agile / Scrum',
+          'فهم متين لمنهجيات وممارسات ضمان الجودة',
+          'شغف بالتقنية والتطبيقات الجديدة',
+          'مهارات تواصل فعّالة',
+          'روح العمل الجماعي'
+        ]
+      }
+    ],
+    ctaTitle: 'مهتم؟',
+    ctaBody: 'يمكن للمرشحين المهتمين إرسال سيرهم الذاتية إلى careers@pakdata.com مع كتابة “Software Quality Assurance” في سطر الموضوع.',
+    subject: 'Software Quality Assurance',
+    backLabel: 'العودة إلى الوظائف',
+    applyLabel: 'راسلنا بالبريد'
+  }
+}[lang];
 ---
 
 <CareerDetail {...copy} />

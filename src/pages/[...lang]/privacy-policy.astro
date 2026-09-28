@@ -8,113 +8,324 @@ export function getStaticPaths() {
 }
 
 import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl } from '../../i18n/utils';
 
-const title = 'Privacy Policy | Pakistan Data Management Services';
-const description = 'Privacy Policy for Quran Majeed, Pakdata applications, websites, and related services.';
+const lang = getLangFromUrl(Astro.url);
+
+type Block = { h: string } | { p: string };
+
+const copy: { title: string; description: string; heroTitle: string; blocks: Block[] } = {
+  en: {
+    title: 'Privacy Policy | Pakistan Data Management Services',
+    description: 'Privacy Policy for Quran Majeed, Pakdata applications, websites, and related services.',
+    heroTitle: 'Privacy Policy',
+    blocks: [
+      { h: 'Summary' },
+      { p: 'We, the developers of Quran Majeed at Pakdata (Pakistan Data Management Services), believe you should always know what data we collect from you and how we use it, and that you should have meaningful control over both. We want to empower you to make the best decisions about the information that you share with us.' },
+      { p: 'We do not indulge in any manner whatsoever of selling any user data to any party and pride ourselves on trying to maintain high ethical standards in today’s online world.' },
+      { p: 'For any questions, please email us at support@pakdata.com' },
+      { h: 'Who we are' },
+      { p: 'Pakistan Data Management Services (“us”, “we”, or “our”) operates the Quran Majeed mobile application, Easy Urdu Keyboard, Pakdata.com, Quranmajeed.com (the “Service”) and other related websites & apps.' },
+      { p: 'This privacy policy informs you of our policies regarding the collection, use, and disclosure of personal data when you use our service and the choices you have associated with that data.' },
+      { p: 'We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms and Conditions. Pakistan Data Management Services respects its users’ privacy and is committed to protecting the privacy of the users of the Quran Majeed mobile application in accordance with the applicable data protection rules and highest moral ethics.' },
+      { p: 'By using the App, you are accepting and consenting to the practices described in this Policy.' },
+      { p: 'You are informed that Pakistan Data Management Services is based in Karachi, Pakistan and all the development and support is provided from our office located in karachi.' },
+      { p: 'Pakistan Data Management Services is the data controller of your Personal Information. You can withdraw your acceptance and consent at any time by emailing at support@pakdata.com. However, please take note that if you decide to do so, you may no longer be able to use the Services.' },
+      { p: 'Please read this Privacy Policy, Our Cookies Policy, Our Disclaimers and Our Terms of Use carefully.' },
+      { p: 'In addition, like most other e-commerce Web sites, our site uses “cookies” — small files placed temporarily in your Internet browser — to keep track of your stay at our Web site. The text in a cookie, by itself, only tells us that you have visited our site before. When you place an order, request a catalog, or participate in a promotion or contest, we ask you to provide information including your name, postal address, e-mail address and, in the case of product orders, credit card number. Except to verify credit card information to complete your order, we do not use or release any credit card, financial information or personal information for any purpose.' },
+      { p: 'If you provide us with your postal address, e-mail address or telephone number, you may receive our catalog or other promotional mailings, e-mails or telephone calls. If you receive an e-mail from us that you would rather not receive, simply follow the unsubscribe instructions set forth at the bottom of each e-mail. If you do not wish to receive our catalog, or other promotional, please write to us at the address set forth below or e-mail us at http://pakdata.com/contact-us. We will be happy to respect your request not to participate in our direct marketing programs.' },
+      { h: 'Information Collection And Use' },
+      { p: 'We collect several different types of information for various purposes to provide and improve our Service to you. Please note that the information is not shared / sold to any party for any purpose whatsoever. The information is only processed to provide you the services that we offer.' },
+      { h: 'Types of Data Collected' },
+      { p: 'While using our Quran Majeed app, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you (“Personal Data”).' },
+      { p: 'We collect the following data when users OPT for Bookmarks sync or Quran Engagement Time feature on Android:' },
+      { p: 'Email address' },
+      { p: 'First name and last name' },
+      { p: 'Following information will be collected along with the above mentioned details if the user purchases a gift pool of Quran Majeed app copies from our website (www.quranmajeed.com & gateway.pakdata.com).' },
+      { p: 'Phone number' },
+      { p: 'Address' },
+      { p: 'When you access the Service by or through a mobile device, we may collect certain information automatically, including, but not limited to, the type of mobile device you use, your mobile device unique ID, the IP address of your mobile device, your mobile operating system, the type of mobile Internet browser you use, unique device identifiers and other diagnostic data (“Usage Data”).' },
+      { h: 'Information relating to your device and the App settings' },
+      { p: 'We also receive, store and process information, including personal data, when you access or use the App, including but not limited to:' },
+      { p: 'Device-specific information relating to your device for example your device brand and model, operating system version, device language, unique device identifiers (such as IDFA), and mobile network information (such as your mobile carrier);' },
+      { p: 'Your geolocation information, including but not limited to IP addresses used to connect your device to the internet, GPS data and network services data; and' },
+      { p: 'Application specific information relating to the App for example the application version number, activity on the App, the date you installed the App onto your device and the date you last used the App.' },
+      { p: 'Note: Location data is only processed to show you accurate prayer times and is not shared with or sold to any third party. It is also not stored in any of our systems.' },
+      { p: 'Additionally, the App makes use of third party libraries, SDKs, APIs and software (as set out in the Acknowledgement pages from time to time) which may also collect additional information.' },
+      { p: 'We use the following technologies / SDKs:' },
+      { p: 'Google Firebase SDK' },
+      { p: 'Google Admob SDK' },
+      { p: 'Google Analytics' },
+      { h: 'Purposes for which Pakistan Data Management Services collects, uses the information' },
+      { p: 'Pakistan Data Management Services may use the collected personal data for the following purposes:' },
+      { p: 'To execute the contractual relationship with the user and in order to provide services to the user, in particular:' },
+      { p: 'Enabling the access of the user to the app, administering the app and services related to it.' },
+      { p: 'To manage your relationship with Pakistan Data Management Services  including informing or updating you about changes to the App and/or Services and dealing with or responding to any enquiries given by (or purported to be given by) you or on your behalf;' },
+      { p: 'To enable carrier billing or billing via Apple App Store or Google Play Store;' },
+      { p: 'In order to pursue our legitimate interests consisting in improving our App by doing researches and analysis, in the personalization of the App and the advertising displayed on the App, and in sending our customer base with news and updates to inform them on our activities, which are:' },
+      { p: 'To maintain and administer any software updates and/or other updates and support that may be required from time to time to ensure the smooth running of the App and Services;' },
+      { p: 'To tailor your experience through the Services by displaying content according to your interests and preferences;' },
+      { p: 'To provide targeted marketing and advertisements via the App;' },
+      { p: 'To conduct research, analysis and development activities (including, but not limited to, data analytics, surveys, product and service development and/or profiling), to monitor and analyse how you use the App and Services, to improve the App and Services and/or to enhance your user experience.' },
+      { h: 'Processors of the data' },
+      { p: 'Your personal data may be transmitted to the following recipients: service providers acting on behalf of Pakistan Data Management Services , such as hosting service providers (Google), advertising providers, our external counsels and advisors, and as required by law, judicial or administrative decisions, to competent authorities.' },
+      { h: 'Tracking & Cookies Data' },
+      { p: 'We use cookies and similar tracking technologies to track the activity on our Service and hold certain information.' },
+      { p: 'Cookies are files with a small amount of data which may include an anonymous unique identifier. Cookies are sent to your browser from a website and stored on your device. Tracking technologies also used are beacons, tags, and scripts to collect and track information and to improve and analyze our Service.' },
+      { p: 'You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.' },
+      { p: 'Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer.' },
+      { p: 'Pakistan Data Management Services will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of your data and other personal information.' },
+      { h: 'Disclosure Of Data' },
+      { p: 'Pakistan Data Management Services may disclose your Personal Data in the good faith belief that such action is necessary to:' },
+      { p: 'To comply with a legal obligation' },
+      { p: 'To protect and defend the rights or property of Pakistan Data Management Services' },
+      { p: 'To prevent or investigate possible wrongdoing in connection with the Service' },
+      { p: 'To protect the personal safety of users of the Service or the public' },
+      { p: 'To protect against legal liability' },
+      { p: 'This is to reiterate that we do not indulge in selling or sharing any kind of user information.' },
+      { h: 'Security Of Data' },
+      { p: 'The security of your data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.' },
+      { h: 'Service Providers' },
+      { p: 'We may employ third party companies and individuals to facilitate our Service (“Service Providers”), to provide the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used.' },
+      { h: 'Analytics' },
+      { p: 'We may use third-party Service Providers to monitor and analyze the use of our Service.' },
+      { h: 'Google Analytics' },
+      { p: 'Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualize and personalize the ads of its own advertising network.' },
+      { p: 'You may opt-out of certain Google Analytics features through your mobile device settings, such as your device advertising settings or by following the instructions provided by Google in their Privacy Policy: https://policies.google.com/privacy?hl=en' },
+      { p: 'For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page: https://policies.google.com/privacy?hl=en' },
+      { h: 'Firebase' },
+      { p: 'Firebase is analytics service provided by Google Inc.' },
+      { p: 'You may opt-out of certain Firebase features through your mobile device settings, such as your device advertising settings or by following the instructions provided by Google in their Privacy Policy: https://policies.google.com/privacy?hl=en' },
+      { p: 'We also encourage you to review Google’s policy for safeguarding your data: Google Analytics. For more information on what type of information Firebase collects, please visit please visit the Google Privacy & Terms web page: https://policies.google.com/privacy?hl=en' },
+      { h: "Children's Privacy" },
+      { p: 'We do not knowingly collect personally identifiable information from anyone under the age of 18. If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us. If we become aware that we have collected Personal Data from children without verification of parental consent, we take steps to remove that information from our servers.' },
+      { h: 'How to delete your data / Request account deletion' },
+      { p: 'Users can delete their account and data from within Quran Majeed app. Dashboard -> Settings -> User Data Policy -> Delete Account. Please note that data deletion is permanent and cannot be reversed.' },
+      { p: 'OR' },
+      { p: 'Users can remove their data along with email address either by contacting our DPO (Data Protection Officer) on support@pakdata.com' },
+      { h: 'Changes To This Privacy Policy' },
+      { p: 'We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.' },
+      { p: 'The most current version will govern Our use of your Personal Information and will always be available on this page, and older versions are available upon request. We will notify you if We make changes that We think will have a substantial impact on your rights. Otherwise, you agree to accept any changes or updates to this Privacy Policy by continuing to use Our Services.' },
+      { h: 'Contact Us' },
+      { p: 'If you have any questions about this Privacy Policy, please contact us:' },
+      { p: 'By emailing to our DPO: support@pakdata.com' },
+      { p: 'By visiting this page on our website: www.pakdata.com' },
+      { p: 'By phone number: +92-(21) 3455-9003' },
+      { p: 'By post: Pakistan Data Management Services, NASTP-2 Silicon Valley-2, Building S2, 1st Floor, Office No.15, Main Shahrah-e-Faisal, Karachi, Pakistan' }
+    ]
+  },
+  ur: {
+    title: 'پرائیویسی پالیسی | Pakistan Data Management Services',
+    description: 'Quran Majeed، Pakdata کی ایپلیکیشنز، ویب سائٹس اور متعلقہ خدمات کے لیے پرائیویسی پالیسی۔',
+    heroTitle: 'پرائیویسی پالیسی',
+    blocks: [
+      { h: 'خلاصہ' },
+      { p: 'ہم، Pakdata (Pakistan Data Management Services) میں Quran Majeed کے ڈویلپرز، یقین رکھتے ہیں کہ آپ کو ہمیشہ معلوم ہونا چاہیے کہ ہم آپ سے کون سا ڈیٹا جمع کرتے ہیں اور اسے کیسے استعمال کرتے ہیں، اور یہ کہ ان دونوں پر آپ کو مؤثر اختیار حاصل ہونا چاہیے۔ ہم چاہتے ہیں کہ آپ ہمارے ساتھ شیئر کی جانے والی معلومات کے بارے میں بہترین فیصلے کرنے کے قابل ہوں۔' },
+      { p: 'ہم کسی بھی صورت میں کسی بھی فریق کو صارفین کا کوئی ڈیٹا فروخت نہیں کرتے، اور آج کی آن لائن دنیا میں اعلیٰ اخلاقی معیارات برقرار رکھنے کی کوشش پر فخر کرتے ہیں۔' },
+      { p: 'کسی بھی سوال کے لیے براہِ کرم ہمیں support@pakdata.com پر ای میل کریں' },
+      { h: 'ہمارا تعارف' },
+      { p: 'Pakistan Data Management Services (“ہم”، “ہمیں” یا “ہمارا”) Quran Majeed موبائل ایپلیکیشن، Easy Urdu Keyboard، Pakdata.com، Quranmajeed.com (“سروس”) اور دیگر متعلقہ ویب سائٹس اور ایپس چلاتی ہے۔' },
+      { p: 'یہ پرائیویسی پالیسی آپ کو ہماری سروس کے استعمال کے دوران ذاتی ڈیٹا کے جمع کرنے، استعمال اور افشا کرنے سے متعلق ہماری پالیسیوں اور اس ڈیٹا سے وابستہ آپ کے اختیارات سے آگاہ کرتی ہے۔' },
+      { p: 'ہم آپ کا ڈیٹا سروس فراہم کرنے اور اسے بہتر بنانے کے لیے استعمال کرتے ہیں۔ سروس استعمال کر کے آپ اس پالیسی کے مطابق معلومات کے جمع کرنے اور استعمال سے اتفاق کرتے ہیں۔ جب تک اس پرائیویسی پالیسی میں کسی اصطلاح کی الگ تعریف نہ کی گئی ہو، اس میں استعمال ہونے والی اصطلاحات کے وہی معنی ہیں جو ہماری شرائط و ضوابط میں ہیں۔ Pakistan Data Management Services اپنے صارفین کی رازداری کا احترام کرتی ہے اور Quran Majeed موبائل ایپلیکیشن کے صارفین کی رازداری کو قابلِ اطلاق ڈیٹا تحفظ کے قواعد اور اعلیٰ ترین اخلاقی اقدار کے مطابق محفوظ رکھنے کے لیے پُرعزم ہے۔' },
+      { p: 'ایپ استعمال کر کے آپ اس پالیسی میں بیان کردہ طریقۂ کار کو قبول کرتے ہیں اور ان پر رضامندی دیتے ہیں۔' },
+      { p: 'آپ کو مطلع کیا جاتا ہے کہ Pakistan Data Management Services کراچی، پاکستان میں قائم ہے اور تمام ڈویلپمنٹ اور سپورٹ کراچی میں واقع ہمارے دفتر سے فراہم کی جاتی ہے۔' },
+      { p: 'Pakistan Data Management Services آپ کی ذاتی معلومات کی ڈیٹا کنٹرولر ہے۔ آپ کسی بھی وقت support@pakdata.com پر ای میل کر کے اپنی قبولیت اور رضامندی واپس لے سکتے ہیں۔ تاہم براہِ کرم نوٹ کریں کہ اگر آپ ایسا کرنے کا فیصلہ کرتے ہیں تو ممکن ہے آپ سروسز استعمال نہ کر سکیں۔' },
+      { p: 'براہِ کرم یہ پرائیویسی پالیسی، ہماری کوکیز پالیسی، ہمارے دستبرداری بیانات اور ہماری شرائطِ استعمال غور سے پڑھیں۔' },
+      { p: 'اس کے علاوہ، زیادہ تر دیگر ای کامرس ویب سائٹس کی طرح، ہماری سائٹ بھی “کوکیز” استعمال کرتی ہے — یعنی چھوٹی فائلیں جو عارضی طور پر آپ کے انٹرنیٹ براؤزر میں رکھی جاتی ہیں — تاکہ ہماری ویب سائٹ پر آپ کے قیام کا ریکارڈ رکھا جا سکے۔ کوکی میں موجود متن بذاتِ خود ہمیں صرف یہ بتاتا ہے کہ آپ پہلے بھی ہماری سائٹ پر آ چکے ہیں۔ جب آپ کوئی آرڈر دیتے ہیں، کیٹلاگ طلب کرتے ہیں، یا کسی پروموشن یا مقابلے میں حصہ لیتے ہیں، تو ہم آپ سے معلومات فراہم کرنے کو کہتے ہیں جن میں آپ کا نام، ڈاک کا پتہ، ای میل ایڈریس اور مصنوعات کے آرڈر کی صورت میں کریڈٹ کارڈ نمبر شامل ہے۔ آپ کا آرڈر مکمل کرنے کے لیے کریڈٹ کارڈ کی معلومات کی تصدیق کے سوا، ہم کسی بھی مقصد کے لیے کوئی کریڈٹ کارڈ، مالی معلومات یا ذاتی معلومات نہ استعمال کرتے ہیں اور نہ جاری کرتے ہیں۔' },
+      { p: 'اگر آپ ہمیں اپنا ڈاک کا پتہ، ای میل ایڈریس یا ٹیلیفون نمبر فراہم کرتے ہیں تو آپ کو ہمارا کیٹلاگ یا دیگر تشہیری ڈاک، ای میلز یا ٹیلیفون کالز موصول ہو سکتی ہیں۔ اگر آپ کو ہماری طرف سے کوئی ایسی ای میل موصول ہو جو آپ وصول نہ کرنا چاہیں، تو ہر ای میل کے آخر میں دی گئی ان سبسکرائب کی ہدایات پر عمل کریں۔ اگر آپ ہمارا کیٹلاگ یا دیگر تشہیری مواد وصول نہیں کرنا چاہتے تو براہِ کرم ہمیں نیچے دیے گئے پتے پر لکھیں یا http://pakdata.com/contact-us پر ای میل کریں۔ ہمیں اپنے براہِ راست مارکیٹنگ پروگراموں میں شرکت نہ کرنے کی آپ کی درخواست کا احترام کر کے خوشی ہوگی۔' },
+      { h: 'معلومات کا حصول اور استعمال' },
+      { p: 'ہم آپ کو اپنی سروس فراہم کرنے اور اسے بہتر بنانے کے لیے مختلف مقاصد کے تحت کئی اقسام کی معلومات جمع کرتے ہیں۔ براہِ کرم نوٹ کریں کہ یہ معلومات کسی بھی مقصد کے لیے کسی بھی فریق کے ساتھ شیئر / فروخت نہیں کی جاتیں۔ یہ معلومات صرف آپ کو ہماری پیش کردہ خدمات فراہم کرنے کے لیے پراسیس کی جاتی ہیں۔' },
+      { h: 'جمع کیے جانے والے ڈیٹا کی اقسام' },
+      { p: 'ہماری Quran Majeed ایپ استعمال کرتے ہوئے ہم آپ سے کچھ ایسی ذاتی شناختی معلومات فراہم کرنے کو کہہ سکتے ہیں جنہیں آپ سے رابطہ کرنے یا آپ کی شناخت کے لیے استعمال کیا جا سکے (“ذاتی ڈیٹا”)۔' },
+      { p: 'جب صارفین اینڈرائیڈ پر بک مارکس سنک یا Quran Engagement Time فیچر کا انتخاب کرتے ہیں تو ہم درج ذیل ڈیٹا جمع کرتے ہیں:' },
+      { p: 'ای میل ایڈریس' },
+      { p: 'پہلا نام اور آخری نام' },
+      { p: 'اگر صارف ہماری ویب سائٹ (www.quranmajeed.com اور gateway.pakdata.com) سے Quran Majeed ایپ کی کاپیوں کا گفٹ پول خریدتا ہے تو مذکورہ بالا تفصیلات کے ساتھ درج ذیل معلومات بھی جمع کی جائیں گی۔' },
+      { p: 'فون نمبر' },
+      { p: 'پتہ' },
+      { p: 'جب آپ موبائل ڈیوائس کے ذریعے سروس تک رسائی حاصل کرتے ہیں تو ہم خودکار طور پر کچھ معلومات جمع کر سکتے ہیں، جن میں آپ کے زیرِ استعمال موبائل ڈیوائس کی قسم، آپ کی موبائل ڈیوائس کی منفرد آئی ڈی، آپ کی موبائل ڈیوائس کا IP ایڈریس، آپ کا موبائل آپریٹنگ سسٹم، آپ کے زیرِ استعمال موبائل انٹرنیٹ براؤزر کی قسم، منفرد ڈیوائس شناخت کنندگان اور دیگر تشخیصی ڈیٹا (“استعمال کا ڈیٹا”) شامل ہیں، لیکن یہ انہی تک محدود نہیں۔' },
+      { h: 'آپ کی ڈیوائس اور ایپ کی ترتیبات سے متعلق معلومات' },
+      { p: 'جب آپ ایپ تک رسائی حاصل کرتے ہیں یا اسے استعمال کرتے ہیں تو ہم ذاتی ڈیٹا سمیت معلومات وصول، محفوظ اور پراسیس بھی کرتے ہیں، جن میں درج ذیل شامل ہیں لیکن یہ انہی تک محدود نہیں:' },
+      { p: 'آپ کی ڈیوائس سے متعلق مخصوص معلومات، مثلاً آپ کی ڈیوائس کا برانڈ اور ماڈل، آپریٹنگ سسٹم کا ورژن، ڈیوائس کی زبان، منفرد ڈیوائس شناخت کنندگان (جیسے IDFA)، اور موبائل نیٹ ورک کی معلومات (جیسے آپ کا موبائل کیریئر)؛' },
+      { p: 'آپ کے جغرافیائی مقام کی معلومات، جن میں آپ کی ڈیوائس کو انٹرنیٹ سے جوڑنے کے لیے استعمال ہونے والے IP ایڈریسز، GPS ڈیٹا اور نیٹ ورک سروسز کا ڈیٹا شامل ہیں لیکن یہ انہی تک محدود نہیں؛ اور' },
+      { p: 'ایپ سے متعلق مخصوص معلومات، مثلاً ایپلیکیشن کا ورژن نمبر، ایپ پر سرگرمی، وہ تاریخ جب آپ نے ایپ اپنی ڈیوائس پر انسٹال کی اور وہ تاریخ جب آپ نے آخری بار ایپ استعمال کی۔' },
+      { p: 'نوٹ: مقام کا ڈیٹا صرف آپ کو درست اوقاتِ نماز دکھانے کے لیے پراسیس کیا جاتا ہے اور کسی تیسرے فریق کے ساتھ شیئر یا فروخت نہیں کیا جاتا۔ یہ ہمارے کسی بھی سسٹم میں محفوظ بھی نہیں کیا جاتا۔' },
+      { p: 'مزید برآں، ایپ تیسرے فریق کی لائبریریز، SDKs، APIs اور سافٹ ویئر استعمال کرتی ہے (جیسا کہ وقتاً فوقتاً اعترافات کے صفحات میں درج کیا جاتا ہے) جو اضافی معلومات بھی جمع کر سکتے ہیں۔' },
+      { p: 'ہم درج ذیل ٹیکنالوجیز / SDKs استعمال کرتے ہیں:' },
+      { p: 'Google Firebase SDK' },
+      { p: 'Google Admob SDK' },
+      { p: 'Google Analytics' },
+      { h: 'وہ مقاصد جن کے لیے Pakistan Data Management Services معلومات جمع اور استعمال کرتی ہے' },
+      { p: 'Pakistan Data Management Services جمع شدہ ذاتی ڈیٹا کو درج ذیل مقاصد کے لیے استعمال کر سکتی ہے:' },
+      { p: 'صارف کے ساتھ معاہداتی تعلق کی تکمیل اور صارف کو خدمات فراہم کرنے کے لیے، بالخصوص:' },
+      { p: 'صارف کو ایپ تک رسائی فراہم کرنا، ایپ اور اس سے متعلق خدمات کا انتظام کرنا۔' },
+      { p: 'Pakistan Data Management Services کے ساتھ آپ کے تعلق کا انتظام کرنا، بشمول ایپ اور/یا سروسز میں تبدیلیوں کے بارے میں آپ کو مطلع یا اپ ڈیٹ کرنا، اور آپ کی طرف سے یا آپ کی جانب سے دیے گئے (یا بظاہر دیے گئے) کسی بھی استفسار کو نمٹانا یا اس کا جواب دینا؛' },
+      { p: 'کیریئر بلنگ یا Apple App Store یا Google Play Store کے ذریعے بلنگ کو ممکن بنانا؛' },
+      { p: 'اپنے جائز مفادات کے حصول کے لیے، جن میں تحقیق اور تجزیے کے ذریعے اپنی ایپ کو بہتر بنانا، ایپ اور اس پر دکھائے جانے والے اشتہارات کو ذاتی نوعیت دینا، اور اپنے صارفین کو ہماری سرگرمیوں سے آگاہ کرنے کے لیے خبریں اور اپ ڈیٹس بھیجنا شامل ہیں، جو یہ ہیں:' },
+      { p: 'ایپ اور سروسز کی ہموار کارکردگی یقینی بنانے کے لیے وقتاً فوقتاً درکار کسی بھی سافٹ ویئر اپ ڈیٹ اور/یا دیگر اپ ڈیٹس اور سپورٹ کو برقرار رکھنا اور ان کا انتظام کرنا؛' },
+      { p: 'آپ کی دلچسپیوں اور ترجیحات کے مطابق مواد دکھا کر سروسز کے ذریعے آپ کے تجربے کو آپ کے مطابق ڈھالنا؛' },
+      { p: 'ایپ کے ذریعے ہدف شدہ مارکیٹنگ اور اشتہارات فراہم کرنا؛' },
+      { p: 'تحقیق، تجزیے اور ترقیاتی سرگرمیاں انجام دینا (جن میں ڈیٹا اینالیٹکس، سروے، مصنوعات اور خدمات کی ترقی اور/یا پروفائلنگ شامل ہیں لیکن یہ انہی تک محدود نہیں)، یہ جانچنا اور تجزیہ کرنا کہ آپ ایپ اور سروسز کو کیسے استعمال کرتے ہیں، ایپ اور سروسز کو بہتر بنانا اور/یا آپ کے صارف تجربے کو بہتر بنانا۔' },
+      { h: 'ڈیٹا کو پراسیس کرنے والے' },
+      { p: 'آپ کا ذاتی ڈیٹا درج ذیل وصول کنندگان کو منتقل کیا جا سکتا ہے: Pakistan Data Management Services کی جانب سے کام کرنے والے سروس فراہم کنندگان، جیسے ہوسٹنگ سروس فراہم کنندگان (Google)، اشتہاری فراہم کنندگان، ہمارے بیرونی قانونی مشیر اور مشیران، اور قانون، عدالتی یا انتظامی فیصلوں کے تقاضے کے مطابق مجاز حکام۔' },
+      { h: 'ٹریکنگ اور کوکیز کا ڈیٹا' },
+      { p: 'ہم اپنی سروس پر سرگرمی کو ٹریک کرنے اور کچھ معلومات محفوظ رکھنے کے لیے کوکیز اور اسی طرح کی ٹریکنگ ٹیکنالوجیز استعمال کرتے ہیں۔' },
+      { p: 'کوکیز تھوڑے سے ڈیٹا پر مشتمل فائلیں ہوتی ہیں جن میں ایک گمنام منفرد شناخت کنندہ شامل ہو سکتا ہے۔ کوکیز کسی ویب سائٹ سے آپ کے براؤزر کو بھیجی جاتی ہیں اور آپ کی ڈیوائس پر محفوظ کی جاتی ہیں۔ معلومات جمع اور ٹریک کرنے اور اپنی سروس کو بہتر بنانے اور اس کا تجزیہ کرنے کے لیے بیکنز، ٹیگز اور اسکرپٹس جیسی ٹریکنگ ٹیکنالوجیز بھی استعمال کی جاتی ہیں۔' },
+      { p: 'آپ اپنے براؤزر کو تمام کوکیز مسترد کرنے یا کوکی بھیجے جانے پر اطلاع دینے کی ہدایت دے سکتے ہیں۔ تاہم، اگر آپ کوکیز قبول نہیں کرتے تو ممکن ہے آپ ہماری سروس کے بعض حصے استعمال نہ کر سکیں۔' },
+      { p: 'اس پرائیویسی پالیسی پر آپ کی رضامندی اور اس کے بعد ایسی معلومات کی فراہمی اس منتقلی پر آپ کے اتفاق کی نمائندگی کرتی ہے۔' },
+      { p: 'Pakistan Data Management Services یہ یقینی بنانے کے لیے تمام معقول ضروری اقدامات کرے گی کہ آپ کے ڈیٹا کو محفوظ طریقے سے اور اس پرائیویسی پالیسی کے مطابق برتا جائے، اور آپ کا ذاتی ڈیٹا کسی ادارے یا ملک کو اس وقت تک منتقل نہیں کیا جائے گا جب تک آپ کے ڈیٹا اور دیگر ذاتی معلومات کی حفاظت سمیت مناسب کنٹرولز موجود نہ ہوں۔' },
+      { h: 'ڈیٹا کا افشا' },
+      { p: 'Pakistan Data Management Services نیک نیتی سے یہ سمجھتے ہوئے آپ کا ذاتی ڈیٹا ظاہر کر سکتی ہے کہ ایسا اقدام درج ذیل کے لیے ضروری ہے:' },
+      { p: 'کسی قانونی ذمہ داری کی تعمیل کے لیے' },
+      { p: 'Pakistan Data Management Services کے حقوق یا املاک کے تحفظ اور دفاع کے لیے' },
+      { p: 'سروس سے متعلق ممکنہ غلط کاری کو روکنے یا اس کی تحقیقات کے لیے' },
+      { p: 'سروس کے صارفین یا عوام کی ذاتی حفاظت کے تحفظ کے لیے' },
+      { p: 'قانونی ذمہ داری سے تحفظ کے لیے' },
+      { p: 'ہم دوبارہ واضح کرتے ہیں کہ ہم کسی بھی قسم کی صارف معلومات فروخت یا شیئر نہیں کرتے۔' },
+      { h: 'ڈیٹا کی حفاظت' },
+      { p: 'آپ کے ڈیٹا کی حفاظت ہمارے لیے اہم ہے، لیکن یاد رکھیں کہ انٹرنیٹ پر ترسیل کا کوئی طریقہ یا الیکٹرانک اسٹوریج کا کوئی طریقہ 100% محفوظ نہیں ہے۔ اگرچہ ہم آپ کے ذاتی ڈیٹا کے تحفظ کے لیے تجارتی طور پر قابلِ قبول ذرائع استعمال کرنے کی کوشش کرتے ہیں، لیکن ہم اس کی مکمل حفاظت کی ضمانت نہیں دے سکتے۔' },
+      { h: 'سروس فراہم کنندگان' },
+      { p: 'ہم اپنی سروس کی سہولت کے لیے (“سروس فراہم کنندگان”)، ہماری جانب سے سروس فراہم کرنے، سروس سے متعلق خدمات انجام دینے یا یہ تجزیہ کرنے میں ہماری مدد کے لیے کہ ہماری سروس کیسے استعمال ہوتی ہے، تیسرے فریق کی کمپنیوں اور افراد کی خدمات حاصل کر سکتے ہیں۔' },
+      { h: 'اینالیٹکس' },
+      { p: 'ہم اپنی سروس کے استعمال کی نگرانی اور تجزیے کے لیے تیسرے فریق کے سروس فراہم کنندگان استعمال کر سکتے ہیں۔' },
+      { h: 'Google Analytics' },
+      { p: 'Google Analytics ایک ویب اینالیٹکس سروس ہے جو Google فراہم کرتا ہے اور ویب سائٹ ٹریفک کو ٹریک اور رپورٹ کرتی ہے۔ Google جمع شدہ ڈیٹا کو ہماری سروس کے استعمال کو ٹریک اور مانیٹر کرنے کے لیے استعمال کرتا ہے۔ یہ ڈیٹا Google کی دیگر سروسز کے ساتھ شیئر کیا جاتا ہے۔ Google جمع شدہ ڈیٹا کو اپنے اشتہاری نیٹ ورک کے اشتہارات کو سیاق و سباق کے مطابق اور ذاتی نوعیت کا بنانے کے لیے استعمال کر سکتا ہے۔' },
+      { p: 'آپ اپنی موبائل ڈیوائس کی ترتیبات، جیسے اپنی ڈیوائس کی اشتہاری ترتیبات، کے ذریعے یا Google کی پرائیویسی پالیسی میں دی گئی ہدایات پر عمل کر کے Google Analytics کے بعض فیچرز سے دستبردار ہو سکتے ہیں: https://policies.google.com/privacy?hl=en' },
+      { p: 'Google کے رازداری کے طریقۂ کار کے بارے میں مزید معلومات کے لیے براہِ کرم Google Privacy & Terms کا ویب صفحہ دیکھیں: https://policies.google.com/privacy?hl=en' },
+      { h: 'Firebase' },
+      { p: 'Firebase ایک اینالیٹکس سروس ہے جو Google Inc. فراہم کرتا ہے۔' },
+      { p: 'آپ اپنی موبائل ڈیوائس کی ترتیبات، جیسے اپنی ڈیوائس کی اشتہاری ترتیبات، کے ذریعے یا Google کی پرائیویسی پالیسی میں دی گئی ہدایات پر عمل کر کے Firebase کے بعض فیچرز سے دستبردار ہو سکتے ہیں: https://policies.google.com/privacy?hl=en' },
+      { p: 'ہم آپ کو یہ ترغیب بھی دیتے ہیں کہ آپ اپنے ڈیٹا کے تحفظ سے متعلق Google کی پالیسی کا جائزہ لیں: Google Analytics۔ Firebase کس قسم کی معلومات جمع کرتا ہے، اس بارے میں مزید معلومات کے لیے براہِ کرم Google Privacy & Terms کا ویب صفحہ دیکھیں: https://policies.google.com/privacy?hl=en' },
+      { h: 'بچوں کی رازداری' },
+      { p: 'ہم جان بوجھ کر 18 سال سے کم عمر کسی بھی فرد سے ذاتی شناختی معلومات جمع نہیں کرتے۔ اگر آپ والدین یا سرپرست ہیں اور آپ کو علم ہے کہ آپ کے بچے نے ہمیں ذاتی ڈیٹا فراہم کیا ہے تو براہِ کرم ہم سے رابطہ کریں۔ اگر ہمیں علم ہو کہ ہم نے والدین کی رضامندی کی تصدیق کے بغیر بچوں سے ذاتی ڈیٹا جمع کیا ہے تو ہم وہ معلومات اپنے سرورز سے ہٹانے کے لیے اقدامات کرتے ہیں۔' },
+      { h: 'اپنا ڈیٹا کیسے حذف کریں / اکاؤنٹ حذف کرنے کی درخواست' },
+      { p: 'صارفین Quran Majeed ایپ کے اندر سے اپنا اکاؤنٹ اور ڈیٹا حذف کر سکتے ہیں۔ Dashboard -> Settings -> User Data Policy -> Delete Account۔ براہِ کرم نوٹ کریں کہ ڈیٹا کا حذف کرنا مستقل ہے اور اسے واپس نہیں لایا جا سکتا۔' },
+      { p: 'یا' },
+      { p: 'صارفین ہمارے DPO (ڈیٹا پروٹیکشن آفیسر) سے support@pakdata.com پر رابطہ کر کے ای میل ایڈریس سمیت اپنا ڈیٹا ہٹوا سکتے ہیں' },
+      { h: 'اس پرائیویسی پالیسی میں تبدیلیاں' },
+      { p: 'ہم وقتاً فوقتاً اپنی پرائیویسی پالیسی اپ ڈیٹ کر سکتے ہیں۔ ہم کسی بھی تبدیلی کی اطلاع اس صفحے پر نئی پرائیویسی پالیسی شائع کر کے دیں گے۔' },
+      { p: 'تازہ ترین ورژن آپ کی ذاتی معلومات کے ہمارے استعمال پر لاگو ہوگا اور ہمیشہ اس صفحے پر دستیاب رہے گا، جبکہ پرانے ورژن درخواست پر دستیاب ہیں۔ اگر ہم ایسی تبدیلیاں کریں جو ہمارے خیال میں آپ کے حقوق پر نمایاں اثر ڈالیں گی تو ہم آپ کو مطلع کریں گے۔ بصورتِ دیگر، ہماری سروسز کا استعمال جاری رکھ کر آپ اس پرائیویسی پالیسی میں کسی بھی تبدیلی یا اپ ڈیٹ کو قبول کرنے پر رضامند ہوتے ہیں۔' },
+      { h: 'ہم سے رابطہ کریں' },
+      { p: 'اگر اس پرائیویسی پالیسی کے بارے میں آپ کا کوئی سوال ہو تو براہِ کرم ہم سے رابطہ کریں:' },
+      { p: 'ہمارے DPO کو ای میل کر کے: support@pakdata.com' },
+      { p: 'ہماری ویب سائٹ کا یہ صفحہ دیکھ کر: www.pakdata.com' },
+      { p: 'فون نمبر کے ذریعے: +92-(21) 3455-9003' },
+      { p: 'بذریعہ ڈاک: Pakistan Data Management Services, NASTP-2 Silicon Valley-2, Building S2, 1st Floor, Office No.15, Main Shahrah-e-Faisal, Karachi, Pakistan' }
+    ]
+  },
+  ar: {
+    title: 'سياسة الخصوصية | Pakistan Data Management Services',
+    description: 'سياسة الخصوصية لتطبيق Quran Majeed وتطبيقات Pakdata ومواقعها الإلكترونية والخدمات ذات الصلة.',
+    heroTitle: 'سياسة الخصوصية',
+    blocks: [
+      { h: 'ملخص' },
+      { p: 'نحن، مطوري Quran Majeed في Pakdata (Pakistan Data Management Services)، نؤمن بأنه ينبغي أن تعرف دائمًا ما هي البيانات التي نجمعها منك وكيف نستخدمها، وأن تكون لك سيطرة حقيقية على كليهما. ونريد تمكينك من اتخاذ أفضل القرارات بشأن المعلومات التي تشاركها معنا.' },
+      { p: 'نحن لا نبيع بأي شكل من الأشكال أي بيانات للمستخدمين إلى أي طرف، ونفخر بسعينا للحفاظ على معايير أخلاقية عالية في عالم الإنترنت اليوم.' },
+      { p: 'لأي استفسارات، يرجى مراسلتنا عبر البريد الإلكتروني على support@pakdata.com' },
+      { h: 'من نحن' },
+      { p: 'تدير Pakistan Data Management Services (ويُشار إليها بـ“نحن” أو “لنا” أو “الخاص بنا”) تطبيق Quran Majeed للهواتف المحمولة، وEasy Urdu Keyboard، وPakdata.com، وQuranmajeed.com (“الخدمة”) وغيرها من المواقع الإلكترونية والتطبيقات ذات الصلة.' },
+      { p: 'تُطلعك سياسة الخصوصية هذه على سياساتنا المتعلقة بجمع البيانات الشخصية واستخدامها والإفصاح عنها عند استخدامك لخدمتنا، وعلى الخيارات المتاحة لك فيما يتعلق بتلك البيانات.' },
+      { p: 'نستخدم بياناتك لتقديم الخدمة وتحسينها. وباستخدامك للخدمة، فإنك توافق على جمع المعلومات واستخدامها وفقًا لهذه السياسة. وما لم يُعرَّف خلاف ذلك في سياسة الخصوصية هذه، فإن المصطلحات المستخدمة فيها لها المعاني نفسها الواردة في الشروط والأحكام الخاصة بنا. تحترم Pakistan Data Management Services خصوصية مستخدميها وتلتزم بحماية خصوصية مستخدمي تطبيق Quran Majeed للهواتف المحمولة وفقًا لقواعد حماية البيانات المعمول بها وأسمى القيم الأخلاقية.' },
+      { p: 'باستخدامك للتطبيق، فإنك تقبل الممارسات الموضحة في هذه السياسة وتوافق عليها.' },
+      { p: 'نحيطك علمًا بأن مقر Pakistan Data Management Services يقع في كراتشي، باكستان، وأن جميع أعمال التطوير والدعم تُقدَّم من مكتبنا الكائن في كراتشي.' },
+      { p: 'Pakistan Data Management Services هي الجهة المتحكمة في بياناتك الشخصية. يمكنك سحب قبولك وموافقتك في أي وقت بمراسلتنا عبر البريد الإلكتروني على support@pakdata.com. ومع ذلك، يرجى ملاحظة أنك إذا قررت ذلك، فقد لا تتمكن بعد ذلك من استخدام الخدمات.' },
+      { p: 'يرجى قراءة سياسة الخصوصية هذه، وسياسة ملفات تعريف الارتباط الخاصة بنا، وإخلاءات المسؤولية الخاصة بنا، وشروط الاستخدام الخاصة بنا بعناية.' },
+      { p: 'بالإضافة إلى ذلك، مثل معظم مواقع الويب الأخرى للتجارة الإلكترونية، يستخدم موقعنا “ملفات تعريف الارتباط” — ملفات صغيرة يتم وضعها مؤقتًا في متصفح الإنترنت الخاص بك — لتتبع إقامتك في موقعنا على الويب. النص في ملف تعريف الارتباط، في حد ذاته، يخبرنا فقط بأنك قمت بزيارة موقعنا من قبل. عند تقديم طلب أو طلب كتالوج أو المشاركة في عرض ترويجي أو مسابقة، نطلب منك تقديم معلومات تتضمن اسمك وعنوانك البريدي وعنوان بريدك الإلكتروني، وفي حالة طلبات المنتجات، رقم بطاقة الائتمان. باستثناء التحقق من معلومات بطاقة الائتمان لإكمال طلبك، فإننا لا نستخدم أو نصدر أي بطاقة ائتمان أو معلومات مالية أو معلومات شخصية لأي غرض.' },
+      { p: 'إذا قمت بتزويدنا بعنوانك البريدي أو عنوان بريدك الإلكتروني أو رقم هاتفك، فقد تتلقى الكتالوج الخاص بنا أو أي مراسلات ترويجية أخرى أو رسائل بريد إلكتروني أو مكالمات هاتفية. إذا تلقيت بريدًا إلكترونيًا منا لا ترغب في تلقيه، فما عليك سوى اتباع تعليمات إلغاء الاشتراك الموضحة في أسفل كل رسالة بريد إلكتروني. إذا كنت لا ترغب في استلام الكتالوج الخاص بنا، أو أي عروض ترويجية أخرى، يرجى الكتابة إلينا على العنوان المبين أدناه أو مراسلتنا على العنوان http://pakdata.com/contact-us. سنكون سعداء باحترام طلبك بعدم المشاركة في برامجنا التسويقية المباشرة.' },
+      { h: 'جمع المعلومات واستخدامها' },
+      { p: 'نجمع عدة أنواع مختلفة من المعلومات لأغراض متعددة من أجل تقديم خدمتنا لك وتحسينها. يرجى ملاحظة أن هذه المعلومات لا تُشارَك / تُباع لأي طرف ولأي غرض كان. وتُعالَج المعلومات فقط لتقديم الخدمات التي نوفرها لك.' },
+      { h: 'أنواع البيانات التي يتم جمعها' },
+      { p: 'أثناء استخدام تطبيق Quran Majeed، قد نطلب منك تزويدنا ببعض المعلومات الشخصية التي يمكن استخدامها للاتصال بك أو التعرف على هويتك (“البيانات الشخصية”).' },
+      { p: 'نجمع البيانات التالية عندما يختار المستخدمون ميزة مزامنة الإشارات المرجعية أو ميزة Quran Engagement Time على أندرويد:' },
+      { p: 'عنوان البريد الإلكتروني' },
+      { p: 'الاسم الأول واسم العائلة' },
+      { p: 'سيتم جمع المعلومات التالية إلى جانب التفاصيل المذكورة أعلاه إذا اشترى المستخدم مجموعة هدايا من نسخ تطبيق Quran Majeed من موقعنا الإلكتروني (www.quranmajeed.com و gateway.pakdata.com).' },
+      { p: 'رقم الهاتف' },
+      { p: 'العنوان' },
+      { p: 'عندما تصل إلى الخدمة عن طريق جهاز محمول أو من خلاله، قد نجمع بعض المعلومات تلقائيًا، بما في ذلك على سبيل المثال لا الحصر: نوع الجهاز المحمول الذي تستخدمه، والمعرّف الفريد لجهازك المحمول، وعنوان IP لجهازك المحمول، ونظام تشغيل جهازك المحمول، ونوع متصفح الإنترنت للهاتف المحمول الذي تستخدمه، ومعرّفات الأجهزة الفريدة، وغيرها من بيانات التشخيص (“بيانات الاستخدام”).' },
+      { h: 'المعلومات المتعلقة بجهازك وإعدادات التطبيق' },
+      { p: 'نتلقى أيضًا المعلومات، بما فيها البيانات الشخصية، ونخزنها ونعالجها عندما تصل إلى التطبيق أو تستخدمه، بما في ذلك على سبيل المثال لا الحصر:' },
+      { p: 'المعلومات الخاصة بجهازك، مثل العلامة التجارية لجهازك وطرازه، وإصدار نظام التشغيل، ولغة الجهاز، ومعرّفات الأجهزة الفريدة (مثل IDFA)، ومعلومات شبكة الهاتف المحمول (مثل مشغل شبكة هاتفك المحمول)؛' },
+      { p: 'معلومات موقعك الجغرافي، بما في ذلك على سبيل المثال لا الحصر عناوين IP المستخدمة لتوصيل جهازك بالإنترنت، وبيانات GPS، وبيانات خدمات الشبكة؛ و' },
+      { p: 'المعلومات الخاصة بالتطبيق، مثل رقم إصدار التطبيق، والنشاط على التطبيق، وتاريخ تثبيتك للتطبيق على جهازك، وتاريخ آخر استخدام لك للتطبيق.' },
+      { p: 'ملاحظة: تُعالَج بيانات الموقع فقط لعرض أوقات الصلاة الدقيقة لك، ولا تتم مشاركتها مع أي طرف ثالث أو بيعها له. كما أنها لا تُخزَّن في أي من أنظمتنا.' },
+      { p: 'بالإضافة إلى ذلك، يستخدم التطبيق مكتبات وحزم SDK وواجهات API وبرمجيات تابعة لجهات خارجية (كما هو موضح في صفحات الإقرار من وقت لآخر) والتي قد تجمع أيضًا معلومات إضافية.' },
+      { p: 'نستخدم التقنيات / حزم SDK التالية:' },
+      { p: 'Google Firebase SDK' },
+      { p: 'Google Admob SDK' },
+      { p: 'Google Analytics' },
+      { h: 'الأغراض التي تجمع Pakistan Data Management Services المعلومات وتستخدمها من أجلها' },
+      { p: 'يجوز لـ Pakistan Data Management Services استخدام البيانات الشخصية التي تم جمعها للأغراض التالية:' },
+      { p: 'لتنفيذ العلاقة التعاقدية مع المستخدم ومن أجل تقديم الخدمات له، وبصفة خاصة:' },
+      { p: 'تمكين المستخدم من الوصول إلى التطبيق، وإدارة التطبيق والخدمات المتعلقة به.' },
+      { p: 'لإدارة علاقتك مع Pakistan Data Management Services، بما في ذلك إبلاغك أو إطلاعك على التغييرات في التطبيق و/أو الخدمات، والتعامل مع أي استفسارات مقدمة منك (أو يُدّعى أنها مقدمة منك) أو نيابةً عنك والرد عليها؛' },
+      { p: 'لتمكين الفوترة عبر مشغل الاتصالات أو الفوترة عبر Apple App Store أو Google Play Store؛' },
+      { p: 'من أجل تحقيق مصالحنا المشروعة المتمثلة في تحسين تطبيقنا من خلال إجراء الأبحاث والتحليلات، وفي تخصيص التطبيق والإعلانات المعروضة عليه، وفي إرسال الأخبار والتحديثات إلى قاعدة عملائنا لإطلاعهم على أنشطتنا، وهي:' },
+      { p: 'صيانة وإدارة أي تحديثات للبرامج و/أو تحديثات أخرى ودعم قد يلزم من وقت لآخر لضمان سلاسة عمل التطبيق والخدمات؛' },
+      { p: 'تكييف تجربتك عبر الخدمات من خلال عرض المحتوى وفقًا لاهتماماتك وتفضيلاتك؛' },
+      { p: 'تقديم التسويق والإعلانات الموجهة عبر التطبيق؛' },
+      { p: 'إجراء أنشطة البحث والتحليل والتطوير (بما في ذلك على سبيل المثال لا الحصر تحليلات البيانات والاستطلاعات وتطوير المنتجات والخدمات و/أو التنميط)، ومراقبة وتحليل كيفية استخدامك للتطبيق والخدمات، وتحسين التطبيق والخدمات و/أو تحسين تجربتك كمستخدم.' },
+      { h: 'معالجو البيانات' },
+      { p: 'قد تُنقل بياناتك الشخصية إلى الجهات المستلمة التالية: مقدمو الخدمات الذين يعملون نيابةً عن Pakistan Data Management Services، مثل مقدمي خدمات الاستضافة (Google)، ومقدمي الإعلانات، ومستشارينا القانونيين والاستشاريين الخارجيين، وإلى السلطات المختصة وفقًا لما يقتضيه القانون أو القرارات القضائية أو الإدارية.' },
+      { h: 'بيانات التتبع وملفات تعريف الارتباط' },
+      { p: 'نستخدم ملفات تعريف الارتباط وتقنيات التتبع المماثلة لتتبع النشاط على خدمتنا والاحتفاظ ببعض المعلومات.' },
+      { p: 'ملفات تعريف الارتباط هي ملفات تحتوي على قدر صغير من البيانات وقد تتضمن معرّفًا فريدًا مجهول الهوية. تُرسَل ملفات تعريف الارتباط إلى متصفحك من موقع إلكتروني وتُخزَّن على جهازك. ومن تقنيات التتبع المستخدمة أيضًا الإشارات (beacons) والوسوم والنصوص البرمجية لجمع المعلومات وتتبعها ولتحسين خدمتنا وتحليلها.' },
+      { p: 'يمكنك توجيه متصفحك لرفض جميع ملفات تعريف الارتباط أو للتنبيه عند إرسال ملف تعريف ارتباط. ومع ذلك، إذا لم تقبل ملفات تعريف الارتباط، فقد لا تتمكن من استخدام بعض أجزاء خدمتنا.' },
+      { p: 'إن موافقتك على سياسة الخصوصية هذه، متبوعةً بتقديمك لهذه المعلومات، تمثل موافقتك على ذلك النقل.' },
+      { p: 'ستتخذ Pakistan Data Management Services جميع الخطوات الضرورية بشكل معقول لضمان التعامل مع بياناتك بشكل آمن ووفقًا لسياسة الخصوصية هذه، ولن يتم نقل بياناتك الشخصية إلى أي منظمة أو دولة ما لم تكن هناك ضوابط كافية، بما في ذلك أمن بياناتك ومعلوماتك الشخصية الأخرى.' },
+      { h: 'الإفصاح عن البيانات' },
+      { p: 'يجوز لـ Pakistan Data Management Services الإفصاح عن بياناتك الشخصية إذا اعتقدت بحسن نية أن هذا الإجراء ضروري من أجل:' },
+      { p: 'الامتثال لالتزام قانوني' },
+      { p: 'حماية حقوق أو ممتلكات Pakistan Data Management Services والدفاع عنها' },
+      { p: 'منع أو التحقيق في أي مخالفات محتملة تتعلق بالخدمة' },
+      { p: 'حماية السلامة الشخصية لمستخدمي الخدمة أو الجمهور' },
+      { p: 'الحماية من المسؤولية القانونية' },
+      { p: 'نؤكد مجددًا أننا لا نبيع أو نشارك أي نوع من معلومات المستخدمين.' },
+      { h: 'أمن البيانات' },
+      { p: 'إن أمن بياناتك مهم بالنسبة لنا، ولكن تذكّر أنه لا توجد وسيلة نقل عبر الإنترنت أو وسيلة تخزين إلكتروني آمنة بنسبة 100%. وبينما نسعى جاهدين لاستخدام وسائل مقبولة تجاريًا لحماية بياناتك الشخصية، فإننا لا نستطيع ضمان أمنها المطلق.' },
+      { h: 'مقدمو الخدمات' },
+      { p: 'قد نستعين بشركات وأفراد من جهات خارجية لتسهيل خدمتنا (“مقدمو الخدمات”)، أو لتقديم الخدمة نيابةً عنا، أو لأداء خدمات متعلقة بالخدمة، أو لمساعدتنا في تحليل كيفية استخدام خدمتنا.' },
+      { h: 'التحليلات' },
+      { p: 'قد نستعين بمقدمي خدمات من جهات خارجية لمراقبة استخدام خدمتنا وتحليله.' },
+      { h: 'Google Analytics' },
+      { p: 'Google Analytics هي خدمة تحليلات ويب تقدمها Google لتتبع حركة المرور على المواقع الإلكترونية وإعداد التقارير عنها. تستخدم Google البيانات التي تم جمعها لتتبع استخدام خدمتنا ومراقبته. وتتم مشاركة هذه البيانات مع خدمات Google الأخرى. وقد تستخدم Google البيانات التي تم جمعها لوضع الإعلانات في سياقها وتخصيصها ضمن شبكتها الإعلانية الخاصة.' },
+      { p: 'يمكنك إلغاء الاشتراك في بعض ميزات Google Analytics من خلال إعدادات جهازك المحمول، مثل إعدادات الإعلانات في جهازك، أو باتباع التعليمات التي تقدمها Google في سياسة الخصوصية الخاصة بها: https://policies.google.com/privacy?hl=en' },
+      { p: 'لمزيد من المعلومات حول ممارسات الخصوصية لدى Google، يرجى زيارة صفحة Google Privacy & Terms: https://policies.google.com/privacy?hl=en' },
+      { h: 'Firebase' },
+      { p: 'Firebase هي خدمة تحليلات تقدمها Google Inc.' },
+      { p: 'يمكنك إلغاء الاشتراك في بعض ميزات Firebase من خلال إعدادات جهازك المحمول، مثل إعدادات الإعلانات في جهازك، أو باتباع التعليمات التي تقدمها Google في سياسة الخصوصية الخاصة بها: https://policies.google.com/privacy?hl=en' },
+      { p: 'كما نشجعك على مراجعة سياسة Google لحماية بياناتك: Google Analytics. ولمزيد من المعلومات حول نوع المعلومات التي يجمعها Firebase، يرجى زيارة صفحة Google Privacy & Terms: https://policies.google.com/privacy?hl=en' },
+      { h: 'خصوصية الأطفال' },
+      { p: 'نحن لا نجمع عن علم معلومات تعريف شخصية من أي شخص يقل عمره عن 18 عامًا. إذا كنت أحد الوالدين أو وصيًا وتعلم أن طفلك قد زوّدنا ببيانات شخصية، فيرجى الاتصال بنا. وإذا علمنا أننا جمعنا بيانات شخصية من أطفال دون التحقق من موافقة الوالدين، فإننا نتخذ خطوات لإزالة تلك المعلومات من خوادمنا.' },
+      { h: 'كيفية حذف بياناتك / طلب حذف الحساب' },
+      { p: 'يمكن للمستخدمين حذف حساباتهم وبياناتهم من داخل تطبيق Quran Majeed. Dashboard -> Settings -> User Data Policy -> Delete Account. يرجى ملاحظة أن حذف البيانات نهائي ولا يمكن التراجع عنه.' },
+      { p: 'أو' },
+      { p: 'يمكن للمستخدمين إزالة بياناتهم مع عنوان البريد الإلكتروني عن طريق الاتصال بمسؤول حماية البيانات (DPO) لدينا على support@pakdata.com' },
+      { h: 'التغييرات على سياسة الخصوصية هذه' },
+      { p: 'قد نقوم بتحديث سياسة الخصوصية الخاصة بنا من وقت لآخر. وسنُعلمك بأي تغييرات من خلال نشر سياسة الخصوصية الجديدة على هذه الصفحة.' },
+      { p: 'ستحكم النسخة الأحدث استخدامنا لمعلوماتك الشخصية وستكون متاحة دائمًا على هذه الصفحة، أما النسخ الأقدم فمتاحة عند الطلب. وسنُعلمك إذا أجرينا تغييرات نعتقد أنها سيكون لها تأثير جوهري على حقوقك. وبخلاف ذلك، فإنك توافق على قبول أي تغييرات أو تحديثات على سياسة الخصوصية هذه من خلال استمرارك في استخدام خدماتنا.' },
+      { h: 'اتصل بنا' },
+      { p: 'إذا كانت لديك أي أسئلة حول سياسة الخصوصية هذه، يرجى الاتصال بنا:' },
+      { p: 'عبر البريد الإلكتروني إلى مسؤول حماية البيانات لدينا: support@pakdata.com' },
+      { p: 'بزيارة هذه الصفحة على موقعنا الإلكتروني: www.pakdata.com' },
+      { p: 'عبر رقم الهاتف: +92-(21) 3455-9003' },
+      { p: 'عبر البريد: Pakistan Data Management Services, NASTP-2 Silicon Valley-2, Building S2, 1st Floor, Office No.15, Main Shahrah-e-Faisal, Karachi, Pakistan' }
+    ]
+  }
+}[lang];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={copy.title} description={copy.description}>
   <section class='policy-hero'>
     <div class='container text-center'>
-      <h1 class='policy-hero-title'>Privacy Policy</h1>
+      <h1 class='policy-hero-title'>{copy.heroTitle}</h1>
     </div>
   </section>
 
   <section class='section'>
     <div class='container policy-wrap'>
       <article class='policy-content card'>
-        <h2>Summary</h2>
-        <p>We, the developers of Quran Majeed at Pakdata (Pakistan Data Management Services), believe you should always know what data we collect from you and how we use it, and that you should have meaningful control over both. We want to empower you to make the best decisions about the information that you share with us.</p>
-        <p>We do not indulge in any manner whatsoever of selling any user data to any party and pride ourselves on trying to maintain high ethical standards in today’s online world.</p>
-        <p>For any questions, please email us at support@pakdata.com</p>
-        <h2>Who we are</h2>
-        <p>Pakistan Data Management Services (“us”, “we”, or “our”) operates the Quran Majeed mobile application, Easy Urdu Keyboard, Pakdata.com, Quranmajeed.com (the “Service”) and other related websites &amp; apps.</p>
-        <p>This privacy policy informs you of our policies regarding the collection, use, and disclosure of personal data when you use our service and the choices you have associated with that data.</p>
-        <p>We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms and Conditions. Pakistan Data Management Services respects its users’ privacy and is committed to protecting the privacy of the users of the Quran Majeed mobile application in accordance with the applicable data protection rules and highest moral ethics.</p>
-        <p>By using the App, you are accepting and consenting to the practices described in this Policy.</p>
-        <p>You are informed that Pakistan Data Management Services is based in Karachi, Pakistan and all the development and support is provided from our office located in karachi.</p>
-        <p>Pakistan Data Management Services is the data controller of your Personal Information. You can withdraw your acceptance and consent at any time by emailing at support@pakdata.com. However, please take note that if you decide to do so, you may no longer be able to use the Services.</p>
-        <p>Please read this Privacy Policy, Our Cookies Policy, Our Disclaimers and Our Terms of Use carefully.</p>
-        <p>In addition, like most other e-commerce Web sites, our site uses “cookies” — small files placed temporarily in your Internet browser — to keep track of your stay at our Web site. The text in a cookie, by itself, only tells us that you have visited our site before. When you place an order, request a catalog, or participate in a promotion or contest, we ask you to provide information including your name, postal address, e-mail address and, in the case of product orders, credit card number. Except to verify credit card information to complete your order, we do not use or release any credit card, financial information or personal information for any purpose.</p>
-        <p>If you provide us with your postal address, e-mail address or telephone number, you may receive our catalog or other promotional mailings, e-mails or telephone calls. If you receive an e-mail from us that you would rather not receive, simply follow the unsubscribe instructions set forth at the bottom of each e-mail. If you do not wish to receive our catalog, or other promotional, please write to us at the address set forth below or e-mail us at http://pakdata.com/contact-us. We will be happy to respect your request not to participate in our direct marketing programs.</p>
-        <h2>Information Collection And Use</h2>
-        <p>We collect several different types of information for various purposes to provide and improve our Service to you. Please note that the information is not shared / sold to any party for any purpose whatsoever. The information is only processed to provide you the services that we offer.</p>
-        <h2>Types of Data Collected</h2>
-        <p>While using our Quran Majeed app, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you (“Personal Data”).</p>
-        <p>We collect the following data when users OPT for Bookmarks sync or Quran Engagement Time feature on Android:</p>
-        <p>Email address</p>
-        <p>First name and last name</p>
-        <p>Following information will be collected along with the above mentioned details if the user purchases a gift pool of Quran Majeed app copies from our website (www.quranmajeed.com &amp; gateway.pakdata.com).</p>
-        <p>Phone number</p>
-        <p>Address</p>
-        <p>When you access the Service by or through a mobile device, we may collect certain information automatically, including, but not limited to, the type of mobile device you use, your mobile device unique ID, the IP address of your mobile device, your mobile operating system, the type of mobile Internet browser you use, unique device identifiers and other diagnostic data (“Usage Data”).</p>
-        <h2>Information relating to your device and the App settings</h2>
-        <p>We also receive, store and process information, including personal data, when you access or use the App, including but not limited to:</p>
-        <p>Device-specific information relating to your device for example your device brand and model, operating system version, device language, unique device identifiers (such as IDFA), and mobile network information (such as your mobile carrier);</p>
-        <p>Your geolocation information, including but not limited to IP addresses used to connect your device to the internet, GPS data and network services data; and</p>
-        <p>Application specific information relating to the App for example the application version number, activity on the App, the date you installed the App onto your device and the date you last used the App.</p>
-        <p>Note: Location data is only processed to show you accurate prayer times and is not shared with or sold to any third party. It is also not stored in any of our systems.</p>
-        <p>Additionally, the App makes use of third party libraries, SDKs, APIs and software (as set out in the Acknowledgement pages from time to time) which may also collect additional information.</p>
-        <p>We use the following technologies / SDKs:</p>
-        <p>Google Firebase SDK</p>
-        <p>Google Admob SDK</p>
-        <p>Google Analytics</p>
-        <h2>Purposes for which Pakistan Data Management Services collects, uses the information</h2>
-        <p>Pakistan Data Management Services may use the collected personal data for the following purposes:</p>
-        <p>To execute the contractual relationship with the user and in order to provide services to the user, in particular:</p>
-        <p>Enabling the access of the user to the app, administering the app and services related to it.</p>
-        <p>To manage your relationship with Pakistan Data Management Services  including informing or updating you about changes to the App and/or Services and dealing with or responding to any enquiries given by (or purported to be given by) you or on your behalf;</p>
-        <p>To enable carrier billing or billing via Apple App Store or Google Play Store;</p>
-        <p>In order to pursue our legitimate interests consisting in improving our App by doing researches and analysis, in the personalization of the App and the advertising displayed on the App, and in sending our customer base with news and updates to inform them on our activities, which are:</p>
-        <p>To maintain and administer any software updates and/or other updates and support that may be required from time to time to ensure the smooth running of the App and Services;</p>
-        <p>To tailor your experience through the Services by displaying content according to your interests and preferences;</p>
-        <p>To provide targeted marketing and advertisements via the App;</p>
-        <p>To conduct research, analysis and development activities (including, but not limited to, data analytics, surveys, product and service development and/or profiling), to monitor and analyse how you use the App and Services, to improve the App and Services and/or to enhance your user experience.</p>
-        <h2>Processors of the data</h2>
-        <p>Your personal data may be transmitted to the following recipients: service providers acting on behalf of Pakistan Data Management Services , such as hosting service providers (Google), advertising providers, our external counsels and advisors, and as required by law, judicial or administrative decisions, to competent authorities.</p>
-        <h2>Tracking &amp; Cookies Data</h2>
-        <p>We use cookies and similar tracking technologies to track the activity on our Service and hold certain information.</p>
-        <p>Cookies are files with a small amount of data which may include an anonymous unique identifier. Cookies are sent to your browser from a website and stored on your device. Tracking technologies also used are beacons, tags, and scripts to collect and track information and to improve and analyze our Service.</p>
-        <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.</p>
-        <p>Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer.</p>
-        <p>Pakistan Data Management Services will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of your data and other personal information.</p>
-        <h2>Disclosure Of Data</h2>
-        <p>Pakistan Data Management Services may disclose your Personal Data in the good faith belief that such action is necessary to:</p>
-        <p>To comply with a legal obligation</p>
-        <p>To protect and defend the rights or property of Pakistan Data Management Services</p>
-        <p>To prevent or investigate possible wrongdoing in connection with the Service</p>
-        <p>To protect the personal safety of users of the Service or the public</p>
-        <p>To protect against legal liability</p>
-        <p>This is to reiterate that we do not indulge in selling or sharing any kind of user information.</p>
-        <h2>Security Of Data</h2>
-        <p>The security of your data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.</p>
-        <h2>Service Providers</h2>
-        <p>We may employ third party companies and individuals to facilitate our Service (“Service Providers”), to provide the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used.</p>
-        <h2>Analytics</h2>
-        <p>We may use third-party Service Providers to monitor and analyze the use of our Service.</p>
-        <h2>Google Analytics</h2>
-        <p>Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualize and personalize the ads of its own advertising network.</p>
-        <p>You may opt-out of certain Google Analytics features through your mobile device settings, such as your device advertising settings or by following the instructions provided by Google in their Privacy Policy: https://policies.google.com/privacy?hl=en</p>
-        <p>For more information on the privacy practices of Google, please visit the Google Privacy &amp; Terms web page: https://policies.google.com/privacy?hl=en</p>
-        <h2>Firebase</h2>
-        <p>Firebase is analytics service provided by Google Inc.</p>
-        <p>You may opt-out of certain Firebase features through your mobile device settings, such as your device advertising settings or by following the instructions provided by Google in their Privacy Policy: https://policies.google.com/privacy?hl=en</p>
-        <p>We also encourage you to review Google’s policy for safeguarding your data: Google Analytics. For more information on what type of information Firebase collects, please visit please visit the Google Privacy &amp; Terms web page: https://policies.google.com/privacy?hl=en</p>
-        <h2>Children's Privacy</h2>
-        <p>We do not knowingly collect personally identifiable information from anyone under the age of 18. If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us. If we become aware that we have collected Personal Data from children without verification of parental consent, we take steps to remove that information from our servers.</p>
-        <h2>How to delete your data / Request account deletion</h2>
-        <p>Users can delete their account and data from within Quran Majeed app. Dashboard -&gt; Settings -&gt; User Data Policy -&gt; Delete Account. Please note that data deletion is permanent and cannot be reversed.</p>
-        <p>OR</p>
-        <p>Users can remove their data along with email address either by contacting our DPO (Data Protection Officer) on support@pakdata.com</p>
-        <h2>Changes To This Privacy Policy</h2>
-        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
-        <p>The most current version will govern Our use of your Personal Information and will always be available on this page, and older versions are available upon request. We will notify you if We make changes that We think will have a substantial impact on your rights. Otherwise, you agree to accept any changes or updates to this Privacy Policy by continuing to use Our Services.</p>
-        <h2>Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy, please contact us:</p>
-        <p>By emailing to our DPO: support@pakdata.com</p>
-        <p>By visiting this page on our website: www.pakdata.com</p>
-        <p>By phone number: +92-(21) 3455-9003</p>
-        <p>By post: Pakistan Data Management Services, NASTP-2 Silicon Valley-2, Building S2, 1st Floor, Office No.15, Main Shahrah-e-Faisal, Karachi, Pakistan</p>
+        {copy.blocks.map((block) => ('h' in block ? <h2>{block.h}</h2> : <p>{block.p}</p>))}
       </article>
     </div>
   </section>

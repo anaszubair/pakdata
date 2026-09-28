@@ -8,33 +8,80 @@ export function getStaticPaths() {
 }
 
 import AdhanFixLanding from '../../../components/AdhanFixLanding.astro';
+import { getLangFromUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const images = [
+  { src: '/images/generic/1-1-480x853.png', alt: 'Google Nexus settings step 1' },
+  { src: '/images/generic/2-1-480x853.png', alt: 'Google Nexus battery optimization step 2' },
+  { src: '/images/generic/3-1-480x853.png', alt: 'Google Nexus battery optimization step 3' },
+  { src: '/images/generic/4b-1-480x853.png', alt: 'Google Nexus all apps list step 4' },
+  { src: '/images/generic/5-1-480x853.png', alt: 'Google Nexus don’t optimize step 5' }
+];
 
 const copy = {
-  seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App - Generic',
-  seoDesc: 'Follow the Google Nexus 5X steps to turn off battery optimization and receive Quran Majeed adhan notifications properly.',
-  badge: 'Generic Help',
-  title: 'Fix Adhan Notification Issue In Quran Majeed App',
-  subtitle: 'For Google Nexus and similar Android devices',
-  intro: 'To resolve adhan notification issue in Quran Majeed App, turn off optimization function in Optimize Battery Usage, please refer to the following steps.\n\nNote: This tutorial follows the steps of Google Nexus 5X.',
-  steps: [
-    'Open the Settings menu on your device and tap Apps & notifications.',
-    'Scroll down and select Special app access.',
-    'Tap Battery optimization.',
-    'Set All Apps from dropdown menu and scroll down to select Quran Majeed App.',
-    'On the popup screen, switch to the Don’t optimize to exclude Quran Majeed app from the Doze feature.'
-  ],
-  ctaBody: {
-    text: 'Now you will receive adhan notifications properly. If the adhan notifications are still not working, you can ask for help via support@pakdata.com.'
+  en: {
+    seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App - Generic',
+    seoDesc: 'Follow the Google Nexus 5X steps to turn off battery optimization and receive Quran Majeed adhan notifications properly.',
+    badge: 'Generic Help',
+    title: 'Fix Adhan Notification Issue In Quran Majeed App',
+    subtitle: 'For Google Nexus and similar Android devices',
+    intro: 'To resolve adhan notification issue in Quran Majeed App, turn off optimization function in Optimize Battery Usage, please refer to the following steps.\n\nNote: This tutorial follows the steps of Google Nexus 5X.',
+    steps: [
+      'Open the Settings menu on your device and tap Apps & notifications.',
+      'Scroll down and select Special app access.',
+      'Tap Battery optimization.',
+      'Set All Apps from dropdown menu and scroll down to select Quran Majeed App.',
+      'On the popup screen, switch to the Don’t optimize to exclude Quran Majeed app from the Doze feature.'
+    ],
+    ctaBody: {
+      text: 'Now you will receive adhan notifications properly. If the adhan notifications are still not working, you can ask for help via support@pakdata.com.'
+    },
+    ctaLabel: 'Contact Support',
+    images
   },
-  ctaLabel: 'Contact Support',
-  images: [
-    { src: '/images/generic/1-1-480x853.png', alt: 'Google Nexus settings step 1' },
-    { src: '/images/generic/2-1-480x853.png', alt: 'Google Nexus battery optimization step 2' },
-    { src: '/images/generic/3-1-480x853.png', alt: 'Google Nexus battery optimization step 3' },
-    { src: '/images/generic/4b-1-480x853.png', alt: 'Google Nexus all apps list step 4' },
-    { src: '/images/generic/5-1-480x853.png', alt: 'Google Nexus don’t optimize step 5' }
-  ]
-};
+  ur: {
+    seoTitle: 'قرآن مجید ایپ میں اذان نوٹیفکیشن کا مسئلہ حل کریں - عمومی',
+    seoDesc: 'بیٹری آپٹیمائزیشن بند کرنے اور قرآن مجید کی اذان نوٹیفکیشنز درست طور پر حاصل کرنے کے لیے Google Nexus 5X کے مراحل اپنائیں۔',
+    badge: 'عمومی مدد',
+    title: 'قرآن مجید ایپ میں اذان نوٹیفکیشن کا مسئلہ حل کریں',
+    subtitle: 'Google Nexus اور اسی طرح کی Android ڈیوائسز کے لیے',
+    intro: 'قرآن مجید ایپ میں اذان نوٹیفکیشن کا مسئلہ حل کرنے کے لیے "Optimize Battery Usage" میں آپٹیمائزیشن کا فنکشن بند کریں، براہِ کرم درج ذیل مراحل دیکھیں۔\n\nنوٹ: یہ ٹیوٹوریل Google Nexus 5X کے مراحل پر مبنی ہے۔',
+    steps: [
+      'اپنی ڈیوائس پر Settings مینو کھولیں اور "Apps & notifications" (ایپس اور نوٹیفکیشنز) پر ٹیپ کریں۔',
+      'نیچے اسکرول کریں اور "Special app access" منتخب کریں۔',
+      '"Battery optimization" (بیٹری آپٹیمائزیشن) پر ٹیپ کریں۔',
+      'ڈراپ ڈاؤن مینو سے "All apps" منتخب کریں اور نیچے اسکرول کر کے قرآن مجید ایپ منتخب کریں۔',
+      'پاپ اپ اسکرین پر "Don’t optimize" منتخب کریں تاکہ قرآن مجید ایپ Doze فیچر سے مستثنیٰ ہو جائے۔'
+    ],
+    ctaBody: {
+      text: 'اب آپ کو اذان نوٹیفکیشنز درست طور پر موصول ہوں گی۔ اگر اذان نوٹیفکیشنز اب بھی کام نہیں کر رہیں تو آپ support@pakdata.com کے ذریعے مدد حاصل کر سکتے ہیں۔'
+    },
+    ctaLabel: 'سپورٹ سے رابطہ کریں',
+    images
+  },
+  ar: {
+    seoTitle: 'إصلاح مشكلة إشعارات الأذان في تطبيق القرآن المجيد - عام',
+    seoDesc: 'اتبع خطوات Google Nexus 5X لإيقاف تحسين البطارية وتلقي إشعارات الأذان من تطبيق القرآن المجيد بشكل صحيح.',
+    badge: 'مساعدة عامة',
+    title: 'إصلاح مشكلة إشعارات الأذان في تطبيق القرآن المجيد',
+    subtitle: 'لأجهزة Google Nexus وأجهزة Android المشابهة',
+    intro: 'لحل مشكلة إشعارات الأذان في تطبيق القرآن المجيد، أوقف وظيفة التحسين في "Optimize Battery Usage" (تحسين استخدام البطارية)، يرجى اتباع الخطوات التالية.\n\nملاحظة: يتبع هذا الدليل خطوات جهاز Google Nexus 5X.',
+    steps: [
+      'افتح قائمة الإعدادات (Settings) على جهازك وانقر على "Apps & notifications" (التطبيقات والإشعارات).',
+      'مرّر لأسفل واختر "Special app access" (الوصول الخاص للتطبيقات).',
+      'انقر على "Battery optimization" (تحسين البطارية).',
+      'اختر "All apps" (جميع التطبيقات) من القائمة المنسدلة ثم مرّر لأسفل لاختيار تطبيق القرآن المجيد.',
+      'في النافذة المنبثقة، اختر "Don’t optimize" (عدم التحسين) لاستثناء تطبيق القرآن المجيد من ميزة Doze.'
+    ],
+    ctaBody: {
+      text: 'الآن ستتلقى إشعارات الأذان بشكل صحيح. إذا كانت إشعارات الأذان ما تزال لا تعمل، يمكنك طلب المساعدة عبر support@pakdata.com.'
+    },
+    ctaLabel: 'اتصل بالدعم',
+    images
+  }
+}[lang];
 ---
 
 <AdhanFixLanding {...copy} />

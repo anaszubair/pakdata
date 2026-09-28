@@ -5,219 +5,675 @@ import { getLangFromUrl, getRelativeLocaleUrl } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const { noindex = false } = Astro.props;
 
-const copy = {
-  seoTitle: 'Pakdata Help Center | FAQ & Support for Quran Majeed Apps',
-  seoDesc: 'Find answers to common questions about Quran Majeed, Adhan notifications, premium subscriptions, prayer timings, payments, troubleshooting, and app support.',
-  heroBadge: 'Help Center',
-  heroTitle: 'Help Center & Frequently Asked Questions',
-  heroBody: 'Find quick answers, troubleshooting guides, payment support, and helpful resources for Pakdata applications including Quran Majeed and other digital products.',
-  searchPlaceholder: 'Search for help articles, notifications, subscriptions, prayer timings, payments...',
-  quickTitle: 'Quick Help',
-  quickHelp: [
-    { title: 'Fix Notifications', body: 'Device setup steps for delayed or missing Adhan alerts.', href: '#notifications' },
-    { title: 'Restore Premium', body: 'Recover purchases with your Apple ID or Google account.', href: '#premium-payments' },
-    { title: 'Prayer Times', body: 'View, customize, and manage prayer timing settings.', href: '#prayer-times' },
-    { title: 'Payment Help', body: 'EasyPaisa, app store payments, and local payment options.', href: '#premium-payments' }
-  ],
-  categoriesTitle: 'Browse by Category',
-  videoTitle: 'Video Tutorials',
-  videoBody: 'Step-by-step visual guides help users fix notification, premium, and prayer timing issues faster.',
-  videos: ['Fix Adhan Notifications', 'Restore Premium Purchase', 'Customize Prayer Times'],
-  deviceTitle: 'Device-Specific Guides',
-  deviceBody: 'Notification settings differ by device. Use these guides to allow Quran Majeed to run reliably in the background.',
-  devices: [
-    { name: 'Samsung Galaxy', note: 'Disable battery optimization', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/samsung') },
-    { name: 'Google Pixel / Nexus', note: 'Disable adaptive battery', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/generic') },
-    { name: 'Huawei', note: 'Disable power optimization', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/huawei') },
-    { name: 'OnePlus', note: 'Disable battery restrictions', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/OnePlus') },
-    { name: 'iPhone / iPad', note: 'Check notifications and Focus modes', href: '#iphone-ipad-support' }
-  ],
-  supportTitle: 'Still Need Help?',
-  supportBody: 'Our support team is here to help you with technical issues, subscriptions, notifications, and app-related questions.',
-  contactSupport: 'Contact Support',
-  submitRequest: 'Submit a Request',
-  footerDesc: 'Find answers, troubleshooting guides, and support resources for Quran Majeed and other Pakdata applications.'
+const hrefs = {
+  samsung: getRelativeLocaleUrl(lang, '/fix_adhan_notification/samsung'),
+  generic: getRelativeLocaleUrl(lang, '/fix_adhan_notification/generic'),
+  huawei: getRelativeLocaleUrl(lang, '/fix_adhan_notification/huawei'),
+  oneplus: getRelativeLocaleUrl(lang, '/fix_adhan_notification/OnePlus'),
+  guide: getRelativeLocaleUrl(lang, '/fix_adhan_notification')
 };
 
-const faqCategories = [
-  {
-    id: 'notifications',
-    title: 'Notifications & Adhan',
-    faqs: [
+const content = {
+  en: {
+    copy: {
+      seoTitle: 'Pakdata Help Center | FAQ & Support for Quran Majeed Apps',
+      seoDesc: 'Find answers to common questions about Quran Majeed, Adhan notifications, premium subscriptions, prayer timings, payments, troubleshooting, and app support.',
+      heroBadge: 'Help Center',
+      heroTitle: 'Help Center & Frequently Asked Questions',
+      heroBody: 'Find quick answers, troubleshooting guides, payment support, and helpful resources for Pakdata applications including Quran Majeed and other digital products.',
+      searchPlaceholder: 'Search for help articles, notifications, subscriptions, prayer timings, payments...',
+      searchLabel: 'Search help articles',
+      quickTitle: 'Quick Help',
+      quickHelp: [
+        { title: 'Fix Notifications', body: 'Device setup steps for delayed or missing Adhan alerts.', href: '#notifications' },
+        { title: 'Restore Premium', body: 'Recover purchases with your Apple ID or Google account.', href: '#premium-payments' },
+        { title: 'Prayer Times', body: 'View, customize, and manage prayer timing settings.', href: '#prayer-times' },
+        { title: 'Payment Help', body: 'EasyPaisa, app store payments, and local payment options.', href: '#premium-payments' }
+      ],
+      categoriesTitle: 'Browse by Category',
+      faqBadge: 'FAQ',
+      guidesBadge: 'Guides',
+      tutorialsBadge: 'Tutorials',
+      supportBadge: 'Support',
+      videoTitle: 'Video Tutorials',
+      videoBody: 'Step-by-step visual guides help users fix notification, premium, and prayer timing issues faster.',
+      videos: ['Fix Adhan Notifications', 'Restore Premium Purchase', 'Customize Prayer Times'],
+      deviceTitle: 'Device-Specific Guides',
+      deviceBody: 'Notification settings differ by device. Use these guides to allow Quran Majeed to run reliably in the background.',
+      devices: [
+        { name: 'Samsung Galaxy', note: 'Disable battery optimization', href: hrefs.samsung },
+        { name: 'Google Pixel / Nexus', note: 'Disable adaptive battery', href: hrefs.generic },
+        { name: 'Huawei', note: 'Disable power optimization', href: hrefs.huawei },
+        { name: 'OnePlus', note: 'Disable battery restrictions', href: hrefs.oneplus },
+        { name: 'iPhone / iPad', note: 'Check notifications and Focus modes', href: '#iphone-ipad-support' }
+      ],
+      supportTitle: 'Still Need Help?',
+      supportBody: 'Our support team is here to help you with technical issues, subscriptions, notifications, and app-related questions.',
+      contactSupport: 'Contact Support',
+      submitRequest: 'Submit a Request',
+      footerDesc: 'Find answers, troubleshooting guides, and support resources for Quran Majeed and other Pakdata applications.'
+    },
+    faqCategories: [
       {
-        q: 'Adhan notifications are delayed or not working on my device. How can I fix this?',
-        a: [
-          'Some Android devices automatically restrict background activity to save battery life. This can prevent Quran Majeed from delivering Adhan notifications on time.',
-          'To resolve this issue:',
-          'Disable battery optimization for Quran Majeed',
-          'Allow background activity',
-          'Enable auto-start permissions if available',
-          'Make sure notifications are enabled in device settings'
-        ],
-        links: [
-          { label: 'Samsung Galaxy - Disable Battery Optimization', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/samsung') },
-          { label: 'Google Pixel / Nexus - Disable Adaptive Battery', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/generic') },
-          { label: 'Huawei - Disable Power Optimization', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/huawei') },
-          { label: 'OnePlus - Disable Battery Restrictions', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification/OnePlus') }
-        ],
-        cta: { label: 'View Device Setup Guide', href: getRelativeLocaleUrl(lang, '/fix_adhan_notification') }
-      },
-      {
-        q: 'How can I change Adhan alarms or prayer notifications?',
-        bulletStart: 1,
-        a: [
-          'Open the prayer timings screen by tapping the prayer time bar on the homepage. From there, select any prayer to customize:',
-          'Adhan sound',
-          'Notification settings',
-          'Alarm preferences',
-          'Reminder options'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'premium-payments',
-    title: 'Premium & Payments',
-    faqs: [
-      {
-        q: 'How can I purchase the premium version using EasyPaisa?',
-        bulletStart: 1,
-        bulletEnd: 4,
-        a: [
-          'You can purchase Quran Majeed premium using EasyPaisa in a few simple steps:',
-          'Open the Premium section inside the app',
-          'Select your preferred package',
-          'Choose EasyPaisa as the payment method',
-          'Complete payment using the provided consumer number',
-          'If assistance is required, our support team will be happy to help.'
-        ]
-      },
-      {
-        q: 'I purchased the premium version on iPhone, but it now shows the free version. How can I restore my purchase?',
-        bulletEnd: 4,
-        a: [
-          'You can restore your premium purchase using the same Apple ID originally used for the subscription or purchase.',
-          'To restore:',
-          'Open the app',
-          'Go to Premium or Settings',
-          'Tap "Restore Purchase"',
-          'You will not be charged again.'
-        ]
-      },
-      {
-        q: 'I do not have a credit card. Can I pay through a bank account or another payment method?',
-        a: [
-          'Available payment methods depend on the Apple App Store or Google Play Store policies for your region.',
-          'You may also:',
-          'Use EasyPaisa where available',
-          'Use supported local payment methods',
-          'Purchase through family or shared payment methods connected to your store account'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'prayer-times',
-    title: 'Prayer Times',
-    faqs: [
-      {
-        q: 'How can I view all prayer times for today?',
-        a: [
-          'Tap the prayer timings bar on the app homepage to open the complete prayer schedule for the day.',
-          'You can also:',
-          'View upcoming prayers',
-          'Customize calculation methods',
-          'Enable notifications',
-          'Access Qibla direction settings'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'app-settings',
-    title: 'App Settings',
-    faqs: [
-      {
-        q: 'Where can I manage Quran Majeed app settings?',
-        a: [
-          'Open Quran Majeed and go to Settings to manage reading preferences, notifications, audio downloads, themes, language options, and prayer timing behavior.',
-          'If a setting is not visible, update the app to the latest version from the App Store or Google Play Store.'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'account-restore-purchases',
-    title: 'Account & Restore Purchases',
-    faqs: [
-      {
-        q: 'What account should I use to restore premium access?',
-        a: [
-          'Use the same Apple ID or Google account that was originally used for the purchase.',
-          'Purchases are managed by Apple App Store or Google Play Store, so premium access can only be restored through the original store account.'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'troubleshooting',
-    title: 'Troubleshooting',
-    faqs: [
-      {
-        q: 'The app is not working properly or crashes frequently. What should I do?',
-        bulletStart: 1,
-        bulletEnd: 5,
-        a: [
-          'Please try the following troubleshooting steps:',
-          'Update the app to the latest version',
-          'Restart your device',
-          'Clear app cache on Android',
-          'Ensure enough device storage is available',
-          'Reinstall the app if necessary',
-          'If the issue continues, please contact our support team with your device model, app version, and a screen recording if possible.'
+        id: 'notifications',
+        title: 'Notifications & Adhan',
+        faqs: [
+          {
+            q: 'Adhan notifications are delayed or not working on my device. How can I fix this?',
+            a: [
+              'Some Android devices automatically restrict background activity to save battery life. This can prevent Quran Majeed from delivering Adhan notifications on time.',
+              'To resolve this issue:',
+              'Disable battery optimization for Quran Majeed',
+              'Allow background activity',
+              'Enable auto-start permissions if available',
+              'Make sure notifications are enabled in device settings'
+            ],
+            links: [
+              { label: 'Samsung Galaxy - Disable Battery Optimization', href: hrefs.samsung },
+              { label: 'Google Pixel / Nexus - Disable Adaptive Battery', href: hrefs.generic },
+              { label: 'Huawei - Disable Power Optimization', href: hrefs.huawei },
+              { label: 'OnePlus - Disable Battery Restrictions', href: hrefs.oneplus }
+            ],
+            cta: { label: 'View Device Setup Guide', href: hrefs.guide }
+          },
+          {
+            q: 'How can I change Adhan alarms or prayer notifications?',
+            bulletStart: 1,
+            a: [
+              'Open the prayer timings screen by tapping the prayer time bar on the homepage. From there, select any prayer to customize:',
+              'Adhan sound',
+              'Notification settings',
+              'Alarm preferences',
+              'Reminder options'
+            ]
+          }
         ]
       },
       {
-        q: 'How can I contact support?',
-        bulletStart: 1,
-        bulletEnd: 3,
-        a: [
-          'You can contact our support team directly through:',
-          'the Contact Us section in the app',
-          'our website support form',
-          'email support',
-          'Please include screenshots or screen recordings when reporting technical issues.'
+        id: 'premium-payments',
+        title: 'Premium & Payments',
+        faqs: [
+          {
+            q: 'How can I purchase the premium version using EasyPaisa?',
+            bulletStart: 1,
+            bulletEnd: 4,
+            a: [
+              'You can purchase Quran Majeed premium using EasyPaisa in a few simple steps:',
+              'Open the Premium section inside the app',
+              'Select your preferred package',
+              'Choose EasyPaisa as the payment method',
+              'Complete payment using the provided consumer number',
+              'If assistance is required, our support team will be happy to help.'
+            ]
+          },
+          {
+            q: 'I purchased the premium version on iPhone, but it now shows the free version. How can I restore my purchase?',
+            bulletEnd: 4,
+            a: [
+              'You can restore your premium purchase using the same Apple ID originally used for the subscription or purchase.',
+              'To restore:',
+              'Open the app',
+              'Go to Premium or Settings',
+              'Tap "Restore Purchase"',
+              'You will not be charged again.'
+            ]
+          },
+          {
+            q: 'I do not have a credit card. Can I pay through a bank account or another payment method?',
+            a: [
+              'Available payment methods depend on the Apple App Store or Google Play Store policies for your region.',
+              'You may also:',
+              'Use EasyPaisa where available',
+              'Use supported local payment methods',
+              'Purchase through family or shared payment methods connected to your store account'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'prayer-times',
+        title: 'Prayer Times',
+        faqs: [
+          {
+            q: 'How can I view all prayer times for today?',
+            a: [
+              'Tap the prayer timings bar on the app homepage to open the complete prayer schedule for the day.',
+              'You can also:',
+              'View upcoming prayers',
+              'Customize calculation methods',
+              'Enable notifications',
+              'Access Qibla direction settings'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'app-settings',
+        title: 'App Settings',
+        faqs: [
+          {
+            q: 'Where can I manage Quran Majeed app settings?',
+            a: [
+              'Open Quran Majeed and go to Settings to manage reading preferences, notifications, audio downloads, themes, language options, and prayer timing behavior.',
+              'If a setting is not visible, update the app to the latest version from the App Store or Google Play Store.'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'account-restore-purchases',
+        title: 'Account & Restore Purchases',
+        faqs: [
+          {
+            q: 'What account should I use to restore premium access?',
+            a: [
+              'Use the same Apple ID or Google account that was originally used for the purchase.',
+              'Purchases are managed by Apple App Store or Google Play Store, so premium access can only be restored through the original store account.'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'troubleshooting',
+        title: 'Troubleshooting',
+        faqs: [
+          {
+            q: 'The app is not working properly or crashes frequently. What should I do?',
+            bulletStart: 1,
+            bulletEnd: 5,
+            a: [
+              'Please try the following troubleshooting steps:',
+              'Update the app to the latest version',
+              'Restart your device',
+              'Clear app cache on Android',
+              'Ensure enough device storage is available',
+              'Reinstall the app if necessary',
+              'If the issue continues, please contact our support team with your device model, app version, and a screen recording if possible.'
+            ]
+          },
+          {
+            q: 'How can I contact support?',
+            bulletStart: 1,
+            bulletEnd: 3,
+            a: [
+              'You can contact our support team directly through:',
+              'the Contact Us section in the app',
+              'our website support form',
+              'email support',
+              'Please include screenshots or screen recordings when reporting technical issues.'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'android-support',
+        title: 'Android Support',
+        faqs: [
+          {
+            q: 'Why do Android phones need extra notification setup?',
+            a: [
+              'Many Android manufacturers add battery-saving rules that can stop scheduled notifications in the background.',
+              'For reliable Adhan alerts, allow notifications, background activity, and auto-start permissions where available.'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'iphone-ipad-support',
+        title: 'iPhone/iPad Support',
+        faqs: [
+          {
+            q: 'What should I check for notifications on iPhone or iPad?',
+            a: [
+              'Open iOS Settings and confirm that notifications are allowed for Quran Majeed.',
+              'Also check Focus, Sleep, and Do Not Disturb modes because they can silence prayer notifications.'
+            ]
+          }
         ]
       }
     ]
   },
-  {
-    id: 'android-support',
-    title: 'Android Support',
-    faqs: [
+  ur: {
+    copy: {
+      seoTitle: 'پاک ڈیٹا ہیلپ سینٹر | قرآن مجید ایپس کے لیے سوالات اور سپورٹ',
+      seoDesc: 'قرآن مجید، اذان نوٹیفکیشنز، پریمیم سبسکرپشن، نماز کے اوقات، ادائیگی، مسائل کے حل اور ایپ سپورٹ سے متعلق عام سوالات کے جوابات حاصل کریں۔',
+      heroBadge: 'ہیلپ سینٹر',
+      heroTitle: 'ہیلپ سینٹر اور اکثر پوچھے گئے سوالات',
+      heroBody: 'قرآن مجید اور دیگر ڈیجیٹل پراڈکٹس سمیت پاک ڈیٹا کی ایپس کے لیے فوری جوابات، مسائل کے حل کی گائیڈز، ادائیگی میں مدد اور مفید معلومات حاصل کریں۔',
+      searchPlaceholder: 'مدد کے مضامین، نوٹیفکیشنز، سبسکرپشن، نماز کے اوقات، ادائیگی تلاش کریں...',
+      searchLabel: 'مدد کے مضامین تلاش کریں',
+      quickTitle: 'فوری مدد',
+      quickHelp: [
+        { title: 'نوٹیفکیشنز ٹھیک کریں', body: 'تاخیر سے آنے والے یا غائب اذان الرٹس کے لیے ڈیوائس سیٹ اپ کے مراحل۔', href: '#notifications' },
+        { title: 'پریمیم بحال کریں', body: 'اپنی Apple ID یا Google اکاؤنٹ کے ذریعے خریداری بحال کریں۔', href: '#premium-payments' },
+        { title: 'نماز کے اوقات', body: 'نماز کے اوقات کی سیٹنگز دیکھیں، اپنی مرضی کے مطابق بنائیں اور منظم کریں۔', href: '#prayer-times' },
+        { title: 'ادائیگی میں مدد', body: 'ایزی پیسہ، ایپ اسٹور کی ادائیگیاں اور مقامی ادائیگی کے طریقے۔', href: '#premium-payments' }
+      ],
+      categoriesTitle: 'زمرہ کے لحاظ سے دیکھیں',
+      faqBadge: 'سوالات',
+      guidesBadge: 'گائیڈز',
+      tutorialsBadge: 'ٹیوٹوریلز',
+      supportBadge: 'سپورٹ',
+      videoTitle: 'ویڈیو ٹیوٹوریلز',
+      videoBody: 'مرحلہ وار ویڈیو گائیڈز صارفین کو نوٹیفکیشن، پریمیم اور نماز کے اوقات کے مسائل جلد حل کرنے میں مدد دیتی ہیں۔',
+      videos: ['اذان نوٹیفکیشنز ٹھیک کریں', 'پریمیم خریداری بحال کریں', 'نماز کے اوقات اپنی مرضی کے مطابق بنائیں'],
+      deviceTitle: 'ڈیوائس کے لحاظ سے گائیڈز',
+      deviceBody: 'نوٹیفکیشن سیٹنگز ہر ڈیوائس پر مختلف ہوتی ہیں۔ ان گائیڈز کی مدد سے قرآن مجید کو بیک گراؤنڈ میں بلا تعطل چلنے کی اجازت دیں۔',
+      devices: [
+        { name: 'Samsung Galaxy', note: 'بیٹری آپٹیمائزیشن بند کریں', href: hrefs.samsung },
+        { name: 'Google Pixel / Nexus', note: 'ایڈاپٹیو بیٹری بند کریں', href: hrefs.generic },
+        { name: 'Huawei', note: 'پاور آپٹیمائزیشن بند کریں', href: hrefs.huawei },
+        { name: 'OnePlus', note: 'بیٹری کی پابندیاں ختم کریں', href: hrefs.oneplus },
+        { name: 'iPhone / iPad', note: 'نوٹیفکیشنز اور Focus موڈز چیک کریں', href: '#iphone-ipad-support' }
+      ],
+      supportTitle: 'اب بھی مدد درکار ہے؟',
+      supportBody: 'ہماری سپورٹ ٹیم تکنیکی مسائل، سبسکرپشن، نوٹیفکیشنز اور ایپ سے متعلق سوالات میں آپ کی مدد کے لیے موجود ہے۔',
+      contactSupport: 'سپورٹ سے رابطہ کریں',
+      submitRequest: 'درخواست جمع کرائیں',
+      footerDesc: 'قرآن مجید اور پاک ڈیٹا کی دیگر ایپس کے لیے جوابات، مسائل کے حل کی گائیڈز اور سپورٹ کے وسائل حاصل کریں۔'
+    },
+    faqCategories: [
       {
-        q: 'Why do Android phones need extra notification setup?',
-        a: [
-          'Many Android manufacturers add battery-saving rules that can stop scheduled notifications in the background.',
-          'For reliable Adhan alerts, allow notifications, background activity, and auto-start permissions where available.'
+        id: 'notifications',
+        title: 'نوٹیفکیشنز اور اذان',
+        faqs: [
+          {
+            q: 'میری ڈیوائس پر اذان نوٹیفکیشنز تاخیر سے آتی ہیں یا کام نہیں کر رہیں۔ میں اسے کیسے ٹھیک کروں؟',
+            a: [
+              'کچھ Android ڈیوائسز بیٹری بچانے کے لیے بیک گراؤنڈ سرگرمی کو خود بخود محدود کر دیتی ہیں۔ اس کی وجہ سے قرآن مجید اذان نوٹیفکیشنز بروقت نہیں دے پاتی۔',
+              'یہ مسئلہ حل کرنے کے لیے:',
+              'قرآن مجید کے لیے بیٹری آپٹیمائزیشن بند کریں',
+              'بیک گراؤنڈ سرگرمی کی اجازت دیں',
+              'اگر دستیاب ہو تو آٹو اسٹارٹ کی اجازت فعال کریں',
+              'یقینی بنائیں کہ ڈیوائس سیٹنگز میں نوٹیفکیشنز فعال ہیں'
+            ],
+            links: [
+              { label: 'Samsung Galaxy - بیٹری آپٹیمائزیشن بند کریں', href: hrefs.samsung },
+              { label: 'Google Pixel / Nexus - ایڈاپٹیو بیٹری بند کریں', href: hrefs.generic },
+              { label: 'Huawei - پاور آپٹیمائزیشن بند کریں', href: hrefs.huawei },
+              { label: 'OnePlus - بیٹری کی پابندیاں ختم کریں', href: hrefs.oneplus }
+            ],
+            cta: { label: 'ڈیوائس سیٹ اپ گائیڈ دیکھیں', href: hrefs.guide }
+          },
+          {
+            q: 'میں اذان الارم یا نماز کے نوٹیفکیشنز کیسے تبدیل کر سکتا ہوں؟',
+            bulletStart: 1,
+            a: [
+              'ہوم پیج پر نماز کے وقت والی بار پر ٹیپ کر کے نماز کے اوقات کی اسکرین کھولیں۔ وہاں سے کسی بھی نماز کو منتخب کر کے یہ چیزیں اپنی مرضی کے مطابق بنائیں:',
+              'اذان کی آواز',
+              'نوٹیفکیشن سیٹنگز',
+              'الارم کی ترجیحات',
+              'یاد دہانی کے اختیارات'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'premium-payments',
+        title: 'پریمیم اور ادائیگیاں',
+        faqs: [
+          {
+            q: 'میں ایزی پیسہ کے ذریعے پریمیم ورژن کیسے خرید سکتا ہوں؟',
+            bulletStart: 1,
+            bulletEnd: 4,
+            a: [
+              'آپ چند آسان مراحل میں ایزی پیسہ کے ذریعے قرآن مجید پریمیم خرید سکتے ہیں:',
+              'ایپ میں Premium سیکشن کھولیں',
+              'اپنا پسندیدہ پیکج منتخب کریں',
+              'ادائیگی کے طریقے کے طور پر ایزی پیسہ منتخب کریں',
+              'فراہم کردہ کنزیومر نمبر کے ذریعے ادائیگی مکمل کریں',
+              'اگر مدد درکار ہو تو ہماری سپورٹ ٹیم خوشی سے آپ کی مدد کرے گی۔'
+            ]
+          },
+          {
+            q: 'میں نے iPhone پر پریمیم ورژن خریدا تھا لیکن اب یہ مفت ورژن دکھا رہا ہے۔ میں اپنی خریداری کیسے بحال کروں؟',
+            bulletEnd: 4,
+            a: [
+              'آپ اسی Apple ID کے ذریعے اپنی پریمیم خریداری بحال کر سکتے ہیں جو اصل سبسکرپشن یا خریداری کے لیے استعمال کی گئی تھی۔',
+              'بحال کرنے کے لیے:',
+              'ایپ کھولیں',
+              'Premium یا Settings میں جائیں',
+              '"Restore Purchase" (خریداری بحال کریں) پر ٹیپ کریں',
+              'آپ سے دوبارہ رقم نہیں لی جائے گی۔'
+            ]
+          },
+          {
+            q: 'میرے پاس کریڈٹ کارڈ نہیں ہے۔ کیا میں بینک اکاؤنٹ یا کسی اور طریقے سے ادائیگی کر سکتا ہوں؟',
+            a: [
+              'دستیاب ادائیگی کے طریقے آپ کے علاقے کے لیے Apple App Store یا Google Play Store کی پالیسیوں پر منحصر ہیں۔',
+              'آپ یہ بھی کر سکتے ہیں:',
+              'جہاں دستیاب ہو ایزی پیسہ استعمال کریں',
+              'معاون مقامی ادائیگی کے طریقے استعمال کریں',
+              'اپنے اسٹور اکاؤنٹ سے منسلک فیملی یا مشترکہ ادائیگی کے طریقوں سے خریداری کریں'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'prayer-times',
+        title: 'نماز کے اوقات',
+        faqs: [
+          {
+            q: 'میں آج کے تمام نماز کے اوقات کیسے دیکھ سکتا ہوں؟',
+            a: [
+              'دن بھر کی نمازوں کا مکمل شیڈول کھولنے کے لیے ایپ کے ہوم پیج پر نماز کے اوقات والی بار پر ٹیپ کریں۔',
+              'آپ یہ بھی کر سکتے ہیں:',
+              'آنے والی نمازیں دیکھیں',
+              'حساب کے طریقے اپنی مرضی کے مطابق منتخب کریں',
+              'نوٹیفکیشنز فعال کریں',
+              'قبلہ کی سمت کی سیٹنگز تک رسائی حاصل کریں'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'app-settings',
+        title: 'ایپ سیٹنگز',
+        faqs: [
+          {
+            q: 'میں قرآن مجید ایپ کی سیٹنگز کہاں سے منظم کر سکتا ہوں؟',
+            a: [
+              'قرآن مجید کھولیں اور Settings میں جا کر مطالعے کی ترجیحات، نوٹیفکیشنز، آڈیو ڈاؤن لوڈز، تھیمز، زبان کے اختیارات اور نماز کے اوقات کی سیٹنگز منظم کریں۔',
+              'اگر کوئی سیٹنگ نظر نہ آئے تو App Store یا Google Play Store سے ایپ کو تازہ ترین ورژن پر اپ ڈیٹ کریں۔'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'account-restore-purchases',
+        title: 'اکاؤنٹ اور خریداری کی بحالی',
+        faqs: [
+          {
+            q: 'پریمیم رسائی بحال کرنے کے لیے مجھے کون سا اکاؤنٹ استعمال کرنا چاہیے؟',
+            a: [
+              'وہی Apple ID یا Google اکاؤنٹ استعمال کریں جو اصل خریداری کے لیے استعمال ہوا تھا۔',
+              'خریداریاں Apple App Store یا Google Play Store کے ذریعے منظم ہوتی ہیں، اس لیے پریمیم رسائی صرف اصل اسٹور اکاؤنٹ کے ذریعے ہی بحال کی جا سکتی ہے۔'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'troubleshooting',
+        title: 'مسائل کا حل',
+        faqs: [
+          {
+            q: 'ایپ ٹھیک سے کام نہیں کر رہی یا بار بار بند ہو جاتی ہے۔ مجھے کیا کرنا چاہیے؟',
+            bulletStart: 1,
+            bulletEnd: 5,
+            a: [
+              'براہِ کرم درج ذیل اقدامات آزمائیں:',
+              'ایپ کو تازہ ترین ورژن پر اپ ڈیٹ کریں',
+              'اپنی ڈیوائس ری اسٹارٹ کریں',
+              'Android پر ایپ کا کیش صاف کریں',
+              'یقینی بنائیں کہ ڈیوائس میں کافی اسٹوریج موجود ہے',
+              'ضرورت ہو تو ایپ دوبارہ انسٹال کریں',
+              'اگر مسئلہ برقرار رہے تو براہِ کرم اپنی ڈیوائس کے ماڈل، ایپ ورژن اور اگر ممکن ہو تو اسکرین ریکارڈنگ کے ساتھ ہماری سپورٹ ٹیم سے رابطہ کریں۔'
+            ]
+          },
+          {
+            q: 'میں سپورٹ سے کیسے رابطہ کر سکتا ہوں؟',
+            bulletStart: 1,
+            bulletEnd: 3,
+            a: [
+              'آپ ہماری سپورٹ ٹیم سے براہِ راست ان ذرائع سے رابطہ کر سکتے ہیں:',
+              'ایپ میں Contact Us سیکشن',
+              'ہماری ویب سائٹ کا سپورٹ فارم',
+              'ای میل سپورٹ',
+              'تکنیکی مسائل کی اطلاع دیتے وقت براہِ کرم اسکرین شاٹس یا اسکرین ریکارڈنگ شامل کریں۔'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'android-support',
+        title: 'Android سپورٹ',
+        faqs: [
+          {
+            q: 'Android فونز میں نوٹیفکیشنز کے لیے اضافی سیٹ اپ کیوں درکار ہوتا ہے؟',
+            a: [
+              'بہت سے Android مینوفیکچررز بیٹری بچانے کے ایسے قواعد شامل کرتے ہیں جو بیک گراؤنڈ میں شیڈول شدہ نوٹیفکیشنز کو روک سکتے ہیں۔',
+              'اذان الرٹس بروقت حاصل کرنے کے لیے نوٹیفکیشنز، بیک گراؤنڈ سرگرمی اور جہاں دستیاب ہو آٹو اسٹارٹ کی اجازت دیں۔'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'iphone-ipad-support',
+        title: 'iPhone/iPad سپورٹ',
+        faqs: [
+          {
+            q: 'iPhone یا iPad پر نوٹیفکیشنز کے لیے مجھے کیا چیک کرنا چاہیے؟',
+            a: [
+              'iOS کی Settings کھولیں اور تصدیق کریں کہ قرآن مجید کے لیے نوٹیفکیشنز کی اجازت ہے۔',
+              'Focus، Sleep اور Do Not Disturb موڈز بھی چیک کریں کیونکہ یہ نماز کے نوٹیفکیشنز کو خاموش کر سکتے ہیں۔'
+            ]
+          }
         ]
       }
     ]
   },
-  {
-    id: 'iphone-ipad-support',
-    title: 'iPhone/iPad Support',
-    faqs: [
+  ar: {
+    copy: {
+      seoTitle: 'مركز مساعدة باك ديتا | الأسئلة الشائعة والدعم لتطبيقات القرآن المجيد',
+      seoDesc: 'اعثر على إجابات للأسئلة الشائعة حول القرآن المجيد وإشعارات الأذان والاشتراكات المميزة ومواقيت الصلاة والدفع وحل المشكلات ودعم التطبيق.',
+      heroBadge: 'مركز المساعدة',
+      heroTitle: 'مركز المساعدة والأسئلة الشائعة',
+      heroBody: 'اعثر على إجابات سريعة وأدلة لحل المشكلات ودعم للدفع وموارد مفيدة لتطبيقات باك ديتا، بما في ذلك القرآن المجيد وغيره من المنتجات الرقمية.',
+      searchPlaceholder: 'ابحث في مقالات المساعدة والإشعارات والاشتراكات ومواقيت الصلاة والدفع...',
+      searchLabel: 'ابحث في مقالات المساعدة',
+      quickTitle: 'مساعدة سريعة',
+      quickHelp: [
+        { title: 'إصلاح الإشعارات', body: 'خطوات إعداد الجهاز لتنبيهات الأذان المتأخرة أو المفقودة.', href: '#notifications' },
+        { title: 'استعادة النسخة المميزة', body: 'استعد مشترياتك باستخدام Apple ID أو حساب Google.', href: '#premium-payments' },
+        { title: 'مواقيت الصلاة', body: 'اعرض إعدادات مواقيت الصلاة وخصّصها وأدِرها.', href: '#prayer-times' },
+        { title: 'المساعدة في الدفع', body: 'EasyPaisa ومدفوعات متاجر التطبيقات وخيارات الدفع المحلية.', href: '#premium-payments' }
+      ],
+      categoriesTitle: 'تصفح حسب الفئة',
+      faqBadge: 'الأسئلة الشائعة',
+      guidesBadge: 'الأدلة',
+      tutorialsBadge: 'دروس',
+      supportBadge: 'الدعم',
+      videoTitle: 'دروس الفيديو',
+      videoBody: 'تساعد الأدلة المرئية خطوة بخطوة المستخدمين على حل مشكلات الإشعارات والنسخة المميزة ومواقيت الصلاة بشكل أسرع.',
+      videos: ['إصلاح إشعارات الأذان', 'استعادة شراء النسخة المميزة', 'تخصيص مواقيت الصلاة'],
+      deviceTitle: 'أدلة خاصة بالأجهزة',
+      deviceBody: 'تختلف إعدادات الإشعارات من جهاز لآخر. استخدم هذه الأدلة للسماح للقرآن المجيد بالعمل في الخلفية بشكل موثوق.',
+      devices: [
+        { name: 'Samsung Galaxy', note: 'تعطيل تحسين البطارية', href: hrefs.samsung },
+        { name: 'Google Pixel / Nexus', note: 'تعطيل البطارية التكيفية', href: hrefs.generic },
+        { name: 'Huawei', note: 'تعطيل تحسين الطاقة', href: hrefs.huawei },
+        { name: 'OnePlus', note: 'إلغاء قيود البطارية', href: hrefs.oneplus },
+        { name: 'iPhone / iPad', note: 'تحقق من الإشعارات وأوضاع التركيز', href: '#iphone-ipad-support' }
+      ],
+      supportTitle: 'هل ما زلت بحاجة إلى مساعدة؟',
+      supportBody: 'فريق الدعم لدينا جاهز لمساعدتك في المشكلات التقنية والاشتراكات والإشعارات والأسئلة المتعلقة بالتطبيق.',
+      contactSupport: 'اتصل بالدعم',
+      submitRequest: 'أرسل طلبًا',
+      footerDesc: 'اعثر على إجابات وأدلة لحل المشكلات وموارد دعم للقرآن المجيد وتطبيقات باك ديتا الأخرى.'
+    },
+    faqCategories: [
       {
-        q: 'What should I check for notifications on iPhone or iPad?',
-        a: [
-          'Open iOS Settings and confirm that notifications are allowed for Quran Majeed.',
-          'Also check Focus, Sleep, and Do Not Disturb modes because they can silence prayer notifications.'
+        id: 'notifications',
+        title: 'الإشعارات والأذان',
+        faqs: [
+          {
+            q: 'إشعارات الأذان تتأخر أو لا تعمل على جهازي. كيف يمكنني إصلاح ذلك؟',
+            a: [
+              'تقيّد بعض أجهزة Android النشاط في الخلفية تلقائيًا لتوفير البطارية، وقد يمنع ذلك تطبيق القرآن المجيد من إرسال إشعارات الأذان في وقتها.',
+              'لحل هذه المشكلة:',
+              'عطّل تحسين البطارية لتطبيق القرآن المجيد',
+              'اسمح بالنشاط في الخلفية',
+              'فعّل أذونات التشغيل التلقائي إن كانت متاحة',
+              'تأكد من تفعيل الإشعارات في إعدادات الجهاز'
+            ],
+            links: [
+              { label: 'Samsung Galaxy - تعطيل تحسين البطارية', href: hrefs.samsung },
+              { label: 'Google Pixel / Nexus - تعطيل البطارية التكيفية', href: hrefs.generic },
+              { label: 'Huawei - تعطيل تحسين الطاقة', href: hrefs.huawei },
+              { label: 'OnePlus - إلغاء قيود البطارية', href: hrefs.oneplus }
+            ],
+            cta: { label: 'عرض دليل إعداد الجهاز', href: hrefs.guide }
+          },
+          {
+            q: 'كيف يمكنني تغيير منبه الأذان أو إشعارات الصلاة؟',
+            bulletStart: 1,
+            a: [
+              'افتح شاشة مواقيت الصلاة بالنقر على شريط وقت الصلاة في الصفحة الرئيسية. ومن هناك اختر أي صلاة لتخصيص:',
+              'صوت الأذان',
+              'إعدادات الإشعارات',
+              'تفضيلات المنبه',
+              'خيارات التذكير'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'premium-payments',
+        title: 'النسخة المميزة والدفع',
+        faqs: [
+          {
+            q: 'كيف يمكنني شراء النسخة المميزة باستخدام EasyPaisa؟',
+            bulletStart: 1,
+            bulletEnd: 4,
+            a: [
+              'يمكنك شراء النسخة المميزة من القرآن المجيد باستخدام EasyPaisa في خطوات بسيطة:',
+              'افتح قسم Premium داخل التطبيق',
+              'اختر الباقة التي تفضلها',
+              'اختر EasyPaisa كطريقة للدفع',
+              'أكمل الدفع باستخدام رقم المستهلك المقدَّم',
+              'إذا احتجت إلى مساعدة، فسيسعد فريق الدعم لدينا بمساعدتك.'
+            ]
+          },
+          {
+            q: 'اشتريت النسخة المميزة على iPhone، لكنها تظهر الآن كنسخة مجانية. كيف أستعيد مشترياتي؟',
+            bulletEnd: 4,
+            a: [
+              'يمكنك استعادة مشترياتك المميزة باستخدام نفس Apple ID الذي استُخدم في الاشتراك أو الشراء الأصلي.',
+              'للاستعادة:',
+              'افتح التطبيق',
+              'انتقل إلى Premium أو الإعدادات',
+              'انقر على "Restore Purchase" (استعادة المشتريات)',
+              'لن يتم خصم أي مبلغ منك مرة أخرى.'
+            ]
+          },
+          {
+            q: 'لا أملك بطاقة ائتمان. هل يمكنني الدفع عبر حساب مصرفي أو طريقة دفع أخرى؟',
+            a: [
+              'تعتمد طرق الدفع المتاحة على سياسات Apple App Store أو Google Play Store في منطقتك.',
+              'يمكنك أيضًا:',
+              'استخدام EasyPaisa حيثما كان متاحًا',
+              'استخدام طرق الدفع المحلية المدعومة',
+              'الشراء عبر طرق الدفع العائلية أو المشتركة المرتبطة بحساب المتجر الخاص بك'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'prayer-times',
+        title: 'مواقيت الصلاة',
+        faqs: [
+          {
+            q: 'كيف يمكنني عرض جميع مواقيت الصلاة لهذا اليوم؟',
+            a: [
+              'انقر على شريط مواقيت الصلاة في الصفحة الرئيسية للتطبيق لفتح جدول الصلوات الكامل لليوم.',
+              'يمكنك أيضًا:',
+              'عرض الصلوات القادمة',
+              'تخصيص طرق الحساب',
+              'تفعيل الإشعارات',
+              'الوصول إلى إعدادات اتجاه القبلة'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'app-settings',
+        title: 'إعدادات التطبيق',
+        faqs: [
+          {
+            q: 'أين يمكنني إدارة إعدادات تطبيق القرآن المجيد؟',
+            a: [
+              'افتح القرآن المجيد وانتقل إلى الإعدادات لإدارة تفضيلات القراءة والإشعارات وتنزيلات الصوت والسمات وخيارات اللغة وإعدادات مواقيت الصلاة.',
+              'إذا لم يظهر أحد الإعدادات، فحدّث التطبيق إلى أحدث إصدار من App Store أو Google Play Store.'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'account-restore-purchases',
+        title: 'الحساب واستعادة المشتريات',
+        faqs: [
+          {
+            q: 'ما الحساب الذي يجب أن أستخدمه لاستعادة النسخة المميزة؟',
+            a: [
+              'استخدم نفس Apple ID أو حساب Google الذي استُخدم في عملية الشراء الأصلية.',
+              'تتم إدارة المشتريات عبر Apple App Store أو Google Play Store، لذلك لا يمكن استعادة النسخة المميزة إلا من خلال حساب المتجر الأصلي.'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'troubleshooting',
+        title: 'حل المشكلات',
+        faqs: [
+          {
+            q: 'التطبيق لا يعمل بشكل صحيح أو يتوقف كثيرًا. ماذا أفعل؟',
+            bulletStart: 1,
+            bulletEnd: 5,
+            a: [
+              'يرجى تجربة خطوات حل المشكلات التالية:',
+              'حدّث التطبيق إلى أحدث إصدار',
+              'أعد تشغيل جهازك',
+              'امسح ذاكرة التخزين المؤقت للتطبيق على Android',
+              'تأكد من توفر مساحة تخزين كافية على الجهاز',
+              'أعد تثبيت التطبيق إذا لزم الأمر',
+              'إذا استمرت المشكلة، يرجى التواصل مع فريق الدعم مع ذكر طراز جهازك وإصدار التطبيق وتسجيل للشاشة إن أمكن.'
+            ]
+          },
+          {
+            q: 'كيف يمكنني التواصل مع الدعم؟',
+            bulletStart: 1,
+            bulletEnd: 3,
+            a: [
+              'يمكنك التواصل مع فريق الدعم مباشرةً عبر:',
+              'قسم Contact Us (اتصل بنا) في التطبيق',
+              'نموذج الدعم على موقعنا الإلكتروني',
+              'الدعم عبر البريد الإلكتروني',
+              'يرجى إرفاق لقطات شاشة أو تسجيلات للشاشة عند الإبلاغ عن المشكلات التقنية.'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'android-support',
+        title: 'دعم Android',
+        faqs: [
+          {
+            q: 'لماذا تحتاج هواتف Android إلى إعداد إضافي للإشعارات؟',
+            a: [
+              'تضيف العديد من الشركات المصنعة لأجهزة Android قواعد لتوفير البطارية قد توقف الإشعارات المجدولة في الخلفية.',
+              'للحصول على تنبيهات أذان موثوقة، اسمح بالإشعارات والنشاط في الخلفية وأذونات التشغيل التلقائي حيثما كانت متاحة.'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'iphone-ipad-support',
+        title: 'دعم iPhone/iPad',
+        faqs: [
+          {
+            q: 'ما الذي يجب أن أتحقق منه بشأن الإشعارات على iPhone أو iPad؟',
+            a: [
+              'افتح إعدادات iOS وتأكد من السماح بالإشعارات لتطبيق القرآن المجيد.',
+              'تحقق أيضًا من أوضاع التركيز (Focus) والنوم (Sleep) وعدم الإزعاج (Do Not Disturb) لأنها قد تكتم إشعارات الصلاة.'
+            ]
+          }
         ]
       }
     ]
   }
-];
+}[lang];
+
+const { copy, faqCategories } = content;
 
 const faqJsonLd = {
   '@context': 'https://schema.org',
@@ -243,7 +699,7 @@ const faqJsonLd = {
         <h1 class="faq-title">{copy.heroTitle}</h1>
         <p class="faq-lead">{copy.heroBody}</p>
         <form class="faq-search" role="search">
-          <input id="faq-search-input" type="search" placeholder={copy.searchPlaceholder} aria-label="Search help articles" />
+          <input id="faq-search-input" type="search" placeholder={copy.searchPlaceholder} aria-label={copy.searchLabel} />
         </form>
       </div>
       <div class="faq-hero-panel card">
@@ -286,7 +742,7 @@ const faqJsonLd = {
         {faqCategories.map((category, categoryIndex) => (
           <section class="faq-category" id={category.id} data-faq-category>
             <div class="section-title-wrap tight">
-              <span class="badge badge-primary">FAQ</span>
+              <span class="badge badge-primary">{copy.faqBadge}</span>
               <h2 class="section-title">{category.title}</h2>
             </div>
 
@@ -317,7 +773,7 @@ const faqJsonLd = {
   <section class="section section-bg">
     <div class="container support-grid">
       <div class="support-info">
-        <span class="badge badge-primary">Guides</span>
+        <span class="badge badge-primary">{copy.guidesBadge}</span>
         <h2 class="section-title">{copy.deviceTitle}</h2>
         <p class="faq-body">{copy.deviceBody}</p>
       </div>
@@ -335,7 +791,7 @@ const faqJsonLd = {
   <section class="section">
     <div class="container video-section">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Tutorials</span>
+        <span class="badge badge-primary">{copy.tutorialsBadge}</span>
         <h2 class="section-title">{copy.videoTitle}</h2>
         <p class="faq-body">{copy.videoBody}</p>
       </div>
@@ -353,7 +809,7 @@ const faqJsonLd = {
   <section class="section section-bg">
     <div class="container faq-cta">
       <div>
-        <span class="badge badge-primary">Support</span>
+        <span class="badge badge-primary">{copy.supportBadge}</span>
         <h2 class="section-title">{copy.supportTitle}</h2>
         <p class="faq-body">{copy.supportBody}</p>
       </div>

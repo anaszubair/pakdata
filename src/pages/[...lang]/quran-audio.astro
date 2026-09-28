@@ -12,45 +12,103 @@ import { getLangFromUrl } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 
-const title = 'Instructions for Importing Quran Audio using iTunes File Sharing';
-const description = 'Learn how to import Quran audio files into Quran Majeed, Quran Tafsir, or Quran Pak using iTunes File Sharing.';
-const appStoreLink = 'https://apps.apple.com/us/app/quran-audio-sheikh-sudays-shuraym/id474156566';
+const appStoreUrl = (id: string) => `https://apps.apple.com/app/id${id}`;
 
+// App Store IDs from the old site. Mishari Rashid (id480924444) is no longer
+// on the App Store, so its card has no link.
 const reciters = [
-  'As-Sudais',
-  'Abdul Basit',
-  'Sheikh-Basfar',
-  'Sheikh Al-Huzaifi',
-  'Sheikh Ayoub',
-  'Saad Al Ghamd',
-  'Ahmed Ajmi',
-  'Mahir-al-Muayqali',
-  'Siddiq Minshawi',
-  'Mishari Rashid',
-  'Abu Bakr Shatry',
-  'English Translation Audio',
-  'Urdu Translation Audio'
+  { name: 'As-Sudais', appId: '474156566' },
+  { name: 'Abdul Basit', appId: '480917715' },
+  { name: 'Sheikh-Basfar', appId: '481593387' },
+  { name: 'Sheikh Al-Huzaifi', appId: '481594772' },
+  { name: 'Sheikh Ayoub', appId: '481592222' },
+  { name: 'Saad Al Ghamdi', appId: '482334749' },
+  { name: 'Ahmed Ajmi', appId: '482332935' },
+  { name: 'Mahir-al-Muayqali', appId: '480922361' },
+  { name: 'Siddiq Minshawi', appId: '481587866' },
+  { name: 'Mishari Rashid', appId: '' },
+  { name: 'Abu Bakr Shatry', appId: '485277876' },
+  { name: 'English Translation Audio', appId: '481931714' },
+  { name: 'Urdu Translation Audio', appId: '481926945' }
 ];
 
-const steps = [
-  'Download the desired Audio app using iTunes on your desktop computers. Currently audio files of the following reciters are available.',
-  "Click on the 'Apps' section of your Library and search for the just downloaded audio app. You can use the search box on top-right corner by entering 'Quran Audio' there. This will show you all 'Quran Audio' apps that you have downloaded.",
-  "Right-click on the audio app icon and select 'Show in Finder' (or 'Show in Windows Explorer') and remember the location of ipa file.",
-  "Now connect your device and in iTunes window, click on the name of your device under 'Devices' section.",
-  "Then click on the 'Apps' tabs and scroll to the bottom.",
-  "Under Apps list, select 'QuranMajeed' or 'Quran Tafsir' in which you want to import audio files.",
-  "Drag & drop the just download quran audio ipa file (which you found in step 3) to the Documents section adjacent to the Apps list.",
-  "When the copy is complete, exit & relaunch the 'QuranMajeed' or 'Quran Tafisr' app on your device to start the import process."
-];
+const copy = {
+  en: {
+    title: 'Instructions for Importing Quran Audio using iTunes File Sharing',
+    description: 'Learn how to import Quran audio files into Quran Majeed, Quran Tafsir, or Quran Pak using iTunes File Sharing.',
+    badge: 'Quran Audio',
+    lead: 'Please make sure that you are viewing this page in your desktop computer and then follow these instructions for importing Audio files in your Quran Majeed / Quran Tafsir or Quran Pak app v1.5.5 or later.',
+    recitersBadge: 'Reciters',
+    recitersTitle: 'Available Audio Apps',
+    stepsBadge: 'Steps',
+    stepsTitle: 'Import Quran Audio using iTunes File Sharing',
+    reciterNames: ['As-Sudais', 'Abdul Basit', 'Sheikh-Basfar', 'Sheikh Al-Huzaifi', 'Sheikh Ayoub', 'Saad Al Ghamdi', 'Ahmed Ajmi', 'Mahir-al-Muayqali', 'Siddiq Minshawi', 'Mishari Rashid', 'Abu Bakr Shatry', 'English Translation Audio', 'Urdu Translation Audio'],
+    steps: [
+      'Download the desired Audio app using iTunes on your desktop computers. Currently audio files of the following reciters are available.',
+      "Click on the 'Apps' section of your Library and search for the just downloaded audio app. You can use the search box on top-right corner by entering 'Quran Audio' there. This will show you all 'Quran Audio' apps that you have downloaded.",
+      "Right-click on the audio app icon and select 'Show in Finder' (or 'Show in Windows Explorer') and remember the location of ipa file.",
+      "Now connect your device and in iTunes window, click on the name of your device under 'Devices' section.",
+      "Then click on the 'Apps' tabs and scroll to the bottom.",
+      "Under Apps list, select 'QuranMajeed' or 'Quran Tafsir' in which you want to import audio files.",
+      "Drag & drop the just download quran audio ipa file (which you found in step 3) to the Documents section adjacent to the Apps list.",
+      "When the copy is complete, exit & relaunch the 'QuranMajeed' or 'Quran Tafisr' app on your device to start the import process."
+    ]
+  },
+  ur: {
+    title: 'آئی ٹیونز فائل شیئرنگ کے ذریعے قرآن آڈیو امپورٹ کرنے کی ہدایات',
+    description: 'آئی ٹیونز فائل شیئرنگ کے ذریعے قرآن مجید، قرآن تفسیر یا قرآن پاک ایپ میں قرآن آڈیو فائلیں امپورٹ کرنے کا طریقہ جانیں۔',
+    badge: 'قرآن آڈیو',
+    lead: 'براہِ کرم یقینی بنائیں کہ آپ یہ صفحہ اپنے ڈیسک ٹاپ کمپیوٹر پر دیکھ رہے ہیں، اور پھر اپنی قرآن مجید / قرآن تفسیر یا قرآن پاک ایپ ورژن v1.5.5 یا اس کے بعد کے ورژن میں آڈیو فائلیں امپورٹ کرنے کے لیے ان ہدایات پر عمل کریں۔',
+    recitersBadge: 'قراء',
+    recitersTitle: 'دستیاب آڈیو ایپس',
+    stepsBadge: 'مراحل',
+    stepsTitle: 'آئی ٹیونز فائل شیئرنگ کے ذریعے قرآن آڈیو امپورٹ کریں',
+    reciterNames: ['السدیس', 'عبدالباسط', 'شیخ بصفر', 'شیخ الحذیفی', 'شیخ ایوب', 'سعد الغامدی', 'احمد العجمی', 'ماہر المعیقلی', 'صدیق المنشاوی', 'مشاری راشد', 'ابو بکر الشاطری', 'انگریزی ترجمہ کی آڈیو', 'اردو ترجمہ کی آڈیو'],
+    steps: [
+      'اپنے ڈیسک ٹاپ کمپیوٹر پر آئی ٹیونز کے ذریعے اپنی پسندیدہ آڈیو ایپ ڈاؤن لوڈ کریں۔ فی الحال درج ذیل قراء حضرات کی تلاوت کی آڈیو فائلیں دستیاب ہیں۔',
+      "اپنی لائبریری کے 'Apps' (ایپس) سیکشن پر کلک کریں اور ابھی ڈاؤن لوڈ کی گئی آڈیو ایپ تلاش کریں۔ آپ اوپر دائیں کونے میں موجود سرچ باکس میں 'Quran Audio' لکھ کر تلاش کر سکتے ہیں۔ اس سے وہ تمام 'Quran Audio' ایپس نظر آئیں گی جو آپ ڈاؤن لوڈ کر چکے ہیں۔",
+      "آڈیو ایپ کے آئیکون پر رائٹ کلک کریں اور 'Show in Finder' (یا 'Show in Windows Explorer') منتخب کریں، اور ipa فائل کی لوکیشن یاد رکھیں۔",
+      "اب اپنی ڈیوائس کو کنیکٹ کریں اور آئی ٹیونز ونڈو میں 'Devices' سیکشن کے تحت اپنی ڈیوائس کے نام پر کلک کریں۔",
+      "پھر 'Apps' (ایپس) ٹیب پر کلک کریں اور نیچے تک اسکرول کریں۔",
+      "ایپس کی فہرست میں 'QuranMajeed' یا 'Quran Tafsir' منتخب کریں جس میں آپ آڈیو فائلیں امپورٹ کرنا چاہتے ہیں۔",
+      "ابھی ڈاؤن لوڈ کی گئی قرآن آڈیو ipa فائل (جو آپ نے مرحلہ 3 میں تلاش کی تھی) کو ایپس کی فہرست کے ساتھ موجود Documents سیکشن میں ڈریگ اینڈ ڈراپ کریں۔",
+      "کاپی مکمل ہونے کے بعد، امپورٹ کا عمل شروع کرنے کے لیے اپنی ڈیوائس پر 'QuranMajeed' یا 'Quran Tafsir' ایپ بند کر کے دوبارہ کھولیں۔"
+    ]
+  },
+  ar: {
+    title: 'تعليمات استيراد صوتيات القرآن باستخدام مشاركة الملفات في iTunes',
+    description: 'تعرّف على كيفية استيراد ملفات صوتيات القرآن إلى تطبيق القرآن المجيد أو Quran Tafsir أو Quran Pak باستخدام مشاركة الملفات في iTunes.',
+    badge: 'صوتيات القرآن',
+    lead: 'يرجى التأكد من أنك تتصفح هذه الصفحة على جهاز الكمبيوتر المكتبي، ثم اتبع هذه التعليمات لاستيراد الملفات الصوتية في تطبيق القرآن المجيد / Quran Tafsir أو Quran Pak الإصدار v1.5.5 أو أحدث.',
+    recitersBadge: 'القرّاء',
+    recitersTitle: 'التطبيقات الصوتية المتاحة',
+    stepsBadge: 'الخطوات',
+    stepsTitle: 'استيراد صوتيات القرآن باستخدام مشاركة الملفات في iTunes',
+    reciterNames: ['السديس', 'عبد الباسط', 'الشيخ بصفر', 'الشيخ الحذيفي', 'الشيخ أيوب', 'سعد الغامدي', 'أحمد العجمي', 'ماهر المعيقلي', 'صديق المنشاوي', 'مشاري راشد', 'أبو بكر الشاطري', 'صوتيات الترجمة الإنجليزية', 'صوتيات الترجمة الأردية'],
+    steps: [
+      'نزّل التطبيق الصوتي المطلوب باستخدام iTunes على جهاز الكمبيوتر المكتبي. تتوفر حاليًا الملفات الصوتية للقرّاء التالية أسماؤهم.',
+      "انقر على قسم 'Apps' (التطبيقات) في مكتبتك وابحث عن التطبيق الصوتي الذي نزّلته للتو. يمكنك استخدام مربع البحث في الزاوية العلوية اليمنى بكتابة 'Quran Audio' فيه، وسيعرض لك جميع تطبيقات 'Quran Audio' التي نزّلتها.",
+      "انقر بزر الفأرة الأيمن على أيقونة التطبيق الصوتي واختر 'Show in Finder' (أو 'Show in Windows Explorer')، وتذكّر موقع ملف ipa.",
+      "الآن وصّل جهازك، وفي نافذة iTunes انقر على اسم جهازك ضمن قسم 'Devices' (الأجهزة).",
+      "ثم انقر على علامة التبويب 'Apps' (التطبيقات) ومرّر إلى الأسفل.",
+      "ضمن قائمة التطبيقات، اختر 'QuranMajeed' أو 'Quran Tafsir' الذي تريد استيراد الملفات الصوتية إليه.",
+      "اسحب ملف ipa الخاص بصوتيات القرآن الذي نزّلته للتو (والذي حددت موقعه في الخطوة 3) وأفلته في قسم Documents (المستندات) المجاور لقائمة التطبيقات.",
+      "عند اكتمال النسخ، أغلق تطبيق 'QuranMajeed' أو 'Quran Tafsir' على جهازك ثم أعد تشغيله لبدء عملية الاستيراد."
+    ]
+  }
+}[lang];
+
+const { title, description, steps } = copy;
+const reciterList = reciters.map((reciter, idx) => ({ ...reciter, name: copy.reciterNames[idx] }));
 ---
 
 <Layout title={title} description={description}>
   <section class="audio-hero">
     <div class="container audio-hero-inner">
-      <span class="badge badge-primary">Quran Audio</span>
+      <span class="badge badge-primary">{copy.badge}</span>
       <h1 class="audio-title">{title}</h1>
       <p class="audio-lead">
-        Please make sure that you are viewing this page in your desktop computer and then follow these instructions for importing Audio files in your Quran Majeed / Quran Tafsir or Quran Pak app v1.5.5 or later.
+        {copy.lead}
       </p>
     </div>
   </section>
@@ -58,15 +116,20 @@ const steps = [
   <section class="section">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Reciters</span>
-        <h2 class="section-title">Available Audio Apps</h2>
+        <span class="badge badge-primary">{copy.recitersBadge}</span>
+        <h2 class="section-title">{copy.recitersTitle}</h2>
       </div>
       <div class="reciter-grid">
-        {reciters.map((reciter) => (
-          <a href={appStoreLink} class="reciter-card card" target="_blank" rel="noopener noreferrer">
-            <img src="/images/quranaudio.webp" alt={reciter} class="reciter-logo" />
-            <span class="reciter-name">{reciter}</span>
+        {reciterList.map((reciter) => reciter.appId ? (
+          <a href={appStoreUrl(reciter.appId)} class="reciter-card card" target="_blank" rel="noopener noreferrer">
+            <img src="/images/quranaudio.webp" alt="" class="reciter-logo" />
+            <span class="reciter-name">{reciter.name}</span>
           </a>
+        ) : (
+          <div class="reciter-card card">
+            <img src="/images/quranaudio.webp" alt="" class="reciter-logo" />
+            <span class="reciter-name">{reciter.name}</span>
+          </div>
         ))}
       </div>
     </div>
@@ -75,8 +138,8 @@ const steps = [
   <section class="section section-bg">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Steps</span>
-        <h2 class="section-title">Import Quran Audio using iTunes File Sharing</h2>
+        <span class="badge badge-primary">{copy.stepsBadge}</span>
+        <h2 class="section-title">{copy.stepsTitle}</h2>
       </div>
       <div class="steps-list">
         {steps.map((step, idx) => (

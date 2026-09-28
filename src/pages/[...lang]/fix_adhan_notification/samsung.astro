@@ -8,38 +8,95 @@ export function getStaticPaths() {
 }
 
 import AdhanFixLanding from '../../../components/AdhanFixLanding.astro';
+import { getLangFromUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const images = [
+  { src: '/images/samsung/01.-Settings.png', alt: 'Samsung settings step 1' },
+  { src: '/images/samsung/02.-Device-Maintenance.png', alt: 'Samsung device maintenance step 2' },
+  { src: '/images/samsung/03.-Battery-Usage.png', alt: 'Samsung battery usage step 3' },
+  { src: '/images/samsung/04.-Optimize-battery-usage.png', alt: 'Samsung optimize battery usage step 4' },
+  { src: '/images/samsung/2019-06-24.png', alt: 'Samsung all apps list step 5' }
+];
 
 const copy = {
-  seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App - Samsung',
-  seoDesc: 'Turn off Samsung battery optimization settings to receive Quran Majeed adhan notifications properly.',
-  badge: 'Samsung Help',
-  title: 'Fix Adhan Notification Issue In Quran Majeed App',
-  subtitle: 'For Samsung devices',
-  intro: 'Turn off optimization function in Optimize Battery Usage, please refer to the following steps.',
-  whyTitle: 'Why notifications stop',
-  whyBody: 'Samsung devices may aggressively optimize battery usage and prevent Quran Majeed from staying active in the background. Turning off optimization for the app helps adhan notifications come through properly.',
-  stepsTitle: 'Follow These Steps',
-  steps: [
-    'Open the Settings menu on your device and tap Device maintenance.',
-    'Tap Battery at the bottom left.',
-    'Tap Battery Usage.',
-    'Tap the more button on the action bar at the top right, and choose Optimize battery usage.',
-    'On the Optimize Battery Usage screen, switch to the All apps list from the drop-down to see all of the apps on your device. Turn off to exclude Quran Majeed from the Doze feature.'
-  ],
-  ctaBody: {
-    title: 'Need more help?',
-    text: 'Now you will receive adhan notifications properly. If the adhan notifications are still not working, you can ask for help via support@pakdata.com.'
+  en: {
+    seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App - Samsung',
+    seoDesc: 'Turn off Samsung battery optimization settings to receive Quran Majeed adhan notifications properly.',
+    badge: 'Samsung Help',
+    title: 'Fix Adhan Notification Issue In Quran Majeed App',
+    subtitle: 'For Samsung devices',
+    intro: 'Turn off optimization function in Optimize Battery Usage, please refer to the following steps.',
+    whyTitle: 'Why notifications stop',
+    whyBody: 'Samsung devices may aggressively optimize battery usage and prevent Quran Majeed from staying active in the background. Turning off optimization for the app helps adhan notifications come through properly.',
+    stepsTitle: 'Follow These Steps',
+    steps: [
+      'Open the Settings menu on your device and tap Device maintenance.',
+      'Tap Battery at the bottom left.',
+      'Tap Battery Usage.',
+      'Tap the more button on the action bar at the top right, and choose Optimize battery usage.',
+      'On the Optimize Battery Usage screen, switch to the All apps list from the drop-down to see all of the apps on your device. Turn off to exclude Quran Majeed from the Doze feature.'
+    ],
+    ctaBody: {
+      title: 'Need more help?',
+      text: 'Now you will receive adhan notifications properly. If the adhan notifications are still not working, you can ask for help via support@pakdata.com.'
+    },
+    ctaLabel: 'Contact Support',
+    deviceLabel: 'Samsung Guide',
+    images
   },
-  ctaLabel: 'Contact Support',
-  deviceLabel: 'Samsung Guide',
-  images: [
-    { src: '/images/samsung/01.-Settings.png', alt: 'Samsung settings step 1' },
-    { src: '/images/samsung/02.-Device-Maintenance.png', alt: 'Samsung device maintenance step 2' },
-    { src: '/images/samsung/03.-Battery-Usage.png', alt: 'Samsung battery usage step 3' },
-    { src: '/images/samsung/04.-Optimize-battery-usage.png', alt: 'Samsung optimize battery usage step 4' },
-    { src: '/images/samsung/2019-06-24.png', alt: 'Samsung all apps list step 5' }
-  ]
-};
+  ur: {
+    seoTitle: 'قرآن مجید ایپ میں اذان نوٹیفکیشن کا مسئلہ حل کریں - Samsung',
+    seoDesc: 'قرآن مجید کی اذان نوٹیفکیشنز درست طور پر حاصل کرنے کے لیے Samsung کی بیٹری آپٹیمائزیشن سیٹنگز بند کریں۔',
+    badge: 'Samsung مدد',
+    title: 'قرآن مجید ایپ میں اذان نوٹیفکیشن کا مسئلہ حل کریں',
+    subtitle: 'Samsung ڈیوائسز کے لیے',
+    intro: '"Optimize Battery Usage" میں آپٹیمائزیشن کا فنکشن بند کریں، براہِ کرم درج ذیل مراحل دیکھیں۔',
+    whyTitle: 'نوٹیفکیشنز کیوں رک جاتی ہیں',
+    whyBody: 'Samsung ڈیوائسز بیٹری کے استعمال کو سختی سے آپٹیمائز کر سکتی ہیں اور قرآن مجید کو بیک گراؤنڈ میں فعال رہنے سے روک سکتی ہیں۔ ایپ کے لیے آپٹیمائزیشن بند کرنے سے اذان نوٹیفکیشنز درست طور پر موصول ہوتی ہیں۔',
+    stepsTitle: 'یہ مراحل اپنائیں',
+    steps: [
+      'اپنی ڈیوائس پر Settings مینو کھولیں اور "Device maintenance" (ڈیوائس کی دیکھ بھال) پر ٹیپ کریں۔',
+      'نیچے بائیں جانب "Battery" (بیٹری) پر ٹیپ کریں۔',
+      '"Battery Usage" (بیٹری کا استعمال) پر ٹیپ کریں۔',
+      'اوپر دائیں جانب ایکشن بار میں "More" بٹن پر ٹیپ کریں اور "Optimize battery usage" منتخب کریں۔',
+      '"Optimize Battery Usage" اسکرین پر ڈراپ ڈاؤن سے "All apps" کی فہرست منتخب کریں تاکہ آپ کی ڈیوائس کی تمام ایپس نظر آئیں۔ قرآن مجید کو Doze فیچر سے مستثنیٰ کرنے کے لیے اسے بند (Off) کر دیں۔'
+    ],
+    ctaBody: {
+      title: 'مزید مدد درکار ہے؟',
+      text: 'اب آپ کو اذان نوٹیفکیشنز درست طور پر موصول ہوں گی۔ اگر اذان نوٹیفکیشنز اب بھی کام نہیں کر رہیں تو آپ support@pakdata.com کے ذریعے مدد حاصل کر سکتے ہیں۔'
+    },
+    ctaLabel: 'سپورٹ سے رابطہ کریں',
+    deviceLabel: 'Samsung گائیڈ',
+    images
+  },
+  ar: {
+    seoTitle: 'إصلاح مشكلة إشعارات الأذان في تطبيق القرآن المجيد - Samsung',
+    seoDesc: 'أوقف إعدادات تحسين البطارية في Samsung لتلقي إشعارات الأذان من تطبيق القرآن المجيد بشكل صحيح.',
+    badge: 'مساعدة Samsung',
+    title: 'إصلاح مشكلة إشعارات الأذان في تطبيق القرآن المجيد',
+    subtitle: 'لأجهزة Samsung',
+    intro: 'أوقف وظيفة التحسين في "Optimize Battery Usage" (تحسين استخدام البطارية)، يرجى اتباع الخطوات التالية.',
+    whyTitle: 'لماذا تتوقف الإشعارات',
+    whyBody: 'قد تُحسّن أجهزة Samsung استخدام البطارية بشكل صارم وتمنع تطبيق القرآن المجيد من البقاء نشطًا في الخلفية. يساعد إيقاف التحسين للتطبيق على وصول إشعارات الأذان بشكل صحيح.',
+    stepsTitle: 'اتبع هذه الخطوات',
+    steps: [
+      'افتح قائمة الإعدادات (Settings) على جهازك وانقر على "Device maintenance" (صيانة الجهاز).',
+      'انقر على "Battery" (البطارية) في أسفل اليسار.',
+      'انقر على "Battery Usage" (استخدام البطارية).',
+      'انقر على زر المزيد (More) في شريط الإجراءات أعلى اليمين، واختر "Optimize battery usage" (تحسين استخدام البطارية).',
+      'في شاشة "Optimize Battery Usage"، اختر قائمة "All apps" (جميع التطبيقات) من القائمة المنسدلة لعرض جميع التطبيقات على جهازك. ثم أوقف الخيار لاستثناء تطبيق القرآن المجيد من ميزة Doze.'
+    ],
+    ctaBody: {
+      title: 'هل تحتاج إلى مزيد من المساعدة؟',
+      text: 'الآن ستتلقى إشعارات الأذان بشكل صحيح. إذا كانت إشعارات الأذان ما تزال لا تعمل، يمكنك طلب المساعدة عبر support@pakdata.com.'
+    },
+    ctaLabel: 'اتصل بالدعم',
+    deviceLabel: 'دليل Samsung',
+    images
+  }
+}[lang];
 ---
 
 <AdhanFixLanding {...copy} />

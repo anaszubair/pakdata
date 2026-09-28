@@ -373,6 +373,22 @@ textarea.form-control {
   min-height: 120px;
 }
 
+/* Hidden honeypot field for the mail-service spam guard */
+.form-trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-recaptcha {
+  min-height: 78px;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+  overflow: hidden;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from {

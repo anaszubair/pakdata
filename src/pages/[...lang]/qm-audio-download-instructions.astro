@@ -12,17 +12,52 @@ import { getLangFromUrl } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 
-const title = 'Instructions for downloading Quran audio';
-const description = 'Learn how to download and install Quran audio recitations inside the Quran Majeed app on Android phones.';
+const copy = {
+  en: {
+    title: 'Instructions for downloading Quran audio',
+    description: 'Learn how to download and install Quran audio recitations inside the Quran Majeed app on Android phones.',
+    badge: 'Android Guide',
+    lead: 'Please make sure that you are viewing this page in your Android phone and then follow these instructions for downloading/importing audio files in your Quran Majeed app v1.5.5 or later.',
+    steps: [
+      'To get the desired audio app, open the installed Quran Majeed / Quran Tafsir or Quran Pak app v1.5.5 or later. If you do not already have the Quran Majeed app, you can download it from here.',
+      'Open Quran Majeed App and go to audio settings by tapping the audio settings button at the bottom as shown in the image below.',
+      'Once in the audio settings, tap on reciters.',
+      'To download the audio app tap on the download button shown beside the reciter’s name.',
+      'A pop-up message will appear. Click on download as shown in the below image and the audio app will open in Google Play Store.',
+      'Tap on install to download and install the desired audio recitation on to your Quran Majeed app.'
+    ]
+  },
+  ur: {
+    title: 'قرآن آڈیو ڈاؤن لوڈ کرنے کی ہدایات',
+    description: 'Android فونز پر قرآن مجید ایپ میں قرآن کی آڈیو تلاوتیں ڈاؤن لوڈ اور انسٹال کرنے کا طریقہ جانیں۔',
+    badge: 'Android گائیڈ',
+    lead: 'براہِ کرم یقینی بنائیں کہ آپ یہ صفحہ اپنے Android فون پر دیکھ رہے ہیں، اور پھر قرآن مجید ایپ ورژن v1.5.5 یا اس کے بعد کے ورژن میں آڈیو فائلیں ڈاؤن لوڈ/امپورٹ کرنے کے لیے ان ہدایات پر عمل کریں۔',
+    steps: [
+      'اپنی پسندیدہ آڈیو ایپ حاصل کرنے کے لیے انسٹال شدہ قرآن مجید / قرآن تفسیر یا قرآن پاک ایپ ورژن v1.5.5 یا اس کے بعد کا ورژن کھولیں۔ اگر آپ کے پاس پہلے سے قرآن مجید ایپ موجود نہیں ہے تو آپ اسے یہاں سے ڈاؤن لوڈ کر سکتے ہیں۔',
+      'قرآن مجید ایپ کھولیں اور نیچے دی گئی تصویر کے مطابق نیچے موجود آڈیو سیٹنگز کے بٹن پر ٹیپ کر کے آڈیو سیٹنگز میں جائیں۔',
+      'آڈیو سیٹنگز میں پہنچ کر "Reciters" (قراء) پر ٹیپ کریں۔',
+      'آڈیو ایپ ڈاؤن لوڈ کرنے کے لیے قاری کے نام کے ساتھ دکھائے گئے ڈاؤن لوڈ بٹن پر ٹیپ کریں۔',
+      'ایک پاپ اپ پیغام ظاہر ہوگا۔ نیچے دی گئی تصویر کے مطابق "Download" پر کلک کریں، آڈیو ایپ Google Play Store میں کھل جائے گی۔',
+      'اپنی پسندیدہ آڈیو تلاوت ڈاؤن لوڈ کر کے قرآن مجید ایپ میں انسٹال کرنے کے لیے "Install" پر ٹیپ کریں۔'
+    ]
+  },
+  ar: {
+    title: 'تعليمات تنزيل صوتيات القرآن',
+    description: 'تعرّف على كيفية تنزيل وتثبيت التلاوات القرآنية الصوتية داخل تطبيق القرآن المجيد على هواتف Android.',
+    badge: 'دليل Android',
+    lead: 'يرجى التأكد من أنك تتصفح هذه الصفحة على هاتف Android، ثم اتبع هذه التعليمات لتنزيل/استيراد الملفات الصوتية في تطبيق القرآن المجيد الإصدار v1.5.5 أو أحدث.',
+    steps: [
+      'للحصول على التطبيق الصوتي المطلوب، افتح تطبيق القرآن المجيد / Quran Tafsir أو Quran Pak المثبّت، الإصدار v1.5.5 أو أحدث. إذا لم يكن تطبيق القرآن المجيد مثبتًا لديك، يمكنك تنزيله من هنا.',
+      'افتح تطبيق القرآن المجيد وانتقل إلى إعدادات الصوت بالنقر على زر إعدادات الصوت في الأسفل كما هو موضح في الصورة أدناه.',
+      'بعد الدخول إلى إعدادات الصوت، انقر على "Reciters" (القرّاء).',
+      'لتنزيل التطبيق الصوتي، انقر على زر التنزيل الظاهر بجانب اسم القارئ.',
+      'ستظهر رسالة منبثقة. انقر على "Download" (تنزيل) كما هو موضح في الصورة أدناه، وسيُفتح التطبيق الصوتي في Google Play Store.',
+      'انقر على "Install" (تثبيت) لتنزيل التلاوة الصوتية المطلوبة وتثبيتها في تطبيق القرآن المجيد.'
+    ]
+  }
+}[lang];
 
-const steps = [
-  'To get the desired audio app, open the installed Quran Majeed / Quran Tafsir or Quran Pak app v1.5.5 or later. If you do not already have the Quran Majeed app, you can download it from here.',
-  'Open Quran Majeed App and go to audio settings by tapping the audio settings button at the bottom as shown in the image below.',
-  'Once in the audio settings, tap on reciters.',
-  'To download the audio app tap on the download button shown beside the reciter’s name.',
-  'A pop-up message will appear. Click on download as shown in the below image and the audio app will open in Google Play Store.',
-  'Tap on install to download and install the desired audio recitation on to your Quran Majeed app.'
-];
+const { title, description, steps } = copy;
 
 const images = [
   null,
@@ -37,10 +72,10 @@ const images = [
 <Layout title={title} description={description}>
   <section class="audio-hero">
     <div class="container audio-hero-inner">
-      <span class="badge badge-primary">Android Guide</span>
+      <span class="badge badge-primary">{copy.badge}</span>
       <h1 class="audio-title">{title}</h1>
       <p class="audio-lead">
-        Please make sure that you are viewing this page in your Android phone and then follow these instructions for downloading/importing audio files in your Quran Majeed app v1.5.5 or later.
+        {copy.lead}
       </p>
     </div>
   </section>

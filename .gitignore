@@ -1,7 +1,25 @@
+# Dependencies and build output
 node_modules/
-package-lock.json
-.astro/settings.json
-.astro/*
-
-.vscode
 dist/
+.astro/
+.vite/
+.vercel/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS and editor
+.DS_Store
+.claude/
+
+# Design references and content drafts (not used by the build)
+screencapture-*.png
+*.pdf
+PDMS_LOGO_.png
+
+# One-off content migration scripts
+/update_*.py
+/update_*.mjs
+/scratch/

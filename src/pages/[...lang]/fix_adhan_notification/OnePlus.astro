@@ -8,36 +8,91 @@ export function getStaticPaths() {
 }
 
 import AdhanFixLanding from '../../../components/AdhanFixLanding.astro';
+import { getLangFromUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const images = [
+  { src: '/images/oneplus/fixissue1.png', alt: 'OnePlus battery settings guide step 1' },
+  { src: '/images/oneplus/fixissue2.png', alt: 'OnePlus battery optimization guide step 2' },
+  { src: '/images/oneplus/fixissue3.png', alt: 'OnePlus battery optimization guide step 3' },
+  { src: '/images/oneplus/fixissue4.png', alt: 'OnePlus don’t optimize guide step 4' }
+];
 
 const copy = {
-  seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App - OnePlus',
-  seoDesc: 'Turn off battery optimization on OnePlus devices to receive Quran Majeed adhan notifications properly.',
-  badge: 'OnePlus Help',
-  title: 'Fix Adhan Notification Issue In Quran Majeed App',
-  subtitle: 'For OnePlus devices',
-  intro: 'Turn off optimization function in Optimize Battery Usage, please refer to the following steps.',
-  whyTitle: 'Why notifications stop',
-  whyBody: 'OnePlus devices may restrict background activity through battery optimization. Turning off optimization for Quran Majeed allows the app to continue receiving adhan alerts properly.',
-  stepsTitle: 'Follow These Steps',
-  steps: [
-    'Open the Settings menu on your device and tap Battery.',
-    'Tap Battery optimization.',
-    'Scroll and select Quran Majeed app.',
-    'On the popup screen, switch to the Don’t optimize to exclude Quran Majeed app from the Doze feature.'
-  ],
-  ctaBody: {
-    title: 'Need more help?',
-    text: 'Now you will receive adhan notifications properly. If the adhan notifications are still not working, you can ask for help via support@pakdata.com.'
+  en: {
+    seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App - OnePlus',
+    seoDesc: 'Turn off battery optimization on OnePlus devices to receive Quran Majeed adhan notifications properly.',
+    badge: 'OnePlus Help',
+    title: 'Fix Adhan Notification Issue In Quran Majeed App',
+    subtitle: 'For OnePlus devices',
+    intro: 'Turn off optimization function in Optimize Battery Usage, please refer to the following steps.',
+    whyTitle: 'Why notifications stop',
+    whyBody: 'OnePlus devices may restrict background activity through battery optimization. Turning off optimization for Quran Majeed allows the app to continue receiving adhan alerts properly.',
+    stepsTitle: 'Follow These Steps',
+    steps: [
+      'Open the Settings menu on your device and tap Battery.',
+      'Tap Battery optimization.',
+      'Scroll and select Quran Majeed app.',
+      'On the popup screen, switch to the Don’t optimize to exclude Quran Majeed app from the Doze feature.'
+    ],
+    ctaBody: {
+      title: 'Need more help?',
+      text: 'Now you will receive adhan notifications properly. If the adhan notifications are still not working, you can ask for help via support@pakdata.com.'
+    },
+    ctaLabel: 'Contact Support',
+    deviceLabel: 'OnePlus Guide',
+    images
   },
-  ctaLabel: 'Contact Support',
-  deviceLabel: 'OnePlus Guide',
-  images: [
-    { src: '/images/oneplus/fixissue1.png', alt: 'OnePlus battery settings guide step 1' },
-    { src: '/images/oneplus/fixissue2.png', alt: 'OnePlus battery optimization guide step 2' },
-    { src: '/images/oneplus/fixissue3.png', alt: 'OnePlus battery optimization guide step 3' },
-    { src: '/images/oneplus/fixissue4.png', alt: 'OnePlus don’t optimize guide step 4' }
-  ]
-};
+  ur: {
+    seoTitle: 'قرآن مجید ایپ میں اذان نوٹیفکیشن کا مسئلہ حل کریں - OnePlus',
+    seoDesc: 'قرآن مجید کی اذان نوٹیفکیشنز درست طور پر حاصل کرنے کے لیے OnePlus ڈیوائسز پر بیٹری آپٹیمائزیشن بند کریں۔',
+    badge: 'OnePlus مدد',
+    title: 'قرآن مجید ایپ میں اذان نوٹیفکیشن کا مسئلہ حل کریں',
+    subtitle: 'OnePlus ڈیوائسز کے لیے',
+    intro: '"Optimize Battery Usage" میں آپٹیمائزیشن کا فنکشن بند کریں، براہِ کرم درج ذیل مراحل دیکھیں۔',
+    whyTitle: 'نوٹیفکیشنز کیوں رک جاتی ہیں',
+    whyBody: 'OnePlus ڈیوائسز بیٹری آپٹیمائزیشن کے ذریعے بیک گراؤنڈ سرگرمی کو محدود کر سکتی ہیں۔ قرآن مجید کے لیے آپٹیمائزیشن بند کرنے سے ایپ اذان الرٹس درست طور پر دیتی رہتی ہے۔',
+    stepsTitle: 'یہ مراحل اپنائیں',
+    steps: [
+      'اپنی ڈیوائس پر Settings مینو کھولیں اور "Battery" (بیٹری) پر ٹیپ کریں۔',
+      '"Battery optimization" (بیٹری آپٹیمائزیشن) پر ٹیپ کریں۔',
+      'اسکرول کریں اور قرآن مجید ایپ منتخب کریں۔',
+      'پاپ اپ اسکرین پر "Don’t optimize" منتخب کریں تاکہ قرآن مجید ایپ Doze فیچر سے مستثنیٰ ہو جائے۔'
+    ],
+    ctaBody: {
+      title: 'مزید مدد درکار ہے؟',
+      text: 'اب آپ کو اذان نوٹیفکیشنز درست طور پر موصول ہوں گی۔ اگر اذان نوٹیفکیشنز اب بھی کام نہیں کر رہیں تو آپ support@pakdata.com کے ذریعے مدد حاصل کر سکتے ہیں۔'
+    },
+    ctaLabel: 'سپورٹ سے رابطہ کریں',
+    deviceLabel: 'OnePlus گائیڈ',
+    images
+  },
+  ar: {
+    seoTitle: 'إصلاح مشكلة إشعارات الأذان في تطبيق القرآن المجيد - OnePlus',
+    seoDesc: 'أوقف تحسين البطارية على أجهزة OnePlus لتلقي إشعارات الأذان من تطبيق القرآن المجيد بشكل صحيح.',
+    badge: 'مساعدة OnePlus',
+    title: 'إصلاح مشكلة إشعارات الأذان في تطبيق القرآن المجيد',
+    subtitle: 'لأجهزة OnePlus',
+    intro: 'أوقف وظيفة التحسين في "Optimize Battery Usage" (تحسين استخدام البطارية)، يرجى اتباع الخطوات التالية.',
+    whyTitle: 'لماذا تتوقف الإشعارات',
+    whyBody: 'قد تقيّد أجهزة OnePlus النشاط في الخلفية من خلال تحسين البطارية. يتيح إيقاف التحسين لتطبيق القرآن المجيد استمرار تلقي تنبيهات الأذان بشكل صحيح.',
+    stepsTitle: 'اتبع هذه الخطوات',
+    steps: [
+      'افتح قائمة الإعدادات (Settings) على جهازك وانقر على "Battery" (البطارية).',
+      'انقر على "Battery optimization" (تحسين البطارية).',
+      'مرّر واختر تطبيق القرآن المجيد.',
+      'في النافذة المنبثقة، اختر "Don’t optimize" (عدم التحسين) لاستثناء تطبيق القرآن المجيد من ميزة Doze.'
+    ],
+    ctaBody: {
+      title: 'هل تحتاج إلى مزيد من المساعدة؟',
+      text: 'الآن ستتلقى إشعارات الأذان بشكل صحيح. إذا كانت إشعارات الأذان ما تزال لا تعمل، يمكنك طلب المساعدة عبر support@pakdata.com.'
+    },
+    ctaLabel: 'اتصل بالدعم',
+    deviceLabel: 'دليل OnePlus',
+    images
+  }
+}[lang];
 ---
 
 <AdhanFixLanding {...copy} />

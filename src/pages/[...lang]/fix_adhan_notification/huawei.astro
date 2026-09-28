@@ -8,33 +8,80 @@ export function getStaticPaths() {
 }
 
 import AdhanFixLanding from '../../../components/AdhanFixLanding.astro';
+import { getLangFromUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const images = [
+  { src: '/images/huawei/fixadhanissue1.jpg', alt: 'Huawei battery settings step 1' },
+  { src: '/images/huawei/fixadhanissue2.jpg', alt: 'Huawei battery usage step 2' },
+  { src: '/images/huawei/fixadhanissue3.jpg', alt: 'Huawei app power settings step 3' },
+  { src: '/images/huawei/fixadhanissue4.jpg', alt: 'Huawei launch settings step 4' },
+  { src: '/images/huawei/fixadhanissue5.jpg', alt: 'Huawei auto-launch step 5' }
+];
 
 const copy = {
-  seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App - Huawei',
-  seoDesc: 'Adjust Huawei battery optimization and launch settings to receive Quran Majeed adhan notifications properly.',
-  badge: 'Huawei Help',
-  title: 'Fix Adhan Notification Issue In Quran Majeed App',
-  subtitle: 'For Huawei devices',
-  intro: 'Huawei on many of their devices is using very aggressive battery optimization which is causing Android apps to dozes off shortly after the screen goes off.',
-  steps: [
-    'Open the Settings menu on your device and tap Battery.',
-    'Tap Battery usage under the menu.',
-    'Under the software section, select Quran Majeed App.',
-    'Disable the Power-intensive prompt.',
-    'Also make sure to manually enable Auto-launch, Secondary-launch and Run in background from the Launch menu on the same sreen.'
-  ],
-  ctaBody: {
-    text: 'Now you will receive adhan notifications properly. If the adhan notifications are still not working, you can ask for help via support@pakdata.com.'
+  en: {
+    seoTitle: 'Fix Adhan Notification Issue In Quran Majeed App - Huawei',
+    seoDesc: 'Adjust Huawei battery optimization and launch settings to receive Quran Majeed adhan notifications properly.',
+    badge: 'Huawei Help',
+    title: 'Fix Adhan Notification Issue In Quran Majeed App',
+    subtitle: 'For Huawei devices',
+    intro: 'Huawei on many of their devices is using very aggressive battery optimization which is causing Android apps to dozes off shortly after the screen goes off.',
+    steps: [
+      'Open the Settings menu on your device and tap Battery.',
+      'Tap Battery usage under the menu.',
+      'Under the software section, select Quran Majeed App.',
+      'Disable the Power-intensive prompt.',
+      'Also make sure to manually enable Auto-launch, Secondary-launch and Run in background from the Launch menu on the same sreen.'
+    ],
+    ctaBody: {
+      text: 'Now you will receive adhan notifications properly. If the adhan notifications are still not working, you can ask for help via support@pakdata.com.'
+    },
+    ctaLabel: 'Contact Support',
+    images
   },
-  ctaLabel: 'Contact Support',
-  images: [
-    { src: '/images/huawei/fixadhanissue1.jpg', alt: 'Huawei battery settings step 1' },
-    { src: '/images/huawei/fixadhanissue2.jpg', alt: 'Huawei battery usage step 2' },
-    { src: '/images/huawei/fixadhanissue3.jpg', alt: 'Huawei app power settings step 3' },
-    { src: '/images/huawei/fixadhanissue4.jpg', alt: 'Huawei launch settings step 4' },
-    { src: '/images/huawei/fixadhanissue5.jpg', alt: 'Huawei auto-launch step 5' }
-  ]
-};
+  ur: {
+    seoTitle: 'قرآن مجید ایپ میں اذان نوٹیفکیشن کا مسئلہ حل کریں - Huawei',
+    seoDesc: 'قرآن مجید کی اذان نوٹیفکیشنز درست طور پر حاصل کرنے کے لیے Huawei کی بیٹری آپٹیمائزیشن اور لانچ سیٹنگز تبدیل کریں۔',
+    badge: 'Huawei مدد',
+    title: 'قرآن مجید ایپ میں اذان نوٹیفکیشن کا مسئلہ حل کریں',
+    subtitle: 'Huawei ڈیوائسز کے لیے',
+    intro: 'Huawei اپنی کئی ڈیوائسز پر بہت سخت بیٹری آپٹیمائزیشن استعمال کرتا ہے، جس کی وجہ سے اسکرین بند ہونے کے کچھ ہی دیر بعد Android ایپس غیر فعال (doze) ہو جاتی ہیں۔',
+    steps: [
+      'اپنی ڈیوائس پر Settings مینو کھولیں اور "Battery" (بیٹری) پر ٹیپ کریں۔',
+      'مینو میں "Battery usage" (بیٹری کا استعمال) پر ٹیپ کریں۔',
+      'سافٹ ویئر سیکشن میں قرآن مجید ایپ منتخب کریں۔',
+      '"Power-intensive prompt" کو بند کریں۔',
+      'اسی اسکرین پر "Launch" مینو سے "Auto-launch"، "Secondary-launch" اور "Run in background" کو دستی طور پر فعال کرنا بھی یقینی بنائیں۔'
+    ],
+    ctaBody: {
+      text: 'اب آپ کو اذان نوٹیفکیشنز درست طور پر موصول ہوں گی۔ اگر اذان نوٹیفکیشنز اب بھی کام نہیں کر رہیں تو آپ support@pakdata.com کے ذریعے مدد حاصل کر سکتے ہیں۔'
+    },
+    ctaLabel: 'سپورٹ سے رابطہ کریں',
+    images
+  },
+  ar: {
+    seoTitle: 'إصلاح مشكلة إشعارات الأذان في تطبيق القرآن المجيد - Huawei',
+    seoDesc: 'اضبط إعدادات تحسين البطارية والتشغيل في Huawei لتلقي إشعارات الأذان من تطبيق القرآن المجيد بشكل صحيح.',
+    badge: 'مساعدة Huawei',
+    title: 'إصلاح مشكلة إشعارات الأذان في تطبيق القرآن المجيد',
+    subtitle: 'لأجهزة Huawei',
+    intro: 'تستخدم Huawei في كثير من أجهزتها تحسينًا صارمًا جدًا للبطارية، مما يتسبب في دخول تطبيقات Android في وضع السكون بعد وقت قصير من إطفاء الشاشة.',
+    steps: [
+      'افتح قائمة الإعدادات (Settings) على جهازك وانقر على "Battery" (البطارية).',
+      'انقر على "Battery usage" (استخدام البطارية) في القائمة.',
+      'ضمن قسم البرامج، اختر تطبيق القرآن المجيد.',
+      'عطّل خيار "Power-intensive prompt" (تنبيه الاستهلاك العالي للطاقة).',
+      'تأكد أيضًا من تفعيل "Auto-launch" (التشغيل التلقائي) و"Secondary-launch" (التشغيل الثانوي) و"Run in background" (التشغيل في الخلفية) يدويًا من قائمة "Launch" في الشاشة نفسها.'
+    ],
+    ctaBody: {
+      text: 'الآن ستتلقى إشعارات الأذان بشكل صحيح. إذا كانت إشعارات الأذان ما تزال لا تعمل، يمكنك طلب المساعدة عبر support@pakdata.com.'
+    },
+    ctaLabel: 'اتصل بالدعم',
+    images
+  }
+}[lang];
 ---
 
 <AdhanFixLanding {...copy} />

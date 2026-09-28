@@ -3,10 +3,15 @@ import Layout from '../layouts/Layout.astro';
 import { getLangFromUrl, getRelativeLocaleUrl } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
+const ui = {
+  en: { badge: 'Careers', overview: 'Role Overview', points: 'points', details: 'Details', back: 'Back', apply: 'Email Jobs' },
+  ur: { badge: 'ملازمتیں', overview: 'عہدے کا جائزہ', points: 'نکات', details: 'تفصیلات', back: 'واپس', apply: 'ای میل کریں' },
+  ar: { badge: 'الوظائف', overview: 'نظرة عامة على الوظيفة', points: 'نقاط', details: 'التفاصيل', back: 'رجوع', apply: 'راسلنا بالبريد' }
+}[lang];
 const {
   seoTitle,
   seoDesc,
-  badge = 'Careers',
+  badge = ui.badge,
   title,
   intro,
   body,
@@ -14,8 +19,8 @@ const {
   ctaTitle,
   ctaBody,
   subject,
-  backLabel = 'Back',
-  applyLabel = 'Email Jobs'
+  backLabel = ui.back,
+  applyLabel = ui.apply
 } = Astro.props;
 ---
 
@@ -29,16 +34,16 @@ const {
         <p class="career-body">{body}</p>
         <div class="career-actions">
           <a href={getRelativeLocaleUrl(lang, '/job-us')} class="btn btn-outline btn-lg">{backLabel}</a>
-          <a href={`mailto:jobs@pakdata.com?subject=${encodeURIComponent(subject || title)}`} class="btn btn-primary btn-lg">{applyLabel}</a>
+          <a href={`mailto:careers@pakdata.com?subject=${encodeURIComponent(subject || title)}`} class="btn btn-primary btn-lg">{applyLabel}</a>
         </div>
       </div>
       <div class="career-panel card">
-        <span class="panel-label">Role Overview</span>
+        <span class="panel-label">{ui.overview}</span>
         <div class="panel-stack">
           {sections.map((section) => (
             <div class="panel-line">
               <strong>{section.title}</strong>
-              <span>{section.items?.length ? `${section.items.length} points` : 'Details'}</span>
+              <span>{section.items?.length ? `${section.items.length} ${ui.points}` : ui.details}</span>
             </div>
           ))}
         </div>
@@ -74,7 +79,7 @@ const {
         <h2 class="section-title">{ctaTitle}</h2>
         <p class="body-copy">{ctaBody}</p>
       </div>
-      <a href={`mailto:jobs@pakdata.com?subject=${encodeURIComponent(subject || title)}`} class="btn btn-primary btn-lg">jobs@pakdata.com</a>
+      <a href={`mailto:careers@pakdata.com?subject=${encodeURIComponent(subject || title)}`} class="btn btn-primary btn-lg">careers@pakdata.com</a>
     </div>
   </section>
 </Layout>

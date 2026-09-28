@@ -122,7 +122,7 @@ const faqCategories = [
           <h3 class="form-card-title">{t('support.ticket.title')}</h3>
           <p class="form-card-subtitle">{t('support.ticket.subtitle')}</p>
           
-          <form class="ticket-form" id="support-ticket-form" data-alert-msg={t('support.ticket.alert')} data-default-name={t('support.ticket.defaultName')}>
+          <form class="ticket-form" id="support-ticket-form" data-alert-msg={t('support.ticket.alert')} data-default-name={t('support.ticket.defaultName')} data-recaptcha-msg={t('form.recaptcha.required')} data-sending-msg={t('form.sending')} data-rejected-msg={t('form.error.rejected')} data-network-msg={t('form.error.network')}>
             <div class="form-group">
               <label class="form-label" for="ticket-name">{t('support.ticket.name.label')}</label>
               <input type="text" id="ticket-name" required class="form-control" placeholder={t('support.ticket.name.placeholder')} />
@@ -162,6 +162,10 @@ const faqCategories = [
               <textarea id="ticket-msg" required class="form-control" placeholder={t('support.ticket.msg.placeholder')}></textarea>
             </div>
 
+            <div class="form-trap" aria-hidden="true">
+              <label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+            </div>
+            <div class="form-recaptcha" data-recaptcha data-failed-msg={t('form.recaptcha.failed')}></div>
             <button type="submit" class="btn btn-primary w-100" id="submit-ticket-btn">{t('support.ticket.btn')}</button>
           </form>
         </div>
@@ -389,6 +393,8 @@ const faqCategories = [
 
 <!-- Accordion Toggle JavaScript -->
 <script>
+  import { setupMailForm } from '../../lib/mail-service';
+
   document.addEventListener('astro:page-load', () => {
     const accordions = document.querySelectorAll('.accordion-item');
     const ticketForm = document.getElementById('support-ticket-form');
@@ -420,41 +426,25 @@ const faqCategories = [
       });
     }
 
-    if (ticketForm) {
-      ticketForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const ticketName = document.getElementById('ticket-name') as HTMLInputElement;
-        const defaultName = ticketForm.dataset.defaultName || 'User';
-        const alertMsg = ticketForm.dataset.alertMsg || '';
-        const submitButton = document.getElementById('submit-ticket-btn') as HTMLButtonElement;
-
-        submitButton.disabled = true;
-
-        try {
-          const response = await fetch('/api/send-email', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({
-              formType: 'support',
-              fields: {
-                name: ticketName?.value || defaultName,
-                email: (document.getElementById('ticket-email') as HTMLInputElement)?.value,
-                app: (document.getElementById('ticket-app') as HTMLSelectElement)?.value,
-                device: (document.getElementById('ticket-device') as HTMLSelectElement)?.value,
-                message: (document.getElementById('ticket-msg') as HTMLTextAreaElement)?.value
-              }
-            })
-          });
-
-          if (!response.ok) throw new Error('Email request failed');
-
-          alert(`${ticketName?.value || defaultName}: ${alertMsg}`);
-          ticketForm.reset();
-        } catch {
-          alert('Sorry, your support request could not be sent right now. Please try again or email support directly.');
-        } finally {
-          submitButton.disabled = false;
-        }
+    const submitTicketButton = document.getElementById('submit-ticket-btn');
+    if (ticketForm instanceof HTMLFormElement && submitTicketButton instanceof HTMLButtonElement) {
+      setupMailForm({
+        form: ticketForm,
+        button: submitTicketButton,
+        fallbackEmail: 'support@pakdata.com',
+        buildPayload: () => {
+          const name = (document.getElementById('ticket-name') as HTMLInputElement)?.value.trim() || ticketForm.dataset.defaultName || 'User';
+          const app = (document.getElementById('ticket-app') as HTMLSelectElement)?.selectedOptions[0]?.textContent?.trim() || '';
+          const device = (document.getElementById('ticket-device') as HTMLSelectElement)?.selectedOptions[0]?.textContent?.trim() || '';
+          return {
+            name,
+            email: (document.getElementById('ticket-email') as HTMLInputElement)?.value.trim(),
+            subject: `Support request: ${app}`,
+            subjectPrefix: 'Support',
+            message: [`App: ${app}`, `Device: ${device}`, '', (document.getElementById('ticket-msg') as HTMLTextAreaElement)?.value.trim()].join('\n'),
+          };
+        },
+        onSuccess: ({ name }) => alert(`${name}: ${ticketForm.dataset.alertMsg || ''}`),
       });
     }
   });

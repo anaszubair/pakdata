@@ -13,9 +13,9 @@ const offices = [
   {
     city: t('contact.office.karachi.city'),
     address: t('contact.office.karachi.address'),
-    phone: "+92-21-35882650",
-    fax: "+92-21-35882651",
-    email: "info@pakdata.com"
+    phone: "+92-21-34559003",
+    fax: t('contact.office.noFax'),
+    email: "support@pakdata.com"
   }
 ];
 ---
@@ -84,7 +84,7 @@ const offices = [
           <h2 class="form-title">{t('contact.form.title')}</h2>
           <p class="form-subtitle">{t('contact.form.subtitle')}</p>
           
-          <form class="main-contact-form" id="main-contact-form" data-alert-msg={t('contact.form.alert')}>
+          <form class="main-contact-form" id="main-contact-form" data-alert-msg={t('contact.form.alert')} data-recaptcha-msg={t('form.recaptcha.required')} data-sending-msg={t('form.sending')} data-rejected-msg={t('form.error.rejected')} data-network-msg={t('form.error.network')}>
             <div class="form-group">
               <label class="form-label" for="contact-name">{t('contact.form.name.label')}</label>
               <input type="text" id="contact-name" required class="form-control" placeholder={t('contact.form.name.placeholder')} />
@@ -111,6 +111,10 @@ const offices = [
               <textarea id="contact-msg" required class="form-control" placeholder={t('contact.form.msg.placeholder')}></textarea>
             </div>
 
+            <div class="form-trap" aria-hidden="true">
+              <label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+            </div>
+            <div class="form-recaptcha" data-recaptcha data-failed-msg={t('form.recaptcha.failed')}></div>
             <button type="submit" class="btn btn-primary w-100" id="submit-contact-btn">{t('contact.form.btn')}</button>
           </form>
         </div>
@@ -279,42 +283,31 @@ const offices = [
 
 <!-- Form submission script -->
 <script>
-  document.addEventListener('astro:page-load', () => {
+  import { setupMailForm } from '../lib/mail-service';
+
+  const setupContactForm = () => {
     const contactForm = document.getElementById('main-contact-form');
+    const submitButton = document.getElementById('submit-contact-btn');
+    if (!(contactForm instanceof HTMLFormElement) || !(submitButton instanceof HTMLButtonElement)) return;
 
-    if (contactForm) {
-      contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const alertMsg = contactForm.getAttribute('data-alert-msg') || 'Message sent!';
-        const submitButton = document.getElementById('submit-contact-btn') as HTMLButtonElement;
+    setupMailForm({
+      form: contactForm,
+      button: submitButton,
+      fallbackEmail: 'support@pakdata.com',
+      buildPayload: () => {
+        const subjectSelect = document.getElementById('contact-subject') as HTMLSelectElement;
+        const inquiryType = subjectSelect?.selectedOptions[0]?.textContent?.trim() || 'General';
+        return {
+          name: (document.getElementById('contact-name') as HTMLInputElement)?.value.trim(),
+          email: (document.getElementById('contact-email') as HTMLInputElement)?.value.trim(),
+          subject: `Website inquiry: ${inquiryType}`,
+          subjectPrefix: 'Pakdata Contact',
+          message: [`Inquiry Type: ${inquiryType}`, '', (document.getElementById('contact-msg') as HTMLTextAreaElement)?.value.trim()].join('\n'),
+        };
+      },
+      onSuccess: () => alert(contactForm.dataset.alertMsg || 'Message sent!'),
+    });
+  };
 
-        submitButton.disabled = true;
-
-        try {
-          const response = await fetch('/api/send-email', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({
-              formType: 'contact',
-              fields: {
-                name: (document.getElementById('contact-name') as HTMLInputElement)?.value,
-                email: (document.getElementById('contact-email') as HTMLInputElement)?.value,
-                subject: (document.getElementById('contact-subject') as HTMLSelectElement)?.value,
-                message: (document.getElementById('contact-msg') as HTMLTextAreaElement)?.value
-              }
-            })
-          });
-
-          if (!response.ok) throw new Error('Email request failed');
-
-          alert(alertMsg);
-          contactForm.reset();
-        } catch {
-          alert('Sorry, your message could not be sent right now. Please try again or email us directly.');
-        } finally {
-          submitButton.disabled = false;
-        }
-      });
-    }
-  });
+  document.addEventListener('astro:page-load', setupContactForm);
 </script>

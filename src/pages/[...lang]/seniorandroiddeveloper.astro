@@ -11,47 +11,128 @@ import CareerDetail from '../../components/CareerDetail.astro';
 import { getLangFromUrl } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
-const base = {
-  seoTitle: 'Senior Android Developer | PDMS Careers',
-  seoDesc: 'Join PDMS as a Senior Android Developer and build high-performance Android apps with strong architecture, APIs, and quality standards.',
-  title: 'Senior Android Developer',
-  intro: 'We are looking for a Senior Android Developer (with minimum 3 years of experience) responsible for the development and maintenance of applications aimed at a vast number of diverse Android devices.',
-  body: 'Your primary focus will be the development of Android applications and their integration with back-end services. You will be working along-side other engineers and developers working on different layers of the infrastructure. Therefore, commitment to collaborative problem solving, sophisticated design, and creating quality products is essential.',
-  sections: [
-    {
-      title: 'Responsibilities',
-      items: [
-        'Translate designs and wireframes into high quality code',
-        'Design, build, and maintain high performance, reusable, and reliable Java code',
-        'Ensure the best possible performance, quality, and responsiveness of the application',
-        'Identify and correct bottlenecks and fix bugs',
-        'Help maintain code quality, organization, and automatization',
-        'Lead team members to accomplish project goals'
-      ]
-    },
-    {
-      title: 'Skills',
-      alt: true,
-      items: [
-        'Strong knowledge of Android SDK, different versions of Android, and how to deal with different screen sizes',
-        'Experience in RESTful APIs to connect Android applications to back-end services',
-        'Strong knowledge of Android UI design principles, patterns, and best practices',
-        'Experience with offline storage, threading, and performance tuning',
-        'Ability to understand business requirements and translate them into technical requirements',
-        'Understanding of Google’s Android design principles and interface guidelines',
-        'Proficient understanding of code versioning tools, such as Git or Subversion',
-        'Bachelor’s Degree in Computer Science or Equivalent',
-        '3+ Years of Professional Android Application Development experience'
-      ]
-    }
-  ],
-  ctaTitle: 'Interested?',
-  ctaBody: 'Interested candidates can share their CV’s at jobs@pakdata.com mentioning “Senior Android Developer” in the subject line.',
-  subject: 'Senior Android Developer',
-  backLabel: 'Back to Join Us',
-  applyLabel: 'Email Jobs'
-};
-const copy = { en: base, ur: base, ar: base }[lang] ?? base;
+const copy = {
+  en: {
+    seoTitle: 'Senior Android Developer | PDMS Careers',
+    seoDesc: 'Join PDMS as a Senior Android Developer and build high-performance Android apps with strong architecture, APIs, and quality standards.',
+    title: 'Senior Android Developer',
+    intro: 'We are looking for a Senior Android Developer (with minimum 3 years of experience) responsible for the development and maintenance of applications aimed at a vast number of diverse Android devices.',
+    body: 'Your primary focus will be the development of Android applications and their integration with back-end services. You will be working along-side other engineers and developers working on different layers of the infrastructure. Therefore, commitment to collaborative problem solving, sophisticated design, and creating quality products is essential.',
+    sections: [
+      {
+        title: 'Responsibilities',
+        items: [
+          'Translate designs and wireframes into high quality code',
+          'Design, build, and maintain high performance, reusable, and reliable Java code',
+          'Ensure the best possible performance, quality, and responsiveness of the application',
+          'Identify and correct bottlenecks and fix bugs',
+          'Help maintain code quality, organization, and automatization',
+          'Lead team members to accomplish project goals'
+        ]
+      },
+      {
+        title: 'Skills',
+        alt: true,
+        items: [
+          'Strong knowledge of Android SDK, different versions of Android, and how to deal with different screen sizes',
+          'Experience in RESTful APIs to connect Android applications to back-end services',
+          'Strong knowledge of Android UI design principles, patterns, and best practices',
+          'Experience with offline storage, threading, and performance tuning',
+          'Ability to understand business requirements and translate them into technical requirements',
+          'Understanding of Google’s Android design principles and interface guidelines',
+          'Proficient understanding of code versioning tools, such as Git or Subversion',
+          'Bachelor’s Degree in Computer Science or Equivalent',
+          '3+ Years of Professional Android Application Development experience'
+        ]
+      }
+    ],
+    ctaTitle: 'Interested?',
+    ctaBody: 'Interested candidates can share their CV’s at careers@pakdata.com mentioning “Senior Android Developer” in the subject line.',
+    subject: 'Senior Android Developer',
+    backLabel: 'Back to Join Us',
+    applyLabel: 'Email Jobs'
+  },
+  ur: {
+    seoTitle: 'سینئر اینڈرائیڈ ڈویلپر | PDMS ملازمتیں',
+    seoDesc: 'PDMS میں بطور سینئر اینڈرائیڈ ڈویلپر شامل ہوں اور مضبوط آرکیٹیکچر، APIs اور معیاری اصولوں کے ساتھ اعلیٰ کارکردگی والی اینڈرائیڈ ایپس بنائیں۔',
+    title: 'سینئر اینڈرائیڈ ڈویلپر',
+    intro: 'ہمیں ایک سینئر اینڈرائیڈ ڈویلپر (کم از کم 3 سال کے تجربے کے ساتھ) کی تلاش ہے جو مختلف اقسام کے بے شمار اینڈرائیڈ آلات کے لیے ایپلیکیشنز کی تیاری اور دیکھ بھال کا ذمہ دار ہو۔',
+    body: 'آپ کی بنیادی توجہ اینڈرائیڈ ایپلیکیشنز کی تیاری اور انہیں بیک اینڈ سروسز کے ساتھ مربوط کرنے پر ہوگی۔ آپ انفراسٹرکچر کی مختلف سطحوں پر کام کرنے والے دیگر انجینئرز اور ڈویلپرز کے ساتھ مل کر کام کریں گے، اس لیے مل جل کر مسائل حل کرنے، عمدہ ڈیزائن اور معیاری پروڈکٹس بنانے کا عزم ضروری ہے۔',
+    sections: [
+      {
+        title: 'ذمہ داریاں',
+        items: [
+          'ڈیزائنز اور وائر فریمز کو اعلیٰ معیار کے کوڈ میں ڈھالنا',
+          'اعلیٰ کارکردگی والا، دوبارہ قابلِ استعمال اور قابلِ اعتماد Java کوڈ ڈیزائن کرنا، بنانا اور برقرار رکھنا',
+          'ایپلیکیشن کی بہترین ممکنہ کارکردگی، معیار اور ریسپانسیونیس کو یقینی بنانا',
+          'رکاوٹوں کی نشاندہی اور اصلاح کرنا اور بگز دور کرنا',
+          'کوڈ کے معیار، ترتیب اور آٹومیشن کو برقرار رکھنے میں مدد کرنا',
+          'پروجیکٹ کے اہداف حاصل کرنے کے لیے ٹیم ممبران کی قیادت کرنا'
+        ]
+      },
+      {
+        title: 'مہارتیں',
+        alt: true,
+        items: [
+          'Android SDK، اینڈرائیڈ کے مختلف ورژنز اور مختلف اسکرین سائزز کو سنبھالنے کا گہرا علم',
+          'اینڈرائیڈ ایپلیکیشنز کو بیک اینڈ سروسز سے جوڑنے کے لیے RESTful APIs کا تجربہ',
+          'اینڈرائیڈ UI ڈیزائن کے اصولوں، پیٹرنز اور بہترین طریقوں کا گہرا علم',
+          'آف لائن اسٹوریج، تھریڈنگ اور پرفارمنس ٹیوننگ کا تجربہ',
+          'کاروباری ضروریات کو سمجھ کر انہیں تکنیکی تقاضوں میں ڈھالنے کی صلاحیت',
+          'گوگل کے اینڈرائیڈ ڈیزائن اصولوں اور انٹرفیس گائیڈ لائنز کی سمجھ',
+          'Git یا Subversion جیسے کوڈ ورژننگ ٹولز کی اچھی سمجھ',
+          'کمپیوٹر سائنس یا مساوی مضمون میں بیچلر کی ڈگری',
+          'پیشہ ورانہ اینڈرائیڈ ایپلیکیشن ڈویلپمنٹ کا 3 سال سے زائد تجربہ'
+        ]
+      }
+    ],
+    ctaTitle: 'دلچسپی رکھتے ہیں؟',
+    ctaBody: 'دلچسپی رکھنے والے امیدوار اپنی سی وی careers@pakdata.com پر بھیجیں اور سبجیکٹ لائن میں “Senior Android Developer” لکھیں۔',
+    subject: 'Senior Android Developer',
+    backLabel: 'آسامیوں پر واپس جائیں',
+    applyLabel: 'ای میل کریں'
+  },
+  ar: {
+    seoTitle: 'مطوّر Android أول | وظائف PDMS',
+    seoDesc: 'انضم إلى PDMS بوظيفة مطوّر Android أول وابنِ تطبيقات Android عالية الأداء بهندسة متينة وواجهات برمجية ومعايير جودة عالية.',
+    title: 'مطوّر Android أول',
+    intro: 'نبحث عن مطوّر Android أول (بخبرة لا تقل عن 3 سنوات) يتولى تطوير وصيانة التطبيقات الموجهة لعدد هائل من أجهزة Android المتنوعة.',
+    body: 'سينصبّ تركيزك الأساسي على تطوير تطبيقات Android ودمجها مع الخدمات الخلفية. ستعمل جنبًا إلى جنب مع مهندسين ومطورين آخرين يعملون على طبقات مختلفة من البنية التحتية، لذا فإن الالتزام بحل المشكلات بشكل تعاوني والتصميم المتقن وبناء منتجات عالية الجودة أمر أساسي.',
+    sections: [
+      {
+        title: 'المسؤوليات',
+        items: [
+          'تحويل التصاميم والمخططات الهيكلية إلى شيفرة عالية الجودة',
+          'تصميم وبناء وصيانة شيفرة Java عالية الأداء وقابلة لإعادة الاستخدام وموثوقة',
+          'ضمان أفضل أداء وجودة واستجابة ممكنة للتطبيق',
+          'تحديد الاختناقات ومعالجتها وإصلاح الأخطاء',
+          'المساعدة في الحفاظ على جودة الشيفرة وتنظيمها وأتمتتها',
+          'قيادة أعضاء الفريق لتحقيق أهداف المشروع'
+        ]
+      },
+      {
+        title: 'المهارات',
+        alt: true,
+        items: [
+          'معرفة قوية بـ Android SDK وإصدارات Android المختلفة وكيفية التعامل مع أحجام الشاشات المختلفة',
+          'خبرة في واجهات RESTful APIs لربط تطبيقات Android بالخدمات الخلفية',
+          'معرفة قوية بمبادئ تصميم واجهات Android وأنماطها وأفضل ممارساتها',
+          'خبرة في التخزين دون اتصال والمعالجة المتوازية وضبط الأداء',
+          'القدرة على فهم متطلبات العمل وتحويلها إلى متطلبات تقنية',
+          'فهم مبادئ تصميم Android من Google وإرشادات الواجهات',
+          'فهم متقن لأدوات إدارة إصدارات الشيفرة مثل Git أو Subversion',
+          'درجة البكالوريوس في علوم الحاسوب أو ما يعادلها',
+          'خبرة مهنية تزيد على 3 سنوات في تطوير تطبيقات Android'
+        ]
+      }
+    ],
+    ctaTitle: 'مهتم؟',
+    ctaBody: 'يمكن للمرشحين المهتمين إرسال سيرهم الذاتية إلى careers@pakdata.com مع كتابة “Senior Android Developer” في سطر الموضوع.',
+    subject: 'Senior Android Developer',
+    backLabel: 'العودة إلى الوظائف',
+    applyLabel: 'راسلنا بالبريد'
+  }
+}[lang];
 ---
 
 <CareerDetail {...copy} />

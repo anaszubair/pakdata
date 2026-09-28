@@ -11,44 +11,119 @@ import CareerDetail from '../../components/CareerDetail.astro';
 import { getLangFromUrl } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
-const base = {
-  seoTitle: 'Senior iOS Developer | PDMS Careers',
-  seoDesc: 'Join PDMS as a Senior iOS Developer and build high-quality iPhone and iPad applications with Swift, Objective-C, clean code, and strong delivery practices.',
-  title: 'Senior iOS Developer',
-  intro: 'We are looking for a Senior iOS Developer (with minimum 3 years of experience) responsible for the development and maintenance of applications aimed at iOS devices.',
-  body: 'Your primary focus will be the development of iOS applications and their integration with back-end services. You will be working along-side other engineers and developers working on different layers of the infrastructure. Therefore, commitment to collaborative problem solving, sophisticated design, and creating quality products is essential.',
-  sections: [
-    {
-      title: 'Required Skill Set',
-      items: [
-        'Minimum 3+ years of relevant experience',
-        'Develop new features and maintain existing components in mobile products based on specifications provided by the product',
-        'Collaborate with cross-functional teams to define, design and ship new features',
-        'Operate effectively in a fast paced, deadline driven, collaborative and iterative programming environment'
-      ]
-    },
-    {
-      title: 'Technical Skills',
-      alt: true,
-      items: [
-        'Experience building complex applications for the iPhone or iPad using Swift and/or Objective-C',
-        'Knowledge of iOS SDK performance tools and optimization techniques',
-        'Strong problem-solving skills',
-        'Strong in object-oriented programming design and skills',
-        'A proactive programming style that anticipates and resolves project roadblocks',
-        'Knowledge of best practices, clean code, Test Driven Development, Continuous Integration and Continuous Delivery',
-        'Experience in working with Agile methodology',
-        'Excellent problem solving, critical thinking and communication skills'
-      ]
-    }
-  ],
-  ctaTitle: 'Interested?',
-  ctaBody: 'Interested candidates can share their CV’s at jobs@pakdata.com mentioning “Senior iOS Developer” in the subject line.',
-  subject: 'Senior iOS Developer',
-  backLabel: 'Back to Join Us',
-  applyLabel: 'Email Jobs'
-};
-const copy = { en: base, ur: base, ar: base }[lang] ?? base;
+const copy = {
+  en: {
+    seoTitle: 'Senior iOS Developer | PDMS Careers',
+    seoDesc: 'Join PDMS as a Senior iOS Developer and build high-quality iPhone and iPad applications with Swift, Objective-C, clean code, and strong delivery practices.',
+    title: 'Senior iOS Developer',
+    intro: 'We are looking for a Senior iOS Developer (with minimum 3 years of experience) responsible for the development and maintenance of applications aimed at iOS devices.',
+    body: 'Your primary focus will be the development of iOS applications and their integration with back-end services. You will be working along-side other engineers and developers working on different layers of the infrastructure. Therefore, commitment to collaborative problem solving, sophisticated design, and creating quality products is essential.',
+    sections: [
+      {
+        title: 'Required Skill Set',
+        items: [
+          'Minimum 3+ years of relevant experience',
+          'Develop new features and maintain existing components in mobile products based on specifications provided by the product',
+          'Collaborate with cross-functional teams to define, design and ship new features',
+          'Operate effectively in a fast paced, deadline driven, collaborative and iterative programming environment'
+        ]
+      },
+      {
+        title: 'Technical Skills',
+        alt: true,
+        items: [
+          'Experience building complex applications for the iPhone or iPad using Swift and/or Objective-C',
+          'Knowledge of iOS SDK performance tools and optimization techniques',
+          'Strong problem-solving skills',
+          'Strong in object-oriented programming design and skills',
+          'A proactive programming style that anticipates and resolves project roadblocks',
+          'Knowledge of best practices, clean code, Test Driven Development, Continuous Integration and Continuous Delivery',
+          'Experience in working with Agile methodology',
+          'Excellent problem solving, critical thinking and communication skills'
+        ]
+      }
+    ],
+    ctaTitle: 'Interested?',
+    ctaBody: 'Interested candidates can share their CV’s at careers@pakdata.com mentioning “Senior iOS Developer” in the subject line.',
+    subject: 'Senior iOS Developer',
+    backLabel: 'Back to Join Us',
+    applyLabel: 'Email Jobs'
+  },
+  ur: {
+    seoTitle: 'سینئر iOS ڈویلپر | PDMS ملازمتیں',
+    seoDesc: 'PDMS میں بطور سینئر iOS ڈویلپر شامل ہوں اور Swift، Objective-C، صاف ستھرے کوڈ اور مضبوط ڈیلیوری طریقوں کے ساتھ اعلیٰ معیار کی iPhone اور iPad ایپلیکیشنز بنائیں۔',
+    title: 'سینئر iOS ڈویلپر',
+    intro: 'ہمیں ایک سینئر iOS ڈویلپر (کم از کم 3 سال کے تجربے کے ساتھ) کی تلاش ہے جو iOS آلات کے لیے ایپلیکیشنز کی تیاری اور دیکھ بھال کا ذمہ دار ہو۔',
+    body: 'آپ کی بنیادی توجہ iOS ایپلیکیشنز کی تیاری اور انہیں بیک اینڈ سروسز کے ساتھ مربوط کرنے پر ہوگی۔ آپ انفراسٹرکچر کی مختلف سطحوں پر کام کرنے والے دیگر انجینئرز اور ڈویلپرز کے ساتھ مل کر کام کریں گے، اس لیے مل جل کر مسائل حل کرنے، عمدہ ڈیزائن اور معیاری پروڈکٹس بنانے کا عزم ضروری ہے۔',
+    sections: [
+      {
+        title: 'مطلوبہ مہارتیں',
+        items: [
+          'کم از کم 3 سال سے زائد متعلقہ تجربہ',
+          'پروڈکٹ کی فراہم کردہ تفصیلات کی بنیاد پر موبائل پروڈکٹس میں نئے فیچرز تیار کرنا اور موجودہ اجزاء کو برقرار رکھنا',
+          'نئے فیچرز کی تعریف، ڈیزائن اور اجرا کے لیے مختلف شعبوں کی ٹیموں کے ساتھ تعاون کرنا',
+          'تیز رفتار، ڈیڈ لائن پر مبنی، باہمی تعاون اور مرحلہ وار پروگرامنگ ماحول میں مؤثر طریقے سے کام کرنا'
+        ]
+      },
+      {
+        title: 'تکنیکی مہارتیں',
+        alt: true,
+        items: [
+          'Swift اور/یا Objective-C کے ذریعے iPhone یا iPad کے لیے پیچیدہ ایپلیکیشنز بنانے کا تجربہ',
+          'iOS SDK کے پرفارمنس ٹولز اور آپٹیمائزیشن تکنیکوں کا علم',
+          'مسائل حل کرنے کی مضبوط صلاحیت',
+          'آبجیکٹ اورینٹڈ پروگرامنگ ڈیزائن اور مہارتوں پر مضبوط گرفت',
+          'ایسا فعال پروگرامنگ انداز جو پروجیکٹ کی رکاوٹوں کا پیشگی اندازہ لگا کر انہیں حل کرے',
+          'بہترین طریقوں، کلین کوڈ، Test Driven Development، Continuous Integration اور Continuous Delivery کا علم',
+          'Agile طریقۂ کار کے ساتھ کام کرنے کا تجربہ',
+          'مسائل حل کرنے، تنقیدی سوچ اور ابلاغ کی بہترین صلاحیتیں'
+        ]
+      }
+    ],
+    ctaTitle: 'دلچسپی رکھتے ہیں؟',
+    ctaBody: 'دلچسپی رکھنے والے امیدوار اپنی سی وی careers@pakdata.com پر بھیجیں اور سبجیکٹ لائن میں “Senior iOS Developer” لکھیں۔',
+    subject: 'Senior iOS Developer',
+    backLabel: 'آسامیوں پر واپس جائیں',
+    applyLabel: 'ای میل کریں'
+  },
+  ar: {
+    seoTitle: 'مطوّر iOS أول | وظائف PDMS',
+    seoDesc: 'انضم إلى PDMS بوظيفة مطوّر iOS أول وابنِ تطبيقات عالية الجودة لأجهزة iPhone وiPad باستخدام Swift وObjective-C وشيفرة نظيفة وممارسات تسليم قوية.',
+    title: 'مطوّر iOS أول',
+    intro: 'نبحث عن مطوّر iOS أول (بخبرة لا تقل عن 3 سنوات) يتولى تطوير وصيانة التطبيقات الموجهة لأجهزة iOS.',
+    body: 'سينصبّ تركيزك الأساسي على تطوير تطبيقات iOS ودمجها مع الخدمات الخلفية. ستعمل جنبًا إلى جنب مع مهندسين ومطورين آخرين يعملون على طبقات مختلفة من البنية التحتية، لذا فإن الالتزام بحل المشكلات بشكل تعاوني والتصميم المتقن وبناء منتجات عالية الجودة أمر أساسي.',
+    sections: [
+      {
+        title: 'المهارات المطلوبة',
+        items: [
+          'خبرة ذات صلة لا تقل عن 3 سنوات',
+          'تطوير ميزات جديدة وصيانة المكونات الحالية في منتجات الهاتف المحمول وفقًا للمواصفات المقدمة من فريق المنتج',
+          'التعاون مع فرق متعددة التخصصات لتحديد الميزات الجديدة وتصميمها وإطلاقها',
+          'العمل بفاعلية في بيئة برمجة سريعة الوتيرة ومرتبطة بمواعيد نهائية وتعاونية وتكرارية'
+        ]
+      },
+      {
+        title: 'المهارات التقنية',
+        alt: true,
+        items: [
+          'خبرة في بناء تطبيقات معقدة لأجهزة iPhone أو iPad باستخدام Swift و/أو Objective-C',
+          'معرفة بأدوات الأداء في iOS SDK وتقنيات التحسين',
+          'مهارات قوية في حل المشكلات',
+          'تمكّن قوي من تصميم البرمجة كائنية التوجه ومهاراتها',
+          'أسلوب برمجة استباقي يتوقع عقبات المشروع ويعالجها',
+          'معرفة بأفضل الممارسات والشيفرة النظيفة والتطوير الموجّه بالاختبار (TDD) والتكامل المستمر والتسليم المستمر',
+          'خبرة في العمل وفق منهجية Agile',
+          'مهارات ممتازة في حل المشكلات والتفكير النقدي والتواصل'
+        ]
+      }
+    ],
+    ctaTitle: 'مهتم؟',
+    ctaBody: 'يمكن للمرشحين المهتمين إرسال سيرهم الذاتية إلى careers@pakdata.com مع كتابة “Senior iOS Developer” في سطر الموضوع.',
+    subject: 'Senior iOS Developer',
+    backLabel: 'العودة إلى الوظائف',
+    applyLabel: 'راسلنا بالبريد'
+  }
+}[lang];
 ---
 
 <CareerDetail {...copy} />

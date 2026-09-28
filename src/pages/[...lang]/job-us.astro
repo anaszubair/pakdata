@@ -205,7 +205,7 @@ const jobs = [
       <h3 class="modal-title">{t('join.modal.title')}</h3>
       <p class="modal-position-name" id="modal-target-position">{t('join.jobs.ios.title')}</p>
       
-      <form class="apply-form" id="career-apply-form" data-alert-msg={t('join.modal.alert')} data-default-name={t('join.modal.defaultApplicant')}>
+      <form class="apply-form" id="career-apply-form" data-alert-msg={t('join.modal.alert')} data-default-name={t('join.modal.defaultApplicant')} data-recaptcha-msg={t('form.recaptcha.required')} data-sending-msg={t('form.sending')} data-rejected-msg={t('form.error.rejected')} data-network-msg={t('form.error.network')}>
         <div class="form-group">
           <label class="form-label" for="applicant-name">{t('join.modal.name.label')}</label>
           <input type="text" id="applicant-name" required class="form-control" placeholder={t('join.modal.name.placeholder')} />
@@ -231,6 +231,10 @@ const jobs = [
           <textarea id="applicant-cover" class="form-control" placeholder={t('join.modal.cover.placeholder')}></textarea>
         </div>
 
+        <div class="form-trap" aria-hidden="true">
+          <label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+        </div>
+        <div class="form-recaptcha" data-recaptcha data-failed-msg={t('form.recaptcha.failed')}></div>
         <button type="submit" class="btn btn-primary w-100" id="submit-career-btn">{t('join.modal.btn')}</button>
       </form>
     </div>
@@ -552,6 +556,8 @@ const jobs = [
 
 <!-- Modal expansion scripts & filtering scripts -->
 <script>
+  import { setupMailForm } from '../../lib/mail-service';
+
   document.addEventListener('astro:page-load', () => {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const jobItems = document.querySelectorAll('.job-item-container');
@@ -604,44 +610,34 @@ const jobs = [
       });
     }
 
-    if (careerApplyForm) {
-      careerApplyForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const applicantName = document.getElementById('applicant-name') as HTMLInputElement;
-        const defaultName = careerApplyForm.dataset.defaultName || 'Applicant';
-        const alertMsg = careerApplyForm.dataset.alertMsg || '';
-        const submitButton = document.getElementById('submit-career-btn') as HTMLButtonElement;
-
-        submitButton.disabled = true;
-
-        try {
-          const response = await fetch('/api/send-email', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({
-              formType: 'career',
-              fields: {
-                position: modalTargetPos?.textContent || '',
-                name: applicantName?.value || defaultName,
-                email: (document.getElementById('applicant-email') as HTMLInputElement)?.value,
-                phone: (document.getElementById('applicant-phone') as HTMLInputElement)?.value,
-                resume: (document.getElementById('applicant-resume') as HTMLInputElement)?.value,
-                coverLetter: (document.getElementById('applicant-cover') as HTMLTextAreaElement)?.value
-              }
-            })
-          });
-
-          if (!response.ok) throw new Error('Email request failed');
-
-          alert(`${applicantName?.value || defaultName}: ${alertMsg}`);
+    const submitCareerButton = document.getElementById('submit-career-btn');
+    if (careerApplyForm instanceof HTMLFormElement && submitCareerButton instanceof HTMLButtonElement) {
+      setupMailForm({
+        form: careerApplyForm,
+        button: submitCareerButton,
+        fallbackEmail: 'careers@pakdata.com',
+        buildPayload: () => {
+          const position = modalTargetPos?.textContent?.trim() || '';
+          const name = (document.getElementById('applicant-name') as HTMLInputElement)?.value.trim() || careerApplyForm.dataset.defaultName || 'Applicant';
+          return {
+            name,
+            email: (document.getElementById('applicant-email') as HTMLInputElement)?.value.trim(),
+            subject: `Job application: ${position}`,
+            subjectPrefix: 'Career',
+            message: [
+              `Position: ${position}`,
+              `Phone: ${(document.getElementById('applicant-phone') as HTMLInputElement)?.value.trim()}`,
+              `Resume: ${(document.getElementById('applicant-resume') as HTMLInputElement)?.value.trim()}`,
+              '',
+              (document.getElementById('applicant-cover') as HTMLTextAreaElement)?.value.trim(),
+            ].join('\n'),
+          };
+        },
+        onSuccess: ({ name }) => {
+          alert(`${name}: ${careerApplyForm.dataset.alertMsg || ''}`);
           applyModal?.classList.remove('active');
           document.body.classList.remove('overflow-hidden');
-          careerApplyForm.reset();
-        } catch {
-          alert('Sorry, your application could not be sent right now. Please try again or email HR directly.');
-        } finally {
-          submitButton.disabled = false;
-        }
+        },
       });
     }
   });

@@ -23,9 +23,9 @@ const {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const dir = lang === 'en' ? 'ltr' : 'rtl';
-const searchParams = Astro.url.searchParams;
-const hideChrome = searchParams.get('webview') === '1' || searchParams.get('view') === 'app';
-const siteOrigin = 'https://pakdata-pearl.vercel.app';
+// The site is prerendered, so the in-app webview mode (?webview=1 or ?view=app)
+// is applied in the browser by the inline script in <head>.
+const siteOrigin = (Astro.site ?? new URL('https://pakdata.com')).origin;
 const siteHost = new URL(siteOrigin).hostname;
 const defaultDescription = 'Pioneering Islamic digital innovation and software development since 1979. Creators of Quran Majeed, EasyUrdu, Quran Pak, and enterprise technology platforms.';
 const fallbackSocialImage = '/images/social-preview.png';
@@ -42,10 +42,11 @@ const buildPageTitle = (pageTitle: string) => {
 const fullTitle = buildPageTitle(title);
 const pageDescription = description?.trim() || defaultDescription;
 
+// URLs never end in a slash (trailingSlash: 'never'), except the root.
 const normalizePath = (path: string) => {
   const clean = path || '/';
   if (clean === '/') return clean;
-  return clean.endsWith('/') ? clean : `${clean}/`;
+  return clean.endsWith('/') ? clean.slice(0, -1) : clean;
 };
 
 const stripTrailingSlash = (path: string) => {
@@ -62,13 +63,13 @@ const toAbsoluteUrl = (pathOrUrl: string) => {
 };
 
 // Helper to determine active link
-const pathname = new URL(Astro.request.url).pathname;
-const cleanPathname = pathname.replace(new RegExp(`^/${lang}`), '') || '/';
+const pathname = Astro.url.pathname;
+const cleanPathname = pathname.replace(new RegExp(`^/${lang}(?=/|$)`), '') || '/';
 const normalizedCleanPathname = normalizePath(cleanPathname);
 const productPathKey = stripTrailingSlash(normalizedCleanPathname);
 const canonicalPath = normalizePath(getRelativeLocaleUrl(lang, normalizedCleanPathname));
 const canonicalUrl = toAbsoluteUrl(canonicalPath);
-const robotsContent = noindex || hideChrome
+const robotsContent = noindex
   ? 'noindex, nofollow'
   : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 const alternateLocales = Object.keys(languages).map((locale) => ({
@@ -116,7 +117,7 @@ const routeSocialImages: Record<string, string> = {
   '/products/easysindhi': '/images/easysindhi/1.jpeg',
   '/products/hadith-app': '/images/hadith/unnamed.webp',
   '/products/3d-salah-guide': '/images/3DSalah/unnamed.webp',
-  '/products/kitabi': '/images/kitabi/unnamed (3).webp',
+  '/products/kitabi': '/images/kitabi/unnamed-3.webp',
   '/products/arabicfont': '/images/quranmajeed/Quran-Majeed.png',
   '/projects': '/images/nadra.jpg',
   '/nadra-citizens-database': '/images/nadra.jpg',
@@ -143,16 +144,11 @@ const productSchemas: Record<string, Record<string, unknown>> = {
     applicationCategory: 'ReferenceApplication',
     operatingSystem: 'Android, iOS, macOS',
     image: toAbsoluteUrl(routeSocialImages['/products/quran-majeed']),
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      bestRating: '5'
-    },
     additionalProperty: [
       {
         '@type': 'PropertyValue',
         name: 'Downloads',
-        value: '50M+'
+        value: '100M+'
       }
     ]
   },
@@ -161,11 +157,6 @@ const productSchemas: Record<string, Record<string, unknown>> = {
     applicationCategory: 'ReferenceApplication',
     operatingSystem: 'iOS',
     image: toAbsoluteUrl(routeSocialImages['/products/quran-pak']),
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      bestRating: '5'
-    }
   },
   '/products/easyurdu': {
     name: 'Easy Urdu Keyboard',
@@ -235,8 +226,8 @@ const baseSchemas = [
     alternateName: 'PDMS',
     url: siteOrigin,
     logo: toAbsoluteUrl('/images/logo.png'),
-    foundingDate: '1978',
-    email: 'info@pakdata.com',
+    foundingDate: '1979',
+    email: 'support@pakdata.com',
     sameAs: [
       'https://linkedin.com/company/pakdata',
       'https://twitter.com/pakdata',
@@ -287,43 +278,43 @@ const isActive = (path: string) => {
 const productLinks = [
   {
     href: getRelativeLocaleUrl(lang, '/products/quran-majeed'),
-    label: 'Quran Majeed'
+    label: t('nav.product.qm')
   },
   {
     href: getRelativeLocaleUrl(lang, '/products/quran-majeed-mac'),
-    label: 'Quran Majeed Mac'
+    label: t('nav.product.qmMac')
   },
   {
     href: getRelativeLocaleUrl(lang, '/products/quran-pak'),
-    label: 'Quran Pak'
+    label: t('nav.product.qp')
   },
   {
     href: getRelativeLocaleUrl(lang, '/products/hadith-app'),
-    label: 'Hadith App'
+    label: t('nav.product.hadith')
   },
   {
     href: getRelativeLocaleUrl(lang, '/products/3d-salah-guide'),
-    label: '3D Salah Guide'
+    label: t('nav.product.salah')
   },
   {
     href: getRelativeLocaleUrl(lang, '/products/easyurdu'),
-    label: 'Easy Urdu Keyboard'
+    label: t('nav.product.eu')
   },
   {
     href: getRelativeLocaleUrl(lang, '/products/easysindhi'),
-    label: 'Easy Sindhi Keyboard'
+    label: t('nav.product.es')
   },
   {
     href: getRelativeLocaleUrl(lang, '/products/arabicfont'),
-    label: 'PDMS Saleem Quran Font'
+    label: t('nav.product.font')
   },
   {
     href: getRelativeLocaleUrl(lang, '/products/kitabi'),
-    label: 'Kitabi'
+    label: t('nav.product.kitabi')
   },
   {
     href: getRelativeLocaleUrl(lang, '/products'),
-    label: 'More Products'
+    label: t('nav.product.more')
   }
 ];
 
@@ -356,8 +347,24 @@ const projectLinks = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="google-site-verification" content="3-szp3quXwmwNF3NIavdt_lCGIpMTQQxnC3UMxRumHI" />
+    <script is:inline>
+      // In-app webview mode: hide the site header and footer.
+      (() => {
+        const apply = () => {
+          const params = new URLSearchParams(window.location.search);
+          if (params.get('webview') === '1' || params.get('view') === 'app') {
+            document.documentElement.classList.add('webview-shell');
+          }
+        };
+        apply();
+        document.addEventListener('astro:after-swap', apply);
+      })();
+    </script>
     <link rel="canonical" href={canonicalUrl} />
     <meta name="robots" content={robotsContent} />
     {alternateLocales.map((alternate) => (
@@ -509,10 +516,9 @@ const projectLinks = [
       }
     </style>
   </head>
-  <body class:list={[hideChrome && 'webview-shell']}>
+  <body>
 
     <!-- Navigation Header -->
-    {!hideChrome && (
     <header class="header">
       <div class="container header-container">
         <!-- Logo -->
@@ -567,7 +573,6 @@ const projectLinks = [
         </div>
       </div>
     </header>
-    )}
 
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-menu" id="mobile-menu-drawer">
@@ -604,7 +609,6 @@ const projectLinks = [
     </main>
 
     <!-- Footer -->
-    {!hideChrome && (
     <footer class="footer">
       <div class="container footer-grid">
         <!-- Footer Column 1: Company Profile -->
@@ -613,7 +617,7 @@ const projectLinks = [
             <img src="/images/logo-header.webp" alt="PDMS Logo" class="logo-img" width="320" height="124" loading="lazy" decoding="async" />
           </a>
           <p class="footer-desc">
-            Pakistan Data Management Services (PDMS) has been pioneering software development and mobile application design since 1979. We combine engineering excellence with authentic content to serve millions of users globally.
+            {t('footer.desc')}
           </p>
           <div class="social-links">
             <!-- LinkedIn -->
@@ -640,7 +644,7 @@ const projectLinks = [
             <li><a href={getRelativeLocaleUrl(lang, '/projects')}>{t('nav.projects')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/about-us')}>{t('nav.about')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/services')}>{t('nav.services')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/development-services')}>Development Services</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/development-services')}>{t('footer.nav.devServices')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/our-team')}>{t('nav.team')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/job-us')}>{t('nav.join')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/support')}>{t('nav.support')}</a></li>
@@ -652,16 +656,16 @@ const projectLinks = [
         <div class="footer-col">
           <h3 class="footer-title">{t('footer.products.title')}</h3>
           <ul class="footer-links">
-            <li><a href={getRelativeLocaleUrl(lang, '/products/quran-majeed')}>Quran Majeed App</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/quran-majeed-mac')}>Quran Majeed Mac</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/quran-pak')}>Quran Pak Reading</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/hadith-app')}>Hadith App</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/3d-salah-guide')}>3D Salah Guide</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/easyurdu')}>Easy Urdu Keyboard</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/easysindhi')}>Easy Sindhi Keyboard</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/arabicfont')}>PDMS Saleem Quran Font</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/kitabi')}>Kitabi</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products') + '#quran-tv'}>Quran TV Streaming</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/quran-majeed')}>{t('footer.product.qm')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/quran-majeed-mac')}>{t('footer.product.qmMac')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/quran-pak')}>{t('footer.product.qp')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/hadith-app')}>{t('footer.product.hadith')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/3d-salah-guide')}>{t('footer.product.salah')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/easyurdu')}>{t('footer.product.eu')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/easysindhi')}>{t('footer.product.es')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/arabicfont')}>{t('footer.product.font')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/kitabi')}>{t('footer.product.kitabi')}</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products') + '#quran-tv'}>{t('footer.product.qtv')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/engage-ai')}>Engage AI</a></li>
           </ul>
         </div>
@@ -680,7 +684,7 @@ const projectLinks = [
           </form>
           <div class="business-contact">
             <span class="contact-label">{t('footer.connect.business')}</span>
-            <a href="mailto:info@pakdata.com" class="contact-value">info@pakdata.com</a>
+            <a href="mailto:support@pakdata.com" class="contact-value">support@pakdata.com</a>
           </div>
         </div>
       </div>
@@ -696,7 +700,6 @@ const projectLinks = [
         </div>
       </div>
     </footer>
-    )}
 
     <!-- Interactive Navigation Scripts -->
     <script>
@@ -1071,7 +1074,12 @@ const projectLinks = [
     flex-grow: 1;
   }
 
-  body.webview-shell .main-content {
+  :global(html.webview-shell) .header,
+  :global(html.webview-shell) .footer {
+    display: none;
+  }
+
+  :global(html.webview-shell) .main-content {
     padding-top: 0;
   }
 

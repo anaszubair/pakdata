@@ -19,6 +19,7 @@ const copy = {
     title: 'Quran Majeed for Mac OS',
     lead: 'Quran Majeed is an amazing Quran app that beautifies your life with the blessing of reading and listening to the Quran on your Mac.',
     body: 'The latest version of the authentic Quran Majeed app for Apple Macintosh offers complete Surah Al-Baqarah in the elegant Uthmanic script proofread by a Muslim scholar, multiple audio recitations, and translations.',
+    macAppStore: 'Download on the Mac App Store',
     footerDesc: 'Quran Majeed for Mac offers authentic Quran reading with Uthmanic script, complete Surah Al-Baqarah, audio recitations, and translations on Apple Macintosh.'
   },
   ur: {
@@ -27,6 +28,7 @@ const copy = {
     title: 'قرآن مجید برائے میک',
     lead: 'قرآن مجید ایک خوبصورت قرآن ایپ ہے جو آپ کی زندگی کو اپنے میک پر قرآن پڑھنے اور سننے کی برکت سے مزین کرتی ہے۔',
     body: 'ایپل میکنٹوش کے لیے قرآن مجید کا جدید ترین ورژن مکمل سورۃ البقرہ کو خوبصورت عثمانی رسم الخط میں پیش کرتا ہے، جس کی پروف ریڈنگ ایک مسلمان عالم نے کی ہے، ساتھ میں متعدد آڈیو تلاوتیں اور تراجم بھی شامل ہیں۔',
+    macAppStore: 'میک ایپ اسٹور سے ڈاؤن لوڈ کریں',
     footerDesc: 'قرآن مجید برائے میک ایپل میکنٹوش پر مستند قرآنی مطالعہ، عثمانی رسم الخط، مکمل سورہ البقرہ، آڈیو تلاوتیں اور تراجم فراہم کرتا ہے۔'
   },
   ar: {
@@ -35,9 +37,12 @@ const copy = {
     title: 'القرآن المجيد للماك',
     lead: 'القرآن المجيد هو تطبيق قرآن رائع يجمّل حياتك بنعمة قراءة القرآن والاستماع إليه على جهاز الماك.',
     body: 'يوفر أحدث إصدار من تطبيق القرآن المجيد الأصيل لأجهزة Apple Macintosh سورة البقرة كاملة بالخط العثماني الأنيق، تمت مراجعته من قبل عالم مسلم، مع تلاوات صوتية متعددة وترجمات لتجربة قرآنية مكتبية راقية.',
+    macAppStore: 'حمّله من Mac App Store',
     footerDesc: 'يوفر القرآن المجيد للماك قراءة قرآنية أصيلة بخط عثماني، وسورة البقرة كاملة، وتلاوات صوتية وترجمات على Apple Macintosh.'
   }
 }[lang];
+
+const macAppStoreLink = 'https://apps.apple.com/app/quran-majeed-sura-al-baqara/id949836907?mt=12';
 ---
 
 <Layout title={copy.seoTitle} description={copy.seoDesc}>
@@ -47,6 +52,9 @@ const copy = {
         <h1 class="mac-title">{copy.title}</h1>
         <p class="mac-lead">{copy.lead}</p>
         <p class="mac-body">{copy.body}</p>
+        <a href={macAppStoreLink} class="mac-store-link" aria-label={copy.macAppStore} target="_blank" rel="noopener noreferrer">
+          <img src="/images/quranmajeed/Appstore.png" alt="" class="mac-store-badge" />
+        </a>
       </div>
 
       <div class="mac-visual card">
@@ -98,6 +106,17 @@ const copy = {
 
   .mac-body {
     margin-top: .9rem;
+  }
+
+  .mac-store-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+  }
+
+  .mac-store-badge {
+    display: block;
+    height: 3.25rem;
+    width: auto;
   }
 
   .mac-visual {
