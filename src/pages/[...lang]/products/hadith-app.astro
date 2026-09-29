@@ -185,12 +185,48 @@ const copy = {
   }
 }[lang];
 
+const ui = {
+  en: {
+    logoAlt: 'Hadith app logo',
+    screens: ['Hadith app logo and books', 'Hadith app reading screen', 'Hadith app search screen', 'Hadith app themes screen', 'Hadith app collections screen'],
+    honorificLabel: 'peace be upon him',
+    highlightsLabel: 'Hadith highlights',
+    carouselLabel: 'Hadith app screenshots',
+    showcaseBadge: 'Authentic collections',
+    heroStats: ['Sahih Bukhari', 'Arabic text', 'Bookmarks', 'Advanced search'],
+    badges: { intro: 'Introduction', features: 'Features', learning: 'Learning', trust: 'Trust', reviews: 'Reviews', faq: 'FAQ' },
+    learningMini: ['Daily reading', 'Research support', 'Memorization aid', 'Study mode']
+  },
+  ur: {
+    logoAlt: 'حدیث ایپ کا لوگو',
+    screens: ['حدیث ایپ کا لوگو اور کتب', 'حدیث ایپ مطالعہ اسکرین', 'حدیث ایپ سرچ اسکرین', 'حدیث ایپ تھیمز اسکرین', 'حدیث ایپ مجموعات اسکرین'],
+    honorificLabel: 'صلی اللہ علیہ وسلم',
+    highlightsLabel: 'حدیث ایپ کی نمایاں خصوصیات',
+    carouselLabel: 'حدیث ایپ کے اسکرین شاٹس',
+    showcaseBadge: 'مستند مجموعے',
+    heroStats: ['صحیح بخاری', 'عربی متن', 'بک مارکس', 'جدید سرچ'],
+    badges: { intro: 'تعارف', features: 'خصوصیات', learning: 'سیکھنا', trust: 'اعتماد', reviews: 'آراء', faq: 'سوالات' },
+    learningMini: ['روزانہ مطالعہ', 'تحقیق میں معاونت', 'حفظ میں مدد', 'اسٹڈی موڈ']
+  },
+  ar: {
+    logoAlt: 'شعار تطبيق الحديث',
+    screens: ['شعار تطبيق الحديث والكتب', 'شاشة القراءة في تطبيق الحديث', 'شاشة البحث في تطبيق الحديث', 'شاشة السمات في تطبيق الحديث', 'شاشة المجموعات في تطبيق الحديث'],
+    honorificLabel: 'صلى الله عليه وسلم',
+    highlightsLabel: 'أبرز ميزات تطبيق الحديث',
+    carouselLabel: 'لقطات شاشة تطبيق الحديث',
+    showcaseBadge: 'مجموعات موثوقة',
+    heroStats: ['صحيح البخاري', 'النص العربي', 'الإشارات المرجعية', 'بحث متقدم'],
+    badges: { intro: 'مقدمة', features: 'الميزات', learning: 'التعلّم', trust: 'الثقة', reviews: 'المراجعات', faq: 'الأسئلة الشائعة' },
+    learningMini: ['قراءة يومية', 'دعم البحث', 'مساعدة على الحفظ', 'وضع الدراسة']
+  }
+}[lang];
+
 const hadithScreens = [
-  { src: '/images/hadith/logo-hadith.webp', alt: 'Hadith app logo and books' },
-  { src: '/images/hadith/unnamed.webp', alt: 'Hadith app reading screen' },
-  { src: '/images/hadith/unnamed-1.webp', alt: 'Hadith app search screen' },
-  { src: '/images/hadith/unnamed-2.webp', alt: 'Hadith app themes screen' },
-  { src: '/images/hadith/unnamed-7.webp', alt: 'Hadith app collections screen' }
+  { src: '/images/hadith/logo-hadith.webp', alt: ui.screens[0], width: 256, height: 256 },
+  { src: '/images/hadith/unnamed.webp', alt: ui.screens[1], width: 810, height: 1440 },
+  { src: '/images/hadith/unnamed-1.webp', alt: ui.screens[2], width: 810, height: 1440 },
+  { src: '/images/hadith/unnamed-2.webp', alt: ui.screens[3], width: 810, height: 1440 },
+  { src: '/images/hadith/unnamed-7.webp', alt: ui.screens[4], width: 810, height: 1440 }
 ];
 
 const storeLinks = [
@@ -206,19 +242,19 @@ const storeLinks = [
         <span class="badge badge-primary hadith-badge">{copy.heroBadge}</span>
         <h1 class="hadith-title">
           <span class="hadith-title-text">{copy.heroTitle}</span>
-          <span class="hadith-title-honorific" aria-label="peace be upon him">{copy.heroHonorific}</span>
+          {copy.heroHonorific && <span class="hadith-title-honorific" aria-label={ui.honorificLabel}>{copy.heroHonorific}</span>}
         </h1>
         <p class="hadith-lead">{copy.heroLead}</p>
         <p class="hadith-body">{copy.heroBody}</p>
 
-        <div class="hadith-feature-bar" aria-label="Hadith highlights">
+        <div class="hadith-feature-bar" aria-label={ui.highlightsLabel}>
           {copy.featureBar.map(item => <span class="hadith-chip">{item}</span>)}
         </div>
 
         <div class="hadith-cta-row">
           {storeLinks.map(link => (
             <a href={link.href} class="store-btn store-badge-link" aria-label={link.label} target="_blank" rel="noopener noreferrer">
-              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} width="220" height="65" />
             </a>
           ))}
           <a href="#features" class="btn btn-outline hadith-explore">{copy.explore}</a>
@@ -229,28 +265,25 @@ const storeLinks = [
         <div class="hadith-showcase-shell card">
           <div class="hadith-showcase-top">
             <div class="hadith-brand">
-              <img src="/images/hadith/logo-hadith.webp" alt="Hadith app logo" class="hadith-brand-logo" />
+              <img src="/images/hadith/logo-hadith.webp" alt={ui.logoAlt} class="hadith-brand-logo" width="256" height="256" />
               <div>
                 <p class="hadith-label">{copy.introTitle}</p>
                 <h2 class="hadith-rating">4.8 <Icon name="material-symbols:star" class="rating-icon" aria-hidden="true" /></h2>
               </div>
             </div>
-            <div class="hadith-badge-pill">Authentic collections</div>
+            <div class="hadith-badge-pill">{ui.showcaseBadge}</div>
           </div>
 
           <div class="hadith-showcase-hero">
-            <img src={hadithScreens[1].src} alt={hadithScreens[1].alt} class="hadith-main-shot" />
+            <img src={hadithScreens[1].src} alt={hadithScreens[1].alt} class="hadith-main-shot" width={hadithScreens[1].width} height={hadithScreens[1].height} />
             <div class="hadith-shot-stack">
-              <img src={hadithScreens[2].src} alt={hadithScreens[2].alt} />
-              <img src={hadithScreens[3].src} alt={hadithScreens[3].alt} />
+              <img src={hadithScreens[2].src} alt={hadithScreens[2].alt} width={hadithScreens[2].width} height={hadithScreens[2].height} />
+              <img src={hadithScreens[3].src} alt={hadithScreens[3].alt} width={hadithScreens[3].width} height={hadithScreens[3].height} />
             </div>
           </div>
 
           <div class="hadith-stat-grid">
-            <div class="hadith-stat">Sahih Bukhari</div>
-            <div class="hadith-stat">Arabic text</div>
-            <div class="hadith-stat">Bookmarks</div>
-            <div class="hadith-stat">Advanced search</div>
+            {ui.heroStats.map(stat => <div class="hadith-stat">{stat}</div>)}
           </div>
         </div>
       </aside>
@@ -260,7 +293,7 @@ const storeLinks = [
   <section class="section hadith-intro">
     <div class="container hadith-split">
       <div class="hadith-section-copy">
-        <span class="badge badge-primary">Introduction</span>
+        <span class="badge badge-primary">{ui.badges.intro}</span>
         <h2 class="section-title">{copy.introTitle}</h2>
         <p class="section-body">{copy.introBody1}</p>
         <p class="section-body">{copy.introBody2}</p>
@@ -278,7 +311,7 @@ const storeLinks = [
   <section class="section hadith-features" id="features">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Features</span>
+        <span class="badge badge-primary">{ui.badges.features}</span>
         <h2 class="section-title">{copy.featuresTitle}</h2>
       </div>
       <div class="hadith-feature-grid">
@@ -296,19 +329,16 @@ const storeLinks = [
   <section class="section hadith-learning-band">
     <div class="container hadith-media-grid">
       <div class="hadith-media-copy">
-        <span class="badge badge-primary">Learning</span>
+        <span class="badge badge-primary">{ui.badges.learning}</span>
         <h2 class="section-title">{copy.learningTitle}</h2>
         <p class="section-body">{copy.learningBody}</p>
         <div class="mini-grid">
-          <div class="mini-card">Daily reading</div>
-          <div class="mini-card">Research support</div>
-          <div class="mini-card">Memorization aid</div>
-          <div class="mini-card">Study mode</div>
+          {ui.learningMini.map(item => <div class="mini-card">{item}</div>)}
         </div>
       </div>
-      <div class="hadith-carousel" aria-label="Hadith app screenshots">
+      <div class="hadith-carousel" aria-label={ui.carouselLabel}>
         {hadithScreens.map((screen, idx) => (
-          <img src={screen.src} alt={screen.alt} class={idx === 0 ? 'hadith-carousel-cover' : ''} />
+          <img src={screen.src} alt={screen.alt} class={idx === 0 ? 'hadith-carousel-cover' : ''} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
         ))}
       </div>
     </div>
@@ -317,7 +347,7 @@ const storeLinks = [
   <section class="section hadith-why-band">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Trust</span>
+        <span class="badge badge-primary">{ui.badges.trust}</span>
         <h2 class="section-title">{copy.whyTitle}</h2>
       </div>
       <div class="hadith-why-grid">
@@ -337,7 +367,7 @@ const storeLinks = [
   <section class="section hadith-reviews-band">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Reviews</span>
+        <span class="badge badge-primary">{ui.badges.reviews}</span>
         <h2 class="section-title">{copy.reviewsTitle}</h2>
       </div>
       <div class="hadith-review-grid">
@@ -357,7 +387,7 @@ const storeLinks = [
   <section class="section hadith-faq-band">
     <div class="container hadith-faq-wrap">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">FAQ</span>
+        <span class="badge badge-primary">{ui.badges.faq}</span>
         <h2 class="section-title">{copy.faqTitle}</h2>
       </div>
       <div class="faq-list">
@@ -381,14 +411,14 @@ const storeLinks = [
         <div class="hadith-cta-row">
           {storeLinks.map(link => (
             <a href={link.href} class="store-btn store-badge-link" aria-label={link.id === 'google' ? copy.finalGoogle : copy.finalAppStore} target="_blank" rel="noopener noreferrer">
-              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} width="220" height="65" loading="lazy" decoding="async" />
             </a>
           ))}
           <a href="#features" class="btn btn-secondary">{copy.finalLearn}</a>
         </div>
       </div>
       <aside class="hadith-final-card card">
-        <img src="/images/hadith/logo-hadith.webp" alt="Hadith app logo" class="hadith-final-logo" />
+        <img src="/images/hadith/logo-hadith.webp" alt={ui.logoAlt} class="hadith-final-logo" width="256" height="256" loading="lazy" decoding="async" />
         <p>{copy.footerDesc}</p>
       </aside>
     </div>
@@ -413,6 +443,7 @@ const storeLinks = [
       linear-gradient(135deg, rgba(255,250,239,.98), rgba(255,243,216,.94));
   }
   .hadith-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(110deg, rgba(255,255,255,.8), transparent 45%), linear-gradient(0deg, rgba(255,255,255,.14), rgba(255,255,255,.14)); pointer-events:none; }
+  :global([dir='rtl']) .hadith-hero::before { background:linear-gradient(250deg, rgba(255,255,255,.8), transparent 45%), linear-gradient(0deg, rgba(255,255,255,.14), rgba(255,255,255,.14)); }
   .hadith-hero-grid, .hadith-split, .hadith-media-grid, .hadith-final-grid { display:grid; gap:1.5rem; align-items:center; position:relative; z-index:1; }
   .hadith-hero-grid { grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr); }
   .hadith-copy, .hadith-section-copy { max-width:44rem; }

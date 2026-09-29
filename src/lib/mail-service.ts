@@ -58,6 +58,14 @@ export const setupMailForm = ({ form, button, fallbackEmail, buildPayload, onSuc
       return;
     }
 
+    // reCAPTCHA blocked or offline: the service would reject the request, so
+    // hand the message to the visitor's email app instead of a dead end.
+    if (recaptcha?.hasFailed()) {
+      openEmailDraft(fallbackEmail, payload);
+      alert(form.dataset.networkMsg || 'We could not reach the mail service, so your email app has been opened instead.');
+      return;
+    }
+
     const recaptchaToken = recaptcha?.getToken() ?? '';
     if (recaptcha && !recaptchaToken) {
       alert(form.dataset.recaptchaMsg || 'Please tick "I\'m not a robot" before sending.');

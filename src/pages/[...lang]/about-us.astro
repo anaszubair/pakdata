@@ -579,12 +579,17 @@ const values = [
   /* Responsiveness */
   @media (max-width: 767px) {
     .timeline-container::before {
-      left: 1.5rem;
+      left: auto;
+      inset-inline-start: 1.5rem;
+    }
+
+    :global([dir="rtl"]) .timeline-container::before {
+      transform: translateX(50%);
     }
 
     .timeline-item {
       justify-content: flex-start;
-      padding-left: 3rem;
+      padding-inline-start: 3rem;
     }
 
     .timeline-content {
@@ -592,7 +597,8 @@ const values = [
     }
 
     .timeline-item::before {
-      left: 1rem !important;
+      left: auto !important;
+      inset-inline-start: 1rem !important;
     }
   }
 

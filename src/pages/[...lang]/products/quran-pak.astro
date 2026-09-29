@@ -215,19 +215,52 @@ const copy = {
   }
 }[lang];
 
+const ui = {
+  en: {
+    logoAlt: 'Quran Pak logo',
+    screens: ['Quran Pak featured screen', 'Quran Pak reading screen', 'Quran Pak study screen', 'Quran Pak prayer screen'],
+    screenshot: (n: number) => `Quran Pak screenshot ${n}`,
+    carouselLabel: 'Quran Pak screenshots',
+    showcaseBadge: 'Urdu-first reading',
+    heroStats: ['Tafsir Usmani', 'Urdu translations', 'Audio recitations', 'Bookmarks'],
+    badges: { intro: 'Introduction', features: 'Features', reading: 'Reading', learning: 'Learning' },
+    readingMini: ['Authentic Urdu script', 'Smooth navigation', 'Comfortable text layout', 'Daily reflection mode']
+  },
+  ur: {
+    logoAlt: 'قرآن پاک ایپ کا لوگو',
+    screens: ['قرآن پاک کی نمایاں اسکرین', 'قرآن پاک مطالعہ اسکرین', 'قرآن پاک اسٹڈی اسکرین', 'قرآن پاک نماز اسکرین'],
+    screenshot: (n: number) => `قرآن پاک اسکرین شاٹ ${n}`,
+    carouselLabel: 'قرآن پاک کے اسکرین شاٹس',
+    showcaseBadge: 'اردو کو ترجیح دینے والا مطالعہ',
+    heroStats: ['تفسیر عثمانی', 'اردو تراجم', 'آڈیو تلاوت', 'بک مارکس'],
+    badges: { intro: 'تعارف', features: 'خصوصیات', reading: 'مطالعہ', learning: 'سیکھنا' },
+    readingMini: ['مستند اردو رسم الخط', 'ہموار نیویگیشن', 'آرام دہ متن کی ترتیب', 'روزانہ تدبر موڈ']
+  },
+  ar: {
+    logoAlt: 'شعار تطبيق القرآن باك',
+    screens: ['الشاشة المميزة في القرآن باك', 'شاشة القراءة في القرآن باك', 'شاشة الدراسة في القرآن باك', 'شاشة الصلاة في القرآن باك'],
+    screenshot: (n: number) => `لقطة شاشة من القرآن باك ${n}`,
+    carouselLabel: 'لقطات شاشة القرآن باك',
+    showcaseBadge: 'قراءة بالأردية أولًا',
+    heroStats: ['تفسير عثماني', 'ترجمات أردية', 'تلاوات صوتية', 'إشارات مرجعية'],
+    badges: { intro: 'مقدمة', features: 'الميزات', reading: 'القراءة', learning: 'التعلّم' },
+    readingMini: ['خط أردي أصيل', 'تنقل سلس', 'تنسيق نص مريح', 'وضع التأمل اليومي']
+  }
+}[lang];
+
 const heroScreens = [
-  { src: '/images/quranpak/unnamed.webp', alt: 'Quran Pak featured screen' },
-  { src: '/images/quranpak/unnamed-1.webp', alt: 'Quran Pak reading screen' },
-  { src: '/images/quranpak/unnamed-2.webp', alt: 'Quran Pak study screen' },
-  { src: '/images/quranpak/app3-1.webp', alt: 'Quran Pak prayer screen' }
+  { src: '/images/quranpak/unnamed.webp', alt: ui.screens[0], width: 810, height: 1440 },
+  { src: '/images/quranpak/unnamed-1.webp', alt: ui.screens[1], width: 221, height: 400 },
+  { src: '/images/quranpak/unnamed-2.webp', alt: ui.screens[2], width: 225, height: 400 },
+  { src: '/images/quranpak/app3-1.webp', alt: ui.screens[3], width: 570, height: 1070 }
 ];
 
 const galleryScreens = [
-  '/images/quranpak/unnamed-3.webp',
-  '/images/quranpak/unnamed-4.webp',
-  '/images/quranpak/unnamed-5.webp',
-  '/images/quranpak/unnamed-6.webp',
-  '/images/quranpak/app3-1.webp'
+  { src: '/images/quranpak/unnamed-3.webp', width: 206, height: 400 },
+  { src: '/images/quranpak/unnamed-4.webp', width: 225, height: 400 },
+  { src: '/images/quranpak/unnamed-5.webp', width: 225, height: 400 },
+  { src: '/images/quranpak/unnamed-6.webp', width: 240, height: 240 },
+  { src: '/images/quranpak/app3-1.webp', width: 570, height: 1070 }
 ];
 
 const storeLinks = [
@@ -248,7 +281,7 @@ const storeLinks = [
         <div class="qp-cta-row">
           {storeLinks.map(link => (
             <a href={link.href} class="store-btn store-badge-link" aria-label={link.label} target="_blank" rel="noopener noreferrer">
-              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} width="220" height="65" />
             </a>
           ))}
           <a href="#features" class="btn btn-outline qp-explore">{copy.explore}</a>
@@ -259,28 +292,25 @@ const storeLinks = [
         <div class="qp-showcase-shell card">
           <div class="qp-showcase-top">
             <div class="qp-showcase-brand">
-              <img src="/images/QP.webp" alt="Quran Pak logo" class="qp-brand-logo" />
+              <img src="/images/QP.webp" alt={ui.logoAlt} class="qp-brand-logo" width="256" height="256" />
               <div>
                 <p class="qp-download-card-label">{copy.statsTitle}</p>
                 <h2 class="qp-download-card-title">4.9 <Icon name="material-symbols:star" class="rating-icon" aria-hidden="true" /></h2>
               </div>
             </div>
-            <div class="qp-showcase-badge">Urdu-first reading</div>
+            <div class="qp-showcase-badge">{ui.showcaseBadge}</div>
           </div>
 
           <div class="qp-showcase-hero">
-            <img src={heroScreens[0].src} alt={heroScreens[0].alt} class="qp-shot-main" />
+            <img src={heroScreens[0].src} alt={heroScreens[0].alt} class="qp-shot-main" width={heroScreens[0].width} height={heroScreens[0].height} />
             <div class="qp-shot-stack">
-              <img src={heroScreens[1].src} alt={heroScreens[1].alt} />
-              <img src={heroScreens[2].src} alt={heroScreens[2].alt} />
+              <img src={heroScreens[1].src} alt={heroScreens[1].alt} width={heroScreens[1].width} height={heroScreens[1].height} />
+              <img src={heroScreens[2].src} alt={heroScreens[2].alt} width={heroScreens[2].width} height={heroScreens[2].height} />
             </div>
           </div>
 
           <div class="qp-download-card-stats">
-            <div class="qp-download-stat">Tafsir Usmani</div>
-            <div class="qp-download-stat">Urdu translations</div>
-            <div class="qp-download-stat">Audio recitations</div>
-            <div class="qp-download-stat">Bookmarks</div>
+            {ui.heroStats.map(stat => <div class="qp-download-stat">{stat}</div>)}
           </div>
         </div>
       </aside>
@@ -290,7 +320,7 @@ const storeLinks = [
   <section class="section qp-section-intro">
     <div class="container qp-split">
       <div class="qp-section-copy">
-        <span class="badge badge-primary">Introduction</span>
+        <span class="badge badge-primary">{ui.badges.intro}</span>
         <h2 class="section-title">{copy.introTitle}</h2>
         <p class="section-body">{copy.introBody1}</p>
         <p class="section-body">{copy.introBody2}</p>
@@ -318,7 +348,7 @@ const storeLinks = [
   <section class="section qp-section-features" id="features">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Features</span>
+        <span class="badge badge-primary">{ui.badges.features}</span>
         <h2 class="section-title">{copy.featuresTitle}</h2>
       </div>
       <div class="feature-grid">
@@ -336,22 +366,19 @@ const storeLinks = [
   <section class="section qp-reading-band">
     <div class="container qp-media-grid">
       <div class="qp-media-copy">
-        <span class="badge badge-primary">Reading</span>
+        <span class="badge badge-primary">{ui.badges.reading}</span>
         <h2 class="section-title">{copy.readingTitle}</h2>
         <p class="section-body">{copy.readingBody}</p>
         <div class="mini-grid">
-          <div class="mini-card">Authentic Urdu script</div>
-          <div class="mini-card">Smooth navigation</div>
-          <div class="mini-card">Comfortable text layout</div>
-          <div class="mini-card">Daily reflection mode</div>
+          {ui.readingMini.map(item => <div class="mini-card">{item}</div>)}
         </div>
       </div>
-      <div class="screenshot-carousel" aria-label="Quran Pak screenshots">
-        <img src={heroScreens[1].src} alt={heroScreens[1].alt} />
-        <img src={heroScreens[2].src} alt={heroScreens[2].alt} />
-        <img src={heroScreens[3].src} alt={heroScreens[3].alt} />
-        {galleryScreens.map((src, idx) => (
-          <img src={src} alt={`Quran Pak screenshot ${idx + 1}`} />
+      <div class="screenshot-carousel" aria-label={ui.carouselLabel}>
+        {heroScreens.slice(1).map(screen => (
+          <img src={screen.src} alt={screen.alt} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
+        ))}
+        {galleryScreens.map((shot, idx) => (
+          <img src={shot.src} alt={ui.screenshot(idx + 1)} width={shot.width} height={shot.height} loading="lazy" decoding="async" />
         ))}
       </div>
     </div>
@@ -360,7 +387,7 @@ const storeLinks = [
   <section class="section qp-learn-band">
     <div class="container qp-split reverse">
       <div class="qp-section-copy">
-        <span class="badge badge-primary">Learning</span>
+        <span class="badge badge-primary">{ui.badges.learning}</span>
         <h2 class="section-title">{copy.learningTitle}</h2>
         <p class="section-body">{copy.learningBody}</p>
       </div>
@@ -388,14 +415,14 @@ const storeLinks = [
         <div class="qp-cta-row">
           {storeLinks.map(link => (
             <a href={link.href} class="store-btn store-badge-link" aria-label={link.id === 'google' ? copy.finalGoogle : copy.finalAppStore} target="_blank" rel="noopener noreferrer">
-              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} width="220" height="65" loading="lazy" decoding="async" />
             </a>
           ))}
           <a href="#features" class="btn btn-secondary">{copy.finalLearn}</a>
         </div>
       </div>
       <aside class="final-panel card">
-        <img src="/images/QP.webp" alt="Quran Pak logo" class="final-logo" />
+        <img src="/images/QP.webp" alt={ui.logoAlt} class="final-logo" width="256" height="256" loading="lazy" decoding="async" />
       </aside>
     </div>
   </section>
@@ -422,6 +449,12 @@ const storeLinks = [
       linear-gradient(115deg, rgba(255,255,255,.74), transparent 46%),
       linear-gradient(0deg, rgba(255,255,255,.12), rgba(255,255,255,.12));
     pointer-events: none;
+  }
+
+  :global([dir='rtl']) .qp-hero::before {
+    background:
+      linear-gradient(245deg, rgba(255,255,255,.74), transparent 46%),
+      linear-gradient(0deg, rgba(255,255,255,.12), rgba(255,255,255,.12));
   }
 
   .qp-hero-grid,

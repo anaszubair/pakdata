@@ -126,7 +126,7 @@ const copy = {
     seoTitle: 'لوحة مفاتيح Easy Sindhi - الكتابة بالسندية والتحويل من الرومانية إلى السندية',
     seoDesc: 'اكتشف Easy Sindhi Keyboard لكتابة الروماني السندي، والتحويل إلى السندية، وأدوات تحرير السندية، وتجربة كتابة سلسة لمستخدمي أندرويد.',
     heroBadge: 'Easy Sindhi Keyboard',
-    heroTitle: 'Easy Sindhi Keyboard - اكتب السندية بسهولة',
+    heroTitle: 'لوحة مفاتيح إيزي سندي - اكتب السندية بسهولة',
     heroLead: 'لوحة مفاتيح سندية سريعة وبسيطة وقوية تساعد المستخدمين على كتابة السندية، وتحويل الروماني السندي إلى السندية، والكتابة في أي مكان بسهولة.',
     heroBody: 'مثالي للدردشة، ووسائل التواصل الاجتماعي، والملاحظات، والكتابة السندية الإبداعية مع عناصر تحكم نظيفة وتخطيط بديهي.',
     explore: 'استكشف الميزات',
@@ -170,21 +170,42 @@ const copy = {
     finalBody1: 'حمّل Easy Sindhi Keyboard واستمتع بالكتابة السريعة بالحروف اللاتينية، والكتابة الصوتية، والسمات الجميلة، والتواصل السلس بلغتك الأم.',
     finalBody2: 'استخدم السندية بثقة في الرسائل ورسائل البريد الإلكتروني ومنشورات وسائل التواصل الاجتماعي والملاحظات والتواصل اليومي.',
     finalLearn: 'اعرف المزيد',
-    footerDesc: 'طوّرت PakData لوحة مفاتيح Easy Sindhi لتجعل الكتابة بالسندية بسيطة ودقيقة ومتاحة للجميع. سواء كنت تكتب رسائل أو رسائل بريد إلكتروني أو منشورات على وسائل التواصل الاجتماعي، تساعدك لوحة المفاتيح على التواصل بالسندية بسهولة.',
+    footerDesc: 'طوّرت باك داتا لوحة مفاتيح Easy Sindhi لتجعل الكتابة بالسندية بسيطة ودقيقة ومتاحة للجميع. سواء كنت تكتب رسائل أو رسائل بريد إلكتروني أو منشورات على وسائل التواصل الاجتماعي، تساعدك لوحة المفاتيح على التواصل بالسندية بسهولة.',
     pill: 'الكتابة بالسندية أصبحت سهلة',
     badges: { intro: 'مقدمة', features: 'الميزات', showcase: 'عرض', benefits: 'المزايا', reviews: 'المراجعات', faq: 'الأسئلة الشائعة' },
     miniCards: ['كتابة سريعة', 'نص سندي واضح', 'محرر الصور', 'مشاركة اجتماعية']
   }
 }[lang];
 
+const ui = {
+  en: {
+    logoAlt: 'Easy Sindhi Keyboard logo',
+    shotAlts: ['Easy Sindhi logo', 'Easy Sindhi keyboard screenshot', 'Easy Sindhi voice typing screenshot', 'Easy Sindhi themes screenshot', 'Easy Sindhi language switching screenshot', 'Easy Sindhi image editor screenshot', 'Easy Sindhi typing screenshot'],
+    highlightsLabel: 'Easy Sindhi highlights',
+    carouselLabel: 'Easy Sindhi screenshots'
+  },
+  ur: {
+    logoAlt: 'ایزی سندھی کی بورڈ کا لوگو',
+    shotAlts: ['ایزی سندھی کا لوگو', 'ایزی سندھی کی بورڈ کا اسکرین شاٹ', 'ایزی سندھی وائس ٹائپنگ کا اسکرین شاٹ', 'ایزی سندھی تھیمز کا اسکرین شاٹ', 'ایزی سندھی زبان تبدیل کرنے کا اسکرین شاٹ', 'ایزی سندھی امیج ایڈیٹر کا اسکرین شاٹ', 'ایزی سندھی ٹائپنگ کا اسکرین شاٹ'],
+    highlightsLabel: 'ایزی سندھی کی نمایاں خصوصیات',
+    carouselLabel: 'ایزی سندھی کے اسکرین شاٹس'
+  },
+  ar: {
+    logoAlt: 'شعار لوحة مفاتيح Easy Sindhi',
+    shotAlts: ['شعار Easy Sindhi', 'لقطة شاشة للوحة مفاتيح Easy Sindhi', 'لقطة شاشة للكتابة الصوتية في Easy Sindhi', 'لقطة شاشة لسمات Easy Sindhi', 'لقطة شاشة لتبديل اللغة في Easy Sindhi', 'لقطة شاشة لمحرر الصور في Easy Sindhi', 'لقطة شاشة للكتابة في Easy Sindhi'],
+    highlightsLabel: 'أبرز ميزات Easy Sindhi',
+    carouselLabel: 'لقطات شاشة Easy Sindhi'
+  }
+}[lang];
+
 const screenshots = [
-  { src: '/images/easysindhi/easysindhi.png', alt: 'Easy Sindhi logo' },
-  { src: '/images/easysindhi/1.jpeg', alt: 'Easy Sindhi keyboard screenshot' },
-  { src: '/images/easysindhi/2.jpeg', alt: 'Easy Sindhi voice typing screenshot' },
-  { src: '/images/easysindhi/4.jpeg', alt: 'Easy Sindhi themes screenshot' },
-  { src: '/images/easysindhi/5.jpeg', alt: 'Easy Sindhi language switching screenshot' },
-  { src: '/images/easysindhi/6.jpeg', alt: 'Easy Sindhi image editor screenshot' },
-  { src: '/images/easysindhi/7.jpeg', alt: 'Easy Sindhi typing screenshot' }
+  { src: '/images/easysindhi/easysindhi.png', alt: ui.shotAlts[0], width: 80, height: 80 },
+  { src: '/images/easysindhi/1.jpeg', alt: ui.shotAlts[1], width: 910, height: 1600 },
+  { src: '/images/easysindhi/2.jpeg', alt: ui.shotAlts[2], width: 915, height: 1600 },
+  { src: '/images/easysindhi/4.jpeg', alt: ui.shotAlts[3], width: 914, height: 1600 },
+  { src: '/images/easysindhi/5.jpeg', alt: ui.shotAlts[4], width: 892, height: 1600 },
+  { src: '/images/easysindhi/6.jpeg', alt: ui.shotAlts[5], width: 897, height: 1600 },
+  { src: '/images/easysindhi/7.jpeg', alt: ui.shotAlts[6], width: 914, height: 1600 }
 ];
 
 const storeLink = {
@@ -202,13 +223,13 @@ const storeLink = {
         <p class="easy-lead">{copy.heroLead}</p>
         <p class="easy-body">{copy.heroBody}</p>
 
-        <div class="easy-feature-bar" aria-label="Easy Sindhi highlights">
+        <div class="easy-feature-bar" aria-label={ui.highlightsLabel}>
           {copy.featureBar.map(item => <span class="easy-chip">{item}</span>)}
         </div>
 
         <div class="easy-cta-row">
           <a href={storeLink.href} class="store-btn store-badge-link" aria-label={copy.download} target="_blank" rel="noopener noreferrer">
-            <img src={storeLink.image} alt="" class="store-badge" />
+            <img src={storeLink.image} alt="" class="store-badge" width="220" height="65" />
           </a>
         </div>
       </div>
@@ -217,7 +238,7 @@ const storeLink = {
         <div class="easy-showcase-shell card">
           <div class="easy-showcase-top">
             <div class="easy-brand">
-              <img src="/images/easysindhi/easysindhi.png" alt="Easy Sindhi Keyboard logo" class="easy-brand-logo" />
+              <img src="/images/easysindhi/easysindhi.png" alt={ui.logoAlt} class="easy-brand-logo" width="80" height="80" />
               <div>
                 <p class="easy-label">{copy.heroBadge}</p>
                 <h2 class="easy-rating">4.8 <Icon name="material-symbols:star" class="rating-icon" aria-hidden="true" /></h2>
@@ -227,10 +248,10 @@ const storeLink = {
           </div>
 
           <div class="easy-showcase-hero">
-            <img src={screenshots[1].src} alt={screenshots[1].alt} class="easy-main-shot" />
+            <img src={screenshots[1].src} alt={screenshots[1].alt} class="easy-main-shot" width={screenshots[1].width} height={screenshots[1].height} />
             <div class="easy-shot-stack">
-              <img src={screenshots[2].src} alt={screenshots[2].alt} />
-              <img src={screenshots[3].src} alt={screenshots[3].alt} />
+              <img src={screenshots[2].src} alt={screenshots[2].alt} width={screenshots[2].width} height={screenshots[2].height} />
+              <img src={screenshots[3].src} alt={screenshots[3].alt} width={screenshots[3].width} height={screenshots[3].height} />
             </div>
           </div>
 
@@ -290,9 +311,9 @@ const storeLink = {
           {copy.miniCards.map(item => <div class="mini-card">{item}</div>)}
         </div>
       </div>
-      <div class="easy-carousel" aria-label="Easy Sindhi screenshots">
-        {screenshots.slice(4).map((shot, idx) => (
-          <img src={shot.src} alt={shot.alt} />
+      <div class="easy-carousel" aria-label={ui.carouselLabel}>
+        {screenshots.slice(4).map((shot) => (
+          <img src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} loading="lazy" decoding="async" />
         ))}
       </div>
     </div>
@@ -362,7 +383,7 @@ const storeLink = {
         <p class="section-body">{copy.finalBody1}</p>
         <div class="easy-cta-row">
           <a href={storeLink.href} class="store-btn store-badge-link cta-download" aria-label={copy.download} target="_blank" rel="noopener noreferrer">
-            <img src={storeLink.image} alt="" class="store-badge" />
+            <img src={storeLink.image} alt="" class="store-badge" width="220" height="65" loading="lazy" decoding="async" />
           </a>
         </div>
         <p class="section-body final-learn-copy">
@@ -382,6 +403,7 @@ const storeLink = {
 <style>
   .easy-hero { min-height: calc(100vh - 4.5rem); display:flex; align-items:center; padding:2.5rem 0 2rem; position:relative; overflow:hidden; background: linear-gradient(135deg, rgba(248,251,246,.98), rgba(236,244,236,.94)), url('/images/easysindhi/7.jpeg') center/cover no-repeat; }
   .easy-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(110deg, rgba(255,255,255,.82), transparent 46%), linear-gradient(0deg, rgba(255,255,255,.14), rgba(255,255,255,.14)); pointer-events:none; }
+  :global([dir='rtl']) .easy-hero::before { background:linear-gradient(250deg, rgba(255,255,255,.82), transparent 46%), linear-gradient(0deg, rgba(255,255,255,.14), rgba(255,255,255,.14)); }
   .easy-hero-grid, .easy-split, .easy-media-grid, .easy-final-grid { display:grid; gap:1.5rem; align-items:center; position:relative; z-index:1; }
   .easy-hero-grid { grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr); }
   .easy-copy, .easy-section-copy { max-width:44rem; }
@@ -421,7 +443,7 @@ const storeLink = {
   .easy-intro, .easy-features, .easy-reviews-band { padding-top:1.5rem; }
   .easy-split { grid-template-columns:minmax(0,52rem); justify-content:center; text-align:center; }
   .easy-split .easy-section-copy { display:flex; flex-direction:column; align-items:center; margin:0 auto; text-align:center; }
-  .easy-split .section-body { margin-left:auto; margin-right:auto; }
+  .easy-split .section-body { margin-inline:auto; }
   .easy-feature-grid, .easy-benefit-grid, .easy-review-grid { display:grid; gap:1rem; }
   .easy-feature-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
   .easy-feature-card, .easy-benefit-card, .easy-review-card, .easy-final-card, .faq-item { border-radius:.5rem; padding:1rem; background:rgba(255,255,255,.96); border:1px solid var(--border); box-shadow:0 10px 24px rgba(15,23,42,.05); }
@@ -450,7 +472,7 @@ const storeLink = {
   .easy-final-band { text-align:center; }
   .easy-final-grid { grid-template-columns:minmax(0,52rem); justify-content:center; justify-items:center; text-align:center; }
   .easy-final-grid .easy-section-copy { display:flex; flex-direction:column; align-items:center; margin:0 auto; }
-  .easy-final-grid .section-body { margin-left:auto; margin-right:auto; }
+  .easy-final-grid .section-body { margin-inline:auto; }
   .easy-final-grid .easy-cta-row { justify-content:center; }
   .easy-final-card { text-align:center; background:linear-gradient(180deg, rgba(31,41,28,.96), rgba(40,54,35,.94)); color:#fff; }
   .easy-final-card p { margin-top:.9rem; color:rgba(255,255,255,.9); line-height:1.7; }

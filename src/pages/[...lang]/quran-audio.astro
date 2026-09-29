@@ -40,6 +40,7 @@ const copy = {
     lead: 'Please make sure that you are viewing this page in your desktop computer and then follow these instructions for importing Audio files in your Quran Majeed / Quran Tafsir or Quran Pak app v1.5.5 or later.',
     recitersBadge: 'Reciters',
     recitersTitle: 'Available Audio Apps',
+    stepAlt: (n: number) => `Step ${n} for importing Quran Audio`,
     stepsBadge: 'Steps',
     stepsTitle: 'Import Quran Audio using iTunes File Sharing',
     reciterNames: ['As-Sudais', 'Abdul Basit', 'Sheikh-Basfar', 'Sheikh Al-Huzaifi', 'Sheikh Ayoub', 'Saad Al Ghamdi', 'Ahmed Ajmi', 'Mahir-al-Muayqali', 'Siddiq Minshawi', 'Mishari Rashid', 'Abu Bakr Shatry', 'English Translation Audio', 'Urdu Translation Audio'],
@@ -61,6 +62,7 @@ const copy = {
     lead: 'براہِ کرم یقینی بنائیں کہ آپ یہ صفحہ اپنے ڈیسک ٹاپ کمپیوٹر پر دیکھ رہے ہیں، اور پھر اپنی قرآن مجید / قرآن تفسیر یا قرآن پاک ایپ ورژن v1.5.5 یا اس کے بعد کے ورژن میں آڈیو فائلیں امپورٹ کرنے کے لیے ان ہدایات پر عمل کریں۔',
     recitersBadge: 'قراء',
     recitersTitle: 'دستیاب آڈیو ایپس',
+    stepAlt: (n: number) => `قرآن آڈیو امپورٹ کرنے کا مرحلہ ${n}`,
     stepsBadge: 'مراحل',
     stepsTitle: 'آئی ٹیونز فائل شیئرنگ کے ذریعے قرآن آڈیو امپورٹ کریں',
     reciterNames: ['السدیس', 'عبدالباسط', 'شیخ بصفر', 'شیخ الحذیفی', 'شیخ ایوب', 'سعد الغامدی', 'احمد العجمی', 'ماہر المعیقلی', 'صدیق المنشاوی', 'مشاری راشد', 'ابو بکر الشاطری', 'انگریزی ترجمہ کی آڈیو', 'اردو ترجمہ کی آڈیو'],
@@ -82,6 +84,7 @@ const copy = {
     lead: 'يرجى التأكد من أنك تتصفح هذه الصفحة على جهاز الكمبيوتر المكتبي، ثم اتبع هذه التعليمات لاستيراد الملفات الصوتية في تطبيق القرآن المجيد / Quran Tafsir أو Quran Pak الإصدار v1.5.5 أو أحدث.',
     recitersBadge: 'القرّاء',
     recitersTitle: 'التطبيقات الصوتية المتاحة',
+    stepAlt: (n: number) => `الخطوة ${n} لاستيراد صوت القرآن`,
     stepsBadge: 'الخطوات',
     stepsTitle: 'استيراد صوتيات القرآن باستخدام مشاركة الملفات في iTunes',
     reciterNames: ['السديس', 'عبد الباسط', 'الشيخ بصفر', 'الشيخ الحذيفي', 'الشيخ أيوب', 'سعد الغامدي', 'أحمد العجمي', 'ماهر المعيقلي', 'صديق المنشاوي', 'مشاري راشد', 'أبو بكر الشاطري', 'صوتيات الترجمة الإنجليزية', 'صوتيات الترجمة الأردية'],
@@ -122,12 +125,12 @@ const reciterList = reciters.map((reciter, idx) => ({ ...reciter, name: copy.rec
       <div class="reciter-grid">
         {reciterList.map((reciter) => reciter.appId ? (
           <a href={appStoreUrl(reciter.appId)} class="reciter-card card" target="_blank" rel="noopener noreferrer">
-            <img src="/images/quranaudio.webp" alt="" class="reciter-logo" />
+            <img src="/images/quranaudio.webp" alt="" class="reciter-logo" width="200" height="200" loading="lazy" decoding="async" />
             <span class="reciter-name">{reciter.name}</span>
           </a>
         ) : (
           <div class="reciter-card card">
-            <img src="/images/quranaudio.webp" alt="" class="reciter-logo" />
+            <img src="/images/quranaudio.webp" alt="" class="reciter-logo" width="200" height="200" loading="lazy" decoding="async" />
             <span class="reciter-name">{reciter.name}</span>
           </div>
         ))}
@@ -149,13 +152,13 @@ const reciterList = reciters.map((reciter, idx) => ({ ...reciter, name: copy.rec
               <p>{step}</p>
             </div>
             {idx === 2 && (
-              <img src="/images/quranaudiostep3.jpg" alt="Step 3 for importing Quran Audio" class="step-image" />
+              <img src="/images/quranaudiostep3.jpg" alt={copy.stepAlt(3)} class="step-image" width="480" height="435" loading="lazy" decoding="async" />
             )}
             {idx === 6 && (
-              <img src="/images/quranaudiostep7.jpg" alt="Step 7 for importing Quran Audio" class="step-image" />
+              <img src="/images/quranaudiostep7.jpg" alt={copy.stepAlt(7)} class="step-image" width="480" height="325" loading="lazy" decoding="async" />
             )}
             {idx === 7 && (
-              <img src="/images/quranaudiostep8.jpg" alt="Step 8 for importing Quran Audio" class="step-image" />
+              <img src="/images/quranaudiostep8.jpg" alt={copy.stepAlt(8)} class="step-image" width="320" height="480" loading="lazy" decoding="async" />
             )}
           </article>
         ))}
@@ -261,6 +264,7 @@ const reciterList = reciters.map((reciter, idx) => ({ ...reciter, name: copy.rec
 
   .step-image {
     width: 100%;
+    height: auto;
     max-width: 36rem;
     display: block;
     border-radius: .75rem;

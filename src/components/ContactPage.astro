@@ -51,7 +51,7 @@ const offices = [
               
               <div class="office-details">
                 <div class="detail-line">
-                  <strong>{t('contact.office.phone')}</strong> <span>{office.phone}</span>
+                  <strong>{t('contact.office.phone')}</strong> <a href={`tel:${office.phone.replace(/[^+\d]/g, '')}`} dir="ltr">{office.phone}</a>
                 </div>
                 {office.fax !== t('contact.office.noFax') && (
                   <div class="detail-line">

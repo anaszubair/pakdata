@@ -104,7 +104,7 @@ const copy = {
     biometricFooter: 'ان ٹیکنالوجیز نے قابلِ اعتماد شناختی توثیق اور آسان رجسٹریشن عمل کو ممکن بنایا۔',
     enterpriseTitle: 'انٹرپرائز گریڈ سسٹم آرکیٹیکچر',
     enterpriseBody: 'نارا سسٹم کو انٹرپرائز ٹیکنالوجیز کے ساتھ تیار کیا گیا جو بڑے حکومتی ڈیپلائمنٹس میں سکیورٹی، اسکیل ایبلٹی، اور آپریشنل اعتماد کے لیے موزوں تھیں۔',
-    enterpriseItems: ['Visual Basic', 'Visual C++', 'SOAP Architecture', 'Linux Server Infrastructure', 'MySQL Database Systems'],
+    enterpriseItems: ['Visual Basic', 'Visual C++', 'SOAP آرکیٹیکچر', 'Linux سرور انفراسٹرکچر', 'MySQL ڈیٹا بیس سسٹمز'],
     enterpriseFooter: 'اس آرکیٹیکچر نے محفوظ کمیونیکیشن، مؤثر ڈیٹا پراسیسنگ، اور مستحکم آپریشنل کارکردگی کو سپورٹ کیا۔',
     securityTitle: 'محفوظ اور قابلِ توسیع حکومتی انفراسٹرکچر',
     securityBody: 'شناختی ڈیٹا اور بائیومیٹرک ریکارڈز کی حساس نوعیت کے باعث پلیٹ فارم کو ان امور پر مضبوط توجہ کے ساتھ تیار کیا گیا:',
@@ -164,7 +164,7 @@ const copy = {
     biometricFooter: 'مكنت هذه التقنيات من مصادقة هوية موثوقة وإجراءات تسجيل أكثر انسيابية.',
     enterpriseTitle: 'بنية نظام مؤسسية',
     enterpriseBody: 'تم تصميم نظام NARA باستخدام تقنيات مؤسسية محسنة للأمان وقابلية التوسع والموثوقية التشغيلية عبر النشر الحكومي واسع النطاق.',
-    enterpriseItems: ['Visual Basic', 'Visual C++', 'SOAP Architecture', 'Linux Server Infrastructure', 'MySQL Database Systems'],
+    enterpriseItems: ['Visual Basic', 'Visual C++', 'بنية SOAP', 'بنية خوادم Linux', 'أنظمة قواعد بيانات MySQL'],
     enterpriseFooter: 'دعمت البنية الاتصال الآمن ومعالجة البيانات بكفاءة والأداء التشغيلي المستقر.',
     securityTitle: 'بنية حكومية آمنة وقابلة للتوسع',
     securityBody: 'نظرًا لحساسية بيانات الهوية والسجلات البيومترية، تم تصميم المنصة بتركيز قوي على:',
@@ -194,6 +194,30 @@ const copy = {
     footerDesc: 'نظام تسجيل وتحقق بيومتري من الهوية طُور لصالح هيئة تسجيل الأجانب الوطنية لدعم عمليات التسجيل الوطنية الآمنة وإدارة الهوية على مستوى المؤسسات.'
   }
 }[lang];
+
+const ui = {
+  en: {
+    heroAlt: 'NARA biometric registration visual',
+    heroCaption: 'Secure identity verification and registration',
+    objectivesPanel: 'Objectives',
+    biometricCardBody: 'Enterprise identity processing and secure verification support.',
+    techPanel: 'Technology highlights'
+  },
+  ur: {
+    heroAlt: 'نارا بائیومیٹرک رجسٹریشن کا بصری منظر',
+    heroCaption: 'محفوظ شناختی تصدیق اور رجسٹریشن',
+    objectivesPanel: 'مقاصد',
+    biometricCardBody: 'انٹرپرائز سطح کی شناختی پراسیسنگ اور محفوظ تصدیق کی معاونت۔',
+    techPanel: 'ٹیکنالوجی کی نمایاں خصوصیات'
+  },
+  ar: {
+    heroAlt: 'صورة توضيحية لنظام التسجيل البيومتري NARA',
+    heroCaption: 'تحقق آمن من الهوية وتسجيل موثوق',
+    objectivesPanel: 'الأهداف',
+    biometricCardBody: 'معالجة مؤسسية للهوية ودعم للتحقق الآمن.',
+    techPanel: 'أبرز التقنيات'
+  }
+}[lang];
 ---
 
 <Layout title={copy.seoTitle} description={copy.seoDesc}>
@@ -207,10 +231,10 @@ const copy = {
       </div>
 
       <div class="nara-visual card">
-        <img src="/images/nara-screenshot-350x316.jpg" alt="NARA biometric registration visual" class="nara-image" />
+        <img src="/images/nara-screenshot-350x316.jpg" alt={ui.heroAlt} class="nara-image" width="350" height="316" />
         <div class="nara-visual-footer">
           <span>{copy.heroBadge}</span>
-          <span>Secure identity verification and registration</span>
+          <span>{ui.heroCaption}</span>
         </div>
       </div>
     </div>
@@ -235,7 +259,7 @@ const copy = {
         <p class="body-copy">{copy.objectiveIntro}</p>
       </div>
       <div class="list-panel card">
-        <h3 class="panel-title">Objectives</h3>
+        <h3 class="panel-title">{ui.objectivesPanel}</h3>
         <ul class="check-list">
           {copy.objectiveItems.map((item) => (
             <li>{item}</li>
@@ -256,7 +280,7 @@ const copy = {
         {copy.biometricItems.map((item) => (
           <article class="feature-card card">
             <h3>{item}</h3>
-            <p>Enterprise identity processing and secure verification support.</p>
+            <p>{ui.biometricCardBody}</p>
           </article>
         ))}
       </div>
@@ -272,7 +296,7 @@ const copy = {
         <p class="body-copy">{copy.enterpriseBody}</p>
       </div>
       <div class="list-panel card">
-        <h3 class="panel-title">Technology highlights</h3>
+        <h3 class="panel-title">{ui.techPanel}</h3>
         <ul class="check-list">
           {copy.enterpriseItems.map((item) => (
             <li>{item}</li>
@@ -583,8 +607,7 @@ const copy = {
 
   .nara-cta .cta-actions {
     justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
   }
 
   .nara-cta .cta-footer-desc {

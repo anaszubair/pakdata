@@ -210,6 +210,27 @@ const copy = {
   }
 }[lang];
 
+const ui = {
+  en: {
+    heroAlt: 'King Fahad Quran Printing Complex project visual',
+    heroMeta: 'Quran accessibility, preservation, and global learning',
+    techPanel: 'Technology highlights',
+    partnershipPanel: 'Partnership pillars'
+  },
+  ur: {
+    heroAlt: 'کنگ فہد قرآن پرنٹنگ کمپلیکس منصوبے کا بصری منظر',
+    heroMeta: 'قرآن تک رسائی، تحفظ اور عالمی تعلیم',
+    techPanel: 'ٹیکنالوجی کی نمایاں خصوصیات',
+    partnershipPanel: 'شراکت کے بنیادی ستون'
+  },
+  ar: {
+    heroAlt: 'صورة توضيحية لمشروع مجمع الملك فهد لطباعة المصحف الشريف',
+    heroMeta: 'إتاحة القرآن وحفظه والتعلم حول العالم',
+    techPanel: 'أبرز التقنيات',
+    partnershipPanel: 'ركائز الشراكة'
+  }
+}[lang];
+
 ---
 
 <Layout title={copy.seoTitle} description={copy.seoDesc}>
@@ -223,13 +244,13 @@ const copy = {
       </div>
 
       <div class="case-hero-visual card">
-        <img src="/images/quran-complex-screen1.jpg" alt="King Fahad Quran Printing Complex project visual" class="case-hero-image" />
+        <img src="/images/quran-complex-screen1.jpg" alt={ui.heroAlt} class="case-hero-image" width="177" height="240" />
         <div class="case-hero-overlay">
           <div>
             <span class="overlay-kicker">{copy.heroBadge}</span>
             <strong class="overlay-title">{copy.heroTitle}</strong>
           </div>
-          <div class="overlay-meta">Quran accessibility, preservation, and global learning</div>
+          <div class="overlay-meta">{ui.heroMeta}</div>
         </div>
       </div>
     </div>
@@ -284,7 +305,7 @@ const copy = {
         <p class="body-copy">{copy.techBody}</p>
       </div>
       <div class="tech-panel card">
-        <h3 class="panel-title">Technology highlights</h3>
+        <h3 class="panel-title">{ui.techPanel}</h3>
         <ul class="check-list">
           {copy.techItems.map((item) => (
             <li>{item}</li>
@@ -312,7 +333,7 @@ const copy = {
         <p class="body-copy">{copy.partnershipBody}</p>
       </div>
       <div class="list-panel card">
-        <h3 class="panel-title">Partnership pillars</h3>
+        <h3 class="panel-title">{ui.partnershipPanel}</h3>
         <ul class="check-list">
           {copy.partnershipItems.map((item) => (
             <li>{item}</li>
@@ -636,8 +657,7 @@ const copy = {
   .project-cta .cta-actions {
     justify-content: center;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
     width: 100%;
   }
 

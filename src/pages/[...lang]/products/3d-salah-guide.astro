@@ -92,7 +92,7 @@ const copy = {
       { title: 'مستند نماز رہنمائی', body: 'امام ابو حنیفہؒ کی تعلیمات کی بنیاد پر سادہ تعلیمی انداز میں رہنمائی۔' }
     ],
     howTitle: 'یہ کیسے کام کرتا ہے',
-    steps: ['نماز منتخب کریں', '3D مظاہرہ دیکھیں', 'Rotate اور Zoom کریں', 'مرحلہ وار سیکھیں'],
+    steps: ['نماز منتخب کریں', '3D مظاہرہ دیکھیں', 'گھمائیں اور زوم کریں', 'مرحلہ وار سیکھیں'],
     eduTitle: 'نماز سیکھنے کا جدید طریقہ',
     eduBody: '3D Salah Guide اسلامی تعلیم کو انٹرایکٹو ٹیکنالوجی کے ساتھ جوڑتا ہے تاکہ نماز سیکھنا ہر عمر کے لیے آسان، دلچسپ اور قابلِ رسائی بن جائے۔',
     whyTitle: 'صارفین 3D Salah Guide کو کیوں پسند کرتے ہیں',
@@ -181,14 +181,47 @@ const copy = {
   }
 }[lang];
 
+const ui = {
+  en: {
+    logoAlt: '3D Salah Guide logo',
+    screens: ['3D Salah Guide logo', '3D Salah prayer guidance screenshot', '3D Salah step-by-step screenshot', '3D Salah zoom screenshot', '3D Salah 360 screenshot', '3D Salah screenshot'],
+    highlightsLabel: 'Salah highlights',
+    carouselLabel: '3D Salah screenshots',
+    showcaseBadge: 'Interactive learning',
+    heroStats: ['3D demonstrations', '360° viewing', 'Zoom controls', 'Beginner friendly'],
+    badges: { intro: 'Introduction', features: 'Features', education: 'Education', trust: 'Trust', audience: 'Audience', reviews: 'Reviews', faq: 'FAQ' },
+    eduMini: ['Practical learning', 'Visual understanding', 'Family-friendly', 'Islamic education']
+  },
+  ur: {
+    logoAlt: '3D Salah Guide کا لوگو',
+    screens: ['3D Salah Guide کا لوگو', 'نماز کی رہنمائی کا اسکرین شاٹ', 'مرحلہ وار نماز کا اسکرین شاٹ', 'زوم فیچر کا اسکرین شاٹ', '360° ویو کا اسکرین شاٹ', '3D Salah Guide کا اسکرین شاٹ'],
+    highlightsLabel: 'نماز گائیڈ کی نمایاں خصوصیات',
+    carouselLabel: '3D Salah Guide کے اسکرین شاٹس',
+    showcaseBadge: 'انٹرایکٹو تعلیم',
+    heroStats: ['3D مظاہرے', '360° ویو', 'زوم کنٹرولز', 'ابتدائی افراد کے لیے آسان'],
+    badges: { intro: 'تعارف', features: 'خصوصیات', education: 'تعلیم', trust: 'اعتماد', audience: 'کن کے لیے', reviews: 'آراء', faq: 'سوالات' },
+    eduMini: ['عملی تعلیم', 'بصری سمجھ', 'پورے خاندان کے لیے موزوں', 'اسلامی تعلیم']
+  },
+  ar: {
+    logoAlt: 'شعار تطبيق 3D Salah Guide',
+    screens: ['شعار تطبيق 3D Salah Guide', 'لقطة شاشة لإرشادات الصلاة', 'لقطة شاشة للصلاة خطوة بخطوة', 'لقطة شاشة لميزة التكبير', 'لقطة شاشة للعرض 360°', 'لقطة شاشة من 3D Salah Guide'],
+    highlightsLabel: 'أبرز ميزات دليل الصلاة',
+    carouselLabel: 'لقطات شاشة 3D Salah Guide',
+    showcaseBadge: 'تعلّم تفاعلي',
+    heroStats: ['عروض ثلاثية الأبعاد', 'عرض 360°', 'أدوات التكبير', 'مناسب للمبتدئين'],
+    badges: { intro: 'مقدمة', features: 'الميزات', education: 'التعليم', trust: 'الثقة', audience: 'الفئة المستهدفة', reviews: 'المراجعات', faq: 'الأسئلة الشائعة' },
+    eduMini: ['تعلّم عملي', 'فهم بصري', 'مناسب للعائلة', 'تعليم إسلامي']
+  }
+}[lang];
+
 const heroScreens = [
-  { src: '/images/3DSalah/3dSalah.webp', alt: '3D Salah Guide logo' },
-  { src: '/images/3DSalah/unnamed.webp', alt: '3D Salah prayer guidance screenshot' },
-  { src: '/images/3DSalah/unnamed-1.webp', alt: '3D Salah step-by-step screenshot' },
-  { src: '/images/3DSalah/unnamed-2.webp', alt: '3D Salah zoom screenshot' },
-  { src: '/images/3DSalah/unnamed-3.webp', alt: '3D Salah 360 screenshot' },
-  { src: '/images/3DSalah/unnamed-4.webp', alt: '3D Salah screenshot' },
-  { src: '/images/3DSalah/unnamed-8.webp', alt: '3D Salah screenshot' }
+  { src: '/images/3DSalah/3dSalah.webp', alt: ui.screens[0], width: 256, height: 256 },
+  { src: '/images/3DSalah/unnamed.webp', alt: ui.screens[1], width: 526, height: 296 },
+  { src: '/images/3DSalah/unnamed-1.webp', alt: ui.screens[2], width: 526, height: 296 },
+  { src: '/images/3DSalah/unnamed-2.webp', alt: ui.screens[3], width: 526, height: 296 },
+  { src: '/images/3DSalah/unnamed-3.webp', alt: ui.screens[4], width: 526, height: 296 },
+  { src: '/images/3DSalah/unnamed-4.webp', alt: ui.screens[5], width: 526, height: 296 },
+  { src: '/images/3DSalah/unnamed-8.webp', alt: ui.screens[5], width: 526, height: 296 }
 ];
 
 const storeLinks = [
@@ -206,14 +239,14 @@ const storeLinks = [
         <p class="salah-lead">{copy.heroLead}</p>
         <p class="salah-body">{copy.heroBody}</p>
 
-        <div class="salah-feature-bar" aria-label="Salah highlights">
+        <div class="salah-feature-bar" aria-label={ui.highlightsLabel}>
           {copy.featureBar.map(item => <span class="salah-chip">{item}</span>)}
         </div>
 
         <div class="salah-cta-row">
           {storeLinks.map(link => (
             <a href={link.href} class="store-badge-link" target="_blank" rel="noopener noreferrer" aria-label={link.label}>
-              <img src={link.image} alt={link.label} class="store-badge" />
+              <img src={link.image} alt={link.label} class="store-badge" width="220" height="65" />
             </a>
           ))}
           <a href="#features" class="btn btn-outline salah-explore">{copy.explore}</a>
@@ -224,28 +257,25 @@ const storeLinks = [
         <div class="salah-showcase-shell card">
           <div class="salah-showcase-top">
             <div class="salah-brand">
-              <img src={heroScreens[0].src} alt="3D Salah Guide logo" class="salah-brand-logo" />
+              <img src={heroScreens[0].src} alt={ui.logoAlt} class="salah-brand-logo" width="256" height="256" />
               <div>
                 <p class="salah-label">{copy.heroBadge}</p>
                 <h2 class="salah-rating">4.9 <Icon name="material-symbols:star" class="rating-icon" aria-hidden="true" /></h2>
               </div>
             </div>
-            <div class="salah-badge-pill">Interactive learning</div>
+            <div class="salah-badge-pill">{ui.showcaseBadge}</div>
           </div>
 
           <div class="salah-showcase-hero">
-            <img src={heroScreens[1].src} alt={heroScreens[1].alt} class="salah-main-shot" />
+            <img src={heroScreens[1].src} alt={heroScreens[1].alt} class="salah-main-shot" width={heroScreens[1].width} height={heroScreens[1].height} />
             <div class="salah-shot-stack">
-              <img src={heroScreens[2].src} alt={heroScreens[2].alt} />
-              <img src={heroScreens[3].src} alt={heroScreens[3].alt} />
+              <img src={heroScreens[2].src} alt={heroScreens[2].alt} width={heroScreens[2].width} height={heroScreens[2].height} />
+              <img src={heroScreens[3].src} alt={heroScreens[3].alt} width={heroScreens[3].width} height={heroScreens[3].height} />
             </div>
           </div>
 
           <div class="salah-stat-grid">
-            <div class="salah-stat">3D demonstrations</div>
-            <div class="salah-stat">360° viewing</div>
-            <div class="salah-stat">Zoom controls</div>
-            <div class="salah-stat">Beginner friendly</div>
+            {ui.heroStats.map(stat => <div class="salah-stat">{stat}</div>)}
           </div>
         </div>
       </aside>
@@ -255,7 +285,7 @@ const storeLinks = [
   <section class="section salah-intro">
     <div class="container salah-split">
       <div class="salah-section-copy">
-        <span class="badge badge-primary">Introduction</span>
+        <span class="badge badge-primary">{ui.badges.intro}</span>
         <h2 class="section-title">{copy.introTitle}</h2>
         <p class="section-body">{copy.introBody1}</p>
         <p class="section-body">{copy.introBody2}</p>
@@ -277,7 +307,7 @@ const storeLinks = [
   <section class="section salah-features" id="features">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Features</span>
+        <span class="badge badge-primary">{ui.badges.features}</span>
         <h2 class="section-title">{copy.featuresTitle}</h2>
       </div>
       <div class="salah-feature-grid">
@@ -295,19 +325,16 @@ const storeLinks = [
   <section class="section salah-edu-band">
     <div class="container salah-media-grid">
       <div class="salah-media-copy">
-        <span class="badge badge-primary">Education</span>
+        <span class="badge badge-primary">{ui.badges.education}</span>
         <h2 class="section-title">{copy.eduTitle}</h2>
         <p class="section-body">{copy.eduBody}</p>
         <div class="mini-grid">
-          <div class="mini-card">Practical learning</div>
-          <div class="mini-card">Visual understanding</div>
-          <div class="mini-card">Family-friendly</div>
-          <div class="mini-card">Islamic education</div>
+          {ui.eduMini.map(item => <div class="mini-card">{item}</div>)}
         </div>
       </div>
-      <div class="salah-carousel" aria-label="3D Salah screenshots">
-        {heroScreens.slice(4).map((screen, idx) => (
-          <img src={screen.src} alt={screen.alt}  />
+      <div class="salah-carousel" aria-label={ui.carouselLabel}>
+        {heroScreens.slice(4).map((screen) => (
+          <img src={screen.src} alt={screen.alt} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
         ))}
       </div>
     </div>
@@ -316,7 +343,7 @@ const storeLinks = [
   <section class="section salah-why-band">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Trust</span>
+        <span class="badge badge-primary">{ui.badges.trust}</span>
         <h2 class="section-title">{copy.whyTitle}</h2>
       </div>
       <div class="salah-why-grid">
@@ -336,7 +363,7 @@ const storeLinks = [
   <section class="section salah-audience-band">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Audience</span>
+        <span class="badge badge-primary">{ui.badges.audience}</span>
         <h2 class="section-title">{copy.audienceTitle}</h2>
       </div>
       <div class="audience-grid">
@@ -348,7 +375,7 @@ const storeLinks = [
   <section class="section salah-reviews-band">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Reviews</span>
+        <span class="badge badge-primary">{ui.badges.reviews}</span>
         <h2 class="section-title">{copy.reviewsTitle}</h2>
       </div>
       <div class="salah-review-grid">
@@ -368,7 +395,7 @@ const storeLinks = [
   <section class="section salah-faq-band">
     <div class="container salah-faq-wrap">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">FAQ</span>
+        <span class="badge badge-primary">{ui.badges.faq}</span>
         <h2 class="section-title">{copy.faqTitle}</h2>
       </div>
       <div class="faq-list">
@@ -392,14 +419,14 @@ const storeLinks = [
         <div class="salah-cta-row">
           {storeLinks.map(link => (
             <a href={link.href} class="store-badge-link" target="_blank" rel="noopener noreferrer" aria-label={link.label}>
-              <img src={link.image} alt={link.label} class="store-badge" />
+              <img src={link.image} alt={link.label} class="store-badge" width="220" height="65" loading="lazy" decoding="async" />
             </a>
           ))}
           <a href="#features" class="btn btn-secondary">{copy.finalLearn}</a>
         </div>
       </div>
       <aside class="salah-final-card card">
-        <img src={heroScreens[0].src} alt="3D Salah Guide logo" class="salah-final-logo" />
+        <img src={heroScreens[0].src} alt={ui.logoAlt} class="salah-final-logo" width="256" height="256" loading="lazy" decoding="async" />
         <p>{copy.footerDesc}</p>
       </aside>
     </div>
@@ -415,6 +442,7 @@ const storeLinks = [
 <style>
   .salah-hero { min-height: calc(100vh - 4.5rem); display:flex; align-items:center; padding:2.5rem 0 2rem; position:relative; overflow:hidden; background: linear-gradient(135deg, rgba(255,252,246,.98), rgba(244,248,255,.94)), url('/images/3DSalah/unnamed-8.webp') center/cover no-repeat; }
   .salah-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(110deg, rgba(255,255,255,.82), transparent 46%), linear-gradient(0deg, rgba(255,255,255,.14), rgba(255,255,255,.14)); pointer-events:none; }
+  :global([dir='rtl']) .salah-hero::before { background:linear-gradient(250deg, rgba(255,255,255,.82), transparent 46%), linear-gradient(0deg, rgba(255,255,255,.14), rgba(255,255,255,.14)); }
   .salah-hero-grid, .salah-split, .salah-media-grid, .salah-final-grid { display:grid; gap:1.5rem; align-items:center; position:relative; z-index:1; }
   .salah-hero-grid { grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr); }
   .salah-copy, .salah-section-copy { max-width:44rem; }

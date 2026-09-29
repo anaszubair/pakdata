@@ -228,6 +228,13 @@ const baseSchemas = [
     logo: toAbsoluteUrl('/images/logo.png'),
     foundingDate: '1979',
     email: 'support@pakdata.com',
+    telephone: '+92-21-34559003',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'NASTP-2 Silicon Valley-2, Building S2, 1st Floor, Office No.15, Main Shahrah-e-Faisal',
+      addressLocality: 'Karachi',
+      addressCountry: 'PK'
+    },
     sameAs: [
       'https://linkedin.com/company/pakdata',
       'https://twitter.com/pakdata',
@@ -320,7 +327,7 @@ const productLinks = [
 
 const projectLinks = [
   {
-    href: getRelativeLocaleUrl(lang, '/nadra-citizens-database'),
+    href: getRelativeLocaleUrl(lang, '/projects/nadra-software'),
     label: 'NADRA'
   },
   {
@@ -355,22 +362,26 @@ const projectLinks = [
     <script is:inline>
       // In-app webview mode: hide the site header and footer.
       (() => {
+        // The flag is kept for the tab session so internal links stay in webview mode.
         const apply = () => {
           const params = new URLSearchParams(window.location.search);
-          if (params.get('webview') === '1' || params.get('view') === 'app') {
-            document.documentElement.classList.add('webview-shell');
-          }
+          let webview = params.get('webview') === '1' || params.get('view') === 'app';
+          try {
+            if (webview) sessionStorage.setItem('pdms-webview', '1');
+            else webview = sessionStorage.getItem('pdms-webview') === '1';
+          } catch {}
+          if (webview) document.documentElement.classList.add('webview-shell');
         };
         apply();
         document.addEventListener('astro:after-swap', apply);
       })();
     </script>
-    <link rel="canonical" href={canonicalUrl} />
+    {!noindex && <link rel="canonical" href={canonicalUrl} />}
     <meta name="robots" content={robotsContent} />
-    {alternateLocales.map((alternate) => (
+    {!noindex && alternateLocales.map((alternate) => (
       <link rel="alternate" hreflang={alternate.lang} href={alternate.href} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={defaultLocaleUrl} />
+    {!noindex && <link rel="alternate" hreflang="x-default" href={defaultLocaleUrl} />}
     
     <!-- Primary Meta Tags -->
     <title>{fullTitle}</title>
@@ -416,8 +427,7 @@ const projectLinks = [
       @font-face {
         font-family: 'Jameel Noori Nastaleeq';
         src:
-          url('/fonts/ur-site.woff2') format('woff2'),
-          url('/fonts/ur.ttf') format('truetype');
+          url('/fonts/ur-site.woff2') format('woff2');
         font-weight: 400;
         font-style: normal;
         font-display: swap;
@@ -426,8 +436,7 @@ const projectLinks = [
       @font-face {
         font-family: 'PDMS Arabic';
         src:
-          url('/fonts/ar-site.woff2') format('woff2'),
-          url('/fonts/ar.ttf') format('truetype');
+          url('/fonts/ar-site.woff2') format('woff2');
         font-weight: 400;
         font-style: normal;
         font-display: swap;
@@ -523,7 +532,7 @@ const projectLinks = [
       <div class="container header-container">
         <!-- Logo -->
         <a href={getRelativeLocaleUrl(lang, '/')} class="logo-wrap" id="logo-nav-link">
-          <img src="/images/logo-header.webp" alt="PDMS Logo" class="logo-img" width="320" height="124" fetchpriority="high" decoding="async" />
+          <img src="/images/logo-header.webp" alt={t('a11y.logoAlt')} class="logo-img" width="320" height="124" fetchpriority="high" decoding="async" />
           <div class="logo-text">
           </div>
         </a>
@@ -556,7 +565,7 @@ const projectLinks = [
         <!-- CTA Header Button & Language Selector -->
         <div class="header-cta-wrap">
           <div class="lang-selector-wrap">
-            <select class="lang-selector" data-lang-selector aria-label="Select Language">
+            <select class="lang-selector" data-lang-selector aria-label={t('a11y.selectLanguage')}>
               {Object.entries(languages).map(([l, name]) => (
                 <option value={getRelativeLocaleUrl(l as any, cleanPathname)} selected={l === lang}>{name}</option>
               ))}
@@ -568,7 +577,7 @@ const projectLinks = [
     </header>
 
     <!-- Hamburger button: outside the header so it can float while the header hides -->
-    <button class="mobile-toggle" aria-label="Toggle Menu" aria-controls="mobile-menu-drawer" aria-expanded="false" id="menu-toggle-btn">
+    <button class="mobile-toggle" aria-label={t('a11y.toggleMenu')} data-label-open={t('a11y.toggleMenu')} data-label-close={t('a11y.closeMenu')} aria-controls="mobile-menu-drawer" aria-expanded="false" id="menu-toggle-btn">
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
@@ -600,7 +609,7 @@ const projectLinks = [
         <a href={getRelativeLocaleUrl(lang, '/support')} class={`mobile-nav-link ${isActive('/support') ? 'active' : ''}`} id="mob-nav-support">{t('nav.support')}</a>
         <a href={getRelativeLocaleUrl(lang, '/job-us')} class={`mobile-nav-link ${isActive('/job-us') ? 'active' : ''}`} id="mob-nav-join">{t('nav.join')}</a>
         <a href={getRelativeLocaleUrl(lang, '/contact-us')} class="btn btn-primary mobile-menu-cta" id="mob-nav-contact">{t('nav.contact')}</a>
-        <select class="lang-selector mobile-lang-selector" data-lang-selector aria-label="Select Language">
+        <select class="lang-selector mobile-lang-selector" data-lang-selector aria-label={t('a11y.selectLanguage')}>
           {Object.entries(languages).map(([l, name]) => (
             <option value={getRelativeLocaleUrl(l as any, cleanPathname)} selected={l === lang}>{name}</option>
           ))}
@@ -618,8 +627,8 @@ const projectLinks = [
       <div class="container footer-grid">
         <!-- Footer Column 1: Company Profile -->
         <div class="footer-col col-brand">
-          <a href="/" class="logo-wrap footer-logo">
-            <img src="/images/logo-header.webp" alt="PDMS Logo" class="logo-img" width="320" height="124" loading="lazy" decoding="async" />
+          <a href={getRelativeLocaleUrl(lang, '/')} class="logo-wrap footer-logo">
+            <img src="/images/logo-header.webp" alt={t('a11y.logoAlt')} class="logo-img" width="320" height="124" loading="lazy" decoding="async" />
           </a>
           <p class="footer-desc">
             {t('footer.desc')}
@@ -681,15 +690,17 @@ const projectLinks = [
           <p class="footer-text">
             {t('footer.connect.desc')}
           </p>
-          <form class="newsletter-form" id="newsletter-form">
-            <input type="email" placeholder={t('footer.connect.placeholder')} required class="form-control newsletter-input" aria-label="Email address" />
-            <button type="submit" class="btn btn-primary newsletter-btn" aria-label="Subscribe">
+          <form class="newsletter-form" id="newsletter-form" data-thanks={t('newsletter.thanks')}>
+            <input type="email" placeholder={t('footer.connect.placeholder')} required class="form-control newsletter-input" aria-label={t('a11y.emailAddress')} />
+            <button type="submit" class="btn btn-primary newsletter-btn" aria-label={t('a11y.subscribe')}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
             </button>
           </form>
           <div class="business-contact">
             <span class="contact-label">{t('footer.connect.business')}</span>
             <a href="mailto:support@pakdata.com" class="contact-value">support@pakdata.com</a>
+            <span class="contact-label">{t('footer.connect.phone')}</span>
+            <a href="tel:+922134559003" class="contact-value" dir="ltr">+92 21 3455 9003</a>
           </div>
         </div>
       </div>
@@ -718,16 +729,26 @@ const projectLinks = [
       });
 
       document.addEventListener('astro:page-load', () => {
+        const siteHeader = document.getElementById('site-header');
         const menuToggleBtn = document.getElementById('menu-toggle-btn');
         const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
         const newsletterForm = document.getElementById('newsletter-form');
 
         const setMenuOpen = (open: boolean) => {
-          menuToggleBtn?.classList.toggle('active', open);
-          menuToggleBtn?.setAttribute('aria-expanded', String(open));
-          mobileMenuDrawer?.classList.toggle('active', open);
+          if (!menuToggleBtn || !mobileMenuDrawer) return;
+          const wasOpen = mobileMenuDrawer.classList.contains('active');
+          menuToggleBtn.classList.toggle('active', open);
+          menuToggleBtn.setAttribute('aria-expanded', String(open));
+          const label = open ? menuToggleBtn.dataset.labelClose : menuToggleBtn.dataset.labelOpen;
+          if (label) menuToggleBtn.setAttribute('aria-label', label);
+          mobileMenuDrawer.classList.toggle('active', open);
           document.body.classList.toggle('overflow-hidden', open);
           document.documentElement.classList.toggle('menu-open', open);
+          if (open && !wasOpen) {
+            mobileMenuDrawer.querySelector<HTMLElement>('a, summary, select')?.focus({ preventScroll: true });
+          } else if (!open && wasOpen && mobileMenuDrawer.contains(document.activeElement)) {
+            menuToggleBtn.focus({ preventScroll: true });
+          }
         };
 
         if (menuToggleBtn && mobileMenuDrawer) {
@@ -763,6 +784,13 @@ const projectLinks = [
         window.addEventListener('resize', () => {
           if (window.innerWidth >= 1200) setMenuOpen(false);
         }, { signal: scrollController.signal });
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && mobileMenuDrawer?.classList.contains('active')) setMenuOpen(false);
+        }, { signal: scrollController.signal });
+        // Keyboard focus inside a hidden header brings it back into view.
+        siteHeader?.addEventListener('focusin', () => {
+          document.documentElement.classList.remove('header-hidden');
+        });
 
         document.querySelectorAll('[data-lang-selector]').forEach(selector => {
           selector.addEventListener('change', (event) => {
@@ -775,7 +803,7 @@ const projectLinks = [
           e.preventDefault();
           const emailInput = newsletterForm.querySelector('input');
           if (emailInput && emailInput.value) {
-            alert(`Thank you for subscribing with ${emailInput.value}!`);
+            alert(newsletterForm.dataset.thanks || 'Thank you for subscribing!');
             emailInput.value = '';
           }
         });
@@ -1073,6 +1101,8 @@ const projectLinks = [
   :global([dir="rtl"]) .mobile-menu.active {
     transform: translateX(0);
     visibility: visible;
+    /* Visible at once on open so focus can move into the drawer */
+    transition: transform var(--transition-normal), visibility 0s;
   }
 
   .mobile-nav-links {
@@ -1265,7 +1295,7 @@ const projectLinks = [
 
   .footer-links a:hover {
     color: var(--primary);
-    padding-left: 4px;
+    padding-inline-start: 4px;
   }
 
   .footer-text {
@@ -1314,6 +1344,10 @@ const projectLinks = [
   .contact-value {
     color: var(--primary);
     font-weight: 600;
+  }
+
+  .contact-value + .contact-label {
+    margin-top: 0.6rem;
   }
 
   /* Footer bottom */
@@ -1413,7 +1447,7 @@ const projectLinks = [
     .footer-bottom-content {
       flex-direction: row;
       justify-content: space-between;
-      text-align: left;
+      text-align: start;
     }
   }
 </style>

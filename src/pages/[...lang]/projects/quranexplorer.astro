@@ -249,10 +249,10 @@ const copy = {
       }
     ],
     recitersTitle: 'عرض القراء',
-    reciters: ['مشياري العفاسي', 'عبد الباسط', 'السديس', 'الشريم'],
+    reciters: ['مشاري العفاسي', 'عبد الباسط', 'السديس', 'الشريم'],
     techTitle: 'التقنية والتطوير',
     techBody: 'تم تطوير QuranExplorer باستخدام تقنيات ويب قابلة للتوسع وبنية قاعدة بيانات محسنة لدعم بث القرآن على نطاق واسع والوصول السهل للمستخدمين.',
-    techItems: ['ASP.NET Development', 'Microsoft SQL Server', 'Streaming Audio Infrastructure', 'Online Quran Platform Architecture', 'Multi-Language Content Support'],
+    techItems: ['تطوير ASP.NET', 'Microsoft SQL Server', 'بنية البث الصوتي', 'بنية منصة القرآن عبر الإنترنت', 'دعم المحتوى متعدد اللغات'],
     benefitsTitle: 'فوائد تعليمية',
     benefitsBody: 'تم بناء QuranExplorer لتقديم تجربة قرآنية سلسة وغامرة وذات أثر روحي للمستخدمين من جميع الأعمار والخلفيات.',
     benefits: [
@@ -287,6 +287,39 @@ const copy = {
     footerDesc: 'QuranExplorer هي منصة قرآنية شاملة عبر الإنترنت تقدم التلاوات والترجمات متعددة اللغات والبث الصوتي ودعم التجويد وأدوات دراسة القرآن المتقدمة للمستخدمين حول العالم.'
   }
 }[lang];
+
+const ui = {
+  en: {
+    heroAlt: 'QuranExplorer portal visual',
+    heroCaption: 'Streaming Quran, translations, and Tajweed',
+    info: [
+      { kicker: 'Audience', value: 'Global Muslim users' },
+      { kicker: 'Platform', value: 'Online Quran portal' },
+      { kicker: 'Focus', value: 'Learning, recitation, and reflection' }
+    ],
+    techPanel: 'Technology highlights'
+  },
+  ur: {
+    heroAlt: 'قرآن ایکسپلورر پورٹل کا بصری منظر',
+    heroCaption: 'قرآن اسٹریمنگ، تراجم اور تجوید',
+    info: [
+      { kicker: 'صارفین', value: 'دنیا بھر کے مسلمان صارفین' },
+      { kicker: 'پلیٹ فارم', value: 'آن لائن قرآن پورٹل' },
+      { kicker: 'توجہ', value: 'سیکھنا، تلاوت اور غور و فکر' }
+    ],
+    techPanel: 'ٹیکنالوجی کی نمایاں خصوصیات'
+  },
+  ar: {
+    heroAlt: 'صورة توضيحية لبوابة QuranExplorer',
+    heroCaption: 'بث القرآن والترجمات والتجويد',
+    info: [
+      { kicker: 'الجمهور', value: 'المستخدمون المسلمون حول العالم' },
+      { kicker: 'المنصة', value: 'بوابة قرآنية عبر الإنترنت' },
+      { kicker: 'التركيز', value: 'التعلم والتلاوة والتدبر' }
+    ],
+    techPanel: 'أبرز التقنيات'
+  }
+}[lang];
 ---
 
 <Layout title={copy.seoTitle} description={copy.seoDesc}>
@@ -303,10 +336,10 @@ const copy = {
       </div>
 
       <div class="portal-visual card">
-        <img src="/images/q_explorer_sc.png" alt="QuranExplorer portal visual" class="portal-image" />
+        <img src="/images/q_explorer_sc.png" alt={ui.heroAlt} class="portal-image" width="454" height="316" />
         <div class="portal-visual-footer">
           <span>{copy.heroBadge}</span>
-          <span>Streaming Quran, translations, and Tajweed</span>
+          <span>{ui.heroCaption}</span>
         </div>
       </div>
     </div>
@@ -320,18 +353,12 @@ const copy = {
         <p class="body-copy">{copy.overviewBody}</p>
       </div>
       <div class="info-grid card">
-        <div class="info-row">
-          <span class="info-kicker">Audience</span>
-          <strong>Global Muslim users</strong>
-        </div>
-        <div class="info-row">
-          <span class="info-kicker">Platform</span>
-          <strong>Online Quran portal</strong>
-        </div>
-        <div class="info-row">
-          <span class="info-kicker">Focus</span>
-          <strong>Learning, recitation, and reflection</strong>
-        </div>
+        {ui.info.map((row) => (
+          <div class="info-row">
+            <span class="info-kicker">{row.kicker}</span>
+            <strong>{row.value}</strong>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -374,7 +401,7 @@ const copy = {
         <p class="body-copy">{copy.techBody}</p>
       </div>
       <div class="list-panel card">
-        <h3 class="panel-title">Technology highlights</h3>
+        <h3 class="panel-title">{ui.techPanel}</h3>
         <ul class="check-list">
           {copy.techItems.map((item) => (
             <li>{item}</li>

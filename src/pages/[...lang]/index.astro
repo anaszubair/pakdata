@@ -191,6 +191,32 @@ const heroCarouselSlides = [
     awardCategory: ''
   }
 ];
+
+const carouselCopy = {
+  en: {
+    controls: 'App screenshot carousel controls',
+    show: (label: string) => `Show ${label}`,
+    prev: 'Previous screenshot',
+    next: 'Next screenshot'
+  },
+  ur: {
+    controls: 'ایپ اسکرین شاٹ کیروسل کنٹرولز',
+    show: (label: string) => `${label} دکھائیں`,
+    prev: 'پچھلا اسکرین شاٹ',
+    next: 'اگلا اسکرین شاٹ'
+  },
+  ar: {
+    controls: 'عناصر التحكم في عرض لقطات شاشة التطبيقات',
+    show: (label: string) => `عرض ${label}`,
+    prev: 'لقطة الشاشة السابقة',
+    next: 'لقطة الشاشة التالية'
+  }
+}[lang] ?? {
+  controls: 'App screenshot carousel controls',
+  show: (label: string) => `Show ${label}`,
+  prev: 'Previous screenshot',
+  next: 'Next screenshot'
+};
 ---
 
 <Layout title={title} description={description}>
@@ -238,21 +264,21 @@ const heroCarouselSlides = [
                 ))}
               </div>
               <div class="hero-carousel-footer">
-                <div class="hero-carousel-dots" aria-label="App screenshot carousel controls">
+                <div class="hero-carousel-dots" aria-label={carouselCopy.controls}>
                   {heroCarouselSlides.map((slide, index) => (
                     <button
                       type="button"
                       class={`hero-carousel-dot ${index === 0 ? 'is-active' : ''}`}
                       data-carousel-dot={index}
-                      aria-label={`Show ${slide.label}`}
+                      aria-label={carouselCopy.show(slide.label)}
                     />
                   ))}
                 </div>
                 <div class="hero-carousel-controls">
-                  <button type="button" class="hero-carousel-btn" data-carousel-prev aria-label="Previous screenshot">
+                  <button type="button" class="hero-carousel-btn" data-carousel-prev aria-label={carouselCopy.prev}>
                     <Icon name="material-symbols:chevron-left" class="carousel-control-icon" aria-hidden="true" />
                   </button>
-                  <button type="button" class="hero-carousel-btn" data-carousel-next aria-label="Next screenshot">
+                  <button type="button" class="hero-carousel-btn" data-carousel-next aria-label={carouselCopy.next}>
                     <Icon name="material-symbols:chevron-right" class="carousel-control-icon" aria-hidden="true" />
                   </button>
                 </div>
@@ -268,25 +294,25 @@ const heroCarouselSlides = [
       <div class="metrics-card-grid">
 
         <div class="metric-card">
-          <span class="metric-number" data-target="150">0</span><span class="suffix">{t('home.metrics.downloads.suffix') || 'M+'}</span>
+          <span class="metric-number" data-target="150">150</span><span class="suffix">{t('home.metrics.downloads.suffix') || 'M+'}</span>
           <span class="metric-title">{t('home.metrics.downloads.title')}</span>
           <span class="metric-desc">{t('home.metrics.downloads.desc')}</span>
         </div>
 
         <div class="metric-card">
-          <span class="metric-number" data-target="45">0</span><span class="suffix">{t('home.metrics.years.suffix') || '+ Yrs'}</span>
+          <span class="metric-number" data-target="45">45</span><span class="suffix">{t('home.metrics.years.suffix') || '+ Yrs'}</span>
           <span class="metric-title">{t('home.metrics.years.title')}</span>
           <span class="metric-desc">{t('home.metrics.years.desc')}</span>
         </div>
 
         <div class="metric-card">
-          <span class="metric-number" data-target="50">0</span><span class="suffix">{t('home.metrics.apps.suffix') || '+'}</span>
+          <span class="metric-number" data-target="50">50</span><span class="suffix">{t('home.metrics.apps.suffix') || '+'}</span>
           <span class="metric-title">{t('home.metrics.apps.title')}</span>
           <span class="metric-desc">{t('home.metrics.apps.desc')}</span>
         </div>
 
         <div class="metric-card">
-          <span class="metric-number" data-target="45">0</span><span class="suffix">{t('home.metrics.clients.suffix') || '+'}</span>
+          <span class="metric-number" data-target="45">45</span><span class="suffix">{t('home.metrics.clients.suffix') || '+'}</span>
           <span class="metric-title">{t('home.metrics.clients.title')}</span>
           <span class="metric-desc">{t('home.metrics.clients.desc')}</span>
         </div>
@@ -696,6 +722,10 @@ const heroCarouselSlides = [
     display: block;
   }
 
+  :global([dir="rtl"]) .carousel-control-icon {
+    transform: scaleX(-1);
+  }
+
   .mini-logo {
     gap: 0.35rem;
   }
@@ -783,7 +813,7 @@ const heroCarouselSlides = [
   .metric-card {
     position: relative;
     overflow: hidden;
-    text-align: left;
+    text-align: start;
     padding: 0.85rem 1rem;
     border: 1px solid rgba(236, 103, 36, 0.1);
     border-radius: 1rem;
@@ -794,7 +824,8 @@ const heroCarouselSlides = [
   .metric-card::before {
     content: "";
     position: absolute;
-    inset: 0 auto 0 0;
+    inset-block: 0;
+    inset-inline-start: 0;
     width: 0.25rem;
     background: linear-gradient(180deg, var(--primary), #2563eb);
     opacity: 0.9;
@@ -1237,55 +1268,95 @@ const heroCarouselSlides = [
   }
 </style>
 <script>
+let homeCleanup: (() => void) | null = null;
+
+const teardownHome = () => {
+  if (homeCleanup) {
+    homeCleanup();
+    homeCleanup = null;
+  }
+};
+
+document.addEventListener("astro:before-swap", teardownHome);
+
 document.addEventListener("astro:page-load", () => {
-  const counters = document.querySelectorAll(".metric-number");
+  teardownHome();
 
-  const animate = (el) => {
-    const target = parseInt(el.getAttribute("data-target"));
+  const counters = document.querySelectorAll<HTMLElement>(".metric-number");
+  const carousel = document.querySelector<HTMLElement>("[data-hero-carousel]");
+  if (!counters.length && !carousel) return;
+
+  const controller = new AbortController();
+  const { signal } = controller;
+  const rafIds = new Set<number>();
+  let observer: IntersectionObserver | undefined;
+  let timer: number | undefined;
+
+  const stop = () => {
+    if (timer) {
+      window.clearInterval(timer);
+      timer = undefined;
+    }
+  };
+
+  homeCleanup = () => {
+    controller.abort();
+    observer?.disconnect();
+    rafIds.forEach((id) => cancelAnimationFrame(id));
+    rafIds.clear();
+    stop();
+  };
+
+  const animate = (el: HTMLElement) => {
+    const target = parseInt(el.getAttribute("data-target") || "0", 10);
+    if (!Number.isFinite(target)) return;
     const duration = 3000;
-    const stepTime = 20;
-    const steps = duration / stepTime;
-    let current = 0;
-    const increment = target / steps;
+    const startTime = performance.now();
+    el.textContent = "0";
 
-    const update = () => {
-      current += increment;
-      if (current < target) {
-        el.textContent = Math.floor(current);
-        requestAnimationFrame(update);
+    const update = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      if (progress < 1) {
+        el.textContent = String(Math.floor(target * progress));
+        const id = requestAnimationFrame(update);
+        rafIds.add(id);
       } else {
-        el.textContent = target;
+        el.textContent = String(target);
       }
     };
 
-    update();
+    rafIds.add(requestAnimationFrame(update));
   };
 
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animate(entry.target);
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  counters.forEach(c => observer.observe(c));
+  if (counters.length && !reduceMotion && "IntersectionObserver" in window) {
+    observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animate(entry.target as HTMLElement);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
 
-  const carousel = document.querySelector("[data-hero-carousel]");
+    counters.forEach((c) => observer!.observe(c));
+  }
+
   if (carousel) {
-    const track = carousel.querySelector(".hero-carousel-track");
+    const track = carousel.querySelector<HTMLElement>(".hero-carousel-track");
     const slides = Array.from(carousel.querySelectorAll(".hero-carousel-slide"));
     const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
     const prev = carousel.querySelector("[data-carousel-prev]");
     const next = carousel.querySelector("[data-carousel-next]");
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let current = 0;
-    let timer;
+    const isRtl = getComputedStyle(carousel).direction === "rtl";
 
-    const setSlide = (index) => {
+    if (!track || !slides.length) return;
+
+    const setSlide = (index: number) => {
       current = (index + slides.length) % slides.length;
-      track.style.transform = `translateX(-${current * 100}%)`;
+      track.style.transform = `translateX(${isRtl ? "" : "-"}${current * 100}%)`;
       slides.forEach((slide, i) => {
         slide.classList.toggle("is-active", i === current);
       });
@@ -1295,39 +1366,32 @@ document.addEventListener("astro:page-load", () => {
     };
 
     const start = () => {
-      if (reduceMotion) return;
+      if (reduceMotion || signal.aborted) return;
       stop();
       timer = window.setInterval(() => setSlide(current + 1), 4800);
-    };
-
-    const stop = () => {
-      if (timer) {
-        window.clearInterval(timer);
-        timer = undefined;
-      }
     };
 
     prev?.addEventListener("click", () => {
       setSlide(current - 1);
       start();
-    });
+    }, { signal });
 
     next?.addEventListener("click", () => {
       setSlide(current + 1);
       start();
-    });
+    }, { signal });
 
     dots.forEach((dot, index) => {
       dot.addEventListener("click", () => {
         setSlide(index);
         start();
-      });
+      }, { signal });
     });
 
-    carousel.addEventListener("mouseenter", stop);
-    carousel.addEventListener("mouseleave", start);
-    carousel.addEventListener("focusin", stop);
-    carousel.addEventListener("focusout", start);
+    carousel.addEventListener("mouseenter", stop, { signal });
+    carousel.addEventListener("mouseleave", start, { signal });
+    carousel.addEventListener("focusin", stop, { signal });
+    carousel.addEventListener("focusout", start, { signal });
 
     setSlide(0);
     start();

@@ -61,11 +61,11 @@ const { title, description, steps } = copy;
 
 const images = [
   null,
-  { src: '/images/qm-audio-download2.png', alt: 'Quran audio download step 2' },
-  { src: '/images/qm-audio-download3.png', alt: 'Quran audio download step 3' },
-  { src: '/images/qm-audio-download4.png', alt: 'Quran audio download step 4' },
-  { src: '/images/qm-audio-download5.png', alt: 'Quran audio download step 5' },
-  { src: '/images/qm-audio-download6.png', alt: 'Quran audio download step 6' }
+  { src: '/images/qm-audio-download2.png', width: 320, height: 660, alt: 'Quran audio download step 2' },
+  { src: '/images/qm-audio-download3.png', width: 320, height: 624, alt: 'Quran audio download step 3' },
+  { src: '/images/qm-audio-download4.png', width: 320, height: 654, alt: 'Quran audio download step 4' },
+  { src: '/images/qm-audio-download5.png', width: 320, height: 653, alt: 'Quran audio download step 5' },
+  { src: '/images/qm-audio-download6.png', width: 320, height: 653, alt: 'Quran audio download step 6' }
 ];
 ---
 
@@ -89,7 +89,7 @@ const images = [
               <span class="step-number">{idx + 1}</span>
               <p>{step}</p>
             </div>
-            {images[idx] && <img src={images[idx].src} alt={images[idx].alt} class="step-image" loading="lazy" />}
+            {images[idx] && <img src={images[idx].src} alt={images[idx].alt} width={images[idx].width} height={images[idx].height} class="step-image" loading="lazy" />}
           </article>
         ))}
       </div>

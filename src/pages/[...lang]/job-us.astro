@@ -14,6 +14,12 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 
+const modalCopy = {
+  en: { close: 'Close application form' },
+  ur: { close: 'درخواست فارم بند کریں' },
+  ar: { close: 'إغلاق نموذج التقديم' }
+}[lang] ?? { close: 'Close application form' };
+
 const title = t('join.seo.title');
 const description = t('join.seo.desc');
 
@@ -192,7 +198,7 @@ const jobs = [
       <p class="application-cta-text">{t('join.cta.p1')}</p>
       <p class="application-cta-text">{t('join.cta.p2')}</p>
       <div class="application-cta-actions">
-        <button class="btn btn-primary btn-lg apply-now-trigger" data-title={t('join.cta.apply')} data-default-title={t('join.modal.defaultPosition')} id="apply-today-btn">{t('join.cta.apply')}</button>
+        <button class="btn btn-primary btn-lg apply-now-trigger" data-default-title={t('join.modal.defaultPosition')} id="apply-today-btn">{t('join.cta.apply')}</button>
         <a href="mailto:careers@pakdata.com" class="btn btn-secondary btn-lg" id="contact-hr-team-btn">{t('join.cta.contact')}</a>
       </div>
     </div>
@@ -200,9 +206,9 @@ const jobs = [
 
   <!-- Apply Form Modal Container (Simulated/Overlay) -->
   <div class="apply-modal" id="apply-modal-box">
-    <div class="modal-content card">
-      <button class="close-modal" id="close-modal-btn">&times;</button>
-      <h3 class="modal-title">{t('join.modal.title')}</h3>
+    <div class="modal-content card" role="dialog" aria-modal="true" aria-labelledby="apply-modal-title">
+      <button type="button" class="close-modal" id="close-modal-btn" aria-label={modalCopy.close}><span aria-hidden="true">&times;</span></button>
+      <h3 class="modal-title" id="apply-modal-title">{t('join.modal.title')}</h3>
       <p class="modal-position-name" id="modal-target-position">{t('join.jobs.ios.title')}</p>
       
       <form class="apply-form" id="career-apply-form" data-alert-msg={t('join.modal.alert')} data-default-name={t('join.modal.defaultApplicant')} data-recaptcha-msg={t('form.recaptcha.required')} data-sending-msg={t('form.sending')} data-rejected-msg={t('form.error.rejected')} data-network-msg={t('form.error.network')}>
@@ -289,7 +295,7 @@ const jobs = [
   /* Benefits card */
   .benefit-card {
     padding: 1.5rem;
-    border-left: 4px solid var(--primary);
+    border-inline-start: 4px solid var(--primary);
   }
 
   .benefit-title {
@@ -480,7 +486,7 @@ const jobs = [
   .close-modal {
     position: absolute;
     top: 1rem;
-    right: 1.5rem;
+    inset-inline-end: 1.5rem;
     font-size: calc(2rem * var(--text-scale, 1));
     background: none;
     border: none;
@@ -511,7 +517,7 @@ const jobs = [
   }
 
   .text-right {
-    text-align: right;
+    text-align: end;
   }
 
   .max-width-600 {
@@ -558,6 +564,15 @@ const jobs = [
 <script>
   import { setupMailForm } from '../../lib/mail-service';
 
+  let modalController: AbortController | null = null;
+  let closeModal: (() => void) | null = null;
+
+  document.addEventListener('astro:before-swap', () => {
+    modalController?.abort();
+    modalController = null;
+    closeModal = null;
+  });
+
   document.addEventListener('astro:page-load', () => {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const jobItems = document.querySelectorAll('.job-item-container');
@@ -588,26 +603,49 @@ const jobs = [
     }
 
     if (applyTriggers.length > 0 && applyModal && modalTargetPos) {
-      applyTriggers.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const jobTitle = btn.getAttribute('data-title') || btn.getAttribute('data-default-title') || '';
-          modalTargetPos.textContent = jobTitle;
-          applyModal.classList.add('active');
-          document.body.classList.add('overflow-hidden');
-        });
-      });
+      modalController?.abort();
+      modalController = new AbortController();
+      const { signal } = modalController;
+      let lastTrigger: HTMLElement | null = null;
 
-      closeModalBtn?.addEventListener('click', () => {
+      const openModal = (trigger: HTMLElement) => {
+        lastTrigger = trigger;
+        const jobTitle = trigger.getAttribute('data-title') || trigger.getAttribute('data-default-title') || '';
+        modalTargetPos.textContent = jobTitle;
+        applyModal.classList.add('active');
+        document.body.classList.add('overflow-hidden');
+        const firstInput = applyModal.querySelector<HTMLElement>('input, textarea, select');
+        firstInput?.focus();
+      };
+
+      closeModal = () => {
+        if (!applyModal.classList.contains('active')) return;
         applyModal.classList.remove('active');
         document.body.classList.remove('overflow-hidden');
+        if (lastTrigger && document.contains(lastTrigger)) {
+          lastTrigger.focus();
+        }
+        lastTrigger = null;
+      };
+
+      applyTriggers.forEach(btn => {
+        btn.addEventListener('click', () => openModal(btn as HTMLElement));
       });
+
+      closeModalBtn?.addEventListener('click', () => closeModal?.());
 
       applyModal.addEventListener('click', (e) => {
         if (e.target === applyModal) {
-          applyModal.classList.remove('active');
-          document.body.classList.remove('overflow-hidden');
+          closeModal?.();
         }
       });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && applyModal.classList.contains('active')) {
+          e.preventDefault();
+          closeModal?.();
+        }
+      }, { signal });
     }
 
     const submitCareerButton = document.getElementById('submit-career-btn');
@@ -635,8 +673,12 @@ const jobs = [
         },
         onSuccess: ({ name }) => {
           alert(`${name}: ${careerApplyForm.dataset.alertMsg || ''}`);
-          applyModal?.classList.remove('active');
-          document.body.classList.remove('overflow-hidden');
+          if (closeModal) {
+            closeModal();
+          } else {
+            applyModal?.classList.remove('active');
+            document.body.classList.remove('overflow-hidden');
+          }
         },
       });
     }

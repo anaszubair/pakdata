@@ -113,7 +113,7 @@ const copy = {
     techTitle: 'ٹیکنالوجی اور انفراسٹرکچر',
     techBody: 'یہ حل انٹرپرائز گریڈ ٹیکنالوجیز کے ساتھ تیار کیا گیا اور بڑے پیمانے کی ڈیپلائمنٹ کے لیے بہتر بنایا گیا۔',
     techNote: 'یہ سسٹم تقسیم شدہ پراسیسنگ سینٹرز میں اعلیٰ دستیابی، کارکردگی کی بہتری اور آپریشنل مؤثریت کے لیے ڈیزائن کیا گیا تھا۔',
-    techItems: ['Visual Basic', 'C++', 'Microsoft SQL Server', 'Windows-based deployment'],
+    techItems: ['Visual Basic', 'C++', 'Microsoft SQL Server', 'Windows پر مبنی ڈیپلائمنٹ'],
     scaleTitle: 'ملکی پیمانہ اور عملی اثر',
     scaleBody: 'اس نظام نے لاکھوں شہری ریکارڈز اور پاکستان بھر میں نصب بڑے پروسیسنگ انفراسٹرکچر کے ساتھ قومی آپریشنز کی کامیابی سے معاونت کی۔',
     scaleItems: [
@@ -211,14 +211,50 @@ const copy = {
   }
 }[lang];
 
-const metrics = [
-  { label: 'Millions of records processed', value: 'Millions' },
-  { label: 'Nationwide deployment', value: 'Pakistan' },
-  { label: '24/7 operations', value: 'Always on' },
-  { label: 'Government infrastructure support', value: 'Enterprise' }
-];
+const ui = {
+  en: {
+    metrics: [
+      { label: 'Millions of records processed', value: 'Millions' },
+      { label: 'Nationwide deployment', value: 'Pakistan' },
+      { label: '24/7 operations', value: 'Always on' },
+      { label: 'Government infrastructure support', value: 'Enterprise' }
+    ],
+    techStack: ['Visual Basic', 'C++', 'Microsoft SQL Server', 'Windows-based deployment infrastructure'],
+    heroAlt: 'NADRA project visual',
+    client: 'Client',
+    scale: 'Scale',
+    impact: 'Impact'
+  },
+  ur: {
+    metrics: [
+      { label: 'لاکھوں ریکارڈز پراسیس کیے گئے', value: 'لاکھوں' },
+      { label: 'ملک گیر ڈیپلائمنٹ', value: 'پاکستان' },
+      { label: '24/7 آپریشنز', value: 'ہمہ وقت فعال' },
+      { label: 'حکومتی انفراسٹرکچر کی معاونت', value: 'انٹرپرائز' }
+    ],
+    techStack: ['Visual Basic', 'C++', 'Microsoft SQL Server', 'Windows پر مبنی ڈیپلائمنٹ انفراسٹرکچر'],
+    heroAlt: 'نادرا منصوبے کا بصری منظر',
+    client: 'کلائنٹ',
+    scale: 'پیمانہ',
+    impact: 'اثر'
+  },
+  ar: {
+    metrics: [
+      { label: 'معالجة ملايين السجلات', value: 'الملايين' },
+      { label: 'نشر على مستوى البلاد', value: 'باكستان' },
+      { label: 'عمليات على مدار 24/7', value: 'يعمل دائمًا' },
+      { label: 'دعم البنية التحتية الحكومية', value: 'مؤسسي' }
+    ],
+    techStack: ['Visual Basic', 'C++', 'Microsoft SQL Server', 'بنية نشر قائمة على Windows'],
+    heroAlt: 'صورة توضيحية لمشروع نادرا',
+    client: 'العميل',
+    scale: 'النطاق',
+    impact: 'الأثر'
+  }
+}[lang];
 
-const techStack = ['Visual Basic', 'C++', 'Microsoft SQL Server', 'Windows-based deployment infrastructure'];
+const metrics = ui.metrics;
+const techStack = ui.techStack;
 ---
 
 <Layout title={copy.seoTitle} description={copy.seoDesc}>
@@ -239,7 +275,7 @@ const techStack = ['Visual Basic', 'C++', 'Microsoft SQL Server', 'Windows-based
         </div>
       </div>
       <div class="nadra-visual card">
-        <img src="/images/nadra.jpg" alt="NADRA project visual" class="nadra-image" />
+        <img src="/images/nadra.jpg" alt={ui.heroAlt} class="nadra-image" width="511" height="370" />
         <div class="nadra-visual-footer">
           <span>{copy.heroBadge}</span>
           <span>{t('projects.items.nadra.scale')}</span>
@@ -257,15 +293,15 @@ const techStack = ['Visual Basic', 'C++', 'Microsoft SQL Server', 'Windows-based
       </div>
       <div class="info-panel card">
         <div class="info-row">
-          <span class="info-kicker">Client</span>
+          <span class="info-kicker">{ui.client}</span>
           <strong>{t('projects.items.nadra.client')}</strong>
         </div>
         <div class="info-row">
-          <span class="info-kicker">Scale</span>
+          <span class="info-kicker">{ui.scale}</span>
           <strong>{t('projects.items.nadra.scale')}</strong>
         </div>
         <div class="info-row">
-          <span class="info-kicker">Impact</span>
+          <span class="info-kicker">{ui.impact}</span>
           <strong>{t('projects.items.nadra.metric2')}</strong>
         </div>
       </div>
@@ -360,7 +396,7 @@ const techStack = ['Visual Basic', 'C++', 'Microsoft SQL Server', 'Windows-based
         </div>
       </div>
       <div class="final-art card">
-        <img src="/images/nadra.jpg" alt="NADRA project visual" />
+        <img src="/images/nadra.jpg" alt={ui.heroAlt} width="511" height="370" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>

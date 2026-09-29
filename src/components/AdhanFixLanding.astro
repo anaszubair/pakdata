@@ -51,7 +51,7 @@ const {
             <div class="step-number">{idx + 1}</div>
             <p class="step-text">{step}</p>
             {images[idx] && (
-              <img src={images[idx].src} alt={images[idx].alt} class="step-image" loading="lazy" />
+              <img src={images[idx].src} alt={images[idx].alt} width={images[idx].width} height={images[idx].height} class="step-image" loading="lazy" decoding="async" />
             )}
           </article>
         ))}

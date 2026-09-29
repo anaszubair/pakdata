@@ -225,4 +225,12 @@ const t = useTranslations(lang);
   .project-link:hover .arrow-icon {
     transform: translateX(3px);
   }
+
+  :global([dir="rtl"]) .arrow-icon {
+    transform: scaleX(-1);
+  }
+
+  :global([dir="rtl"]) .project-link:hover .arrow-icon {
+    transform: translateX(-3px) scaleX(-1);
+  }
 </style>

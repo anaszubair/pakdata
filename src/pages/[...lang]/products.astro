@@ -633,7 +633,12 @@ const products = [
 
       const hash = window.location.hash;
       if (hash) {
-        const targetElement = document.querySelector(hash);
+        let targetElement: HTMLElement | null = null;
+        try {
+          targetElement = document.getElementById(decodeURIComponent(hash.slice(1)));
+        } catch {
+          targetElement = null;
+        }
         if (targetElement) {
           setTimeout(() => {
             targetElement.scrollIntoView({ behavior: 'smooth' });

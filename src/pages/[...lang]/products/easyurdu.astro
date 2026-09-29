@@ -124,7 +124,7 @@ const copy = {
     seoTitle: 'لوحة مفاتيح Easy Urdu - الكتابة بالأردية والتحويل من الرومانية إلى نستعليق',
     seoDesc: 'اكتشف Easy Urdu Keyboard لكتابة الروماني الأردي، والتحويل إلى نستعليق، وأدوات تحرير الأردية، وتجربة كتابة سلسة لمستخدمي أندرويد.',
     heroBadge: 'Easy Urdu Keyboard',
-    heroTitle: 'Easy Urdu Keyboard - اكتب الأردية بسهولة',
+    heroTitle: 'لوحة مفاتيح إيزي أردو - اكتب الأردية بسهولة',
     heroLead: 'لوحة مفاتيح أردية سريعة وبسيطة وقوية تساعد المستخدمين على كتابة الأردية، وتحويل الروماني الأردي إلى نستعليق، والكتابة في أي مكان بسهولة.',
     heroBody: 'مثالي للدردشة، ووسائل التواصل الاجتماعي، والملاحظات، والكتابة الأردية الإبداعية مع عناصر تحكم نظيفة وتخطيط بديهي.',
     explore: 'استكشف الميزات',
@@ -175,21 +175,58 @@ const copy = {
   }
 }[lang];
 
+const ui = {
+  en: {
+    logoAlt: 'Easy Urdu Keyboard logo',
+    shotAlts: ['Easy Urdu logo', 'Easy Urdu keyboard screenshot', 'Easy Urdu converter screenshot', 'Easy Urdu editor screenshot', 'Easy Urdu writing screenshot', 'Easy Urdu screenshot'],
+    highlightsLabel: 'Easy Urdu highlights',
+    carouselLabel: 'Easy Urdu screenshots',
+    heroPill: 'Urdu typing made easy',
+    heroStats: ['Roman Urdu conversion', 'Urdu editor', 'Predictive typing', 'Easy sharing'],
+    badges: { intro: 'Introduction', features: 'Features', showcase: 'Showcase', benefits: 'Benefits', reviews: 'Reviews', faq: 'FAQ' },
+    showcaseMini: ['Fast typing', 'Clear Urdu output', 'Flexible layouts', 'Creative writing'],
+    huawei: 'Huawei AppGallery'
+  },
+  ur: {
+    logoAlt: 'ایزی اردو کی بورڈ کا لوگو',
+    shotAlts: ['ایزی اردو کا لوگو', 'ایزی اردو کی بورڈ کا اسکرین شاٹ', 'ایزی اردو کنورٹر کا اسکرین شاٹ', 'ایزی اردو ایڈیٹر کا اسکرین شاٹ', 'ایزی اردو تحریر کا اسکرین شاٹ', 'ایزی اردو کا اسکرین شاٹ'],
+    highlightsLabel: 'ایزی اردو کی نمایاں خصوصیات',
+    carouselLabel: 'ایزی اردو کے اسکرین شاٹس',
+    heroPill: 'اردو ٹائپنگ اب آسان',
+    heroStats: ['رومن اردو کنورژن', 'اردو ایڈیٹر', 'پیش گوئی والی ٹائپنگ', 'آسان شیئرنگ'],
+    badges: { intro: 'تعارف', features: 'خصوصیات', showcase: 'جھلکیاں', benefits: 'فوائد', reviews: 'آراء', faq: 'سوالات' },
+    showcaseMini: ['تیز ٹائپنگ', 'صاف اردو تحریر', 'لچکدار لے آؤٹس', 'تخلیقی تحریر'],
+    huawei: 'ہواوے ایپ گیلری'
+  },
+  ar: {
+    logoAlt: 'شعار لوحة مفاتيح Easy Urdu',
+    shotAlts: ['شعار Easy Urdu', 'لقطة شاشة للوحة مفاتيح Easy Urdu', 'لقطة شاشة لمحوّل Easy Urdu', 'لقطة شاشة لمحرر Easy Urdu', 'لقطة شاشة للكتابة في Easy Urdu', 'لقطة شاشة من Easy Urdu'],
+    highlightsLabel: 'أبرز ميزات Easy Urdu',
+    carouselLabel: 'لقطات شاشة Easy Urdu',
+    heroPill: 'الكتابة بالأردية أصبحت سهلة',
+    heroStats: ['التحويل من الأردية الرومانية', 'محرر الأردية', 'الكتابة التنبؤية', 'مشاركة سهلة'],
+    badges: { intro: 'مقدمة', features: 'الميزات', showcase: 'عرض', benefits: 'الفوائد', reviews: 'المراجعات', faq: 'الأسئلة الشائعة' },
+    showcaseMini: ['كتابة سريعة', 'نص أردي واضح', 'تخطيطات مرنة', 'كتابة إبداعية'],
+    huawei: 'متجر هواوي AppGallery'
+  }
+}[lang];
+
 const screenshots = [
-  { src: '/images/easyurdu/easyUrdu.webp', alt: 'Easy Urdu logo' },
-  { src: '/images/easyurdu/unnamed.webp', alt: 'Easy Urdu keyboard screenshot' },
-  { src: '/images/easyurdu/unnamed-1.webp', alt: 'Easy Urdu converter screenshot' },
-  { src: '/images/easyurdu/unnamed-2.webp', alt: 'Easy Urdu editor screenshot' },
-  { src: '/images/easyurdu/unnamed-3.webp', alt: 'Easy Urdu writing screenshot' },
-  { src: '/images/easyurdu/unnamed-4.webp', alt: 'Easy Urdu screenshot' },
-  { src: '/images/easyurdu/unnamed-5.webp', alt: 'Easy Urdu screenshot' },
-  { src: '/images/easyurdu/unnamed-6.webp', alt: 'Easy Urdu screenshot' },
-  { src: '/images/easyurdu/unnamed-7.webp', alt: 'Easy Urdu screenshot' }
+  { src: '/images/easyurdu/easyUrdu.webp', alt: ui.shotAlts[0], width: 256, height: 256 },
+  { src: '/images/easyurdu/unnamed.webp', alt: ui.shotAlts[1], width: 153, height: 296 },
+  { src: '/images/easyurdu/unnamed-1.webp', alt: ui.shotAlts[2], width: 166, height: 296 },
+  { src: '/images/easyurdu/unnamed-2.webp', alt: ui.shotAlts[3], width: 166, height: 296 },
+  { src: '/images/easyurdu/unnamed-3.webp', alt: ui.shotAlts[4], width: 166, height: 296 },
+  { src: '/images/easyurdu/unnamed-4.webp', alt: ui.shotAlts[5], width: 166, height: 296 },
+  { src: '/images/easyurdu/unnamed-5.webp', alt: ui.shotAlts[5], width: 166, height: 296 },
+  { src: '/images/easyurdu/unnamed-6.webp', alt: ui.shotAlts[5], width: 166, height: 296 },
+  { src: '/images/easyurdu/unnamed-7.webp', alt: ui.shotAlts[5], width: 166, height: 296 }
 ];
 
-const storeLinks = [
+const storeLinks: { id: string; href: string; label: string; image?: string }[] = [
   { id: 'google', href: 'https://play.google.com/store/apps/details?id=com.pakdata.easyurdu&hl=en', label: copy.download, image: '/images/quranmajeed/Playstore.png' },
-  { id: 'apple', href: 'https://apps.apple.com/us/app/easy-urdu-keyboard-editor/id866001472', label: copy.appStore, image: '/images/quranmajeed/Appstore.png' }
+  { id: 'apple', href: 'https://apps.apple.com/us/app/easy-urdu-keyboard-editor/id866001472', label: copy.appStore, image: '/images/quranmajeed/Appstore.png' },
+  { id: 'huawei', href: 'https://appgallery.huawei.com/app/C100149681', label: ui.huawei }
 ];
 ---
 
@@ -202,14 +239,18 @@ const storeLinks = [
         <p class="easy-lead">{copy.heroLead}</p>
         <p class="easy-body">{copy.heroBody}</p>
 
-        <div class="easy-feature-bar" aria-label="Easy Urdu highlights">
+        <div class="easy-feature-bar" aria-label={ui.highlightsLabel}>
           {copy.featureBar.map(item => <span class="easy-chip">{item}</span>)}
         </div>
 
         <div class="easy-cta-row">
           {storeLinks.map(link => (
             <a href={link.href} class="store-btn store-badge-link" aria-label={link.label} target="_blank" rel="noopener noreferrer">
-              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+              {link.image ? (
+                <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} width="220" height="65" />
+              ) : (
+                <span class={`store-badge store-badge-text store-badge-${link.id}`} dir="auto">{link.label}</span>
+              )}
             </a>
           ))}
           <a href="#features" class="btn btn-outline easy-explore">{copy.explore}</a>
@@ -220,28 +261,25 @@ const storeLinks = [
         <div class="easy-showcase-shell card">
           <div class="easy-showcase-top">
             <div class="easy-brand">
-              <img src="/images/easyurdu/easyUrdu.webp" alt="Easy Urdu Keyboard logo" class="easy-brand-logo" />
+              <img src="/images/easyurdu/easyUrdu.webp" alt={ui.logoAlt} class="easy-brand-logo" width="256" height="256" />
               <div>
                 <p class="easy-label">{copy.heroBadge}</p>
                 <h2 class="easy-rating">4.8 <Icon name="material-symbols:star" class="rating-icon" aria-hidden="true" /></h2>
               </div>
             </div>
-            <div class="easy-badge-pill">Urdu typing made easy</div>
+            <div class="easy-badge-pill">{ui.heroPill}</div>
           </div>
 
           <div class="easy-showcase-hero">
-            <img src={screenshots[1].src} alt={screenshots[1].alt} class="easy-main-shot" />
+            <img src={screenshots[1].src} alt={screenshots[1].alt} class="easy-main-shot" width={screenshots[1].width} height={screenshots[1].height} />
             <div class="easy-shot-stack">
-              <img src={screenshots[2].src} alt={screenshots[2].alt} />
-              <img src={screenshots[3].src} alt={screenshots[3].alt} />
+              <img src={screenshots[2].src} alt={screenshots[2].alt} width={screenshots[2].width} height={screenshots[2].height} />
+              <img src={screenshots[3].src} alt={screenshots[3].alt} width={screenshots[3].width} height={screenshots[3].height} />
             </div>
           </div>
 
           <div class="easy-stat-grid">
-            <div class="easy-stat">Roman Urdu conversion</div>
-            <div class="easy-stat">Urdu editor</div>
-            <div class="easy-stat">Predictive typing</div>
-            <div class="easy-stat">Easy sharing</div>
+            {ui.heroStats.map(stat => <div class="easy-stat">{stat}</div>)}
           </div>
         </div>
       </aside>
@@ -251,7 +289,7 @@ const storeLinks = [
   <section class="section easy-intro">
     <div class="container easy-split">
       <div class="easy-section-copy">
-        <span class="badge badge-primary">Introduction</span>
+        <span class="badge badge-primary">{ui.badges.intro}</span>
         <h2 class="section-title">{copy.introTitle}</h2>
         <p class="section-body">{copy.introBody1}</p>
         <p class="section-body">{copy.introBody2}</p>
@@ -273,7 +311,7 @@ const storeLinks = [
   <section class="section easy-features" id="features">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Features</span>
+        <span class="badge badge-primary">{ui.badges.features}</span>
         <h2 class="section-title">{copy.featuresTitle}</h2>
       </div>
       <div class="easy-feature-grid">
@@ -291,19 +329,16 @@ const storeLinks = [
   <section class="section easy-demo-band">
     <div class="container easy-media-grid">
       <div class="easy-media-copy">
-        <span class="badge badge-primary">Showcase</span>
+        <span class="badge badge-primary">{ui.badges.showcase}</span>
         <h2 class="section-title">{copy.showcaseTitle}</h2>
         <p class="section-body">{copy.showcaseBody}</p>
         <div class="mini-grid">
-          <div class="mini-card">Fast typing</div>
-          <div class="mini-card">Clear Urdu output</div>
-          <div class="mini-card">Flexible layouts</div>
-          <div class="mini-card">Creative writing</div>
+          {ui.showcaseMini.map(item => <div class="mini-card">{item}</div>)}
         </div>
       </div>
-      <div class="easy-carousel" aria-label="Easy Urdu screenshots">
-        {screenshots.slice(4).map((shot, idx) => (
-          <img src={shot.src} alt={shot.alt} />
+      <div class="easy-carousel" aria-label={ui.carouselLabel}>
+        {screenshots.slice(4).map((shot) => (
+          <img src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} loading="lazy" decoding="async" />
         ))}
       </div>
     </div>
@@ -312,7 +347,7 @@ const storeLinks = [
   <section class="section easy-benefits-band">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Benefits</span>
+        <span class="badge badge-primary">{ui.badges.benefits}</span>
         <h2 class="section-title">{copy.benefitsTitle}</h2>
       </div>
       <div class="easy-benefit-grid">
@@ -332,7 +367,7 @@ const storeLinks = [
   <section class="section easy-reviews-band">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Reviews</span>
+        <span class="badge badge-primary">{ui.badges.reviews}</span>
         <h2 class="section-title">{copy.testimonialsTitle}</h2>
       </div>
       <div class="easy-review-grid">
@@ -352,7 +387,7 @@ const storeLinks = [
   <section class="section easy-faq-band">
     <div class="container easy-faq-wrap">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">FAQ</span>
+        <span class="badge badge-primary">{ui.badges.faq}</span>
         <h2 class="section-title">{copy.faqTitle}</h2>
       </div>
       <div class="faq-list">
@@ -376,14 +411,18 @@ const storeLinks = [
         <div class="easy-cta-row">
           {storeLinks.map(link => (
             <a href={link.href} class="store-btn store-badge-link" aria-label={link.label} target="_blank" rel="noopener noreferrer">
-              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+              {link.image ? (
+                <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} width="220" height="65" loading="lazy" decoding="async" />
+              ) : (
+                <span class={`store-badge store-badge-text store-badge-${link.id}`} dir="auto">{link.label}</span>
+              )}
             </a>
           ))}
           <a href="#features" class="btn btn-secondary">{copy.finalLearn}</a>
         </div>
       </div>
       <aside class="easy-final-card card">
-        <img src="/images/easyurdu/easyUrdu.webp" alt="Easy Urdu Keyboard logo" class="easy-final-logo" />
+        <img src="/images/easyurdu/easyUrdu.webp" alt={ui.logoAlt} class="easy-final-logo" width="256" height="256" loading="lazy" decoding="async" />
         <p>{copy.footerDesc}</p>
       </aside>
     </div>
@@ -399,6 +438,7 @@ const storeLinks = [
 <style>
   .easy-hero { min-height: calc(100vh - 4.5rem); display:flex; align-items:center; padding:2.5rem 0 2rem; position:relative; overflow:hidden; background: linear-gradient(135deg, rgba(248,251,246,.98), rgba(236,244,236,.94)), url('/images/easyurdu/unnamed-7.webp') center/cover no-repeat; }
   .easy-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(110deg, rgba(255,255,255,.82), transparent 46%), linear-gradient(0deg, rgba(255,255,255,.14), rgba(255,255,255,.14)); pointer-events:none; }
+  :global([dir='rtl']) .easy-hero::before { background:linear-gradient(250deg, rgba(255,255,255,.82), transparent 46%), linear-gradient(0deg, rgba(255,255,255,.14), rgba(255,255,255,.14)); }
   .easy-hero-grid, .easy-split, .easy-media-grid, .easy-final-grid { display:grid; gap:1.5rem; align-items:center; position:relative; z-index:1; }
   .easy-hero-grid { grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr); }
   .easy-copy, .easy-section-copy { max-width:44rem; }
@@ -414,6 +454,7 @@ const storeLinks = [
   .store-btn.dark { background:rgba(255,255,255,.12); color:#fff; border-color:rgba(255,255,255,.18); }
   .store-badge-link { padding:0; border:0; background:transparent; }
   .store-badge { width:11.75rem; height:auto; object-fit:contain; display:block; }
+  .store-badge-text { aspect-ratio:220 / 65; display:flex; align-items:center; justify-content:center; padding:0 .75rem; border-radius:.55rem; border:1px solid #a6a6a6; background:#000; color:#fff; font-size:.95rem; font-weight:700; line-height:1.2; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .easy-explore { align-self:center; }
   .easy-showcase-shell { position:sticky; top:5.6rem; padding:1rem; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.97), rgba(249,252,247,.94)); border:1px solid rgba(64,134,57,.12); box-shadow:0 24px 50px rgba(15,23,42,.1); }
   .easy-showcase-top { display:flex; justify-content:space-between; gap:.9rem; align-items:center; margin-bottom:.85rem; }

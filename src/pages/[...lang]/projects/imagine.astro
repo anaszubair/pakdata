@@ -142,7 +142,7 @@ const copy = {
       { title: 'گواہی پر مبنی اسکیچ', body: 'گواہوں کی فراہم کردہ تفصیل کی بنیاد پر آسان بصری ورک فلو کے ذریعے اسکیچ بنائیں۔' },
       { title: 'کرمنل ڈیٹا بیس مینجمنٹ', body: 'مربوط ڈیٹا بیس سپورٹ کے ذریعے مشتبہ ریکارڈز اور شناختی معلومات منظم رکھیں۔' },
       { title: 'متعدد ورژنز', body: 'شناخت کی درستگی بہتر بنانے کے لیے متعدد اسکیچ ورژنز کا موازنہ کریں۔' },
-      { title: 'امیج ایnhancement', body: 'اسکین شدہ تصاویر درآمد کریں اور بصری تفصیل بہتر بنائیں۔' },
+      { title: 'امیج انہانسمنٹ', body: 'اسکین شدہ تصاویر درآمد کریں اور بصری تفصیل بہتر بنائیں۔' },
       { title: 'ایکسپورٹ اور رپورٹنگ', body: 'پرنٹ ایبل بلیٹن اور بصری ریکارڈز تیار کریں۔' }
     ],
     techTitle: 'انٹرپرائز تحقیقاتی ٹیکنالوجی',
@@ -151,7 +151,7 @@ const copy = {
     capabilities: [
       'چہرہ ڈیٹا بیسز',
       'بصری موازنہ ٹولز',
-      'امیج ایnhancement',
+      'امیج انہانسمنٹ',
       'مشتبہ مینجمنٹ'
     ],
     benefitsTitle: 'قانون نافذ کرنے والے فوائد',
@@ -248,6 +248,66 @@ const copy = {
     footerDesc: 'Imagine هي منصة للرسم الجنائي والتعرف على المجرمين صُممت لدعم جهات إنفاذ القانون عبر أدوات تصور المشتبهين رقميًا وسير العمل التحقيقي.'
   }
 }[lang];
+
+const ui = {
+  en: {
+    heroAlt: 'Imagine forensic sketching visual',
+    heroCaption: 'Sketching, investigation, and reporting',
+    problemsTitle: 'Problems solved',
+    problems: [
+      'Generating suspect sketches efficiently',
+      'Supporting witness-based identification',
+      'Managing criminal records',
+      'Improving investigative workflows',
+      'Standardizing forensic sketch generation'
+    ],
+    capabilitiesPanel: 'Capabilities',
+    benefitsPanel: 'Law enforcement benefits',
+    impactCards: [
+      { title: 'Secure', body: 'Controlled investigative records' },
+      { title: 'Reliable', body: 'Operational stability for agencies' },
+      { title: 'Scalable', body: 'Built for public sector use' }
+    ]
+  },
+  ur: {
+    heroAlt: 'امیجن فارنزک اسکیچنگ کا بصری منظر',
+    heroCaption: 'اسکیچنگ، تحقیقات اور رپورٹنگ',
+    problemsTitle: 'حل کیے گئے مسائل',
+    problems: [
+      'مشتبہ افراد کے خاکے مؤثر انداز میں بنانا',
+      'گواہوں پر مبنی شناخت میں معاونت',
+      'کرمنل ریکارڈز کا انتظام',
+      'تحقیقاتی ورک فلو میں بہتری',
+      'فارنزک اسکیچ سازی کو معیاری بنانا'
+    ],
+    capabilitiesPanel: 'صلاحیتیں',
+    benefitsPanel: 'قانون نافذ کرنے والے اداروں کے لیے فوائد',
+    impactCards: [
+      { title: 'محفوظ', body: 'کنٹرولڈ تحقیقاتی ریکارڈز' },
+      { title: 'قابلِ اعتماد', body: 'اداروں کے لیے آپریشنل استحکام' },
+      { title: 'قابلِ توسیع', body: 'پبلک سیکٹر کے استعمال کے لیے تیار' }
+    ]
+  },
+  ar: {
+    heroAlt: 'صورة توضيحية لنظام Imagine للرسم الجنائي',
+    heroCaption: 'الرسم والتحقيق وإعداد التقارير',
+    problemsTitle: 'المشكلات التي تم حلها',
+    problems: [
+      'إنشاء رسومات المشتبهين بكفاءة',
+      'دعم التعرف المعتمد على الشهود',
+      'إدارة السجلات الجنائية',
+      'تحسين سير العمل التحقيقي',
+      'توحيد معايير إنشاء الرسوم الجنائية'
+    ],
+    capabilitiesPanel: 'القدرات',
+    benefitsPanel: 'فوائد لجهات إنفاذ القانون',
+    impactCards: [
+      { title: 'آمن', body: 'سجلات تحقيقية خاضعة للرقابة' },
+      { title: 'موثوق', body: 'استقرار تشغيلي للجهات المعنية' },
+      { title: 'قابل للتوسع', body: 'مصمم لاستخدام القطاع العام' }
+    ]
+  }
+}[lang];
 ---
 
 <Layout title={copy.seoTitle} description={copy.seoDesc}>
@@ -260,10 +320,10 @@ const copy = {
         <p class="imagine-support">{copy.heroSupport}</p>
       </div>
       <div class="imagine-visual card">
-        <img src="/images/imagine.jpg" alt="Imagine forensic sketching visual" class="imagine-image" />
+        <img src="/images/imagine.jpg" alt={ui.heroAlt} class="imagine-image" width="274" height="210" />
         <div class="imagine-visual-footer">
           <span>{copy.heroBadge}</span>
-          <span>Sketching, investigation, and reporting</span>
+          <span>{ui.heroCaption}</span>
         </div>
       </div>
     </div>
@@ -287,13 +347,11 @@ const copy = {
         <p class="body-copy">{copy.challengeBody}</p>
       </div>
       <div class="list-panel card">
-        <h3 class="panel-title">Problems solved</h3>
+        <h3 class="panel-title">{ui.problemsTitle}</h3>
         <ul class="check-list">
-          <li>Generating suspect sketches efficiently</li>
-          <li>Supporting witness-based identification</li>
-          <li>Managing criminal records</li>
-          <li>Improving investigative workflows</li>
-          <li>Standardizing forensic sketch generation</li>
+          {ui.problems.map((item) => (
+            <li>{item}</li>
+          ))}
         </ul>
       </div>
     </div>
@@ -351,7 +409,7 @@ const copy = {
         <p class="body-copy">{copy.techBody}</p>
       </div>
       <div class="list-panel card">
-        <h3 class="panel-title">Capabilities</h3>
+        <h3 class="panel-title">{ui.capabilitiesPanel}</h3>
         <ul class="check-list">
           {copy.capabilities.map((item) => (
             <li>{item}</li>
@@ -366,10 +424,10 @@ const copy = {
       <div class="section-copy-block">
         <span class="badge badge-primary">{copy.benefitsTitle}</span>
         <h2 class="section-title">{copy.benefitsTitle}</h2>
-        <p class="body-copy">{copy.benefitsBody}</p>
+        {copy.benefitsBody && <p class="body-copy">{copy.benefitsBody}</p>}
       </div>
       <div class="list-panel card">
-        <h3 class="panel-title">Law enforcement benefits</h3>
+        <h3 class="panel-title">{ui.benefitsPanel}</h3>
         <ul class="check-list">
           {copy.benefits.map((item) => (
             <li>{item}</li>
@@ -387,9 +445,9 @@ const copy = {
         <p class="body-copy">{copy.securityBody}</p>
       </div>
       <div class="impact-grid">
-        <div class="impact-card card"><strong>Secure</strong><span>Controlled investigative records</span></div>
-        <div class="impact-card card"><strong>Reliable</strong><span>Operational stability for agencies</span></div>
-        <div class="impact-card card"><strong>Scalable</strong><span>Built for public sector use</span></div>
+        {ui.impactCards.map((card) => (
+          <div class="impact-card card"><strong>{card.title}</strong><span>{card.body}</span></div>
+        ))}
       </div>
     </div>
   </section>
@@ -675,8 +733,7 @@ const copy = {
   .imagine-cta .cta-actions {
     justify-content: center;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
     width: 100%;
   }
 

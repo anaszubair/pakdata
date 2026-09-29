@@ -35,6 +35,11 @@ const {
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const platformCopy = {
+  en: { download: (app: string, store: string) => `Download ${app} on ${store}`, available: (store: string) => `Available on ${store}` },
+  ur: { download: (app: string, store: string) => `${app} ${store} سے ڈاؤن لوڈ کریں`, available: (store: string) => `${store} پر دستیاب` },
+  ar: { download: (app: string, store: string) => `حمّل ${app} من ${store}`, available: (store: string) => `متوفر على ${store}` }
+}[lang];
 ---
 
 <div class="product-card" id={id}>
@@ -96,11 +101,11 @@ const t = useTranslations(lang);
         const platformHref = platformLinks[platformKey];
         return imgSrc ? (
           platformHref ? (
-            <a href={platformHref} class="platform-link" target="_blank" rel="noopener noreferrer" aria-label={`Download ${name} on ${platform}`}>
+            <a href={platformHref} class="platform-link" target="_blank" rel="noopener noreferrer" aria-label={platformCopy.download(name, platform)}>
               <img
                 src={imgSrc}
-                alt={`Available on ${platform}`}
-                title={`Available on ${platform}`}
+                alt={platformCopy.available(platform)}
+                title={platformCopy.available(platform)}
                 class="platform-img"
                 width="72"
                 height="72"
@@ -111,8 +116,8 @@ const t = useTranslations(lang);
           ) : (
             <img
               src={imgSrc}
-              alt={`Available on ${platform}`}
-              title={`Available on ${platform}`}
+              alt={platformCopy.available(platform)}
+              title={platformCopy.available(platform)}
               class="platform-img"
               width="72"
               height="72"

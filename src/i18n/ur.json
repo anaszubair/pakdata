@@ -671,7 +671,7 @@
   "about.milestone.2005.title": "Mobile Muslim سیریز اور Quran Explorer",
   "about.milestone.2005.desc": "ونڈوز موبائل آلات کے لیے Mobile Muslim سافٹ ویئر سیریز تیار کی، Palm Pilot PDA کے لیے Quran Majeed جاری کیا، اور QuranExplorer کو ڈویلپمنٹ خدمات فراہم کیں۔",
   "about.milestone.2008.title": "شاہ فہد قرآن پرنٹنگ کمپلیکس کے ساتھ تعاون",
-  "about.milestone.2008.desc": "مدینہ کے King Fahad Quran Printing Complex کے ساتھ قرآن سافٹ ویئر اقدامات پر تعاون کیا۔ Urdu Mahir اور PDMS Jauhar لانچ کیے، اور نادرا کو National Aliens Database سافٹ ویئر فراہم کیا۔",
+  "about.milestone.2008.desc": "مدینہ کے King Fahad Quran Printing Complex کے ساتھ قرآن سافٹ ویئر اقدامات پر تعاون کیا۔ Urdu Mahir اور PDMS Jauhar لانچ کیے، اور نارا کو National Aliens Database سافٹ ویئر فراہم کیا۔",
   "about.milestone.2010.title": "iOS کے لیے Quran Majeed",
   "about.milestone.2010.desc": "ایپل آئی فون کے iOS پلیٹ فارم کے لیے Quran Majeed جاری کیا۔",
   "about.milestone.2012.title": "10 لاکھ ڈاؤن لوڈز",
@@ -704,7 +704,7 @@
   "about.value.modern.text": "ہم UI کو جدید بناتے، AI ٹولز شامل کرتے، اور پلیٹ فارم مطابقت کو مسلسل وسیع کرتے رہتے ہیں۔",
   "nav.faq": "عمومی سوالات",
   "join.job.view": "تفصیلات دیکھیں",
-  "form.recaptcha.required": "بھیجنے سے پہلے \"I'm not a robot\" پر نشان لگائیں۔",
+  "form.recaptcha.required": "بھیجنے سے پہلے براہ کرم سیکیورٹی چیک مکمل کریں۔",
   "form.recaptcha.failed": "سیکیورٹی چیک لوڈ نہیں ہو سکا۔ براہ کرم صفحہ دوبارہ لوڈ کریں یا support@pakdata.com پر ای میل کریں۔",
   "form.sending": "بھیجا جا رہا ہے...",
   "form.error.rejected": "آپ کا پیغام نہیں بھیجا جا سکا۔ براہ کرم فارم چیک کر کے دوبارہ کوشش کریں۔",
@@ -718,5 +718,13 @@
   "nav.product.es": "ایزی سندھی کی بورڈ",
   "nav.product.font": "PDMS سلیم قرآن فونٹ",
   "nav.product.kitabi": "کتابی",
-  "nav.product.more": "مزید مصنوعات"
+  "nav.product.more": "مزید مصنوعات",
+  "a11y.toggleMenu": "مینو کھولیں",
+  "a11y.closeMenu": "مینو بند کریں",
+  "a11y.selectLanguage": "زبان منتخب کریں",
+  "a11y.subscribe": "سبسکرائب کریں",
+  "a11y.emailAddress": "ای میل ایڈریس",
+  "a11y.logoAlt": "پاکستان ڈیٹا مینجمنٹ سروسز کا لوگو",
+  "footer.connect.phone": "فون",
+  "newsletter.thanks": "سبسکرائب کرنے کا شکریہ!"
 }

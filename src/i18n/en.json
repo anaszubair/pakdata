@@ -671,7 +671,7 @@
   "about.milestone.2005.title": "Mobile Muslim Series & Quran Explorer",
   "about.milestone.2005.desc": "Developed Mobile Muslim software series for Windows Mobile devices, released Quran Majeed for Palm Pilot PDA, and provided development services for QuranExplorer.",
   "about.milestone.2008.title": "Collaborated with King Fahad Quran Printing Complex",
-  "about.milestone.2008.desc": "Collaborated with King Fahad Quran Printing Complex in Madinah on Quran software initiatives. Launched Urdu Mahir and PDMS Jauhar, and delivered National Aliens Database software to NADRA.",
+  "about.milestone.2008.desc": "Collaborated with King Fahad Quran Printing Complex in Madinah on Quran software initiatives. Launched Urdu Mahir and PDMS Jauhar, and delivered National Aliens Database software to NARA.",
   "about.milestone.2010.title": "Quran Majeed for iOS",
   "about.milestone.2010.desc": "Released Quran Majeed for Apple iPhone iOS platform.",
   "about.milestone.2012.title": "1 Million Downloads",
@@ -718,5 +718,13 @@
   "nav.product.es": "Easy Sindhi Keyboard",
   "nav.product.font": "PDMS Saleem Quran Font",
   "nav.product.kitabi": "Kitabi",
-  "nav.product.more": "More Products"
+  "nav.product.more": "More Products",
+  "a11y.toggleMenu": "Open menu",
+  "a11y.closeMenu": "Close menu",
+  "a11y.selectLanguage": "Select language",
+  "a11y.subscribe": "Subscribe",
+  "a11y.emailAddress": "Email address",
+  "a11y.logoAlt": "Pakistan Data Management Services logo",
+  "footer.connect.phone": "Phone",
+  "newsletter.thanks": "Thank you for subscribing!"
 }

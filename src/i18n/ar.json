@@ -671,7 +671,7 @@
   "about.milestone.2005.title": "Mobile Muslim Series وQuran Explorer",
   "about.milestone.2005.desc": "تم تطوير سلسلة Mobile Muslim لأجهزة Windows Mobile، وإصدار Quran Majeed لجهاز Palm Pilot، وتقديم خدمات تطوير لـ QuranExplorer.",
   "about.milestone.2008.title": "تعاون مع مجمع الملك فهد لطباعة المصحف",
-  "about.milestone.2008.desc": "تم التعاون مع مجمع الملك فهد لطباعة المصحف في المدينة على مبادرات برمجية قرآنية، وإطلاق Urdu Mahir وPDMS Jauhar، وتسليم برنامج National Aliens Database لنادرا.",
+  "about.milestone.2008.desc": "تم التعاون مع مجمع الملك فهد لطباعة المصحف في المدينة على مبادرات برمجية قرآنية، وإطلاق Urdu Mahir وPDMS Jauhar، وتسليم برنامج National Aliens Database لنارا.",
   "about.milestone.2010.title": "Quran Majeed على iOS",
   "about.milestone.2010.desc": "تم إصدار Quran Majeed لمنصة Apple iPhone iOS.",
   "about.milestone.2012.title": "مليون تنزيل",
@@ -704,7 +704,7 @@
   "about.value.modern.text": "نحدث واجهات المستخدم باستمرار، ونضيف أدوات AI، ونوسع التوافق مع المنصات المختلفة.",
   "nav.faq": "الأسئلة الشائعة",
   "join.job.view": "عرض الوظيفة",
-  "form.recaptcha.required": "يرجى تحديد \"I'm not a robot\" قبل الإرسال.",
+  "form.recaptcha.required": "يرجى إكمال التحقق الأمني قبل الإرسال.",
   "form.recaptcha.failed": "تعذر تحميل التحقق الأمني. يرجى تحديث الصفحة أو مراسلتنا على support@pakdata.com.",
   "form.sending": "جارٍ الإرسال...",
   "form.error.rejected": "تعذر إرسال رسالتك. يرجى التحقق من النموذج والمحاولة مرة أخرى.",
@@ -718,5 +718,13 @@
   "nav.product.es": "لوحة مفاتيح إيزي سندي",
   "nav.product.font": "خط PDMS سليم للقرآن",
   "nav.product.kitabi": "كتابي",
-  "nav.product.more": "المزيد من المنتجات"
+  "nav.product.more": "المزيد من المنتجات",
+  "a11y.toggleMenu": "فتح القائمة",
+  "a11y.closeMenu": "إغلاق القائمة",
+  "a11y.selectLanguage": "اختر اللغة",
+  "a11y.subscribe": "اشترك",
+  "a11y.emailAddress": "البريد الإلكتروني",
+  "a11y.logoAlt": "شعار باكستان لخدمات إدارة البيانات",
+  "footer.connect.phone": "الهاتف",
+  "newsletter.thanks": "شكرًا لاشتراكك!"
 }

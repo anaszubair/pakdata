@@ -239,19 +239,70 @@ const heroMetrics = [
   copy.trustStats[3]
 ];
 
+const ui = {
+  en: {
+    logoAlt: 'Quran Majeed logo',
+    screenshotAlt: 'Quran Majeed screenshot',
+    logoArtAlt: 'Quran Majeed logo artwork',
+    readingScreenAlt: 'Quran Majeed reading screen',
+    bannerAlt: 'Quran Majeed banner',
+    certEnAlt: 'Quran Majeed certificate preview',
+    certArAlt: 'Quran Majeed Arabic certificate preview',
+    videoTitle: 'Quran Majeed video guide',
+    showcaseBadge: 'Trusted & modern',
+    badges: { features: 'Features', reading: 'Reading', themes: 'Themes', certificates: 'Certificates', salient: 'Salient', daily: 'Every Day', video: 'Video', faq: 'FAQ' },
+    readingMini: ['Authentic script', 'Smooth page flow', 'Quiet reading mode', 'Custom text sizes'],
+    themesMini: ['Night mode', 'Classic and modern themes', 'Adjustable spacing', 'Accessibility tools'],
+    themeLabels: ['Reading Mode', 'Toolbar', 'PrayerTimes', 'Dark mode', 'Theme Selection', 'Uthmani Font'],
+    dailyItems: ['Prayer timings', 'Qibla direction', 'Tafsir study', 'Audio recitations']
+  },
+  ur: {
+    logoAlt: 'قرآن مجید کا لوگو',
+    screenshotAlt: 'قرآن مجید ایپ کا اسکرین شاٹ',
+    logoArtAlt: 'قرآن مجید لوگو آرٹ ورک',
+    readingScreenAlt: 'قرآن مجید مطالعہ اسکرین',
+    bannerAlt: 'قرآن مجید بینر',
+    certEnAlt: 'قرآن مجید سرٹیفکیٹ کی جھلک',
+    certArAlt: 'قرآن مجید عربی متن سرٹیفکیٹ کی جھلک',
+    videoTitle: 'قرآن مجید ویڈیو گائیڈ',
+    showcaseBadge: 'قابلِ اعتماد اور جدید',
+    badges: { features: 'خصوصیات', reading: 'مطالعہ', themes: 'تھیمز', certificates: 'سرٹیفکیٹس', salient: 'نمایاں خصوصیات', daily: 'روزانہ', video: 'ویڈیو', faq: 'سوالات' },
+    readingMini: ['مستند رسم الخط', 'ہموار صفحہ بندی', 'پُرسکون ریڈنگ موڈ', 'حسبِ ضرورت ٹیکسٹ سائز'],
+    themesMini: ['نائٹ موڈ', 'کلاسک اور جدید تھیمز', 'قابلِ ایڈجسٹ فاصلہ', 'رسائی کے ٹولز'],
+    themeLabels: ['ریڈنگ موڈ', 'ٹول بار', 'نماز کے اوقات', 'ڈارک موڈ', 'تھیم کا انتخاب', 'عثمانی فونٹ'],
+    dailyItems: ['نماز کے اوقات', 'قبلہ رخ', 'تفسیر کا مطالعہ', 'آڈیو تلاوت']
+  },
+  ar: {
+    logoAlt: 'شعار تطبيق القرآن المجيد',
+    screenshotAlt: 'لقطة شاشة من تطبيق القرآن المجيد',
+    logoArtAlt: 'تصميم شعار القرآن المجيد',
+    readingScreenAlt: 'شاشة القراءة في القرآن المجيد',
+    bannerAlt: 'لافتة القرآن المجيد',
+    certEnAlt: 'معاينة شهادة القرآن المجيد',
+    certArAlt: 'معاينة شهادة صحة النص العربي للقرآن المجيد',
+    videoTitle: 'دليل فيديو لتطبيق القرآن المجيد',
+    showcaseBadge: 'موثوق وعصري',
+    badges: { features: 'الميزات', reading: 'القراءة', themes: 'السمات', certificates: 'الشهادات', salient: 'أبرز الميزات', daily: 'كل يوم', video: 'فيديو', faq: 'الأسئلة الشائعة' },
+    readingMini: ['خط أصيل', 'تصفح سلس للصفحات', 'وضع قراءة هادئ', 'أحجام نص مخصصة'],
+    themesMini: ['الوضع الليلي', 'سمات كلاسيكية وحديثة', 'تباعد قابل للتعديل', 'أدوات إمكانية الوصول'],
+    themeLabels: ['وضع القراءة', 'شريط الأدوات', 'أوقات الصلاة', 'الوضع الداكن', 'اختيار السمة', 'الخط العثماني'],
+    dailyItems: ['أوقات الصلاة', 'اتجاه القبلة', 'دراسة التفسير', 'التلاوات الصوتية']
+  }
+}[lang];
+
 const featureArt = [
-  { src: '/images/quranmajeed/IMG_0167-768x999.png', alt: 'Quran Majeed reading screen' },
-  { src: '/images/quranmajeed/IMG_0168-768x999.png', alt: 'Quran Majeed reading screen' },
-  { src: '/images/quranmajeed/Quran-Majeed.png', alt: 'Quran Majeed logo' }
+  { src: '/images/quranmajeed/IMG_0167-768x999.png', alt: ui.readingScreenAlt, width: 768, height: 999 },
+  { src: '/images/quranmajeed/IMG_0168-768x999.png', alt: ui.readingScreenAlt, width: 768, height: 999 },
+  { src: '/images/quranmajeed/Quran-Majeed.png', alt: ui.logoAlt, width: 340, height: 400 }
 ];
 
 const themeImages = [
-  { src: '/images/quranmajeed/Quran-Majeed.png', label: 'Reading Mode' },
-  { src: '/images/quranmajeed/Frame-1-768x218.png', label: 'Toolbar' },
-  { src: '/images/quranmajeed/abc2-2.png', label: 'PrayerTimes' },
-  { src: '/images/quranmajeed/app3-1.png', label: 'Dark mode' },
-  { src: '/images/quranmajeed/IMG_0168-768x999.png', label: 'Theme Selection' },
-  { src: '/images/quranmajeed/unnamed.webp', label: 'Uthmani Font' }
+  { src: '/images/quranmajeed/Quran-Majeed.png', label: ui.themeLabels[0], width: 340, height: 400 },
+  { src: '/images/quranmajeed/Frame-1-768x218.png', label: ui.themeLabels[1], width: 768, height: 218 },
+  { src: '/images/quranmajeed/abc2-2.png', label: ui.themeLabels[2], width: 223, height: 400 },
+  { src: '/images/quranmajeed/app3-1.png', label: ui.themeLabels[3], width: 452, height: 812 },
+  { src: '/images/quranmajeed/IMG_0168-768x999.png', label: ui.themeLabels[4], width: 768, height: 999 },
+  { src: '/images/quranmajeed/unnamed.webp', label: ui.themeLabels[5], width: 380, height: 400 }
 ];
 
 const storeLinks = [
@@ -272,7 +323,7 @@ const storeLinks = [
         <div class="qm-cta-row">
           {storeLinks.map(link => (
             <a href={link.href} class="store-btn store-badge-link" aria-label={link.label} target="_blank" rel="noopener noreferrer">
-              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} width="220" height="65" />
             </a>
           ))}
           <a href="#features" class="btn btn-outline qm-explore-btn">{copy.explore}</a>
@@ -283,20 +334,20 @@ const storeLinks = [
         <div class="qm-showcase-shell card">
           <div class="qm-showcase-top">
             <div class="qm-showcase-brand">
-              <img src="/images/quranmajeed/QM.png" alt="Quran Majeed logo" class="brand-logo" />
+              <img src="/images/quranmajeed/QM.png" alt={ui.logoAlt} class="brand-logo" width="150" height="150" />
               <div>
                 <p class="download-card-label">{copy.trustTitle}</p>
                 <h2 class="download-card-title">4.8 <Icon name="material-symbols:star" class="rating-icon" aria-hidden="true" /></h2>
               </div>
             </div>
-            <div class="qm-showcase-badge">Trusted & modern</div>
+            <div class="qm-showcase-badge">{ui.showcaseBadge}</div>
           </div>
 
           <div class="qm-showcase-hero">
-            <img src="/images/quranmajeed/Quran-Majeed.png" alt="Quran Majeed screenshot" class="qm-shot-main" />
+            <img src="/images/quranmajeed/Quran-Majeed.png" alt={ui.screenshotAlt} class="qm-shot-main" width="340" height="400" />
             <div class="qm-shot-stack">
-              <img src="/images/quranmajeed/IMG_0168-768x999.png" alt="Quran Majeed screenshot" />
-              <img src="/images/quranmajeed/IMG_0167-768x999.png" alt="Quran Majeed logo artwork" />
+              <img src="/images/quranmajeed/IMG_0168-768x999.png" alt={ui.screenshotAlt} width="768" height="999" />
+              <img src="/images/quranmajeed/IMG_0167-768x999.png" alt={ui.logoArtAlt} width="768" height="999" />
             </div>
           </div>
 
@@ -328,7 +379,7 @@ const storeLinks = [
   <section class="section" id="features">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Features</span>
+        <span class="badge badge-primary">{ui.badges.features}</span>
         <h2 class="section-title">{copy.featuresTitle}</h2>
       </div>
       <div class="feature-grid">
@@ -346,19 +397,16 @@ const storeLinks = [
   <section class="section section-bg">
     <div class="container split-grid">
       <div class="media-stack">
-        <img src={featureArt[0].src} alt={featureArt[0].alt} class="stack-shot large" />
-        <img src={featureArt[1].src} alt={featureArt[1].alt} class="stack-shot small" />
+        <img src={featureArt[0].src} alt={featureArt[0].alt} class="stack-shot large" width={featureArt[0].width} height={featureArt[0].height} loading="lazy" decoding="async" />
+        <img src={featureArt[1].src} alt={featureArt[1].alt} class="stack-shot small" width={featureArt[1].width} height={featureArt[1].height} loading="lazy" decoding="async" />
       </div>
       <div class="split-copy">
-        <span class="badge badge-primary">Reading</span>
+        <span class="badge badge-primary">{ui.badges.reading}</span>
         <h2 class="section-title">{copy.readingTitle}</h2>
         <p class="body-copy">{copy.readingBody1}</p>
         <p class="body-copy">{copy.readingBody2}</p>
         <div class="feature-mini-list">
-          <div class="mini-item">Authentic script</div>
-          <div class="mini-item">Smooth page flow</div>
-          <div class="mini-item">Quiet reading mode</div>
-          <div class="mini-item">Custom text sizes</div>
+          {ui.readingMini.map(item => <div class="mini-item">{item}</div>)}
         </div>
       </div>
     </div>
@@ -367,20 +415,17 @@ const storeLinks = [
   <section class="section">
     <div class="container split-grid reverse">
       <div class="split-copy">
-        <span class="badge badge-primary">Themes</span>
+        <span class="badge badge-primary">{ui.badges.themes}</span>
         <h2 class="section-title">{copy.themesTitle}</h2>
         <p class="body-copy">{copy.themesBody}</p>
         <div class="feature-mini-list">
-          <div class="mini-item">Night mode</div>
-          <div class="mini-item">Classic and modern themes</div>
-          <div class="mini-item">Adjustable spacing</div>
-          <div class="mini-item">Accessibility tools</div>
+          {ui.themesMini.map(item => <div class="mini-item">{item}</div>)}
         </div>
       </div>
       <div class="theme-grid">
         {themeImages.map(image => (
           <figure class="theme-card card">
-            <img src={image.src} alt={image.label} />
+            <img src={image.src} alt={image.label} width={image.width} height={image.height} loading="lazy" decoding="async" />
             <figcaption>{image.label}</figcaption>
           </figure>
         ))}
@@ -391,14 +436,14 @@ const storeLinks = [
   <section class="section section-bg">
     <div class="container split-grid">
       <div class="split-copy">
-        <span class="badge badge-primary">Certificates</span>
+        <span class="badge badge-primary">{ui.badges.certificates}</span>
         <h2 class="section-title">{copy.certificateTitle}</h2>
         <p class="body-copy">{copy.certificateBody}</p>
         <a href={getRelativeLocaleUrl(lang, '/certificates')} class="btn btn-primary btn-lg">{copy.certificateCta}</a>
       </div>
       <div class="certificate-preview-grid">
-        <img src="/images/certificates/QuranEngDrMohsinCertificate.gif" alt="Quran Majeed certificate preview" class="certificate-preview" />
-        <img src="/images/certificates/QuranArabicTextCorrectCertificate.gif" alt="Quran Majeed Arabic certificate preview" class="certificate-preview" />
+        <img src="/images/certificates/QuranEngDrMohsinCertificate.gif" alt={ui.certEnAlt} class="certificate-preview" width="1202" height="1698" loading="lazy" decoding="async" />
+        <img src="/images/certificates/QuranArabicTextCorrectCertificate.gif" alt={ui.certArAlt} class="certificate-preview" width="1162" height="1659" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
@@ -406,7 +451,7 @@ const storeLinks = [
   <section class="section section-bg">
     <div class="container">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">Salient</span>
+        <span class="badge badge-primary">{ui.badges.salient}</span>
         <h2 class="section-title">{copy.salientTitle}</h2>
       </div>
       <div class="salient-grid">
@@ -418,17 +463,14 @@ const storeLinks = [
   <section class="section productivity-band">
     <div class="container split-grid">
       <div class="split-copy">
-        <span class="badge badge-primary">Every Day</span>
+        <span class="badge badge-primary">{ui.badges.daily}</span>
         <h2 class="section-title">{copy.dailyTitle}</h2>
         <p class="body-copy">{copy.dailyBody}</p>
       </div>
       <div class="daily-panel card">
-        <img src="/images/quranmajeed/serveWithUsBanner.89d658ef-1536x582.webp" alt="Quran Majeed banner" />
+        <img src="/images/quranmajeed/serveWithUsBanner.89d658ef-1536x582.webp" alt={ui.bannerAlt} width="1536" height="582" loading="lazy" decoding="async" />
         <div class="daily-panel-copy">
-          <p>Prayer timings</p>
-          <p>Qibla direction</p>
-          <p>Tafsir study</p>
-          <p>Audio recitations</p>
+          {ui.dailyItems.map(item => <p>{item}</p>)}
         </div>
       </div>
     </div>
@@ -439,13 +481,13 @@ const storeLinks = [
       <div class="video-card card">
         <iframe
           src="https://www.youtube.com/embed/j8LIVVjyqAE"
-          title="Quran Majeed video guide"
+          title={ui.videoTitle}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
       </div>
       <div class="split-copy">
-        <span class="badge badge-primary">Video</span>
+        <span class="badge badge-primary">{ui.badges.video}</span>
         <h2 class="section-title">{copy.videoTitle}</h2>
         <p class="body-copy">{copy.videoBody}</p>
       </div>
@@ -455,7 +497,7 @@ const storeLinks = [
   <section class="section">
     <div class="container faq-wrap">
       <div class="section-title-wrap tight">
-        <span class="badge badge-primary">FAQ</span>
+        <span class="badge badge-primary">{ui.badges.faq}</span>
         <h2 class="section-title">{copy.faqTitle}</h2>
       </div>
       <div class="faq-list">
@@ -479,13 +521,13 @@ const storeLinks = [
         <div class="qm-cta-row">
           {storeLinks.map(link => (
             <a href={link.href} class="store-btn store-badge-link dark" aria-label={link.id === 'google' ? copy.finalGoogle : copy.finalAppStore} target="_blank" rel="noopener noreferrer">
-              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} />
+              <img src={link.image} alt="" class={`store-badge store-badge-${link.id}`} width="220" height="65" loading="lazy" decoding="async" />
             </a>
           ))}
         </div>
       </div>
       <div class="final-art card">
-        <img src="/images/quranmajeed/Quran-Majeed.png" alt="Quran Majeed logo" />
+        <img src="/images/quranmajeed/Quran-Majeed.png" alt={ui.logoAlt} width="340" height="400" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
@@ -512,6 +554,12 @@ const storeLinks = [
       linear-gradient(120deg, rgba(255,255,255,.76), transparent 44%),
       linear-gradient(0deg, rgba(255,255,255,.14), rgba(255,255,255,.14));
     pointer-events: none;
+  }
+
+  :global([dir='rtl']) .qm-hero::before {
+    background:
+      linear-gradient(240deg, rgba(255,255,255,.76), transparent 44%),
+      linear-gradient(0deg, rgba(255,255,255,.14), rgba(255,255,255,.14));
   }
 
   .qm-hero-grid,
@@ -816,13 +864,13 @@ const storeLinks = [
 
   .stack-shot.large {
     width: 72%;
-    left: 0;
+    inset-inline-start: 0;
     top: 0;
   }
 
   .stack-shot.small {
     width: 58%;
-    right: 0;
+    inset-inline-end: 0;
     bottom: 0;
   }
 
@@ -1043,8 +1091,7 @@ const storeLinks = [
     .stack-shot.small {
       width: 100%;
       position: relative;
-      left: auto;
-      right: auto;
+      inset-inline: auto;
       top: auto;
       bottom: auto;
       margin-bottom: 1rem;
