@@ -302,7 +302,8 @@ const offices = [
           email: (document.getElementById('contact-email') as HTMLInputElement)?.value.trim(),
           subject: `Website inquiry: ${inquiryType}`,
           subjectPrefix: 'Pakdata Contact',
-          message: [`Inquiry Type: ${inquiryType}`, '', (document.getElementById('contact-msg') as HTMLTextAreaElement)?.value.trim()].join('\n'),
+          details: `Inquiry Type: ${inquiryType}`,
+          message: (document.getElementById('contact-msg') as HTMLTextAreaElement)?.value.trim(),
         };
       },
       onSuccess: () => alert(contactForm.dataset.alertMsg || 'Message sent!'),

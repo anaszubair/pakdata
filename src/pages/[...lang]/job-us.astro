@@ -662,13 +662,12 @@ const jobs = [
             email: (document.getElementById('applicant-email') as HTMLInputElement)?.value.trim(),
             subject: `Job application: ${position}`,
             subjectPrefix: 'Career',
-            message: [
+            details: [
               `Position: ${position}`,
               `Phone: ${(document.getElementById('applicant-phone') as HTMLInputElement)?.value.trim()}`,
               `Resume: ${(document.getElementById('applicant-resume') as HTMLInputElement)?.value.trim()}`,
-              '',
-              (document.getElementById('applicant-cover') as HTMLTextAreaElement)?.value.trim(),
             ].join('\n'),
+            message: (document.getElementById('applicant-cover') as HTMLTextAreaElement)?.value.trim(),
           };
         },
         onSuccess: ({ name }) => {

@@ -7,388 +7,838 @@ export function getStaticPaths() {
   ];
 }
 
+import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
-import { getLangFromUrl, getRelativeLocaleUrl } from '../../i18n/utils';
+import { getLangFromUrl, getRelativeLocaleUrl, useTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const copy = {
   en: {
     seoTitle: 'Enterprise Software & AI Development Services | Pakdata',
     seoDesc: 'Pakdata provides enterprise software development, AI solutions, mobile app development, ERP systems, and digital transformation services for businesses worldwide.',
-    badge: 'Development Services',
-    heroTitle: 'Enterprise Software & AI Solutions by Pakdata',
+    heroTitle: 'Pakistan Data Management Services',
     heroLead: 'Building scalable digital platforms, AI-powered solutions, enterprise systems, and mobile applications that help organizations innovate, automate, and grow.',
-    heroBody: 'With decades of software engineering expertise, Pakdata delivers modern technology solutions across mobile applications, enterprise platforms, artificial intelligence, multilingual systems, and digital transformation initiatives.',
-    primaryCta: 'Explore Our Solutions',
-    secondaryCta: 'Schedule a Consultation',
-    metrics: [
-      { title: '40+ Years of Innovation', body: 'Decades of software engineering and digital transformation expertise.' },
-      { title: 'Millions of Global Users', body: 'Applications trusted worldwide across multiple platforms.' },
-      { title: 'Enterprise & Government Projects', body: 'Large-scale systems for enterprise and public sector organizations.' },
-      { title: 'AI & Mobile Specialists', body: 'Focused on scalable modern applications and intelligent digital solutions.' }
+    primaryCta: 'View Our Products',
+    secondaryCta: 'Our Services',
+    heroStats: [
+      { value: '40+', label: 'Years of Innovation' },
+      { value: 'Millions', label: 'Global Users' },
+      { value: '24/7', label: 'Customer Support' }
     ],
-    solutionsTitle: 'Enterprise Technology Solutions',
-    solutionsBody: 'We design and develop scalable digital solutions that help businesses modernize operations, automate workflows, and improve customer engagement.',
+    portfolioTitle: 'Our Product Portfolio',
+    portfolioBody: 'We design and develop scalable digital solutions that help businesses modernize operations, automate workflows, and improve customer engagement.',
+    live: 'Live',
+    development: 'Development',
+    learnMore: 'Learn More',
     solutions: [
-      { title: 'AI & Intelligent Automation', body: 'Leverage AI-powered systems to automate customer engagement, optimize workflows, and deliver intelligent digital experiences through conversational AI, machine learning, and automation technologies.', features: ['Conversational AI', 'Intelligent Automation', 'Predictive Insights', 'Workflow Optimization', 'AI-Powered Customer Support'] },
-      { title: 'EngageAI Platform', body: 'Enterprise conversational AI platform designed for customer engagement, support automation, lead generation, and intelligent business interactions.', features: ['AI Chat Automation', 'Multilingual Support', '24/7 Customer Assistance', 'CRM Integration', 'Analytics & Insights'] },
-      { title: 'ERP & Business Management Systems', body: 'Custom ERP and enterprise management systems designed to streamline operations, improve visibility, and centralize business workflows.', features: ['Accounting Management', 'Inventory Systems', 'HR & Payroll', 'Reporting Dashboards', 'Workflow Management'] },
-      { title: 'Custom Enterprise Applications', body: 'Tailored software solutions developed specifically for unique business requirements, operational efficiency, and digital transformation goals.', features: ['Enterprise Platforms', 'API Integrations', 'Web Applications', 'Mobile Applications', 'Cloud-Ready Architecture'] }
+      { title: 'AI & Intelligent Automation', body: 'Leverage AI-powered systems to automate customer engagement, optimize workflows, and deliver intelligent digital experiences.', features: ['Conversational AI', 'Intelligent Automation', 'Predictive Insights', 'Workflow Optimization'] },
+      { title: 'EngageAI Platform', body: 'Enterprise conversational AI platform designed for customer engagement, support automation, and lead generation.', features: ['AI Chat Automation', 'Multilingual Support', '24/7 Customer Assistance', 'CRM Integration'] },
+      { title: 'ERP & Business Management Systems', body: 'Custom ERP and enterprise management systems designed to streamline operations, improve visibility, and centralize business workflows.', features: ['Accounting Management', 'Inventory Systems', 'HR & Payroll', 'Reporting Dashboards'] },
+      { title: 'Custom Enterprise Applications', body: 'Tailored software solutions developed specifically for unique business requirements and digital transformation goals.', features: ['Enterprise Platforms', 'API Integrations', 'Web & Mobile Applications', 'Cloud-Ready Architecture'] }
     ],
-    servicesTitle: 'End-to-End Development Services',
+    servicesTitle: 'Our Development Services',
     servicesBody: 'From strategy and architecture to deployment and scaling, Pakdata delivers complete digital product development solutions.',
     serviceBlocks: [
-      { title: 'Mobile App Development', body: 'Develop high-performance mobile applications for iOS and Android with modern architectures, scalable infrastructure, and optimized user experiences.', items: ['Flutter', 'React Native', 'Swift', 'Kotlin'] },
-      { title: 'Web Development', body: 'Build scalable web applications and enterprise portals using modern frontend and backend technologies.', items: ['React', 'Next.js', 'TypeScript', 'Node.js'] },
-      { title: 'Digital Experience Design', body: 'Create intuitive and visually engaging user experiences through modern UI/UX design systems optimized for usability and business growth.', items: ['UI/UX Design', 'Design Systems', 'User Research', 'Prototyping'] },
-      { title: 'API Development', body: 'Develop secure and scalable APIs and backend services to power enterprise platforms and connected systems.', items: ['REST APIs', 'GraphQL', 'Node.js', 'Python'] },
-      { title: 'Security & Testing', body: 'Ensure application reliability, security, and operational stability through comprehensive testing and quality assurance processes.', items: ['Security Audits', 'Performance Testing', 'Automated Testing', 'QA Engineering'] }
+      { title: 'Mobile App Development', body: 'High-performance mobile applications for iOS and Android with modern architectures and optimized user experiences.', items: ['Flutter', 'React Native', 'Swift', 'Kotlin'] },
+      { title: 'Web Development', body: 'Scalable web applications and enterprise portals built with modern frontend and backend technologies.', items: ['React', 'Next.js', 'TypeScript', 'Node.js'] },
+      { title: 'Digital Experience Design', body: 'Intuitive and visually engaging user experiences through modern UI/UX design systems.', items: ['UI/UX Design', 'Design Systems', 'User Research', 'Prototyping'] },
+      { title: 'API Development', body: 'Secure and scalable APIs and backend services that power enterprise platforms and connected systems.', items: ['REST APIs', 'GraphQL', 'Node.js', 'Python'] },
+      { title: 'Security & Testing', body: 'Application reliability, security, and stability through comprehensive testing and quality assurance.', items: ['Security Audits', 'Performance Testing', 'Automated Testing', 'QA Engineering'] }
     ],
+    ctaTitle: 'Ready to Start Your Project?',
+    ctaBody: 'Let’s discuss your business goals, enterprise requirements, AI initiatives, or custom software projects.',
+    ctaStats: [
+      { value: 'Free', label: 'Consultation' },
+      { value: '24/7', label: 'Support' },
+      { value: '40+', label: 'Years' }
+    ],
+    cta: 'Contact Us',
     aboutTitle: 'About Pakdata',
-    aboutBody: 'Pakdata is a technology company with decades of experience in software engineering, multilingual computing, enterprise systems, Islamic technology, and digital innovation.',
-    storyBody: 'Founded in Pakistan, Pakdata has evolved from pioneering Urdu computing solutions into a globally recognized software company delivering enterprise platforms, mobile applications, AI-powered systems, and large-scale digital products.',
-    valuesTitle: 'Core Values',
-    values: ['Innovation', 'Excellence', 'Collaboration', 'Global Reach'],
-    contactTitle: 'Let’s Build Something Great Together',
+    aboutBody: 'A technology company with decades of experience in software engineering, multilingual computing, enterprise systems, and digital innovation.',
+    storyTitle: 'Our Story',
+    story: [
+      'Founded in Pakistan, Pakdata has evolved from pioneering Urdu computing solutions into a globally recognized software company delivering enterprise platforms, mobile applications, AI-powered systems, and large-scale digital products.',
+      'With decades of software engineering expertise, Pakdata delivers modern technology solutions across mobile applications, enterprise platforms, artificial intelligence, multilingual systems, and digital transformation initiatives.',
+      'Our applications are trusted by millions of users worldwide, and our large-scale systems serve enterprise and public sector organizations.'
+    ],
+    aboutStats: [
+      { value: '40+', label: 'Years of Innovation' },
+      { value: 'Millions', label: 'Global Users' },
+      { value: 'Enterprise', label: '& Government Projects' }
+    ],
+    valuesTitle: 'Our Core Values',
+    values: [
+      { title: 'Innovation', body: 'We embrace new technologies and creative solutions to deliver exceptional digital products.' },
+      { title: 'Collaboration', body: 'We work closely with our clients as partners, ensuring their vision is fully realized.' },
+      { title: 'Excellence', body: 'We maintain the highest standards of quality in every line of code and every design.' },
+      { title: 'Global Reach', body: 'Based in Pakistan, we serve users and organizations around the world.' }
+    ],
+    contactTitle: 'Get in Touch',
     contactBody: 'Get in touch to discuss your business goals, enterprise requirements, AI initiatives, or custom software projects.',
-    cta: 'Request a Consultation',
-    faq: 'FAQ'
+    email: 'Email',
+    phone: 'Phone',
+    location: 'Location'
   },
   ur: {
     seoTitle: 'انٹرپرائز سافٹ ویئر اور AI ڈویلپمنٹ سروسز | Pakdata',
     seoDesc: 'Pakdata انٹرپرائز سافٹ ویئر ڈویلپمنٹ، AI حل، موبائل ایپ ڈویلپمنٹ، ERP سسٹمز اور ڈیجیٹل ٹرانسفارمیشن سروسز فراہم کرتا ہے۔',
-    badge: 'ڈویلپمنٹ سروسز',
-    heroTitle: 'Pakdata کے انٹرپرائز سافٹ ویئر اور AI حل',
+    heroTitle: 'پاکستان ڈیٹا مینجمنٹ سروسز',
     heroLead: 'اسکیل ایبل ڈیجیٹل پلیٹ فارمز، AI پر مبنی حل، انٹرپرائز سسٹمز اور موبائل ایپلیکیشنز کی تیاری جو اداروں کو جدت، خودکاری اور ترقی میں مدد دیتی ہیں۔',
-    heroBody: 'دہائیوں کے سافٹ ویئر انجینئرنگ تجربے کے ساتھ، Pakdata موبائل ایپلیکیشنز، انٹرپرائز پلیٹ فارمز، مصنوعی ذہانت، کثیر لسانی نظاموں اور ڈیجیٹل تبدیلی کے منصوبوں میں جدید ٹیکنالوجی حل فراہم کرتا ہے۔',
-    primaryCta: 'ہمارے حل دیکھیں',
-    secondaryCta: 'مشاورت شیڈول کریں',
-    metrics: [
-      { title: '40+ سال کی جدت', body: 'سافٹ ویئر انجینئرنگ اور ڈیجیٹل ٹرانسفارمیشن میں دہائیوں کا تجربہ۔' },
-      { title: 'دنیا بھر میں لاکھوں صارفین', body: 'کئی پلیٹ فارمز پر استعمال ہونے والی ایپلیکیشنز۔' },
-      { title: 'انٹرپرائز اور حکومتی پروجیکٹس', body: 'بڑے پیمانے کے سسٹمز جو اداروں اور سرکاری شعبے کے لیے بنائے گئے۔' },
-      { title: 'AI اور موبائل ماہرین', body: 'اسکیل ایبل جدید ایپس اور ذہین ڈیجیٹل حل پر توجہ۔' }
+    primaryCta: 'ہماری مصنوعات دیکھیں',
+    secondaryCta: 'ہماری سروسز',
+    heroStats: [
+      { value: '40+', label: 'سال کی جدت' },
+      { value: 'لاکھوں', label: 'عالمی صارفین' },
+      { value: '24/7', label: 'کسٹمر سپورٹ' }
     ],
-    solutionsTitle: 'انٹرپرائز ٹیکنالوجی حل',
-    solutionsBody: 'ہم اسکیل ایبل ڈیجیٹل حل ڈیزائن اور تیار کرتے ہیں جو کاروبار کے آپریشنز کو جدید بناتے، ورک فلو خودکار کرتے اور صارفین سے رابطے کو بہتر بناتے ہیں۔',
+    portfolioTitle: 'ہماری مصنوعات',
+    portfolioBody: 'ہم اسکیل ایبل ڈیجیٹل حل ڈیزائن اور تیار کرتے ہیں جو کاروبار کے آپریشنز کو جدید بناتے، ورک فلو خودکار کرتے اور صارفین سے رابطے کو بہتر بناتے ہیں۔',
+    live: 'لائیو',
+    development: 'زیرِ تیاری',
+    learnMore: 'مزید جانیں',
     solutions: [
-      { title: 'AI اور ذہین آٹومیشن', body: 'گفتگو پر مبنی AI، مشین لرننگ اور آٹومیشن ٹیکنالوجیز کے ذریعے صارفین سے رابطہ خودکار بنائیں، ورک فلو بہتر کریں اور ذہین ڈیجیٹل تجربات فراہم کریں۔', features: ['گفتگو پر مبنی AI', 'ذہین آٹومیشن', 'پیش گوئی پر مبنی بصیرت', 'ورک فلو کی بہتری', 'AI پر مبنی کسٹمر سپورٹ'] },
-      { title: 'EngageAI پلیٹ فارم', body: 'انٹرپرائز سطح کا گفتگو پر مبنی AI پلیٹ فارم جو صارفین سے رابطے، سپورٹ آٹومیشن، لیڈ جنریشن اور ذہین کاروباری تعامل کے لیے تیار کیا گیا ہے۔', features: ['AI چیٹ آٹومیشن', 'کثیر لسانی سپورٹ', '24/7 کسٹمر معاونت', 'CRM انضمام', 'تجزیات اور بصیرت'] },
-      { title: 'ERP اور بزنس مینجمنٹ سسٹمز', body: 'کسٹم ERP اور انٹرپرائز مینجمنٹ سسٹمز جو آپریشنز کو ہموار کرتے، شفافیت بڑھاتے اور کاروباری ورک فلو کو مرکزی بناتے ہیں۔', features: ['اکاؤنٹنگ مینجمنٹ', 'انوینٹری سسٹمز', 'HR اور پے رول', 'رپورٹنگ ڈیش بورڈز', 'ورک فلو مینجمنٹ'] },
-      { title: 'کسٹم انٹرپرائز ایپلیکیشنز', body: 'منفرد کاروباری ضروریات، آپریشنل کارکردگی اور ڈیجیٹل تبدیلی کے اہداف کے مطابق خصوصی طور پر تیار کردہ سافٹ ویئر حل۔', features: ['انٹرپرائز پلیٹ فارمز', 'API انضمام', 'ویب ایپلیکیشنز', 'موبائل ایپلیکیشنز', 'کلاؤڈ کے لیے تیار آرکیٹیکچر'] }
+      { title: 'AI اور ذہین آٹومیشن', body: 'گفتگو پر مبنی AI، مشین لرننگ اور آٹومیشن کے ذریعے صارفین سے رابطہ خودکار بنائیں اور ذہین ڈیجیٹل تجربات فراہم کریں۔', features: ['گفتگو پر مبنی AI', 'ذہین آٹومیشن', 'پیش گوئی پر مبنی بصیرت', 'ورک فلو کی بہتری'] },
+      { title: 'EngageAI پلیٹ فارم', body: 'انٹرپرائز سطح کا گفتگو پر مبنی AI پلیٹ فارم جو صارفین سے رابطے، سپورٹ آٹومیشن اور لیڈ جنریشن کے لیے تیار کیا گیا ہے۔', features: ['AI چیٹ آٹومیشن', 'کثیر لسانی سپورٹ', '24/7 کسٹمر معاونت', 'CRM انضمام'] },
+      { title: 'ERP اور بزنس مینجمنٹ سسٹمز', body: 'کسٹم ERP اور انٹرپرائز مینجمنٹ سسٹمز جو آپریشنز کو ہموار کرتے، شفافیت بڑھاتے اور کاروباری ورک فلو کو مرکزی بناتے ہیں۔', features: ['اکاؤنٹنگ مینجمنٹ', 'انوینٹری سسٹمز', 'HR اور پے رول', 'رپورٹنگ ڈیش بورڈز'] },
+      { title: 'کسٹم انٹرپرائز ایپلیکیشنز', body: 'منفرد کاروباری ضروریات اور ڈیجیٹل تبدیلی کے اہداف کے مطابق خصوصی طور پر تیار کردہ سافٹ ویئر حل۔', features: ['انٹرپرائز پلیٹ فارمز', 'API انضمام', 'ویب اور موبائل ایپلیکیشنز', 'کلاؤڈ کے لیے تیار آرکیٹیکچر'] }
     ],
-    servicesTitle: 'مکمل ڈویلپمنٹ سروسز',
+    servicesTitle: 'ہماری ڈویلپمنٹ سروسز',
     servicesBody: 'حکمت عملی اور آرکیٹیکچر سے لے کر ڈیپلائمنٹ اور توسیع تک، Pakdata مکمل ڈیجیٹل پروڈکٹ ڈویلپمنٹ حل فراہم کرتا ہے۔',
     serviceBlocks: [
-      { title: 'موبائل ایپ ڈویلپمنٹ', body: 'جدید آرکیٹیکچر، اسکیل ایبل انفراسٹرکچر اور بہترین صارف تجربے کے ساتھ iOS اور Android کے لیے اعلیٰ کارکردگی والی موبائل ایپلیکیشنز تیار کریں۔', items: ['Flutter', 'React Native', 'Swift', 'Kotlin'] },
-      { title: 'ویب ڈویلپمنٹ', body: 'جدید فرنٹ اینڈ اور بیک اینڈ ٹیکنالوجیز کے ساتھ اسکیل ایبل ویب ایپلیکیشنز اور انٹرپرائز پورٹلز بنائیں۔', items: ['React', 'Next.js', 'TypeScript', 'Node.js'] },
-      { title: 'ڈیجیٹل ایکسپیرینس ڈیزائن', body: 'استعمال میں آسانی اور کاروباری ترقی کے لیے جدید UI/UX ڈیزائن سسٹمز کے ذریعے سہل اور دلکش صارف تجربات تخلیق کریں۔', items: ['UI/UX ڈیزائن', 'ڈیزائن سسٹمز', 'صارف تحقیق', 'پروٹو ٹائپنگ'] },
-      { title: 'API ڈویلپمنٹ', body: 'انٹرپرائز پلیٹ فارمز اور منسلک نظاموں کے لیے محفوظ اور اسکیل ایبل APIs اور بیک اینڈ سروسز تیار کریں۔', items: ['REST APIs', 'GraphQL', 'Node.js', 'Python'] },
-      { title: 'سیکیورٹی اور ٹیسٹنگ', body: 'جامع ٹیسٹنگ اور کوالٹی ایشورنس کے ذریعے ایپلیکیشن کی پائیداری، سیکیورٹی اور آپریشنل استحکام یقینی بنائیں۔', items: ['سیکیورٹی آڈٹس', 'کارکردگی ٹیسٹنگ', 'خودکار ٹیسٹنگ', 'QA انجینئرنگ'] }
+      { title: 'موبائل ایپ ڈویلپمنٹ', body: 'جدید آرکیٹیکچر اور بہترین صارف تجربے کے ساتھ iOS اور Android کے لیے اعلیٰ کارکردگی والی موبائل ایپلیکیشنز۔', items: ['Flutter', 'React Native', 'Swift', 'Kotlin'] },
+      { title: 'ویب ڈویلپمنٹ', body: 'جدید فرنٹ اینڈ اور بیک اینڈ ٹیکنالوجیز کے ساتھ اسکیل ایبل ویب ایپلیکیشنز اور انٹرپرائز پورٹلز۔', items: ['React', 'Next.js', 'TypeScript', 'Node.js'] },
+      { title: 'ڈیجیٹل ایکسپیرینس ڈیزائن', body: 'جدید UI/UX ڈیزائن سسٹمز کے ذریعے سہل اور دلکش صارف تجربات۔', items: ['UI/UX ڈیزائن', 'ڈیزائن سسٹمز', 'صارف تحقیق', 'پروٹو ٹائپنگ'] },
+      { title: 'API ڈویلپمنٹ', body: 'انٹرپرائز پلیٹ فارمز اور منسلک نظاموں کے لیے محفوظ اور اسکیل ایبل APIs اور بیک اینڈ سروسز۔', items: ['REST APIs', 'GraphQL', 'Node.js', 'Python'] },
+      { title: 'سیکیورٹی اور ٹیسٹنگ', body: 'جامع ٹیسٹنگ اور کوالٹی ایشورنس کے ذریعے ایپلیکیشن کی پائیداری، سیکیورٹی اور استحکام۔', items: ['سیکیورٹی آڈٹس', 'کارکردگی ٹیسٹنگ', 'خودکار ٹیسٹنگ', 'QA انجینئرنگ'] }
     ],
+    ctaTitle: 'اپنا پروجیکٹ شروع کرنے کے لیے تیار ہیں؟',
+    ctaBody: 'اپنے کاروباری اہداف، انٹرپرائز ضروریات، AI منصوبوں یا کسٹم سافٹ ویئر پروجیکٹس پر ہم سے بات کریں۔',
+    ctaStats: [
+      { value: 'مفت', label: 'مشاورت' },
+      { value: '24/7', label: 'سپورٹ' },
+      { value: '40+', label: 'سال' }
+    ],
+    cta: 'رابطہ کریں',
     aboutTitle: 'Pakdata کے بارے میں',
-    aboutBody: 'Pakdata ایک ٹیکنالوجی کمپنی ہے جسے سافٹ ویئر انجینئرنگ، کثیر لسانی کمپیوٹنگ، انٹرپرائز سسٹمز، اسلامی ٹیکنالوجی اور ڈیجیٹل جدت میں دہائیوں کا تجربہ ہے۔',
-    storyBody: 'پاکستان میں قائم Pakdata نے اردو کمپیوٹنگ کے اولین حل سے ترقی کرتے ہوئے ایک عالمی سطح پر تسلیم شدہ سافٹ ویئر کمپنی کی شکل اختیار کی، جو انٹرپرائز پلیٹ فارمز، موبائل ایپلیکیشنز، AI پر مبنی سسٹمز اور بڑے پیمانے کی ڈیجیٹل مصنوعات فراہم کرتی ہے۔',
-    valuesTitle: 'بنیادی اقدار',
-    values: ['جدت', 'مہارت', 'باہمی تعاون', 'عالمی رسائی'],
-    contactTitle: 'آئیے مل کر کچھ شاندار بنائیں',
+    aboutBody: 'سافٹ ویئر انجینئرنگ، کثیر لسانی کمپیوٹنگ، انٹرپرائز سسٹمز اور ڈیجیٹل جدت میں دہائیوں کے تجربے والی ٹیکنالوجی کمپنی۔',
+    storyTitle: 'ہماری کہانی',
+    story: [
+      'پاکستان میں قائم Pakdata نے اردو کمپیوٹنگ کے اولین حل سے ترقی کرتے ہوئے ایک عالمی سطح پر تسلیم شدہ سافٹ ویئر کمپنی کی شکل اختیار کی، جو انٹرپرائز پلیٹ فارمز، موبائل ایپلیکیشنز، AI پر مبنی سسٹمز اور بڑے پیمانے کی ڈیجیٹل مصنوعات فراہم کرتی ہے۔',
+      'دہائیوں کے سافٹ ویئر انجینئرنگ تجربے کے ساتھ، Pakdata موبائل ایپلیکیشنز، انٹرپرائز پلیٹ فارمز، مصنوعی ذہانت، کثیر لسانی نظاموں اور ڈیجیٹل تبدیلی کے منصوبوں میں جدید ٹیکنالوجی حل فراہم کرتا ہے۔',
+      'ہماری ایپلیکیشنز پر دنیا بھر کے لاکھوں صارفین اعتماد کرتے ہیں، اور ہمارے بڑے سسٹمز انٹرپرائز اور سرکاری اداروں کی خدمت کرتے ہیں۔'
+    ],
+    aboutStats: [
+      { value: '40+', label: 'سال کی جدت' },
+      { value: 'لاکھوں', label: 'عالمی صارفین' },
+      { value: 'انٹرپرائز', label: 'اور حکومتی پروجیکٹس' }
+    ],
+    valuesTitle: 'ہماری بنیادی اقدار',
+    values: [
+      { title: 'جدت', body: 'ہم بہترین ڈیجیٹل مصنوعات کے لیے نئی ٹیکنالوجیز اور تخلیقی حل اپناتے ہیں۔' },
+      { title: 'باہمی تعاون', body: 'ہم اپنے کلائنٹس کے ساتھ شراکت دار بن کر کام کرتے ہیں تاکہ ان کا وژن مکمل ہو۔' },
+      { title: 'مہارت', body: 'ہم کوڈ کی ہر سطر اور ہر ڈیزائن میں اعلیٰ ترین معیار برقرار رکھتے ہیں۔' },
+      { title: 'عالمی رسائی', body: 'پاکستان میں قائم، ہم دنیا بھر کے صارفین اور اداروں کی خدمت کرتے ہیں۔' }
+    ],
+    contactTitle: 'رابطہ کریں',
     contactBody: 'اپنے کاروباری اہداف، انٹرپرائز ضروریات، AI منصوبوں یا کسٹم سافٹ ویئر پروجیکٹس پر بات کرنے کے لیے ہم سے رابطہ کریں۔',
-    cta: 'مشاورت کی درخواست کریں',
-    faq: 'عمومی سوالات'
+    email: 'ای میل',
+    phone: 'فون',
+    location: 'مقام'
   },
   ar: {
     seoTitle: 'خدمات تطوير البرمجيات والذكاء الاصطناعي | Pakdata',
     seoDesc: 'تقدم Pakdata خدمات تطوير البرمجيات للمؤسسات، وحلول الذكاء الاصطناعي، وتطبيقات الجوال، وأنظمة ERP، والتحول الرقمي.',
-    badge: 'خدمات التطوير',
-    heroTitle: 'حلول البرمجيات للمؤسسات والذكاء الاصطناعي من Pakdata',
+    heroTitle: 'باكستان لإدارة البيانات',
     heroLead: 'نبني منصات رقمية قابلة للتوسع، وحلول ذكاء اصطناعي، وأنظمة مؤسسية، وتطبيقات جوال تساعد المؤسسات على الابتكار والأتمتة والنمو.',
-    heroBody: 'بخبرة تمتد لعقود في هندسة البرمجيات، تقدم Pakdata حلولًا حديثة عبر تطبيقات الجوال والمنصات المؤسسية والذكاء الاصطناعي والأنظمة متعددة اللغات ومبادرات التحول الرقمي.',
-    primaryCta: 'استعرض حلولنا',
-    secondaryCta: 'حدد موعدًا لاستشارة',
-    metrics: [
-      { title: 'أكثر من 40 عامًا من الابتكار', body: 'عقود من الخبرة في هندسة البرمجيات والتحول الرقمي.' },
-      { title: 'ملايين المستخدمين حول العالم', body: 'تطبيقات موثوقة على عدة منصات.' },
-      { title: 'مشاريع مؤسسية وحكومية', body: 'أنظمة واسعة النطاق للمؤسسات والقطاع العام.' },
-      { title: 'متخصصون في الذكاء الاصطناعي والجوال', body: 'حلول حديثة قابلة للتوسع ومبنية بذكاء.' }
+    primaryCta: 'استعرض منتجاتنا',
+    secondaryCta: 'خدماتنا',
+    heroStats: [
+      { value: '40+', label: 'عامًا من الابتكار' },
+      { value: 'ملايين', label: 'المستخدمين حول العالم' },
+      { value: '24/7', label: 'دعم العملاء' }
     ],
-    solutionsTitle: 'حلول تقنية للمؤسسات',
-    solutionsBody: 'نصمم ونطور حلولًا رقمية قابلة للتوسع تساعد الشركات على تحديث العمليات وأتمتة سير العمل وتحسين التفاعل مع العملاء.',
+    portfolioTitle: 'مجموعة منتجاتنا',
+    portfolioBody: 'نصمم ونطور حلولًا رقمية قابلة للتوسع تساعد الشركات على تحديث العمليات وأتمتة سير العمل وتحسين التفاعل مع العملاء.',
+    live: 'متاح',
+    development: 'قيد التطوير',
+    learnMore: 'اعرف المزيد',
     solutions: [
-      { title: 'الذكاء الاصطناعي والأتمتة الذكية', body: 'استفد من أنظمة مدعومة بالذكاء الاصطناعي لتحسين التفاعل وأتمتة العمليات.', features: ['محادثات ذكية', 'أتمتة ذكية', 'رؤى تنبؤية', 'تحسين سير العمل', 'دعم عملاء مدعوم بالذكاء الاصطناعي'] },
-      { title: 'منصة EngageAI', body: 'منصة ذكاء اصطناعي محادثي للمؤسسات مخصصة لتفاعل العملاء والدعم الآلي وتوليد العملاء المحتملين.', features: ['أتمتة الدردشة', 'دعم متعدد اللغات', 'مساعدة 24/7', 'تكامل CRM', 'تحليلات ورؤى'] },
-      { title: 'أنظمة ERP وإدارة الأعمال', body: 'أنظمة ERP مخصصة للمؤسسات لتبسيط العمليات وتحسين الرؤية وتوحيد سير العمل.', features: ['إدارة الحسابات', 'أنظمة المخزون', 'الموارد البشرية والرواتب', 'لوحات التقارير', 'إدارة سير العمل'] },
-      { title: 'تطبيقات مؤسسية مخصصة', body: 'حلول برمجية مصممة خصيصًا لتلبية متطلبات الأعمال وتحقيق الكفاءة والتحول الرقمي.', features: ['منصات مؤسسية', 'تكامل API', 'تطبيقات ويب', 'تطبيقات جوال', 'بنية جاهزة للسحابة'] }
+      { title: 'الذكاء الاصطناعي والأتمتة الذكية', body: 'استفد من أنظمة مدعومة بالذكاء الاصطناعي لتحسين التفاعل وأتمتة العمليات.', features: ['محادثات ذكية', 'أتمتة ذكية', 'رؤى تنبؤية', 'تحسين سير العمل'] },
+      { title: 'منصة EngageAI', body: 'منصة ذكاء اصطناعي محادثي للمؤسسات مخصصة لتفاعل العملاء والدعم الآلي وتوليد العملاء المحتملين.', features: ['أتمتة الدردشة', 'دعم متعدد اللغات', 'مساعدة 24/7', 'تكامل CRM'] },
+      { title: 'أنظمة ERP وإدارة الأعمال', body: 'أنظمة ERP مخصصة للمؤسسات لتبسيط العمليات وتحسين الرؤية وتوحيد سير العمل.', features: ['إدارة الحسابات', 'أنظمة المخزون', 'الموارد البشرية والرواتب', 'لوحات التقارير'] },
+      { title: 'تطبيقات مؤسسية مخصصة', body: 'حلول برمجية مصممة خصيصًا لتلبية متطلبات الأعمال وتحقيق التحول الرقمي.', features: ['منصات مؤسسية', 'تكامل API', 'تطبيقات ويب وجوال', 'بنية جاهزة للسحابة'] }
     ],
-    servicesTitle: 'خدمات تطوير شاملة',
+    servicesTitle: 'خدمات التطوير لدينا',
     servicesBody: 'من الاستراتيجية والبنية المعمارية إلى النشر والتوسع، تقدم Pakdata حلولًا كاملة لتطوير المنتجات الرقمية.',
     serviceBlocks: [
-      { title: 'تطوير تطبيقات الجوال', body: 'طوّر تطبيقات iOS وAndroid عالية الأداء ببنى حديثة وبنية تحتية قابلة للتوسع.', items: ['Flutter', 'React Native', 'Swift', 'Kotlin'] },
-      { title: 'تطوير الويب', body: 'ابنِ تطبيقات ويب ومنصات مؤسسية قابلة للتوسع باستخدام تقنيات حديثة.', items: ['React', 'Next.js', 'TypeScript', 'Node.js'] },
-      { title: 'تصميم التجربة الرقمية', body: 'أنشئ تجارب مستخدم بديهية وجذابة من خلال أنظمة تصميم حديثة.', items: ['تصميم UI/UX', 'أنظمة التصميم', 'أبحاث المستخدمين', 'النماذج الأولية'] },
-      { title: 'تطوير واجهات API', body: 'طوّر واجهات وخدمات خلفية آمنة وقابلة للتوسع.', items: ['REST APIs', 'GraphQL', 'Node.js', 'Python'] },
-      { title: 'الأمان والاختبار', body: 'ضمن موثوقية التطبيقات وأمانها واستقرارها من خلال الاختبار والجودة.', items: ['تدقيقات الأمان', 'اختبار الأداء', 'الاختبار الآلي', 'هندسة ضمان الجودة'] }
+      { title: 'تطوير تطبيقات الجوال', body: 'تطبيقات iOS وAndroid عالية الأداء ببنى حديثة وتجربة مستخدم محسنة.', items: ['Flutter', 'React Native', 'Swift', 'Kotlin'] },
+      { title: 'تطوير الويب', body: 'تطبيقات ويب ومنصات مؤسسية قابلة للتوسع باستخدام تقنيات حديثة.', items: ['React', 'Next.js', 'TypeScript', 'Node.js'] },
+      { title: 'تصميم التجربة الرقمية', body: 'تجارب مستخدم بديهية وجذابة من خلال أنظمة تصميم حديثة.', items: ['تصميم UI/UX', 'أنظمة التصميم', 'أبحاث المستخدمين', 'النماذج الأولية'] },
+      { title: 'تطوير واجهات API', body: 'واجهات وخدمات خلفية آمنة وقابلة للتوسع للمنصات المؤسسية.', items: ['REST APIs', 'GraphQL', 'Node.js', 'Python'] },
+      { title: 'الأمان والاختبار', body: 'موثوقية التطبيقات وأمانها واستقرارها من خلال الاختبار وضمان الجودة.', items: ['تدقيقات الأمان', 'اختبار الأداء', 'الاختبار الآلي', 'هندسة ضمان الجودة'] }
     ],
+    ctaTitle: 'هل أنت مستعد لبدء مشروعك؟',
+    ctaBody: 'تواصل معنا لمناقشة أهداف أعمالك ومتطلبات المؤسسات ومبادرات الذكاء الاصطناعي أو مشاريع البرمجيات المخصصة.',
+    ctaStats: [
+      { value: 'مجانية', label: 'استشارة' },
+      { value: '24/7', label: 'دعم' },
+      { value: '40+', label: 'عامًا' }
+    ],
+    cta: 'تواصل معنا',
     aboutTitle: 'حول Pakdata',
-    aboutBody: 'Pakdata شركة تقنية ذات خبرة تمتد لعقود في هندسة البرمجيات والحوسبة متعددة اللغات والأنظمة المؤسسية والتكنولوجيا الإسلامية والابتكار الرقمي.',
-    storyBody: 'تطورت Pakdata من حلول الحوسبة الأردية إلى شركة برمجيات عالمية تقدم منصات مؤسسية وتطبيقات جوال وأنظمة مدعومة بالذكاء الاصطناعي.',
-    valuesTitle: 'القيم الأساسية',
-    values: ['الابتكار', 'التميز', 'التعاون', 'الانتشار العالمي'],
-    contactTitle: 'لنَبْنِ شيئًا رائعًا معًا',
+    aboutBody: 'شركة تقنية ذات خبرة تمتد لعقود في هندسة البرمجيات والحوسبة متعددة اللغات والأنظمة المؤسسية والابتكار الرقمي.',
+    storyTitle: 'قصتنا',
+    story: [
+      'تطورت Pakdata من حلول الحوسبة الأردية إلى شركة برمجيات عالمية تقدم منصات مؤسسية وتطبيقات جوال وأنظمة مدعومة بالذكاء الاصطناعي.',
+      'بخبرة تمتد لعقود في هندسة البرمجيات، تقدم Pakdata حلولًا حديثة عبر تطبيقات الجوال والمنصات المؤسسية والذكاء الاصطناعي والأنظمة متعددة اللغات ومبادرات التحول الرقمي.',
+      'يثق ملايين المستخدمين حول العالم بتطبيقاتنا، وتخدم أنظمتنا واسعة النطاق المؤسسات والقطاع العام.'
+    ],
+    aboutStats: [
+      { value: '40+', label: 'عامًا من الابتكار' },
+      { value: 'ملايين', label: 'المستخدمين حول العالم' },
+      { value: 'مشاريع', label: 'مؤسسية وحكومية' }
+    ],
+    valuesTitle: 'قيمنا الأساسية',
+    values: [
+      { title: 'الابتكار', body: 'نتبنى أحدث التقنيات والحلول الإبداعية لتقديم منتجات رقمية استثنائية.' },
+      { title: 'التعاون', body: 'نعمل مع عملائنا كشركاء لضمان تحقيق رؤيتهم بالكامل.' },
+      { title: 'التميز', body: 'نحافظ على أعلى معايير الجودة في كل سطر برمجي وكل تصميم.' },
+      { title: 'الانتشار العالمي', body: 'من باكستان، نخدم المستخدمين والمؤسسات حول العالم.' }
+    ],
+    contactTitle: 'تواصل معنا',
     contactBody: 'تواصل معنا لمناقشة أهداف أعمالك ومتطلبات المؤسسات ومبادرات الذكاء الاصطناعي أو مشاريع البرمجيات المخصصة.',
-    cta: 'اطلب استشارة',
-    faq: 'الأسئلة الشائعة'
+    email: 'البريد الإلكتروني',
+    phone: 'الهاتف',
+    location: 'الموقع'
   }
 }[lang];
+
+const solutionMeta = [
+  { icon: 'psychology-outline', live: true },
+  { icon: 'forum-outline', live: true, href: getRelativeLocaleUrl(lang, '/engage-ai') },
+  { icon: 'business-center-outline', live: true },
+  { icon: 'phone-iphone-outline', live: false }
+];
+const serviceIcons = ['smartphone-outline', 'code', 'palette-outline', 'settings-outline', 'shield-outline'];
+const aboutIcons = ['workspace-premium-outline', 'public', 'verified-outline'];
+const valueIcons = ['lightbulb-outline', 'handshake-outline', 'military-tech-outline', 'public'];
+
+const contactEmail = 'support@pakdata.com';
+const contactPhone = '+92-21-34559003';
+const contactInfo = [
+  { icon: 'mail-outline', label: copy.email, value: contactEmail, href: `mailto:${contactEmail}` },
+  { icon: 'call-outline', label: copy.phone, value: contactPhone, href: `tel:${contactPhone.replace(/[^+\d]/g, '')}`, ltr: true },
+  { icon: 'location-on-outline', label: copy.location, value: t('contact.office.karachi.address') }
+];
 ---
 
 <Layout title={copy.seoTitle} description={copy.seoDesc}>
   <section class="ds-hero">
-    <div class="container ds-hero-grid">
-      <div class="ds-copy">
-        <span class="badge badge-primary">{copy.badge}</span>
-        <h1 class="ds-title">{copy.heroTitle}</h1>
-        <p class="ds-lead">{copy.heroLead}</p>
-        <p class="ds-body">{copy.heroBody}</p>
-        <div class="ds-cta-row">
-          <a href={getRelativeLocaleUrl(lang, '/products')} class="btn btn-primary btn-lg">{copy.primaryCta}</a>
-          <a href={getRelativeLocaleUrl(lang, '/contact-us')} class="btn btn-outline btn-lg">{copy.secondaryCta}</a>
-        </div>
+    <div class="container ds-hero-inner">
+      <div class="ds-hero-icons" aria-hidden="true">
+        <span><Icon name="material-symbols:smartphone-outline" /></span>
+        <span><Icon name="material-symbols:code" /></span>
+        <span><Icon name="material-symbols:bolt-outline" /></span>
       </div>
-      <div class="ds-panel card">
-        <div class="ds-panel-head">
-          <span>{copy.badge}</span>
-          <strong>PDMS</strong>
-        </div>
-        <div class="ds-metric-grid">
-          {copy.metrics.map((metric) => (
-            <article class="ds-metric">
-              <h3>{metric.title}</h3>
-              <p>{metric.body}</p>
+      <h1 class="ds-title">{copy.heroTitle}</h1>
+      <p class="ds-lead">{copy.heroLead}</p>
+      <div class="ds-cta-row">
+        <a href="#portfolio" class="btn btn-primary btn-lg">
+          {copy.primaryCta}
+          <Icon name="material-symbols:arrow-forward" class="ds-btn-icon ds-arrow" aria-hidden="true" />
+        </a>
+        <a href="#services" class="btn btn-outline btn-lg">{copy.secondaryCta}</a>
+      </div>
+      <div class="ds-hero-stats">
+        {copy.heroStats.map((stat) => (
+          <div class="ds-hero-stat">
+            <strong dir="auto">{stat.value}</strong>
+            <span>{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="portfolio">
+    <div class="container">
+      <div class="section-title-wrap">
+        <h2 class="section-title">{copy.portfolioTitle}</h2>
+        <p class="section-subtitle">{copy.portfolioBody}</p>
+      </div>
+      <div class="ds-grid-2">
+        {copy.solutions.map((item, i) => {
+          const meta = solutionMeta[i];
+          return (
+            <article class:list={['card ds-card', { 'ds-card-accent': !meta.live }]}>
+              <div class="ds-card-top">
+                <span class="ds-icon-box"><Icon name={`material-symbols:${meta.icon}`} aria-hidden="true" /></span>
+                <span class:list={['badge', meta.live ? 'badge-success' : 'ds-badge-dev']}>{meta.live ? copy.live : copy.development}</span>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+              <ul class="ds-feature-list">
+                {item.features.map((feature) => <li>{feature}</li>)}
+              </ul>
+              {meta.href && (
+                <a href={meta.href} class="btn btn-secondary btn-sm ds-card-btn">
+                  {copy.learnMore}
+                  <Icon name="material-symbols:open-in-new" class="ds-btn-icon" aria-hidden="true" />
+                </a>
+              )}
             </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-bg" id="services">
+    <div class="container">
+      <div class="section-title-wrap">
+        <h2 class="section-title">{copy.servicesTitle}</h2>
+        <p class="section-subtitle">{copy.servicesBody}</p>
+      </div>
+      <div class="ds-grid-3">
+        {copy.serviceBlocks.map((service, i) => (
+          <article class="card ds-card">
+            <span class="ds-icon-box"><Icon name={`material-symbols:${serviceIcons[i]}`} aria-hidden="true" /></span>
+            <h3>{service.title}</h3>
+            <p>{service.body}</p>
+            <div class="ds-tags">
+              {service.items.map((item) => <span class="ds-tag">{item}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="card ds-cta-card">
+        <h3>{copy.ctaTitle}</h3>
+        <p>{copy.ctaBody}</p>
+        <div class="ds-cta-stats">
+          {copy.ctaStats.map((stat) => (
+            <div>
+              <strong dir="auto">{stat.value}</strong>
+              <span>{stat.label}</span>
+            </div>
+          ))}
+        </div>
+        <a href="#contact" class="btn btn-primary">{copy.cta}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <h2 class="section-title">{copy.aboutTitle}</h2>
+        <p class="section-subtitle">{copy.aboutBody}</p>
+      </div>
+      <div class="ds-story">
+        <div class="ds-story-copy">
+          <h3>{copy.storyTitle}</h3>
+          {copy.story.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+        <div class="ds-story-stats">
+          {copy.aboutStats.map((stat, i) => (
+            <div class="card ds-stat-card">
+              <span class="ds-icon-box"><Icon name={`material-symbols:${aboutIcons[i]}`} aria-hidden="true" /></span>
+              <div>
+                <strong dir="auto">{stat.value}</strong>
+                <span>{stat.label}</span>
+              </div>
+            </div>
           ))}
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-title-wrap tight">
-        <span class="badge badge-primary">{copy.badge}</span>
-        <h2 class="section-title">{copy.solutionsTitle}</h2>
-      </div>
-      <p class="body-copy section-intro">{copy.solutionsBody}</p>
-      <div class="solution-grid">
-        {copy.solutions.map((item) => (
-          <article class="solution-card card">
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-            <div class="chip-grid">
-              {item.features.map((feature) => <span class="chip">{feature}</span>)}
-            </div>
+      <h3 class="ds-subheading">{copy.valuesTitle}</h3>
+      <div class="ds-grid-4">
+        {copy.values.map((value, i) => (
+          <article class="card ds-value-card">
+            <span class="ds-icon-box"><Icon name={`material-symbols:${valueIcons[i]}`} aria-hidden="true" /></span>
+            <h4>{value.title}</h4>
+            <p>{value.body}</p>
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section section-bg">
+  <section class="section section-bg" id="contact">
     <div class="container">
-      <div class="section-title-wrap tight">
-        <span class="badge badge-primary">{copy.badge}</span>
-        <h2 class="section-title">{copy.servicesTitle}</h2>
-      </div>
-      <p class="body-copy section-intro">{copy.servicesBody}</p>
-      <div class="service-grid">
-        {copy.serviceBlocks.map((service) => (
-          <article class="service-block card">
-            <h3>{service.title}</h3>
-            <p>{service.body}</p>
-            <div class="chip-grid">
-              {service.items.map((item) => <span class="chip">{item}</span>)}
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container split-grid">
-      <div class="split-copy">
-        <span class="badge badge-primary">{copy.aboutTitle}</span>
-        <h2 class="section-title">{copy.aboutTitle}</h2>
-        <p class="body-copy">{copy.aboutBody}</p>
-        <p class="body-copy">{copy.storyBody}</p>
-      </div>
-      <div class="values-card card">
-        <h3>{copy.valuesTitle}</h3>
-        <div class="chip-grid">
-          {copy.values.map((value) => <span class="chip">{value}</span>)}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-bg">
-    <div class="container cta-band card">
-      <div>
+      <div class="section-title-wrap">
         <h2 class="section-title">{copy.contactTitle}</h2>
-        <p class="body-copy">{copy.contactBody}</p>
+        <p class="section-subtitle">{copy.contactBody}</p>
       </div>
-      <div class="ds-cta-row">
-        <a href={getRelativeLocaleUrl(lang, '/contact-us')} class="btn btn-primary btn-lg">{copy.cta}</a>
-        <a href={getRelativeLocaleUrl(lang, '/faqs')} class="btn btn-outline btn-lg">{copy.faq}</a>
+      <div class="ds-contact">
+        <div class="ds-contact-info">
+          {contactInfo.map((info) => (
+            <div class="card ds-info-card">
+              <span class="ds-icon-box"><Icon name={`material-symbols:${info.icon}`} aria-hidden="true" /></span>
+              <div>
+                <strong>{info.label}</strong>
+                {info.href
+                  ? <a href={info.href} dir={info.ltr ? 'ltr' : undefined}>{info.value}</a>
+                  : <p>{info.value}</p>}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="card ds-form-card">
+          <h3>{t('contact.form.title')}</h3>
+          <form class="ds-form" id="ds-contact-form" data-alert-msg={t('contact.form.alert')} data-recaptcha-msg={t('form.recaptcha.required')} data-sending-msg={t('form.sending')} data-rejected-msg={t('form.error.rejected')} data-network-msg={t('form.error.network')}>
+            <div class="ds-form-row">
+              <div class="form-group">
+                <label class="form-label" for="ds-contact-name">{t('contact.form.name.label')}</label>
+                <input type="text" id="ds-contact-name" required class="form-control" placeholder={t('contact.form.name.placeholder')} />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="ds-contact-email">{t('contact.form.email.label')}</label>
+                <input type="email" id="ds-contact-email" required class="form-control" placeholder={t('contact.form.email.placeholder')} />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ds-contact-subject">{t('contact.form.subject.label')}</label>
+              <select id="ds-contact-subject" required class="form-control">
+                <option value="general">{t('contact.form.subject.opt1')}</option>
+                <option value="enterprise">{t('contact.form.subject.opt2')}</option>
+                <option value="support">{t('contact.form.subject.opt3')}</option>
+                <option value="partnership">{t('contact.form.subject.opt5')}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ds-contact-msg">{t('contact.form.msg.label')}</label>
+              <textarea id="ds-contact-msg" required class="form-control" placeholder={t('contact.form.msg.placeholder')}></textarea>
+            </div>
+            <div class="form-trap" aria-hidden="true">
+              <label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+            </div>
+            <div class="form-recaptcha" data-recaptcha data-failed-msg={t('form.recaptcha.failed')}></div>
+            <button type="submit" class="btn btn-primary ds-submit" id="ds-contact-btn">
+              {t('contact.form.btn')}
+              <Icon name="material-symbols:send-outline" class="ds-btn-icon" aria-hidden="true" />
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
 </Layout>
 
+<script>
+  import { setupMailForm } from '../../lib/mail-service';
+
+  const setupDevelopmentForm = () => {
+    const form = document.getElementById('ds-contact-form');
+    const button = document.getElementById('ds-contact-btn');
+    if (!(form instanceof HTMLFormElement) || !(button instanceof HTMLButtonElement)) return;
+
+    setupMailForm({
+      form,
+      button,
+      fallbackEmail: 'support@pakdata.com',
+      buildPayload: () => {
+        const subjectSelect = document.getElementById('ds-contact-subject') as HTMLSelectElement;
+        const inquiryType = subjectSelect?.selectedOptions[0]?.textContent?.trim() || 'General';
+        return {
+          name: (document.getElementById('ds-contact-name') as HTMLInputElement)?.value.trim(),
+          email: (document.getElementById('ds-contact-email') as HTMLInputElement)?.value.trim(),
+          subject: `Development services inquiry: ${inquiryType}`,
+          subjectPrefix: 'Pakdata Development Services',
+          details: `Inquiry Type: ${inquiryType}`,
+          message: (document.getElementById('ds-contact-msg') as HTMLTextAreaElement)?.value.trim(),
+        };
+      },
+      onSuccess: () => alert(form.dataset.alertMsg || 'Message sent!'),
+    });
+  };
+
+  document.addEventListener('astro:page-load', setupDevelopmentForm);
+</script>
+
 <style>
   .ds-hero {
+    text-align: center;
     background: radial-gradient(at 20% 0%, oklch(97% .04 60) 0%, transparent 50%), radial-gradient(at 80% 20%, oklch(96% .03 220) 0%, transparent 50%), linear-gradient(180deg, #fefbf8, #fff);
     border-bottom: 1px solid var(--border);
-    padding: 4.5rem 0 3.5rem;
+    padding: 5rem 0 4rem;
   }
 
-  .ds-hero-grid,
-  .split-grid {
-    display: grid;
-    gap: 1.5rem;
+  .ds-hero-inner {
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
 
-  .ds-hero-grid {
-    grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+  .ds-hero-icons {
+    display: flex;
+    gap: .75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .ds-hero-icons span,
+  .ds-icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: .75rem;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 1.4rem;
+  }
+
+  .ds-hero-icons span {
+    border: 1px solid var(--border-focus);
   }
 
   .ds-title {
-    color: var(--primary);
-    font-size: clamp(2.1rem, 3vw, 3rem);
-    line-height: 1.04;
-    margin: .85rem 0 .9rem;
+    color: var(--dark);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+    max-width: 14ch;
+    margin-bottom: 1.25rem;
   }
 
   .ds-lead {
-    color: var(--dark);
-    font-weight: 700;
-    font-size: clamp(1rem, 1.2vw, 1.15rem);
-    margin-bottom: .9rem;
-  }
-
-  .ds-body,
-  .body-copy,
-  .section-intro {
     color: var(--secondary-dark);
+    font-size: calc(1.125rem * var(--text-scale, 1));
     line-height: 1.7;
-    max-width: 46rem;
+    max-width: 42rem;
+    margin-bottom: 2rem;
   }
 
-  .ds-cta-row,
-  .chip-grid {
+  .ds-cta-row {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: .75rem;
   }
 
-  .ds-panel {
-    padding: 1.25rem;
-    background: #fff;
+  .ds-btn-icon {
+    width: 1.1em;
+    height: 1.1em;
+    margin-inline-start: .5rem;
+  }
+
+  [dir='rtl'] .ds-arrow {
+    transform: scaleX(-1);
+  }
+
+  .ds-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    width: 100%;
+    max-width: 40rem;
+    margin-top: 3rem;
+  }
+
+  .ds-hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    padding: 1.1rem .75rem;
+    background: rgba(255, 255, 255, .7);
     border: 1px solid var(--border);
-    box-shadow: var(--shadow-md);
     border-radius: 1rem;
   }
 
-  .ds-panel-head {
+  .ds-hero-stat strong,
+  .ds-cta-stats strong,
+  .ds-stat-card strong {
+    color: var(--primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .ds-hero-stat span,
+  .ds-cta-stats span,
+  .ds-stat-card span {
+    color: var(--secondary-dark);
+    font-size: .85rem;
+  }
+
+  .ds-grid-2,
+  .ds-grid-3,
+  .ds-grid-4 {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .ds-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ds-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ds-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  .ds-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.75rem;
+  }
+
+  .ds-card-accent {
+    border-color: var(--border-focus);
+    background: linear-gradient(180deg, var(--primary-light), var(--light) 45%);
+  }
+
+  .ds-badge-dev {
+    background: var(--primary);
+    color: var(--light);
+  }
+
+  .ds-card-top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .ds-card h3 {
     color: var(--dark);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    font-size: .8rem;
-    font-weight: 700;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 1.1rem 0 .6rem;
   }
 
-  .ds-metric-grid,
-  .solution-grid,
-  .service-grid {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .ds-metric-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .ds-metric,
-  .solution-card,
-  .service-block,
-  .values-card,
-  .cta-band {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 1rem;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .ds-metric,
-  .solution-card,
-  .service-block {
-    padding: 1.1rem;
-  }
-
-  .ds-metric h3,
-  .solution-card h3,
-  .service-block h3,
-  .values-card h3 {
-    margin-bottom: .55rem;
-    color: var(--dark);
-    font-size: 1.02rem;
-  }
-
-  .ds-metric p,
-  .solution-card p,
-  .service-block p,
-  .values-card p {
+  .ds-card p,
+  .ds-value-card p {
     color: var(--secondary-dark);
-    line-height: 1.6;
+    line-height: 1.65;
+    font-size: .95rem;
   }
 
-  .solution-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .service-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .values-card,
-  .cta-band {
-    padding: 1.25rem;
-  }
-
-  .values-card {
+  .ds-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
     display: grid;
-    gap: .75rem;
+    gap: .45rem;
   }
 
-  .cta-band {
+  .ds-feature-list li {
+    position: relative;
+    padding-inline-start: 1.1rem;
+    color: var(--secondary-dark);
+    font-size: .9rem;
+  }
+
+  .ds-feature-list li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: .55em;
+    width: .4rem;
+    height: .4rem;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+
+  .ds-card-btn {
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+
+  .ds-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-top: 1.1rem;
+  }
+
+  .ds-tag {
+    padding: .2rem .65rem;
+    border-radius: 9999px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: .78rem;
+    font-weight: 500;
+  }
+
+  .ds-cta-card {
+    max-width: 40rem;
+    margin: 3rem auto 0;
+    text-align: center;
+  }
+
+  .ds-cta-card:hover {
+    transform: none;
+  }
+
+  .ds-cta-card h3 {
+    color: var(--dark);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: .6rem;
+  }
+
+  .ds-cta-card > p {
+    color: var(--secondary-dark);
+    line-height: 1.65;
+  }
+
+  .ds-cta-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .ds-cta-stats div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ds-story {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .ds-story-copy h3,
+  .ds-subheading {
+    color: var(--dark);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .ds-story-copy p {
+    color: var(--secondary-dark);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .ds-story-stats,
+  .ds-contact-info {
+    display: grid;
     gap: 1rem;
+  }
+
+  .ds-stat-card,
+  .ds-info-card {
+    display: flex;
     align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .ds-stat-card div,
+  .ds-info-card div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ds-subheading {
+    text-align: center;
+    margin: 4rem 0 2rem;
+  }
+
+  .ds-value-card {
+    text-align: center;
+    padding: 1.75rem 1.25rem;
+  }
+
+  .ds-value-card h4 {
+    color: var(--dark);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 1rem 0 .5rem;
+  }
+
+  .ds-contact {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .ds-info-card {
+    align-items: flex-start;
+  }
+
+  .ds-info-card strong {
+    color: var(--dark);
+    font-weight: 600;
+    margin-bottom: .2rem;
+  }
+
+  .ds-info-card a,
+  .ds-info-card p {
+    color: var(--secondary-dark);
+    font-size: .92rem;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+
+  .ds-info-card a:hover {
+    color: var(--primary);
+  }
+
+  .ds-form-card:hover,
+  .ds-info-card:hover {
+    transform: none;
+  }
+
+  .ds-form-card h3 {
+    color: var(--dark);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+
+  .ds-submit {
+    width: 100%;
+  }
+
+  .ds-form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
   }
 
   @media (max-width: 960px) {
-    .ds-hero-grid,
-    .split-grid,
-    .solution-grid,
-    .service-grid,
-    .cta-band {
+    .ds-grid-3,
+    .ds-grid-4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ds-story,
+    .ds-contact {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ds-grid-2,
+    .ds-grid-3,
+    .ds-grid-4,
+    .ds-submit {
+    width: 100%;
+  }
+
+  .ds-form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .ds-hero-stats {
+      grid-template-columns: 1fr;
+      max-width: 20rem;
+    }
+
+    .ds-cta-stats {
+      gap: 1.5rem;
     }
   }
 </style>

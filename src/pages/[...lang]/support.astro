@@ -441,7 +441,8 @@ const faqCategories = [
             email: (document.getElementById('ticket-email') as HTMLInputElement)?.value.trim(),
             subject: `Support request: ${app}`,
             subjectPrefix: 'Support',
-            message: [`App: ${app}`, `Device: ${device}`, '', (document.getElementById('ticket-msg') as HTMLTextAreaElement)?.value.trim()].join('\n'),
+            details: [`App: ${app}`, `Device: ${device}`].join('\n'),
+            message: (document.getElementById('ticket-msg') as HTMLTextAreaElement)?.value.trim(),
           };
         },
         onSuccess: ({ name }) => alert(`${name}: ${ticketForm.dataset.alertMsg || ''}`),

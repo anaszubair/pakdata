@@ -97,6 +97,21 @@ export const buildHtaccess = () => {
         'RewriteRule ^(.+)$ /$1/index.html [L]',
         '</IfModule>',
         '',
+        '# Caching: pages and text files revalidate on every visit so deploys show up',
+        '# immediately; hashed /_astro/ assets cache for a year; other images and fonts',
+        '# for a week.',
+        '<IfModule mod_headers.c>',
+        '<FilesMatch "\\.(html|xml|txt|json)$">',
+        '  Header set Cache-Control "no-cache"',
+        '</FilesMatch>',
+        '<If "%{REQUEST_URI} =~ m#^/_astro/#">',
+        '  Header set Cache-Control "public, max-age=31536000, immutable"',
+        '</If>',
+        '<If "%{REQUEST_URI} !~ m#^/_astro/# && %{REQUEST_URI} =~ m#\\.(png|jpe?g|gif|webp|svg|ico|woff2?)$#">',
+        '  Header set Cache-Control "public, max-age=604800"',
+        '</If>',
+        '</IfModule>',
+        '',
     ].join('\n');
 };
 

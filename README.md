@@ -17,10 +17,13 @@ Static website for Pakistan Data Management Services (https://pakdata.com), buil
 
 - **Apache / Plesk**: the build writes `dist/.htaccess` with 301 redirects, trailing-slash handling and the 404 page.
 - **Vercel**: `vercel.json` holds the same redirects.
+- **Hetzner (rsync)**: `npm run deploy` builds and syncs `dist/` to the server. Run `npm run deploy:dry` first to see what would change. Target and SSH key come from `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_PATH` and `DEPLOY_KEY` (see the top of `deploy.sh`). Files deleted locally are deleted on the server, except the excluded server-only files.
 
 ## Forms
 
 The contact, support and career forms post to the shared PHP mail service at `https://pakdata.com/mail-service.php` (the same endpoint as the Quran Majeed website), with Google reCAPTCHA v2. See `src/lib/mail-service.ts` and `src/lib/recaptcha.ts`.
+
+The service's source is `mail-service.php` in the repo root. The build copies it into `dist/`, so `npm run deploy` uploads it with the site. Its reCAPTCHA secrets live only on the server in `/var/www/vhosts/pakdata.com/private/secrets.php`; `secrets.example.php` shows the format.
 
 - The mail service only accepts browser requests from origins on its CORS allowlist.
 - The reCAPTCHA site key must list every domain the site is served from.

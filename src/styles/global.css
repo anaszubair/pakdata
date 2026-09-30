@@ -376,7 +376,7 @@ textarea.form-control {
 /* Hidden honeypot field for the mail-service spam guard */
 .form-trap {
   position: absolute;
-  left: -10000px;
+  inset-inline-start: -10000px;
   width: 1px;
   height: 1px;
   overflow: hidden;

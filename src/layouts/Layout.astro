@@ -23,7 +23,7 @@ const {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const dir = lang === 'en' ? 'ltr' : 'rtl';
-// The site is prerendered, so the in-app webview mode (?webview=1 or ?view=app)
+// The site is prerendered, so the in-app webview mode (?webview=1, ?view=app or ?ua=qmapp)
 // is applied in the browser by the inline script in <head>.
 const siteOrigin = (Astro.site ?? new URL('https://pakdata.com')).origin;
 const siteHost = new URL(siteOrigin).hostname;
@@ -357,20 +357,25 @@ const projectLinks = [
     <link rel="icon" href="/favicon.ico?v=2" sizes="48x48" />
     <link rel="icon" type="image/png" href="/icon-192.png?v=2" sizes="192x192" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
+    {lang === 'ur' && (
+      <link rel="preload" href="/fonts/noto-nastaliq-urdu-400.woff2" as="font" type="font/woff2" crossorigin />
+    )}
     <meta name="generator" content={Astro.generator} />
+    <meta name="build-version" content={`${__BUILD_INFO__.version} ${__BUILD_INFO__.commit} ${__BUILD_INFO__.buildTime}`} />
     <meta name="google-site-verification" content="3-szp3quXwmwNF3NIavdt_lCGIpMTQQxnC3UMxRumHI" />
     <script is:inline>
       // In-app webview mode: hide the site header and footer.
       (() => {
-        // The flag is kept for the tab session so internal links stay in webview mode.
+        // Only applies while the query parameter is in the URL.
         const apply = () => {
           const params = new URLSearchParams(window.location.search);
-          let webview = params.get('webview') === '1' || params.get('view') === 'app';
-          try {
-            if (webview) sessionStorage.setItem('pdms-webview', '1');
-            else webview = sessionStorage.getItem('pdms-webview') === '1';
-          } catch {}
-          if (webview) document.documentElement.classList.add('webview-shell');
+          const webview =
+            params.get('webview') === '1' ||
+            params.get('view') === 'app' ||
+            params.get('ua') === 'qmapp';
+          // Clear the flag older builds kept for the tab session.
+          try { sessionStorage.removeItem('pdms-webview'); } catch {}
+          document.documentElement.classList.toggle('webview-shell', webview);
         };
         apply();
         document.addEventListener('astro:after-swap', apply);
@@ -424,14 +429,29 @@ const projectLinks = [
     <ClientRouter fallback="swap" />
 
     <style is:global>
+      /* Noto Nastaliq Urdu (SIL OFL, see /fonts/OFL-NotoNastaliqUrdu.txt), Arabic-script subset.
+         About 155 KB per weight; the old Jameel Noori file was 6.6 MB.
+         Noto renders about 1.55x wider than Jameel Noori at the same size, so size-adjust
+         shrinks it back to the footprint the Urdu layout was designed for. */
       @font-face {
-        font-family: 'Jameel Noori Nastaleeq';
+        font-family: 'Noto Nastaliq Urdu';
         src:
-          url('/fonts/ur-site.woff2') format('woff2');
+          url('/fonts/noto-nastaliq-urdu-400.woff2') format('woff2');
         font-weight: 400;
+        size-adjust: 65%;
         font-style: normal;
         font-display: swap;
-        unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+        unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+200C-200E, U+FB50-FDFF, U+FE70-FEFF;
+      }
+      @font-face {
+        font-family: 'Noto Nastaliq Urdu';
+        src:
+          url('/fonts/noto-nastaliq-urdu-700.woff2') format('woff2');
+        font-weight: 700;
+        size-adjust: 65%;
+        font-style: normal;
+        font-display: swap;
+        unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+200C-200E, U+FB50-FDFF, U+FE70-FEFF;
       }
       @font-face {
         font-family: 'PDMS Arabic';
@@ -444,7 +464,7 @@ const projectLinks = [
       }
       :lang(ur), :lang(ur) *, 
       :lang(ur) h1, :lang(ur) h2, :lang(ur) h3, :lang(ur) h4, :lang(ur) h5, :lang(ur) h6, :lang(ur) p, :lang(ur) a, :lang(ur) span, :lang(ur) div {
-        font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', Arial, sans-serif !important;
+        font-family: 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', Arial, sans-serif !important;
       }
       html:lang(ur) {
         line-height: 2.2;
@@ -649,21 +669,39 @@ const projectLinks = [
           </div>
         </div>
 
-        <!-- Footer Column 2: Quick Links -->
+        <!-- Footer Column 2: Newsletter -->
         <div class="footer-col">
-          <h3 class="footer-title">{t('footer.nav.title')}</h3>
-          <ul class="footer-links">
-            <li><a href={getRelativeLocaleUrl(lang, '/')}>{t('nav.home')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products')}>{t('nav.products')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/projects')}>{t('nav.projects')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/about-us')}>{t('nav.about')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/services')}>{t('nav.services')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/development-services')}>{t('footer.nav.devServices')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/our-team')}>{t('nav.team')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/job-us')}>{t('nav.join')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/support')}>{t('nav.support')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/faqs')}>{t('nav.faq')}</a></li>
-          </ul>
+          <h3 class="footer-title">{t('footer.connect.title')}</h3>
+          <p class="footer-text">
+            {t('footer.connect.desc')}
+          </p>
+          <!-- Posts straight to the Sendy install at mailer.pakdata.com, same as the old
+               WordPress footer. Sendy sends no CORS headers, so this is a normal form post
+               and Sendy shows its own confirmation page. -->
+          <form
+            class="newsletter-form"
+            id="newsletter-form"
+            action="https://mailer.pakdata.com/subscribe"
+            method="POST"
+            accept-charset="utf-8"
+            data-astro-reload
+            data-recaptcha-msg={t('form.recaptcha.required')}
+          >
+            <input type="text" name="name" placeholder={t('footer.connect.namePlaceholder')} required autocomplete="name" class="form-control newsletter-input" aria-label={t('a11y.name')} />
+            <div class="newsletter-row">
+              <input type="email" name="email" placeholder={t('footer.connect.placeholder')} required autocomplete="email" class="form-control newsletter-input" aria-label={t('a11y.emailAddress')} />
+              <button type="submit" class="btn btn-primary newsletter-btn" aria-label={t('a11y.subscribe')}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+            </div>
+            <div class="form-recaptcha newsletter-recaptcha" data-recaptcha data-failed-msg={t('form.recaptcha.failed')} hidden></div>
+            <!-- Sendy's own honeypot, list ID and form flag. -->
+            <div class="form-trap" aria-hidden="true">
+              <input type="text" name="hp" tabindex="-1" autocomplete="off" />
+            </div>
+            <input type="hidden" name="list" value="sNEMBldaLYdpxjXBL2dWqg" />
+            <input type="hidden" name="subform" value="yes" />
+          </form>
         </div>
 
         <!-- Footer Column 3: Top Products -->
@@ -671,37 +709,26 @@ const projectLinks = [
           <h3 class="footer-title">{t('footer.products.title')}</h3>
           <ul class="footer-links">
             <li><a href={getRelativeLocaleUrl(lang, '/products/quran-majeed')}>{t('footer.product.qm')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/quran-majeed-mac')}>{t('footer.product.qmMac')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/products/quran-pak')}>{t('footer.product.qp')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/hadith-app')}>{t('footer.product.hadith')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/3d-salah-guide')}>{t('footer.product.salah')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/products/easyurdu')}>{t('footer.product.eu')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/easysindhi')}>{t('footer.product.es')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/arabicfont')}>{t('footer.product.font')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/products/kitabi')}>{t('footer.product.kitabi')}</a></li>
             <li><a href={getRelativeLocaleUrl(lang, '/products') + '#quran-tv'}>{t('footer.product.qtv')}</a></li>
-            <li><a href={getRelativeLocaleUrl(lang, '/engage-ai')}>Engage AI</a></li>
+            <li><a href={getRelativeLocaleUrl(lang, '/products/kitabi')}>{t('footer.product.kitabi')}</a></li>
           </ul>
         </div>
 
-        <!-- Footer Column 4: Newsletter & Inquiries -->
+        <!-- Footer Column 4: Contact -->
         <div class="footer-col">
-          <h3 class="footer-title">{t('footer.connect.title')}</h3>
-          <p class="footer-text">
-            {t('footer.connect.desc')}
-          </p>
-          <form class="newsletter-form" id="newsletter-form" data-thanks={t('newsletter.thanks')}>
-            <input type="email" placeholder={t('footer.connect.placeholder')} required class="form-control newsletter-input" aria-label={t('a11y.emailAddress')} />
-            <button type="submit" class="btn btn-primary newsletter-btn" aria-label={t('a11y.subscribe')}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-            </button>
-          </form>
+          <h3 class="footer-title">{t('nav.contact')}</h3>
           <div class="business-contact">
-            <span class="contact-label">{t('footer.connect.business')}</span>
-            <a href="mailto:support@pakdata.com" class="contact-value">support@pakdata.com</a>
+            <span class="contact-label">{t('footer.contact.address')}</span>
+            <address class="contact-address">{t('contact.office.karachi.address')}</address>
             <span class="contact-label">{t('footer.connect.phone')}</span>
             <a href="tel:+922134559003" class="contact-value" dir="ltr">+92 21 3455 9003</a>
+            <a href="tel:+929237522997" class="contact-value" dir="ltr">+92 92 3752 2997</a>
+            <span class="contact-label">{t('footer.contact.email')}</span>
+            <a href="mailto:support@pakdata.com" class="contact-value">support@pakdata.com</a>
           </div>
+          <a href={getRelativeLocaleUrl(lang, '/contact-us')} class="btn btn-primary footer-contact-btn">{t('footer.contact.button')}</a>
         </div>
       </div>
 
@@ -720,6 +747,10 @@ const projectLinks = [
     <!-- Interactive Navigation Scripts -->
     <script>
       import { navigate } from 'astro:transitions/client';
+      import { mountRecaptcha, type RecaptchaWidget } from '../lib/recaptcha';
+
+      // Site key of the Sendy install at mailer.pakdata.com. Sendy holds the matching secret.
+      const SENDY_RECAPTCHA_SITE_KEY = '6LcTD70bAAAAAKW0ntBeE6r8shx9OODb0wkWq_OT';
 
       let scrollController: AbortController | undefined;
 
@@ -799,14 +830,30 @@ const projectLinks = [
           });
         });
 
-        newsletterForm?.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const emailInput = newsletterForm.querySelector('input');
-          if (emailInput && emailInput.value) {
-            alert(newsletterForm.dataset.thanks || 'Thank you for subscribing!');
-            emailInput.value = '';
-          }
-        });
+        if (newsletterForm instanceof HTMLFormElement && newsletterForm.dataset.ready !== 'true') {
+          newsletterForm.dataset.ready = 'true';
+          const recaptchaContainer = newsletterForm.querySelector<HTMLElement>('[data-recaptcha]');
+          let recaptcha: RecaptchaWidget | undefined;
+
+          // The footer is on every page, so load reCAPTCHA only once the visitor starts filling the form.
+          newsletterForm.addEventListener('focusin', () => {
+            if (recaptcha || !recaptchaContainer) return;
+            recaptchaContainer.hidden = false;
+            recaptcha = mountRecaptcha(recaptchaContainer, { sitekey: SENDY_RECAPTCHA_SITE_KEY, theme: 'dark' });
+          });
+
+          // Sendy drops requests without a valid token, so block the post until the box is ticked.
+          newsletterForm.addEventListener('submit', (e) => {
+            if (recaptcha?.hasFailed()) {
+              e.preventDefault();
+              return;
+            }
+            if (!recaptcha?.getToken()) {
+              e.preventDefault();
+              alert(newsletterForm.dataset.recaptchaMsg || 'Please tick "I\'m not a robot" before sending.');
+            }
+          });
+        }
       });
     </script>
   </body>
@@ -1305,7 +1352,17 @@ const projectLinks = [
 
   .newsletter-form {
     display: flex;
+    flex-direction: column;
     gap: 0.5rem;
+  }
+
+  .newsletter-row {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .newsletter-recaptcha {
+    margin: 0.25rem 0 0;
   }
 
   .newsletter-input {
@@ -1346,8 +1403,21 @@ const projectLinks = [
     font-weight: 600;
   }
 
-  .contact-value + .contact-label {
+  .contact-value + .contact-label,
+  .contact-address + .contact-label {
     margin-top: 0.6rem;
+  }
+
+  .contact-address {
+    font-style: normal;
+    line-height: 1.6;
+  }
+
+  .footer-contact-btn {
+    align-self: flex-start;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    font-size: calc(0.875rem * var(--text-scale, 1));
   }
 
   /* Footer bottom */
@@ -1439,11 +1509,14 @@ const projectLinks = [
     }
   }
 
-  @media (min-width: 1024px) {
+  /* Four columns only once the newsletter column fits the 304px reCAPTCHA. */
+  @media (min-width: 1280px) {
     .footer-grid {
-      grid-template-columns: 2fr 1fr 1fr 2fr;
+      grid-template-columns: 1.2fr 1.6fr 1fr 1.3fr;
     }
+  }
 
+  @media (min-width: 1024px) {
     .footer-bottom-content {
       flex-direction: row;
       justify-content: space-between;

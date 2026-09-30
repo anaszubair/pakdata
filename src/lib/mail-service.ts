@@ -14,6 +14,8 @@ export type MailPayload = {
   subject: string;
   /** Shown in front of the subject by the mail service, e.g. "Support". */
   subjectPrefix: string;
+  /** Extra "Label: value" lines, shown in the email above the message. */
+  details?: string;
   message: string;
 };
 
@@ -26,8 +28,8 @@ type MailFormOptions = {
   onSuccess: (payload: MailPayload) => void;
 };
 
-const openEmailDraft = (to: string, { name, email, subject, message }: MailPayload) => {
-  const body = [`Name: ${name}`, `Email: ${email}`, '', message].join('\n');
+const openEmailDraft = (to: string, { name, email, subject, details, message }: MailPayload) => {
+  const body = [`Name: ${name}`, `Email: ${email}`, ...(details ? [details] : []), '', message].join('\n');
   window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 };
 
@@ -89,6 +91,9 @@ export const setupMailForm = ({ form, button, fallbackEmail, buildPayload, onSuc
         },
         body: new URLSearchParams({
           ...payload,
+          details: payload.details ?? '',
+          // Tells the shared mail service which site's reCAPTCHA secret and recipients to use.
+          site: 'pakdata',
           emailHeader: EMAIL_HEADER,
           redirectUrl: redirectUrl.toString(),
           'g-recaptcha-response': recaptchaToken,

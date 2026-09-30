@@ -145,7 +145,7 @@ const heroCarouselSlides = [
     label: t('products.items.hc.name'),
     image: "/images/hadithscreen-home.webp",
     note: t('products.items.hc.tagline'),
-    downloads: '8M+',
+    downloads: '100K+',
     activeUsers: '3M+',
     awardName: '',
     awardCategory: ''
@@ -155,7 +155,7 @@ const heroCarouselSlides = [
     label: t('products.items.3d.name'),
     image: "/images/salahscreen-home.webp",
     note: t('products.items.3d.tagline'),
-    downloads: '5M+',
+    downloads: '10K+',
     activeUsers: '1M+',
     awardName: '',
     awardCategory: ''
@@ -175,7 +175,7 @@ const heroCarouselSlides = [
     label: t('products.items.kb.name'),
     image: "/images/kitabiscreen-home.webp",
     note: t('products.items.kb.tagline'),
-    downloads: '4M+',
+    downloads: '10K+',
     activeUsers: '1M+',
     awardName: '',
     awardCategory: ''
@@ -610,7 +610,6 @@ const carouselCopy = {
     width: 100%;
     height: 100%;
     min-height: 0;
-    direction: ltr;
   }
 
   .hero-carousel-viewport {
@@ -1350,15 +1349,22 @@ document.addEventListener("astro:page-load", () => {
     const prev = carousel.querySelector("[data-carousel-prev]");
     const next = carousel.querySelector("[data-carousel-next]");
     let current = 0;
-    const isRtl = getComputedStyle(carousel).direction === "rtl";
 
     if (!track || !slides.length) return;
+
+    // On ur/ar pages the track is rtl: slides run right to left, so it moves the other way.
+    const isRtl = getComputedStyle(track).direction === "rtl";
 
     const setSlide = (index: number) => {
       current = (index + slides.length) % slides.length;
       track.style.transform = `translateX(${isRtl ? "" : "-"}${current * 100}%)`;
       slides.forEach((slide, i) => {
         slide.classList.toggle("is-active", i === current);
+      });
+      // Start loading the current and next images now, so a lazy slide never shows up blank.
+      [current, (current + 1) % slides.length].forEach((i) => {
+        const image = slides[i].querySelector("img");
+        if (image) image.loading = "eager";
       });
       dots.forEach((dot, i) => {
         dot.classList.toggle("is-active", i === current);

@@ -15,10 +15,10 @@ declare global {
   }
 }
 
-// Same public site key as the Quran Majeed website. The key's domain list in
+// Pakdata site key. mail-service.php must hold its matching secret. The key's domain list in
 // the reCAPTCHA admin console must include every host this site is served from.
 export const RECAPTCHA_SITE_KEY =
-  import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY || '6LfkmlYrAAAAAAM9QMDRaxK_6N7FfvuiPKADozyf';
+  import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY || '6LdaYdMtAAAAALYTGWVL2Tp6-PI0Sm0k6PMFh5cL';
 
 let apiReady: Promise<Grecaptcha> | undefined;
 let apiLang: string | undefined;
@@ -62,8 +62,17 @@ export type RecaptchaWidget = {
   reset: () => void;
 };
 
+type RecaptchaOptions = {
+  /** Defaults to the mail service key. Other backends (e.g. Sendy) have their own. */
+  sitekey?: string;
+  theme?: 'light' | 'dark';
+};
+
 /** Renders the checkbox into `container`. Safe to call on every page visit. */
-export const mountRecaptcha = (container: HTMLElement): RecaptchaWidget => {
+export const mountRecaptcha = (
+  container: HTMLElement,
+  { sitekey = RECAPTCHA_SITE_KEY, theme = 'light' }: RecaptchaOptions = {},
+): RecaptchaWidget => {
   let widgetId: number | undefined;
   let api: Grecaptcha | undefined;
   let failed = false;
@@ -73,7 +82,7 @@ export const mountRecaptcha = (container: HTMLElement): RecaptchaWidget => {
       api = grecaptcha;
       if (!container.isConnected || container.dataset.recaptchaRendered === 'true') return;
       container.dataset.recaptchaRendered = 'true';
-      widgetId = grecaptcha.render(container, { sitekey: RECAPTCHA_SITE_KEY, theme: 'light' });
+      widgetId = grecaptcha.render(container, { sitekey, theme });
     })
     .catch(() => {
       failed = true;

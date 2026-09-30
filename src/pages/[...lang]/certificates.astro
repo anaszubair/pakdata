@@ -17,33 +17,33 @@ const copy = {
     title: 'Quran Majeed Certificates',
     description: 'View the official certificates verifying the accuracy of the Arabic text, Indo-Pak script and English translations in the Quran Majeed app by PDMS.',
     alts: [
+      'Quran Majeed Indo-Pak script certificate',
       'Quran Majeed certificate for English Dr Mohsin',
       'Quran Majeed certificate for English Pickthal',
       'Quran Majeed certificate for English Abdullah Yousuf',
-      'Quran Majeed Arabic text correctness certificate',
-      'Quran Majeed Indo-Pak script certificate'
+      'Quran Majeed Arabic text correctness certificate'
     ]
   },
   ur: {
     title: 'قرآن مجید سرٹیفکیٹس',
     description: 'PDMS کی قرآن مجید ایپ میں عربی متن، انڈو پاک رسم الخط اور انگریزی تراجم کی درستگی کی تصدیق کرنے والے سرکاری سرٹیفکیٹس دیکھیں۔',
     alts: [
+      'قرآن مجید انڈو پاک رسم الخط سرٹیفکیٹ',
       'انگریزی ترجمہ ڈاکٹر محسن کے لیے قرآن مجید سرٹیفکیٹ',
       'انگریزی ترجمہ پکتھال کے لیے قرآن مجید سرٹیفکیٹ',
       'انگریزی ترجمہ عبداللہ یوسف کے لیے قرآن مجید سرٹیفکیٹ',
-      'قرآن مجید عربی متن کی درستگی کا سرٹیفکیٹ',
-      'قرآن مجید انڈو پاک رسم الخط سرٹیفکیٹ'
+      'قرآن مجید عربی متن کی درستگی کا سرٹیفکیٹ'
     ]
   },
   ar: {
     title: 'شهادات القرآن المجيد',
     description: 'اطّلع على الشهادات الرسمية التي تؤكد دقة النص العربي والرسم الهندي الباكستاني والترجمات الإنجليزية في تطبيق القرآن المجيد من PDMS.',
     alts: [
+      'شهادة الرسم الهندي الباكستاني في القرآن المجيد',
       'شهادة القرآن المجيد للترجمة الإنجليزية للدكتور محسن',
       'شهادة القرآن المجيد للترجمة الإنجليزية لبكثال',
       'شهادة القرآن المجيد للترجمة الإنجليزية لعبد الله يوسف',
-      'شهادة صحة النص العربي في القرآن المجيد',
-      'شهادة الرسم الهندي الباكستاني في القرآن المجيد'
+      'شهادة صحة النص العربي في القرآن المجيد'
     ]
   }
 }[lang] ?? {
@@ -53,11 +53,11 @@ const copy = {
 };
 
 const certificateFiles = [
+  { src: '/images/certificates/Indopak-Certificate.gif', width: 1214, height: 1609, alt: 'Quran Majeed Indo-Pak script certificate' },
   { src: '/images/certificates/QuranEngDrMohsinCertificate.gif', width: 1202, height: 1698, alt: 'Quran Majeed certificate for English Dr Mohsin' },
   { src: '/images/certificates/QuranEngPickthalCertificate.gif', width: 1279, height: 1686, alt: 'Quran Majeed certificate for English Pickthal' },
   { src: '/images/certificates/QuranEngAbdullahYousufCertificate.gif', width: 1287, height: 1706, alt: 'Quran Majeed certificate for English Abdullah Yousuf' },
-  { src: '/images/certificates/QuranArabicTextCorrectCertificate.gif', width: 1162, height: 1659, alt: 'Quran Majeed Arabic text correctness certificate' },
-  { src: '/images/certificates/Indopak-Certificate.gif', width: 1214, height: 1609, alt: 'Quran Majeed Indo-Pak script certificate' }
+  { src: '/images/certificates/QuranArabicTextCorrectCertificate.gif', width: 1162, height: 1659, alt: 'Quran Majeed Arabic text correctness certificate' }
 ];
 
 const certificates = certificateFiles.map((file, index) => ({
@@ -98,7 +98,9 @@ const certificates = certificateFiles.map((file, index) => ({
   .certs-title {
     color: var(--primary);
     font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
     line-height: 1.15;
+    text-align: center;
     margin: 0.75rem 0 1.25rem;
   }
 
